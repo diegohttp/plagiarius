@@ -27,7 +27,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="JMIAdministrarGrupos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Administrar Grupos"/>
+                <Property name="text" type="java.lang.String" value="Administrar Roles"/>
               </Properties>
             </MenuItem>
           </SubComponents>
