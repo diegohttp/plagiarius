@@ -61,7 +61,7 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(JMIAdministrarUsuarios);
 
-        JMIAdministrarGrupos.setText("Administrar Grupos");
+        JMIAdministrarGrupos.setText("Administrar Roles");
         jMenu1.add(JMIAdministrarGrupos);
 
         jMenuBar1.add(jMenu1);
@@ -89,7 +89,8 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMIAdministrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarUsuariosActionPerformed
-
+        JFAministrarUsuarios frmUsuarios= new JFAministrarUsuarios();
+        frmUsuarios.setVisible(true);
     }//GEN-LAST:event_JMIAdministrarUsuariosActionPerformed
 
     /**
