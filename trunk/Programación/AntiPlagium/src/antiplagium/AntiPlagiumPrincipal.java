@@ -107,9 +107,11 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Documentos");
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setBackground(new java.awt.Color(0, 153, 153));
         jMenu3.setText("Detección");
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setBackground(new java.awt.Color(0, 153, 153));
         jMenu4.setText("Reportes");
         jMenuBar1.add(jMenu4);
 
