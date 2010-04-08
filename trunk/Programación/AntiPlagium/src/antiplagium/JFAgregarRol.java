@@ -64,6 +64,7 @@ public class JFAgregarRol extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,6 +98,7 @@ public class JFAgregarRol extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTable2);
+        jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -116,6 +118,7 @@ public class JFAgregarRol extends javax.swing.JFrame {
 
         JPGrupo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 0, 12))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("Nombre del Rol");
 
         jTextField1.setText("grupo 3");
