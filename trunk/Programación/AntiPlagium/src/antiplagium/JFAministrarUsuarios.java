@@ -11,20 +11,20 @@
 
 package antiplagium;
 
-import org.freixas.jcalendar.JCalendarCombo;
+//import org.freixas.jcalendar.JCalendarCombo;
 /**
  *
  * @author a20050354
  */
 public class JFAministrarUsuarios extends javax.swing.JFrame {
 
-    private JCalendarCombo cmbCalendario = new JCalendarCombo();
+    //private JCalendarCombo cmbCalendario = new JCalendarCombo();
 
     /** Creates new form JFAministrarUsuarios */
     public JFAministrarUsuarios() {
         initComponents();
-        cmbCalendario.setBounds(10, 10, 200, 30);
-        jPanel2.add(cmbCalendario);
+        //cmbCalendario.setBounds(10, 10, 200, 30);
+        //jPanel2.add(cmbCalendario);
 
     }
 
