@@ -16,9 +16,11 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-      AntiPlagiumPrincipal antiPlagiumPrincipal = new AntiPlagiumPrincipal();
-      antiPlagiumPrincipal.setVisible(true);
+    public static void main(String[] args) {
+        AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal();
+        principal.setVisible(true);
+//       JFAdministrarRoles jfAdministrarroles = new JFAdministrarRoles();
+//       jfAdministrarroles.setVisible(true);
     }
 
 }
