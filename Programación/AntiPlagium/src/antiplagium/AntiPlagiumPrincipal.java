@@ -11,6 +11,11 @@
 
 package antiplagium;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author a20050354
@@ -18,7 +23,15 @@ package antiplagium;
 public class AntiPlagiumPrincipal extends javax.swing.JFrame {
 
     /** Creates new form AntiPlagiumPrincipal */
-    public AntiPlagiumPrincipal() {
+    public AntiPlagiumPrincipal() throws UnsupportedLookAndFeelException {
+        try
+        {            
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         initComponents();
     }
 
@@ -31,22 +44,41 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JPPrincipal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         JMIAdministrarUsuarios = new javax.swing.JMenuItem();
         JMIAdministrarGrupos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AntiPlagium");
-        setBackground(new java.awt.Color(153, 255, 255));
+        setBackground(new java.awt.Color(204, 204, 204));
         setBounds(new java.awt.Rectangle(0, 0, 700, 480));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        JPPrincipal.setBackground(new java.awt.Color(217, 211, 211));
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Nombre del Usuario");
         jLabel1.setOpaque(true);
+
+        javax.swing.GroupLayout JPPrincipalLayout = new javax.swing.GroupLayout(JPPrincipal);
+        JPPrincipal.setLayout(JPPrincipalLayout);
+        JPPrincipalLayout.setHorizontalGroup(
+            JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
+        );
+        JPPrincipalLayout.setVerticalGroup(
+            JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPPrincipalLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(495, Short.MAX_VALUE))
+        );
 
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -62,6 +94,11 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
         jMenu1.add(JMIAdministrarUsuarios);
 
         JMIAdministrarGrupos.setText("Administrar Roles");
+        JMIAdministrarGrupos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIAdministrarGruposActionPerformed(evt);
+            }
+        });
         jMenu1.add(JMIAdministrarGrupos);
 
         jMenuBar1.add(jMenu1);
@@ -70,19 +107,25 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Documentos");
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Detección");
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Reportes");
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JPPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(265, Short.MAX_VALUE))
+            .addComponent(JPPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -93,13 +136,24 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
         frmUsuarios.setVisible(true);
     }//GEN-LAST:event_JMIAdministrarUsuariosActionPerformed
 
+    private void JMIAdministrarGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarGruposActionPerformed
+        JFAdministrarRoles jfAdministrarRoles = new JFAdministrarRoles();
+        jfAdministrarRoles.setVisible(true);
+        //JPPrincipal.add(jfAdministrarRoles);
+    }//GEN-LAST:event_JMIAdministrarGruposActionPerformed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AntiPlagiumPrincipal().setVisible(true);
+                try
+                {
+                    new AntiPlagiumPrincipal().setVisible(true);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -107,9 +161,12 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JMIAdministrarGrupos;
     private javax.swing.JMenuItem JMIAdministrarUsuarios;
+    private javax.swing.JPanel JPPrincipal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 
