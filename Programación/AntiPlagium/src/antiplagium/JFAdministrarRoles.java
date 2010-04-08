@@ -220,7 +220,8 @@ public class JFAdministrarRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
-        
+        JFAgregarRol jfAgregarRol = new JFAgregarRol();
+        jfAgregarRol.setVisible(true);
     }//GEN-LAST:event_JBNuevoActionPerformed
 
     /**
