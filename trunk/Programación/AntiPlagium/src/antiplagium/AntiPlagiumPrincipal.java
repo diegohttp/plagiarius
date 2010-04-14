@@ -9,8 +9,9 @@
  * Created on 06/04/2010, 07:25:24 PM
  */
 
-package antiplagium;
+package antiplagium.view;
 
+import antiplagium.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;

@@ -5,6 +5,7 @@
 
 package antiplagium;
 
+import antiplagium.view.AntiPlagiumPrincipal;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
