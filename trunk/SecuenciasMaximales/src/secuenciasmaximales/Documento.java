@@ -91,4 +91,8 @@ public class Documento {
         else
             return -1;
     }
+
+    public int getCantPalabras(){
+        return this.posActual;
+    }
 }
