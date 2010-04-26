@@ -22,6 +22,8 @@ public class SecuenciasMaximales {
     private ArrayList< BufferedReader > alstArchivos;
     private int contDocumentos;
     private int contPalabras;
+    private int palabrasEncontradas;
+    private int palabrasTotales;
     /**
      * @param args the command line arguments
      */
@@ -33,6 +35,8 @@ public class SecuenciasMaximales {
         this.alstArchivos = new ArrayList< BufferedReader >();
         this.contDocumentos = 0;
         this.contPalabras = 0;
+        this.palabrasEncontradas = 0;
+        this.palabrasTotales = 0;
     }
 
     public void insertarPalabra(int idDoc, String word){
@@ -128,6 +132,7 @@ public class SecuenciasMaximales {
             sm.leerParrafo(0,0);
             sm.alstOcurrenciaxPalabra.clear();
             sm.creacionEnlacesVerticales();
+            sm.palabrasTotales += sm.alstDocumento.get(0).getCantPalabras();
             int percent = 0;
             int cmpVal;
             for (int i=1; i < sm.alstDocumento.size(); ++i){
@@ -135,9 +140,12 @@ public class SecuenciasMaximales {
                 percent = Math.max(percent,cmpVal);
                 if (percent == 100) break;
             }
-            System.out.println("Porcentaje de plagio parrafo " + (cnt + 1) + " " + percent);
+
+            sm.palabrasEncontradas += percent;
+            System.out.println("Porcentaje de plagio parrafo " + (cnt + 1) + " " + (percent*100)/sm.alstDocumento.get(0).getCantPalabras());
             cnt++;
         }
+        System.out.println("Porcentaje de plagio total del texto = " + (sm.palabrasEncontradas*100) / sm.palabrasTotales);
     }
 
     public int comparaDocumentos(int idDoc1,int idDoc2,int gap){
@@ -202,10 +210,10 @@ public class SecuenciasMaximales {
             numCoincidencias += alstSM.get(cantSec - 1).size();
         }
         this.imprimeResultados(alstSM);
-        System.out.println("nc = " + numCoincidencias);
-        res = (numCoincidencias*100) / this.alstDocumento.get(0).getCantPalabras();
-        System.out.println("res = " + res);
-        return res;
+        //System.out.println("nc = " + numCoincidencias);
+        //res = (numCoincidencias*100) / this.alstDocumento.get(0).getCantPalabras();
+        //System.out.println("res = " + res);
+        return numCoincidencias;
     }
 
     public boolean cumpleAdicion(int idDoc,int idAct,int idNext,int gap){
