@@ -1,0 +1,31 @@
+Biometría
+La biometría es el estudio de métodos automáticos para identificar a individuos a partir de ciertos patrones biológicos.
+
+La biometría informática usa herramientas matemáticas y estadísticas para analizar patrones físicos o de conducta, con la finalidad de identificar a un individuo.
+ 
+La historia de la biometría se remonta al siglo XIV, cuando se sabe (por el escritor Joao de Barros) que comerciantes chinos, usaban las huella de las palmas de las manos, para poder distinguir entre los niños jóvenes.
+
+Sin embargo, la aplicación de técnicas biométricas no es evidente hasta  el siglo XIX, cuando los franceses comienzan a usar diferentes métodos basados en medidas de diferentes partes del cuerpo humano y marcas (como tatuajes),  para  identificar a criminales; sin embargo con el paso del tiempo notaron errores, provenientes principalmente  en la conversión de diferentes unidades de medidas; por lo que decidieron retornar al uso de las huellas digitales; y decimos retornar, porque como se menciono antes, de alguna manera los chinos, ya usaban estos principios hacia cientos de años.
+
+Desde entonces la biometría ha avanzado mucho;  ahora se toman diferentes medidas para realizar análisis de patrones, ya sean de voz, iris, retina, rostro, etc. [1]
+
+Existen dos enfoques  para resolver el problema del reconocimiento facial: el geométrico y el fotométrico, el primero se basa más en los rasgos, mientras que el segundo está orientado a la parte visual. [2]
+
+
+Correspondencia entre agrupaciones de grafos elásticos (Elastic Bunch Graph Matching)
+La técnica considera que muchas de las características propias de un rostro, son no lineales ( por tanto no son tratadas, por métodos de reconocimiento lineales).
+Se tienen dos etapas bien definidas: en primer lugar, lo que se hace es ajustar a un grafo de puntos principales el rostro del individuo, para lo cual se procesa la imagen (en este caso el rostro del individuo), mediante filtros de Gabor.
+En segundo lugar se extraen las características locales en dichos puntos y se encuentra la distancia del grafo obtenido y  los descriptores al grafo que representa a la persona a identificar.
+Dependiendo de los resultados obtenidos, al momento de hallar las distancias, podremos determinar la identidad del individuo.[2] [3]
+
+
+En esta sección mostraremos de manera somera, una serie de productos presentes en el mercado, que solucionan de alguna manera, la situación problemática planteada en la presente investigación. 
+
+KeyLemon es un software gratuito de reconocimiento facial, diseño para ser usado en ordenadores de escritorio y portátiles, con la finalidad de usarse como medio de autenticación, reemplazando a las contraseñas tradicionales.
+Básicamente el usuario tendría que posicionarse frente a su cámara web, para esperar una captura de imagen, luego el programa identificaría si la persona es o no es el usuario del ordenador. [4]
+
+Picasa 3.5, es un software administrador de imágenes de escritorio  desarrollado por Google,  cuenta en esta última versión con la capacidad de agrupar las fotos según las personas que aparecen, es decir se puede formar un grupo con todas las fotos donde una persona X aparece, obviamente esto se hará de manera automática, bastara con indicar la persona a buscar, y  de manera automática de encontraran todas las apariciones de esta. [6]
+
+
+
+

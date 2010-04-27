@@ -1,0 +1,49 @@
+Buscadores Web a nivel internacional
+
+En 1993, después de sólo tres años de existencia de la World Wide Web, los usuarios de Internet se dieron cuenta de que los contenidos en la red empezaban a ser bastante numerosos. Por este motivo se hizo necesario un buscador de páginas web y  desde el Instituto Tecnológico de Massachusetts (MIT) se desarrolló World Wide Web Wanderer, un robot de búsqueda que pretendía medir el tamaño de la red. Ese robot se amplió pudiendo leer direcciones URL y creándose así Wandex, el que se podría considerar primer buscador de internet. El siguiente buscador (quizá mejor llamarlo directorio) fue Aliweb, Creado por Martijn Koster en octubre de 1993 y que todavía hoy está en marcha. [7]
+
+Tras estos primeros procesos de rastreo en la red, que terminaban por saturar las páginas web que visitaban en sus búsquedas, Martijn Koster propuso unas sugerencias para lo que sería el fichero robots.txt que limita la acción de los robots de búsqueda en los sitios web. Aquí comenzaron a desarrollarse las primeras arañas, que rastreaban la web en busca de resultados para sus buscadores. Como Jumpstation, que indexaba el título, la URL y cabecera del sitio; al igual que World Wide Web Worm, creado por Oliver Mc.Bryan en 1994.
+Más adelante, en diciembre de 1994, RBSE (Repository-Based Software Engineering) comenzaba a aplicar un primer ranking en base a la relevancia de la palabra buscada. De forma paralela, iban apareciendo algunos directorios como EINet Galaxy, que en enero de 1994 podría considerarse el primer directorio tal y como se le  conoce en la actualidad. Pero fue en abril de 1994 cuando David Filo y Jerry Yang crearon Yahoo, una colección de sus páginas web favoritas[8]. De aquel primer Yahoo poco queda en el actual, salvo el nombre.
+Hasta aquí podríamos hablar de la versión “beta” de los buscadores, una era en la que todo eran experimentos.
+
+Y así siguieron las cosas hasta que el 20 de abril de 1994 Brian Pinkerton, desde la Universidad de Washington, presentó WebCrawler. La gran diferencia con los anteriores era que indexaba las páginas de forma completa y buscaba información en su contenido y no sólo en la dirección web, título o metas. Esto hizo que la relevancia de los resultados fuera mucho mayor.
+InfoSeek también apareció a principios de 1994 y, aunque no llegó a tener nada especial, tuvo gran éxito a partir de diciembre de 1995, al ser el motor de búsqueda por defecto en el navegador Netscape. Hay que destacar la aparición de Lycos, el 20 de julio de 1994 de la mano de Michale Mauldin en la Universidad de Carnegie Mellon, con un algoritmo interesante que incluía el concepto de proximidad entre palabras.
+
+El siguiente gran lanzamiento fue AltaVista, en diciembre de 1995. La importancia de este buscador radicaba en las mejoras que proponía: tenía ancho de banda casi ilimitado, permitía consultas en lenguaje natural (las que utilizamos habitualmente para hacer búsquedas) y consultas avanzadas mediante operadores lógicos        (AND, OR…). Incluso permitía hacer búsquedas en los nombres de imágenes y algunos ficheros multimedia.
+
+
+El proyecto Google comenzó a desarrollarse en enero de 1996 por Sergey Brin y Larry Page en la Universidad de Stanford. Su nombre, BackRub, hacía alusión a la tecnología que utilizaba: calculaba la importancia de un sitio web en base a los enlaces que recibía. El 15 de septiembre de 1997, el dominio google.com era comprado y el 7 de septiembre de 1998 se creaba Google Inc.
+Hay que destacar dos razones por las que Google se hizo muy interesante: una interfaz muy clara y sencilla (como la de Altavista en sus inicios) y unos resultados muy relevantes. El secreto de los resultados, la tecnología PageRank (patentada el 4 de septiembre de 2001) hizo que el mundo de los motores de búsqueda cambiase completamente.
+
+En 1998 apareció MSN Search, de la mano de Microsoft, utilizando los datos de Inktomi.
+
+A mediados de 1999 apareció en el mercado AllTheWeb. Utilizaba la tecnología de Fast, una empresa noruega que venía de la Norwegian University of Science and Technology. Este buscador ofrecía algunas mejoras con respecto a Google como, por ejemplo, una base de datos más actualizada y una búsqueda avanzada mucho más amplia. Tuvo su momento de gloria pero nunca llegó a tener tanto éxito.
+
+En el año 2000 se lanzó el motor de búsqueda Teoma de mano de Apostolos Gerasoulis, en la Universidad de Rutgers. Utilizaba un sistema para organizar los sitios en base al Subject-Specific Popularity (actualmente Expert Rank) que, al contrario del Pagerank de Google, analizaba los enlaces en un contexto en el que se daba un ranking a una página web según el tema tratado. [8]
+
+El 15 noviembre de 2003, Google implementó uno de los primeros grandes cambios en su motor de búsqueda, añadiendo mejoras en la búsqueda semántica. Los resultados en las búsquedas mejoraron notablemente.
+
+En noviembre de 2004, MSN Search puso en marcha una primera fase pública del nuevo motor de Microsoft, que se hizo pública el 20 de enero de 2005. El 1 de noviembre de 2005 se presentaba la plataforma Windows Live que será la nueva interfaz del motor de búsqueda de Microsoft.
+También hay que hacer referencia a buscadores como Noxtrum, del que se comenzó a saber a finales de Junio de 2005. Enfocado principalmente a sitios en español y portugués, contiene además toda la información de Páginas Amarillas. El 30 de Noviembre de 2005 se lanzaba la versión beta, y el 22 de Abril de 2006 era presentada la primera versión final del buscador.
+
+Y uno de los últimos en llegar ha sido Quaero, el buscador europeo que se presentaba los primeros días de 2006, impulsado principalmente por los gobiernos de Francia y Alemania (que ya se ha retirado del mismo) y potenciado por grandes empresas tecnológicas europeas.
+
+De todos estos buscadores, nos centraremos en explicar brevemente el funcionamiento de Google.
+En Google, el rastreo de la web (la descarga de páginas web) es realizada por varios sistemas distribuidos rastreadores. Un servidor de URLs le pasa a los sistemas rastreadores las páginas a rastrear. Éstas páginas web son enviadas a sistemas de almacenamiento. El servidor de almacenamiento las comprime y las guarda en un repositorio. A cada página web se le asocia un número de identificación denominado docID el cual es asignado cada vez que una nueva URL es examinada. La función de indexación es llevada a cabo por el indexador y el clasificador. El indexador lleva a cabo un número determinado de funciones. Lee el repositorio, descomprime los documentos y los analiza.
+Cada documento se convierte a un conjunto de ocurrencias de palabras llamadas hits. Los hits almacenan la palabra, posición en el documento, tamaño de letra y si es letra mayúscula o minúscula. 
+
+A grandes rasgos las características del funcionamiento del sistema completo de Google, se muestra en la Figura 6.
+
+ 
+Figura 6. Arquitectura a alto nivel del Buscador Google [9]
+
+Buscadores Web a nivel Nacional
+
+En el Perú también se desarrollaron diversos buscadores que en la actualidad brindan sus servicios a los usuarios entre los más resaltantes tenemos:
+
+Adonde, un buscador que surgió a mediados del año 1997. Actualmente es una página con diversas funcionalidades ya que muestra información en diversas categorías, noticias, horóscopo, etc. [10]
+
+Peruhoo, buscador que solo muestra direcciones URL peruanas, es un buscador limitado ya que solo cuenta con 2560 sitios para enlazar.
+Oh Peru, buscador que surgió en 1999, centra su búsqueda en páginas que tengan algún contenido peruano. [11]
+
+WPerú, es un directorio web peruano que tiene como característica resaltante la posibilidad de registrar URL de empresas peruanas para añadirlas a su base de datos. [12]
