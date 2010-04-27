@@ -1,0 +1,36 @@
+Compresión de imágenes: Técnicas y aplicaciones
+
+1.	Introducción
+2.	Técnicas de compresión de imágenes
+3.	Formatos de almacenamiento de imágenes
+4.	Conclusiones
+
+RESUMEN
+
+1. Introducción
+
+La compresión de imágenes comprende un conjunto de técnicas que se aplican a las imágenes para almacenarlos o transmitirlos de manera eficiente. Utiliza las técnicas de compresión de datos digitales, por eso es importante presentar en qué consiste la compresión de datos. Según [1] es el proceso de reducción del volumen de datos para representar una determinada cantidad de información. Es decir, un conjunto de datos puede contener datos redundantes porque son de poca relevancia o son datos que se repiten en el conjunto, los cuales si se identifican pueden ser eliminados.
+
+En el caso de las imágenes, se identifican varias formas de representación de la imagen, de acuerdo a la forma utilizada se  aplican al menos tres tipos para reducir el número de datos redundantes: eliminar código redundante, eliminar píxeles redundantes y eliminar redundancia visual. El objetivo para eliminar código redundante es utilizar el menor número de símbolos para representar la imagen; en este tipo es usual utilizar las técnicas de compresión por codificación de Huffman y codificación aritmética, los cuales  utilizan cálculos estadísticos para lograr eliminar este tipo de redundancia y reducir la ocupación original de los datos(revisar) [2]. 
+
+En el caso de eliminar píxeles redundantes, la mayoría de las imágenes presentan semejanzas o correlaciones entre píxeles debido a las estructuras similares en las imágenes. De esta manera, el valor de un píxel puede emplearse para predecir el de sus vecinos; técnicas como el de Lempel-Ziv se utilizan para eliminar esta redundancia.
+
+El ojo humano responde con diferente sensibilidad a la información visual que recibe. La información a la que es menos sensible se puede descartar sin afectar a la percepción de la imagen. Se suprime así lo que se conoce como redundancia. La eliminación de la redundancia esta relacionada con la cuantificación de la información, lo que conlleva una pérdida de información irreversible. Técnicas de compresión como JPEG, EZW o SPIHT hacen uso de la cuantificación. (revisar, no hice cambios en el texto original).
+
+Resumen técnicas de compresión de imágenes.
+
+El resto del presente artículo se presenta como sigue: el el capítulo 2 se presentan las…
+En el capítulo 3 se presentan las… y finalmente en el capítulo 3 se presentan las conclusiones derivadas del trabajo.
+
+2. Técnicas de compresión de imágenes
+
+Las técnicas de compresión se agrupan en dos grandes clases: 1) Técnicas de compresión sin pérdida de información y 2) Técnicas de compresión con pérdida de información. 
+
+2.1 Técnicas de compresión de imágenes sin pérdida de información
+
+La imagen o secuencia reconstruida es exactamente la misma que la imagen original. Ejemplo: winzip, winrar, algunos modos de TIFF y PNG.
+
+
+2.2 Técnicas de compresión de imágenes con pérdida de información
+
+La imagen o secuencia reconstruida es más o menos diferente de la imagen original. Ejemplos: JPEG, MPEG, algunos modos de Apple Quicktime (MOV) y de Microsoft Video for Windows (AVI).

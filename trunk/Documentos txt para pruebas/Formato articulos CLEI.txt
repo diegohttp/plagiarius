@@ -1,0 +1,11 @@
+Formato artículos CLEI 2007:
+
+Máximo 12 páginas, Times a 10 puntos mínimo, espacio sencillo tamaño carta, márgenes 2.5 por cada lado, cada trabajo debe contener un encabezado con el título, seguido por los nombres del autor y coautores con sus afiliaciones y correo electrónico. El trabajo debe ser enviado en formato PDF siguiendo las instrucciones detalladas en ..
+Solo se aceptarán trabajos enviados por esta vía.
+
+os artículos deben ser enviados electrónicamente, en formato pdf. Estos tienen que tener el formato especificado en las siguientes plantillas:
+
+Por ejemplo un artículo generado por la plantilla de Word debería verse así: ejemploWord y uno generado en LATEX así: ejemploLatex. 
+Los artículos enviados deben ser inéditos (no pueden haber sido publicados o enviados a ningún otro evento). 
+Los artículos aceptados serán publicados en las memorias de la conferencia y serán distribuidos entre los participantes de la misma. Por lo menos uno de los autores debe estar registrado en la conferencia y asistir para presentar el artículo.
+

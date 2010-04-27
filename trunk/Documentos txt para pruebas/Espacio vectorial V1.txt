@@ -1,0 +1,53 @@
+La Recuperación de Información con el Modelo de Espacio Vectorial
+Recuperación de información
+La recuperación de información es el proceso mediante el cual, partiendo de una colección de textos fija (como por ejemplo resúmenes de libros) y una necesidad de información ( expresada por ejemplo mediante palabras unidas por operadores boléanos ), se devuelven los documentos que mejor satisfacen esa necesidad.
+Se trata de un proceso con numerosas aplicaciones prácticas, como buscadores web o bibliotecas digitales. Generalmente el proceso sigue estos pasos:
+1.	Se analizan los documentos y se transforman a una representación interna de cada uno.
+2.	Se analiza la consulta y se transforma a una representación interna.
+3.	A partir de las representaciones obtenidas en los pasos anteriores se calcula el grado de similitud  entre cada documento y la consulta.
+4.	Se recuperan los documentos que guardan mayor similitud con la consulta del usuario.
+ 
+El Modelo de Espacio Vectorial
+Según este modelo cada expresión del lenguaje natural puede representarse como un vector de pesos de términos (entendiendo término como la unidad mínima de información, por ejemplo una palabra o, como veremos después, la raíz sintáctica de una palabra). En el caso de la recuperación de información se representan los documentos y la consulta:
+• documento = ( peso_de_término_l, peso_de_término_2, ..., peso_de_término_n )
+• consulta      = ( peso_de_término_l, peso_de_término_2, ..., peso_de_térrnino_n )
+Para determinar la similitud que existe entre un documento y una consulta se calcula la distancia que existen entre los vectores que los representan (a menor distancia, mayor similitud). Para calcular esa distancia se aplica el Teorema del Coseno:
+ 
+Extracción y Selección de Términos
+Como acabamos de ver, calcular la similitud entre un documento y una consulta es tan fácil como calcular la distancia entre dos vectores.	Sin embargo esos vectores deben representar lo mejor posible tanto a los documentos como a la consulta.
+Los vectores están formados por "pesos de términos". El primer paso es escoger qué términos se escogen.	Como ejemplo, el enfoque más simplista sería escoger como términos cada una de las palabras de cada documento.	De esta manera obtendríamos los términos para los documentos siguientes:
+
+doc1 = "Mañana será un día estupendo, me voy de pesca"
+doc2 = "Me gusta más la noche que el día"
+doc3 = "Paco será alguien el día de mañana"
+términos = (mañana, será, un, día, estupendo, me, voy, de, vacaciones, gusta, más, la, noche, que, el, para, alguien)
+
+A partir de los términos, hemos de asignar un peso para cada término de cada uno de los documentos.	Por ejemplo, podemos asignar un 1 si el término aparece en el documento y un O si no aparece:
+
+términos = mañana | será | un | día | estupendo | me | voy | de | pesca | gusta | más | la | noche | que | el | Paco | alguien
+doc1 = 1|1|1|1I1|1|1|1|1|0|0|0|0|0|0|0|0
+doc2 = 0|0|0|1|0|1|0|0|0|1|1|1|1|1|1|0|0
+doc3 = 1|1|0|1|0|0|0|1|0|0|0|0|0|0|1|1|1
+De esta manera los vectores quedan de la manera siguiente:
+
+doc1 = ( 1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0 )
+doc2 = ( 0,0,0,1,0,1,0,0,0,1,1,1,1,1,1,0,0 )
+doc3 = (1,1,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1)
+
+Si alguien empleara ahora la consulta = "fotos de Paco de noche"
+
+Habría que representarla mediante el proceso anterior, quedando:
+consulta = (0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0)
+
+A continuación calcularíamos la distancia del vector de la consulta con el vector de cada documento y devolveríamos los documentos ordenados de mayor a menor similitud.	Naturalmente pueden aplicarse  procesos más sofisticados de representación, tanto para escoger los términos como para calcular los pesos. Un posible esquema a seguir sería:
+1.	Eliminar signos de puntuación, etiquetas HTML, etc., dejando solamente las palabras de cada documento
+2.	Aplicar listas de parada (listas con las palabras de uso más frecuente del idioma del texto, como artículos, preposiciones, ...) para eliminar las palabras más habituales (aportan menos representatividad al documento).
+3.	Aplicar extractores de raíces (stemmers), programas que reducen cada palabra a su raíz eliminando prefijos, sufijos, terminaciones verbales.
+4.	Calcular el poder de discriminación de cada término (es decir, la capacidad de separar documentos consultando si tiene o no cada término)
+5.	Utilizar thesauri que agrupan los términos en un solo concepto por término (de esta manera todos los términos sinónimos se sustituyen por uno solo)
+6.	Calcular el peso de cada término (suelen realizarse cálculos basados en la frecuencia con que aparece cada término, tanto en un documento como en toda la colección).
+7.	Asignar a cada documento los pesos correspondientes a cada término
+8.	Representar la consulta y calcular la similitud.
+9.	Ordenar y mostrar resultados
+10.	Aplicar realimentación por relevancia (recoger información del usuario acerca de los resultados para que el sistema la aplique en sus cálculos)
+
