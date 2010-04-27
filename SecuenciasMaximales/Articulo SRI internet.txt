@@ -1,0 +1,16 @@
+BÚSQUEDA Y RECUPERACIÓN DE INFORMACIÓN 
+
+La recuperación de información es el siguiente paso a la determinación de las necesidades de información. Se puede recuperar a través de diferentes herramientas: bases de datos, Internet, tesauros, ontologías, mapas... Conocer y manejar estas herramientas contribuye a una recuperación de calidad.
+
+Recuperación de información
+El proceso de recuperación se lleva a cabo mediante consultas a la base de datos donde se almacena la información estructurada, mediante un lenguaje de interrogación adecuado. Es necesario tener en cuenta los elementos clave que permiten hacer la búsqueda, determinando un mayor grado de pertinencia y precisión, como son: los índices, palabras clave, tesauros y los fenómenos que se pueden dar en el proceso como son el ruido y silencio documental. Uno de los problemas que surgen en la búsqueda de información es si lo que recuperamos es "mucho o poco" es decir, dependiendo del tipo de búsqueda se pueden recuperar multitud de documentos o simplemente un número muy reducido. A este fenómeno se denomina Silencio o Ruido documental. 
+
+?Silencio documental: Son aquellos documentos almacenados en la base de datos pero que no han sido recuperados, debido a que la estrategia de búsqueda ha sido demasiado específica o que las palabras clave utilizadas no son las adecuadas para definir la búsqueda. 
+?Ruido documental: Son aquellos documentos recuperados por el sistema pero que no son relevantes. Esto suele ocurrir cuando la estrategia de búsqueda se ha definido demasiado genérica. 
+•Concepto de sistema de recuperación de información Proceso donde se accede a una información previamente almacenada, mediante herramientas informáticas que permiten establecer ecuaciones de búsqueda específicas. Dicha información ha debido de ser estructura previamente a su almacenamiento. 
+
+•Componentes esenciales 
+
+¦Documentos estructurados. Es necesario establecer un proceso donde se establezcan herramientas de indización y control terminológico. 
+¦Bases de datos donde estén almacenados los documentos. Definir lenguajes de interrogación y operadores que soportará la base de datos y, establecer que tipo de ecuaciones serán permitidas. 
+

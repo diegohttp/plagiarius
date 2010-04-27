@@ -1,0 +1,10 @@
+algoritmos.txt
+Articulo SRI.txt
+Biometria.txt
+CompresionV0.txt
+Desenredadndo la madeja V1.txt
+Espacio vectorial V0.txt
+Motor de Búsqueda 1.txt
+Reconocimiento de voz.txt
+SegmentacionV1.txt
+Sistema Experto.txt

@@ -1,0 +1,133 @@
+Motor de Búsqueda
+
+Un motor de búsqueda es un sistema cuyo objetivo principal es buscar información de acuerdo a los parámetros de entrada, estos parámetros de entrada forman la consulta realizada por el usuario en lenguaje natural. Además el motor búsqueda recopila información constantemente mediante un robot (spider) y lo almacena en una base de datos, con el objetivo de recopilar información para su futuro uso. El esquema general de un motor de búsqueda como se muestra en la Figura 1. 
+
+Figura 1. Estructura de un motor de búsqueda
+
+Robot Spider
+
+Los robots spider, también llamado rastreador o crawler tiene como objetivo visitar las páginas Web y recopilar información sobre estas, coleccionan enlaces de cada una de las páginas que ellos visitan y luego siguen estos enlaces hacia otras páginas [1]. De esta forma, ellos esencialmente siguen los enlaces desde una página hacia otra. Toda la World Wide Web está conformada de enlaces, formándose un mapa de híper-relaciones, como se observa en la Figura 2.
+
+
+
+
+
+
+
+
+
+
+
+Figura 2. Estructura una página web con sus enlaces
+
+El funcionamiento básico de un robot es visitar una página Web, recopilar la información sobre esta página y enviarla al módulo de almacenamiento, luego el robot sigue los enlaces de la página y se repite el procedimiento. Para que una página no se almacene en la base de datos del buscador, porque puede ser información confidencial, debe estar etiquetado dicha página para que no se lo indexe.
+Como ejemplo tenemos el robot de Yahoo llamado Slurp [2], el cual reconoce el siguiente “meta tag” en las páginas web para no indexarlo en su base de datos:
+
+<META NAME="robots" CONTENT="noindex">
+
+Módulo de Almacenamiento
+
+El robot (Spider) enviará información al módulo de almacenamiento para que este lo ingrese a la base de datos, esta información está en lenguaje natural, para lo cual se debe realizar un procesamiento para poder guardarlo. Este procedimiento es necesario porque debemos de guardar los datos de forma estructurada, para que después cuando realicemos la búsqueda en la base de datos se realice de forma eficiente. 
+
+El encargado para el procesamiento de la información que será almacenada es el módulo de almacenamiento, para el cual se usará el modelo espacio vectorial.
+
+
+Modelo Espacio Vectorial
+
+El modelo espacio vectorial es un modelo algebraico especialmente utilizado para el almacenamiento y recuperación de la información. Este modelo es capaz de representar documentos hechos en lenguaje natural de manera matemática mediante el uso de vectores [4]. En el siguiente párrafo se presenta la definición básica del modelo.
+
+Cada página o documento es representado mediante un vector de n elementos, siendo n igual al número de términos indizables que existen en la colección documental. Es decir, existe un vector para cada documento, y, en cada vector, un elemento para cada término o palabra susceptible de aparecer en el documento. Cada uno de estos elementos es cubierto u ocupado con un valor numérico; si la palabra no está presente en el documento, ese valor es igual a 0; caso contrario, ese valor es calculado teniendo en cuenta diversos factores, dado que una palabra dada puede ser más o menos significativa (tanto general como, sobre todo, en ese documento en concreto); este valor se conoce con el nombre de peso del término en el documento [5].
+
+El modelo de espacio vectorial es utilizado tanto en el almacenamiento de los datos, como también en las consultas. Esto permite calcular fácilmente una función de similaridad dada entre el vector de una consulta y los de cada uno de los documentos.
+
+En el almacenamiento de datos la idea básica reside en la construcción de una matriz (podría llamarse tabla) de términos y documentos, donde las filas fueran estos últimos y las columnas correspondieran a los términos incluidos en ellos. Así, las filas de esta matriz (al cual se denominan vectores) serían equivalentes a los documentos que se expresarían en función de las apariciones (frecuencia) de cada término. De esta manera, un documento podría expresarse de la manera d1=(1, 2, 0, 0, 0, ... ... ..., 1, 3) siendo cada uno de estos valores el número de veces que aparece cada término en el documento. La longitud del vector de documentos sería igual al total de términos de la matriz (el número de columnas). De esta manera, un conjunto de m documentos se almacenaría en una matriz de m filas por n columnas, siendo n el total de términos almacenamos en ese conjunto de documentos. En la tabla 1 se muestra un ejemplo.
+
+
+Término
+Frecuencia
+Peso
+Clave
+ACTIVIDADES
+2
+8,919612
+1
+AFINES
+1
+6,68443
+1
+AUTONOMA
+3
+17,30442
+1
+BIBLIOGRAFIA
+1
+8,070724
+1
+BIBLIOTECA
+1
+2,98932
+1
+Tabla 1. Tabla con términos, frecuencia, pesos y puntero a la página [5]
+
+
+La arquitectura del almacenamiento de datos es básicamente la siguiente [5]:
+
+Procesado de documentos
+Obtención de palabras de cada documento.
+Filtrado y eliminación de palabras vacías.
+Normalización de caracteres (mayúsculas, minúsculas, acentos).
+Lematización: proceso mediante el cual se relacionan morfológicamente las palabras que comparten la misma raíz, de forma que podamos agrupar las variantes morfológicas de cada término.
+Almacenamiento en tabla de cada término resultante, junto con la referencia o clave de los documentos en que aparece.
+
+Cálculo de frecuencias de términos, pesos y almacenamiento de resultados. Para realizar estos cálculos se realizará un proceso de indización, el cual se explica en la figura 3.
+
+Documento
+Clave
+<TITULO>Información y documentación en el plan nacional</TITULO><RESUMEN> Las tareas de información y documentación constituyen
+284
+
+<TITULO>Pontificia Universidad Católica del Perú</TITULO><RESUMEN> Página principal de esta universidad privada, con sede
+285
+
+
+
+
+
+
+
+
+
+
+Término
+Clave
+ACTUAL
+392
+ADULTO
+392
+
+
+
+
+Clave del Documento
+Término
+Peso
+127
+INSTITUO
+17.8205
+127
+OFICIAL
+6.0245
+
+Figura 3. Proceso de Indización [5]
+
+En cuanto a la consulta la idea básica de este modelo reside es calcular la similitud entre la pregunta (el cual se convertirá en el vector de pregunta, expresado en función de la aparición de los n términos en la expresión de búsqueda) y los m vectores de documentos almacenados. Los más similares serían aquellos que deberían colocarse en los primeros lugares de respuesta. Disponemos de varias fórmulas que nos permiten realizar este cálculo, la más conocida es la Función del Coseno, que equivale a calcular el producto escalar de dos vectores de documentos (A y B) y dividirlo por la raíz cuadrada del sumatorio de los componentes del vector A multiplicada por la raíz cuadrada del sumatorio de los componentes del vector B (Ver figura 4) [6].
+
+
+ 
+
+Figura 4. Cálculo de Similitud
+
+El proceso básico para realizar una consulta se explica a continuación. Dado que una consulta es en lenguaje natural ha de ser tratada como un documento cualquiera, requiere las mismas operaciones:
+Procesado del texto de la consulta (obtención de palabras, eliminación de vacíos, normalización de caracteres, lematización).
+Cálculo de pesos de los términos de la consulta.
+Cálculo de similaridad entre consulta y cada uno de los documentos.

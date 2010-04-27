@@ -1,0 +1,116 @@
+ESTUDIO Y EVALUACIÓN DE LOS SISTEMAS DE RECUPERACIÓN DE INFORMACIÓN 
+
+Nora La Serna
+
+RESUMEN
+
+El trabajo que se presenta en este artículo se desarrolla en la línea de los Sistemas de Recuperación de Información (SRI). Básicamente se han realizado las siguientes actividades: 1) un estudio detallado de las principales técnicas, modelos y arquitecturas, así como de los criterios de evaluación de éstos sistemas; 2) El estudio también ha llevado a un análisis de las técnicas de indexación necesarios para el almacenamiento de los documentos; 3) Igualmente, el trabajo ha permitido la selección de cuatro aplicaciones de SRI para su análisis y evaluación: KARPANTA, SISA, DOMAIN y SMART. El trabajo se desarrolla en el marco del proyecto de investigación “Sistema de Recuperación de Información”, cuyo objetivo es diseñar un SRI para la Biblioteca de la Facultad de Ingeniería de Sistemas e Informática, y posteriormente para la Biblioteca Central de la Universidad Nacional Mayor de San Marcos.
+
+Palabras claves: Sistemas de Recuperación de Información, Modelo Booleano, Modelo del Espacio Vectorial, Buscadores WEB, Evaluación de los SRI.
+
+1. Introducción
+
+Los Sistemas de Recuperación de Información (SRI) permiten el almacenamiento óptimo de grandes volúmenes de información (principalmente documentos, últimamente también información multimedia), y la recuperación eficiente de la información ante las consultas de los usuarios. Este campo no es nuevo pues ha ido evolucionando desde la decada de los años 50, cuando el objetivo era manejar información bibliográfica. Con el avance de la tecnología, computadores más potentes y software más eficientes, el almacenamiento de grandes volumenes de información se esta dando en todas las disciplinas del quehacer humano. Internet, la red de redes, tambien alberga en sus computadores servidoras millones de documentos. 
+
+Por lo tanto, Cómo recuperar, en forma eficiente, documentos almacenados en forma digital  que una persona necesita y solicita, es un tema no sólo de interés e importancia para la comunidad educativa (docentes, alumnos e investigadores), sino también para el sector empresarial, gobierno y público en general que necesita buscar información. Múltiples aplicaciones prácticas se estan dando, algunos de los más conocidos son los buscadores web y bibliotecas digitales.
+
+El presente trabajo tiene dos objetivos principales: 1) Realizar un estudio detallado de las principales técnicas, modelos y arquitecturas, así como de los criterios de evaluación de los Sistemas de Recuperación de Información; 2) Realizar un análisis y evaluación de cuatro aplicaciones de SRI que sobresalen en el medio. El resultado de los estudios que se realicen permitirán diseñar un  Sistema de Recuperación de Información para la Biblioteca de la Facultad de Ingeniería de Sistemas e Informática, y posteriormente para la Biblioteca Central de la Universidad Nacional Mayor de San Marcos.
+
+ La estructura del presente artículo es la siguiente: En la sección 2 se dan las definiciones más destacadas de los Sistemas de Recuperación de Información, en las secciones 3 y 4 se describen los dos modelos más utilizados en el diseño de los SRI: 1) El Modelo Booleano, y 2) El Modelo del Espacio Vectorial. En la sección 5 se presentan las principales técnicas de los SRI en la WEB, la sección 6 corresponde a la Evaluación de los SRI, en la 7 se hace un análisis de los resultados, y finalmente en la sección 8 se bosquejan las conclusiones y trabajos futuros.
+
+2. Definiciones de Sistemas de Recuperación de Información
+Desde el punto de vista de un Sistema de Información podemos definir estos Sistemas como el conjunto de componentes (software, hardware, personas, procedimientos, datos, y comunicaciones) que interactúan, y cuyos objetivos son el almacenamiento óptimo de grandes volúmenes de información (principalmente documentos, últimamente también información multimedia), y la recuperación eficiente de información ante las consultas de los usuarios.
+Varias definiciones de los SRI se han dado desde su formalización en los años 1950, especialmente marcados por el avance de la tecnología a través del tiempo, y también desde los puntos de vista de los autores. Teniendo en cuenta que es multidisciplinaria, en donde intervienen para su diseño generalmente la Bibliotecología, la Lingüística, y Ciencias de la Computación e Informática, Un resumen importante de las diferentes definiciones lo encontramos en [Martínez M. Francisco 2000]. Aquí presentamos algunas de las definiciones más destacadas.
+Dos de los autores más citados por los especialistas en la materia son Gerard Salton y Ricardo Baeza-Yates. Este último autor, verdadera referencia en este campo (donde ha venido preocupándose especialmente del tema de las estructuras de datos y de los métodos de acceso a los mismos), a la hora de definir la recuperación de información, en lugar de proponer una definición propia, hace uso de la elaborada por Salton: “la recuperación de la información tiene que ver con la representación, almacenamiento, organización y acceso a los ítem de información” [Salton, 1983]. 
+Salton indica que, en principio, no deben existir limitaciones a la naturaleza del objeto informativo y Baeza-Yates incorpora la reflexión siguiente: “la representación y organización debería proveer al usuario un fácil acceso a la información en la que se encuentre interesado. Desafortunadamente, la caracterización de la necesidad informativa de un usuario no es un problema sencillo de resolver” [Baeza-Yates, 1999]. 
+Algunos autores presentan la definición de Sistemas de Recuperación de Información como sinónimo de la Recuperación de Datos, influenciados por el punto de vista de las bases de datos; sin embargo, existen varias diferencias entre ambos términos. La tabla 1 sintetiza las diferencias fundamentales entre ambos conceptos:
+ 	Recuperación de datos	Recuperación de información 
+Acierto (correspondencia)	Exacta	Parcial, la mejor
+Inferencia	Algebraica	Inductiva
+Modelo	Determinístico	Posibilístico
+Lenguaje de consulta	Fuertemente Estructurado	Estructurado o Natural
+Especificación de la consulta	Precisa	Imprecisa
+Error en la respuesta	Sensible	Insensible
+Tabla 1: Diferencias entre recuperación de datos y recuperación de información 
+Los modelos de Sistemas de Recuperación de información que se utilizan con mayor frecuencia en el diseño de los SRI son: 1) El Modelo Booleano, y 2) El Modelo del Espacio Vectorial. La descripción de ambos modelos, son tema de las siguientes dos secciones.
+
+3. Modelo Booleano
+El modelo booleano es uno de los primeros modelos y el más utilizado de los SRI. En este modelo, un documento se encuentra representado por un conjunto de Palabras Claves (palabras con un valor semántico), las cuales pueden ser extraídas de un documento, de una parte de éste o de sus meta datos. Igualmente, la consulta es un grupo de palabras claves [Salton G. Y McGill M, 1983]. Generalmente se utilizan archivos inversos para almacenar las palabras claves. 
+
+Los archivos inversos contienen los siguientes campos: palabra clave o término índice (describe al documento), un identificador de documento (debe ser único para cada documento), y un identificador de campo (donde se encuentra la palabra clave) [Martínez M. Francisco, 2000]. En un sistema booleano las consultas de los usuarios contienen operadores lógicos (Y, O, NO), y así un motor de búsqueda regresa aquellos documentos que cumplen con los aspectos lógicos de la consulta.
+
+ARQUITECTURA
+
+En un SRI hay dos instancias: 1) El almacenamiento de los documentos, y 2) La recuperación de información desde la solicitud del usuario En la figura 1 se ilustran las dos instancias del proceso de almacenamiento y recuperación basado en el modelo Booleano [Baeza-Yates y  Ribeiro-Neto 1999]. 1) Desde el punto de vista del almacenamiento del documento en el SRI van a ocurrir los siguientes procesos: 
+1.	A cada documento que entra se le asigna un Identificador 
+2.	Se identifican las palabras contenidas en el documento 
+3.	Se excluyen las palabras vacías 
+4.	Se "cortan" las palabras, es decir, se extraen las raíces de las palabras 
+5.	Se establece un peso de ponderación para cada raiz 
+6.	Finalmente las raíces debidamente ponderadas se introducen en la base de datos 
+
+
+Figura 1. Vista funcional del modelo booleano
+
+2) Cuando el usuario lleva a cabo una operación de recuperación de información, se realizarán los siguientes procesos: 
+1.	El usuario en función de sus necesidades y conveniencias lleva a cabo una serie de juicios de relevancia para confeccionar su ecuación de búsqueda, ayudándose de las prestaciones que le proporciona el Interfaz de Búsqueda. 
+2.	La ecuación de búsqueda, una vez introducida, se descompone en sus partes fundamentales. 
+3.	Los términos clave empleados en la ecuación de búsqueda son "cortados" para extraer de ellos sus raíces y de esta forma proceder a su localización en la base de datos. 
+4.	Una vez localizados los distintos subconjuntos de documentos asociados a los términos clave, se llevan a cabo las operaciones booleanas pertinentes, que han sido introducidas por el usuario en la ecuación de búsqueda. 
+5.	Posteriormente los documentos pueden alinearse para su presentación según un ranking determinado. 
+
+El modelo booleano da como resultado los documentos que parecen relevantes ante la consulta de un usuario, sin embargo no dice que tan relevante es un documento y así asume que éstos tienen el mismo grado de importancia, es ahí donde radica una de las principales desventajas del modelo. Otra de las dificultades que presenta el modelo booleano tradicional es la dificultad en la elaboración de consultas, debido a que éstas están basadas en operadores booleanos y no todos los usuarios están familiarizados con esta forma de consulta. Otro problema radica en el poco control que hay sobre el tamaño de la salida producida por una consulta, esto ocasiona que se tenga una cantidad  muy pobre de ellos. Adicionalmente, en el modelo booleano no hay provisiones para lograr una asignación de pesos a los términos, esto quiere decir que todos los términos son considerados siempre como de igual  importancia.
+
+Algunas de las desventajas descritas, fueron eliminadas en el modelo vectorial; aunque, el modelo vectorial no presenta la capacidad de formular consultas utilizando los diferentes operadores booleanos. Es a partir de esta falta, que nace la idea de extender el modelo para tener el modelo booleano extendido.
+
+Modelo Booleano Extendido    
+ 
+El modelo booleano extendido, como su nombre lo dice, es una extensión del modelo booleano tradicional. Podemos decir que se trata de una mezcla del modelo booleano tradicional con el modelo vectorial, debido a que incluye la funcionalidad de los pesos de cada término en los documentos, con la capacidad de formular consultas con operadores booleanos. 
+
+4. Modelo del Espacio Vectorial 
+
+Según este modelo cada expresión del lenguaje natural puede representarse como un vector de pesos de términos, en donde un término es la unidad mínima de información, por ejemplo una palabra o la raíz sintáctica de una palabra. La asignación de pesos a los términos, indican su presencia o importancia en el documento o en la colección de documentos. Habiendo varias técnicas para asignar pesos, una de ellas es la frecuencia del término, es decir, el número de veces que aparece el término en un documento. En el siguiente ejemplo se muestra la representación de un documento y una consulta mediante vectores de pesos:
+Documento = ( peso_de_término_l, peso_de_término_2, ..., peso_de_término_n )
+Consulta      = ( peso_de_término_l, peso_de_término_2, ..., peso_de_térrnino_n )
+
+Para determinar la similitud que existe entre un documento y una consulta se calcula la distancia que existen entre los vectores que los representan; a menor distancia, mayor similitud. Para calcular esa distancia se aplica el Teorema del Coseno [Baeza-Yates y  Ribeiro-Neto 1999]:
+ 
+Cuando el resultado de la aplicación de la fórmula anterior se aproxima a la unidad, quiere decir que los vectores son muy similares. Como acabamos de ver, calcular la similitud entre un documento y una consulta es tan fácil como calcular la distancia entre dos vectores. Sin embargo, esos vectores deben representar lo mejor posible tanto a los documentos como a la consulta. 
+
+ARQUITECTURA
+
+De forma muy general y didáctica se presenta a continuación los pasos que se realizan en el proceso de almacenamiento y recuperación en el modelo vectorial. En la figura 2 se presenta la gráfica de la vista funcional del modelo.
+1. Se analizan los documentos y se transforman a una representación interna de cada uno.
+2. Se analiza la consulta y se transforma a una representación interna.
+3. A partir de las representaciones obtenidas en los pasos anteriores se calcula el grado de similitud  entre cada documento y la consulta.
+4. Se recuperan los documentos que guardan mayor similitud con la consulta del usuario.
+ 
+Figura 2. Vista funcional del modelo del espacio vectorial.
+
+Un ejemplo de extracción y selección de términos
+
+Los vectores están formados por "pesos de términos". El primer paso es escoger qué términos se escogen. Por ejemplo, escogemos como términos cada una de las palabras en los siguientes documentos:
+doc1 = "Mañana será un día estupendo, me voy de pesca"
+doc2 = "Me gusta más la noche que el día"
+doc3 = "Paco será alguien el día de mañana"
+términos = (mañana, será, un, día, estupendo, me, voy, de, vacaciones, gusta, más, la, noche, que, el, para, alguien)
+A cada términos de cada uno de los documentos se le asigna un peso. Por ejemplo, podemos asignar un 1 si el término aparece en el documento, y un O si no aparece. Entonces, los vectores quedan de la siguiente manera:
+doc1 = ( 1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0 )
+doc2 = ( 0,0,0,1,0,1,0,0,0,1,1,1,1,1,1,0,0 )
+doc3 = (1,1,0,1,0,0,0,1,0,0,0,0,0,0,1,1,1)
+Si se desea hacer la siguiente consulta = "fotos de Paco de noche" 
+Y asignando los pesos seleccionados, la representación quedaría de la siguiente forma: 
+consulta = (0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0)
+A continuación calcularíamos la distancia del vector de la consulta con el vector de cada documento, y devolveríamos los documentos ordenados de mayor a menor similitud. 
+Procesos más detallados de una vista funcional del modelo, seguirían al menos los siguientes pasos: 
+1.	Eliminar signos de puntuación, etiquetas HTML, etc., dejando solamente las palabras de cada documento
+2.	Aplicar listas de parada (listas con las palabras de uso más frecuente del idioma del texto, como artículos, preposiciones, etc.) para eliminar las palabras más habituales (aportan menos representatividad al documento).
+3.	Aplicar extractores de raíces (stemmers), programas que reducen cada palabra a su raíz eliminando prefijos, sufijos, terminaciones verbales.
+4.	Calcular el poder de discriminación de cada término (es decir, la capacidad de separar documentos consultando si tiene o no cada término)
+5.	Utilizar thesauri que agrupan los términos en un solo concepto por término (de esta manera todos los términos sinónimos se sustituyen por uno solo)
+6.	Calcular el peso de cada término (suelen realizarse cálculos basados en la frecuencia con que aparece cada término, tanto en un documento como en toda la colección).
+7.	Asignar a cada documento los pesos correspondientes a cada término
+8.	Representar la consulta y calcular la similitud.
+9.	Ordenar y mostrar resultados
+10.	Aplicar realimentación por relevancia (recoger información del usuario acerca de los resultados para que el sistema la aplique en sus cálculos)
+

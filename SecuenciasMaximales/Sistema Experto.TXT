@@ -1,0 +1,87 @@
+Un sistema experto, es un programa de computadora capaz resolver problemas, que requieren para su solución parcial o total, del conocimiento de un especialista humano, es decir, emula su capacidad de razonamiento mediante una base de conocimientos y un motor de inferencia. De esta manera, el sistema experto debería ser capaz de:
+Resolver el problema planteado de la misma manera que lo haría un especialista humano.
+Poder trabajar con datos incompletos, poco específicos o y con un amplio grado de incertidumbre.
+Poder sustentar los resultados obtenidos.
+Obtener nuevos conocimientos, ya sea por medio del especialista humano o sobre la marcha.
+
+2.2 Arquitectura de un Sistema Experto
+
+2.2.1 Base de Conocimientos
+
+Aquí se encuentra toda la información sobre el campo o área en el cual se ha desarrollado la aplicación, es decir todo el conocimiento adquirido por un especialista mediante el estudio, creencias y experiencia personal.
+El orden de ingreso de estos datos no es influyente.
+2.2.2 Base de Hechos
+
+Aquí se almacena la información de la situación concreta que va a ser considerada. Se puede usar para almacenar los modos de razonamiento y la forma en que han sido utilizados. Gracias a la base de hechos, el sistema experto podrá tener la facultad de sustentar sus respuestas, es decir como ha conseguido llegar a los resultados arrojados a los usuarios finales.
+2.2.3 Motor de inferencia
+
+Parte del sistema experto encargado de gestionar la información de la base de hechos y la base de conocimientos, para obtener una serie de razonamientos con los cuales podremos llegar a la solución adecuada.
+Se pueden usar dos tipos de razonamiento: encadenamiento hacia delante, y encadenamiento hacia atrás.
+El primero comienza con los hechos y avanza hacia delante hasta las conclusiones, el segundo comienza por las conclusiones y trabajas hacia atrás hasta los hechos de apoyo.
+2.3 Características
+
+Una de las características principales de los sistemas expertos, es su capacidad de incrementar sus conocimientos; ya sea por medio de un especialista o por si mismo a través de cuestionamientos. Esto permitirá al sistema experto mantenerse actualizado con los nuevos temas que puedan surgir sobre el área o especialidad abarcada.
+Desarrollo de un sistema experto.
+
+Los sistemas expertos también deben poseer un buen conjunto de estrategias, sólidas y flexibles, para la resolución de problemas. Sólidas porque tiene que estar sustentadas tanto en la experiencia del especialista como en sus conocimientos, y flexible dado que ningún problema presentado es completamente igual a otro, todos difieren de alguna forma.
+Los sistemas expertos deben presentar soluciones buenas en términos de calidad y cantidad, ya que por ejemplo si fallan en la solución de problemas básicos, para los que fueron creados, entonces no son considerados sistemas expertos.
+Los sistemas expertos deben poder dar justificar sus respuestas, así como lo hace un especialista humano.
+2.5 Ventajas de los Sistemas Expertos
+
+El conocimiento contenido en los sistemas expertos es más fácil de documentar y de comunicar.
+El conocimiento contenido en los sistemas expertos no esta sujeto a la vida del experto, y puede perdurar así este muera o se olvide de todo lo que estudio.
+Es fácilmente transportable.
+En la toma de decisiones no influyen factores anímicos ni emocionales, como si puede suceder con un experto humano.
+Ayuda a incrementar la disponibilidad dentro de un sector o región donde se necesita de un experto y no se cuenta con los recursos suficientes.
+
+2.6 Desventajas de los Sistemas Expertos
+
+Creatividad: los humanos pueden responder creativamente a situaciones inusuales, los sistemas no.
+
+Experiencia Sensorial: los humanos tienen un amplio rango de disponibilidad de experiencia sensorial, mientras que los sistemas expertos dependen de una entrada simbólica.
+Degradación: Los sistemas expertos no pueden reconocer cuando un problema no tiene solución o cuando ese problema está fuera de su área.
+Programación: Difícil de elaborar y precisan mantenimiento complejo.
+El elevado costo: En tiempo y dinero para extraer el conocimiento de los especialistas humanos.
+Poca flexibilidad a cambios: Hay que programar el sistema.
+Dificultad para manipular información no estructurada: Especialmente la información incompleta, inconsistente o errónea.
+Desacuerdo entre los especialistas humanos: En la elaboración del sistema experto, los especialistas pueden estar en desacuerdo entre ellos a la hora de tomar las mejores decisiones para solucionar un problema específico.
+
+2.7 Inferencia
+El motor de inferencia lleva a cabo dos tareas principales:
+Examina los hechos y las reglas, y, si es posible aumenta mas hechos.
+Decide el orden en que se van a ser realizadas las inferencias.
+Encadenamiento hacia adelante
+
+En este proceso, se comienza con los hechos y se trabaja “hacia adelante” hasta las conclusiones. Este proceso continua hasta que el sistema obtenga una conclusión utilizando la información proporcionada por el usuario y las reglas aplicables de la base de conocimiento.
+
+Encadenamiento hacia atrás
+
+Es el proceso de comenzar con las conclusiones y trabajar “hacia atrás” hasta encontrar los hechos de soporte. En caso los hechos no soporten la conclusión, se elige y prueba otra. Este proceso se repite hasta que se pueda conseguir la conclusión correcta.
+
+Comparación del encadenamiento hacia atrás y hacia adelante
+
+El encadenamiento hacia adelante puede llegar a conclusiones y generar mucha mas información con menos consultas para el usuario que el encadenamiento hacia atrás, pero necesitan mas procesamiento y un mayor grado de sofisticación. En la actualidad los sistemas expertos más costosos usan encadenamiento hacia adelante. También es posible usar ambos tipos de encadenamientos a la vez (encadenamiento mixto).
+
+	            2.8  Aplicaciones de los Sistemas Expertos
+
+Se listaran algunas de las aplicaciones de los sistemas.
+Otorgar Crédito: Muchas entidades bancarias usan los sistemas expertos para realizar estudios sobre el crédito de una persona y su historial crediticio con otras entidades bancarias. Estos estudios son evaluados y usados para la toma de decisiones respectivas.
+
+Administración y recuperación de información: En la actualidad las empresas cuentan con demasiada información y en muchos casos no tienen todos los recursos necesarios para administrarla. Los sistemas expertos ayudan a administrar la información de manera óptima por medio de agentes, los cuales son usados para la recuperación de información de bases de datos distribuidas, además ayudan en la toma de decisiones y eliminan hechos sin importancia.
+
+Sistemas Expertos incorporados a productos: En este caso tenemos como ejemplo, un sistema antibloqueo de frenos, el cual detecta cuando las llantas empiezan a resbalar y libera los frenos por unos segundos para evitar el deslizamiento de las mismas.
+Flexpert sistema experto usado para determinar la mejor ubicación para los equipos y las instalaciones de fabricación.
+
+	3. Estado del Arte
+Sistemas expertos de diagnostico medico
+Sistema DiagnosMD
+
+Sistema de uso comercial. Este permite la lectura de resultados de pruebas de análisis, resultados de Rx, así como los comunes síntomas e información personal del paciente.
+El sistema realizara la inferencia utilizando lógica difusa, brindando el diagnostico, medicación recomendada e incluso una dieta a seguir por el paciente. Adicionalmente, el sistema informara de contraindicaciones en el tratamiento del paciente, así como interacciones entre fármacos. Permite además, filtrar enfermedades, dígase, no mostrar las de determinado tipo.
+5GL-Doctor
+
+Sistema de uso comercial. Realiza el proceso de inferencia mediante el ingreso de síntomas y datos personales del paciente (edad, sexo, hábitos).
+El sistema arrojara las posibles enfermedades que pueda presentar el paciente, así como la escala sintomática de cada uno y la probabilidad de tener realmente determinado cuadro clínico. Además, brindara una descripción detallada de cada síntoma y enfermedad mostrada.
+MYCIN
+
+Sistema experto desarrollado inicialmente por Ed Feigenbaum y continuado por E.Shortliffe. El sistema recibe como entrada inicial los datos generales del paciente, así como síntomas y análisis diversos, con lo cual plantea una hipótesis, la cual ira afirmando mediante un esquema de pregunta-respuesta. Este sistema es capaz de interactuar con el humano en lenguaje natural, Se le considera en la actualidad como el pionero de los sistemas expertos de diagnostico medico.

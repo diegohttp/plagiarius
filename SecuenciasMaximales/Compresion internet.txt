@@ -1,0 +1,60 @@
+
+Técnicas de compresión
+WHITE PAPER, Axis Communications	Técnicas de compresión
+
+1.- Introducción a las técnicas de compresión
+
+JPEG, Motion JPEG y MPEG son tres acrónimos bien conocidos y usados para describir diferentes tipos de formatos de compresión de imágenes. Pero, qué significan y por qué son tan importantes en el creciente mercado actual de la vigilancia?. Este whitepaper describe las diferencias y espera ofrecer algunas respuestas de porque son tan importantes y se adaptan tan bien a las aplicaciones de vigilancia.
+
+Cuando se está desarrollando una aplicación de vídeo-vigilancia digital los programadores consideran inicialmente los siguientes factores:
+
+¿Son necesarias imágenes estáticas o en movimiento? 
+
+¿Cuál es el ancho de banda de la red? 
+
+¿que nivel de degradación de imágenes debido a la compresión resulta aceptable-artifacts? 
+
+¿A cuanto asciende el presupuesto para el sistema? 
+
+Cuando se digitaliza una secuencia de vídeo analógica de acuerdo al estándar CCIR 601 puede consumir aproximadamente 165 Mbps (Megabites por segundo), es decir 165 millones de bits cada segundo. Aunque la mayoría de las aplicaciones de vigilancia rara vez comparte la red con otras aplicaciones intensivas en datos, es realmente infrecuente encontrar este ancho de banda disponible. Para solventar este problema una serie de técnicas, denominadas técnicas de compresión de vídeo e imágenes, han sido creadas para reducir este elevado ratio de bits. Su capacidad para realizar esta tarea se cuantifica por el ratio de compresión, es decir, el menor consumo de ancho de banda que consigue. En todo caso hay que pagar un precio por esta compresión ya que el aumento de la compresión genera una mayor degradación de la imagen. A esto se le denomina artifacts.
+
+Pero hay un dilema: la técnica de compresión más sofisticada y empleada es la más compleja y la más costosa para el sistema. Esto hace generalmente que una compresión sofisticada sea restrictiva en términos de mantener bajos los costes del sistema.
+
+Al describir el amplio uso de las diferentes técnicas de compresión, este documento presenta las ventajas y desventajas asociadas a cada una, dejando al lector la capacidad de tomar decisiones basadas en los hechos y no en rumores.
+
+2.- JPEG y MPEG, dos  estándares básicos
+
+Los dos estándares de compresión básicos son JPEG y MPEG. En términos generales JPEG está asociado a imágenes digitales estáticas, mientras que el MPEG está dedicado a las secuencias de vídeo. Sin embargo esos formatos de imágenes tradicionales JPEG y JPEG 2000 también tienen variantes que resultan apropiadas para vídeo igualmente; los formatos
+Motion JPEG y Motion JPEG 2000.
+
+El grupo de estándares MPEG que incluye los formatos MPEG-1, MPEG-2 y MPEG-4 comparten muchas similitudes, así como notables diferencias:
+
+Una cosa en común es que todos han sido establecidos como estándares Internacionales por la ISO (Organización Internacional para la Estandarización) y la IEC (Comisión Electrotécnica Internacional), con contribuciones desde los EE.UU., Europa y Japón, entre otros. También son recomendaciones propuestas por la ITU (Unión Internacional de Telecomunicaciones, que
+
+2
+
+www.axis.com	Copyright © 2003,
+
+WHITE PAPER, Axis Communications	Técnicas de compresión
+
+ha ayudado a establecerlas como estándares de facto globalmente aceptados para la codificación de imágenes digitales estáticas y vídeo.
+
+La base de estos estándares se inició a mediados de los ochenta cuando de formó un grupo denominado Joint Photographic Experts Group (JPEG, Grupo de Expertos Fotográficos Unidos). Su misión era desarrollar un estándar para la compresión de imágenes en color y la primera contribución pública del grupo fue la presentación de la primera parte del estándar JPEG, en1991. Desde entonces, el grupo JPEG ha continuado trabajando tanto en el estándar JPEG original como en su último sucesor: el estándar JPEG 2000.
+
+A finales de los 80, se formó el Motion Picture Expert Group (MPEG, Grupo de Expertos en Imágenes en Movimiento) con el propósito de definir un estándar para la codificación de imágenes en movimiento y audio. Desde entonces ha producido los estándares para MPEG-1, MPEG-2 y MPEG-4. El trabajo actual del grupo está centrado en la próxima generación de estándares, denominada MPEG-7 y MPEG-21. Debido a que estos estándares no están relacionados con la compresión de vídeo no hay explicaciones posteriores de los mismos.
+
+3.- Reducción de datos en imágenes
+
+Como se ha mencionado previamente, una secuencia de vídeo digitalizada puede ocupar 165 Mbps de datos. Para reducir las sobrecargas del medio en la distribución de esas secuencias y con el fin de conseguir la reducción deseada de los datos de las imágenes se emplean los siguientes criterios:
+
+Reducir matices de color en la imagen 
+
+Reducir la resolución de color respecto a la intensidad de luz prevaleciente 
+
+Reducir partes pequeñas, invisibles de la imagen 
+
+En el caso de una secuencia de vídeo, las partes de una imagen que no cambian se dejan como están. 
+
+Todas estas técnicas están basadas en un conocimiento preciso y exhaustivo de cómo el cerebro y los ojos trabajan en combinación para formar el complejo sistema visual humano.
+
+Como resultado de estas sutiles modificaciones se produce una reducción significativa del tamaño del fichero para secuencias de vídeo sin prácticamente ningún efecto para la calidad visual. La posibilidad de que esas modificaciones sean apreciables por el ojo humano depende típicamente del grado de la técnica de compresión que se utilice.

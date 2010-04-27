@@ -1,0 +1,56 @@
+Sistema de Recuperación de Información GOOGLE
+
+Objetivos del diseño de Google.
+
+•	Google fue desarrollado en la Universidad de Stanford en California,
+•	Concebido para realizar un uso eficiente del espacio de almacenamiento, y
+•	Para proteger al(los) índice(s) de que se convierta en elemento lento e inoperativo.
+
+Es por ello que el objetivo primordial de diseño de Google no es otro que mejorar estos índices de precisión en la recuperación de la información y, además, mejorar la presentación de los documentos recuperados de manera que, los primeros sean los más directamente relacionados con las necesidades de información planteadas por los usuarios.
+
+Características de Google. 
+
+Destacan dos grandes características:
+•	En primer lugar, Google hace uso de la conectividad de la Web para calcular un grado de calidad de cada página, esta graduación se denomina "PageRank" (coincide con el nombre del algoritmo de ranking empleado por este motor de búsqueda).
+•	En segundo lugar, Google utiliza esta propia capacidad de conexión de los documentos webs para mejorar los resultados de búsqueda. 
+
+ 
+
+
+Pagerank(PR) asume que el número de enlaces que una página proporciona tiene mucho que ver con la calidad de la misma, es por ello que este algoritmo se puede resumir de la siguiente manera:
+
+"Si una página A tiene T1....Tn páginas que apuntan a ella por medio de algún enlace (es decir citas). El parámetro d es un factor que se puede fijar entre 0 y 1 (generalmente se fija en 0.85) y T es el número de páginas en la colección. Sea C(A) el número de enlaces que salen de la página A. Entonces, el PageRank de la página A vendrá dado por la expresión: 
+
+PR(A) = d/T + (1 – d) * (PR(T1)/C(T1) + ..... + PR(Tn)/C(Tn)) "
+
+Este cálculo puede realizarse por medio de un simple algortimo iterativo y corresponde al vector propio de una matriz normalizada de enlaces en la Web. PageRank puede ser pensado como un modelo del comportamiento del usuario. 
+
+Si asumimos que hay un "navegante aleatorio" que pasa de una página a otra sin presionar nunca el botón de "back" y que, eventualmente él nunca se aburriera, la probabilidad de que este navegante visitara nuestra página es precisamente su PageRank. Es decir, se trata de un modelo basado en los enlaces de las páginas pero que pretende representar la forma de trabajar de los usuarios.
+
+Otra justificación intuitiva de PageRank es que una páigna puede tener un alto coeficiente de PageRank si existen muchas páginas que apuntan a ella, o si hay un número algo menor de páginas que apuntan a ella pero que posean, a su vez, un alto nivel de PageRank. De forma intuitiva, aquellas páginas muy citadas son páginas que vale la pena consultar y, en cambio, aquellas que sólo posean un enlace son páginas de poco interés para su consulta.
+
+Vista general de la Arquitectura de Google.
+
+Google posee varios sistemas para llevar a cabo su tarea. En Google el análisis de las páginas web se lleva a cabo por medio de diversos procesos distribuidos: 
+
+•	Hay un URLServer que envía lístas de de direcciones URLs para ser analizadas por los agentes.
+•	Los Agentes Analizadores de páginas (Crawlers): Las páginas, una vez analizadas, son enviadas al Servidor de Almacenamiento (StoreServer). 
+•	StoreServer: Este nuevo elemento se encarga de comprimir y almacenar las páginas web. Cada página web va a tener asociado un identificador numérico (ID number) denominado "docID".
+•	La función de indización (o indexación) la llevan a cabo el Indexador y el Clasificador (Indexer y Sorter). El primero lleva a cabo las siguientes funciones: lee las páginas web procedentes del StoreServer, descomprime los documentos y selecciona los términos incluidos en los mismos. Cada documento se convierte en un conjunto de palabras, que van a denominarse "hits", donde grabamos loa palabra y su posición en el documento, una aproximación de su fuente de texto y otra serie de detalles. 
+•	El Indexador analiza los enlaces incluidos en cada página web y almacena una información muy importante acerca de ellos en un Fichero de Enlaces (Anchors). Este fichero contiene suficiente información para determinar hacia dónde apunta cada enlace y el texto de cada enlace. 
+ 
+•	El componente URLresolver lee el Fichero de Enlaces y convierte las URLs relativas en direcciones absolutas convirtiéndolas en identificadores docsIDS. Así, genera una base de datos de pares de docsIDs necesaria para que el Algoritmo PageRank pueda calcular los pares de valores de páginas enlazadas desde una página y de páginas que apuntan a esa página.
+•	Tanto el URLresolver como el Indexador han generado unos depósitos de datos que Google denomina "barriles" (traducción literal de "barrels").
+•	Los Barriles: Estos depósitos de datos, ordenados por docID son leidos por el Clasificador y recurre a ellos para generar el Fichero Inverso. Esta operación se lleva a cabo empleando una porción muy pequeña de espacio temporal, por lo que no consume apenas recursos del sistema.
+•	También construye una lista de wordIDs (identificadores de términos) y de ubicaciones en la página de cada término dentro de este Fichero Inverso que va a ser leído por una aplicación denominada DumpLexicon que, junto al conjunto de datos producidos por el Indexador genera un nuevo léxico que va a ser utilizado por el Localizador (Searcher), junto a los datos provenientes del PageRank.
+
+¿Cómo busca información Google? 
+
+Se debe de recordar que el objetivo de la búsqueda no es otro que proporcionar una alta efectividad, y que el usuario lo primero que percibe es la precisión de los resultados de la búsqueda. El proceso de evaluación de la pregunta que lleva a cabo Google es el siguiente: 
+1.	Descomposición (parsing) de la pregunta. 
+2.	Conversión de las palabras a wordIDS (identificadores de palabras) 
+3.	Localización de la posición de cada palabra en el barril de almacenamiento 
+4.	Exploración de las listas de documentos hasta localizar un documento que contenga todos los términos de búsqueda 
+5.	Cálculo del rango de este documento para esta pregunta 
+6.	Una vez llegados al final del barril de almacenamiento, se vuelve al inicio repitiendo los pasos 4 y 5 para cada palabra de la ecuación de búsqueda 
+7.	Una vez calculados todos los rangos, procede a ordenarlos de mayor a menor y presentarlos al usuario. 

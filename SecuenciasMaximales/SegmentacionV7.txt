@@ -1,0 +1,219 @@
+Técnicas de Segmentación en Procesamiento Digital de Imágenes 
+
+Nora La Serna Palomino,  Ulises Román Concha
+RESUMEN
+El trabajo que se presenta en este artículo se desarrolla en el marco del Procesamiento digital de imágenes. En particular, se hace una revisión bibliográfica de la Segmentación de imágenes y sus principales técnicas. La segmentación  subdivide una imagen en sus partes constituyentes u objetos, con el fin de separar las partes de interés del resto de la imagen de acuerdo al tipo del problema que se va a resolver. Fundamentalmente, se han revisado los siguientes tópicos en segmentación: 1) Detección de bordes, 2) Umbralización, y 3) Basado en regiones. 
+
+Palabras claves: Procesamiento digital de imágenes, Segmentación, técnicas, bordes, umbralización, regiones.
+
+ABSTRACT
+
+The work that is presented in this article has being developed in the area of The Digital Image Processing. Especially, there is done a bibliographical review of the Image Segmentation and its principals technics. The segmentation subdivides an image in its constituent part or objects, in order to separate the parts of interest of the rest of the image according to the type of the problem that is going to be solved. Fundamentally, the following topics have been reviewed in segmentation: 1) Detection of edges, 2) Thresholding, and 3) Based on regions. 
+
+Key words: Digital image processing, Segmentation, Technics, Borders, Thresholding, Regions.
+ 
+1. INTRODUCCIÓN
+
+El trabajo que se presenta en este artículo, describe la técnica de Segmentación del Procesamiento digital de imágenes, y la implementación de los algoritmos que más destacan utilizando el software MatLab. La segmentación subdivide una imagen en sus partes constituyentes u objetos, con el fin de separar las partes de interés del resto de la imagen, por lo tanto el nivel al que se lleva a cabo esta subdivisión depende del problema a resolver. 
+Algunas de las tareas fundamentales del Procesamiento Digital de Imágenes son: 1) Mejoramiento de una imagen digital con fines interpretativos, y 2) Toma de decisiones de manera automática de acuerdo al contenido de la imagen digital.
+Una imagen puede ser definida como una función bidimensional de intensidad de luz f(x, y), donde x e y representan las coordenadas espaciales y el valor de f en un punto cualquiera (x, y) es proporcional al brillo (o nivel de gris) de la imagen en ese punto. Una imagen digital es una imagen f(x, y) que se ha discretizado tanto en las coordenadas espaciales como en el brillo; y puede considerarse como una matriz cuyos índices de fila y de columna identifican un punto de la imagen y el valor del correspondiente elemento de la matriz indica el nivel de gris en ese punto. Los elementos de una distribución digital de este tipo se denominan elementos de la imagen o más comúnmente pixels, abreviatura de su denominación inglesa “picture elements” [4]. 
+Diversas son las aplicaciones que se vienen desarrollando utilizando las técnicas del Procesamiento digital de imágenes. Una de las pioneras son las aplicaciones a los programas espaciales. En medicina y biología, los procedimientos informatizados realzan el contraste o codifican los niveles de intensidad en colores para facilitar la interpretación de las imágenes en rayos X, y de otras imágenes biomédicas. Los geógrafos emplean las mismas o similares técnicas para estudiar los patrones de polución a partir de imágenes aéreas o de satélites. Los procedimientos de mejora de las imágenes y de restauración se emplean también para procesar imágenes degradadas de objetos irrecuperables o bien resultados experimentales demasiados costosos para ser duplicados. 
+En arqueología, los métodos de procesamiento de imágenes han servido para restaurar con éxito imágenes borrosas. En la física y en campos afines, las técnicas por computador realzan de forma rutinaria imágenes de experimentos en áreas como los plasmas de alta energía y la microscopía del electrón. Igualmente en astronomía, biología, medicina nuclear, y en aplicaciones industriales, en éste último se utilizan además diversos tipos de materiales como el cuero, vidrio, metales, madera, hilos, etc. [ ].
+La Figura 1 muestra las etapas necesarias que se deben seguir para realizar el Procesamiento de imágenes. El proceso se inicia con la etapa de Adquisición de imágenes, en donde se requiere de un sensor de imágenes, cuyas señales producidas deben ser digitalizadas. Por ejemplo se utilizan, la luz para la fotografía; rayos X para la radiografía, ultrasonido para la ecografía, etc. La naturaleza del sensor dependerá del tipo de aplicación que se quiera estudiar. La siguiente etapa es el Preprocesamiento, que se realiza con el fin de detectar y eliminar las fallas que puedan existir en la imagen para mejorarla.  Las técnicas más utilizadas en esta etapa son: a) mejora del contraste, b) eliminar el ruido, y c) restauración. En la siguiente etapa que es la Segmentación, la imagen se divide en sus partes constituyentes u objetos con el fin de separar las partes necesarias de procesamiento del resto de la imagen que no interesan de acuerdo a la aplicación que se quiera dar. Las técnicas básicas en esta etapa son aquellas orientadas a: a) el píxel, b) a los bordes, y c) a las regiones. Sin embargo, las técnicas no son excluyentes sino que se combinan de acuerdo del tipo de aplicación.
+La siguiente etapa es la Descripción o Extracción de características, consiste en extraer características con alguna información cuantitativa de interés o que sean fundamentales para diferenciar una clase de objetos de otra. Luego la etapa de reconocimiento es el proceso que asigna una etiqueta a un objeto basándose en la información proporcionada por sus descriptores. La interpretación implica asignar significado a un conjunto de objetos reconocidos. Finalmente, la etapa Base de Conocimiento que va almacenar el dominio del problema para guiar la operación de cada módulo de procesamiento, también controla la interacción entre dichos módulos.
+
+
+Figura 1. Etapas del procesamiento digital de imágenes.
+
+La estructura del presente artículo es la siguiente: En la sección 2 se bosqueja el marco teórico que corresponde a la Segmentación de imágenes; en las secciones 3  se dedica a la discontinuidad como el método que consiste en dividir una imagen basándose en los cambios bruscos del nivel de gris, y además se describen el Enlazado de bordes y detección de límites y cada uno de las subsecciones: Procesamiento local y Procesamiento global usando la Transformada de Hough respectivamente; En la sección 4 se presenta la Umbralización; en la sección 5 se presenta la Segmentación orientada a regiones. Mientras que la sección 5 corresponde a la Evaluación del análisis realizado y se proponen tareas futuras para su desarrollo e implementación; y finalmente en 6 se presentan las conclusiones del trabajo desarrollado.
+
+2. SEGMENTACIÓN DE IMÁGENES 
+
+La segmentación subdivide una imagen en sus partes constituyentes u objetos, con el fin de separar las partes de interés del resto de la imagen, por lo tanto el nivel al que se lleva a cabo esta subdivisión depende del problema a resolver [4]. En el proceso de detectar las partes en una imagen se identifican bordes de la imagen, o se segmenta esta en regiones, líneas o curvas, etc. Otra definición, considera a la segmentación como la clasificación de los puntos de la imagen (pixels), indicando las clases a la que pertenecen los diferentes pixeles. Los atributos básicos de segmentación de una imagen son: la luminancia en imágenes monocromáticas, los componentes de color en imágenes en color, textura, forma, etc. [4].
+
+La segmentación autónoma es una de las tareas más difíciles del procesamiento de imágenes, esta etapa determina el eventual éxito o fracaso del análisis, de hecho rara vez llega a alcanzar una solución satisfactoria, se debe buscar un método alternativo de comprobación para la verificación de los resultados.  
+Los algoritmos de segmentación de imágenes monocromáticas generalmente se basan en una de las dos propiedades básicas de los valores del  nivel de gris: Discontinuidad y Similaridad. En la discontinuidad el método consiste en dividir una imagen basándose en los cambios bruscos del nivel de gris. Los temas más importantes en la discontinuidad son: a) detección de puntos aislados, y b) detección de líneas y c) detección de bordes de una imagen. En la Similaridad, regularidad en los valores del nivel de gris, los principales métodos están basados en a) umbralización, b) crecimiento de región, y c) división y fusión de regiones.
+La segmentación de una imagen basado en la discontinuidad o en la similaridad de los valores del nivel de gris de sus pixels es aplicable tanto a las imágenes estáticas como a las dinámicas (variantes en el tiempo).  En la Figura 2 se muestra un ejemplo de segmentación de imagen.
+
+
+
+
+
+
+Figura 2.Segmentación de imgen.
+De otra manera, a lo largo de las últimas décadas se han desarrollado diversas técnicas de segmentación, las que se pueden agrupar en tres: técnicas orientadas al pixel, a los bordes y a las regiones [Jäh97]. Dentro de ellas se pueden destacar los siguientes métodos: línea divisoria de aguas (watershed) que a partir de los mínimos en la imagen se aumenta gradualmente el nivel de gris, como si fuera agua que se vierte en un valle, hasta encontrar sus valles vecinos [Cas96]; detección de bordes de las regiones mediante la búsqueda de máximos en el gradiente de la imagen o cruces por cero en la segunda derivada de la imagen [Mar80]; filtros en los que se optimiza una función de costo que considera la exactitud en la posición del borde y la cantidad de bordes detectados [Can86]; y detección de regiones mediante agrupación de pixeles vecinos con características similares (Region Growing) [Pav90]. 
+Otra corriente intenta, por medio de filtros de mediana adaptados al objeto de inspección, la estimación de una imagen libre de fallas a partir de la imagen tomada del objeto mismo. Mediante simple comparación entre la imagen real y la imagen libre de fallas estimada se segmentan las fallas [Fil87, Sch99]. Si bien es cierto que con este último método se obtienen excelentes resultados, es necesario invertir mucho tiempo en el diseño del filtro para conseguir una adaptación al objeto. Típicamente, para el análisis de una imagen es necesario dividirla a priori en cientos de sub-imágenes. Cada sub-imagen posee un filtro morfológico distinto, configurado a partir de las características de la porción del objeto presente en ella. 
+
+3. DETECCIÓN DE BORDES
+
+Como se mencionó en la sección 2 de este artículo, la detección de la discontinuidad consiste en dividir una imagen basándose en los cambios bruscos del nivel de gris. Es particularmente importante porque proporciona información de los objetos de la imagen a otras tareas del procesamiento de imágenes como reconocimiento e interpretación. Los temas más importantes en la discontinuidad son: a) detección de puntos aislados, y b) detección de líneas y c) detección de bordes o contornos de una imagen. Aunque la detección de punto y línea son elementos de cualquier presentación de la segmentación de imágenes, la detección de bordes es la técnica más común para detectar discontinuidades significativas en el nivel de gris, debido a que son más frecuentes en las aplicaciones prácticas.
+
+Los métodos de extracción de bordes de una imagen, se basan en la diferencia que experimenta una característica en dos regiones adyacentes y que indican la existencia de un borde. A la vez los bordes pueden clasificarse por su anchura, ángulo de su pendiente de variación, y las coordenadas de su punto medio. En general, se identifican diferentes modelos de bordes o contornos: línea, tipo escalón, tipo rampa y tipo tejado. Las discontinuidades son detectadas usando derivadas de primer y segundo orden, en el caso de derivadas de primer orden se utiliza el operador gradiente, mientras que en derivadas de segundo orden se utiliza el operador Laplaciano.
+
+3.1 Derivada de primer orden, el operador gradiente 
+
+Una de las técnicas más comunes para detectar un borde de dos dimensiones (2D), es el uso de derivadas de primer orden mediante el operador gradiente. El gradiente de una imagen es una función f(x, y) que se define como el vector bidimensional presentado en la ecuación 3.1. 
+
+Ecuación 3. 1
+ 
+
+El operador gradiente G alcanza su máximo valor en la dirección en que la variación es máxima, por lo tanto puede definirse como la ecuación 3.2.
+Ecuación 3.2 
+ 
+
+Es práctica común aproximar el gradiente mediante los valores absolutos, con el fin de conseguir un procesamiento más rápido a costa de un error despreciable, y la expresión se aproxima a la ecuación 3.3.
+
+Ecuación 3.3 
+
+
+A partir de las ecuaciones 3.1 y 3.2, se deduce que el cálculo del gradiente de una imagen se basa en la obtención de las derivadas parciales dF/dx y dF/dy en cada posición de pixel. Las derivadas de primer orden permiten encontrar lugares en una imagen en donde la intensidad que cambia rápidamente es mayor en magnitud que un umbral especificado. Existen varios estimadores derivativos como los de Sobel y Prewit. 
+Las instrucciones i) y ii) de MatLab, que se muestran a continuación, permiten obtener la figura 3 b) detección de bordes de la imagen a), en este caso se utilizó el operador de Sobel. 
+i)	I = imread('C:\Documents and Settings\ exclam.gif');
+ii)	[g, t]=edge(I); en donde el umbral t = 0.2187
+
+ 	 
+
+Figura 3. a) Imagen; b) Detección de bordes de la imagen en a).
+
+
+3.2 Detección de bordes utilizando derivadas de segundo orden, el operador Laplaciano
+
+El laplaciano de una función bidimensional f(x, y) es una derivada de segundo orden definida por la ecuación 3.4.  
+Ecuación 3.4
+
+
+3.3 Enlazado de bordes y detección de límites
+Si bien hay varias técnicas que detectan discontinuidades de intensidad, y que deberían dar como resultado pixels que estuvieran en la frontera entre un objetos y su fondo, en la práctica, este conjunto de pixels rara vez caracterizan una frontera completamente debido al ruido, interrupciones en la frontera debido a la iluminación no uniforme, y otros efectos que introducen discontinuidades de intensidad espúreas. Por ello, los algoritmos de detección de bordes están seguidos por una unión y otros procedimientos de detección de frontera diseñados para reunir a los pixels del borde en un conjunto con significado de fronteras de objetos [4]. A continuación se presentan algunas técnicas que se ajustan a ese objetivo.                                  
+
+
+
+
+
+
+Figura 3.1. Detección de bordes en escala de grises.
+
+3.3.1  Procesamiento local
+Consiste en analizar un entorno de vecindad (por ejemplo, 3x3, 5x5) sobre todos los puntos (x, y) de una imagen en los que haya sido llevado a cabo un proceso de detección de borde, de forma que todos los puntos que presenten características similares se unen formando una frontera común. Se utilizan dos propiedades para determinar la similitud entre pixeles del borde: a) Magnitud del vector gradiente (valor del umbral para determinar el borde), y b) Dirección del gradiente.
+La primera propiedad establece que un píxel de coordenadas (x, y) es similar a otro (x, y) dentro de su entorno de vecindad si la ecuación 3.5 se cumple.
+Ecuación 3.5
+
+Donde T es un umbral no negativo.
+La segunda propiedad, es decir la Dirección del gradiente se puede establecer utilizando el ángulo del vector gradiente que viene dado por la ecuación 3.6
+Ecuación 3.6
+
+
+Donde O representa el ángulo respecto al eje de x.
+Así, un píxel del borde situado en (x, y) tiene un ángulo similar a (x, y) si se cumple la ecuación 3.7.
+Ecuación 3.7
+
+
+Donde A es un umbral angular.
+Un punto de la vecindad predefinida de (x, y) esta enlazado con el píxel de (x, y) si se satisfacen los criterios de magnitud y dirección. Se repite para cada posición de la imagen. Un registro debe conservar los puntos enlazados a medida que el centro de la vecindad se desplaza de píxel a píxel.
+
+3.3.1  Procesamiento global usando la Transformada de Hough [4, 16]
+. Originalmente fue diseñado para detectar líneas y curvas, utilizando ecuaciones analíticas conocidas de bordes de objetos, sin embargo con este método original, no siempre es posible encontrar ecuaciones analíticas que describan bordes. La transformada de Hough generalizada hace posible esto, es decir detectar bordes de objetos aún cuando las expresiones analíticas de bordes no es conocida.
+
+Intuitivamente, este método de detección de bordes consiste en calcular el gradiente de una imagen, luego crear un campo de acumulación en función de los parámetros de la función que se busca, y posteriormente los máximos en el espacio de acumulación indican la existencia de los objetos buscados. Previamente, antes de aplicar la transformada, la imagen de entrada será la imagen binaria de los pixeles que forman parte del contorno de la imagen.
+
+La idea básica del método puede ser presentado desde un problema simple como la detección de líneas rectas,  en este caso el objetivo de la transformada de Hough es encontrar puntos alineados que puedan existir en la imagen, es decir, puntos en la imagen que satisfagan la ecuación de la recta para distintos valores de ? y ?. Para ello, de manera general, se siguen los siguientes pasos:
+a)	La ecuación de la línea puede ser definida como 				(Figura 4-A)
+b)	La transformada de Hough de esa línea es un punto en el plano           . (Figura 4-B)
+c)	Para cada punto de la imagen se calcula su representación en el plano.
+d)	Para reducir la búsqueda, se cuantifica el espacio de parámetros r y ?, dividiendo este en un espacio de grupos de posibles líneas.
+e)	Los máximos locales en           son las líneas que se desean encontrar.
+
+
+
+
+
+
+
+Figura 4. A) línea recta y los parámetros r y ?, y B) Punto en el plano  (r , ?).
+
+La transformada de Hough generalizada, cuyo algoritmo puede ser revisado en [ ], permite detectar bordes de imágenes que no sean líneas, círculos o elipses; sin embargo, para alcanzar una segmentación precisa, se requiere de una especificación completa de la forma exacta del objeto de la imagen. Asimismo, permite detección de objetos con formas predeterminadas, inclusive es posible la detección de objetos cuya forma exacta no es conocida pero que teniendo o asumiendo un conocimiento previo se puede formar un modelo aproximado del objeto. 
+
+4. UMBRALIZACIÓN 
+
+La umbralización es uno de los métodos más importantes de la segmentación de imágenes. Se define el umbral como una función que convierte una imagen con diferentes tonalidades en una imagen en blanco y negro. Si la imagen original es f(x, y), la imagen umbralizada g(x, y) y se fija un umbral U (0 < U < 255), la operación de umbralizado se define como la ecuación 4.1. 
+Ecuación 4.1 
+		    g(x, y) = 255	  si f(x, y) > Umbral
+		    g(x, y) = 0	  si f(x, y) ? Umbral
+
+Se selecciona un umbral que permita agrupar los pixels de una imagen pertenecientes a los diversos objetos de la misma imagen diferenciándolos del fondo. De esta manera la segmentación basada en el histograma se basa en la elección de uno o varios umbrales que permiten agrupar los puntos de la imagen en regiones de características similares en función de sus niveles de gris. El umbral de una imagen se define como la ecuación 4.2 [4].
+		Ecuación 4.2	T = T [x, y, p(x, y), f(x, y) ]
+Donde f(x, y) es la intensidad o nivel de gris del punto (x, y) y p(x, y) representa alguna propiedad local medida en un entorno de vecindad de este punto. La imagen que se obtiene al llevar a cabo un procesamiento de umbral se define como la ecuación 4.3.
+Ecuación 4.3 	g(x, y) = 1	si    f(x, y) > T	
+					  0	si    f(x, y) ? T	
+
+De este modo los pixeles marcados con 1 corresponden a objetos, mientras que los pixeles marcados con 0 corresponden al fondo. En la ecuación 4.3 se ha supuesto que la intensidad de los objetos es mayor que la intensidad del fondo. Este proceso es conocido como binarización.
+Hay varios tipos de umbrales, los más utilizados: a) Umbral global, cuando T depende solamente de f(x, y), b) Umbral local, Si T depende de f(x, y) y de p(x, y), y c) Umbral dinámico, si T depende de las coordenadas x e y,  además de f(x, y) y de p(x, y).
+
+En la figura 5 se observa una imagen, en la parte izquierda, que contiene tres elementos: a) un círculo de color negro con nivel de gris = 0, b) un triángulo con nivel de gris = 125, y c) el fondo con nivel de gris = 255; y en la parte derecha se muestra su histograma. En la figura 6, la imagen es segmentada por la ecuación A que presenta un umbral = 125.
+
+
+
+
+
+
+
+
+
+
+
+Figura 5. Imagen y su histograma
+
+
+
+
+
+
+
+
+Figura 6. Imagen segmentada por la ecuación A.
+
+5. SEGMENTACIÓN ORIENTADA A REGIONES [4, 15]
+
+Se utilizan propiedades espaciales de una imagen para segmentarla por regiones, es decir la imagen es dividida en regiones conexas, en donde cada región tienen propiedades distintas que las diferencian unas de otras. En suma, se trata de extraer los objetos de una imagen, las que pueden ser procesadas de manera independiente.
+Por ejemplo, en la figura 7, se puede observar que una imagen ha sido subdividida en dos regiones, en cada región se identifican un conjunto de objetos o subimágenes. 
+
+
+
+          
+
+
+
+Figura 7. Segmentación orientada a regiones
+
+Varias técnicas de esta clasificación han sido desarrollados, en este trabajo se presentan aquellas más utilizadas: a) Crecimiento de regiones, y b) división y fusión.
+5.1 Crecimiento de regiones [4, 15]
+Es una técnica muy utilizada, que consiste en el crecimiento de regiones agrupando pixeles adyacentes que presentan características o propiedades similares. Se parte de un conjunto de puntos “semilla” y se hace crecer las regiones, añadiendo a los puntos semilla los puntos vecinos que tengan propiedades similares, como intensidad, textura, color, etc. Por ejemplo, si la propiedad es intensidad, un criterio utilizado para incluir un píxel en una región, puede ser que la diferencia absoluta entre la intensidad del pixel y la intensidad de la semilla sea menor que un umbral, por ejemplo  T = 8. Los puntos semillas, pueden ser escogidos manualmente o de manera automática. En la figura 8, se observa de manera gráfica el proceso de esta técnica.
+
+
+
+
+
+
+
+
+Figura 8. Segmentación orientada a regiones
+5.2 División y fusión de regiones [8, 10]
+Consiste en dividir inicialmente una imagen en un  conjunto de regiones arbitrarias disjuntas, por ejemplo 64 divisiones, después, dependiendo del criterio de segmentación, regiones adyacentes son fusionadas si tienen propiedades similares como nivel de gris similares, o son divididos si no comparten las mismas propiedades, como variaciones considerables de niveles de gris. Finalmente, la imagen queda segmentada en un conjunto de regiones homogéneas. La figura 9, muestra una imagen segmentada en 1405 regiones utilizando este método. 
+
+
+
+
+
+
+
+
+
+
+
+
+Figura 9. División y fusión de regiones [15].
+
+6. CONCLUSIONES 
+
+El trabajo desarrollado ha dado lugar a una revisión bibliográfica de las principales técnicas usadas de Segmentación de imágenes. En Detección de bordes se han presentado las técnicas: a) Derivada de primer orden, el operador gradiente, b) Detección de bordes utilizando derivadas de segundo orden, el operador Laplaciano, y c) Técnicas de  enlazado de bordes y detección de límites. Se ha desarrollado el método de umbralización; y en segmentación orientada a regiones se han bosquejado las técnicas: a) Crecimiento de regiones, y b) División y fusión.
+
+Si bien se han presentado las definiciones fundamentales de las técnicas mencionadas en el párrafo anterior, por la longitud del trabajo no se han implementado las técnicas utilizando un software como el MatLab u otro similar, dejando esta tarea para un próximo trabajo.

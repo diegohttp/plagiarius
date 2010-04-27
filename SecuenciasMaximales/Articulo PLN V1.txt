@@ -1,0 +1,85 @@
+
+Un Analizador Sintáctico Eficiente para Gramáticas del Español 
+
+Nora La Serna
+
+Resumen
+
+El trabajo que se presenta en este artículo se enmarca en el área de la Lingüística Computacional, concretamente en el proceso del análisis sintáctico para el tratamiento de la lengua española. Básicamente, se describe el desarrollo e implementación de un analizador sintáctico eficiente que utiliza un prototipo de gramática computacional del Español. La base del sistema es el algoritmo Left-corner o esquina de la izquierda, y adicionalmente se ha definido el formalismo de unificación para Gramática de cláusulas definidas (DCG) que el sistema utiliza. La eficiencia del analizador se debe principalmente a la implementación del algoritmo para gramáticas de unificación, y a la creación del módulo en donde se realiza la compilación de las reglas. El proceso del análisis sintáctico se ha realizado con oraciones que han sido tomadas desde el corpus del proyecto MULTEXT, dichas oraciones contienen una amplia variedad de estructuras sintácticas del español. Finalmente, se discute la evaluación del sistema a partir de los resultados obtenidos, y se proyectan trabajos futuros por desarrollar.
+
+Palabras claves: Inteligencia artificial, Lingüística Computacional, Gramáticas del Español, Analizadores Sintácticos, Corpus.
+
+
+Abstract 
+The research that is presented in this article is developed in the Computational Linguistics Area, specifically in the syntactic parsing processing for the treatment of the Spanish language. Basically, the development and implementation of an efficient syntactic parser is described, which utilizes a prototype of computational grammar for the Spanish. The base of the system is the Left-corner algorithm; and additionally, the Unification Formalism for Definite Clause Grammar (DCG) that the system utilizes has been defined. The efficiency of the parser owes mainly to the implementation of the algorithm for unification grammars, and to the creation of the module where the compilation of the rules is carried out. The process of the syntactic parsing has been achieved with sentences that have been taken from the corpus of the project MULTEXT, those sentences contain an extensive variety of the Spanish syntactic structures. Finally, the evaluation of the system is argued from the obtained results, and future jobs are projected for developing.  
+
+Keywords: Artificial Intelligence, Computational Linguistics, Spanish Grammar, Syntactic Parser, Corpus.
+ 
+1.	Introducción
+
+En Análisis sintáctico, el enfoque de las investigaciones básicamente están dedicadas a la construcción de formalismos gramaticales de diferentes estilos y características, y su procesamiento eficiente mediante la optimización de algoritmos de análisis. El algoritmo de análisis, es el método utilizado para decidir si una cadena de símbolos es una frase de un lenguaje dado, y determina su estructura sintáctica de acuerdo a la gramática. 
+En este trabajo se presenta el desarrollo e implementación de un analizador sintáctico eficiente; el analizador básicamente contiene tres módulos: 1) el algoritmo Left-corner o esquina de la izquierda para gramáticas de unificación, 2) el algoritmo de unificación de las estructuras de rasgos, y 3) el módulo de compilación de las reglas. A partir del proceso del análisis sintáctico de una muestra importante de oraciones del español, presentamos la evaluación del sistema implementado; la muestra fue seleccionada desde el corpus del proyecto MULTEXT (Multilingual Text Tools and corpora). El corpus mencionado es un recurso importante utilizado, contiene una gran variedad de oraciones con diferentes estructuras sintácticas, y la codificación estandarizada de las etiquetas que albergan información lingüística importante.
+Los formalismos gramaticales permiten escribir y tratar computacionalmente las gramáticas de una lengua. Los formalismos de unificación expresan en forma estructurada la información sintáctica de una gramática; en este trabajo utilizamos un tipo de estos formalismos, el que es una versión simplificada de la Gramática de cláusulas definidas (DCG, Definited Clause Grammar; Pereira & Warren 1980 y 1983). Adicionalmente, la gramática computacional para el español que se emplea (N. La Serna 2001), describe las construcciones sintácticas básicas de la lengua.
+La organización del resto del artículo es la siguiente, en la sección 2 se bosqueja la construcción de la gramática del español y su cobertura actual, en la sección 3 se describe el formalismo de unificación utilizado, en la sección 4 se explica el proceso del análisis sintáctico, su desempeño y trabajos relacionados, y finalmente, en la sección 5 se presentan las conclusiones del trabajo realizado y las tareas para su desarrollo posterior. 
+
+2.	Prototipo de Gramática del Español
+2.1 Metodología de Construcción 
+
+La definición de la gramática computacional para el español se hizo en forma manual, y se utilizó un corpus etiquetado como fuente de información lingüística. Las reglas de la gramática se construyeron en base a la observación de las estructuras lingüísticas que aparecen en las frases y oraciones del corpus, y teniendo en cuenta la teoría lingüística de la gramática. Para cada categoría sintáctica y léxica de las reglas y del léxico se codificaron sus atributos y valores variables, utilizando el formato que se presenta en la sección 3, y considerando en cada regla la concordancia de los atributos o rasgos de las categorías madre (en la parte izquierda de las reglas) y hermanas (en la parte derecha de las reglas). La información lingüística fue tomada desde la definición de las etiquetas del corpus. 
+Por ejemplo, en la seccion 3 mostramos un fragmento de la gramática, cuyas reglas de estructura de frase se pueden obtener a partir de la oración El(tdms) número(ncms) de(sp) personas(ncfp) que(pr3xxx) han(vaip3px) aprobado(vmpxxsm) concursos(ncmp) y(cc) figuran(vmip3px) en(sp) listas(ncfp) de(sp) reserva(ncfs). Las etiquetas del corpus proporcionan la categoría léxica y los atributos que podrían contener las categorías en general; por ejemplo, en la oración anterior la etiqueta tdms de la palabra El indica que es artículo, de tipo definido, género masculino y número singular.
+El corpus utilizado en este trabajo es parte del corpora desarrollado en el proyecto MULTEXT (Multilingual Text Tools and corpora) , el que contiene datos de las preguntas y respuestas escritas realizadas por los miembros del Parlamento Europeo. Los datos versan sobre una amplia variedad de tópicos y son publicadas en el Diario Oficial de la Comunidad Europea. Un total de 200,000 palabras para el español están gramaticalmente etiquetadas, y además se encuentran manualmente verificadas. Las etiquetas representan la información morfosintáctica de cada palabra en el corpus.
+
+2.2 Cobertura de la Gramática
+
+La versión actual de la gramática contiene una amplia variedad de construcciones sintácticas básicas. Podemos citar las siguientes:   
+•	oraciones de tipos declarativos e interrogativos; afirmativas y negativas
+•	oraciones simples y compuestas; compuestas coordinadas y subordinadas
+•	estructuras coordinadas de las siguientes categorías: oraciones, verbales, nominales, adverbiales y adjetivas
+•	tratamiento de diferentes tipos de complementos 
+•	estructuras para varias clases de verbos: con complementos de objeto directo e indirecto; complementos obligatorios y opcionales  
+•	construcciones verbales auxiliares, pasivas y reflexivas.
+En la figura 1, se muestra el número de componentes de la gramática; se han considerado 16 categorías, el número de atributos para todas las categorías léxicas que se presenta en Multext es 37, el número de reglas definidas es 127. En la creación del léxico, se han colocado las etiquetas definidas en el corpus en lugar de las palabras que pertenecen a la lengua; de esta manera hemos definido 132 unidades o entradas en el vocabulario, que representan a todas las palabras que puedan aparecer en el corpus. En la construcción del prototipo se han utilizado solamente 162 oraciones del corpus, que representan un 20% del total; en la siguiente etapa del trabajo se plantea continuar y alcanzar una gramática real y de amplia cobertura. La longitud promedio de las oraciones en el corpus es de 28 palabras. 
+
+                      categorías    atributos    reglas
+sintácticas          6	       43	         127
+léxicas              10	       37	         132
+
+Figura 1. Componentes de la gramática.
+
+3.	El Formalismo de Unificación
+
+La representación formal de las gramáticas han ido evolucionando, desde los modelos más sencillos en los que las categorías gramaticales eran simples etiquetas (aunque éstas están vigentes actualmente), hasta los modelos más modernos en los que la información lingüística se codifica en formas de estructuras relacionadas, dando lugar a las conocidas gramáticas de unificación. El formalismo gramatical que se ha definido para este trabajo es una versión simplificada de la gramática de cláusulas definidas (DCG), el que permite escribir la gramática en una forma natural. En la figura 2 y 3 presentamos el formato de las reglas de la gramática y entradas del léxico respectivamente; los componentes categoría y atributo (atr) toman valores atómicos, mientras que valor (val) puede ser atómico u otra lista de atributos y valores. Los subíndices n, m, j y k pertenecen al conjunto de los números enteros y deben ser finitos.
+
+categoría1 ([atr11 val11  ,..., atr1n val1n])    -->   categoría2 ([atr21 val21,..., atr2m val2m])
+                                                                   ,..., categoríaj ([atrj1 valj1 ,..., atrjk valjk])
+
+Figura 2. Formato de las reglas de la gramática.
+
+ etiqueta : 
+   categoría ([atr1 val1 , atr2 val2, ..., atrn valn])
+
+Figura 3. Formato del léxico.
+
+En la figura 4 presentamos un fragmento de la gramática para ilustrar este formalismo. Las líneas que empiezan con el caracter % muestran la regla de estructura de frase de la regla que se presenta en la siguiente línea. Por ejemplo, la regla 4 define grupos verbales coordinados, como en la frase han aprobado concursos y figuran en listas de reserva.
+ Observamos además, en la regla 4, las listas de atributos y sus valores variables que corresponden a las categorías de la regla; los atributos que se muestran para las frases verbales en esa regla son, estado (stat), modo (mood), tiempo (tense), persona (per), número (num), y clítico (clit). Podemos resaltar que los valores de los atributos del primer grupo verbal (vp) son diferentes que aquéllos en el segundo grupo, como podemos comprobarlo en la frase. Concretamente aprobado es un verbo en modo (mood) participio, que además precedido por el verbo auxiliar han constituyen una forma compuesta verbal, mientras que figuran es un verbo en modo indicativo. 
+Similarmente, en la figura 5 presentamos un fragmento del léxico, se observan las etiquetas del corpus, sus correspondientes categorías léxicas y atributos definidos para cada entrada.
+
+
+Figura 4. Ejemplo de reglas de la gramática.
+
+
+Figura 5. Fragmento del léxico definido.
+
+Las reglas de la gramática para el español, escritos en el formalismo presentado, son compilados con la finalidad de obtener mejor eficiencia en el proceso del análisis. El formato compilado de las estructuras de rasgos están en términos prolog, las referencias principales son tomadas de la teoría para gramáticas de unificación presentadas por S. Shieber (1986), y de los trabajos desarrollados en análisis sintáctico por D. Gerdemann (1991, 1993) y N. La Serna (1997, 1998). 
+Las estructuras de rasgos en este formato son Dags (directed acyclic graphs) de acuerdo a la notación de Shieber (1986):
+dag (FS, RL), donde FS (Feature Structure) es una estructura de rasgos, y RL (Reentrancy List) es una lista de reentrancias;
+FS = [feat (Att1, Value), ..., feat (Attn, Value)], es decir una lista de términos prolog feat, donde cada término tiene dos argumentos (Att, Value). Att representa un rasgo, y Value puede ser un valor atómico, u otra estructura de rasgos (FS), o una variable indicando reentrancia;
+RL = [re (RNum1, FS), ..., re (RNumn, FS)], es decir, una lista de términos re, donde cada término tiene dos argumentos, (Rnum, FS); Rnum es un número de reentrancia.
+
+4. El Proceso del Análisis Sintáctico
+
+5.	Conclusiones
+
+Hemos desarrollado un analizador sintáctico eficiente para gramáticas de unificación que utiliza un prototipo de gramática para el español, donde la gramática contiene las estructuras sintácticas básicas de la lengua. El algoritmo del analizador utilizado es el Left-corner o esquina de la izquierda, el que toma ventaja de otros algoritmos al hacer el análisis en forma ascendente y descendente simultáneamente. A partir de los resultados del análisis sintáctico de oraciones seleccionadas desde el corpus Multext, hemos evaluado el rendimiento del analizador, y concluido que proporciona un tiempo de análisis óptimo como se demuestra en la sección 4.2. Sin embargo, también hemos presentado algunas limitaciones del trabajo debido a la falta de una gramática de amplia cobertura, y procedimientos de desambigüación sintáctica. Para trabajos futuros, también nos planteamos comparar el desempeño del analizador con otros algoritmos para gramáticas de unificación, como J. Earley y Botton-up.
+El trabajo se enmarca en un proyecto que pretende crear una gramática de amplia cobertura para el español utilizando formalismos de unificación, debido a que dichos formalismos permiten describir y tratar bien las gramáticas de una lengua. Naturalmente, el proyecto contempla el procesamiento eficiente de las frases y oraciones utilizando la gramática creada. También, debemos resaltar la riqueza del corpus Multext utilizado como fuente de información lingüística, especialmente en cuanto a la gran variedad de construcciones sintácticas que se pueden obtener.
+Para continuar con el proyecto nos planteamos tareas inmediatas como, continuar con la construcción de la gramática utilizando la parte del corpus Multext no empleado, crear métodos automatizados de aprendizaje de las reglas y supervisión manual; tareas a mediano y largo plazo serían considerar otros recursos como etiquetadores y otros corpus.
