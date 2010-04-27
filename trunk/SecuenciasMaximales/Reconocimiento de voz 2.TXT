@@ -1,0 +1,82 @@
+Historia de la Síntesis de Voz
+La fascinación humana con las máquinas que hablan no es nueva. Por siglos, la gente ha intentado facultar a las máquinas con la capacidad de hablar; antes de edad de las máquina los seres humanos incluso esperaban crear el discurso para los objetos inanimados.Algunas de las leyendas que hablan de la existencia de “cabezas parlantes” mencionan a Gerberto de Aurillac (d. 1003 AD), Alberto Magno(1198–1280), y Roger Bacon(1214–1294).
+Las primeras tentativas científicas de construir las máquinas que hablaban fueron registradas en el siglo XVIII (Flanagan 1972, Flanagan et al. 1973, Schroeder 1993). Un dispositivo parlante fue construido en 1779 por C.G. Kratzenstein para la academia imperial de San Petersburgo. Este dispositivo permitía producir los sonidos de las vocales largas (/a/,/e,/i/,/o/,/u).Este modelo se inspira en la anatomía del tracto vocal humano y estaba representado con cañas que operaban como resonadores, la activación de estos resonadores se realiza soplando el aire a través de una caña en un compartimiento de  resonancia variable que se asemejó a una zona vocal humana, comenzando en los acordes vocales y continuando a través de la boca. 
+A mediados de 1800 el británico Charles Wheatstone  construyó su versión de la máquina parlante de von Kempelen, este modelo es un poco más complejo que el original  pero permite producir los sonidos de las vocales y la mayor parte de consonantes, además de algunas combinaciones de sonidos y palabras completas
+La misma clase de sintetizador fue hecha por Wagner. El dispositivo consistió en cuatro resonadores eléctricos conectados paralelamente y fue excitado por a zumbido-como fuente. Las salidas de los cuatro resonadores fueron combinadas en las amplitudes apropiadas para producir espectros de la zona vocal. En 1932 investigadores japoneses Obata y Teshima descubrieron el tercer armónico en las vocales (Schroeder 1993). Los tres primeros armónicos se consideran generalmente ser bastantes para el discurso sintético inteligible.
+El primer dispositivo de “Síntesis de Voz” fue el VODER(Voice Operating Demonstrator) presentado por Homer Dudley en New York en 1939, este dispositivo se inspiraba en el VOCODER(Voice Coder)un analizador y sintetizador del habla construído hacía algunos años en los laboratorios Bell que era manipulado por teclado, pero con la diferencia del control de la frecuencia fundamental mediante un pedal. La señal de la fuente era encaminada a través de diez filtros sintonizados cuyos niveles de producción eran controlados por los dedos. La calidad y la inteligibilidad de discurso estaban lejos de buenos pero el potencial para producir discurso artificial fue demostrado.
+Esquema del sintetizador de voz VODER 
+Después de la demostración del VODER el mundo científico se comenzó a interesar mucho más por la síntesis de habla, el propósito principal era  probar finalmente que el discurso inteligible podía ser producido por medios artificiales, surgió entonces interés por parte de la comunidad electrónica aportando métodos para analizar la fisiología y acústica de la señal producida al hablar, poniendo especial interés en la natural resonancia del sistema vocal y la importancia para la inteligibilidad de preservar los tiempos cortos de la diversas amplitudes del espectro.Con estas metas se diseñaron diversos modelos en las décadas siguientes, distinguiendo la fuente de la señal con tonos armónicos, periodicos y no periódicos dependiendo de las características del sonido a producir.
+Por lo menos desde 1970, el desarrollo  de la síntesis de discurso fue asociado de cerca a informática en general. Ahora, los circuitos eléctricos no eran suficiente para simular la producción de discurso natural, pero estos circuitos acaban de ser simulados por programas informáticos. Las computadoras permitieron utilizar la síntesis de discurso para los propósitos prácticos, y varios sistemas con la función de convertir el texto al discurso fueron desarrollados. 
+En 1979, Allen Hunnicutt, y Klatt demostraron el sistema Texto-a-voz del laboratorio de MITalk desarrollado en M.I.T. El sistema fue utilizado más adelante también en el sistema comercial  Telesensory Systems Inc. (TSI) TTS con algunas modificaciones . Dos años más adelante Dennis Klatt introdujeo su sistema Klattalk, que utilizó una nueva y sofisticada fuente de voz. La incorporación de un explorador óptico en los sintetizadores fue introducida por Kurzweil en 1976. Las máquinas de lectura de Kurzweil, eran capaces leer absolutamente bien el texto escrito de diferentes tipos de caracteres. Sin embargo, el sistema era demasiado costoso lejano para los clientes medios, pero fue utilizado en bibliotecas y centros de servicio para las personas con deficiencias visuales 
+
+Aplicaciones Actuales
+
+Accesibilidad
+La síntesis de discurso se ha transformado en una herramienta de asistencia vital de la tecnología y su uso en esta área es significativo y extenso. Permite que las barreras ambientales sean eliminadas para la gente con una amplia gama de discapacidades, como por ejemplo la visual. La funcionalidad más desarrollada la constituyen los Lectores de escritorio para la gente con la debilitación visual, pero los sistemas texto-a-voz son de uso general ahora por la gente con dislexia y otras dificultades de la lectura así como por jóvenes que aún no dominan la lectura. También se emplean con frecuencia para ayudar a ésos con la debilitación de discurso severa generalmente a través de una ayuda dedicada de la comunicación de la salida de voz.
+Educación
+Algunas de las actividades del ámbito educativo que ya se benefician de la síntesis de voz son: pronunciación, lectura y deletreo. 
+
+Industria 		
+Automovilística
+Manejar un auto es una actividad restrictiva de ojos y manos ocupados, en la cual distraer la atención del camino pone en riesgo la propia seguridad, por tanto las interfaces  se han concentrado en transformar la interacción con los autos y los dispositivos móviles que las personas usan dentro de ellos, en una experiencia de sonido muy segura.. Entre las principales funcionalidades que los diferentes sistemas ofrecen se encuentran las instrucciones de guía (sistemas de computadores parlantes), comunicación (lectores de correo electrónico), entretenimiento y personificación.
+Portales de voz
+Generalmente muy usados en centrales telefónicas, bancos, aunque con cada vez mayor crecimiento en páginas web(presentacioines, campañas de marketing) e incluídos en sistemas de usos múltiples.
+     Telecomunicaciones y Móviles
+Confirmación de órdenes y selecciones 
+Transformación de archivos de texto a audios
+
+Ayuda para aprendizaje y conservación de lenguas y dialectos
+
+En el actual estado del arte, los límites de la inteligibilidad realizable y la naturalidad del discurso sintético ya no son fijados más por factores tecnológicos, pero si en parte por nuestro conocimiento limitado sobre la acústica y la opinión del discurso. En la investigación, la síntesis de discurso se utiliza para probar este conocimiento. Ahora, hay los métodos por los cuales un análisis y una síntesis automáticos del discurso pueden ser realizados. En este proceso, es posible manipular la descripción de la señal antes de sintetizarla, por ejemplo para modificar la fuerza evidente del altavoz. El éxito de tales manipulaciones depende del conocimiento de los factores esenciales de cada elemento en el discurso y su dependencia en el contexto en el  cual se encuentra. 
+
+
+Trabajos elaborados
+A continuación se presenta una lista con los trabajos en síntesis más importantes y de mejor calidad elaborados en el contexto de síntesis de voz en el ámbito internacional y nacional
+Ámbito Internacional
+En la actualidad existen gran cantidad de herramientas de diversos tipos para la síntesis de voz, la variedad también se encuentra en el tipo de síntesis que implementan y el propósito que persiguen.
+A continuación se mencionarán las más importantes tanto en el ámbito académico como comercial.
+Festival Speech Shyntesis System	  
+	Festival es un sistema de síntesis de propósito general que implementa la síntesis por concatenación.
+	Es una plataforma de software libre creada por el Centro de Investigación de Tecnologías del Lenguaje de la Universidad de Edinburgo. Ofrece documentación completa para desarrollar sistemas de síntesis de voz con varios APIs y librerías para el desarrollo de aplicaciones en los lenguajes Java y C++ , así como un interfaz para el editor de textos Emacs
+	Esta escrita en C++ y usa la librería de herramientas para el habla creada por la misma universidad.
+Demo: http://www.cstr.ed.ac.uk/projects/festival/onlinedemo.html
+
+IVONA	 				 
+
+Sistema de síntesis de voz multilenguaje desarrollado por IVO Software. Este software ofrece un sistema de texto a voz completo haciendo uso de una gran variedad de APIs.
+IVONA implementa una síntesis a través de selección de unidades con modificación de tiempo de escala (USLTM).
+IVONA está disponible en tres lenguajes: Inglés (EE.UU.),Rumano y Polaco.
+Demo: http://www.ivosoftware.com/
+TextAloud				 
+
+TextAloud desarrollado por NextUp un programa de síntesis de voz disponible con voces por defecto pero provee compatibilidad con las voces proporcionadas por AT&T, Cepstral y NeoSpeech para poder generar el mayor desempeño. TextAloud usa la síntesis de voz para convertir el texto a audio hablado. Los archivos de audio pueden guardarse en diversos archivos para uso en PC o dispositivos portables, una de sus características más resaltantes es que permite cambiar de base de datos para la sintetización, de este modo con el mismo método pero cambiando la base de datos se puede tener soporte para idiomas distintos.
+Demo: http://www.nextup.com/
+
+Cepstral 				 
+Son un conjunto de herramientas desarrolladas por la empresa del mismo nombre, usadas para todo lo relativo a manejo de habla.
+Estas herramientas son ideales para aplicaciones de telefonía y están diseñadas para dar soporte a distintas plataformas como Windows XP, Linux, Solaris y MAC.
+La naturalidad de la voz sintética de Cepstal se presenta empobrecida frente a su equivalente en el inglés, idioma en el cual es muy buena.
+Demo: http://www.cepstral.com/demos/
+
+Acapela Text to Speech and voice Solutions 		 
+Son un conjunto de productos dedicados a la síntesis de voz que buscan cubrir la mayor amplitud de áreas de aplicación para la síntesis, uno de sus nuevos productos son las tarjetas electrónicas con voz, lo cual permite comprender el nuevo paradigma que se está usando en el comercio.
+Los productos que se ofrecen elaboran la voz por medio de síntesis por concatenación, aunque poseen un proceso de revisión manual en la construcción de nuevas voces.
+Demo: http://www.acapela-group.com/text-to-speech-interactive-demo.html
+
+
+
+Actualmente varias organizaciones comerciales y no comerciales  brindan recursos para la investigación en la síntesis de voz , en un futuro cercano se espera poder llegar al entendimiento de las relaciones entre los modos de comunicación humana: verbal y no verbal, y el progreso en el modelado de las mismas, dicho entendimiento es crucial para implementar una real y verdadera interacción amigable hombre-computador(HCI) que explote la generación de agentes sintéticos e interfaces sofisticadas cuasi- humanas, a esta última línea de investigación abierta se le llama síntesis de emociones.
+
+Titulo: Modelado lingüístico-prosódico para un sistema conversor texto a voz mediante concatenación de demisílabas 
+Autor Personal: Segura Salas, Elí Rónal
+Tesis PUCP: Tesis (Lic.) -- PUCP. Facultad de Ciencias e Ingeniería. Mención : Ingeniería Informática
+Código local: TIN 2 0082
+Año: 2004
+
+Resumen: El trabajo de tesis que aquí se presenta se enfoca en el estudio del procesamiento lingüístico y prosódico de un sistema conversor de texto a voz, basado en la síntesis por concatenación de unidades de un hablante limeño. Este trabajo de tesis se basa en el trabajo realizado por el autor de la primera tesis mencionada,y centra su trabajo en la mejora de la calidad de dicho sintetizador, propone para ello la aplicación de reglas y diccionarios gramaticales, cuidados en la fase de procesamiento lingúístico prosódico implementados en un nuevo módulo y la inclusión de pausas de lectura que no son identificables en el texto y la implementación de un autómata finito pata el manejo de las reglas establecidas.
+
+Autor Personal: Flores Álvarez, Crisaida Marlit
+Titulo: Modelo de entonación para un sintetizador de voz con aplicación a un sistema de información vía telefónica en cines 
+Tesis PUCP: Tesis (Lic.) -- PUCP. Facultad de Ciencias e Ingeniería. Mención : Ingeniería Electrónica
+Código local: TIE 2 0182
+Año: 2005

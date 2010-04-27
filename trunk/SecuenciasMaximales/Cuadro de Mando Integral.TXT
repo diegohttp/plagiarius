@@ -1,0 +1,31 @@
+Cuadro de Mando Integral
+
+El concepto de cuadro de mando integral – CMI (Balanced Scorecard – BSC) fue presentado en el número de Enero/Febrero de 1992 de la revista Harvard Business Review, en base a un trabajo realizado para una empresa de semiconductores (La empresa en cuestión sería Analog Devices Inc.). Sus autores, Robert Kaplan y David Norton, plantean que el CMI es un sistema de administración o sistema administrativo (Management system), que va más allá de la perspectiva financiera con la que los gerentes acostumbran evaluar la marcha de una empresa.
+Es un método para medir las actividades de una compañía en términos de su visión y estrategia. Proporciona a los administradores una mirada abarcativa de las prestaciones del negocio.
+Es una herramienta de administración de empresas que muestra continuamente cuándo una compañía y sus empleados alcanzan los resultados perseguidos por la estrategia. También es una herramienta que ayuda a la compañía a expresar los objetivos e iniciativas necesarias para cumplir con la estrategia.
+Según el libro "The Balanced Scorecard: Translating Strategy into Action", Harvard Business School Press, Boston, 1996:
+"el BSC es una herramienta revolucionaria para movilizar a la gente hacia el pleno cumplimiento de la misión, a través de canalizar las energías, habilidades y conocimientos específicos de la gente en la organización hacia el logro de metas estratégicas de largo plazo. Permite tanto guiar el desempeño actual como apuntar el desempeño futuro. Usa medidas en cuatro categorías -desempeño financiero, conocimiento del cliente, procesos internos de negocios y aprendizaje y crecimiento- para alinear iniciativas individuales, organizacionales y trans-departamentales e identifica procesos enteramente nuevos para cumplir con objetivos del cliente y accionistas. El BSC es un robusto sistema de aprendizaje para probar, obtener realimentación y actualizar la estrategia de la organización. Provee el sistema gerencial para que las compañías inviertan en el largo plazo -en clientes, empleados, desarrollo de nuevos productos y sistemas más bien que en gerenciar la última línea para bombear utilidades de corto plazo. Cambia la manera en que se mide y gerencia un negocio". 
+El CMI sugiere que veamos a la organización desde cuatro (4) perspectivas, cada una de las cuales debe responder a una pregunta determinada:
+Del cliente –¿Qué necesidades de los clientes debemos atender para tener éxito? 
+Interna del Negocio –¿En que debemos sobresalir? 
+Innovación y Aprendizaje  –¿Podemos continuar mejorando y creando valor? 
+Financiera  –¿Qué objetivos financieros debemos lograr para tener éxito? 
+
+
+El CMI es por lo tanto un sistema de gestión estratégica de la empresa, que consiste en:
+·	Formular una estrategia consistente y transparente 
+·	Comunicar la estrategia a través de la organización 
+·	Coordinar los objetivos de las diversas unidades organizativas 
+·	Conectar los objetivos con la planificación financiera y presupuestaria 
+·	Identificar y coordinar las iniciativas estratégicas 
+·	Medir de un modo sistemático la realización, proponiendo acciones correctivas oportunas. 
+
+
+Para llevar a cabo todas estas premisas se va a plantear una solución compuesta por seis etapas:
+1. Análisis de la situación y obtención de información
+2. Análisis de la empresa y determinación de las funciones generales
+3. Estudio de las necesidades según prioridades y nivel informativo
+4. Señalización de las variables críticas en cada área funcional
+5. Establecimiento de una correspondencia eficaz y eficiente entre las variables críticas y las medidas precisas para su control.
+6. Configuración del Cuadro de mando según las necesidades y la información obtenida
+En una primera etapa, la empresa, este caso el SINFA, debe de conocer en qué situación se encuentra, valorar dicha situación y reconocer la información con la que va a poder contar en cada momento o escenario, tanto la del entorno como la que maneja habitualmente. Esta etapa se encuentra muy ligada con la segunda, en la cual en el SINFA habrá de definir claramente las funciones que la componen, de manera que se puedan estudiar las necesidades según los niveles de responsabilidad en cada caso y poder concluir cuáles son las prioridades informativas que se han de cubrir, cometido que se llevará a cabo en la tercera de las etapas. Por otro lado, en una cuarta etapa se han de señalizar las variables críticas necesarias para controlar cada área funcional. Estas variables son ciertamente distintas en cada caso, ya sea por los valores culturales y humanos que impregnan la filosofía de la empresa en cuestión, o ya sea por el tipo de área que nos estemos refiriendo. Lo importante en todo caso, es determinar cuáles son las importantes en cada caso para que se pueda llevar a cabo un correcto control y un adecuado proceso de toma de decisiones. Posteriormente, y en la penúltima de nuestras etapas, se ha de encontrar una correspondencia lógica entre el tipo de variable crítica determinada en cada caso, y el ratio, valor, medida, etc. que nos informe de su estado cuando así se estime necesario. De este modo podremos atribuir un correcto control en cada momento de cada una de estas variables críticas. En último lugar, deberemos configurar el Cuadro de mando en cada área funcional, y en cada nivel de responsabilidad, de manera que albergue siempre la información mínima, necesaria y suficiente para poder extraer conclusiones y tomar decisiones acertadas.

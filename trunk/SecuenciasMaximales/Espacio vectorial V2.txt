@@ -1,0 +1,51 @@
+MODELOS DE RECUPERACIÓN DE INFORMACIÓN
+
+Los Modelos de Recuperación de Información son una aproximación general a los SRI, es por ello que diversas taxonomías de modelos han sido propuestas, en un principio la clasificación de Faloutsos (1): búsqueda de patrones de Texto, ficheros inversos y patrones de bits; hasta la clasificación de Belkin & Croft (2) que los dividen en exactos (modelos de búsqueda con base a patrones y a las técnicas booleanas) e inexactos (los modelos contendrían las técnicas probabilísticas, los espacios vectoriales y los clustering).
+Teniendo en consideración que mediante las consultas (las cuales pueden ser expresadas incluyendo solo palabras clave, aceptando también conectivos lógicos u expresadas en lenguaje natural)(3), un SRI recibe los datos necesarios para iniciar su función de recuperación de Información, es por ello que los métodos de recuperación de información utilizados con mayor frecuencia son el modelo de Espacios Vectoriales, el Modelo Booleano y variaciones de estos dos(4), donde cada uno estable ciertos criterios de similitud para comparar que tan parecidos son dos términos, dos documentos o un documento de una consulta.
+
+1. Modelo Booleano
+Es de los primeros modelos usados para la Recuperación de Información (incluyendo las Bases de Datos), y se utilizan cuando hay que gestionar grandes volúmenes de documentos.
+
+Dentro de este Modelo, un documento se encuentra representado por un conjunto de Palabras Clave (palabras con un valor semántico, las cuales pueden ser extraídas del documento, de una parte de este o de sus meta datos), generalmente almacenadas en un Fichero Inverso, el cual es contiene un índice que relaciona cada termino con una lista de documentos donde esta aparece (5). Un Fichero Inverso es un tipo de fichero índice donde su estructura esta compuesta por una palabra clave que es un término índice que describe al documento, un único identificador de documento para cada documento y un identificador de campo que nos indica dentro de que campo del documento aparece la palabra clave.  
+
+Las búsqueda booleanas o las consultas (grupo de palabras clave (6)) consisten en expresiones de palabras claves conectadas con algún(os) operador(es) lógico(s), (AND, OR y NOT). En la actualidad aun resulta complicado aumentar su efectividad en la recuperación de Información y en la gestión de grandes volúmenes de documentos, pero se han criticado a este modelo por las siguientes razones:
+
+Relevancia de Resultados de Búsqueda
+Da como resultado los documentos que parecen relevantes ante la consulta del usuario, pero no dice que tan relevante es un documento, asume que estos tienen el mismo grado de Importancia (no se pueden asignar pesos a los términos).
+
+Elaboración de Consultas del Usuario
+Los usuarios deben estar familiarizados con los operadores booleanos y deben conocer el tema de Búsqueda.
+
+Control de los documentos recuperados
+Existe poco control sobre el tamaño de la salida producida por una consulta, lo cual ocasiona que se tenga una cantidad muy pobre de ellos.
+Existe otro Modelo Vectorial, (el cual no presenta la capacidad de formular consultas utilizando operadores booleanos) con el cual se han podido eliminar alguna de las desventajas del Modelo Booleano, por ello se realizo una adaptación para tener el Modelo Booleano Extendido, ambos modelos debido a su rapidez se usan con frecuencia en Internet.
+
+2. Modelo Booleano Extendido
+
+Es una extensión del Modelo Booleano, que incluye la funcionalidad de los pesos de cada termino en los documentos con la capacidad de formular consultas con operadores booleanos (por ello decimos que es un híbrido entre los Modelos Vectorial y Booleano).
+
+El principio fundamental de este modelo es el eliminar la utilización de pesos binarios de los términos, por ello es posible utilizar el esquema tf-idf el cual después de varios estudios ha mostrado mayor precisión en la medida de la frecuencia de los términos en los documentos (una colección de documentos debe proveer los valores básicos para permitir el calculo del peso de un termino en un documento mediante dicho esquema y entonces obtener su grado de relevancia ante una consulta).
+
+Dentro de las principales ventajas del Modelo Booleano Extendido se encuentran la eliminación de los problemas encontrados en el Modelo Booleano, es posible también la elaboración de consultas más complicadas incluyendo una mezcla de operadores booleanos 
+y mediante el uso de los pesos de los términos (utilizando algún esquema para obtener los pesos) podemos manejar una cierta importancia relativa a algún documento.
+
+Es uno de los modelos más primitivos, sin embargo uno de los más populares y algunos aspectos importantes de este modelo son:
+
+Relevancia de Resultados de Búsqueda
+La relevancia es Binaria, es relevante o no lo es.
+Un documento es relevante si contiene la palabra 
+
+Elaboración de Consultas del Usuario
+El usuario realiza consultas considerando operadores Booleanos
+		AND, los documentos deben contener todas las palabras.
+		OR, los documentos deben contener alguna palabra.
+		A BUT NOT B, los documentos deben ser relevantes para A pero no B.
+
+Es popular ya que como al ser uno de los primeros modelos que se implemento, muchos de los primeros sistemas de Recuperación de Información se basan en él, en algunos casos para usuarios (expertos) puede ser adecuado, la idea suele ser común entre los usuarios que la están usando, es simple de formalizar y eficiente de implantar.
+
+Sin embargo algunos aspectos negativos de este modelo son:
+
+No discrimina entre documentos más y menos relevantes.
+Da lo mismo que un documento contenga una o cien veces las palabra de consulta
+Da lo mismo que cumpla una o todas las cláusulas OR.
+No permite ordenar los resultados y puede resultar algo confuso.	

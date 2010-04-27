@@ -1,0 +1,45 @@
+
+MODELO BOOLEANO EXTENDIDO
+
+1.- Modelo Booleano  
+El modelo booleano es la base de los modelos usados para la recuperación de información dentro de las bases de datos. En un sistema booleano de RI las consultas se dan en operadores lógicos (Y, O, NO) y así un motor de búsqueda regresa aquellos documentos que cumplen con los aspectos lógicos  de consulta.
+
+El modelo booleano da como resultado los documentos que parecen relevantes ante la consulta de un usuario, sin embargo no dice que tan relevante es un documento y así asume que éstos tienen el mimo grado de importancia, es ahí donde radica una de sus principales desventajas de dicho modelo, otras dificultades que tienen el modelo booleano tradicional es dificultad en la elaboración de consultas, debido a que éstas están basadas en operadores boléanos y no todos los usuarios están familiarizados con esta forma de consulta. Otro problema radica en el poco control que hay sobre el tamaño de la salida producida por una consulta, esto ocasiona que se tenga una cantidad  muy pobre de ellos. En el modelo booleano no hay provisiones para lograr una asignación de pesos a los términos, esto quiere decir que todos los términos son considerados siempre como de igual  importancia.
+
+Algunas de las desventajas descritas, fueron eliminadas en el modelo vectorial; sin embargo, el modelo vectorial no presenta la capacidad de formular consultas utilizando los diferentes operadores boléanos. Es a partir de esta adaptación de donde nace la idea de extender éste modelo para tener el modelo booleano extendido.
+ 
+2.- Modelo Booleano Extendido     
+El modelo booleano extendido, como su nombre lo dice, es una extensión del modelo booleano tradicional, que incluye la funcionalidad de los pesos de cada término en los documentos con la capacidad de formular consultas con operadores boléanos. Es por ello que podemos decir que se trata de una mezcla del modelo vectorial con el modelo booleano tradicional. 
+
+Lo primero que se trata de eliminar en este modelo son la utilización de pesos binarios de los términos, así es posible utilizar el esquema tf-idf descrito en las fórmulas (a, b, c), con lo cual se eliminan la mayor parte de las desventajas en el modelo booleano tradicional. La función sim(qi,dj) que permite la jerarquización de los documentos relevantes está basada en éste caso en el cálculo de las distancias de los términos de cada documento. Sin embargo, como en el modelo booleano tradicional, es posible la elaboración de consultas con operadores boléanos, por lo que las fórmulas para este caso son dos, una para las consultas con el operador booleano Y(AND) y otra para consultas con el operador booleano O(OR). Aunque también es posible lograr una combinación en el momento de hacer las consultas y para éste caso se implementa una combinación recursiva de dichas fórmulas hasta lograr la incorporación de todos los términos contenidos en la consulta. Las siguientes fórmulas representan dicha función sim(qi, dj).     
+ 
+ 
+
+donde qm y wm representan los pesos del término m  de la consulta y del documento respectivamente. El valor p  permite la generalización de la noción de la distancia para no sólo incluir distancias Euclidianas sino p distancias debido a que tendremos p  términos. 
+Existen muchas variaciones de éstas fórmulas y hay algunos autores que sugieren la eliminación de los pesos de los términos de las consultas por simplicidad. Dentro de esas variaciones se incluye también la elección de valores p variables  dentro de una misma consulta.
+
+Dentro de las principales ventajas de éste modelo se encuentran la eliminación de los problemas encontrados en el modelo booleano tradicional. Así se relaja también el uso de operaciones booleanas mediante el uso de operaciones representadas con distancias algebraicas, es por ello que se le considera un modelo combinado entre el vectorial y el booleano. Es posible también la elaboración de consultas más complicadas incluyendo una mezcla de operadores boléanos y mediante el uso de los pesos de los términos podemos manejar una cierta   importancia de cada documento. 
+         
+De este modelo se pueden destacar los siguientes puntos 
+•	La relevancia es binaria: un documento es relevante o no lo es.
+•	Consultas de una palabra: un documento es relevante si contiene la palabra.
+•	Consultas AND: los documentos deben contener todas las palabras 
+•	Consultar OR: los documentos deben contener alguna palabra 
+•	Consultas A BUTNOT B: los documentos deben ser relevantes para A pero no para B. 
+•	Es el modelo más primitivo, sin embargo el más popular.
+
+¿Por qué es malo?
+•	No discrimina entere documentos más y menos relevantes.
+•	Da lo mismo que un documento contenga una o cien veces las palabras de consulta.
+•	Da lo mismo que cumpla una o todas las cláusulas de un OR.
+•	No permite ordenar los resultados. 
+•	Puede resultar confuso
+
+¿Por qué es popular?
+•	Es uno de los primeros modelos que se implemento y muchos de los primeros sistemas de IR se basaron en él.
+•	La idea suele ser común entre los usuarios que la están usando
+•	Es simple de formalizar y eficiente de implementar.
+•	En algunos casos (usuario expertos) puede ser adecuado.
+•	Puede ser útil en combinación con otro modelo. Ejemplo para excluir documentos.
+•	Puede ser útil con buenas interfaces.
+

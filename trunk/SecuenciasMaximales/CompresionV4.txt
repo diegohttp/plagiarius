@@ -1,0 +1,273 @@
+Compresión de imágenes: Fundamentos, técnicas y formatos 
+
+
+RESUMEN
+
+El trabajo que se presenta en este artículo se desarrolla en el área de Procesamiento digital de imágenes, concretamente se hace una breve descripción de las principales técnicas de compresión de imágenes y de los formatos estándar de codificación de imágenes más utilizados. La compresión de imágenes comprende un conjunto de técnicas que se aplican a las imágenes, y es un tema importante debido a que muchas de las imágenes utilizan volúmenes de datos muy altos, del orden de mega y giga bytes, la compresión permite almacenar o transmitir los datos de las imágenes, reduciendo el volumen de información. Se identifican al menos tres formas para reducir el número de datos redundantes en una imagen: eliminar código redundante, eliminar píxeles redundantes y eliminar redundancia visual. En general las técnicas de compresión de imágenes se pueden agrupar en dos grandes clases: a) Sin pérdida de información y b) Con pérdida de información. En algunas imágenes no es permisible la pérdida de información en el proceso de compresión, como por ejemplo en imágenes médicas o legales. Mientras que, en otras imágenes es posible permitir cierto grado de pérdida, aunque manteniendo la calidad de la imagen, con la finalidad de optimizar la compresión, por ejemplo en videoconferencias. Finalmente, existen cientos de formatos de imágenes, en este trabajo se describen los más utilizados [1].
+
+Palabras claves: Compresión de imágenes, técnicas de compresión, codificación y decodificación, formatos de imágenes.
+
+
+ABSTRACT
+
+The work that is presented in this article is developed in the digital Processing of images area, specifically in the image compression for a brief description of the principal technologies and more used standard formats of image codification. The compression of images includes a set of techniques that are applied to the images to store them or to transmit them in an efficient way. Three forms are identified at least to reduce the number of redundant information in an image: to eliminate redundant code, to eliminate redundant pixels and to eliminate visual redundancy. In general the techniques of image compression can belong to two big classes: a) Without loss of information, lossless, and b) With loss of information, lossy. In lossless, is not permissible loss of information in the process of compression, for example in medical or legal images. Whereas, in other images it is possible to allow certain degree of loss, though supporting the quality of the image, with the purpose of optimizing the compression of images, for example in images of video conferences. Finally, there are hundreds of image formats, in this work more acquaintances are described [1].
+
+Key words: Image compression, Compression techniques, coding and decoding, Image formats
+
+ 
+1. Introducción
+La compresión de imágenes comprende un conjunto de técnicas que se aplican a las imágenes para almacenarlas o transmitirlas de manera eficiente. Utiliza las técnicas de compresión de datos digitales, por eso es importante presentar en qué consiste esta. Según [1] es el proceso de reducción del volumen de datos para representar una determinada cantidad de información. Es decir, un conjunto de datos puede contener datos redundantes porque son de poca relevancia o son datos que se repiten en el conjunto, los cuales si se identifican pueden ser eliminados. 
+
+En el caso de las imágenes, se identifican varias formas de representación de la imagen, de acuerdo a la forma utilizada se  aplican al menos tres tipos para reducir el número de datos redundantes: eliminar código redundante, eliminar píxeles redundantes y eliminar redundancia visual. El objetivo para eliminar código redundante es utilizar el menor número de símbolos para representar la imagen; en este tipo es usual utilizar las técnicas de compresión por codificación de Huffman y codificación aritmética, los cuales  utilizan cálculos estadísticos para lograr eliminar este tipo de redundancia y reducir la ocupación original de los datos. 
+
+En el caso de eliminar píxeles redundantes, la mayoría de las imágenes presentan semejanzas o correlaciones entre píxeles debido a las estructuras similares en las imágenes. De esta manera, el valor de un píxel puede emplearse para predecir el de sus vecinos; técnicas como el de Lempel-Ziv se utilizan para eliminar esta redundancia.
+
+El ojo humano responde con diferente sensibilidad a la información visual que recibe. La información a la que es menos sensible se puede descartar sin afectar a la percepción de la imagen, suprimiéndose lo que se conoce como redundancia visual, y produciéndose a la vez la pérdida de ciertas características de la imagen. La eliminación de la redundancia esta relacionada con la cuantificación de la información, el cual es un proceso que conlleva a una pérdida de información irreversible. Formatos de compresión como JPEG y TIFF permiten técnicas con pérdida de información.
+
+En general las técnicas de compresión de imágenes se pueden agrupar en dos grandes clases: a) Sin pérdida de información y b) Con pérdida de información. Su aplicación se realizará de acuerdo al tipo de imagen que se esté tratando, es decir, en algunas imágenes no es permisible la pérdida de información en el proceso de compresión, como por ejemplo en imágenes médicas o legales. Mientras que, en otras imágenes es posible permitir cierto grado de error, aunque manteniendo la calidad de la imagen, con la finalidad de optimizar la compresión de imágenes, por ejemplo en imágenes de videoconferencias. Asimismo es importante mencionar que las técnicas de compresión no siempre se utilizan de manera separadas, por el contrario técnicas de compresión con pérdida utilizan técnicas de compresión sin pérdida para alcanzar una mejor compresión.
+
+La imagen comprimida posteriormente se descomprime para reconstruir la imagen original o una aproximación de la misma. Generalmente, la descompresión es el proceso inverso de las técnicas de compresión. En el caso de las técnicas con pérdida de información, además se realizan un proceso de estimación para la reconstrucción de la imagen. 
+
+En el presente trabajo se hace una breve descripción de las principales técnicas y formatos de compresión de imágenes. El resto del presente artículo se presenta como sigue: En el capítulo 2 se presentan las definición básica de imágenes, los espacios de color utilizados y su representación digital, en el capítulo 3 se describen las técnicas de compresión de imágenes sin pérdida y con pérdida de información más utilizadas, en el capítulo 4 se presentan los formatos de archivos de imágenes más conocidos,  y finalmente en el capítulo 5 se realizan las conclusiones derivadas del trabajo desarrollado.
+
+2. Codificación de imágenes
+Una imagen puede ser definida como una función bidimensional de intensidad de luz f(x, y), donde x e y representan las coordenadas espaciales y el valor de f en un punto cualquiera (x, y) es proporcional al brillo o nivel de gris (escala de grises) de la imagen en ese punto. Una imagen digital es una imagen f(x, y) que se ha discretizado tanto en las coordenadas espaciales como en el brillo; y puede considerarse como una matriz cuyos índices de fila y de columna identifican un punto de la imagen y el valor del correspondiente elemento de la matriz indica el nivel de gris en ese punto. Los elementos de una distribución digital de este tipo se denominan elementos de la imagen o pixels, abreviatura de su denominación inglesa “picture elements” [1]. 
+
+Las imágenes que percibimos están compuestas por radiaciones de diferentes longitudes de ondas electromagnéticas, cada longitud esta asociada a un color. Los parámetros de la visión son la luminancia, el tinte y la saturación.
+
+Cualquier color se obtiene por una suma ponderada de los colores básicos: rojo, verde y azul, incluyendo los niveles de gris. Los espacios de color se pueden definir como las diferentes bases matemáticas que pueden ser útiles para representar información luminosa. El más conocido es el espacio RGB, en el cual se representan los colores primarios rojo, verde y azul, ver representación en Figura 1. La desventaja de este espacio es que presenta redundancia de información entre los tres colores, para salvar esto es posible realizar una conversión a otro espacio de color, por ejemplo al YUV. Las fórmulas para la conversión son: 
+Y = 0.3R + 0.6G + 0.1B (Nivel de brillo o luminancia)
+U = B - Y (Diferencia de color azul, Cb)
+V = R - Y (Diferencia de color rojo, Cr)
+
+U y V son conocidas como crominancia o información del color.
+
+
+
+
+
+
+
+
+
+
+
+Figura 1. Sistema RGB (Rojo Verde Azul).
+
+Algunas características acerca de la percepción humana que se pueden destacar son: el ojo es más sensible a unos colores que a otros, por ejemplo, dados tres fuentes de luz con la misma intensidad y distinto color (una roja, otra verde y otra azul), el ojo percibe al verde con el doble de intensidad que la roja, y seis veces más intensa que la azul. Asimismo, los mecanismos de percepción visual humanos son menos sensibles y estrictos que los auditivos, por ejemplo en variaciones de frecuencia, supresión de imágenes, etc. 
+
+De otra manera, cada muestra RGB se codifica con una cantidad de bits por componente de color, por ejemplo, 8 bits por componente utilizan 24 bits por muestra. La resolución de una imagen se mide según el número de píxels por lado (ancho x alto). En cámaras digitales se suele medir en Megapixels, es decir, millones de píxels por imagen. El formato CIF (por sus siglas en Inglés de Common Intermediate Format) contiene 352x288 pixeles, utilizado generalmente en videoconferencia; el VGA (640x480) utilizados por cámaras de baja calidad; n-Megapixels ofrecido por cámaras de mayor calidad [5].
+
+3. Técnicas de compresión de imágenes
+Las técnicas de compresión se pueden agrupar en dos grandes clases: a) Técnicas de compresión sin pérdida de información y b) Técnicas de compresión con pérdida de información. En la primera clase, las imágenes comprimidas se regeneran sin errores, es decir, son iguales al original. Mientras que en la segunda, la imágenes reconstruidas son más o menos diferentes de la imagen original. 
+
+En cada clasificación hay estrategias o algoritmos de compresión que destacan, los que son presentados en las siguientes subsecciones junto con sus características.
+
+3.1 Técnicas de compresión de imágenes sin pérdida de información
+
+En esta clasificación, las imágenes se consideran basada en la entropía, técnica que codifica los datos sin necesidad de conocer la naturaleza de éstos, son de propósito general y en donde la imagen reconstruida es exactamente la misma que la imagen original. Estas técnicas se destacan porque emplean métodos estadísticos, basados en la teoría de Shannon, que permite la compresión sin pérdida. Algunas de éstas técnicas son: Run-length encoding (RLE), codificación de Huffman, codificación aritmética y Lempel-Ziv;  Dichas técnicas se describen a continuación. 
+
+
+Run-length encoding (RLE) [3] [7]
+
+Es el método más simple de compresión de imágenes, es útil en imágenes cuya secuencia de caracteres se repiten. Consiste en almacenar el número de caracteres que se repiten, seguido del carácter. Por ejemplo, si tenemos una línea en una imagen que se inicia con un carácter blanco o vacío, seguido de 10 caracteres * y finaliza con otro carácter blanco o vacío, la representación de la línea se realizará de la siguiente manera: 1B10*1B. Se observa que se utilizan 7 caracteres para codificar la línea, mientras que en la forma original se emplean 12 caracteres. Este método también se utiliza en combinación con otros, así el formato JPEG [1] lo utiliza después de transformar y cuantificar bloques de imágenes.
+
+Codificación de Huffman [7] [8]
+
+Es una técnica que consiste en asignarle código de bits más cortos a los datos que mayor frecuencia de aparición tienen y códigos más largos a los que aparecen con menos regularidad. Es muy utilizada debido a su simplicidad, alta velocidad, y sin problemas de patentes. Fue desarrollada por David Huffman en 1951 [8].
+
+Básicamente su algoritmo consiste en la creación de un árbol binario de abajo hacia arriba:
+?	Se toma un alfabeto de n símbolos, cada símbolo tiene una frecuencia de aparición asociada. 
+?	Se colocan los símbolos ordenados de mayor a menor frecuencia, los que constituyen los nodos hojas del árbol binario.
+?	Se agrupan en pareja los símbolos de menor frecuencia, y se asigna la suma de sus probabilidades al nodo padre. Se procede a realizar esta acción hasta que no quedan nodos hoja por unir a ningún nodo superior, y se ha formado el árbol binario.
+?	Se etiquetan las aristas de cada rama del árbol, con cero a la izquierda, y con uno a la arista derecha.
+?	Se produce el código de Huffman para ese alfabeto y esas frecuencias, con los bits recorridos desde la raíz hasta las hojas
+
+En el ejemplo de la figura 2, se observa el código binario que se genera, para el alfabeto que se muestra en la base de la estructura y que aparece junto con sus frecuencias.
+
+
+
+
+
+
+
+
+
+
+
+
+Figura 2. Ejemplo código de Huffman.
+
+Codificación aritmética [3] [7]
+
+Codifica una secuencia de símbolos mediante una representación binaria, las secuencias de bits son obtenidos a partir de intervalos que tienen valores reales entre cero y uno. En esta técnica de codificación sin pérdida de información se tiene en cuenta los siguientes pasos:
+?	Se toma un alfabeto de n símbolos, cada símbolo tiene una frecuencia de aparición asociada o probabilidad de  aparición del símbolo, la probabilidad en la secuencia de símbolos no necesariamente se presentan en orden.
+?	Se calcula la probabilidad acumulativa para cada símbolo de una secuencia, probabilidad que se torna para cada símbolo procesado en un valor cada vez más pequeño.
+?	 Se asigna a cada símbolo su rango que tienen como límite superior su probabilidad acumulativa y como límite inferior la probabilidad del símbolo anterior de la secuencia o cero sí es el primer símbolo.
+?	Se traduce el resultado a código binario. Los símbolos con mayor probabilidad utilizan pocos bits, por ejemplo, 0.875 se traduce a 1110, mientras que 0.25 a 01.
+
+Codificación aritmética es una técnica eficiente, sin embargo es una técnica patentada. En la figura 3, se presenta un ejemplo de codificación aritmética. Se observan los símbolos del alfabeto, su probabilidad, la probabilidad acumulada de cada uno de ellos y el intervalo de probabilidades.
+
+
+
+
+
+
+
+
+
+Figura 3. Ejemplo de codificación aritmética.
+
+Lempel-Ziv [6] [7]
+
+El algoritmo Lempel-Ziv (LZ) realiza un análisis desde cadenas o palabras de un determinado alfabeto, cuyas longitudes no exceden un prescrito entero L. Posteriormente se asignan estas cadenas o palabras secuencialmente hacia un único código de palabras de longitud fija LZ. 
+
+Las cadenas son seleccionadas de tal manera que tienen cercana probabilidad de ocurrencia. Como resultado, símbolos que ocurren frecuentemente, tales como espacio y cero, son agrupados en cadenas de longitudes más larga, mientras que símbolos infrecuentes, tales como z, aparecen en cadenas cortas. 
+
+Esta estrategia es efectiva debido a la frecuencia de símbolos, repetición de caracteres y patrones de alto uso. Es una técnica de análisis incremental en el cual el proceso de codificación es llevado a cabo con un proceso de aprendizaje para características de fuentes que varían, por ejemplo cadenas que contienen caracteres que se repiten gradualmente pueden ser aprendidos, como las cadenas ?cas, casita, casona, 0, 00, 000?.
+
+El algoritmo LZ analiza cada cadena y construye frases agregando un símbolo a la vez a una cadena existente cuando ocurre una correspondencia. Posteriormente a cada cadena se le asigna un código. Por ejemplo para las cadenas presentadas en el párrafo anterior, se les puede asignar los códigos 1, 2, 3, 4, 5 y 6 respectivamente. 
+
+La técnica  LZW (Lempel-Ziv-Welch) es una variante del LZ, y es una de las más comúnmente utilizadas en la práctica, en este caso se utiliza un apuntador, en lugar de código de símbolos.
+
+3.2 Técnicas de compresión de imágenes con pérdida de información 
+
+En esta clasificación, la imagen o secuencia reconstruida es más o menos diferente de la imagen original. Se emplean principalmente cuando las imágenes tienen información redundante susceptible de ser eliminada o reducida, por  ejemplo, el color del cielo en una foto suele ser uniforme y azul. En éstas técnicas, a veces también resulta interesante codificar el nivel de brillo de una muestra (luminancia o componente Y) y las diferencias de color (crominancias azul, roja y verde, o componentes Cb, Cr, Cg) [5].
+
+La reducción se hace utilizando técnicas de codificación basada en la fuente (source encoding) [5], las cuales codifican los datos basándose en las características y propiedades de sus imágenes,  permiten tasas de compresión alta y generalmente son para propósitos específicos. Algunas técnicas que destacan son: 1) Códificación por transformación, 2) Vector de Cuantización y 3) Compresión Fractal. 
+
+Codificación por transformación [1] [3]
+
+La idea base en esta técnica es utilizar una transformada como la de Fourier discreta para hacer corresponder la imagen con un conjunto de coeficientes de la transformada. Sobre estos coeficientes se aplica un proceso de cuantificación, en donde generalmente un número significativo de los coeficientes tienen valores pequeños que son poco significativos, los cuales se pueden eliminar mediante un proceso conocido como cuantización, produciéndose la pérdida de información, aunque ello no suponga una distorsión apreciable de la imagen. De esta manera se obtiene un número reducido de datos de la imagen, a los cuales usualmente se les aplica una técnica de codificación sin pérdida para mejorar los resultados.
+
+La transformada discreta de coseno (conocido como DCT por sus siglas en inglés) es más frecuentemente utilizada para compresión de imágenes, debido a su capacidad para empaquetar la información, pues empaqueta la mayor parte de la información en el menor número de coeficientes; asimismo DCT minimiza la visibilidad de los límites entre subimágenes. Los coeficientes en esta técnica se calculan a partir de la ecuación 1. 
+
+Ecuación 1:  
+
+
+
+Vector de Cuantización [3]
+
+La idea central es seleccionar un conjunto representativo de una imagen. A continuación se presentan los pasos básicos que sigue la técnica documentado con un ejemplo:
+?	La imagen se divide en bloques de tamaño fijo denominados vectores 
+?	Se construye una tabla que contiene vectores diferentes encontrados en la imagen original 
+?	Se pueden direccionar los vectores de esta imagen a los vectores de la tabla. Si la tabla contiene un número mucho menor de vectores que la imagen original debido a que contiene vectores que se repiten, la compresión puede ser importante. 
+?	En este sistema, la codificación, es decir la compresión, puede ser una sucesión de índices a la tabla, como se observa en la figura 4.
+
+
+
+
+
+
+
+
+
+Figura 4. Ejemplo de codificación por cuantización.
+
+Para la codificación de un conjunto de imágenes, utilizando esta técnica, la tabla pueda ser dinámicamente construida. Asimismo, técnicas como clustering pueden ser utilizadas para realizar la clasificación de vectores [5]. 
+
+Compresión Fractal [3] [2]
+
+Un fractal es un objeto semigeométrico cuya estructura básica, fragmentada o irregular, se repite a diferentes escalas, por ejemplo, las nubes, las montañas, el sistema circulatorio, las líneas costeras o los copos de nieve son fractales naturales, muchas imágenes son como estos objetos. 
+ 
+La compresión fractal consiste en transmitir imágenes utilizando funciones. Es decir, dada una imagen, desde un conjunto de imágenes, se aplica la función f: Imagen ? Imagen tal que f(i) es semejante a i. El proceso se completa transmitiéndose el coeficiente que únicamente identifica a f. 
+Existen varias técnicas de compresión de imágenes fractales, una de ellas es la que  consiste en encontrar un  Sistema de funciones iteradas (IFS) que genera un conjunto de transformaciones que lleva la figura completa en cada una de sus partes autosemejantes. La información sobre la imagen quedará codificada en el IFS, en donde la aplicación reiterada de las transformaciones permiten obtener una imagen bastante cercana a la original. Es una técnica de compresión con pérdida. En la figura 5, se presenta la figura de un helecho, el cual es un ejemplo de imagen en el que se aplica compresión fractal por sus características de forma que se repiten.
+La aplicación de técnicas fractales para la compresión de imágenes digitales fue introducida por Michael Barnsley y Arnaud Jacquin en 1988. Jacquin propuso considerar las imágenes como una colección de transformaciones afines de pequeños dominios de imagen; mientras que  Barnsley sugiere que las imágenes sean almacenadas como una colección de transformadas, cuyo número determina la tasa de compresión.
+
+
+
+
+
+
+
+
+
+Figura 5. Ejemplo de imagen para compresión fractal.
+
+4. Formatos de archivos de imágenes [1] [4]
+Un formato es una manera estándar de codificar datos de una imagen con la finalidad de almacenarla o transmitirla. Sin embargo, debe haber algún método para convertir a ceros y unos que es el lenguaje del computador. En este capítulo se desarrollan los dos categorías de archivos de imágenes: mapa de bits y vectores, y se presentan los formatos de imágenes más utilizados, en este último caso se presenta con más detalle la técnica JPEG (Joint Photographic Experts Group).
+
+4.1 Mapas de bits y vectores
+
+Todos los archivos de imágenes pertenecen a una de las dos categorías básicas: mapa de bits (bitmap) o vectores. Una manera intuitiva de entender un mapa de bits es comparándola con un monitor de la computadora, despliega imágenes como un conjunto de pixeles de colores individuales. Cada pixel es una celda en el mapa de bits.
+
+Archivos de imágenes de vectores son un conjunto de vectores basados en ecuaciones matemáticas, los cuales describen geométricamente una imagen, las ecuaciones corresponden a puntos, líneas, curvas y formas o polígonos. Asimismo, ellos pueden especificar el tamaño, grosor, posición, color y relleno de las líneas o formas geométricas. Para construir una imagen se requiere de programas que utilizan los vectores o fórmulas matemáticas.
+
+Las imágenes elaboradas con vectores generalmente son de mayor calidad que utilizando mapas de bits. Las fórmulas conservan la calidad de las imágenes a diferentes escalas, tamaños y detalles, mientras que en mapas de bits se pierde dicha calidad, en la figura 6 se observa el efecto de incrementar siete veces la escala de la figura original, en donde se observa que no se modifica la calidad de la imagen usando un archivo vector, mientras que usando un archivo mapa de bits sí se pierde la calidad de la imagen.
+
+
+
+
+
+
+
+Figura 6. Efectos de archivos de imágenes de mapa de bits y vectores [4]. 
+
+Sin embargo, vectores y mapas de bits se complementan, pues vectores pueden contener mapas de bits como datos, y asimismo los vectores pueden ser mostrados mediante mapas de bits.
+Mapas de bits generalmente son utilizados en fotografías o imágenes de fotos reales, mientras que vectores son mayormente usados en composición y diseño gráfico.
+4.2 Formatos
+
+Existen cientos de formatos de imágenes, sin embargo los más conocidos y que pertenecen a la categoría de mapas de bits son [1]: 
+?	JPEG (Joint Photographic Experts Group)
+?	GIF (Graphics Interchange Format)
+?	PNG (Portable Network Graphics)
+?	TIFF (Tagged Image File Format)
+?	BMP (Windows bitmap)
+
+Los que pertenecen a la categoría de vectores se describen en los siguientes párrafos.
+
+JPEG (Joint Photographic Experts Group)
+
+Es un un formato estándar ISO, cuyo origen proviene del grupo Joint Photographic Expert Group, que es diseñado para compresión de imágenes de fotografías y de escenas reales, de color o de escala de grises, y de tonos continuos. Permite ajustar el grado de compresión, si la compresión es baja se registran imágenes muy parecidas al original, pero el tamaño del archivo es grande.
+
+JPEG utiliza una técnica de compresión con pérdida. En la Figura 7, se muestran los pasos que sigue la técnica, los cuales se describen en los siguientes párrafos.
+ 
+Figura 7. Secuencia de pasos que sigue el método JPEG.
+
+El método JPEG codifica una imagen en tres etapas, que se describen a continuación:
+
+I.	Preparación de la imagen.
+?	 Se realiza una transformación del espacio de color. Las imágenes de color se transforman del espacio RGB al espacio YUV (luminancia y prominencia).
+?	 Submuestreo, permite la reducción de color para obtener archivos de tamaños más pequeños que el original.
+?	 Formación de bloques, se divide la imagen en bloques de 8 x 8 pixeles.
+
+II.	 Codificación fuente, codificación con pérdida
+?	 Se aplica la Transformación discreta de coseno o DCT, que se aplica a cada bloque de imagen, obteniéndose un dominio de la frecuencia (matriz de coeficientes).
+?	 Cuantificación, cada coeficiente de la matriz 8 x8 es dividido por una constante de la matriz de cuantificación y se redondea a su número entero más cercano. Se eliminan los coeficientes menos representativos, produciéndose pérdida de información de la imagen y por consiguiente su calidad.
+
+III.	Codificación entrópica, codificación sin pérdida
+?	 Se aplica Codificación Run-length, de todos los componente de un bloque. Se hace un barrido “zig-zag” con el fin de agrupar todos los componentes nulos.
+?	Codificación Huffman, se aplica a lo obtenido en la codificación anterior, con el fin de comprimir aún más la información, siendo este el último paso del método y obteniéndose la compresión de la imagen con el modelo JPEG.
+
+La decodificación JPEG consiste en realizar el proceso inverso. Otra versión mejorada del JPEG es JPEG 2000, basado en transformada wavelet, trabaja con niveles de compresión mayores y  se adapta mejor a la carga progresiva de las imágenes; aunque presenta la desventaja de que elimina algunos detalles pequeños y texturas que el formato JPEG normal sí llega a representar. Utilizar la extensión .jp2.
+
+GIF (Graphics Interchange Format)
+
+Es limitado a 256 colores, permite almacenar imágenes estáticas como diagramas simples, o logos con áreas de color sólidos, o imágenes como caricaturas, y animaciones simples. Utiliza el Lempel-Ziv-Welch (LZW) que es un método de compresión de imágenes sin pérdida de información. 
+
+PNG (Portable Network Graphics)
+
+Es basado en un algoritmo de compresión sin pérdida, pertenece a la categoría de mapa de bits.  Este formato fue desarrollado en buena parte para solventar las deficiencias del formato GIF, no está sujeto a patentes. Soporta hasta 16 millones de colores, y permite almacenar imágenes en la escala de grises, RGB (colores reales) y permite niveles de transparencia. Es muy adecuado para gráficos pero no soporta animación. Usan la extensión .png.
+
+TIFF (Tagged Image File Format)
+
+Es un formato de archivo de imagen etiquetado, pertenece a la categoría de mapa de bits. Creado originalmente por Aldus a mediados de los 80, actualmente es parte de Adobe Systems.  Admite imágenes en la escala de grises y color real, incluso a 16 bits por píxel. Es un formato muy popular y usado en la mayoría de las aplicaciones de manipulación de imágenes, composición, escaneado, fax, reconocimiento de caracteres ópticos (OCR), etc.
+
+Debe su nombre a que los ficheros TIFF contienen, además de los datos de la imagen propiamente dicha, “etiquetas” en las que se archiva información sobre las características de la imagen, que sirve para su tratamiento posterior.
+
+Admite varias formas de compresión con y sin pérdida de información como JPEG y LZW respectivamente. Usa extensión .tif o .tiff.
+J. Mateos y J. Abad (UGR) Compresión de imágenes y vídeo Curso 2007-08 14 / 52
+
+BMP (Windows bitmap)
+
+Los datos se codifican con compresión sin pérdidas, por lo que el tamaño de los archivos es considerable. Maneja colores de hasta 24 bits de profundidad. Son usados en los programas de Microsoft, en archivos de gráficos como íconos y papel tapiz. 
+5. Conclusiones
+En el presente trabajo que se ha desarrollado se hace una breve descripción de las principales técnicas de compresión de imágenes y de los formatos estándar de codificación de imágenes, más utilizados. Previamente, se presentaron los conceptos y definiciones fundamentales que caracterizan a las imágenes. La compresión de imágenes es un tema muy  importante en el Procesamiento digital de imágenes, debido a que permite almacenar o transmitir los datos de las imágenes de manera eficiente. Existen varias técnicas tradicionales y actuales que permiten la compresión, en este trabajo se han descrito las más conocidas y utilizadas.
+
+En general las técnicas de compresión de imágenes se pueden agrupar en dos grandes clases: a) Sin pérdida de información y b) Con pérdida de información. Para cada clase se describieron las estrategias o algoritmos que más destacan. En el primer caso, compresión sin pérdida, los algoritmos se caracterizan porque emplean métodos estadísticos y basados en la entropía; los algoritmos que se describieron en este caso fueron: Run-length encoding (RLE), [3] [7], Codificación de Huffman [7] [8], Codificación aritmética [3] [7], Lempel-Ziv [7]. 
+
+Mientras que en el segundo caso, compresión con pérdida, se utilizan técnicas de codificación basada en la fuente, las cuales codifican los datos basándose en las características y propiedades de sus imágenes; los algoritmos que se describieron en este caso fueron: Codificación por transformación [1] [3], Vector de Cuantización [3], Compresión Fractal [3] [2].
+
+Finalmente, existen cientos de formatos de imágenes [1], en este trabajo se presentan los más utilizados: JPEG, GIF, PNG, TIFF, BMP.
+
+
