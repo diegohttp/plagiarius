@@ -1,0 +1,71 @@
+Estado del Arte
+
+Los esfuerzos por desarrollar nuevos métodos de diagnóstico que sean adecuados para poder aplicarse en realidades con índices de pobreza elevados como en el Perú desembocaron en el desarrollo de un método rápido, barato y seguro denominado Microscopic Observation Drug Susceptibility – MODS, descubierto en la Universidad Peruana Cayetano Heredia hace aproximadamente seis años. En esta sección se describe cómo es que se realiza en la actualidad el proceso de diagnosticar Tuberculosis usando MODS. 
+
+MODS es un método de diagnóstico que consiste en identificar un patrón único y exclusivo de Tuberculosis cuando este crece en un caldo o medio líquido. A los cinco días empieza a aparecer el patrón exclusivo de Tuberculosis y un técnico bien entrenado puede identificarlo. Con esto se consigue que se minimice significativamente el tiempo necesario de diagnóstico. Así  permite diagnosticar la presencia de tuberculosis en muestras de esputo, a la vez que se realiza un test de susceptibilidad a las drogas que permitirá el adecuado tratamiento de los casos de Tuberculosis al brindar un servicio más personalizado de los casos. Esto se logra de la siguiente manera: En una placa de veinticuatro pozos se siembran muestras de esputo previamente procesadas para eliminar cualquier otro tipo de bacteria menos Mycobacterium Tuberculosis. Los pozos pueden contener o no además del esputo cierta droga o antibiótico para determinar la susceptibilidad a las drogas. Estas varían de acuerdo a los diferentes esquemas de tratamiento. En el esquema primario las drogas usadas son Isoniacida, Rifampicina, Pirazinamida. Luego de los cinco días de cultivo se puede observar que en algunos pozos he crecido Tuberculosis y en otros no, es así como se determina qué drogas matan o a qué drogas es susceptible dicha cepa (cualquier tipo de variante de Mycobacterium Tuberculosis). Si crece en todos los pozos ya no se aplican estas drogas en el tratamiento del paciente porque no curará al paciente, por el contrario provocaría efectos secundarios.
+En este caso, si la bacteria es resistente a una o dos drogas se dice que es un caso multidrogo resistente (MDR) y se necesitan las llamadas drogas de segunda línea. Sin embargo existen cepas que son resistentes a muchas drogas y son llamadas XDR (extreme or extensively drug-resistant). En este caso la probabilidad de que un paciente se sane y sobreviva es muy difícil. 
+
+La imagen siguiente muestra la distribución de la Tuberculosis multidrogo-resistente a nivel mundial.
+
+
+Fig. 5: * Fuente: Programa Global de TB de la OMS.
+
+La siguiente imagen muestra el número de casos de Tuberculosis multidrogo-resistente en el Perú desde 1999 al 2006.
+
+Fig. 6: * Fuente: Fuente: OGE - ASIS 2004. I semestre 2005: ESNCTBC
+
+Pero existen dos puntos críticos dentro del método MODS:
+
+Primer punto crítico: para realizar esta prueba se requiere de un microscopio invertido, para garantizar la correcta visualización de las formaciones en los pozos (ya que se visualizan como una imagen plana formada en el fondo del caldo) e ignorar el ruido que se formaría en la imagen al usar un microscopio convencional (ya que este visualiza como primera capa la superficie del medio líquido en el que se cultiva el esputo). Por este motivo el uso de este instrumento se hace necesario y el problema es que su costo mínimo puedo variar entre los cinco mil y ocho mil dólares americanos. 
+
+La siguiente imagen brinda una mejor visión de la necesidad de contar con un microscopio invertido, teniendo en cuenta que las aglomeraciones de bacterias se forman en la parte inferior del medio líquido o cultivo.
+
+
+
+Fig. 7: * Fuente: : Nuevos Métodos para el Diagnóstico Rápido de TBC. IMCA. Kathy Alva
+
+Conociendo este primer problema la Universidad Peruana Cayetano Heredia - UPCH llega a establecer un equipo de investigación dedicado a recrear el funcionamiento de un microscopio invertido. Ingenieros de la Universidad Nacional de Ingeniería se involucraron en el desarrollo de dicho hardware o microscopio artesanal con el fin de abaratar el costo final del ensayo MODS.
+
+Fig. 8: *Fuente: Nuevos Métodos para el Diagnóstico Rápido de TBC. IMCA- Bsc. Kathy Alva 
+(Foto tomada en la Unidad de Bioinformática y Biología Computacional - UPCH)
+					
+Se construyeron dos prototipos para evaluar el costo y nitidez de la imagen que finalmente proporcionarían al programa de software encargado de analizar las imágenes.
+La imagen que se muestra corresponde al primer prototipo el cual usaba una cámara web (web cam) para la adquisición de las imágenes microscópicas y unas lentes para calibrar la visualización.
+Las características de este microscopio artesanal son las siguientes:
+- Lente Objetivo   10X
+- Lente Ocular      10X
+- Distancia entre Objetivo – Ocular : 160 mm
+- Magnificación total = Magnificación objetivo × magnificación ocular = 100X
+El segundo modelo construido usó una cámara digital marca Genius DV 600:
+- Resolución de fotografía de 3.3 Mega píxel.
+
+Las imágenes siguientes muestra la construcción del modelo.
+
+
+Fig. 9: *Fuente: Nuevos Métodos para el Diagnóstico Rápido de TBC. IMCA- Bsc. Kathy Alva (miembro del Grupo MODS - UPCH)
+
+Actualmente la Unidad de Bioinformática y Biología Computacional está trabajando en la mejora de los prototipos y ya proporciona las primeras imágenes a analizar.
+
+Segundo punto crítico: Es el más importante. El diagnóstico final se basa en la habilidad del profesional o técnico que examina la imagen microscópica de los cultivos del esputo. Después de un análisis visual y según determinadas características se establece la presencia o ausencia de Mycobacterium Tuberculosis; se puede decir que por ser una prueba subjetiva, al depender de un personal altamente entrenado, esta no es fiable. Considérese el antecedente que en algún momento expertos en MODS de la UPCH intentaron enseñar la técnica al personal técnico del Ministerio de Salud,  pero el proyecto no tuvo éxito debido a los grandes errores de diagnóstico visual cometidos. Si la responsabilidad del diagnóstico recae sobre una persona; que puede verse influida por diversos factores como estado de ánimo, distracciones, el hecho de que poseer una buena visión, etc; podemos considerar que el método es inseguro, aunque su uso sigue siendo una buena alternativa por ser económico y rápido. Es así que sería más conveniente apostar por una solución más segura y dejar este análisis visual en manos de un programa computacional que aumentará la eficiencia del método Microscopic Observation Drug Susceptibility (MODS) reduciendo el tiempo del análisis de la imagen, con lo cual se atenderá a más pacientes; reduciendo la tasa de errores; y lo más importante: abaratando costos, con lo cual los sectores de bajos recursos podrán acceder al servicio de un diagnóstico de calidad.
+
+El en Perú no ha habido logros significativos en las áreas de Visión Artificial o Procesamiento de Imágenes aplicadas a diagnosticar enfermedades y aún no ha habido intentos de automatizar el método MODS. Sin embargo, vale mencionar que en diversas partes del mundo se vienen realizando trabajos enfocados al procesamiento de imágenes cardiovasculares, imágenes hepáticas, etc. Además existen herramientas computacionales que permiten optimizar ciertos procesos como detección de contornos en imágenes de ecocardiografía o también sistemas de apoyo por ejemplo al diagnóstico y seguimiento de patologías vasculares a partir de imágenes multimodales: escanografías y angiografías por resonancia magnética. Podemos concluir que el presente proyecto es inédito y sus precedentes más cercanos implementan algoritmos de procesamiento de imágenes.
+
+En el futuro se pretende llevar el microscopio invertido a todos los centros de salud del Perú, capturar la foto a través del microscopio y enviarla por mensajes multimedia, a través de Internet, hasta un cluster de computadoras que analizará la imagen y determinará el diagnóstico.
+
+
+La siguiente figura aclara la meta del proyecto:
+
+
+			           Envío de la imagen
+
+
+
+
+
+				Diagnóstico devuelto
+
+Fig. 10: Esquema ideal del proyecto
+
+La presente investigación físicamente se encuentra dentro de este módulo: Análisis de las imágenes microscópicas para diagnosticar Tuberculosis.
+
+

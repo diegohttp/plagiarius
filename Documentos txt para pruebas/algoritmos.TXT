@@ -1,0 +1,49 @@
+Introducción
+
+Existen diferentes criterios para clasificar los problemas de empaquetado, como son el tamaño y la cantidad de las piezas, las dimensiones del problema, etc. Uno de los métodos utilizados más frecuentemente para clasificar los problemas de empaquetados es aquel basado en las características del patrón sobre el cual se van a colocar los objetos. En base a este criterio, los problemas de empaquetado pueden ser divididos en dos categorías:
+
+-Bin Packing:	Los objetos han de ser colocados sobre un conjunto de patrones de  dimensiones fijas, con el objetivo de minimizar el número de patrones utilizados.
+
+-Strip Packing:	Los objetos son dispuestos sobre un patrón donde todas sus dimensiones son fijas menos una, de tal manera que la longitud final alcanzada por los mismos en esta dimensión sea la menor posible.
+Algoritmo
+En términos generales, se define un algoritmo como una secuencia finita de operaciones básicas que permiten resolver un problema, sus características son:
+
+Independiente: Del LP y de la máquina. 
+Definido: De pasos claros y concretos. 
+Finito: En el número de pasos que usará. 
+Preciso: Cada paso arroja un cálculo correcto. 
+Recibe datos: Debe poseer datos de entrada. 
+Arroja información: Debe arrojar información de salida. 
+Optimización Combinatoria
+La optimización combinatoria es una rama de la optimización en matemáticas aplicadas y en ciencias de la computación, relacionada a la investigación de operaciones, teoría de algoritmos y teoría de la complejidad computacional. También está relacionada con otros campos, como la inteligencia artificial e ingeniería de software. 
+
+La optimización combinatoria analiza problemas matemáticos donde hay un conjunto finito de soluciones y se desea seleccionar una que minimice una función objetivo, la gran cantidad de parámetros y variables que configuran estas situaciones suele hacer la tarea de seleccionar una “buena” decisión muy difícil, aún cuando exista un número finito de posibilidades. La enumeración total no es factible, y por tanto se necesitan técnicas algorítmicas que ayuden a decidir.
+
+Los algoritmos de optimización combinatoria resuelven instancias de problemas que se creen ser difíciles en general, explorando el espacio de soluciones (usualmente grande) para estas instancias. Los algoritmos de optimización combinatoria logran esto reduciendo el tamaño efectivo del espacio, y explorando el espacio de búsqueda eficientemente.
+Aplicaciones 
+
+Se aplica a contextos en donde se necesita tomar una decisión que optimice un criterio y donde está presente una limitación de recursos. Así, por ejemplo, aparece en Economía, Ingeniería, Biología, en la planificación de actividades industriales, en la organización del recorrido de vehículos, y la búsqueda de esquemas de producción, entre otras, son posibles gracias a la participación de la optimización combinatoria.
+Heuristicos
+Los Métodos heurísticos o aproximados. Son procedimientos eficientes para encontrar buenas soluciones aunque no se pueda comprobar que sean óptimas. En estos métodos, la rapidez del proceso es tan importante como la calidad de la solución obtenida.
+
+Un método heurístico es un procedimiento para resolver un problema de optimización bien definido mediante una aproximación intuitiva, en la que la estructura del problema se utiliza de forma inteligente para obtener una buena solución.
+Metaheurísticas
+Las metaheurísticas proveen un marco general que permite crear nuevos algoritmos combinando diferentes conceptos tomados de heurísticas básicas, de la física, de la biología, y de otras disciplinas. Entre las meta heurísticas mas conocidas, podemos mencionar a Tabú Search, Algoritmos Genéticos, Simúlate Annealing y GRASP. Definimos a una metaheurística como un proceso iterativo que guía a una heurística subordinada combinando inteligentemente distintos conceptos para explorar el espacio de búsqueda a partir de soluciones iniciales (generadas en forma aleatoria o bien por un algoritmo diseñado a tal efecto). En cada paso del algoritmo, se generan nuevas soluciones en base a las obtenidas en las etapas previas, pudiendo utilizar para ello diversos criterios.
+Método Grasp
+Es una evolución de los algoritmos heurísticos constructivos, especialmente de aquellos que usan indicadores de sensibilidad. Con estos indicadores se calcula la variación de la función objetivo con respecto a las variables de interés del problema de optimización, y se usan para identificar los atributos atractivos de tal problema. Este algoritmo ha mostrado ser eficiente en la solución de problemas complejos de optimización. Para un problema genérico, el algoritmo GRASP según [RMG2000] sigue  los siguientes pasos:
+
+1. Implementar una fase de pre-procesamiento.
+2. Realizar la fase de búsqueda constructiva.
+3. Realizar la fase exploratoria y actualizar la mejor solución encontrada si se supera la  anterior.
+4. Si el criterio de parada no se satisface volver al paso 2. Sino, finalizar el proceso. La respuesta del algoritmo es la mejor solución almacenada. Con el pre-procesamiento se trata de identificar los atributos más interesantes del problema con los que se realiza el proceso de búsqueda. Esto permite disminuir el espacio de soluciones que se quiere explorar.
+La fase de búsqueda constructiva consiste en encontrar una solución de calidad para el problema con base en un algoritmo heurístico constructivo donde se escoge, en cada paso, un elemento de una lista de tamaño k denominada RCL, donde se clasifican las variables más atractivas y se obtiene una lista con los mejores candidatos de los cuales se escoge uno al azar.
+
+La fase constructiva del algoritmo presenta los siguientes pasos:
+
+1. Escoger una solución inicial que puede ser vacía, es decir, sin adicionar variables la cual se transforma en la solución actual del problema.
+
+2. Para la solución actual del problema, elaborar una lista que clasifica las mejores k() variables que identifican el indicador de sensibilidad.
+
+3. Escoger en forma aleatoria o probabilística una de las variables de la lista y actualizar la solución con la adición o sustracción de la variable escogida.
+
+4. Si la solución actual es factible o se satisface el criterio de parada, se finaliza la fase constructiva. La fase exploratoria procura encontrar una solución óptima local en la vecindad de la solución de la fase constructiva. Esta fase es prácticamente equivalente a un proceso de intensificación en el algoritmo de búsqueda tabú. El proceso consiste en definir una vecindad de la solución de la fase constructiva y encontrar una solución factible de mejor calidad en esa vecindad. Siempre que se encuentra una solución factible de mejor calidad, la búsqueda local se debe reiniciar encontrando una nueva vecindad de la nueva solución. Este proceso, en general, precisa de un alto esfuerzo computacional dependiendo del tipo de problema, ya que analizar un vecino requiere de la solución de un problema de programación lineal.
