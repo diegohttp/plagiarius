@@ -1,0 +1,92 @@
+1.1.	Sistema de Recuperación
+
+Un sistema de recuperación de información es una interfaz de usuario que tiene como función principal obtener la solicitud de un usuario expresada en lenguaje natural o de otra forma (dependiendo del sistema), procesar la información obtenida y finalmente mostrar correctamente el o los resultados obtenidos del proceso.
+
+Para la realización de dicha tarea el sistema de recuperación cuenta con una base de datos la cual le sirven como fuente de información para realizar el procesamiento de la consulta hecha por el usuario.
+
+Un sistema de recuperación de información esta compuesta generalmente por dos componentes: módulo de almacenamiento, modulo de recuperación.
+
+1.1.1.	Modulo de Almacenamiento
+
+Un sistema de recuperación necesita almacenar información en una o varias bases de datos, es por esto que es necesario un procesamiento de la información a ser almacenada, en la actualidad la variedad de documentos para ser almacenados esta aumentando en gran medida, sin embargo la tesis se centrara en aquellos documentos únicamente textuales.
+Los documentos textuales se pueden representar de forma estructural o también de forma no estructurada (el texto en forma literal).
+
+El encargado para el procesamiento de la información que será almacenada es el modulo de almacenamiento, usando para esto el modelo espacio vectorial el cual será explicado mas adelante.
+
+1.1.2.	Modulo de Recuperación
+
+El modulo de recuperación es el encargado de recolectar la consulta hecha por el usuario para que pueda ser procesada y comparada con la información que se encuentra en la base de datos, usando para esto el modelo espacio vectorial el cual será explicado mas adelante,  finalmente los resultados obtenidos de este proceso son mostrados al usuario.
+
+Las consultas hechas por el usuario tienen que ser procesadas por un analizador sintáctico, debido a que este no tiene que saber necesariamente como es que funciona internamente el sistema. Es por esto que se tiene que realizar una comprobación del cumplimiento del formato para la realización de dicha consulta, que puede ser de dos maneras, en la primera el sistema no permite al usuario ejecutar su consulta hasta que no cumpla con el formato, en la segunda el sistema simplemente devolverá un mensaje indicando al usuario que no se esta siguiendo el formato. [Esta parte del analizador sintáctico es complicada, generalmente en los sistemas que he visto no lo hacen, mejor retiramos esta parte]. En ese lugar hay que incluir el proceso de ordenar los resultados, o alineamiento o ranking, debido a que al usuario se le entrega la información en un orden.
+
+	
+1.2.	Modelo Espacio Vectorial
+
+El modelo espacio vectorial es un modelo algebraico especialmente utilizado para el almacenamiento y recuperación de la información. Este modelo es capaz de representar documentos hechos en lenguaje natural de manera matemática mediante el uso de vectores [6].
+
+La definición básica del modelo muestra que cada expresión del lenguaje natural podría ser representado como un vector de pesos de términos, los cuales son encontrados en documentos en forma de palabras. Al brindar pesos a dichos términos se esta indicando la cantidad de veces que aparece esta palabra en el documento.
+
+Es decir el modelo espacio vectorial nos permite representar la información brindada en un lenguaje natural de una forma matemática por medio de vectores, los cuales nos servirán tanto para el modulo de almacenamiento como para el modulo de recuperación. 
+En cuanto al almacenamiento la idea básica de este modelo reside en la construcción de una matriz (podría llamarse tabla) de términos y documentos, donde las filas fueran estos últimos y las columnas correspondieran a los términos incluidos en ellos. Así, las filas de esta matriz (que en términos algebraicos se denominan vectores) serían equivalentes a los documentos que se expresarían en función de las apariciones (frecuencia) de cada término. De esta manera, un documento podría expresarse de la manera d1= (1, 2, 0, 0, 0,... ... ..., 1, 3) siendo cada uno de estos valores el número de veces que aparece cada término en el documento. La longitud del vector de documentos sería igual al total de términos de la matriz (el número de columnas). De esta manera, un conjunto de m documentos se almacenaría en una matriz de m filas por n columnas, siendo n el total de términos almacenamos en ese conjunto de documentos. 
+
+En cuanto a la recuperación la idea en este modelo es calcular la similitud entre la pregunta (que se convertiría en el vector pregunta, expresado en función de la aparición de los n términos en la expresión de búsqueda) y los m vectores de documentos almacenados. Los más similares serían aquellos que deberían colocarse en los primeros lugares de la respuesta. Disponemos de varias fórmulas que nos permiten realizar este el cálculo de similitud, la más conocida es la Función del Coseno, que equivale a calcular el producto escalar de dos vectores de documentos (A y B) y dividirlo por la raíz cuadrada de la sumatoria de los componentes del vector A multiplicada por la raíz cuadrada de la sumatoria de los componentes del vector B [3].
+ 
+ Figura 7.1 Calculo de la similitud [4]
+
+El modelo de espacio vectorial tiene las siguientes limitaciones:
+1.	Los documentos largos quedan poco representados ya que contienen pocos valores en común (un producto escalar menor y una gran dimensionalidad).
+2.	Las palabras de búsqueda deben coincidir con las palabras del documento, partes de un palabra pueden dar en falsos positivos. 
+3.	Sensibilidad semántica, documentos con contextos similares pero con diferente vocabulario no serán asociados, resultando en falsos negativos.
+
+
+2.	Estado del Arte  [ aquí tambien hacen falta las referencias ]
+
+Los inicios de los sistemas de recuperación de información se remontan a 1957 cuando Cleverdon tuvo como objetivos iniciales comparar la efectividad de cuatro sistemas de indización:  
+•	Un catálogo alfabético de materias.
+•	Una clasificacion CDU (Clasificacion Decimal Universal).
+•	Un catálogo basado en una clasificación por facetas.
+•	Un catálogo compilado por un índice coordinado de unitérminos.
+Este experimento introdujo las medidas de exhaustividad y precisión, muy utilizadas aún.
+
+La investigación en recuperación de información ha estado dominada por dos paradigmas, uno centrado en el diseño de algoritmos y sistemas de recuperación de información, y otro centrado en todo lo que rodea al usuario en la búsqueda de información. 
+
+La investigación centrada en los sistemas tiene su origen a finales de los 50 con los tests de Cranfield, seguidos de los diferentes proyectos SMART y con la continuación, hoy en día, de los experimentos TREC (Text Retrieval Conferences). La caracterización de este enfoque se puede resumir en que se centra en el diseño de sistemas y algoritmos, la evaluación es un componente importante del experimento, y no tiene en cuenta a los usuarios ni su interacción con los sistemas [5].
+
+Los elementos más importantes que intervienen en estos experimentos son: (1) un conjunto de documentos o representaciones de éstos; (2) algoritmos y procesos que intervienen en la recuperación de información, tanto los relacionados con la indización de las consultas como de los documentos en la base de datos; (3) un conjunto de consultas artificiales creadas por intermediarios, modificadas de los usuarios o derivadas de partes de los documentos; y (4) un conjunto de documentos recuperados, evaluados generalmente por expertos en base a su relevancia y utilizando dos medidas, la llamada y la precisión.
+
+Este tipo de investigación era realizada, principalmente, por grupos pequeños de investigadores en diferentes lugares del mundo, lo que significaba que las colecciones, incluidas las consultas, los documentos y los juicios de relevancia eran relativamente pequeños en cobertura y en número, ya que estos grupos de investigación no disponían de suficientes recursos para construir grandes colecciones [2]. Estos problemas se solucionaron con la celebración a partir de 1992 de las TREC, un foro que reúne anualmente a investigadores de universidades, empresas y del gobierno que utilizan la misma y gran colección de documentos para comparar sus sistemas de recuperación de información.
+
+Otro de los foros internacionales más importantes de investigación en este enfoque corresponde al Special Interest Group on Information Retrieval (SIGIR) de la Association for Computing Machinery (ACM) que, desde el año 1973, intermitentemente, y desde el año 1985, todos los años, celebra unas Conferencias sobre Investigación y Desarrollo en Recuperación de la Información.
+
+Entonces a finales de los 70 y especialmente en la década de los 80, cuando comienza a desarrollarse una línea clara de investigación sobre los aspectos cognitivos e interactivos que ocurren en el proceso de recuperación de información, centrándose, no ya sólo en los sistemas, sino en los usuarios y cómo éstos usan e interactúan con los sistemas [8].
+
+Sin embargo, no ha sido hasta hace muy pocos años cuando este tipo de estudios han empezado a tener cierto impacto en el diseño de sistemas. Las razones pueden atribuirse a: (1) la explosión de la información electrónica que ha posibilitado un mayor acceso a la información y un mayor uso de los SRI (Sistemas de Recuperación de Información); (2) la entrada en escena de un nuevo campo como es la gestión del conocimiento, más amplio que la gestión de la información, que requiere no sólo una comprensión de los datos sino también cómo se produce la comunicación y uso de estos datos.
+
+Es por esto que hoy en día gracias a la aparición de Internet, es posible encontrar sistemas de recuperación de información Web, lo que dio inicio a los llamados Metabuscadores, estos son programas que agregan los resultados de varios motores o directorios para encontrar las páginas más relevantes, es decir no cuentan con una base de datos propia. También es posible encontrar Multibuscadores los cuales no combinan los resultados, sólo lanzan la consulta en varios buscadores., así como Agentes de Búsqueda que son metabuscadores instalados localmente. 
+
+Como ejemplos aplicaciones existentes podemos mencionar los ampliamente conocidos sistemas de recuperación Yahoo y Google, así como sistemas hechos para una finalidad educativa como Karpanta, nos detendremos en el estudio de Karpanta.
+
+Karpanta es un motor de recuperación de información, basado en el modelo vectorial, se encuentra construido sobre una base de datos relacional, cuya finalidad es servir de base de experimentación en tareas de investigación, así como de recurso para la docencia. Es posible realizar las operaciones fundamentales a partir de sentencias SQL, lo cual permite una fácil modificación de su funcionamiento interno y, en consecuencia, la experimentación [3].
+En Karpanta podemos encontrar dos módulos: uno de indización, que construye los vectores de los documentos, y otro de consulta, que calcula la similaridad con una consulta dada. 
+
+La arquitectura del módulo de indización es, básicamente, la siguiente: 
+a) Procesado de documentos (a través de un lenguaje de programación convencional, como VB). 
+1.	obtención de palabras de cada documento 
+2.	filtrado y eliminación de palabras vacías 
+3.	normalización de caracteres (mayúsculas, minúsculas, acentos) 
+4.	lematización. En la actualidad, Karpanta aplica un S-Stemmer modificado ligeramente para el castellano 
+5.	almacenamiento en tabla de cada término resultante, junto con la referencia o clave de los documentos en que aparece 
+b) Cálculo de frecuencias de términos, IDFs y pesos, mediante sentencias SQL, y almacenamiento de resultados en una tabla. 
+
+Figura 6.1 Modulo de Indización del programa Karpanta [3]
+
+El módulo de consulta es aún más simple. Dado que una consulta en lenguaje natural ha de ser tratada como un documento cualquiera, requiere las mismas operaciones: 
+a) Procesado del texto de la consulta (obtención de palabras, eliminación de vacías, normalización de caracteres. 
+b) Cálculo de pesos de los términos de la consulta, utilizando los datos de IDF almacenados en una tabla en la operación de indizado.
+c) Cálculo de similaridad entre consulta y cada uno de los documentos, mediante una simple sentencia SQL.
+
+Figura 6.2 Modulo de consulta del programa Karpanta [3]
+
+
+
+

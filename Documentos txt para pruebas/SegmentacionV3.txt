@@ -1,0 +1,90 @@
+Segmentación en Procesamiento Digital de Imágenes: Técnicas y Aplicaciones 
+
+Nora La Serna Palomino 
+RESUMEN
+El trabajo que se presenta en este artículo se desarrolla en el área de los Sistemas de Recuperación de Información (SRI), y tiene como objetivo principal diseñar e implementar un Sistema de almacenamiento y recuperación de información, asimismo se utilizó como herramientas de desarrollo software libre y tecnologías de información emergentes como aplicaciones Web y el metalenguaje XML. Asimismo, se seleccionó tomar como referencia el modelo de espacio vectorial [1,13], el cual es uno de los modelos más utilizados actualmente en estos sistemas. Si bien en esta primera etapa del trabajo desarrollado se ha construido un Prototipo del Sistema, la finalidad del trabajo es contar con una herramienta eficiente y competitiva que pueda ser utilizada para almacenar y recuperar información de las distintas disciplinas del quehacer humano. Fundamentalmente, se han realizado las siguientes actividades: 1) El diseño de la Arquitectura del Sistema; 2) El desarrollo e implementación de cada uno de los módulos del sistemas; 3) Preparación de los datos de prueba; y 4) Evaluación del sistema y la propuesta de tareas futuras. JUKU es búho en  la lengua Quechua.
+
+Palabras claves: Procesamiento digital de imágenes, interpretación de imágenes, Segmentación, algoritmos de segmentación
+
+
+ABSTRACT
+
+The work that is presented in this article develops in the area of the Information Recovery Systems (IRS), whose main objective is to design and to implement a System of storage and recovery of information, also it considers to use as software development tools free and technologies of information like web technologies and the XML metalanguage. At the same time to take as reference the Vector Model [1, 13] that is one of the most utilized models in these area. 
+
+Key words: Information Retrieval Systems,.
+ 
+1. Introducción
+
+El trabajo que se presenta en este artículo, describe la técnica de Segmentación del Procesamiento digital de imágenes, y la implementación de los algoritmos que más destacan utilizando el software MatLab. La segmentación subdivide una imagen en sus partes constituyentes u objetos, con el fin de separar las partes de interés del resto de la imagen, por lo tanto el nivel al que se lleva a cabo esta subdivisión depende del problema a resolver. 
+Algunas de las tareas fundamentales del Procesamiento Digital de Imágenes son: 1) Mejoramiento de una imagen digital con fines interpretativos, y 2) Toma de decisiones de manera automática de acuerdo al contenido de la imagen digital.
+Una imagen puede ser definida como una función bidimensional de intensidad de luz f(x, y), donde x e y representan las coordenadas espaciales y el valor de f en un punto cualquiera (x, y) es proporcional al brillo (o nivel de gris) de la imagen en ese punto. Una imagen digital es una imagen f(x, y) que se ha discretizado tanto en las coordenadas espaciales como en el brillo; y puede considerarse como una matriz cuyos índices de fila y de columna identifican un punto de la imagen y el valor del correspondiente elemento de la matriz indica el nivel de gris en ese punto. Los elementos de una distribución digital de este tipo se denominan elementos de la imagen o más comúnmente pixels, abreviatura de su denominación inglesa “picture elements” [4]. 
+Diversas son las aplicaciones que se vienen desarrollando utilizando las técnicas del Procesamiento digital de imágenes. Una de las pioneras son las aplicaciones a los programas espaciales. En medicina y biología, los procedimientos informatizados realzan el contraste o codifican los niveles de intensidad en colores para facilitar la interpretación de las imágenes en rayos X, y de otras imágenes biomédicas. Los geógrafos emplean las mismas o similares técnicas para estudiar los patrones de polución a partir de imágenes aéreas o de satélites. Los procedimientos de mejora de las imágenes y de restauración se emplean también para procesar imágenes degradadas de objetos irrecuperables o bien resultados experimentales demasiados costosos para ser duplicados. 
+En arqueología, los métodos de procesamiento de imágenes han servido para restaurar con éxito imágenes borrosas. En la física y en campos afines, las técnicas por computador realzan de forma rutinaria imágenes de experimentos en áreas como los plasmas de alta energía y la microscopía del electrón. Igualmente en astronomía, biología, medicina nuclear, y en aplicaciones industriales, en éste último se utilizan además diversos tipos de materiales como el cuero, vidrio, metales, madera, hilos, etc. [ ].
+La Figura 1 muestra las etapas necesarias que se deben seguir para realizar el Procesamiento de imágenes. El proceso se inicia con la etapa de Adquisición de imágenes, en donde se requiere de un sensor de imágenes, cuyas señales producidas deben ser digitalizadas. Por ejemplo se utilizan, la luz para la fotografía; rayos X para la radiografía, ultrasonido para la ecografía, etc. La naturaleza del sensor dependerá del tipo de aplicación que se quiera estudiar. La siguiente etapa es el Preprocesamiento, que se realiza con el fin de detectar y eliminar las fallas que puedan existir en la imagen para mejorarla.  Las técnicas más utilizadas en esta etapa son: a) mejora del contraste, b) eliminar el ruido, y c) restauración. En la siguiente etapa que es la Segmentación, la imagen se divide en sus partes constituyentes u objetos con el fin de separar las partes necesarias de procesamiento del resto de la imagen que no interesan de acuerdo a la aplicación que se quiera dar. Las técnicas básicas en esta etapa son aquellas orientadas a: a) el píxel, b) a los bordes, y c) a las regiones. Sin embargo, las técnicas no son excluyentes sino que se combinan de acuerdo del tipo de aplicación.
+La siguiente etapa es la Descripción o Extracción de características, consiste en extraer características con alguna información cuantitativa de interés o que sean fundamentales para diferenciar una clase de objetos de otra. Luego la etapa de reconocimiento es el proceso que asigna una etiqueta a un objeto basándose en la información proporcionada por sus descriptores. La interpretación implica asignar significado a un conjunto de objetos reconocidos. Finalmente, la etapa Base de Conocimiento que va almacenar el dominio del problema para guiar la operación de cada módulo de procesamiento, también controla la interacción entre dichos módulos.
+
+
+
+
+Figura 1. Etapas del procesamiento digital de imágenes.
+
+2. Segmentación de imágenes
+
+La segmentación subdivide una imagen en sus partes constituyentes u objetos, con el fin de separar las partes de interés del resto de la imagen, por lo tanto el nivel al que se lleva a cabo esta subdivisión depende del problema a resolver [4]. La segmentación autónoma es una de las tareas más difíciles del procesamiento de imágenes, esta etapa determina el eventual éxito o fracaso del análisis, de hecho rara vez llega a alcanzar una solución satisfactoria, se debe buscar un método alternativo de comprobación para la verificación de los resultados.  
+Los algoritmos de segmentación de imágenes monocromáticas generalmente se basan en una de las dos propiedades básicas de los valores del  nivel de gris: Discontinuidad y Similaridad. En la discontinuidad el método consiste en dividir una imagen basándose en los cambios bruscos del nivel de gris. Los temas más importantes en la discontinuidad son: a) detección de puntos aislados, y b) detección de líneas y c) detección de bordes de una imagen. En la Similaridad, los principales métodos están basados en a) umbralización, b) crecimiento de región, y c) división y fusión de regiones.
+La segmentación de una imagen basado en la discontinuidad o en la similaridad de los valores del nivel de gris  de sus pixels es aplicable tanto a las imágenes estáticas como a las dinámicas (variantes en el tiempo).  En la Figura 2 se muestra un ejemplo de segmentación de imagen.
+
+
+
+
+
+
+Figura 2.Segmentación de imágenes.
+De otra manera, a lo largo de las últimas décadas se han desarrollado diversas técnicas de segmentación, las que se pueden agrupar en tres: técnicas orientadas al pixel, a los bordes y a las regiones [Jäh97]. Dentro de ellas se pueden destacar los siguientes métodos: ajuste de umbral (thresholding) que según el análisis del histograma de la imagen se puede establecer un umbral en la escala de grises (o color) que separe los pixeles de las partes de interés del resto de la escena, operación que no es realizable en histogramas monomodales [Har85]; línea divisoria de aguas (watershed) que a partir de los mínimos en la imagen se aumenta gradualmente el nivel de gris, como si fuera agua que se vierte en un valle, hasta encontrar sus valles vecinos [Cas96]; detección de bordes de las regiones mediante la búsqueda de máximos en el gradiente de la imagen o cruces por cero en la segunda derivada de la imagen [Mar80]; filtros en los que se optimiza una función de costo que considera la exactitud en la posición del borde y la cantidad de bordes detectados [Can86]; y detección de regiones mediante agrupación de pixeles vecinos con características similares (Region Growing) [Pav90]. 
+Otra corriente intenta, por medio de filtros de mediana adaptados al objeto de inspección, la estimación de una imagen libre de fallas a partir de la imagen tomada del objeto mismo. Mediante simple comparación entre la imagen real y la imagen libre de fallas estimada se segmentan las fallas [Fil87, Sch99]. Si bien es cierto que con este último método se obtienen excelentes resultados, es necesario invertir mucho tiempo en el diseño del filtro para conseguir una adaptación al objeto. Típicamente, para el análisis de una imagen es necesario dividirla a priori en cientos de sub-imágenes. Cada sub-imagen posee un filtro morfológico distinto, configurado a partir de las características de la porción del objeto presente en ella. 
+
+3. Detección de discontinuidades
+
+Aunque la detección de punto y línea son elementos de cualquier presentación de la segmentación de imágenes, la detección de bordes es la técnica más común para detectar discontinuidades significativas en el nivel de gris, debido a que son más frecuentes en las aplicaciones prácticas. Los métodos de extracción de bordes de una imagen, se basan en la diferencia que experimenta una característica en dos regiones adyacentes y que indican la existencia de un borde. Las discontinuidades son detectadas usando derivadas de primer y segundo orden, en el caso de derivadas de primer orden se utiliza el operador gradiente, mientras que en derivadas de segundo orden se utiliza el operador Laplaciano.
+
+3.3 Enlazado de bordes y detección de límites
+Si bien hay varias técnicas que detectan discontinuidades de intensidad, y que deberían dar como resultado pixels que estuvieran en la frontera entre un objetos y su fondo, en la práctica, este conjunto de pixels rara vez caracterizan una frontera completamente debido al ruido, interrupciones en la frontera debido a la iluminación no uniforme, y otros efectos que introducen discontinuidades de intensidad espúreas. Por ello, los algoritmos de detección de bordes están seguidos por una unión y otros procedimientos de detección de frontera diseñados para reunir a los pixels del borde en un conjunto con significado de fronteras de objetos [Gonzalez]. A continuación se presentan algunas técnicas que se ajustan a ese objetivo.                                  
+
+3.3.1  Procesamiento local
+Consiste en analizar un entorno de vecindad (por ejemplo, 3x3, 5x5) sobre todos los puntos (x, y) de una imagen en los que haya sido llevado a cabo un proceso de detección de borde, de forma que todos los puntos que presenten características similares se unen formando una frontera común. Se utilizan dos propiedades para determinar la similitud entre pixeles del borde: a) Magnitud del vector gradiente (valor del umbral para determinar el borde), y b) Dirección del gradiente.
+La primera propiedad establece que un píxel de coordenadas (x, y) es similar a otro (x, y) dentro de su entorno de vecindad si la ecuación 3.5 se cumple.
+Ecuación 3.5
+
+Donde T es un umbral no negativo.
+La segunda propiedad, es decir la Dirección del gradiente se puede establecer utilizando el ángulo del vector gradiente que viene dado por la ecuación 3.6
+Ecuación 3.6
+
+
+Donde O representa el ángulo respecto al eje de x.
+Así, un píxel del borde situado en (x, y) tiene un ángulo similar a (x, y) si se cumple la ecuación 3.7.
+Ecuación 3.7
+
+
+Donde A es un umbral angular.
+Un punto de la vecindad predefinida de (x, y) esta enlazado con el píxel de (x, y) si se satisfacen los criterios de magnitud y dirección. Se repite para cada posición de la imagen. Un registro debe conservar los puntos enlazados a medida que el centro de la vecindad se desplaza de píxel a píxel.
+
+3.3.1  Procesamiento global usando la Transformada de Hough
+Consiste en determinar las líneas compuestas por parejas de puntos pertenecientes al borde y posteriormente seleccionar los subconjuntos de puntos que se están cercanos a dichas rectas particulares.
+
+5. Segmentación orientada a regiones
+Se utilizan propiedades espaciales de una imagen para segmentarla por regiones, es decir la imagen es subdividida en regiones. En la figura 6 podemos observar que una imagen ha sido subdividida en dos regiones. Una técnica muy utilizada es el llamado crecimiento por regiones, que consiste en el crecimiento de regiones agrupando pixeles adyacentes que presentan características o propiedades similares. Se parte de un conjunto de puntos “semilla” y se hace crecer las regiones, añadiendo a los puntos semilla los puntos vecinos que tengan propiedades similares (intensidad, textura, color, etc.). Por ejemplo, si la propiedad es intensidad, un criterio utilizado para incluir un píxel en la región 1 de la Figura 6, puede ser que la diferencia absoluta entre la intensidad del píxel y la intensidad de la semilla sea menor que un umbral T = 8.
+
+
+
+
+
+
+          Figura 6. Segmentación orientada a regiones
+
+6. Evaluación y trabajos futuros 
+El trabajo desarrollado nos ha permitido diseñar e implementar un Prototipo de un Sistema de recuperación  de información utilizando software libre y tecnologías de información emergentes. 
+
+7. Conclusiones 
+
+El trabajo desarrollado ha dado lugar a una propuesta de diseño e implementación de un Sistema de almacenamiento y recuperación de información denominado JUKU, 
+

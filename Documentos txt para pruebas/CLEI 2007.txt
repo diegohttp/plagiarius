@@ -1,0 +1,175 @@
+JUKU: Prototipo de un Sistema de Recuperación de Información 
+
+Nora La Serna Palomino 
+
+
+Enrique Torre Ruiz
+
+RESUMEN
+El trabajo que se presenta en este artículo se desarrolla en el área de los Sistemas de Recuperación de Información (SRI), cuyo objetivo principal es diseñar e implementar un Sistema de almacenamiento y recuperación de información, asimismo se plantea utilizar como herramientas de desarrollo software libre y tecnologías de información como tecnologías web y el metalenguaje XML. Asimismo, se selecciona tomar como referencia el modelo de espacio vectorial [13] que es uno de los modelos más utilizados actualmente en estos sistemas. La finalidad del trabajo es contar con una herramienta eficiente y competitiva que pueda ser utilizada para almacenar y recuperar información de las distintas disciplinas del quehacer humano. Fundamentalmente, se han realizado las siguientes actividades: 1) El diseño de la Arquitectura del Sistema; 2) El desarrollo e implementación de cada uno de los módulos del sistemas; 3) Preparación de los datos de prueba; y 4) Evaluación del sistema y la propuesta de tareas futuras.
+
+Palabras claves: Sistemas de Recuperación de Información, Modelo del Espacio Vectorial, XML - Extensible Markup Languaje, Tecnologías Web.
+
+
+ABSTRACT
+
+The work that is presented in this article develops in the area of the Information Recovery Systems (IRS), whose main objective is to design and to implement a System of storage and recovery of information, also it considers to use as software development tools free and technologies of information like web technologies and the XML metalanguage. At the same time to take as reference the model of space vectorial [13] that is one of the most utilized models in these area. The purpose of the research is to build  a competitive and efficient tool that can be utilized to store and to recover information in the different disciplines of the human task. Fundamentally, the following activities have been carried out:  1) The design of the Architecture of the System; 2) The development and the implementation of each one of the modules of the systems; 3) Preparation of the data of test; and 4) Evaluation of the system and the proposal of future tasks.  
+
+Key words: Information Retrieval Systems, Vector Model, XML - Extensible Markup Languaje, Web technologies.
+ 
+1. Introducción
+
+El trabajo que se presenta en este artículo, tiene como objetivo principal diseñar e implementar un Sistema de almacenamiento y recuperación de información, utilizando para las pruebas del sistema documentos digitales que se tienen a la mano, como son las  tesinas desarrolladas por los Bachilleres para optar el título de ingeniero de la universidad a la que pertenecemos. Después de un estudio y evaluación de las técnicas y modelos que se utilizan en la construcción de estos sistemas, se concluye que el modelo de espacio vectorial [13] es uno de los modelos más utilizados en la actualidad.  
+Otro objetivo considerable en el desarrollo del sistema es utilizar software libre y tecnologías de información emergentes como tecnologías web y el metalenguaje XML. La finalidad es contar con una herramienta eficiente y competitiva que pueda ser utilizada para almacenar y recuperar información en otras disciplinas del quehacer humano. 
+La motivación para trabajar en esta línea es que con el avance de la tecnología, computadores más potentes y software más eficientes, el almacenamiento de grandes volúmenes de información se esta dando en todas las disciplinas del quehacer humano. Internet, la red de redes, también alberga en sus computadores servidoras millones de documentos. Por lo tanto, Cómo recuperar, en forma eficiente, documentos almacenados en formato digital  que una persona o empresa solicita, es un tema no sólo de interés e importancia de la comunidad educativa (docentes y alumnos), sino también del sector empresarial, gobierno y público en general.
+Varias aplicaciones prácticas se están dando, algunos de los más conocidos son los buscadores web y las bibliotecas digitales. Sin embargo, hay mucho trabajo por desarrollar en esta área, las empresas que destacan buscan soluciones adecuadas que permitan mejorar los indicadores de evaluación de estos sistema para: 1) aumentar las tasas de exhaustividad, 2) Reducir el espacio de almacenamiento, 3) aumentar la velocidad de proceso, 4) proporcionar interfaces adecuadas, 5) Mejorar la precisión para recuperar la información solicitada, entre otros problemas que están pendientes de resolver.
+Un sistema de recuperación de información se diferencia de los sistemas de almacenamiento y recuperación tradicionales como las bases de datos, en que tanto la pregunta del usuario como la búsqueda de información en las bases de datos es sobre ciertos campos de la información, mientras que en los SRIs la pregunta del usuario se realiza en lenguaje natural, y para la búsqueda de información se tiene en cuenta toda la información que contienen los documentos, esto permite que los resultados son más óptimos y completos que utilizando los métodos tradicionales. 
+Según el modelo de espacio vectorial cada documento se registra en un vector de términos, y una colección de documentos forman una matriz de términos, en donde un término es la unidad mínima de información, por ejemplo una palabra. Para medir la importancia de un término en un documento, se asignan pesos a cada uno de los términos. El modelo establece ciertos criterios de similitud para comparar que tan parecidos son dos términos, o dos documentos; finalmente, se ordenan los documentos que tienen mayor valor de similaridad, y se muestran los resultados al usuario.
+La estructura del presente artículo es la siguiente: En la sección 2 se presenta la Arquitectura del Sistema de Recuperación de Información JUKU desarrollado, en las secciones 3 y 4 se describen cada uno de los módulos del Sistema siguiendo como referencia el Modelo del Espacio Vectorial [13]. La sección 5 corresponde a la Evaluación del sistema y se proponen tareas futuras para mejorar el prototipo, y finalmente en la sección 6 se presentan las conclusiones del trabajo desarrollado.
+
+
+
+
+2. Arquitectura del Sistema de Recuperación de información desarrollado
+
+Para el desarrollo del sistema JUKU se seleccionó uno de los modelos mayormente utilizados en estos sistemas, el modelo de espacio vectorial [6,13]. Según el modelo, cada documento es representado mediante un vector de n términos, en donde un término es la unidad mínima de información, por ejemplo una palabra o la raíz sintáctica de una palabra. En el modelo, a cada término se le asigna un peso para medir la importancia de un término y de esta manera un término permite distinguir un documento de otro en la colección de documentos.
+Siguiendo el modelo de espacio vectorial, las consultas de los usuarios también son representadas mediante un vector de términos, en donde los términos deben coincidir con los de la matriz que se forma a partir de la colección de documentos. Asimismo, se calcula el peso de los términos de la consulta. 
+Posteriormente, se seleccionan aquellos documentos que se aproximan más a la pregunta del usuario, mediante un cálculo denominado similaridad, que podría ser por ejemplo el producto del vector de la consulta del usuario con cada vector de la matriz de términos. Finalmente, se ordenan los documentos seleccionados de mayor a menor valor de similaridad. En las secciones 3 y 4 se describen en detalle los cálculos mencionados e implementados en el trabajo desarrollado.
+A partir del modelo de espacio vectorial se pueden distinguir varias funcionalidades en un Sistema de Recuperación de Información, sin embargo para la realización de nuestro trabajo hemos divido el sistema en dos componentes: 1) El subsistema de almacenamiento de la colección de documentos, y 2) El subsistema de recuperación de la información a partir de la consulta del usuario. En la figura 1, se presenta la arquitectura del sistema desarrollado con sus dos componentes principales. 
+
+ 
+
+Figura 1. Arquitectura del Sistema propuesto.
+Si bien el motor de búsqueda esta diseñado para procesar un tipo de documento, el que se explicará a continuación; sin embargo se puede actualizar la interfaz de captura para almacenar otros tipos de documentos de otras disciplinas del quehacer humano. 
+Durante la implementación del motor de búsqueda hemos utilizado documentos digitales de la Biblioteca de la Facultad de la Universidad a la cual pertenecemos, concretamente hemos utilizado archivos de las tesinas desarrolladas por los Bachilleres para optar el título de ingeniero. Básicamente para las pruebas del sistema hemos considerado los siguientes datos de las tesinas: 1) título de la tesina, 2) resumen, 3) autor, 4) asesor, y 5) palabras claves. Quedando pendiente de implementar el resto de información de las tesinas. En la figura 2 se observa un ejemplo de un tipo de documento en formato XML utilizado por el sistema.
+Figura 2. Ejemplo de un tipo de documento utilizado en formato XML por JUKU.
+
+La base de datos para los subsistemas de almacenamiento y consulta consta de varias tablas, a continuación se indica para cada tabla, la descripción, su nombre, y los campos definidos.
+?	Tabla de términos o índices. 
+TBDOCTER (termino, frecuencia, id_docume , peso)
+?	Tabla que registra los documentos. 
+TBDOCUME (id_docume, titulo, resume, autor, grado, asesor, keyword, id_archiv)
+?	Tabla que registra fórmulas para hallar pesos
+TBFORPES (co_forpes, no_forpes, ti_estado)
+?	Tabla que registra fórmulas para hallar IDF
+TBFORIDF (co_foridf, no_foridf, ti_estado)
+?	Tabla que registra la consulta del usuario
+TBCONTER (id_consul, termino, nu_peso) 
+?	Tabla que registra términos vacíos
+TBTERVAC (termino) 
+?	Tabla que registra el IDF de cada término en la base de datos 
+TBTERIDF (termino, nu_idf, nu_fredoc)
+
+Asimismo, se han utilizado otras tablas igualmente útiles, como el que registra el código de usuarios, la tabla que registra la identificación de archivos, y tablas temporales para el cálculo de la similaridad.
+
+
+3. Subsistema de almacenamiento de la colección de documentos
+
+En este subsistema se pueden distinguir dos módulos que sobresalen: 1) Registro de documentos, y 2) Cálculo de pesos de los términos. 
+
+3.1 Registro de documentos
+
+El objetivo del trabajo en este módulo es procesar los documentos, para ello se realizaron las siguientes tareas: 1) Se leen los documentos, la captura de los documentos puede ser a través de una interfaz, o mediante una carga automática de documentos en formato XML, 2) Se hace un análisis léxico del texto, 3) Se eliminan del texto palabras que no son significativas en el proceso de selección de términos, denominadas palabras vacías; 4) Se actualiza la tabla de términos TBDOCTER, y finalmente se registra el documento en la tabla de documentos TBDOCUME.
+
+En la tarea del análisis léxico, se seleccionan los términos que pueden ser significativos que ayuden a distinguir un documento de otro en la colección de documentos. En esta tarea además se eliminan signos de puntuación, símbolos separadores como espacios en blanco, tabuladores, tratamiento de mayúsculas, minúsculas, palabras acentuadas, y caracteres extraños.
+La Eliminación de palabras vacías o stop words, se realiza con el objetivo de reducir aquellos términos que tienen poca capacidad semántica, o por su alta frecuencia son poco significativos en el proceso de recuperación de la información, por ejemplo son los artículos, las preposiciones, conjunciones, etc. Es una forma de delimitar el número de términos que servirán como términos índice. Las palabras vacías se registran en una tabla TBTERVAC de la base de datos.
+
+Los términos que son seleccionados, también conocidos como índices, corresponden a una palabra de la lengua española, normalmente se caracterizan por su naturaleza sintáctica, pueden ser sustantivos o verbos o derivados de ellos, por ejemplo, casa, casita. Los términos seleccionados de un documento son ingresados en la tabla de términos TBDOCTER de la base de datos. El proceso de selección de términos se realiza tantas veces como documentos se van a procesar.
+Aunque menos importante en este módulo también se ha considerado una tarea adicional, que es el registro de usuarios, debido a que en este subsistema solamente podrán acceder personas autorizadas para actualizar la información del sistema. En la figura 3, se muestra la interfaz de registro de documentos, con la selección de la opción de carga automática. Como se observa en la interfaz, hay tres formas de la captura de la información de los documentos: 1) ingresar el documento a través del teclado, 2) carga automática del documento en formato XML, y 3) carga de un conjunto de documentos mediante un fichero.
+ 
+
+
+Figura 3. Interfaz de registro de documentos.
+
+3.2 Cálculo de los pesos de los términos
+
+Una vez seleccionado el conjunto de términos de la colección de documentos, se deben calcular los pesos de los términos, para ello se tiene en cuenta dos factores importantes:  
+1. Hallar la frecuencia de un término (tf), es decir, el número de veces que aparece el término en un documento. Así, si un término aparece mucho en un documento, se supone que es importante en ese documento.
+2. Cálculo de la frecuencia inversa de un término en la colección de documentos (idf, inverse document frequency), este cálculo se debe a que si un término aparece en muchos documentos, entonces ese término no es útil para distinguir un documento de los otros de la colección. Es decir, que la capacidad de recuperación de un término es inversamente proporcional a su frecuencia en la colección de documentos.
+Existen varias técnicas para asignar pesos a los términos, dos de ellas las que presentamos a continuación son las más representativas; las expresamos mediante las ecuaciones 1 y 2. En la ecuación 1, una de las más simples, para calcular el peso de cada elemento del vector, se tiene en cuenta la frecuencia del término dentro de cada documento tf, combinándola con la frecuencia inversa del término en la colección idf  [1, 7].
+Wij = tfi * idfj, 			(ecuación 1)
+Donde, Wij  es el peso del término j en el documento i.
+En la ecuación 2, por cierto una de las técnicas más utilizadas, el peso del término se calcula como el producto de la frecuencia del término j en el documento i, multiplicado por el logaritmo de N / dfj.
+Wij = tfij * log N / dfj, 		(ecuación 2)
+Donde, N es el número de documentos de la colección, y dfj es el número de documentos en que aparece el término j. 
+Adicionalmente, suele aplicarse algún factor de normalización que permita equilibrar las diferencias en tamaño de los documentos, evitando la posibilidad de que las frecuencias sean mayores en documentos más grandes.
+Para hallar los pesos de los términos, básicamente se realizan las siguientes operaciones:
+1. Calcular las frecuencias de cada término en la colección.
+2. Cálculo del IDF (Inverse Document frecuency)
+3. Cálculo de la frecuencia en cada documento
+4. Hallar el peso del término en cada documento
+5. Aplicar un factor de normalización
+En el sistema JUKU una vez que el proceso de selección de términos de un  documento se ha realizado, se llaman a las funciones CalcularIDF, CalcularPesos, y Normalizar. En donde se utilizan las formulas seleccionadas a partir de las tablas TBFORIDF y TBFORPES, que registran las fórmulas para hallar IDFs y pesos respectivamente. 
+El IDF es el mismo para cada término, independientemente del documento, su cálculo se registra en la tabla TBTERIDF de la base de datos, asimismo se registra en la tabla la frecuencia del término hallado. Luego se multiplica el IDF por la frecuencia y, se determina el peso final de un término al dividir el producto de ambos entre el factor de normalización. Finalmente, el peso hallado de cada término se actualiza en la tabla de términos o índices TBDOCTER. La figura 4 muestra la interfaz fórmulas para calcular el IDF que el sistema desarrollado proporciona. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figura 4. Interfaz fórmulas para calcular el IDF.
+
+4. Subsistema de Recuperación
+
+La consulta o solicitud del usuario hecha en lenguaje natural, también se expresa mediante un vector de términos, los términos deben ser los mismos que el de la colección de documentos. El mecanismo de obtención de pesos descritos en la sección 3, también se aplica a la consulta del usuario. De esta manera, la consulta y cada uno de los documentos están expresados en vector y matriz de pesos de términos respectivamente, que posteriormente, mediante un cálculo de similaridad permiten hallar aquellos documentos que se aproximan más a la pregunta del usuario. 
+La resolución de la consulta Baeza-Yates y Ribeiro-Neto, 1999 [1, 7] consiste en un proceso de establecer el grado de semejanza entre el vector consulta y el vector de cada uno de los documentos; aquéllos cuyo grado de similitud sea más elevado se ajustarán mejor a las necesidades expresadas en la consulta. Sin embargo, es el usuario el que debe decidir la relevancia de los documentos recuperados, siendo ésta una característica totalmente subjetiva del mismo.
+Hay varios métodos para calcular la similitud que existe entre un documento y una consulta, una de las más utilizadas es aquella que calcula la distancia que existen entre los vectores que los representan, y realiza el producto escalar de esos vectores, dicho producto a su vez corresponde al coseno del ángulo entre los dos vectores (ecuación 3 ).   
+Sim (vector di, vector dj) =  vector di * vector dj 		(ecuación 3)
+    	   	       vector di * vector dj
+ = cos (vector di, vector dj) =	
+ 	 	      | vector di | * | vector dj |
+
+La similaridad es un valor entre cero y uno. Dos vectores iguales tienen similaridad uno, dos vectores que no comparten ningún término tienen similaridad cero. Se seleccionan los documentos que tienen mayor similaridad con la consulta del usuario.
+Para hallar los documentos que un usuario solicita, básicamente se realizan las siguientes operaciones:
+1. Selección de términos de la consulta del usuario.
+2. Cálculo de los pesos de la consulta del usuario.
+3. Cálculo de similaridad entre la consulta del usuario y cada documento de la colección.
+4. Se ordenan los documentos que tienen mayor valor de similaridad, y se muestran los resultados al usuario.
+
+En el subsistema de recuperación del sistema JUKU, el proceso que selecciona los términos de la consulta del usuario es el mismo que cuando se extraen los términos de un documento en el subsistema de almacenamiento descrito en la sección 3, pero en este caso es más sencillo debido a que el número de términos en la consulta del usuario no es grande. Los términos seleccionados se registran en la tabla TBCONTER junto con el código de identificación de la consulta. 
+El cálculo de los pesos de los términos de la consulta del usuario, también se realizan como en el subsistema de almacenamiento, pero en este caso igualmente el número de términos en una consulta es pequeño, por lo tanto la frecuencia de aparición de cada término es generalmente igual a la unidad. En este caso también se aplica el IDF obtenido en el susbsistema de almacenamiento. Luego, el peso hallado de cada término se registra en la tabla TBCONTER. 
+El proceso para hallar el cálculo de similaridad entre la consulta del usuario y cada documento de la colección, y ordenar los documentos que tienen mayor valor de similaridad es simple, en el sistema se resuelve con la instrucción que se muestra en la figura 5. 
+" select doc.id_docume,doc.no_titulo,doc.no_resume," +
+            " sum(dt.nu_pesnor*con.nu_peso) as nu_simila " +
+            " from tbconter con,tbdocter dt,tbdocume doc where " +
+            " doc.id_docume=dt.id_docume and " +
+            " dt.no_termin=con.no_termin and " +
+            " con.id_consul=? " +
+            " group by doc.id_docume,doc.no_titulo,doc.no_resume " +
+            " order by nu_simila desc ";
+
+Figura 5.Cálculo de la similaridad en JUKU.
+
+En la figura 6 la interfaz muestra el módulo de consulta, primero aparece el formulario en donde se ingresa el texto de la consulta, y luego en la parte inferior de la misma página se muestran los documentos ordenados por el valor de similaridad, una vez activado el boton “Buscar”. Aquellos documentos que tienen mayor valor de similaridad se acercan más a la consulta del usuario. Para ver el detalle de cada documento se debe pulsar en el icono de la columna “Ver Documento”.
+
+Figura 6. Interfaz Módulo de consulta.
+
+5. Evaluación del prototipo y trabajos futuros 
+
+El sistema JUKU es una aplicación web basado en el modelo Vista Controlador (MVC), codificado en lenguaje Java, y utiliza una base de datos MySQL. La siguientes herramientas son necesarias para su implantación:
+-PC Servidor
+- Java 2 Standard Edition Runtime Environment
+-XML 1.0
+-Servidor de aplicaciones Tomcat
+-SGBD, MySQL 5.0
+El trabajo desarrollado nos ha permitido diseñar e implementar un sistemas de recuperación utilizando software libre y tecnologías de información actualizadas. Otra ventaja del sistema es el hecho de utilizar el metalenguaje Extensible Markup Languaje – XML para la definición de la estructura y el contenido de los documentos electrónicos, que facilitará el intercambio de información y la cooperación con otros sistemas de la institución. 
+Asimismo el objetivo a mediano plazo es que la sistema desarrollado pueda ser competitivo y pueda ser utilizada como una herramienta que registre y recupere documentos de otras disciplinas. Para llegar al objetivo trazado, tenemos planeado desarrollar actividades inmediatas y a mediano plazo. Una tarea inmediata es procesar al menos 400 documentos digitales que disponemos, y con de ello evaluar y mejorar la performance del sistema implementado. A la fecha se han ingresado solo veinte documentos, el número de términos es de aproximadamente cien.
+Otro tarea es realizar el proceso con otras fórmulas para el cálculo de pesos principalmente en la sección de almacenamiento. Asi como utilizar otros criterios de similaridad que permitan optimizar el sistema JUKU. El sistema también puede permitir desarrollar “extractores de raices o stemmers” los que reducen cada término a su raíz, eliminando prefijos, sufijos, terminaciones verbales; con la finalidad de reducir el número de términos índice semánticamente muy parecidos, y ganar eficiencia en el proceso de los documentos.
+Con el desarrollo de las tareas propuestas se espera alcanzar los siguientes indicadores de evaluación del sistema: 1) aumentar las tasas de exhaustividad, 2) Reducir el espacio de almacenamiento, y 3) aumentar la velocidad de proceso.
+Adicionalmente, es importante mencionar que el motor de búsqueda KARPANTA [6] desarrollado en la Universidad de Salamanca, ha sido una excelente guía en la implementación de JUKU.
+
+6. Conclusiones 
+
+El trabajo desarrollado ha dado lugar a una propuesta de diseño e implementación de un Sistema de almacenamiento y recuperación de información denominado JUKU, que inicialmente utiliza información de documentos digitales de la Biblioteca de la Universidad a la que pertenecemos, pero el objetivo a mediano plazo es optimizar el sistema para que sirva como una herramienta de almacenamiento y recuperación de documentos de otras disciplinas. 
+Para la construcción del sistema se ha tomado como referencia a uno de los modelos mayormente utilizados en estos sistemas, el modelo de espacio vectorial [13]. Y se han incorporado en el desarrollo software libre y tecnologías de información actualizadas como tecnologías web y el metalenguaje XML.
+La arquitectura del sistema desarrollado presenta dos subsistemas: 1) El subsistema de almacenamiento de la colección de documentos, y 2) El subsistema de recuperación de la información a partir de la consulta del usuario. El primero realiza el registro de documentos, y el cálculo de pesos de los términos. Mientras que el segundo, selecciona los términos de la consulta del usuario, realiza el cálculo de los pesos de los términos de la consulta, y mediante un factor de similaridad determina los documentos que más se acercan a la pregunta del usuario.
+Finalmente, se ha propuesto un conjunto de tareas que se deben realizar con la finalidad de optimizar el sistema desarrollado para que sea una herramienta eficiente y competitiva. 

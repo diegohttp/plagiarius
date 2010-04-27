@@ -1,0 +1,21 @@
+Diseño de un Motor de recuperación de Información para un Sistema de Bibliotecas 
+
+Nora La Serna
+
+
+RESUMEN
+
+Los Sistemas de Recuperación de Información (SRI) permiten el almacenamiento óptimo de grandes volúmenes de información (principalmente documentos, últimamente también información multimedia), y la recuperación eficiente de la información ante las consultas de los usuarios. Este campo no es nuevo pues ha ido evolucionando desde la decada de los años 50, cuando el objetivo era manejar información bibliográfica. Con el avance de la tecnología, computadores más potentes y software más eficientes, el almacenamiento de grandes volumenes de información se esta dando en todas las disciplinas del quehacer humano. Internet, la red de redes, tambien alberga en sus computadores servidoras millones de documentos. 
+
+Por lo tanto, Cómo recuperar, en forma eficiente, documentos almacenados en forma digital  que una persona necesita y solicita, es un tema no sólo de interés e importancia para la comunidad educativa (docentes, alumnos e investigadores), sino también para el sector empresarial, gobierno y público en general que necesita buscar información. Múltiples aplicaciones prácticas se estan dando, algunos de los más conocidos son los buscadores web y bibliotecas digitales.
+
+El presente trabajo tiene dos objetivos principales: 1) Realizar un estudio detallado de las principales técnicas, modelos y arquitecturas, así como de los criterios de evaluación de los Sistemas de Recuperación de Información; 2) Plantear un diseño y desarrollo de un  Sistema de Recuperación de Información para la Biblioteca de la Facultad de Ingeniería de Sistemas e Informática, y posteriormente implementar el prototipo en la Biblioteca Central de la Universidad Nacional Mayor de San Marcos.
+
+Palabras claves: Sistemas de Recuperación de Información, Modelo del Espacio Vectorial, Motores de búsqueda, Sistemas de Bibliotecas.
+
+
+ABSTRACT
+
+The research that is presented in this paper is developed in the Information Retrieval System (IRS) area. Basically, it has been done the following activities: 1) the study of the main techniques, models, and architecture, and the evaluation criterions of the Information Retrieval Systems 2), 3) Also, the work has let the , for the Digital Library of the Systems and Informatics Engineering Faculty of The Universidad Nacional Mayor de San Marcos.
+
+Key words: Information Retrieval Systems, Boolean Model, Vector Model, Web Search Engines, Retrieval Evaluation.

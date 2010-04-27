@@ -1,0 +1,200 @@
+Resumen
+
+La Recuperación de Información experimenta en los últimos tiempos un auge notable, debido a la disponibilidad cada vez mayor de documentos en formato electrónico. Uno de los campos de investigación es la experimentación con diversos algoritmos referentes a cualquiera de las fases que pueden darse en el proceso de recuperación. Dicha investigación requiere, entre otras cosas, de una serie de herramientas o instrumentos que permitan la realización de experimentos. Entre esos instrumentos están los motores de recuperación; este trabajo expone como diseñar un motor de recuperación utilizando un Sistema de Base de Datos Relacional, y sentencias SQL.
+
+Abstract
+
+Research on Information Retrieval shows a remarkable growth nowadays, due to the availability of documents in electronic format. One of the research fields is the experimentation with algorithms referring to any of the tasks that can occur in the retrieval process. This research requires, among other things, of tools that allow the accomplishment of experiments. Between those tools they are the search engines; this report shows how to design a search engine using a Relational Data Base Management System and SQL sentences.
+
+
+Introducción 
+
+La Recuperación de la Información, aunque no es precisamente un área de investigación reciente, experimenta en los últimos tiempos un auge notable, debido a la disponibilidad cada vez mayor de documentos en formato electrónico. El desarrollo y generalización del uso de Internet ha puesto de manifiesto las carencias y los retos en este campo, de manera que son numerosos los grupos de investigadores que dirigen sus esfuerzos hacia estas materias. Uno de los campos de investigación en RI es la experimentación con diversos algoritmos, referentes a cualquiera de las fases o tareas que pueden darse en el proceso de recuperación. La investigación experimental en este campo, sin embargo, requiere, además de los conocimientos básicos necesarios, de una serie de herramientas o instrumentos que permitan la realización de experimentos.
+
+Entre tales instrumentos, podemos distinguir, a grandes rasgos, los siguientes: 
+
+•	Colecciones de documentos adecuadas, tanto por sus características documentales, como linguisticas, e incluso de tamaño. Estas colecciones no sólo incluyen simplemente documentos, sino también baterías de preguntas o consultas, así como las correspondientes estimaciones de relevancia para las mismas.
+•	Programas que permitan indizar los documentos y resolver las consultas 
+•	Medidas eficaces y aceptadas ampliamente por la comunidad científica, que permitan evaluar y comparar los resultados de los experimentos. 
+
+Este trabajo se centra en la producción de herramientas comprendidas en el segundo punto, esto es, de programas capaces de indizar documentos y resolver consultas. Más concretamente, en la producción de un motor experimental de recuperación, para una biblioteca, para ello se usara el modelo de espacio vectorial, por los mejores resultados que ofrece. 
+
+Planteamiento del Problema
+
+
+•	Definición del Problema
+
+En la segunda mitad del siglo XX se produce lo que se ha dado en llamar explosión documental: un crecimiento exponencial de la masa de documentos, de todo tipo y en todo soporte. Esto ha puesto de relieve el problema de la Recuperación de Información. Es decir, la necesidad de seleccionar documentos concretos que resuelvan necesidades informativas concretas. El problema se centra fundamentalmente en seleccionar en función del contenido de los documentos; otro tipo de selección (por fechas, autores, etc.) ofrece menos problemas, al tratarse de información estructurada que puede procesarse mediante tecnología convencional.
+
+Los sistemas de recuperación de información nos permiten el almacenamiento óptimo de grandes volúmenes de información y la recuperación eficiente ante las consultas de los usuarios, por la tanto existe el interés de parte de la comunidad educativa de hacer uso de esta tecnología siendo uno de sus principales campos de aplicación las bibliotecas digitales. 
+
+De esta manera La  Facultad de Ingeniería de Sistemas e Informática de la Universidad Nacional Mayor de San Marcos, busca implementar un SRI para su sistema de biblioteca con el fin de brindar una mejor calidad en los servicios educativos que imparte. Siendo fundamental el realizar un análisis sobre cual es la mejor tecnología de información a utilizar y aprovechar las bondades de estas herramientas en beneficio de la comunidad estudiantil.
+
+•	Objetivos
+
+El objetivo principal  es implementar un sistema de almacenamiento y recuperación de información para el sistema de biblioteca de la Facultad de Ingeniería de Sistemas e Informática de la Universidad Nacional Mayor de San Marcos. Para ello se utilizarán las técnicas definidas en el modelo de espacio vectorial el que es uno de los modelos más utilizados en estos sistemas. 
+
+La finalidad de implementar este sistema de Recuperación de Información será realizar búsquedas de información como libros, tesis de pregrado, revistas, etc. En un sistema de bibliotecas tradicional, tanto la pregunta del usuario como la búsqueda de información del sistema es sobre ciertos campos de la información, mientras que en los SRI la pregunta del usuario se realiza en lenguaje natural, y para la búsqueda de información se tiene en cuenta toda la información que contienen los documentos; esto permite que los resultados sean mejores en los SRI que utilizando los métodos tradicionales.
+
+•	Importancia y/o Utilidad
+
+El objetivo fundamental de la biblioteca digital es proporcionar acceso universal a la información adoptando modelos basados en infraestructuras tecnológicas avanzadas que permitan al usuario final acceder a la información de manera transparente sin importar que forma adopte, ni donde se encuentre. La característica más importante es que sus colecciones no se limitan a documentos o substitutos de los mismos, sino que se extienden a objetos digitales que no pueden representarse o distribuirse en formatos impresos. La exploración de la información en la biblioteca digital incluye construir puentes entre el espacio documental, los objetos de información, el espacio conceptual, el contexto y los conocimientos requeridos para interpretar los documentos
+Electrónicos. Acceso, búsqueda, recuperación, browsing y navegación los fines fundamentales del modelo de biblioteca digital. La biblioteca digital es, en esencia, una red de depósitos, físicos y virtuales,  una red de información compartida, de objetos de información que forman colecciones indexadas procesadas por tecnologías que se manejan de forma transparente a través de protocolos y formatos. Para ello, los objetos de información  necesitan describirse y analizarse con información contextual relativa a fuente, creación, proceso y status, así como a su contenido. Y a este respecto, cabe señalar la constante y recurrente crítica de Internet, a la que con frecuencia se la compara con una gran biblioteca sin catálogo. Existen varias técnicas de almacenamiento y recuperación de información que utilizan los SRI que han sido heredado de Internet. La mayoría de los sistemas de búsqueda en Internet utilizan el Modelo de Espacio Vectorial para el almacenamiento de los documentos.
+
+
+•	Alcances
+
+El presente trabajo tiene como alcance el diseño y la implementación de un Sistema de Recuperación de Información para la biblioteca de la FISI basándose en el modelo del espacio vectorial, debido a su las ventajas que presenta  sobre el modelo booleano. En cuanto a los alcance de la aplicación se determinaron:
+
+o	El SRI implementara el modelo del espacio vectorial para el almacenamiento de la información.
+o	Se dispondrá de un programa que permitiese examinar fácilmente los resultados de ciertas operaciones internas, como el cálculo de pesos de los términos.
+o	la posibilidad de discriminar campos en los documentos, y de valorarlos de manera diferente
+o	la posibilidad de modificar fácilmente la mecánica interna de operación del programa, aplicando diferentes criterios y sistemas de cálculo de pesos y similaridades, a fin de observar el efecto de dichas modificaciones
+o	la posibilidad de implementar conocimiento lingüístico, adaptando las posibilidades de recuperación a las características propias de un idioma determinado
+
+Marco Teórico
+
+•	Motores experimentales de recuperación
+
+Básicamente, un motor de recuperación es un programa (o un conjunto de) que es capaz de indizar documentos y de resolver o ejecutar preguntas o consultas sobre tales documentos. Sus componentes, a grandes rasgos, pueden esquematizarse de la siguiente manera:
+
+1. Análisis léxico, es decir, la extracción de términos clave que han de representar el contenido de cada documento. Este análisis léxico puede consistir en un simple parsing o en procesos más complejos, como la lematización, el etiquetado semántico, etc.
+
+2. Indización, o construcción de índices que permitan acceder a los documentos; este proceso incluye la determinación del poder descriptivo de cada uno de los términos extraídos en la fase anterior, puestos en relación con los términos de los demás documentos.
+
+3. Resolución de consultas, o la estimación de la similitud o adecuación entre una consulta y cada uno de los documentos de la colección
+
+4. Interfaz de usuario, que debe permitir a éste tanto formular sus necesidades informativas como obtener los resultados de las búsquedas, es decir, interactuar con el sistema. Esta interacción puede incluir elementos más complejos, como la realimentación de consultas, la selección de nuevos términos de búsqueda, la visualización de documentos o resúmenes de éstos, etc.
+
+No obstante, suele entenderse que el corazón o núcleo, lo que realmente constituye un motor de recuperación, son los componentes 2 y 3 mencionados antes. Existen, como es bien sabido numeroso motores de recuperación operacionales, diseñados para trabajar en entornos reales. Cada uno implementa un modelo teórico y utiliza un juego de algoritmos fijo; deben atender a las necesidades del mundo real, como, por ejemplo, la velocidad en la ejecución; y, debido a esto, además de razones comerciales en muchos casos, presentan una codificación específica destinada a resolver de la forma más eficiente posible (velocidad, consumo de recursos de máquina) sus tareas de una manera fija.
+
+Los motores experimentales, sin embargo, están destinados a la experimentación y no están constreñidos por factores como la velocidad de ejecución, o al menos no lo están de forma determinante. Su misión es admitir diversas vías de resolución de problemas, en distintos entornos y con distintos objetivos específicos. A grandes rasgos, las características deseables son las siguientes:
+
+Los componentes deben ser independientes entre sí, de manera que sea factible operar sobre parte de ellos, modificándolos, sin necesidad de tener que tocar el resto. Un motor experimental debería ser independiente de, por ejemplo, el analizador léxico, de forma que fuera posible alterar el comportamiento de éste o incluso sustituirlo por otro con diferentes capacidades el motor debe ser flexible como para incluir diversos algoritmos o aproximaciones a las tareas que debe resolver debería permitir la observación de resultados intermedios, incluso su manipulación o modificación, el código debería ser lo más sencillo y modular posible, para facilitar su modificación en relación con el punto anterior, el código debería ser abierto y libremente disponible, así como estar escrito en versiones estándar de lenguajes estándar
+
+Lamentablemente, existen pocos motores experimentales, y que cumplan las condiciones mencionadas menos. Existen motores experimentales que no son abiertos y que sólo pueden operar los investigadores que los diseñaron, y existen motores no experimentales que son utilizados con grandes dificultades por algunos grupos de investigación.
+
+•	El modelo Vectorial
+
+El modelo teórico más difundido en RI es el llamado modelo vectorial. Básicamente, según éste, cada documento es representado por un vector D (d1, d2, d3, ..., dn) donde n es el número de términos posibles en toda la colección de documentos, y cada elemento del vector, en consecuencia, corresponde a cada uno de tales términos. Los elementos del vector, por otra parte, consisten en un valor numérico que trata de expresar la importancia o peso del término en cuestión dentro del documento. Es obvio que un mismo término en documentos diferentes debe tener pesos diferentes.
+
+Las preguntas o consultas se tratan igual que los documentos, y se representan igualmente mediante un vector de pesos. Así, la resolución de una consulta consiste simplemente en la computación de alguna función de similitud entre el vector consulta y cada uno de los vectores de los documentos. Este tratamiento tiene dos ventajas importantes: una, permite que las consultas se hagan en lenguaje natural, y pueden ser del tamaño que se desee; de hecho, este mecanismo permite usar como consulta otro documento, o incluso comparar documentos entre sí (para categorización o clustering, por ejemplo). Y dos, dado que el resultado de la función de similitud no tiene por qué ser binario, es posible establecer una graduación o escala en las respuestas a las consultas, es decir, establecer que unos documentos se adecuan en mayor grado que otros a una consulta determinada.
+
+La clave de todo el sistema reside en lo bien que documentos (y consultas) estén representados a través de los vectores; y esto depende de dos factores: la determinación de los términos que se extraen de cada documento, y la forma en que se estiman o calculan los pesos de cada término en cada documento. El primero de estos factores (análisis léxico) queda fuera de nuestro objetivo, pero debe indicarse la conveniencia de aislar esta parte, de forma que, a afectos de experimentación, pueda operarse sobre ella libremente. El segundo factor (el cálculo de los pesos) constituye uno de los elementos centrales de nuestro trabajo.
+
+•	El peso de los términos
+
+La estimación del peso de cada término en cada documento puede hacerse de diversas formas, y de hecho se han propuesto una buena cantidad de ellas. Dado que este cálculo ha de hacerse de forma automática, y de manera generalizable para cualquier tipo de documento, los distintos métodos utilizados se basan, de una u otra forma, en las frecuencias de los términos. El cálculo de los pesos se efectúa a partir de dos factores: la frecuencia de cada término en cada documento, y un elemento conocido como IDF (Inverse Document Frequency). Adicionalmente, suele aplicarse algún factor de normalización que permita soslayar las diferencias en tamaño de los documentos (y, en consecuencia, la posibilidad de que las frecuencias sean mayores en documentos más grandes). El IDF, en líneas generales, es una función inversamente proporcional a la frecuencia del término en toda la colección de documentos o base de datos; más precisamente, al número de documentos en los cuales aparezca el término. La idea base es que términos que aparezcan en muchos documentos tienen un poder discriminatorio pobre, y viceversa: no tiene mucho sentido, por ejemplo, buscar documentos que contengan el término ordenador en una colección de documentos especializados en Informática.
+
+El peso, en consecuencia, podría estimarse a partir de una ecuación genérica:
+
+
+Cada uno de los tres elementos que intervienen en la ecuación puede, a su vez, ser calculado de distintas formas, lo cual da lugar a un gran número de variantes, que suelen conocerse como esquemas de pesado. Usualmente, un esquema se representa mediante tres letras, cada una de las cuales identifica la forma en que se han calculado, respectivamente, la frecuencia del término en el documento, el IDF del término y el factor de normalización.
+
+•	Esquemas de peso
+
+Entre las muchas posibilidades, las formas más utilizadas de calcular estos tres elementos son:
+
+La frecuencia del término en el documento:
+
+
+El IDF:
+
+
+Factor de normalización:
+
+
+
+
+
+
+
+
+
+
+
+Metodología de Desarrollo del Proyecto
+
+Nuestro motor experimental parte de la idea de que es posible almacenar un fichero invertido procedente de una colección de documentos en una tabla, de manera que, a partir de ahí es posible calcular pesos de términos así como similitudes entre documentos y consultas. Un fichero invertido, en su forma más básica, no es más que una serie de entradas, una para cada término de la colección de documentos; para cada uno de estos términos se almacena una lista de los documentos en que aparece. Naturalmente, en esa lista pueden almacenarse más cosas.
+
+Esta estructura puede mapearse simplemente a una tabla con dos campos: término y clave de documento, pero nada impide añadir más columnas para información vinculada a cada una de las parejas término-documento, como frecuencia, offset, etc. 
+
+•	Estructura básica de la base de datos
+
+La base de datos consta de varias tablas. Algunas podrían ser temporales y desaparecer una vez calculados los pesos, y dependen del esquema de cálculo concreto adoptado en cada ocasión; dado que no son necesarias para la resolución de consultas. Las tablas temporales podrían ser sustituidas por vistas, solución conceptualmente más elegante, pero que puede dar problemas de rendimiento e impide, en todo caso, la observación y manipulación de resultados intermedios. Las tablas básicas podrían ser algo como lo siguiente:
+
+términos(termino char(50), documento char(50), veces double)
+pesos def(termino char(50), documento char(50), peso double)
+
+El tamaño de los campos de tipo char podría ser más pequeño, obviamente: términos de 50 caracteres de longitud pueden considerarse directamente errores tipográficos, y las claves de los documentos pueden diseñarse para ocupar bastante menos espacio; incluso los términos podrían ser sustituidos por punteros o claves numéricas, pero eso restaría facilidades de observación. De otro lado, el número de veces que un término aparece en un documento, que debería ser un entero, se establece como doble. La razón es que esto permite que el parser u otro proceso previo aplique, si se desea, algún tipo de coeficiente que prime de distinta forma los términos en función de distintos criterios (lugar del documento donde aparece, tipografía, función sintáctica, etc.)
+
+Para la resolución de consultas, en realidad, sólo es precisa la tabla pesos def, pero la tabla términos puede ser interesante conservarla para posibles recalculados de pesos posteriores.
+
+•	Entrada de datos
+
+El motor de recuperación al estar aislado del parsing de documentos, recibe como entrada el resultado de éste, en la forma de "término","documento",número de ocurrencias en documento y, tal cual se almacena en una tabla. Sobre la información almacenada en esta tabla se harán las operaciones posteriores. Aquí no se efectúa ningún chequeo ni ninguna otra operación previa sobre los datos de entrada. Esto significa que cosas como la normalización de caracteres, eliminación de palabras vacías, etc. es responsabilidad del parser o de otros cualesquiera procesos intermedios que se quieran añadir.
+
+•	Cálculo de pesos
+
+El cálculo de pesos puede efectuarse en tres fases, una para cada componente del peso. Cada una de estas fases termina con una tabla temporal que recoge el componente calculado y que es usada en la fase siguiente; la tercera y última fase finaliza con la consecución de la tabla pesos def, con lo que esas tablas temporales dejan de ser necesarias.
+
+Obsérvese que el sistema aquí empleado en tres fases puede resultar, en ocasiones, innecesariamente costoso. De alguna manera, ésta es una de las cosas que distingue un motor experimental de uno operacional; en uno de éstos, que aplica un esquema o algoritmo determinado, se puede ir directamente a él. Por ejemplo, para operar con un esquema de pesos ntc (el más frecuente), no es preciso calcular frecuencia del término en el documento, ni almacenarla en ninguna tabla intermedia. Pero, como, en un motor experimental, podemos encontrarnos con cualquier esquema, y las combinaciones posibles son numerosas, parece más sensato y más manejable operar en esas tres fases.
+
+•	La frecuencia del término en el documento
+
+Hay diversas maneras de estimar este componente del peso, y que no tiene por qué coincidir con el número de veces que cada término aparece en cada documento; en cualquier caso, el objetivo, en esta fase, es doble: por un lado, terminar obteniendo una tabla temporal con estas frecuencias, calculadas en la forma en que se desee, que pueda ser utilizada en las sucesivas fases del cálculo de pesos. Por otro, mantener los datos de entrada originales en su propia tabla, de forma que puedan ser reutilizados (por ejemplo, para recalcular pesos con otro esquema distinto).
+
+Así, la base de esta fase es una simple sentencia SQL:
+
+Create table frecuencias as select ...
+
+El contenido concreto depende del esquema de cálculo aplicado, pero, en general, se tratará de un select sobre la tabla términos que contiene los datos originales de entrada. Con algunos esquemas, que utilizan, por ejemplo, cosas como la frecuencia máxima en el documento, es preciso algún paso intermedio que calcule tales elementos.
+
+•	El IDF y el peso sin normalizar
+
+El IDF es el mismo para cada término, independientemente de en qué documento aparezca éste. De manera que el resultado básico del cálculo del IDF podría ser una tabla con los campos termino e idf. El peso sin normalizar, por otra parte, es el resultado de multiplicar frecuencia por IDF; así, obtenido el IDF, puede obtenerse en la misma fase el peso sin normalizar. El producto final de esta fase es, en consecuencia, una tabla con los campos termino, documento y peso.
+
+•	El factor de normalización y pesos definitivos
+
+Esta fase, última por lo que se refiere a los documentos, requiere el cálculo de un factor de normalización, y la posterior división del peso sin normalizar que acabamos de almacenar en la tabla pesos por dicho factor. El factor de normalización, por otra parte, es único para cada documento. 
+
+Hasta aquí, hemos obtenido los pesos de los términos de los documentos, con lo que sólo necesitamos la tabla pesos def y la que contiene los datos originales, términos, de manera que podemos deshacernos de las demás. La tabla pesos def, por otra parte, requeriría un índice determino, para resolver más rápidamente las consultas.
+
+•	Pesos de las consultas
+
+Los pesos de los términos de las consultas pueden estimarse de la misma manera que los de los documentos, aunque, como ya se ha dicho, aplicando esquemas que no tienen por qué ser iguales. El hecho de que, al procesarse una sola consulta de cada vez, el volumen de información involucrado sea mucho menor, puede aconsejar buscar métodos más ágiles para calcular los pesos de los términos de las consultas. De hecho, en sistemas interactivos las consultas suelen ser muy cortas (2 ó 3 términos); en muchos sistemas ni siquiera se calculan pesos para las consultas.
+
+Una posibilidad, dependiente del rendimiento del sistema SQL que se utilice es el uso de vistas; esto nos permite, al tiempo que se indiza la colección de documentos, dejar construidas las vistas necesarias para calcular los pesos de los términos de las consultas. En el momento de la consulta, estas vistas se ejecutan, obteniendo los pesos correspondientes. De una forma u otra, el producto de este proceso es una tabla o vista (pesos_c) con dos campos: termino y peso.
+
+•	Resolución de consultas
+
+La resolución de consultas es simple, una vez que tenemos los pesos de los términos. Básicamente, se trata de localizar los documentos con algún término en común con la consulta y, una vez localizados, calcular un coeficiente de similitud entre cada uno de esos documentos y la consulta. Posteriormente, ordenaremos esos documentos de forma decreciente en función de ese coeficiente de similitud. El coeficiente de similitud más habitual consiste en el producto de los vectores. Dado que los pesos en esos vectores han sido normalizados previamente, podemos resolver una consulta mediante una sentencia como la que sigue:
+
+select pesos_def.documento,
+sum(pesos_def.peso*pesos_c.peso) as simil
+from pesos_def, pesos_c
+where pesos_def.termino=pesos_c.termino
+group by pesos_def.documento order by simil DESC ;
+
+Conclusiones
+
+Los motores de recuperación para la investigación experimental son importantes instrumentos para la experimentación, que permiten aplicar diferentes algoritmos y observar sus resultados. En su diseño es más importante la modularidad y la facilidad de modificar procedimientos que la rapidez en la resolución de las consultas; la posibilidad de observar y modificar resultados de pasos intermedios es también importante. La utilización de un sistema de base de datos relacional y sentencias SQL permite construir un sistema de Recuperación de Información para la investigación experimental. Se ha mostrado cómo mediante sencillas sentencias SQL pueden implementarse diferentes algoritmos de pesado de términos; los resultados de cada uno de los pasos intermedios pueden almacenarse en tablas para ser observados e incluso modificados. Al mismo tiempo, los tiempos de ejecución, sin ser especialmente brillantes, resultan lo suficientemente ágiles como para utilizarse incluso en entornos reales.
+
+Bibliografía
+
+•	Nora La Serna, Ulises Román, Norberto Osorio, Oscar Benito, Jimy Espezúa, Hugo Vega. “ESTUDIO Y EVALUACIÓN DE LOS SISTEMAS DE RECUPERACIÓN DE INFORMACIÓN “.
+
+•	Carlos G. Figuerola, José Luis Alonso Berrocal, Ángel Francisco Zazo Rodríguez . ”Diseño de un motor de recuperación de la información para uso experimental y educativo”.
+
+•	Purificación Moscoso y Virginia Ortiz Repiso. “El impacto tecnológico en el quehacer bibliotecario: hacia un nuevo modelo de biblioteca. La biblioteca digital“.
+
+•	R. Baeza-Yates and B. Ribeiro-Neto. “Modern Information Retrieval“. Addison-Wesley, Harlow, England, 1999.
+
+•	N. J. Belkin and W. B. Croft. “Retrieval techniques. Annual Review of Information Science and Technology”, 22:109–145”, 1987.
+
+•	C. G. Figuerola, J. L. Alonso Berrocal, and A. F. Zazo Rodríguez. “Diseño de un motor de recuperación de información para uso experimental y educativo”. BID - Textos universitaris de bibliotecomia i documentación, 4, 2000. Electronic Publication: http://www.ub.es/biblio/bid/bid04.htm.
+
+•	F. Zazo, C. G. Figuerola, J. L. A. Berrocal, and R. Gómez. “Recuperación de información utilizando el modelo vectorial”. participación en el taller CLEF-2001. Technical Report DPTOIA-IT-2002-006, Departamento de Informática y Automática - Universidad de Salamanca, Mayo 2002. On line: http://tejo.usal.es/inftec/2002/DPTOIA-IT-2002-006.pdf. 
+
+
+

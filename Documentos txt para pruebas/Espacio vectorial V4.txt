@@ -1,0 +1,17 @@
+SISTEMAS DE RECUPERACIÓN DE INFORMACIÓN (SRI): FUNDAMENTOS Y APLICACIONES 
+
+Nora La Serna
+
+RESUMEN
+
+Ingeniería de Sistemas e Informática, y posteriormente para la Biblioteca Central de la Universidad Nacional Mayor de San Marcos.
+
+
+El trabajo que se presenta se desarrolla en el marco del proyecto de investigación “Sistema de Recuperación de Información”, cuyo objetivo es diseñar un SRI para la Biblioteca de la Facultad de Ingeniería de Sistemas e Informática de la UNMSM. Los Sistemas de Recuperación de Información (SRI) permiten el almacenamiento óptimo de grandes volúmenes de información (principalmente documentos, últimamente también información multimedia), y la recuperación eficiente de la información ante las consultas de los usuarios. 
+
+Cómo recuperar, en forma eficiente, documentos almacenados en forma digital  que una persona necesita y solicita, es un tema no sólo de interés e importancia para la comunidad educativa (docentes e investigadores y alumnos), sino también para el sector empresarial, gobierno y público en general que necesita buscar información. Internet, la red de redes, tambien alberga en sus computadores servidoras millones de documentos. Algunas de las aplicaciones más conocidas son los motores de búsqueda web y las bibliotecas digitales.
+
+Dos actividades centrales se han realizado: 1) Un estudio detallado de las principales técnicas, modelos, arquitecturas, y criterios de evaluación de los SRI; y 2) El análisis y evaluación de cuatro aplicaciones de SRI que sobresalen: KARPANTA, SISA, DIALOG y SMART.
+El resultado del estudio permite seleccionar el Modelo de espacio vectorial para el diseño del Sistema que se propone construir. 
+
+Palabras claves: Sistemas de Recuperación de Información, Modelo de Espacio Vectorial, motores de búsqueda, Evaluación de los SRI, pregunta del usuario.
