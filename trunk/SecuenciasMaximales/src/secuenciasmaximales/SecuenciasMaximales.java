@@ -124,7 +124,10 @@ public class SecuenciasMaximales {
         for (int i=1; i < sm.alstArchivos.size(); ++i){
             while (sm.alstArchivos.get(i).ready()){
                 sm.agregarDocumento();
-                sm.leerParrafo(i, doc);
+                if (sm.leerParrafo(i, doc) == -1){
+                    sm.alstDocumento.remove(doc);
+                    continue;
+                }
                 doc++;
             }
         }
@@ -175,7 +178,7 @@ public class SecuenciasMaximales {
                             alstSM.get(cantSec - 1).clear();
                         }
                         else {
-                            System.out.println(alstSM.get(cantSec - 1).size());
+                            //System.out.println(alstSM.get(cantSec - 1).size());
                             numCoincidencias += alstSM.get(cantSec - 1).size();
                             cantSec++;
                             alstSM.add(new ArrayList<Integer>());
@@ -209,7 +212,7 @@ public class SecuenciasMaximales {
         else if (cantSec > 0){
             numCoincidencias += alstSM.get(cantSec - 1).size();
         }
-        this.imprimeResultados(alstSM);
+        //this.imprimeResultados(alstSM);
         //System.out.println("nc = " + numCoincidencias);
         //res = (numCoincidencias*100) / this.alstDocumento.get(0).getCantPalabras();
         //System.out.println("res = " + res);
@@ -264,7 +267,7 @@ public class SecuenciasMaximales {
         }
     }
 
-    public void leerParrafo(int idFile,int idDoc) throws IOException{
+    public int leerParrafo(int idFile,int idDoc) throws IOException{
         ArrayList<String> tmp;
         ArrayList<String> pal;
         pal = new ArrayList<String>();
@@ -274,7 +277,10 @@ public class SecuenciasMaximales {
             tmp = this.obtenerPalabras(line);
             pal.addAll(tmp);
         }
+        if (pal.size() == 0)
+            return -1;
         this.leerDocumento(idDoc,pal);
+        return 0;
     }
 
     ArrayList<String> obtenerPalabras(String linea){
