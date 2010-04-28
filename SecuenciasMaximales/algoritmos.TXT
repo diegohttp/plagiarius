@@ -1,6 +1,5 @@
 Introducción
 
-
 Existen diferentes criterios para clasificar los problemas de empaquetado, como son el tamaño y la cantidad de las piezas, las dimensiones del problema, etc. Uno de los métodos utilizados más frecuentemente para clasificar los problemas de empaquetados es aquel basado en las características del patrón sobre el cual se van a colocar los objetos. En base a este criterio, los problemas de empaquetado pueden ser divididos en dos categorías:
 
 -Bin Packing:	Los objetos han de ser colocados sobre un conjunto de patrones de  dimensiones fijas, con el objetivo de minimizar el número de patrones utilizados.
