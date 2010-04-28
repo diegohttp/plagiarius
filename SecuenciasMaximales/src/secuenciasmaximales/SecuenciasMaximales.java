@@ -149,7 +149,9 @@ public class SecuenciasMaximales {
             }
 
             sm.palabrasEncontradas += percent;
-
+            if (cnt == 15){
+                System.out.println("Error " + percent + " " + sm.alstDocumento.get(0).getCantPalabras() );
+            }
             System.out.println("Porcentaje de plagio parrafo " + (cnt + 1) + " " + (percent*100)/sm.alstDocumento.get(0).getCantPalabras());
             cnt++;
         }
@@ -208,8 +210,8 @@ public class SecuenciasMaximales {
                     cantSec++;
                     alstSM.add(new ArrayList<Integer>());
                 }
-                int tmpNodo = this.alstDocumento.get(0).getNodos().get(nodoActual).getNextNodo(referenciaNodo);
-                int tmpRef = this.alstDocumento.get(0).getNodos().get(nodoActual).getNextReferencia(referenciaNodo);
+                int tmpNodo = this.alstDocumento.get(idDoc1).getNodos().get(nodoActual).getNextNodo(referenciaNodo);
+                int tmpRef = this.alstDocumento.get(idDoc1).getNodos().get(nodoActual).getNextReferencia(referenciaNodo);
                 nodoActual = tmpNodo;
                 referenciaNodo = tmpRef;
             }
@@ -218,7 +220,7 @@ public class SecuenciasMaximales {
             alstSM.remove(cantSec - 1);
             cantSec--;
         }
-        if (cantSec > 0){
+        else if (cantSec > 0){
             numCoincidencias += alstSM.get(cantSec - 1).size();
         }
         //this.imprimeResultados(alstSM);
