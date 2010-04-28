@@ -265,9 +265,10 @@ public class SecuenciasMaximales {
         try {
             File f = new File(arch);
             entrada = new BufferedReader(new FileReader(f));
-
+            String linea;
             while(entrada.ready()){
-                String linea=entrada.readLine();
+                linea=entrada.readLine();
+                if (linea.length() == 0) continue;
                 File e = new File(linea);
                 this.alstArchivos.add(new BufferedReader(new FileReader(e)));
             }
