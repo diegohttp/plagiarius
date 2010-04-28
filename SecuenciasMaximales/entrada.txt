@@ -1,9 +1,12 @@
+algoritmos.txt
 
+Arte evaluacion.txt
 Articulo PLN V0.txt
 Articulo PLN V1.txt
 Articulo SRI.txt
 Articulo SRI internet.txt
 Articulo SRI REVISTA.txt
+
 Articulo SRI V1.txt
 Articulo SRI V2.txt
 Articulo SRI V3.txt
@@ -48,6 +51,4 @@ SegmentacionV7.txt
 SegmentacionV8.txt
 Sistema Experto.txt
 SRI google.txt
-algoritmos.txt
 
-Arte evaluacion.txt
