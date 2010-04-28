@@ -149,9 +149,7 @@ public class SecuenciasMaximales {
             }
 
             sm.palabrasEncontradas += percent;
-            if (cnt == 15){
-                System.out.println("Error " + percent + " " + sm.alstDocumento.get(0).getCantPalabras() );
-            }
+ 
             System.out.println("Porcentaje de plagio parrafo " + (cnt + 1) + " " + (percent*100)/sm.alstDocumento.get(0).getCantPalabras());
             cnt++;
         }
