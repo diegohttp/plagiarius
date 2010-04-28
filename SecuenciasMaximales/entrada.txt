@@ -1,5 +1,4 @@
-algoritmos.txt
-Arte evaluacion.txt
+
 Articulo PLN V0.txt
 Articulo PLN V1.txt
 Articulo SRI.txt
@@ -31,8 +30,8 @@ Espacio vectorial V6.txt
 Evaluacion VAN RIJSBERGEN.txt
 Formato articulos CLEI.txt
 Informe final SRI.txt
-introducción a los sistemas de recuperación de información.txt
-Motor de Búsqueda 1.txt
+introduccion a los sistemas de recuperacion de informacion.txt
+Motor de Busqueda 1.txt
 Motores de busqueda 2.txt
 Reconocimiento de voz.txt
 Reconocimiento de voz 1.txt
@@ -49,4 +48,6 @@ SegmentacionV7.txt
 SegmentacionV8.txt
 Sistema Experto.txt
 SRI google.txt
+algoritmos.txt
 
+Arte evaluacion.txt
