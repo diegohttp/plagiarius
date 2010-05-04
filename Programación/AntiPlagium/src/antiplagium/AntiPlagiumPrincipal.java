@@ -1,14 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * AntiPlagiumPrincipal.java
- *
- * Created on 06/04/2010, 07:25:24 PM
- */
-
 package antiplagium.view;
 
 import antiplagium.*;
@@ -46,7 +35,6 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         JPPrincipal = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         JMIAdministrarUsuarios = new javax.swing.JMenuItem();
@@ -63,22 +51,15 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
 
         JPPrincipal.setBackground(new java.awt.Color(217, 211, 211));
 
-        jLabel1.setBackground(new java.awt.Color(204, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nombre del Usuario");
-        jLabel1.setOpaque(true);
-
         javax.swing.GroupLayout JPPrincipalLayout = new javax.swing.GroupLayout(JPPrincipal);
         JPPrincipal.setLayout(JPPrincipalLayout);
         JPPrincipalLayout.setHorizontalGroup(
             JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
+            .addGap(0, 934, Short.MAX_VALUE)
         );
         JPPrincipalLayout.setVerticalGroup(
             JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPPrincipalLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(495, Short.MAX_VALUE))
+            .addGap(0, 517, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
@@ -165,7 +146,6 @@ public class AntiPlagiumPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIAdministrarGrupos;
     private javax.swing.JMenuItem JMIAdministrarUsuarios;
     private javax.swing.JPanel JPPrincipal;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
