@@ -4,7 +4,7 @@ package antiplagium.view;
  *
  * @author a20050354
  */
-public class JFAdministrarRoles extends JFBase {
+public class JFAdministrarRoles extends JIFBase {
 
     /** Creates new form JFAdministrarRoles */
     public JFAdministrarRoles() {        
@@ -32,7 +32,7 @@ public class JFAdministrarRoles extends JFBase {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administrar Grupos");
+        setTitle("Administrar Roles");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("ROL"));
 
@@ -142,8 +142,6 @@ public class JFAdministrarRoles extends JFBase {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
-
-        jPanel1.getAccessibleContext().setAccessibleName("ROL");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -12,7 +12,7 @@ public class AntiPlagiumPrincipal extends JFBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JPPrincipal = new javax.swing.JPanel();
+        JDPPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         JMIAdministrarUsuarios = new javax.swing.JMenuItem();
@@ -24,18 +24,7 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JPPrincipal.setBackground(new java.awt.Color(217, 211, 211));
-
-        javax.swing.GroupLayout JPPrincipalLayout = new javax.swing.GroupLayout(JPPrincipal);
-        JPPrincipal.setLayout(JPPrincipalLayout);
-        JPPrincipalLayout.setHorizontalGroup(
-            JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
-        );
-        JPPrincipalLayout.setVerticalGroup(
-            JPPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
-        );
+        JDPPrincipal.setBackground(new java.awt.Color(153, 153, 153));
 
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -81,11 +70,13 @@ public class AntiPlagiumPrincipal extends JFBase {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(JDPPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -99,7 +90,8 @@ public class AntiPlagiumPrincipal extends JFBase {
     private void JMIAdministrarGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarGruposActionPerformed
         JFAdministrarRoles jfAdministrarRoles = new JFAdministrarRoles();
         jfAdministrarRoles.setVisible(true);
-        //JPPrincipal.add(jfAdministrarRoles);
+        JDPPrincipal.add(jfAdministrarRoles);
+        
 }//GEN-LAST:event_JMIAdministrarGruposActionPerformed
 
     /**
@@ -114,9 +106,9 @@ public class AntiPlagiumPrincipal extends JFBase {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane JDPPrincipal;
     private javax.swing.JMenuItem JMIAdministrarGrupos;
     private javax.swing.JMenuItem JMIAdministrarUsuarios;
-    private javax.swing.JPanel JPPrincipal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
