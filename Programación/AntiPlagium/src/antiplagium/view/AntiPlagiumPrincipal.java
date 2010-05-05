@@ -23,6 +23,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         JDPPrincipal.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -75,8 +76,8 @@ public class AntiPlagiumPrincipal extends JFBase {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(JDPPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
         );
 
         pack();
