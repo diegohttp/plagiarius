@@ -24,7 +24,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Administrar Grupos"/>
+    <Property name="title" type="java.lang.String" value="Administrar Roles"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -76,9 +76,6 @@
           </Border>
         </Property>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ROL"/>
-      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">
