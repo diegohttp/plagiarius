@@ -4,7 +4,7 @@ package antiplagium.view;
  *
  * @author a20050354
  */
-public class JFAdministrarRoles extends javax.swing.JFrame {
+public class JFAdministrarRoles extends JFBase {
 
     /** Creates new form JFAdministrarRoles */
     public JFAdministrarRoles() {        
