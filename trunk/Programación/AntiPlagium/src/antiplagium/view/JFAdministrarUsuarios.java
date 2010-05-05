@@ -3,19 +3,20 @@ package antiplagium.view;
 //import org.freixas.jcalendar.JCalendarCombo;
 
 import antiplagium.*;
+import javax.swing.JInternalFrame;
 
 /**
  *
  * @author a20050354
  */
-public class JFAministrarUsuarios extends JFBase {
+public class JFAdministrarUsuarios extends JInternalFrame {
 
 //    private JCalendarCombo cmbCalendarioInicio = new JCalendarCombo();
 //    private JCalendarCombo cmbCalendarioFin= new JCalendarCombo();
 
     /** Creates new form JFAministrarUsuarios */
-    public JFAministrarUsuarios() {
-         super();
+    public JFAdministrarUsuarios() {
+//         super();
          initComponents();
 //        cmbCalendarioInicio.setBounds(200, 105, 200, 20);
 //        jPanel1.add(cmbCalendarioInicio);
