@@ -1,3 +1,30 @@
+SRI google.txt
+Sistema Experto.txt
+SegmentacionV8.txt
+SegmentacionV7.txt
+SegmentacionV6.txt
+SegmentacionV5.txt
+SegmentacionV4.txt
+SegmentacionV3.txt
+SegmentacionV2.txt
+SegmentacionV1.txt
+Recuperacion de informacion.txt
+Reconocimiento de voz wikipedia.txt
+Reconocimiento de voz 1.txt
+Reconocimiento de voz 2.txt
+Reconocimiento de voz.txt
+Motores de busqueda 2.txt
+Motor de Busqueda 1.txt
+introduccion a los sistemas de recuperacion de informacion.txt
+Informe final SRI.txt
+Formato articulos CLEI.txt
+Evaluacion VAN RIJSBERGEN.txt
+Espacio vectorial V6.txt
+Espacio vectorial V4.txt
+Espacio vectorial V3.txt
+Espacio vectorial V2.txt
+Espacio vectorial V1.txt
+Espacio vectorial V0.txt
 algoritmos.txt
 
 Arte evaluacion.txt
@@ -24,31 +51,3 @@ Cuadro de Mando Integral.txt
 Desenredadndo la madeja V1.txt
 Desenredadndo la madeja V2.txt
 Diagnostico tuberculosis Procesamiento.txt
-Espacio vectorial V0.txt
-Espacio vectorial V1.txt
-Espacio vectorial V2.txt
-Espacio vectorial V3.txt
-Espacio vectorial V4.txt
-Espacio vectorial V6.txt
-Evaluacion VAN RIJSBERGEN.txt
-Formato articulos CLEI.txt
-Informe final SRI.txt
-introduccion a los sistemas de recuperacion de informacion.txt
-Motor de Busqueda 1.txt
-Motores de busqueda 2.txt
-Reconocimiento de voz.txt
-Reconocimiento de voz 1.txt
-Reconocimiento de voz 2.txt
-Reconocimiento de voz wikipedia.txt
-Recuperacion de informacion.txt
-SegmentacionV1.txt
-SegmentacionV2.txt
-SegmentacionV3.txt
-SegmentacionV4.txt
-SegmentacionV5.txt
-SegmentacionV6.txt
-SegmentacionV7.txt
-SegmentacionV8.txt
-Sistema Experto.txt
-SRI google.txt
-
