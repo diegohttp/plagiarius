@@ -197,6 +197,7 @@ public class AntiPlagiumPrincipal extends JFBase {
          JFLogDeUsuarios jfLogDeUsuarios = new  JFLogDeUsuarios();
          jfLogDeUsuarios.setVisible(true);
          JDPPrincipal.add(jfLogDeUsuarios);
+         jfLogDeUsuarios.toFront();
     }//GEN-LAST:event_JMLogUsuarioMouseClicked
 
    public static  JDesktopPane  getJDesktopPane(){
