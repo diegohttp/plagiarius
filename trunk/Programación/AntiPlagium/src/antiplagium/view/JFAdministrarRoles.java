@@ -1,14 +1,18 @@
 package antiplagium.view;
 
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author a20050354
  */
 public class JFAdministrarRoles extends JIFBase {
 
-    /** Creates new form JFAdministrarRoles */
-    public JFAdministrarRoles() {        
+    JDesktopPane jdpPrincipal;
+
+    public JFAdministrarRoles(JDesktopPane jdpPrincipal) {
         initComponents();
+        this.jdpPrincipal = jdpPrincipal;
     }
 
     /** This method is called from within the constructor to
@@ -52,7 +56,7 @@ public class JFAdministrarRoles extends JIFBase {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +104,7 @@ public class JFAdministrarRoles extends JIFBase {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -111,6 +115,11 @@ public class JFAdministrarRoles extends JIFBase {
         );
 
         jMenu1.setText("Nuevo");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Modificar");
@@ -139,7 +148,7 @@ public class JFAdministrarRoles extends JIFBase {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,6 +157,12 @@ public class JFAdministrarRoles extends JIFBase {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        JFAgregarRol jfAgregarRol = new JFAgregarRol();
+        //this.jdpPrincipal.add(jfAgregarRol);
+        jfAgregarRol.setVisible(true);
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
 
 
