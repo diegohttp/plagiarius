@@ -197,11 +197,11 @@ public class JFAgregarUsuario extends JIFBase {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/guardar.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
         jButton1.setText("Guardar");
 
-        jButton2.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/salir.png")); // NOI18N
-        jButton2.setText("Cancelar");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/salir.png"))); // NOI18N
+        jButton2.setText("Salir");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Estado Usuario"));
 
@@ -279,14 +279,14 @@ public class JFAgregarUsuario extends JIFBase {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        jButton3.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/limpiar.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         jButton3.setText("Limpiar");
 
-        jMReactivar.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/aceptar.png")); // NOI18N
+        jMReactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         jMReactivar.setText("Reactivar");
         jMBCambioEstado.add(jMReactivar);
 
-        jMSuspender.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/Eliminar - 16.png")); // NOI18N
+        jMSuspender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jMSuspender.setText("Suspender");
         jMBCambioEstado.add(jMSuspender);
 
@@ -297,11 +297,11 @@ public class JFAgregarUsuario extends JIFBase {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addGap(136, 136, 136)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addContainerGap(143, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -317,7 +317,7 @@ public class JFAgregarUsuario extends JIFBase {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
