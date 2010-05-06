@@ -15,7 +15,7 @@ package antiplagium.view;
  *
  * @author a20062010
  */
-public class FrmMostrarResultados extends javax.swing.JFrame {
+class FrmMostrarResultados extends javax.swing.JFrame {
 
     /** Creates new form FrmMostrarResultados */
     public FrmMostrarResultados() {
