@@ -15,7 +15,7 @@ package antiplagium.view;
  *
  * @author KIM
  */
-public class JFMostrarResultados extends javax.swing.JFrame {
+public class JFMostrarResultados extends JIFBase {
 
     /** Creates new form JFMostrarResultados */
     public JFMostrarResultados() {
@@ -161,7 +161,7 @@ public class JFMostrarResultados extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
