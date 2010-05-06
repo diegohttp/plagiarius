@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Renzo
  */
-public class JFCompararDocumentos extends JIFBase {
+public class JFCompararDocumentos extends JFrame {
 
     /** Creates new form JFCompararDocumentos */
     public JFCompararDocumentos() {
@@ -46,9 +46,8 @@ public class JFCompararDocumentos extends JIFBase {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Comparar Documentos");
         setResizable(false);
+        setTitle("Comparar Documentos");
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,6 +117,7 @@ public class JFCompararDocumentos extends JIFBase {
             }
         });
 
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Renzo\\Desktop\\plagiarius\\Programación\\AntiPlagium\\Iconos\\Eliminar - 16.png")); // NOI18N
         jButton3.setText("Eliminar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,7 +198,7 @@ public class JFCompararDocumentos extends JIFBase {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -210,23 +210,25 @@ public class JFCompararDocumentos extends JIFBase {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        BuscarDocumento frmBuscarDocumento = new BuscarDocumento();
-        frmBuscarDocumento.setVisible(true);
+        JDCompararDocumentos frmC = new JDCompararDocumentos(this,1);
+        frmC.setVisible(true);
+        //BuscarDocumento frmBuscarDocumento = new BuscarDocumento();
+        //frmBuscarDocumento.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        int idx = this.jTable1.getSelectedRow();
+        if (idx >= 0){
+            DefaultTableModel temp = (DefaultTableModel) this.jTable1.getModel();
+            temp.removeRow(idx);
+        } 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        BuscarDocumento frmBuscarDocumento = new BuscarDocumento();
-        frmBuscarDocumento.setVisible(true);
-        String nombre = frmBuscarDocumento.getNombreDocSeleccionado();
-        DefaultTableModel temp = (DefaultTableModel) this.jTable1.getModel();
-        Object nuevo[]= {""}; //esto es por las tres columnas aunque puede variar
-        nuevo[0] = nombre;
-        temp.addRow(nuevo);
+        JDCompararDocumentos frmC = new JDCompararDocumentos(this,0);
+        frmC.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -239,6 +241,16 @@ public class JFCompararDocumentos extends JIFBase {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    public void agregarFila(String texto){
+        DefaultTableModel temp = (DefaultTableModel) this.jTable1.getModel();
+        Object nuevo[]= {""}; //esto es por las tres columnas aunque puede variar
+        nuevo[0] = texto;
+        temp.addRow(nuevo);
+    }
+
+    public void setNombre(String nombre){
+        this.jTextField1.setText(nombre);
+    }
     /**
     * @param args the command line arguments
     */
