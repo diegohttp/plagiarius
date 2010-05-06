@@ -2,11 +2,13 @@
 package antiplagium.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.UIManager;
 
 public class JFBase extends javax.swing.JFrame {
 
-    /** Creates new form JFBase */
+    private Dimension dim;
+
     public JFBase() {
         initComponents();
         try
@@ -18,6 +20,9 @@ public class JFBase extends javax.swing.JFrame {
             e.printStackTrace();
         }               
         this.getContentPane().setBackground(Color.lightGray);
+        dim=super.getToolkit().getScreenSize();
+        super.setSize(dim.width, dim.height);
+        super.setVisible(true);
     }
     
     @SuppressWarnings("unchecked")
@@ -33,9 +38,9 @@ public class JFBase extends javax.swing.JFrame {
         LBLUsuario.setBackground(new java.awt.Color(153, 204, 255));
         LBLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LBLUsuario.setText("Nombre del Usuario");
-        LBLUsuario.setMaximumSize(new java.awt.Dimension(1024, 14));
+        LBLUsuario.setMaximumSize(new java.awt.Dimension(1200, 14));
         LBLUsuario.setOpaque(true);
-        LBLUsuario.setPreferredSize(new java.awt.Dimension(1024, 14));
+        LBLUsuario.setPreferredSize(new java.awt.Dimension(1200, 14));
         getContentPane().add(LBLUsuario, java.awt.BorderLayout.NORTH);
 
         pack();

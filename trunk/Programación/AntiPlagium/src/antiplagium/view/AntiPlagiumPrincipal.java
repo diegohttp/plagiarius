@@ -1,11 +1,18 @@
 package antiplagium.view;
 
+import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 
 public class AntiPlagiumPrincipal extends JFBase {
-   
+
+    private Dimension dim;
+
     public AntiPlagiumPrincipal() {        
         initComponents();
+
+        dim=super.getToolkit().getScreenSize();
+        super.setSize(dim.width, dim.height - 25);
+        super.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
