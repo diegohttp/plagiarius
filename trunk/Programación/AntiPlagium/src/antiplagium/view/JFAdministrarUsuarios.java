@@ -136,7 +136,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             .addGap(0, 18, Short.MAX_VALUE)
         );
 
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\buscar.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/buscar.png")); // NOI18N
         jButton3.setText("Buscar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -157,10 +157,10 @@ public class JFAdministrarUsuarios extends JIFBase {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(245, 245, 245)
                         .addComponent(jButton3)))
@@ -193,8 +193,9 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Usuarios"));
@@ -241,7 +242,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\modificar.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/modificar.png")); // NOI18N
         jButton1.setText("Modificar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,7 +250,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             }
         });
 
-        JBNuevo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\nuevo.png")); // NOI18N
+        JBNuevo.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/nuevo.png")); // NOI18N
         JBNuevo.setText("Nuevo");
         JBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +258,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\Eliminar - 16.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/Eliminar - 16.png")); // NOI18N
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,7 +269,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
         jMenu1.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\nuevo.png")); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/nuevo.png")); // NOI18N
         jMenu1.setText("Nuevo");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -278,7 +279,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\modificar.png")); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/modificar.png")); // NOI18N
         jMenu2.setText("Modificar");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -288,7 +289,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar1.add(jMenu2);
 
         jMenu5.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\Eliminar - 16.png")); // NOI18N
+        jMenu5.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/Eliminar - 16.png")); // NOI18N
         jMenu5.setText("Eliminar");
         jMenuBar1.add(jMenu5);
 
@@ -320,7 +321,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(JBNuevo)
