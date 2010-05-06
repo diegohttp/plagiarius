@@ -258,8 +258,9 @@ public class BuscarDocumento extends JIFBase {
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
            RegistrarDocumento regdoc = new RegistrarDocumento();
-          regdoc.setVisible(true);
-               // TODO add your handling code here:
+           regdoc.setVisible(true);
+           AntiPlagiumPrincipal.JDPPrincipal.add(regdoc);
+            // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
