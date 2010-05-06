@@ -38,7 +38,7 @@
                 <Property name="text" type="java.lang.String" value="Log de Usuarios"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JMLogUsuarioMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMLogUsuarioActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
