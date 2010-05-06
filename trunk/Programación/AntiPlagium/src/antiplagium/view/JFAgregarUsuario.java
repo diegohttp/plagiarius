@@ -37,6 +37,7 @@ public class JFAgregarUsuario extends JIFBase {
         jMBCambioEstado.setVisible(false);
 
         if (opcion==1) {
+            this.setTitle("Modificar Usuario");
             jCBRol.enable(false);
             cmbFechaInicio.enable(false);
             jCBEstado.enable(false);
