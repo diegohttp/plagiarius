@@ -291,6 +291,11 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenu5.setBackground(new java.awt.Color(0, 153, 153));
         jMenu5.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/Eliminar - 16.png")); // NOI18N
         jMenu5.setText("Eliminar");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -370,6 +375,13 @@ public class JFAdministrarUsuarios extends JIFBase {
         AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
         jfAgregarUsuario.toFront();
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        JFEliminarUsuario jfEliminarUsuario = new JFEliminarUsuario();
+        jfEliminarUsuario.setVisible(true);
+        AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
+        jfEliminarUsuario.toFront();
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
