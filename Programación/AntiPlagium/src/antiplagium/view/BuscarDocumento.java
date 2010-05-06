@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PATTY
  */
-public class BuscarDocumento extends JFrame {
+public class BuscarDocumento extends JIFBase {
 
     /** Creates new form Documento2 */
     public BuscarDocumento() {
