@@ -27,10 +27,12 @@ public class JFAgregarRol extends JIFBase {
         JBCancelar = new javax.swing.JButton();
 
         setClosable(false);
+        setTitle("Agregar Rol");
 
+        JBGuardar.setIcon(new javax.swing.ImageIcon("D:\\PUCP\\2010-I\\DP1\\GoogleCode\\Programación\\AntiPlagium\\Iconos\\guardar.png")); // NOI18N
         JBGuardar.setText("Guardar");
 
-        JPGrupo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 0, 12))); // NOI18N
+        JPGrupo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Rol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 0, 12))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11));
         jLabel2.setText("Nombre del Rol");
@@ -57,7 +59,8 @@ public class JFAgregarRol extends JIFBase {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        JBCancelar.setText("Cancelar");
+        JBCancelar.setIcon(new javax.swing.ImageIcon("D:\\PUCP\\2010-I\\DP1\\GoogleCode\\Programación\\AntiPlagium\\Iconos\\salir.png")); // NOI18N
+        JBCancelar.setText("Salir");
         JBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBCancelarActionPerformed(evt);
@@ -73,10 +76,10 @@ public class JFAgregarRol extends JIFBase {
                 .addComponent(JPGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(162, Short.MAX_VALUE)
+                .addContainerGap(129, Short.MAX_VALUE)
                 .addComponent(JBGuardar)
-                .addGap(4, 4, 4)
-                .addComponent(JBCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -84,18 +87,18 @@ public class JFAgregarRol extends JIFBase {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(JPGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JBGuardar)
                     .addComponent(JBCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
-        // TODO add your handling code here:
+             this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
 
 

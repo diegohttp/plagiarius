@@ -1,13 +1,13 @@
 package antiplagium.view;
 
+import java.awt.Dimension;
 import javax.swing.UIManager;
 
 
 public class JIFBase extends javax.swing.JInternalFrame {
-    
-    public JIFBase() {
-        super("", true, true, false, true);
 
+    public JIFBase() {
+        super("", true, true, false, true);        
     }
   
     @SuppressWarnings("unchecked")
@@ -17,14 +17,18 @@ public class JIFBase extends javax.swing.JInternalFrame {
         LBLUsuario = new javax.swing.JLabel();
 
         setClosable(true);
+        setPreferredSize(new java.awt.Dimension(1300, 45));
 
         LBLUsuario.setBackground(new java.awt.Color(153, 204, 255));
         LBLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LBLUsuario.setText("Nombre del Usuario");
-        LBLUsuario.setMaximumSize(new java.awt.Dimension(1024, 14));
+        LBLUsuario.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        LBLUsuario.setDoubleBuffered(true);
+        LBLUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LBLUsuario.setMaximumSize(new java.awt.Dimension(1200, 14));
         LBLUsuario.setOpaque(true);
         LBLUsuario.setPreferredSize(new java.awt.Dimension(1024, 14));
-        getContentPane().add(LBLUsuario, java.awt.BorderLayout.NORTH);
+        getContentPane().add(LBLUsuario, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
