@@ -7,15 +7,15 @@ public class JIFBase extends javax.swing.JInternalFrame {
     
     public JIFBase() {
         super("", true, true, false, true);
-        try
-        {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        initComponents();
+//        try
+//        {
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//        initComponents();
     }
 
     /** This method is called from within the constructor to
