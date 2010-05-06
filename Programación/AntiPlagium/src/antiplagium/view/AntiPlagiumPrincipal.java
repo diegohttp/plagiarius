@@ -190,14 +190,13 @@ public class AntiPlagiumPrincipal extends JFBase {
          JDPPrincipal.add(frmRes);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-
-//    public static  JDesktopPane  getJDesktopPane(){
-//      return JDPPrincipal;
-//    }
+   public static  JDesktopPane  getJDesktopPane(){
+      return JDPPrincipal;
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JDesktopPane JDPPrincipal;
+    public static javax.swing.JDesktopPane JDPPrincipal;
     private javax.swing.JMenuItem JMIAdministrarGrupos;
     private javax.swing.JMenuItem JMIAdministrarUsuarios;
     private javax.swing.JMenu jMenu1;
