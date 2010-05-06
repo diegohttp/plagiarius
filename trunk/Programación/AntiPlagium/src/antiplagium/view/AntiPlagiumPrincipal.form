@@ -140,8 +140,8 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="19" max="32767" attributes="0"/>
-              <Component id="JDPPrincipal" min="-2" pref="692" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <Component id="JDPPrincipal" pref="691" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
