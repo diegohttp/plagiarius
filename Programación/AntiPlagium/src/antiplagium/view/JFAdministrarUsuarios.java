@@ -136,7 +136,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             .addGap(0, 18, Short.MAX_VALUE)
         );
 
-        jButton3.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/buscar.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
         jButton3.setText("Buscar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -258,7 +258,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/Eliminar - 16.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,7 +289,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar1.add(jMenu2);
 
         jMenu5.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu5.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/Eliminar - 16.png")); // NOI18N
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jMenu5.setText("Eliminar");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
