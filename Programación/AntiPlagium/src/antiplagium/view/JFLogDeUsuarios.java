@@ -10,6 +10,9 @@ public class JFLogDeUsuarios extends JIFBase {
     public JFLogDeUsuarios() {
         initComponents();
 
+        jcComboDesde.setSize(188, 30);
+        jcComboHasta.setSize(188, 30);
+
         jcComboDesde = new JCalendarCombo();
         jcComboHasta = new JCalendarCombo();
 
@@ -101,12 +104,13 @@ public class JFLogDeUsuarios extends JIFBase {
         );
 
         JPFechaFin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        JPFechaFin.setPreferredSize(new java.awt.Dimension(188, 30));
 
         javax.swing.GroupLayout JPFechaFinLayout = new javax.swing.GroupLayout(JPFechaFin);
         JPFechaFin.setLayout(JPFechaFinLayout);
         JPFechaFinLayout.setHorizontalGroup(
             JPFechaFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 177, Short.MAX_VALUE)
+            .addGap(0, 184, Short.MAX_VALUE)
         );
         JPFechaFinLayout.setVerticalGroup(
             JPFechaFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +194,7 @@ public class JFLogDeUsuarios extends JIFBase {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(175, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,7 +208,7 @@ public class JFLogDeUsuarios extends JIFBase {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
