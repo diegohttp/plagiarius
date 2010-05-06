@@ -11,11 +11,13 @@
 
 package antiplagium.view;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author PATTY
  */
-public class BuscarDocumento extends JIFBase {
+public class BuscarDocumento extends JFrame {
 
     /** Creates new form Documento2 */
     public BuscarDocumento() {
@@ -259,21 +261,12 @@ public class BuscarDocumento extends JIFBase {
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
            RegistrarDocumento regdoc = new RegistrarDocumento();
            regdoc.setVisible(true);
-           AntiPlagiumPrincipal.JDPPrincipal.add(regdoc);
             // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
     * @param args the command line arguments
     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BuscarDocumento().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
