@@ -93,6 +93,11 @@ public class AntiPlagiumPrincipal extends JFBase {
         });
 
         jMenuItem4.setText("Comparar documentos");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Mostrar resultados");
@@ -158,6 +163,22 @@ public class AntiPlagiumPrincipal extends JFBase {
           JDPPrincipal.add(buscardoc);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+
+    private void jMenuItem4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem4MouseClicked
+        // TODO add your handling code here:
+        JFCompararDocumentos frmCompararDocumentos = new JFCompararDocumentos();
+        frmCompararDocumentos.setVisible(true);
+        JDPPrincipal.add(frmCompararDocumentos);
+    }//GEN-LAST:event_jMenuItem4MouseClicked
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        JFCompararDocumentos frmCompararDocumentos = new JFCompararDocumentos();
+        frmCompararDocumentos.setVisible(true);
+        JDPPrincipal.add(frmCompararDocumentos);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         
     
@@ -168,6 +189,7 @@ public class AntiPlagiumPrincipal extends JFBase {
          frmRes.setVisible(true);
          JDPPrincipal.add(frmRes);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
 
 //    public static  JDesktopPane  getJDesktopPane(){
 //      return JDPPrincipal;
