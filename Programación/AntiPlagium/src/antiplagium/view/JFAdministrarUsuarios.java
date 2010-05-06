@@ -24,8 +24,8 @@ public class JFAdministrarUsuarios extends JIFBase {
 //        setContentPane(desktop);
         initComponents();
 
-        cmbCalendarioInicio.setSize(247,22);
-        cmbCalendarioFin.setSize(247, 22);
+        cmbCalendarioInicio.setSize(247,25);
+        cmbCalendarioFin.setSize(247, 25);
         jPanel3.add(cmbCalendarioInicio);
         jPanel4.add(cmbCalendarioFin);
 //        cmbCalendarioInicio.setBounds(200, 105, 200, 20);
@@ -111,6 +111,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         jLabel10.setText("Area Academica");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setPreferredSize(new java.awt.Dimension(247, 25));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -120,10 +121,11 @@ public class JFAdministrarUsuarios extends JIFBase {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 18, Short.MAX_VALUE)
+            .addGap(0, 21, Short.MAX_VALUE)
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel4.setPreferredSize(new java.awt.Dimension(247, 25));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -133,7 +135,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 18, Short.MAX_VALUE)
+            .addGap(0, 21, Short.MAX_VALUE)
         );
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
@@ -332,7 +334,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                     .addComponent(jButton2)
                     .addComponent(JBNuevo)
                     .addComponent(jButton1))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
