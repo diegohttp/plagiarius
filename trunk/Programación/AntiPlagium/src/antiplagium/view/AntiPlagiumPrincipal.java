@@ -28,7 +28,6 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         JDPPrincipal.setBackground(new java.awt.Color(153, 153, 153));
 
