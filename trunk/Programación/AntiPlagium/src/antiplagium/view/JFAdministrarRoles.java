@@ -115,6 +115,11 @@ public class JFAdministrarRoles extends JIFBase {
         );
 
         jMenu1.setText("Nuevo");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
@@ -148,7 +153,7 @@ public class JFAdministrarRoles extends JIFBase {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,10 +164,15 @@ public class JFAdministrarRoles extends JIFBase {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        JFAgregarRol jfAgregarRol = new JFAgregarRol();
-        //this.jdpPrincipal.add(jfAgregarRol);
-        jfAgregarRol.setVisible(true);
+
     }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        JFAgregarRol jfAgregarRol = new JFAgregarRol();
+        AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
+        jfAgregarRol.toFront();
+        jfAgregarRol.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
 
 
 
