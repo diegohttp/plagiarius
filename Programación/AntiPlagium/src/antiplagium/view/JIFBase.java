@@ -1,25 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * JIFBase.java
- *
- * Created on 04/05/2010, 09:51:11 PM
- */
-
 package antiplagium.view;
 
-/**
- *
- * @author USER
- */
-public class JIFBase extends javax.swing.JInternalFrame {
+import javax.swing.UIManager;
 
-    /** Creates new form JIFBase */
+
+public class JIFBase extends javax.swing.JInternalFrame {
+    
     public JIFBase() {
-        //super("", true, true, false, true);
+        super("", true, true, false, true);
+        try
+        {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         initComponents();
     }
 
