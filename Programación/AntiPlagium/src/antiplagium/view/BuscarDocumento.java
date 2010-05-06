@@ -199,6 +199,11 @@ public class BuscarDocumento extends JIFBase {
         });
 
         jMenu1.setText("Nuevo");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu1MousePressed(evt);
+            }
+        });
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
@@ -207,6 +212,11 @@ public class BuscarDocumento extends JIFBase {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Modificar");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu2MousePressed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Eliminar");
@@ -245,8 +255,8 @@ public class BuscarDocumento extends JIFBase {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jbtnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(jbtnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -292,6 +302,20 @@ public class BuscarDocumento extends JIFBase {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
+        // TODO add your handling code here:
+         RegistrarDocumento regdoc = new RegistrarDocumento();
+         regdoc.setVisible(true);
+         regdoc.setTitle("Registrar Documento");
+    }//GEN-LAST:event_jMenu1MousePressed
+
+    private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
+        // TODO add your handling code here:
+         RegistrarDocumento regdoc = new RegistrarDocumento();
+         regdoc.setVisible(true);
+         regdoc.setTitle("Modificar Documento");
+    }//GEN-LAST:event_jMenu2MousePressed
 
     public String getNombreDocSeleccionado(){
         return this.selectedDoc;
