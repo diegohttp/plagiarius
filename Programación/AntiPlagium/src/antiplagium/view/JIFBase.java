@@ -19,7 +19,7 @@ public class JIFBase extends javax.swing.JInternalFrame {
 
     /** Creates new form JIFBase */
     public JIFBase() {
-        super("", true, true, false, true);
+        //super("", true, true, false, true);
         initComponents();
     }
 
@@ -34,7 +34,7 @@ public class JIFBase extends javax.swing.JInternalFrame {
 
         LBLUsuario = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
 
         LBLUsuario.setBackground(new java.awt.Color(153, 204, 255));
         LBLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
