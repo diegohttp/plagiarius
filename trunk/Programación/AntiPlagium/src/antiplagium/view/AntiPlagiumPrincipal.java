@@ -43,11 +43,6 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         jMenu1.setBackground(new java.awt.Color(0, 153, 153));
         jMenu1.setText("Usuarios");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
 
         JMIAdministrarUsuarios.setText("Administrar Usuarios");
         JMIAdministrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -153,10 +148,6 @@ public class AntiPlagiumPrincipal extends JFBase {
         JDPPrincipal.add(jfAdministrarRoles);
         
 }//GEN-LAST:event_JMIAdministrarGruposActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-     // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
          RegistrarCategoria registrarCategoria = new  RegistrarCategoria();

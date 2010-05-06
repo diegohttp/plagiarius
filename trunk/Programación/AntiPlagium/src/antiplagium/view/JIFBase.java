@@ -7,7 +7,8 @@ import javax.swing.UIManager;
 public class JIFBase extends javax.swing.JInternalFrame {
 
     public JIFBase() {
-        super("", true, true, false, true);        
+        super("", true, true, false, true);
+        
     }
   
     @SuppressWarnings("unchecked")

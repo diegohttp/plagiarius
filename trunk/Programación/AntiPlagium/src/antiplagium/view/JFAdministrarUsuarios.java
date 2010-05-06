@@ -136,6 +136,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             .addGap(0, 18, Short.MAX_VALUE)
         );
 
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\buscar.png")); // NOI18N
         jButton3.setText("Buscar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -240,6 +241,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\modificar.png")); // NOI18N
         jButton1.setText("Modificar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,7 +249,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             }
         });
 
-        JBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/antiplagium/view/agregar.png"))); // NOI18N
+        JBNuevo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\nuevo.png")); // NOI18N
         JBNuevo.setText("Nuevo");
         JBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,7 +257,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/antiplagium/view/eliminar.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\Eliminar - 16.png")); // NOI18N
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +268,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
         jMenu1.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/antiplagium/view/agregar.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\nuevo.png")); // NOI18N
         jMenu1.setText("Nuevo");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -276,11 +278,17 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
+        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\modificar.png")); // NOI18N
         jMenu2.setText("Modificar");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu5.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/antiplagium/view/eliminar.png"))); // NOI18N
+        jMenu5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\Eliminar - 16.png")); // NOI18N
         jMenu5.setText("Eliminar");
         jMenuBar1.add(jMenu5);
 
@@ -294,12 +302,12 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JBNuevo)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -312,11 +320,11 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2)
+                    .addComponent(JBNuevo)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -336,10 +344,11 @@ public class JFAdministrarUsuarios extends JIFBase {
 }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario();
+        JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(0);
         jfAgregarUsuario.setVisible(true);
-        //jfAgregarUsuario.show();
         AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
+        jfAgregarUsuario.toFront();
+        
 }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -353,6 +362,13 @@ public class JFAdministrarUsuarios extends JIFBase {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(1);
+        jfAgregarUsuario.setVisible(true);
+        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
+        jfAgregarUsuario.toFront();
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
