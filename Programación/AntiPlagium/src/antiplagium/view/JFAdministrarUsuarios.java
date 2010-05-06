@@ -242,7 +242,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/modificar.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
         jButton1.setText("Modificar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,7 +250,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             }
         });
 
-        JBNuevo.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/nuevo.png")); // NOI18N
+        JBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         JBNuevo.setText("Nuevo");
         JBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,7 +269,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
         jMenu1.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu1.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/nuevo.png")); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         jMenu1.setText("Nuevo");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -279,7 +279,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu2.setIcon(new javax.swing.ImageIcon("/usr/home/a20030555/AntiPlagium/Iconos/modificar.png")); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
         jMenu2.setText("Modificar");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -326,7 +326,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(JBNuevo)

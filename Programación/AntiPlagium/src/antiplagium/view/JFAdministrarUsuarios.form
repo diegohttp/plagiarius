@@ -33,7 +33,7 @@
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/usr/home/a20030555/AntiPlagium/Iconos/nuevo.png"/>
+              <Image iconType="3" name="/Iconos/nuevo.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nuevo"/>
           </Properties>
@@ -47,7 +47,7 @@
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/usr/home/a20030555/AntiPlagium/Iconos/modificar.png"/>
+              <Image iconType="3" name="/Iconos/modificar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
@@ -122,7 +122,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JBNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -411,7 +411,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/usr/home/a20030555/AntiPlagium/Iconos/modificar.png"/>
+          <Image iconType="3" name="/Iconos/modificar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
@@ -422,7 +422,7 @@
     <Component class="javax.swing.JButton" name="JBNuevo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/usr/home/a20030555/AntiPlagium/Iconos/nuevo.png"/>
+          <Image iconType="3" name="/Iconos/nuevo.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nuevo"/>
       </Properties>
