@@ -12,6 +12,7 @@
 package antiplagium.view;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -49,7 +50,7 @@ public class BuscarDocumento extends JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Búsqueda Documentos");
         setName(""); // NOI18N
 
@@ -57,10 +58,7 @@ public class BuscarDocumento extends JFrame {
 
         jtabPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nombre", "Categoría ", "Propietario"
@@ -81,6 +79,8 @@ public class BuscarDocumento extends JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtabPaquetes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jtabPaquetes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtabPaquetes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -125,7 +125,6 @@ public class BuscarDocumento extends JFrame {
             }
         });
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon("inform\\a20057070\\Escritorio\\PlagDP1\\Programación\\AntiPlagium\\Iconos\\buscar.png")); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.setName("btnBuscar"); // NOI18N
         btnBuscar.setPreferredSize(new java.awt.Dimension(97, 33));
@@ -210,7 +209,7 @@ public class BuscarDocumento extends JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(232, Short.MAX_VALUE)
@@ -227,7 +226,7 @@ public class BuscarDocumento extends JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnAceptar)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Búsqueda");
@@ -247,11 +246,20 @@ public class BuscarDocumento extends JFrame {
 }//GEN-LAST:event_jcmbEstadoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+    DefaultTableModel temp = (DefaultTableModel) this.jtabPaquetes.getModel();
+    Object nuevo[]= {"1","Informe","Ingenieria","JJ"}; //esto es por las tres columnas aunque puede variar
+    temp.addRow(nuevo);
+    nuevo[0]="2"; nuevo[1]="Reporte"; nuevo[2]="Ciencias"; nuevo[3]="DD";
+    temp.addRow(nuevo);
 }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void jbtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAceptarActionPerformed
-
+        int idx = this.jtabPaquetes.getSelectedRow();
+        if (idx >= 0){
+            DefaultTableModel temp = (DefaultTableModel) this.jtabPaquetes.getModel();
+            this.selectedDoc = temp.getValueAt(idx, 1).toString();
+            this.setVisible(false);
+        }
 }//GEN-LAST:event_jbtnAceptarActionPerformed
 
     private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
@@ -263,6 +271,10 @@ public class BuscarDocumento extends JFrame {
            regdoc.setVisible(true);
             // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
+
+    public String getNombreDocSeleccionado(){
+        return this.selectedDoc;
+    }
 
     /**
     * @param args the command line arguments
@@ -284,5 +296,6 @@ public class BuscarDocumento extends JFrame {
     private javax.swing.JTable jtabPaquetes;
     private javax.swing.JFormattedTextField jtxtTipoServicio;
     // End of variables declaration//GEN-END:variables
+    private String selectedDoc;
 
 }

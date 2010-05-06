@@ -12,6 +12,7 @@
 package antiplagium.view;
 
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -221,6 +222,11 @@ public class JFCompararDocumentos extends JIFBase {
         // TODO add your handling code here:
         BuscarDocumento frmBuscarDocumento = new BuscarDocumento();
         frmBuscarDocumento.setVisible(true);
+        String nombre = frmBuscarDocumento.getNombreDocSeleccionado();
+        DefaultTableModel temp = (DefaultTableModel) this.jTable1.getModel();
+        Object nuevo[]= {""}; //esto es por las tres columnas aunque puede variar
+        nuevo[0] = nombre;
+        temp.addRow(nuevo);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -236,7 +242,6 @@ public class JFCompararDocumentos extends JIFBase {
     /**
     * @param args the command line arguments
     */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
