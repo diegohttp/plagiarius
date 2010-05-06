@@ -42,6 +42,8 @@ public class JFMostrarResultados extends JIFBase {
         jTextField3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
+        setTitle("Resultados de Plagio");
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documento a consultar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 204))); // NOI18N
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +160,7 @@ public class JFMostrarResultados extends JIFBase {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
