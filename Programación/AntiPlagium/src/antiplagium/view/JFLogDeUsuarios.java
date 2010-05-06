@@ -9,13 +9,12 @@ public class JFLogDeUsuarios extends JIFBase {
     /** Creates new form JFLogDeUsuarios */
     public JFLogDeUsuarios() {
         initComponents();
-
-        jcComboDesde.setSize(188, 30);
-        jcComboHasta.setSize(188, 30);
-
+        
         jcComboDesde = new JCalendarCombo();
         jcComboHasta = new JCalendarCombo();
 
+        jcComboDesde.setSize(188, 30);
+        jcComboHasta.setSize(188, 30);
         JPFechaInicio.add(jcComboDesde);
         JPFechaFin.add(jcComboHasta);
     }
