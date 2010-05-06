@@ -22,6 +22,8 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +86,23 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         jMenu3.setBackground(new java.awt.Color(0, 153, 153));
         jMenu3.setText("Detección");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem4.setText("Comparar documentos");
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Mostrar resultados");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setBackground(new java.awt.Color(0, 153, 153));
@@ -139,6 +158,17 @@ public class AntiPlagiumPrincipal extends JFBase {
           JDPPrincipal.add(buscardoc);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        
+    
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JFMostrarResultados frmRes = new  JFMostrarResultados();
+         frmRes.setVisible(true);
+         JDPPrincipal.add(frmRes);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
 //    public static  JDesktopPane  getJDesktopPane(){
 //      return JDPPrincipal;
 //    }
@@ -156,6 +186,8 @@ public class AntiPlagiumPrincipal extends JFBase {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 
 }
