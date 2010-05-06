@@ -11,6 +11,7 @@
 
 package antiplagium.view;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -242,6 +243,9 @@ public class JDCompararDocumentos extends javax.swing.JDialog {
             }
 
             this.setVisible(false);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Buscar", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
