@@ -61,6 +61,11 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenu1.add(JMIAdministrarGrupos);
 
         jMenuItem1.setText("Log de Usuarios");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -194,10 +199,14 @@ public class AntiPlagiumPrincipal extends JFBase {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        JFLogDeUsuarios jfLogDeUsuarios = new JFLogDeUsuarios();
-        jfLogDeUsuarios.setVisible(true);
-        JDPPrincipal.add(jfLogDeUsuarios);
+      
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+         JFLogDeUsuarios jfLogDeUsuarios = new  JFLogDeUsuarios();
+         jfLogDeUsuarios.setVisible(true);
+         JDPPrincipal.add(jfLogDeUsuarios);
+    }//GEN-LAST:event_jMenuItem1MouseClicked
 
    public static  JDesktopPane  getJDesktopPane(){
       return JDPPrincipal;

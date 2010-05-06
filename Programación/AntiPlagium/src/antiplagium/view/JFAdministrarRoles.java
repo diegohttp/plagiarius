@@ -133,7 +133,7 @@ public class JFAdministrarRoles extends JIFBase {
             }
         });
 
-        JBNuevo.setFont(new java.awt.Font("Tahoma", 0, 10));
+        JBNuevo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         JBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         JBNuevo.setText("Nuevo");
         JBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +142,7 @@ public class JFAdministrarRoles extends JIFBase {
             }
         });
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         jMenu1.setText("Nuevo");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -155,9 +156,11 @@ public class JFAdministrarRoles extends JIFBase {
         });
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
         jMenu2.setText("Modificar");
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jMenu3.setText("Eliminar");
         jMenuBar1.add(jMenu3);
 
@@ -195,7 +198,7 @@ public class JFAdministrarRoles extends JIFBase {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JBNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(19, 19, 19))
+                .addGap(22, 22, 22))
         );
 
         pack();
