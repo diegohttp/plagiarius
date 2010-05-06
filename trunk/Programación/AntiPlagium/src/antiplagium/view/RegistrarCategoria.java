@@ -15,7 +15,7 @@ package antiplagium.view;
  *
  * @author PATTY
  */
-public class RegistrarCategoria extends javax.swing.JFrame {
+public class RegistrarCategoria extends JIFBase {
 
     /** Creates new form RegistrarCategoria */
     public RegistrarCategoria() {

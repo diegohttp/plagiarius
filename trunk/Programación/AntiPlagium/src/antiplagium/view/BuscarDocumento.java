@@ -15,7 +15,7 @@ package antiplagium.view;
  *
  * @author PATTY
  */
-public class BuscarDocumento extends javax.swing.JFrame {
+public class BuscarDocumento extends JIFBase {
 
     /** Creates new form Documento2 */
     public BuscarDocumento() {
@@ -47,7 +47,7 @@ public class BuscarDocumento extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Búsqueda Documentos");
         setName(""); // NOI18N
 
@@ -181,6 +181,11 @@ public class BuscarDocumento extends javax.swing.JFrame {
         jLabel3.setOpaque(true);
 
         jMenu1.setText("Nuevo");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Modificar");
@@ -220,7 +225,7 @@ public class BuscarDocumento extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnAceptar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Búsqueda");
@@ -250,6 +255,12 @@ public class BuscarDocumento extends javax.swing.JFrame {
     private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1FocusGained
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+           RegistrarDocumento regdoc = new RegistrarDocumento();
+          regdoc.setVisible(true);
+               // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
     * @param args the command line arguments

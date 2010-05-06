@@ -15,7 +15,7 @@ package antiplagium.view;
  *
  * @author PATTY
  */
-public class RegistrarDocumento extends javax.swing.JPanel {
+public class RegistrarDocumento extends JIFBase {
 
     /** Creates new form RegistrarDocumento */
     public RegistrarDocumento() {
