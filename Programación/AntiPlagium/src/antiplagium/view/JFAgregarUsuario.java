@@ -23,8 +23,10 @@ public class JFAgregarUsuario extends JIFBase {
     private JCalendarCombo cmbFechaInicio;
     private JCalendarCombo cmbFechaFin;
     /** Creates new form JFAgregarUsuario */
-    public JFAgregarUsuario() {
+    public JFAgregarUsuario(int opcion) {
 //        super("", true, true, false, true);
+
+//        jMBCambioEstado.setVisible(false);
         cmbFechaInicio=new JCalendarCombo();
         cmbFechaFin=new JCalendarCombo();
         initComponents();
@@ -32,8 +34,30 @@ public class JFAgregarUsuario extends JIFBase {
         cmbFechaFin.setSize(220, 20);
         jPanel3.add(cmbFechaInicio);
         jPanel4.add(cmbFechaFin);
+        jMBCambioEstado.setVisible(false);
+
+        if (opcion==1) {
+            jCBRol.enable(false);
+            cmbFechaInicio.enable(false);
+            jCBEstado.enable(false);
+            jMBCambioEstado.setVisible(true);
+            if (jCBEstado.getSelectedItem().toString()=="Activo"){
+                 jMReactivar.enable(false);
+                 jMReactivar.setVisible(false);
+            }
+            else{
+                    jMSuspender.enable(false);
+                    jMSuspender.setVisible(false);
+            }
+            
+
+
+        }
+        
 
     }
+
+
 
        /** This method is called from within the constructor to
      * initialize the form.
@@ -58,7 +82,7 @@ public class JFAgregarUsuario extends JIFBase {
         jTextField6 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jCBRol = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
@@ -69,7 +93,11 @@ public class JFAgregarUsuario extends JIFBase {
         jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox();
+        jCBEstado = new javax.swing.JComboBox();
+        jButton3 = new javax.swing.JButton();
+        jMBCambioEstado = new javax.swing.JMenuBar();
+        jMReactivar = new javax.swing.JMenu();
+        jMSuspender = new javax.swing.JMenu();
 
         setTitle("Agregar Usuario");
 
@@ -91,11 +119,11 @@ public class JFAgregarUsuario extends JIFBase {
 
         jLabel7.setText("Rol");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBRol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ninguno", "Administrador", "Principal", "Profesor" }));
 
         jLabel9.setText("Area Academica");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ninguno", "Contabilidad", "Economia", "Ciencias Sociales", "Ingenieria Informatica", "Ingenieria Electronica" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,7 +152,7 @@ public class JFAgregarUsuario extends JIFBase {
                         .addGap(8, 8, 8))
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +188,7 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -211,7 +239,7 @@ public class JFAgregarUsuario extends JIFBase {
             .addGap(0, 18, Short.MAX_VALUE)
         );
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Desactivo", "Suspendido" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,7 +253,7 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel8))
                 .addGap(71, 71, 71)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(74, Short.MAX_VALUE))
@@ -246,22 +274,37 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
+
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\limpiar.png")); // NOI18N
+        jButton3.setText("Limpiar");
+
+        jMReactivar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\nuevo.png")); // NOI18N
+        jMReactivar.setText("Reactivar");
+        jMBCambioEstado.add(jMReactivar);
+
+        jMSuspender.setIcon(new javax.swing.ImageIcon("C:\\Users\\Piere\\PUCP\\SEMESTRE 2010-1\\DP1\\plagiarius\\Programación\\AntiPlagium\\Iconos\\Eliminar - 16.png")); // NOI18N
+        jMSuspender.setText("Suspender");
+        jMBCambioEstado.add(jMSuspender);
+
+        setJMenuBar(jMBCambioEstado);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jButton1)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton2))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,12 +315,13 @@ public class JFAgregarUsuario extends JIFBase {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addContainerGap())
@@ -289,20 +333,21 @@ public class JFAgregarUsuario extends JIFBase {
     /**
     * @param args the command line arguments
     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFAgregarUsuario().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new JFAgregarUsuario().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox jCBEstado;
+    private javax.swing.JComboBox jCBRol;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -314,6 +359,9 @@ public class JFAgregarUsuario extends JIFBase {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuBar jMBCambioEstado;
+    private javax.swing.JMenu jMReactivar;
+    private javax.swing.JMenu jMSuspender;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
