@@ -3,15 +3,10 @@ package antiplagium.view;
 import javax.swing.JDesktopPane;
 
 public class AntiPlagiumPrincipal extends JFBase {
-
-//    JDesktopPane desktop;
-    /** Creates new form AntiPlagiumPrincipal */
+   
     public AntiPlagiumPrincipal() {        
         initComponents();
-//        desktop=new JDesktopPane();
-//        setContentPane(desktop);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,8 +25,10 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(java.awt.Color.lightGray);
+        setBounds(new java.awt.Rectangle(0, 0, 1024, 700));
 
-        JDPPrincipal.setBackground(new java.awt.Color(153, 153, 153));
+        JDPPrincipal.setBackground(java.awt.Color.lightGray);
 
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -104,8 +101,8 @@ public class AntiPlagiumPrincipal extends JFBase {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(JDPPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -120,7 +117,7 @@ public class AntiPlagiumPrincipal extends JFBase {
 }//GEN-LAST:event_JMIAdministrarUsuariosActionPerformed
 
     private void JMIAdministrarGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarGruposActionPerformed
-        JFAdministrarRoles jfAdministrarRoles = new JFAdministrarRoles();
+        JFAdministrarRoles jfAdministrarRoles = new JFAdministrarRoles(JDPPrincipal);
         jfAdministrarRoles.setVisible(true);
         JDPPrincipal.add(jfAdministrarRoles);
         
@@ -142,22 +139,13 @@ public class AntiPlagiumPrincipal extends JFBase {
           JDPPrincipal.add(buscardoc);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    public static  JDesktopPane  getJDesktopPane(){
-      return JDPPrincipal;
-    }
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AntiPlagiumPrincipal().setVisible(true);
-            }
-        });
-    }
+//    public static  JDesktopPane  getJDesktopPane(){
+//      return JDPPrincipal;
+//    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JDesktopPane JDPPrincipal;
+    public javax.swing.JDesktopPane JDPPrincipal;
     private javax.swing.JMenuItem JMIAdministrarGrupos;
     private javax.swing.JMenuItem JMIAdministrarUsuarios;
     private javax.swing.JMenu jMenu1;

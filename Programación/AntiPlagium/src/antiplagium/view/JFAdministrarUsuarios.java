@@ -9,14 +9,13 @@ import javax.swing.JInternalFrame;
  *
  * @author a20050354
  */
-public class JFAdministrarUsuarios extends JInternalFrame {
+public class JFAdministrarUsuarios extends JIFBase {
 
 //    private JCalendarCombo cmbCalendarioInicio = new JCalendarCombo();
 //    private JCalendarCombo cmbCalendarioFin= new JCalendarCombo();
 
     /** Creates new form JFAministrarUsuarios */
     public JFAdministrarUsuarios() {
-//         super();
          initComponents();
 //        cmbCalendarioInicio.setBounds(200, 105, 200, 20);
 //        jPanel1.add(cmbCalendarioInicio);
@@ -62,8 +61,8 @@ public class JFAdministrarUsuarios extends JInternalFrame {
         jMenu4.setText("Edit");
         jMenuBar2.add(jMenu4);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
 
@@ -181,7 +180,7 @@ public class JFAdministrarUsuarios extends JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jButton1.setText("Modificar");
@@ -209,6 +208,11 @@ public class JFAdministrarUsuarios extends JInternalFrame {
 
         jMenu1.setBackground(new java.awt.Color(0, 153, 153));
         jMenu1.setText("Nuevo");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
@@ -248,12 +252,9 @@ public class JFAdministrarUsuarios extends JInternalFrame {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(JBNuevo))
+                    .addComponent(JBNuevo)
+                    .addComponent(jButton2))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(614, 614, 614)
-                .addComponent(jButton2)
-                .addGap(11, 11, 11))
         );
 
         pack();

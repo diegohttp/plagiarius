@@ -1,11 +1,23 @@
 
 package antiplagium.view;
 
+import java.awt.Color;
+import javax.swing.UIManager;
+
 public class JFBase extends javax.swing.JFrame {
 
     /** Creates new form JFBase */
     public JFBase() {
         initComponents();
+        try
+        {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+            catch (Exception e)
+        {
+            e.printStackTrace();
+        }               
+        this.getContentPane().setBackground(Color.lightGray);
     }
     
     @SuppressWarnings("unchecked")
