@@ -12,6 +12,7 @@
 package antiplagium.view;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -225,7 +226,10 @@ public class JFCompararDocumentos extends JFrame {
         if (idx >= 0){
             DefaultTableModel temp = (DefaultTableModel) this.jTable1.getModel();
             temp.removeRow(idx);
-        } 
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
