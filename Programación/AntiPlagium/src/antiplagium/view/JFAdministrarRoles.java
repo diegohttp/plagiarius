@@ -133,7 +133,7 @@ public class JFAdministrarRoles extends JIFBase {
             }
         });
 
-        JBNuevo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        JBNuevo.setFont(new java.awt.Font("Tahoma", 0, 10));
         JBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         JBNuevo.setText("Nuevo");
         JBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -145,13 +145,8 @@ public class JFAdministrarRoles extends JIFBase {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         jMenu1.setText("Nuevo");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
-            }
-        });
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jMenu1MouseReleased(evt);
             }
         });
         jMenuBar1.add(jMenu1);
@@ -184,7 +179,7 @@ public class JFAdministrarRoles extends JIFBase {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +193,7 @@ public class JFAdministrarRoles extends JIFBase {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JBNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -207,17 +202,6 @@ public class JFAdministrarRoles extends JIFBase {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-
-    }//GEN-LAST:event_jMenu1ActionPerformed
-
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        JFAgregarRol jfAgregarRol = new JFAgregarRol();
-        AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
-        jfAgregarRol.toFront();
-        jfAgregarRol.setVisible(true);
-    }//GEN-LAST:event_jMenu1MouseClicked
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
         JFAgregarRol jfAgregarRol = new JFAgregarRol();
@@ -233,6 +217,13 @@ public class JFAdministrarRoles extends JIFBase {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
 }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
+        JFAgregarRol jfAgregarRol = new JFAgregarRol();
+        AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
+        jfAgregarRol.toFront();
+        jfAgregarRol.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseReleased
 
 
 

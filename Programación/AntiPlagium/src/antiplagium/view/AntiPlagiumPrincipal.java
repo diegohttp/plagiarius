@@ -2,6 +2,7 @@ package antiplagium.view;
 
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
+import antiplagium.DAL.*;
 
 public class AntiPlagiumPrincipal extends JFBase {
 
@@ -13,6 +14,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         dim=super.getToolkit().getScreenSize();
         super.setSize(dim.width, dim.height - 25);
         super.setVisible(true);
+        ConexionJDBC.conexion();
     }
 
     @SuppressWarnings("unchecked")
