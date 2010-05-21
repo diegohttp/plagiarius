@@ -136,6 +136,7 @@ public class JDCompararDocumentos extends javax.swing.JDialog {
                 "Código", "Nombre", "Categoria", "Propietario"
             }
         ));
+        jTable1.setDoubleBuffered(true);
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
