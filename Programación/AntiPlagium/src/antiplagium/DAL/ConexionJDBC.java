@@ -1,6 +1,7 @@
 package antiplagium.DAL;
 
 import java.sql.*;
+
 import org.postgresql.*;
 
 
@@ -8,8 +9,7 @@ public class ConexionJDBC {
 
 public static void conexion() {
         
-    try {
-            ///Libraries/postgresql-8.4-701.jdbc4.jar
+    try {            
             Class.forName("org.postgresql.Driver");            
 
             String url = "jdbc:postgresql:quilla.lab.inf.pucp.edu.pe:1053/postgres";
