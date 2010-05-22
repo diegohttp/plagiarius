@@ -14,7 +14,7 @@ public static void conexion() {
 
             String url = "jdbc:postgresql:quilla.lab.inf.pucp.edu.pe:1053/postgres";
 
-            Connection con = DriverManager.getConnection(url, "postgres", "cuadrado");
+            Connection con = DriverManager.getConnection(url, "augusto", "augusto");
 
             Statement stmt = con.createStatement();
 
