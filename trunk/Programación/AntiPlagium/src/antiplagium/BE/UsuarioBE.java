@@ -11,4 +11,6 @@ package antiplagium.BE;
  */
 public class UsuarioBE {
 
+    
+
 }
