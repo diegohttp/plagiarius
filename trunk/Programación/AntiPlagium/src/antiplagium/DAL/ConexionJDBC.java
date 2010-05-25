@@ -1,9 +1,7 @@
 package antiplagium.DAL;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Vector;
-import oracle.toplink.essentials.internal.helper.DatabaseTable;
 
 public class ConexionJDBC {
 
@@ -83,11 +81,6 @@ public class ConexionJDBC {
                               
         return vector;
     }
-
-//      headers = new String[colCount];
-//      for (int h = 1; h <= colCount; h++) {
-//        headers[h - 1] = meta.getColumnName(h);
-//      }
 
     public static Connection getCon()
     {
