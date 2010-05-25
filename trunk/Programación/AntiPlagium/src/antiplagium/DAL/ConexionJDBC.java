@@ -1,6 +1,9 @@
 package antiplagium.DAL;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Vector;
+import oracle.toplink.essentials.internal.helper.DatabaseTable;
 
 public class ConexionJDBC {
 
@@ -52,6 +55,39 @@ public class ConexionJDBC {
             }
         }//fin de finally
     }//fin de conexionJDBC
+
+    public static Vector ejecutarQuery(String queryString) throws SQLException
+    {
+        Vector vector = new Vector();
+
+        conexion.setAutoCommit(false);
+        conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        instruccion = conexion.createStatement();
+        tablaResultados = instruccion.executeQuery(queryString);
+        
+        int nroColumnas = tablaResultados.getMetaData().getColumnCount();
+
+        while(tablaResultados.next())
+        {
+            Object[] registro = new Object[nroColumnas];
+            for (int i=0; i < nroColumnas; i++)
+            {
+                registro[i] = tablaResultados.getObject(i+1);
+            }
+            vector.addElement(registro);
+        }
+
+        //tablaResultados.close();
+        instruccion.close();
+        conexion.close();
+                              
+        return vector;
+    }
+
+//      headers = new String[colCount];
+//      for (int h = 1; h <= colCount; h++) {
+//        headers[h - 1] = meta.getColumnName(h);
+//      }
 
     public static Connection getCon()
     {
