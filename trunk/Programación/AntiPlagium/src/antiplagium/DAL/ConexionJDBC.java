@@ -7,9 +7,9 @@ public class ConexionJDBC {
     private static final String CONTROLADOR = "org.postgresql.Driver";
     private static final String URL_BASEDATOS = "jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres";
 
-    private static Connection conexion = null;
-    private static Statement  instruccion = null;
-    private static ResultSet  tablaResultados = null;
+    public static Connection conexion = null;
+    public static Statement  instruccion = null;
+    public static ResultSet  tablaResultados = null;
     
     public static void conexion()
     {
