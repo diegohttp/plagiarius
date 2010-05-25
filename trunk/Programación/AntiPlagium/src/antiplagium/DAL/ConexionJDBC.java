@@ -1,57 +1,61 @@
 package antiplagium.DAL;
 
 import java.sql.*;
-import org.postgresql.*;
-
 
 public class ConexionJDBC {
 
-    private static Connection con;
+    private static final String CONTROLADOR = "org.postgresql.Driver";
+    private static final String URL_BASEDATOS = "jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres";
 
-    public static Connection getCon() {
-        return con;
-    }
+    private static Connection conexion = null;
+    private static Statement  instruccion = null;
+    private static ResultSet  tablaResultados = null;
+    
+    public static void conexion()
+    {
+        try {
+            //carga clase controlador
+            Class.forName(CONTROLADOR);
 
-    public static void setCon(Connection con) {
-        ConexionJDBC.con = con;
-    }
+            //establece conexion con base de datos
+            conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
 
-public static void conexion() {
-
-    try {
-            ///Libraries/postgresql-8.4-701.jdbc4.jar
-            Class.forName("org.postgresql.Driver");
-
-            String url = "jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres";
-
-            con = DriverManager.getConnection(url, "postgres", "cuadrado");
-
-
-            Statement stmt = con.createStatement();
-
-            //Se ejecuta una consulta y se devuelve el resultado en ResultSet
-
-            //ResultSet rs = stmt.executeQuery("SELECT * FROM "+"public."+'"'+"Usuario"+'"');
-            ResultSet rs = stmt.executeQuery("SELECT * FROM" +'"'+"Usuario"+'"');
-
-
-            /* Se realizan iteraciones a través del ResultSet y se imprimen en pantalla los valores de
-            algunos atributos del renglón. El ResultSet mantiene un apuntador al renglón de datos
-            actual, inicialmente el apuntador es posicionado antes del primer renglón. El método next
-            mueve el apuntador al siguiente renglón. */
-
-//            while (rs.next()) {
-//                System.out.println(rs.getString("nombres"));
+            //crea objeto statement para consultar la base de datos
+            instruccion = conexion.createStatement();
+            
+//             Ejemplo consulta base de datos
+//            tablaResultados = instruccion.executeQuery("SELECT * FROM" +'"'+"Usuario"+'"');
+//
+//            while (tablaResultados.next()) {
+//                  System.out.println(tablaResultados.getString("nombres"));
 //            }
-
-//            stmt.close();
-//            con.close();
         }
-
-    catch (Exception e)
+        catch ( SQLException excepcionSql)
         {
-            e.printStackTrace();
+            excepcionSql.printStackTrace();
         }
+        catch (ClassNotFoundException noEncontroClase)
+        {
+            noEncontroClase.printStackTrace();
+        }
+        finally //asegura que tabla de resultados, instruccion y conexión estén cerrados
+        {
+            try
+            {
+                tablaResultados.close();
+                instruccion.close();
+                conexion.close();
+            }
+            catch(Exception excepcion)
+            {
+                excepcion.printStackTrace();
+            }
+        }//fin de finally
+    }//fin de conexionJDBC
 
+    public static Connection getCon()
+    {
+            return conexion;
     }
+
 }
