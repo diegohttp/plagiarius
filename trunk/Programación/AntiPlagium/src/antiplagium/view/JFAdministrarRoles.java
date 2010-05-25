@@ -32,6 +32,7 @@ public class JFAdministrarRoles extends JIFBase {
                 {
                     Object[] registro = (Object[])tablaRoles.get(i);
                     System.out.println(registro[0].toString() + " " + registro[1].toString() + " " + registro[2].toString());
+                    jComboBox1.addItem(registro[1].toString());
                }
             }
             catch(SQLException excepcionSQL)
