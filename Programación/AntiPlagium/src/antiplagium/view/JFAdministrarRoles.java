@@ -2,10 +2,14 @@ package antiplagium.view;
 
 import javax.swing.JDesktopPane;
 import antiplagium.DAL.ConexionJDBC;
+import antiplagium.DAO.RolDAO;
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 
 public class JFAdministrarRoles extends JIFBase {
 
@@ -19,38 +23,40 @@ public class JFAdministrarRoles extends JIFBase {
 
     private void onLoad()
     {        
-        try{
-            ConexionJDBC.instruccion = ConexionJDBC.conexion.createStatement();
-            ConexionJDBC.tablaResultados = ConexionJDBC.instruccion.executeQuery("SELECT \"idRol\", \"nombre\", \"descripcion\" FROM \"Rol\"");
-
-            //ArrayList<String> arreglo = (ArrayList<String>)rs.getArray("nombre");
-
-            while (ConexionJDBC.tablaResultados.next())
+            RolDAO rolDAO = new RolDAO();
+            try
             {
-                System.out.println(ConexionJDBC.tablaResultados.getString("nombre"));
-                jComboBox1.addItem(ConexionJDBC.tablaResultados.getString("nombre"));
+                Vector tablaRoles = rolDAO.getRoles();
+
+                for (int i=0; i<tablaRoles.size(); i++)
+                {
+                    Object[] registro = (Object[])tablaRoles.get(i);
+                    System.out.println(registro[0].toString() + " " + registro[1].toString() + " " + registro[2].toString());
+               }
             }
-        }
-        catch(Exception e) {e.printStackTrace();}
-
-        try{
-            ConexionJDBC.instruccion = ConexionJDBC.conexion.createStatement();
-            ConexionJDBC.tablaResultados = ConexionJDBC.instruccion.executeQuery("SELECT RP.\"idRol\", R.\"nombre\" AS \"Rol\", RP.\"idPrivilegio\", P.\"nombre\" AS \"Privilegio\" " +
-                                             "FROM \"RolXPrivilegio\" RP " +
-                                             "INNER JOIN \"Rol\" R " +
-                                             "ON RP.\"idRol\" = R.\"idRol\" " +
-                                             "INNER JOIN \"Privilegio\" P " +
-                                             "ON RP.\"idPrivilegio\" = P.\"idPrivilegio\"");
-
-            //ArrayList<String> arreglo = (ArrayList<String>)rs.getArray("nombre");
-
-            while (ConexionJDBC.tablaResultados.next())
+            catch(SQLException excepcionSQL)
             {
-                System.out.println(ConexionJDBC.tablaResultados.getString("idRol") + " " + ConexionJDBC.tablaResultados.getString("Rol") + " " + ConexionJDBC.tablaResultados.getString("idPrivilegio") + " " + ConexionJDBC.tablaResultados.getString("Privilegio"));
-                //jComboBox1.addItem(rs.getString("nombre"));
+                JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        catch(Exception e) {e.printStackTrace();}
+
+//        try{
+//            ConexionJDBC.instruccion = ConexionJDBC.conexion.createStatement();
+//            ConexionJDBC.tablaResultados = ConexionJDBC.instruccion.executeQuery("SELECT RP.\"idRol\", R.\"nombre\" AS \"Rol\", RP.\"idPrivilegio\", P.\"nombre\" AS \"Privilegio\" " +
+//                                             "FROM \"RolXPrivilegio\" RP " +
+//                                             "INNER JOIN \"Rol\" R " +
+//                                             "ON RP.\"idRol\" = R.\"idRol\" " +
+//                                             "INNER JOIN \"Privilegio\" P " +
+//                                             "ON RP.\"idPrivilegio\" = P.\"idPrivilegio\"");
+//
+//            //ArrayList<String> arreglo = (ArrayList<String>)rs.getArray("nombre");
+//
+//            while (ConexionJDBC.tablaResultados.next())
+//            {
+//                System.out.println(ConexionJDBC.tablaResultados.getString("idRol") + " " + ConexionJDBC.tablaResultados.getString("Rol") + " " + ConexionJDBC.tablaResultados.getString("idPrivilegio") + " " + ConexionJDBC.tablaResultados.getString("Privilegio"));
+//                //jComboBox1.addItem(rs.getString("nombre"));
+//            }
+//        }
+//        catch(Exception e) {e.printStackTrace();}
 
 
 
