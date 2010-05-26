@@ -5,6 +5,9 @@
 
 package antiplagium.BE;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author a20057070
@@ -29,5 +32,10 @@ public final class Utilitario {
             return false;
         else
             return true;
+    }
+    public static boolean esEmailValido(String text){
+        Pattern regex = Pattern.compile("^([0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$");
+        Matcher m = regex.matcher(text);
+        return m.matches();
     }
 }
