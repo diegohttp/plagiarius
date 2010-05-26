@@ -19,10 +19,10 @@ public class ConexionJDBC {
             Class.forName(CONTROLADOR);
 
             //establece conexion con base de datos
-            conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+            //conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
 
             //crea objeto statement para consultar la base de datos
-            instruccion = conexion.createStatement();
+            //instruccion = conexion.createStatement();
             
 //             Ejemplo consulta base de datos
 //            tablaResultados = instruccion.executeQuery("SELECT * FROM" +'"'+"Usuario"+'"');
@@ -31,51 +31,55 @@ public class ConexionJDBC {
 //                  System.out.println(tablaResultados.getString("nombres"));
 //            }
         }
-        catch ( SQLException excepcionSql)
-        {
-            excepcionSql.printStackTrace();
-        }
+//        catch ( SQLException excepcionSql)
+//        {
+//            excepcionSql.printStackTrace();
+//        }
         catch (ClassNotFoundException noEncontroClase)
         {
             noEncontroClase.printStackTrace();
         }
-        finally //asegura que tabla de resultados, instruccion y conexión estén cerrados
-        {
-            try
-            {
+//        finally //asegura que tabla de resultados, instruccion y conexión estén cerrados
+//        {
+//            try
+//            {
 //                tablaResultados.close();
 //                instruccion.close();
 //                conexion.close();
-            }
-            catch(Exception excepcion)
-            {
-                excepcion.printStackTrace();
-            }
-        }//fin de finally
+//            }
+//            catch(Exception excepcion)
+//            {
+//                excepcion.printStackTrace();
+//            }
+//        }//fin de finally
     }//fin de conexionJDBC
 
     public static Vector ejecutarQuery(String queryString) throws SQLException
     {
         Vector vector = new Vector();
-
-        conexion.setAutoCommit(false);
+        
+        conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+        conexion.setAutoCommit(true);
         conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         instruccion = conexion.createStatement();
         tablaResultados = instruccion.executeQuery(queryString);
         
-        int nroColumnas = tablaResultados.getMetaData().getColumnCount();
-
-        while(tablaResultados.next())
+        if (tablaResultados.getMetaData().getColumnCount() > 0)
         {
-            Object[] registro = new Object[nroColumnas];
-            for (int i=0; i < nroColumnas; i++)
+            int nroColumnas = tablaResultados.getMetaData().getColumnCount();
+
+            while(tablaResultados.next())
             {
-                registro[i] = tablaResultados.getObject(i+1);
+                Object[] registro = new Object[nroColumnas];
+                for (int i=0; i < nroColumnas; i++)
+                {
+                    registro[i] = tablaResultados.getObject(i+1);
+                }
+                vector.addElement(registro);
             }
-            vector.addElement(registro);
         }
 
-        //tablaResultados.close();
+        tablaResultados.close();
         instruccion.close();
         conexion.close();
                               
