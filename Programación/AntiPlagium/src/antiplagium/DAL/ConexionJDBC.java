@@ -43,9 +43,9 @@ public class ConexionJDBC {
         {
             try
             {
-                tablaResultados.close();
-                instruccion.close();
-                conexion.close();
+//                tablaResultados.close();
+//                instruccion.close();
+//                conexion.close();
             }
             catch(Exception excepcion)
             {
