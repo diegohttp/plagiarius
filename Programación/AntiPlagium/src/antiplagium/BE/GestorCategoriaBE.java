@@ -16,8 +16,11 @@ public class GestorCategoriaBE {
     public GestorCategoriaBE(){
         gestorCatergoria = new ArrayList<CategoriaBE>();
     }
+    public void GestorCategoria(ArrayList<CategoriaBE> gs){
+        this.gestorCatergoria = gs;
+    }
     public CategoriaBE get(int idx){
-        if (this.gestorCatergoria.isEmpty() || this.gestorCatergoria.size() - 1 < idx) return null;
+        if (idx < 0 || this.gestorCatergoria.size() - 1 < idx) return null;
         else return this.get(idx);
     }
     public void add(CategoriaBE elem){
