@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import org.freixas.jcalendar.JCalendarCombo;
+//import org.freixas.jcalendar.JCalendarCombo;
 
 
 /**
@@ -27,18 +27,28 @@ import org.freixas.jcalendar.JCalendarCombo;
 public class RegistrarDocumento extends JFrame {
 
 
-     private JCalendarCombo cmbFechaInicio;
+ //    private JCalendarCombo cmbFechaInicio;
 
     /** Creates new form RegistrarDocumento */
     public RegistrarDocumento() {
 
-        cmbFechaInicio=new JCalendarCombo();
+    //    cmbFechaInicio=new JCalendarCombo();
 
         initComponents();
 
-        cmbFechaInicio.setSize(220,25);
-        jPanel3.add(cmbFechaInicio);
+      //  cmbFechaInicio.setSize(220,25);
+     //   jPanel3.add(cmbFechaInicio);
 
+    }
+
+    private void cargarArchivo(int numDoc, String nomArch){
+        switch (numDoc) {
+            case 1: this.txtRuta11.setText(nomArch); break;
+            case 2: this.txtRuta22.setText(nomArch);break;
+            case 3: this.txtRuta33.setText(nomArch);break;
+            case 4: this.txtRuta44.setText(nomArch);break;
+            case 5: this.txtRuta55.setText(nomArch);break;
+        }
     }
 
     /** This method is called from within the constructor to
@@ -51,24 +61,36 @@ public class RegistrarDocumento extends JFrame {
     private void initComponents() {
 
         btnLimpiar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        txtNombreDoc = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        javax.swing.JTextField txtNombreDoc1 = new javax.swing.JTextField();
+        txtRuta11 = new javax.swing.JTextField();
+        btnBuscar1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        javax.swing.JTextField txtNombreDoc3 = new javax.swing.JTextField();
+        txtRuta22 = new javax.swing.JTextField();
+        btnBuscar2 = new javax.swing.JButton();
+        javax.swing.JTextField txtNombreDoc4 = new javax.swing.JTextField();
+        txtRuta33 = new javax.swing.JTextField();
+        btnBuscar3 = new javax.swing.JButton();
+        javax.swing.JTextField txtNombreDoc5 = new javax.swing.JTextField();
+        txtRuta44 = new javax.swing.JTextField();
+        btnBuscar4 = new javax.swing.JButton();
+        javax.swing.JTextField txtNombreDoc6 = new javax.swing.JTextField();
+        txtRuta55 = new javax.swing.JTextField();
+        btnBuscar5 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
-        txtExaminar = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jftfFechaEmision = new javax.swing.JFormattedTextField();
-        jftfFechaEmision1 = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
+        txtPropietario = new javax.swing.JTextField();
 
         setTitle("Registrar Documento");
         setMinimumSize(new java.awt.Dimension(447, 447));
-        setResizable(false);
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -78,29 +100,11 @@ public class RegistrarDocumento extends JFrame {
             }
         });
 
-        jLabel6.setText("Propietario:");
-
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ingenieria Informatica", "Derecho", "Filosofia", "Arte" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        txtNombreDoc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreDocKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreDocKeyReleased(evt);
             }
         });
 
@@ -112,26 +116,206 @@ public class RegistrarDocumento extends JFrame {
             }
         });
 
-        jLabel12.setText("Categoría:");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documentos"));
 
         jLabel1.setText("Nombre:");
 
-        jLabel2.setText("Código:");
-
-        jLabel13.setText("Fecha de registro:");
-
-        jButton4.setText("Examinar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        txtNombreDoc1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreDoc1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreDoc1KeyReleased(evt);
             }
         });
 
-        jftfFechaEmision.setEditable(false);
-        jftfFechaEmision.setEnabled(false);
+        txtRuta11.setEnabled(false);
 
-        jftfFechaEmision1.setEditable(false);
-        jftfFechaEmision1.setEnabled(false);
+        btnBuscar1.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
+        btnBuscar1.setText("Buscar");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Ruta:");
+
+        txtNombreDoc3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreDoc3KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreDoc3KeyReleased(evt);
+            }
+        });
+
+        txtRuta22.setEnabled(false);
+
+        btnBuscar2.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
+        btnBuscar2.setText("Buscar");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar2ActionPerformed(evt);
+            }
+        });
+
+        txtNombreDoc4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreDoc4KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreDoc4KeyReleased(evt);
+            }
+        });
+
+        txtRuta33.setEnabled(false);
+
+        btnBuscar3.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
+        btnBuscar3.setText("Buscar");
+        btnBuscar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar3ActionPerformed(evt);
+            }
+        });
+
+        txtNombreDoc5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreDoc5KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreDoc5KeyReleased(evt);
+            }
+        });
+
+        txtRuta44.setEnabled(false);
+
+        btnBuscar4.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
+        btnBuscar4.setText("Buscar");
+        btnBuscar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar4ActionPerformed(evt);
+            }
+        });
+
+        txtNombreDoc6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreDoc6KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreDoc6KeyReleased(evt);
+            }
+        });
+
+        txtRuta55.setEnabled(false);
+
+        btnBuscar5.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
+        btnBuscar5.setText("Buscar");
+        btnBuscar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNombreDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtRuta11, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscar1)
+                                .addGap(57, 57, 57))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addContainerGap(365, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtRuta22, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar2)
+                        .addGap(57, 57, 57))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtRuta33, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar3)
+                        .addGap(57, 57, 57))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtRuta44, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar4)
+                        .addGap(57, 57, 57))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtNombreDoc6, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtRuta55, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar5)
+                        .addGap(57, 57, 57))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRuta11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRuta22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRuta33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRuta44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreDoc6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRuta55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos generales"));
+
+        jLabel6.setText("Propietario:");
+
+        jLabel12.setText("Categoría:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ingenieria Informatica", "Derecho", "Filosofia", "Arte" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Fecha de registro:");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setPreferredSize(new java.awt.Dimension(220, 25));
@@ -140,86 +324,86 @@ public class RegistrarDocumento extends JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
+            .addGap(0, 185, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 18, Short.MAX_VALUE)
         );
 
+        txtPropietario.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPropietario, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel12)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel13))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jftfFechaEmision, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNombreDoc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jftfFechaEmision1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnLimpiar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnAceptar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnCancelar))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(txtExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jButton4))
-                                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(30, 30, 30))))
-                .addGap(21, 21, 21))
+                .addContainerGap(540, Short.MAX_VALUE)
+                .addComponent(btnLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAceptar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelar)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jftfFechaEmision1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jftfFechaEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -239,45 +423,32 @@ public class RegistrarDocumento extends JFrame {
 
 
     //Cargando el archivo txt!!!!
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
 
         JFileChooser chooser = new JFileChooser();
-        chooser.setApproveButtonText("Abrir TxT");
-        //en caso sea solo Txt:     chooser.addChoosableFileFilter(new TxTFilter());
+        chooser.setApproveButtonText("Cargar");
+        //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION){
-            File archivo=chooser.getSelectedFile();
-            try {
-            BufferedReader reader = new BufferedReader(new FileReader(archivo));
-            String linea = reader.readLine();
-            /*while (linea != null) {
+            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+            this.cargarArchivo(1, nomArch);
 
-            txtExaminar.setText(linea + "\n");
-
-            linea = reader.readLine();
-            }*/
-            txtExaminar.setText(archivo.getAbsolutePath());
-            }
-            catch (Exception ex) {
-            }
         }
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
-        txtNombreDoc.setText("");
-        txtExaminar.setText("");
-        /*this.jFormattedTextField1.setText("");*/
+   
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void txtNombreDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDocKeyPressed
+    private void txtNombreDoc1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc1KeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDocKeyPressed
+    }//GEN-LAST:event_txtNombreDoc1KeyPressed
 
-    private void txtNombreDocKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDocKeyReleased
+    private void txtNombreDoc1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc1KeyReleased
         // TODO add your handling code here:
-        Character caracter = new Character(evt.getKeyChar());
+       /* Character caracter = new Character(evt.getKeyChar());
         if (Utilitario.esAlphanumerico(caracter)) {
                     String texto = "";
                     for (int i = 0; i < this.txtNombreDoc.getText().length(); i++)
@@ -285,26 +456,119 @@ public class RegistrarDocumento extends JFrame {
                             texto += this.txtNombreDoc.getText().charAt(i);
                     this.txtNombreDoc.setText(texto);
             this.txtNombreDoc.getToolkit().beep();
+        }*/
+    }//GEN-LAST:event_txtNombreDoc1KeyReleased
+
+    private void txtNombreDoc3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDoc3KeyPressed
+
+    private void txtNombreDoc3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc3KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDoc3KeyReleased
+
+    private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
+       JFileChooser chooser = new JFileChooser();
+        chooser.setApproveButtonText("Cargar");
+        //chooser.addChoosableFileFilter(new TxTFilter());
+        int retVal = chooser.showOpenDialog(this);
+        if (retVal == chooser.APPROVE_OPTION){
+            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+            this.cargarArchivo(2, nomArch);
+
         }
-    }//GEN-LAST:event_txtNombreDocKeyReleased
+    }//GEN-LAST:event_btnBuscar2ActionPerformed
+
+    private void txtNombreDoc4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDoc4KeyPressed
+
+    private void txtNombreDoc4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc4KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDoc4KeyReleased
+
+    private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.setApproveButtonText("Cargar");
+        //chooser.addChoosableFileFilter(new TxTFilter());
+        int retVal = chooser.showOpenDialog(this);
+        if (retVal == chooser.APPROVE_OPTION){
+            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+            this.cargarArchivo(3, nomArch);
+
+        }
+    }//GEN-LAST:event_btnBuscar3ActionPerformed
+
+    private void txtNombreDoc5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc5KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDoc5KeyPressed
+
+    private void txtNombreDoc5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc5KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDoc5KeyReleased
+
+    private void btnBuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar4ActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.setApproveButtonText("Cargar");
+        //chooser.addChoosableFileFilter(new TxTFilter());
+        int retVal = chooser.showOpenDialog(this);
+        if (retVal == chooser.APPROVE_OPTION){
+            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+            this.cargarArchivo(4, nomArch);
+
+        }
+    }//GEN-LAST:event_btnBuscar4ActionPerformed
+
+    private void txtNombreDoc6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc6KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDoc6KeyPressed
+
+    private void txtNombreDoc6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc6KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDoc6KeyReleased
+
+    private void btnBuscar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar5ActionPerformed
+       JFileChooser chooser = new JFileChooser();
+        chooser.setApproveButtonText("Cargar");
+        //chooser.addChoosableFileFilter(new TxTFilter());
+        int retVal = chooser.showOpenDialog(this);
+        if (retVal == chooser.APPROVE_OPTION){
+            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+            this.cargarArchivo(5, nomArch);
+
+        }
+    }//GEN-LAST:event_btnBuscar5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnBuscar1;
+    private javax.swing.JButton btnBuscar2;
+    private javax.swing.JButton btnBuscar3;
+    private javax.swing.JButton btnBuscar4;
+    private javax.swing.JButton btnBuscar5;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JFormattedTextField jftfFechaEmision;
-    private javax.swing.JFormattedTextField jftfFechaEmision1;
-    private javax.swing.JTextField txtExaminar;
-    private javax.swing.JTextField txtNombreDoc;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextField txtPropietario;
+    private javax.swing.JTextField txtRuta11;
+    private javax.swing.JTextField txtRuta2;
+    private javax.swing.JTextField txtRuta22;
+    private javax.swing.JTextField txtRuta33;
+    private javax.swing.JTextField txtRuta44;
+    private javax.swing.JTextField txtRuta55;
     // End of variables declaration//GEN-END:variables
 
 }
