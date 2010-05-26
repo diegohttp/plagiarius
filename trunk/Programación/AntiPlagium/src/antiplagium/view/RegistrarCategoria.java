@@ -11,8 +11,9 @@
 
 package antiplagium.view;
 
+import java.util.Date;
 import org.freixas.jcalendar.JCalendarCombo;
-
+import antiplagium.BE.Utilitario;
 /**
  *
  * @author PATTY
@@ -74,6 +75,12 @@ public class RegistrarCategoria extends JIFBase {
 
         jLabel6.setText("Descripción:");
 
+        txtNomCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomCategoriaKeyReleased(evt);
+            }
+        });
+
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +105,12 @@ public class RegistrarCategoria extends JIFBase {
         jLabel13.setText("Fecha de registro:");
 
         jLabel1.setText("Nombre:");
+
+        txtDescCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescCategoriaKeyReleased(evt);
+            }
+        });
 
         jftfFechaEmision2.setEditable(false);
         jftfFechaEmision2.setEnabled(false);
@@ -152,7 +165,7 @@ public class RegistrarCategoria extends JIFBase {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jftfFechaEmision1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -194,7 +207,36 @@ public class RegistrarCategoria extends JIFBase {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
        txtNomCategoria.setText("");
        txtDescCategoria.setText("");
+       this.cmbFechaInicio.setDate(new Date());
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtNomCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomCategoriaKeyReleased
+        // TODO add your handling code here:
+                Character caracter = new Character(evt.getKeyChar());
+                
+                if (Utilitario.esLetra(caracter)) {
+	                    String texto = "";
+	                    for (int i = 0; i < this.txtNomCategoria.getText().length(); i++)
+	                        if (Utilitario.esLetra(new Character(this.txtNomCategoria.getText().charAt(i))))
+	                            texto += this.txtNomCategoria.getText().charAt(i);
+	                    this.txtNomCategoria.setText(texto);
+                    this.txtNomCategoria.getToolkit().beep();
+                }
+    }//GEN-LAST:event_txtNomCategoriaKeyReleased
+
+    private void txtDescCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescCategoriaKeyReleased
+        // TODO add your handling code here:
+        Character caracter = new Character(evt.getKeyChar());
+
+        if (Utilitario.esAlphanumerico(caracter)) {
+                    String texto = "";
+                    for (int i = 0; i < this.txtNomCategoria.getText().length(); i++)
+                        if (Utilitario.esAlphanumerico(new Character(this.txtNomCategoria.getText().charAt(i))))
+                            texto += this.txtNomCategoria.getText().charAt(i);
+                    this.txtNomCategoria.setText(texto);
+            this.txtNomCategoria.getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtDescCategoriaKeyReleased
 
     /**
     * @param args the command line arguments
