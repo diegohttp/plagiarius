@@ -225,16 +225,16 @@ public class RegistrarCategoria extends JIFBase {
 
     private void txtNomCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomCategoriaKeyReleased
         // TODO add your handling code here:
-                Character caracter = new Character(evt.getKeyChar());
-                
-                if (Utilitario.esLetra(caracter)) {
-	                    String texto = "";
-	                    for (int i = 0; i < this.txtNomCategoria.getText().length(); i++)
-	                        if (Utilitario.esLetra(new Character(this.txtNomCategoria.getText().charAt(i))))
-	                            texto += this.txtNomCategoria.getText().charAt(i);
-	                    this.txtNomCategoria.setText(texto);
-                    this.txtNomCategoria.getToolkit().beep();
-                }
+        Character caracter = new Character(evt.getKeyChar());
+
+        if (Utilitario.esLetra(caracter)) {
+                    String texto = "";
+                    for (int i = 0; i < this.txtNomCategoria.getText().length(); i++)
+                        if (Utilitario.esLetra(new Character(this.txtNomCategoria.getText().charAt(i))))
+                            texto += this.txtNomCategoria.getText().charAt(i);
+                    this.txtNomCategoria.setText(texto);
+            this.txtNomCategoria.getToolkit().beep();
+        }
     }//GEN-LAST:event_txtNomCategoriaKeyReleased
 
     private void txtDescCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescCategoriaKeyReleased
