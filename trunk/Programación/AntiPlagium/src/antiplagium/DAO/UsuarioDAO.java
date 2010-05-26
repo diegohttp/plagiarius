@@ -5,8 +5,10 @@
 
 package antiplagium.DAO;
 
+import antiplagium.BE.UsuarioBE;
 import antiplagium.DAL.ConexionJDBC;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -15,20 +17,27 @@ import java.util.logging.Logger;
  */
 public class UsuarioDAO {
 
+    Connection con;
+    Statement stmt;
+    Boolean error;
+    String squery;
+
   public UsuarioDAO(){
         ConexionJDBC.conexion();
+        error=false;
+        squery="";
   }
 
-  public int ValidarUsuario(String nombreUsuario, String contrasena){
+  public int ValidarUsuario(String nombreUsuario, String contrasena) throws SQLException{
         try {
-            Connection con = ConexionJDBC.getCon();
-            Statement stmt = con.createStatement();
+            con = ConexionJDBC.getCon();
+            stmt = con.createStatement();
             //Se ejecuta una consulta y se devuelve el resultado en ResultSet
             //ResultSet rs = stmt.executeQuery("SELECT * FROM "+"public."+'"'+"Usuario"+'"');
             char cd='"';
             String cs="'";
             char nt='A';
-            String squery="SELECT * FROM " +cd+ "Usuario" +cd+" AS "+nt;
+            squery="SELECT * FROM " +cd+ "Usuario" +cd+" AS "+nt;
             squery+=" WHERE "+nt+"."+cd+"nombreUsuario"+cd+"="+cs+nombreUsuario+cs+" and "+nt+"."+cd+"password"+cd+"="+cs+contrasena+ cs;
             squery+=";";
             System.out.println(squery);
@@ -47,8 +56,10 @@ public class UsuarioDAO {
                 System.out.println(numeroRegistros);
             }
 
+
 //            numeroRegistros=rs.getRow();
 //            System.out.println(numeroRegistros);
+            squery="";
             if (numeroRegistros==1) {
                 stmt.close();
                 con.close();
@@ -63,11 +74,74 @@ public class UsuarioDAO {
 
 
         } catch (SQLException ex) {
+            squery="";
+            stmt.close();
+            con.close();
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
         }
 
 
-        return 0;
+        
+  }
+
+  public boolean InsertarUsuario(UsuarioBE nuevoUsuario) throws SQLException{
+
+      try {
+          UsuarioBE u=nuevoUsuario;
+          String cadenaFechaI=null;
+          String cadenaFechaF=null;
+          String cadenaFechaC=null;
+          String cadenaIdROl=null;
+          String cadenaIdTipoCese=null;
+
+        //Switch to manual transaction mode by setting
+        //autocommit to false. Note that this starts the first
+        //manual transaction.
+           SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+
+           if (u.getFechaRegistro()!= null)     cadenaFechaI="'"+formato.format(u.getFechaRegistro())+"'";
+           if (u.getFechaVencimiento()!=null)   cadenaFechaF="'"+formato.format(u.getFechaVencimiento())+"'";
+           if (u.getFechaCese()!=null)          cadenaFechaC="'"+formato.format(u.getFechaCese())+"'";
+           if (u.getIdRol()!=null)              cadenaIdROl="'"+2+"'";
+                                                /*cadenaIdROl="'"+u.getIdRol().getIdRol()+"'"; no se puede aun*/
+           if (u.getIdTipoCese()!=null)         cadenaIdTipoCese="'"+u.getIdTipoCese().getIdTipoCEse()+"'";
+
+            con = ConexionJDBC.getCon();
+            con.setAutoCommit(false);
+            stmt = con.createStatement();
+            squery+="INSERT INTO \"Usuario\"(\"idUsuario\", nombres, \"apellidoPaterno\", \"apellidoMaterno\", \"nombreUsuario\", \"password\", \"fechaRegistro\", \"fechaVencimiento\", \"fechaCese\",estado, \"idRol\", \"idTipoCese\") VALUES (";
+            squery+=u.getIdUsuario()+",'"+u.getNombres()+"','"+u.getApellidoPaterno()+"','"+
+                    u.getApellidoMaterno()+"','"+u.getNombreUsuario()+ "','"+u.getPassword()+
+                    "',"+cadenaFechaI+ ","+cadenaFechaF+ ","+
+                    cadenaFechaC+ ",'"+ u.getEstado()+ "',"+cadenaIdROl+ ","+cadenaIdTipoCese+");";
+
+            System.out.println(squery);
+            stmt.executeUpdate(squery);
+            con.commit(); //This commits the transaction and starts a new one.
+
+            stmt.close(); //This turns off the transaction.
+            con.close();
+            System.out.println("Transaction succeeded. Both records were written to the database.");
+            error=true;
+            return error;
+      }
+        catch (SQLException ex) {
+                                ex.printStackTrace();
+
+                try {
+                    con.rollback();
+                    stmt.close(); //This turns off the transaction.
+                    con.close();
+                    System.out.println("Transaction failed. No records were written to the database.");
+                    return error;
+                }
+                catch (SQLException se) {
+                        se.printStackTrace();
+                        return error;
+                }
+        }
+
   }
 
 }

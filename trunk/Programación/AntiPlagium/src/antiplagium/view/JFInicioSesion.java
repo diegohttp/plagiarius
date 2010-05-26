@@ -29,7 +29,6 @@ public class JFInicioSesion extends javax.swing.JFrame {
     /** Creates new form JFInicioSesion */
     public JFInicioSesion() {
         initComponents();
-        ConexionJDBC.conexion();
         jPError.setVisible(false);
         jPFContrasena=new JPasswordField();
         jPFContrasena.setSize(176, 29);
