@@ -11,6 +11,7 @@
 
 package antiplagium.view;
 
+import antiplagium.BE.Utilitario;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -91,6 +92,15 @@ public class RegistrarDocumento extends JFrame {
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        txtNombreDoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreDocKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreDocKeyReleased(evt);
             }
         });
 
@@ -234,23 +244,24 @@ public class RegistrarDocumento extends JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Abrir TxT");
         //en caso sea solo Txt:     chooser.addChoosableFileFilter(new TxTFilter());
-        chooser.showOpenDialog(null);
-        File archivo=chooser.getSelectedFile();
-        try {
-        BufferedReader reader = new BufferedReader(new FileReader(archivo));
-        String linea = reader.readLine();
-        /*while (linea != null) {
+        int retVal = chooser.showOpenDialog(this);
+        if (retVal == chooser.APPROVE_OPTION){
+            File archivo=chooser.getSelectedFile();
+            try {
+            BufferedReader reader = new BufferedReader(new FileReader(archivo));
+            String linea = reader.readLine();
+            /*while (linea != null) {
 
-        txtExaminar.setText(linea + "\n");
+            txtExaminar.setText(linea + "\n");
 
-        linea = reader.readLine();
-        }*/
-        txtExaminar.setText(archivo.getAbsolutePath());
-        } catch (Exception ex) {
-                                            }
-
-
-        // TODO add your handling code here:
+            linea = reader.readLine();
+            }*/
+            txtExaminar.setText(archivo.getAbsolutePath());
+            }
+            catch (Exception ex) {
+            }
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -259,6 +270,23 @@ public class RegistrarDocumento extends JFrame {
         txtExaminar.setText("");
         /*this.jFormattedTextField1.setText("");*/
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtNombreDocKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDocKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDocKeyPressed
+
+    private void txtNombreDocKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDocKeyReleased
+        // TODO add your handling code here:
+        Character caracter = new Character(evt.getKeyChar());
+        if (Utilitario.esAlphanumerico(caracter)) {
+                    String texto = "";
+                    for (int i = 0; i < this.txtNombreDoc.getText().length(); i++)
+                        if (Utilitario.esAlphanumerico(new Character(this.txtNombreDoc.getText().charAt(i))))
+                            texto += this.txtNombreDoc.getText().charAt(i);
+                    this.txtNombreDoc.setText(texto);
+            this.txtNombreDoc.getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtNombreDocKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
