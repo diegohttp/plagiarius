@@ -14,6 +14,7 @@ package antiplagium.view;
 import java.util.Date;
 import org.freixas.jcalendar.JCalendarCombo;
 import antiplagium.BE.Utilitario;
+import javax.swing.JOptionPane;
 /**
  *
  * @author PATTY
@@ -198,6 +199,18 @@ public class RegistrarCategoria extends JIFBase {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        /* Revisamos si los campos nombre y descripcion son vacios */
+        if ((this.txtNomCategoria.getText().compareTo("") == 0)){
+            JOptionPane.showMessageDialog(this,"El campo Nombre no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else if ( (this.txtDescCategoria.getText().compareTo("") == 0) ){
+            JOptionPane.showMessageDialog(this,"El campo Descripción no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else {
+                //Falta insercion en la base de datos
+        }
 }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
