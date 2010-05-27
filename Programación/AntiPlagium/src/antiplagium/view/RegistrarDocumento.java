@@ -418,10 +418,8 @@ public class RegistrarDocumento extends JFrame {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 1.");
             } else {
                 File file1 = new File(this.txtRuta11.getText());
-
                 String contenido = DocumentoBL.obtenerContenido(file1);
                 doc1 = new DocumentoBL(contenido);
-
             }
         }
 
@@ -430,7 +428,6 @@ public class RegistrarDocumento extends JFrame {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 2.");
             } else {
                 File file1 = new File(this.txtRuta22.getText());
-
                 String contenido = DocumentoBL.obtenerContenido(file1);
                 doc2 = new DocumentoBL(contenido);
             }
@@ -441,11 +438,8 @@ public class RegistrarDocumento extends JFrame {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 3.");
             } else {
                 File file1 = new File(this.txtRuta33.getText());
-
                 String contenido = DocumentoBL.obtenerContenido(file1);
                 doc3 = new DocumentoBL(contenido);
-
-                //serializar documento y luego registrarlo en la BD
             }
         }
 
@@ -454,11 +448,8 @@ public class RegistrarDocumento extends JFrame {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 4.");
             } else {
                 File file1 = new File(this.txtRuta44.getText());
-
                 String contenido = DocumentoBL.obtenerContenido(file1);
                 doc4 = new DocumentoBL(contenido);
-
-                //serializar documento y luego registrarlo en la BD
             }
         }
 
@@ -467,11 +458,8 @@ public class RegistrarDocumento extends JFrame {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 5.");
             } else {
                 File file1 = new File(this.txtRuta55.getText());
-
                 String contenido = DocumentoBL.obtenerContenido(file1);
                 doc5 = new DocumentoBL(contenido);
-
-                //serializar documento y luego registrarlo en la BD
             }
         }
 
