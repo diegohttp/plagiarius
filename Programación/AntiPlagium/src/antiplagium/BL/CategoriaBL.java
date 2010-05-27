@@ -12,6 +12,7 @@ package antiplagium.BL;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import antiplagium.DAO.CategoriaDAO;
 import antiplagium.BE.*;
@@ -44,7 +45,7 @@ public class CategoriaBL {
         return exito;
     }
 
-    public ArrayList<CategoriaBE> buscarCategoria(String descripcion, String nombre) throws FileNotFoundException, IOException{
+    public ArrayList<CategoriaBE> buscarCategoria(String descripcion, String nombre) throws FileNotFoundException, IOException, SQLException{
         return CategoriaDAO.buscar(nombre,descripcion);
     }
 
