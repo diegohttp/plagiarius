@@ -75,7 +75,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
         jMenu2.setText("Documentos");
 
-        jMenuItem2.setText("Registrar Categoría");
+        jMenuItem2.setText("Gestionar Categoría");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -157,9 +157,11 @@ public class AntiPlagiumPrincipal extends JFBase {
 }//GEN-LAST:event_JMIAdministrarGruposActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-         RegistrarCategoria registrarCategoria = new  RegistrarCategoria();
-         registrarCategoria.setVisible(true);
-         JDPPrincipal.add(registrarCategoria);
+         JFAdministrarCategoria admCategoria = new JFAdministrarCategoria();
+         admCategoria.setVisible(true);
+        //RegistrarCategoria registrarCategoria = new  RegistrarCategoria();
+         //registrarCategoria.setVisible(true);
+         //JDPPrincipal.add(registrarCategoria);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
