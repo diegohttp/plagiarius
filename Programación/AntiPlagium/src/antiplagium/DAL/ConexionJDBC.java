@@ -105,7 +105,6 @@ public class ConexionJDBC {
     public void ejecutarSentencia(String strSentencia) {
 
         try {
-            Class.forName(CONTROLADOR);
             con = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
             stmt = con.createStatement();
             stmt.executeUpdate(strSentencia);
