@@ -105,7 +105,7 @@ public class UsuarioDAO {
            if (u.getFechaCese()!=null)          cadenaFechaC="'"+formato.format(u.getFechaCese())+"'";
            if (u.getIdRol()!=null)              cadenaIdROl="'"+2+"'";
                                                 /*cadenaIdROl="'"+u.getIdRol().getIdRol()+"'"; no se puede aun*/
-           if (u.getIdTipoCese()!=null)         cadenaIdTipoCese="'"+u.getIdTipoCese().getIdTipoCEse()+"'";
+           if (u.getIdTipoCese()!=null)         cadenaIdTipoCese="'"+u.getIdTipoCese()+"'";
 
             con = ConexionJDBC.getCon();
             con.setAutoCommit(false);
