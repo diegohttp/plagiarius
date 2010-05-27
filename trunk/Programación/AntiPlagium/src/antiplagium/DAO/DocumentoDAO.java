@@ -23,7 +23,9 @@ public class DocumentoDAO {
         boolean boolExito = false;
 
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentencia = "INSERT INTO \"Documento\" (idDocumento,estado,nombre,idUsuario,contenido) VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getIdUsuario() +"','"+ objDocumento.toXml() +"');";
+        String xml = objDocumento.toXml();
+
+        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido) VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getIdUsuario() +"','"+ xml +"');";
 
         try{
             objConexion.ejecutarSentencia(strSentencia);
