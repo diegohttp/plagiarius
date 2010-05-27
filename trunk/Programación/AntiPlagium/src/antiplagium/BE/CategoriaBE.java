@@ -13,6 +13,9 @@ public class CategoriaBE {
     private int idCategoria;
     private String descripcion;
     private String nombre;
+
+    public CategoriaBE(){}
+
     public CategoriaBE(int idCategoria,String descripcion,String nombre){
         this.descripcion = descripcion;
         this.idCategoria = idCategoria;
