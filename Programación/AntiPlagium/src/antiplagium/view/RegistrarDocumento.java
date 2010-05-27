@@ -16,31 +16,29 @@ import antiplagium.DAO.DocumentoDAO;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-//import org.freixas.jcalendar.JCalendarCombo;
-
+import org.freixas.jcalendar.JCalendarCombo;
 /**
  *
  * @author PATTY
  */
 public class RegistrarDocumento extends JFrame {
 
-
-    //    private JCalendarCombo cmbFechaInicio;
+    private JCalendarCombo cmbFechaInicio;
     /** Creates new form RegistrarDocumento */
     public RegistrarDocumento() {
-
-        //    cmbFechaInicio=new JCalendarCombo();
-
+        cmbFechaInicio=new JCalendarCombo();
         initComponents();
-
-        //  cmbFechaInicio.setSize(220,25);
-        //   jPanel3.add(cmbFechaInicio);
-
+        cmbFechaInicio.setSize(220,25);
+        cmbFechaInicio.setDate(new Date());
+        cmbFechaInicio.setEditable(false);
+        jPanel3.add(cmbFechaInicio);
+        jPanel3.setEnabled(false);
     }
 
     private void cargarArchivo(int numDoc, String nomArch) {
@@ -102,7 +100,8 @@ public class RegistrarDocumento extends JFrame {
         txtPropietario = new javax.swing.JTextField();
 
         setTitle("Registrar Documento");
-        setMinimumSize(new java.awt.Dimension(871, 521));
+        setMinimumSize(new java.awt.Dimension(871, 600));
+        setResizable(false);
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -244,7 +243,7 @@ public class RegistrarDocumento extends JFrame {
                                 .addGap(57, 57, 57))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addContainerGap(379, Short.MAX_VALUE))))
+                                .addContainerGap(343, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtNombreDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
@@ -357,7 +356,7 @@ public class RegistrarDocumento extends JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,20 +382,19 @@ public class RegistrarDocumento extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(540, Short.MAX_VALUE)
+                .addContainerGap(519, Short.MAX_VALUE)
                 .addComponent(btnLimpiar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar)
-                .addGap(48, 48, 48))
+                .addComponent(btnCancelar))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
