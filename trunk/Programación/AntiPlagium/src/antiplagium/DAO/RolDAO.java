@@ -11,12 +11,13 @@ import java.util.Vector;
  */
 public class RolDAO {
 
-    private static String SQL_GETROLES = "SELECT \"idRol\", \"nombre\", \"descripcion\" FROM \"Rol\"";
-
-    public Vector getRoles() throws SQLException
+    private static String SQL_GETROLES = "SELECT \"idRol\", \"nombre\", \"descripcion\" FROM \"Rol\"";    
+        
+    public ResultSet getRolesList() throws SQLException
     {
-        Vector tablaResultados = null;
-        tablaResultados = ConexionJDBC.ejecutarQuery(SQL_GETROLES);
+        ResultSet tablaResultados = null;       
+        tablaResultados = ConexionJDBC.ejecutarQueryString(SQL_GETROLES);                
         return tablaResultados;
     }
+    
 }
