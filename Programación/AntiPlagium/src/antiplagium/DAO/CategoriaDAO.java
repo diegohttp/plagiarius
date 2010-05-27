@@ -25,6 +25,7 @@ public class CategoriaDAO {
 
         ConexionJDBC objConexion = new ConexionJDBC();
         String strSentencia = "INSERT INTO \"Categoria\" (\"idCategoria\",descripcion,nombre) VALUES ('" + objCategoria.getIdCategoria() +"','"+ objCategoria.getDescripcion() +"','"+ objCategoria.getNombre() +"');";
+
         try{
             objConexion.ejecutarSentencia(strSentencia);
 
