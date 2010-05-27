@@ -17,9 +17,7 @@ public class DocumentoBE {
     private int estado;
     private String nombre;
     private int idUsuario;
-    /* Nota: Patty Agrege este atributo, porque lo usa la clase Detector para hacer las comparaciones de docs */
-    private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
-
+    
 
    public DocumentoBE(){}
 
@@ -34,7 +32,6 @@ public class DocumentoBE {
         this.idDocumento = idDocumento;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
-        this.listaOraciones = listaOraciones;
     }
     public int getIdDocumento(){
         return this.idDocumento;
@@ -68,18 +65,5 @@ public class DocumentoBE {
 
   public void setNombre(String nombre){
         this.nombre = nombre;
-    }
-
-    public OracionBE getOracion(int idx){
-        return this.listaOraciones.get(idx);
-    }
-
-
-
-    public int getNumeroOraciones(){
-        return this.listaOraciones.size();
-   }
-   public void addOracion(OracionBE oracion){
-        this.listaOraciones.add(oracion);
-    }
+  }
 }
