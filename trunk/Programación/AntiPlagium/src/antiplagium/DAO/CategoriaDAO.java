@@ -22,10 +22,10 @@ public class CategoriaDAO {
         boolean boolExito = false;
 
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentencia = "INSERT INTO Categoria (idCategoria,descripcion,nombre) VALUES ('" + objCategoria.getIdCategoria() +"','"+ objCategoria.getDescripcion() +"','"+ objCategoria.getNombre() +"');";
+        String strSentencia = "INSERT INTO public.Categoria (idCategoria,descripcion,nombre) VALUES ('" + objCategoria.getIdCategoria() +"','"+ objCategoria.getDescripcion() +"','"+ objCategoria.getNombre() +"');";
 
         try{
-            objConexion.ejecutarQuery(strSentencia);
+            objConexion.ejecutarSentencia(strSentencia);
 
             boolExito=true;
         }
