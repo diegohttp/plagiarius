@@ -2,12 +2,15 @@ package antiplagium.DAL;
 
 import java.sql.*;
 import java.util.Vector;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
+import java.util.logging.Logger;
 
 public class ConexionJDBC {
 
     private static final String CONTROLADOR = "org.postgresql.Driver";
     private static final String URL_BASEDATOS = "jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres";
+    //private static final String URL_BASEDATOS = "jdbc:postgresql://LocalHost:5433/postgres";
 
     public static Connection conexion = null;
     public static Statement  instruccion = null;
@@ -25,45 +28,18 @@ public class ConexionJDBC {
 
     public static void conexion()
     {
-        try {
+        try
+        {
             //carga clase controlador
             Class.forName(CONTROLADOR);
-
-            //establece conexion con base de datos
-            //conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
-
-            //crea objeto statement para consultar la base de datos
-            //instruccion = conexion.createStatement();
-            
-//             Ejemplo consulta base de datos
-//            tablaResultados = instruccion.executeQuery("SELECT * FROM" +'"'+"Usuario"+'"');
-//
-//            while (tablaResultados.next()) {
-//                  System.out.println(tablaResultados.getString("nombres"));
-//            }
+           
         }
-//        catch ( SQLException excepcionSql)
-//        {
-//            excepcionSql.printStackTrace();
-//        }
         catch (ClassNotFoundException noEncontroClase)
         {
             noEncontroClase.printStackTrace();
         }
-//        finally //asegura que tabla de resultados, instruccion y conexión estén cerrados
-//        {
-//            try
-//            {
-//                tablaResultados.close();
-//                instruccion.close();
-//                conexion.close();
-//            }
-//            catch(Exception excepcion)
-//            {
-//                excepcion.printStackTrace();
-//            }
-//        }//fin de finally
     }//fin de conexionJDBC
+
 
     public static Vector ejecutarQuery(String queryString) throws SQLException
     {
@@ -96,11 +72,57 @@ public class ConexionJDBC {
                               
         return vector;
     }
+       
+    public static ResultSet ejecutarQueryResultSet(String queryString) throws SQLException
+    {
+        ResultSet tablaResultados = null;
+
+        conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+        conexion.setAutoCommit(true);
+        conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        instruccion = conexion.createStatement();
+        tablaResultados = instruccion.executeQuery(queryString);
+
+        
+        while (tablaResultados.next()) {
+                  System.out.println(tablaResultados.getString("nombre"));
+        }
+
+//        tablaResultados.close();
+//        instruccion.close();
+//        conexion.close();
+
+        return tablaResultados;
+    }
 
     public static Connection getCon()
     {
             return conexion;
     }
+
+
+    public static void abrirConexion() throws SQLException, ClassNotFoundException
+    {
+        Class.forName(CONTROLADOR);
+        conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+        conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        instruccion = conexion.createStatement();
+    }
+
+
+    public static ResultSet ejecutarQueryString(String query) throws SQLException
+    {
+        tablaResultados = instruccion.executeQuery(query);
+        return tablaResultados;
+    }
+
+    public static void cerrarConexion() throws SQLException
+    {
+        conexion.close();
+        instruccion.close();
+        tablaResultados.close();
+    }
+
 
     public void ejecutarSentencia(String strSentencia) {
 
