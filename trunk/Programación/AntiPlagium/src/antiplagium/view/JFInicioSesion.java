@@ -249,7 +249,6 @@ public class JFInicioSesion extends javax.swing.JFrame {
           cad+=jPFContrasena.getPassword()[i];
          System.out.println(jPFContrasena.getPassword()[i]);
         }
-        
         autenticoUsuario=usuarioBL.AutenticarUsuario(jTFNombreUsuario.getText(),cad);
 
         if (autenticoUsuario==0) {
