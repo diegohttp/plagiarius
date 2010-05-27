@@ -20,7 +20,7 @@ import antiplagium.BE.*;
 public class CategoriaBL {
 
 
-    public boolean registrarCategoria(int idCategoria, String descripcion, String nombre) throws Exception {
+    public boolean registrarCategoria(String descripcion, String nombre) throws Exception {
         boolean exito = false;
 
         CategoriaBE objCategoria = new CategoriaBE (Integer.parseInt (Utilitario.generaCodigo("Categoria",4)), descripcion, nombre);
