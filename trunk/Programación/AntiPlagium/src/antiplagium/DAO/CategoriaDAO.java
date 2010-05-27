@@ -8,9 +8,11 @@ package antiplagium.DAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import antiplagium.BE.CategoriaBE;
 import antiplagium.DAL.ConexionJDBC;
+import java.util.Vector;
 /**
  *
  * @author PATTY
@@ -38,37 +40,25 @@ public class CategoriaDAO {
         return boolExito;
     }
 
-    public static ArrayList<CategoriaBE> buscar(String descripcion,String nombre) throws FileNotFoundException, IOException{
+    public static ArrayList<CategoriaBE> buscar(String descripcion,String nombre) throws FileNotFoundException, IOException, SQLException{
 
         ConexionJDBC objConexion = new ConexionJDBC();
 
-        String strSentencia = " SELECT idCategoria, descripcion, nombre FROM Categoria  ";
-            strSentencia +=
+        String strSentencia = " SELECT \"idCategoria\", descripcion, nombre FROM \"Categoria\"";
+            /*strSentencia +=
                 " WHERE descripcion like '"+ descripcion+"'||'%' and " +
                 " nombre like '"+ nombre+"'||'%' " +
                 " ORDER BY nombre ;";
+            */
+        Vector arrCategoria;
+        arrCategoria = objConexion.ejecutarQuery(strSentencia);
+        ArrayList<CategoriaBE> gestorCategoria = new ArrayList<CategoriaBE>();
 
-        ArrayList<CategoriaBE> arrCategoria = new ArrayList<CategoriaBE>();
-        try {
-            ResultSet rs = (ResultSet) objConexion.ejecutarQuery(strSentencia);
-
-            String stridCategoria = "";
-            String strdescripcion = "";
-            String strnombre = "";
-
-            while (rs.next()) {
-                stridCategoria = rs.getString(1);
-                strdescripcion = rs.getString(2);
-                strnombre = rs.getString(3);
-
-                arrCategoria.add(new CategoriaBE(Integer.parseInt (stridCategoria), strdescripcion, strnombre));
-            }
-
+        for (int i=0; i < arrCategoria.size(); ++i){
+            Object[] registro = (Object[])arrCategoria.get(i);
+            gestorCategoria.add(new CategoriaBE((Integer)registro[0],(String)registro[1],(String)registro[2]));
         }
-        catch (Exception a){
-            System.out.println(a.getMessage());
-        }
-        return arrCategoria;
+        return gestorCategoria;
     }
 
     public static CategoriaBE buscar(int idCategoria) throws FileNotFoundException, IOException{
