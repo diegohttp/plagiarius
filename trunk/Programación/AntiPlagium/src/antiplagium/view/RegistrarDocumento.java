@@ -8,7 +8,6 @@
  *
  * Created on 01/05/2010, 03:58:24 PM
  */
-
 package antiplagium.view;
 
 import antiplagium.BE.Utilitario;
@@ -18,8 +17,8 @@ import java.io.File;
 import java.io.FileReader;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 //import org.freixas.jcalendar.JCalendarCombo;
-
 
 /**
  *
@@ -28,27 +27,36 @@ import javax.swing.JFrame;
 public class RegistrarDocumento extends JFrame {
 
 
- //    private JCalendarCombo cmbFechaInicio;
-
+    //    private JCalendarCombo cmbFechaInicio;
     /** Creates new form RegistrarDocumento */
     public RegistrarDocumento() {
 
-    //    cmbFechaInicio=new JCalendarCombo();
+        //    cmbFechaInicio=new JCalendarCombo();
 
         initComponents();
 
-      //  cmbFechaInicio.setSize(220,25);
-     //   jPanel3.add(cmbFechaInicio);
+        //  cmbFechaInicio.setSize(220,25);
+        //   jPanel3.add(cmbFechaInicio);
 
     }
 
-    private void cargarArchivo(int numDoc, String nomArch){
+    private void cargarArchivo(int numDoc, String nomArch) {
         switch (numDoc) {
-            case 1: this.txtRuta11.setText(nomArch); break;
-            case 2: this.txtRuta22.setText(nomArch);break;
-            case 3: this.txtRuta33.setText(nomArch);break;
-            case 4: this.txtRuta44.setText(nomArch);break;
-            case 5: this.txtRuta55.setText(nomArch);break;
+            case 1:
+                this.txtRuta11.setText(nomArch);
+                break;
+            case 2:
+                this.txtRuta22.setText(nomArch);
+                break;
+            case 3:
+                this.txtRuta33.setText(nomArch);
+                break;
+            case 4:
+                this.txtRuta44.setText(nomArch);
+                break;
+            case 5:
+                this.txtRuta55.setText(nomArch);
+                break;
         }
     }
 
@@ -404,19 +412,75 @@ public class RegistrarDocumento extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-//        if (this.txtRuta11.getText()!=""){
-  //          if (this.txtNombreDoc1.getText()==""){
-                //Mensaje de error
-    //        }
-      //      else{
-                File file1= new File(this.txtRuta11.getText());
+        DocumentoBL doc1=null,doc2=null,doc3=null,doc4=null,doc5=null;
+        if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
+            if (this.txtNombreDoc1.getText().compareTo("") == 0) {
+                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 1.");
+            } else {
+                File file1 = new File(this.txtRuta11.getText());
 
-                String contenido=DocumentoBL.obtenerContenido(file1);
-                DocumentoBL doc1= new DocumentoBL(contenido);
-                int a= 2;
+                String contenido = DocumentoBL.obtenerContenido(file1);
+                doc1 = new DocumentoBL(contenido);
+
+            }
+        }
+
+        if (this.txtRuta22.getText().compareToIgnoreCase("") != 0) {
+            if (this.txtNombreDoc2.getText().compareTo("") == 0) {
+                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 2.");
+            } else {
+                File file1 = new File(this.txtRuta22.getText());
+
+                String contenido = DocumentoBL.obtenerContenido(file1);
+                doc2 = new DocumentoBL(contenido);
+            }
+        }
+
+        if (this.txtRuta33.getText().compareToIgnoreCase("") != 0) {
+            if (this.txtNombreDoc3.getText().compareTo("") == 0) {
+                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 3.");
+            } else {
+                File file1 = new File(this.txtRuta33.getText());
+
+                String contenido = DocumentoBL.obtenerContenido(file1);
+                doc3 = new DocumentoBL(contenido);
+
                 //serializar documento y luego registrarlo en la BD
-        //    }
-        //}
+            }
+        }
+
+        if (this.txtRuta44.getText().compareToIgnoreCase("") != 0) {
+            if (this.txtNombreDoc4.getText().compareTo("") == 0) {
+                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 4.");
+            } else {
+                File file1 = new File(this.txtRuta44.getText());
+
+                String contenido = DocumentoBL.obtenerContenido(file1);
+                doc4 = new DocumentoBL(contenido);
+
+                //serializar documento y luego registrarlo en la BD
+            }
+        }
+
+        if (this.txtRuta55.getText().compareToIgnoreCase("") != 0) {
+            if (this.txtNombreDoc5.getText().compareTo("") == 0) {
+                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 5.");
+            } else {
+                File file1 = new File(this.txtRuta55.getText());
+
+                String contenido = DocumentoBL.obtenerContenido(file1);
+                doc5 = new DocumentoBL(contenido);
+
+                //serializar documento y luego registrarlo en la BD
+            }
+        }
+
+        if (doc1!=null); //SERIALIZAR
+        if (doc2!=null); //SERIALIZAR
+        if (doc3!=null); //SERIALIZAR
+        if (doc4!=null); //SERIALIZAR
+        if (doc5!=null); //SERIALIZAR
+
 
 
 }//GEN-LAST:event_btnAceptarActionPerformed
@@ -439,12 +503,12 @@ public class RegistrarDocumento extends JFrame {
         chooser.setApproveButtonText("Cargar");
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION){
-            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+        if (retVal == chooser.APPROVE_OPTION) {
+            String nomArch = chooser.getSelectedFile().getAbsolutePath();
             this.cargarArchivo(1, nomArch);
 
         }
-        
+
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -460,7 +524,7 @@ public class RegistrarDocumento extends JFrame {
         this.txtNombreDoc4.setText("");
         this.txtNombreDoc5.setText("");
 
-   
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtNombreDoc1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc1KeyPressed
@@ -471,12 +535,12 @@ public class RegistrarDocumento extends JFrame {
         // TODO add your handling code here:
        /* Character caracter = new Character(evt.getKeyChar());
         if (Utilitario.esAlphanumerico(caracter)) {
-                    String texto = "";
-                    for (int i = 0; i < this.txtNombreDoc.getText().length(); i++)
-                        if (Utilitario.esAlphanumerico(new Character(this.txtNombreDoc.getText().charAt(i))))
-                            texto += this.txtNombreDoc.getText().charAt(i);
-                    this.txtNombreDoc.setText(texto);
-            this.txtNombreDoc.getToolkit().beep();
+        String texto = "";
+        for (int i = 0; i < this.txtNombreDoc.getText().length(); i++)
+        if (Utilitario.esAlphanumerico(new Character(this.txtNombreDoc.getText().charAt(i))))
+        texto += this.txtNombreDoc.getText().charAt(i);
+        this.txtNombreDoc.setText(texto);
+        this.txtNombreDoc.getToolkit().beep();
         }*/
     }//GEN-LAST:event_txtNombreDoc1KeyReleased
 
@@ -489,12 +553,12 @@ public class RegistrarDocumento extends JFrame {
 }//GEN-LAST:event_txtNombreDoc2KeyReleased
 
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
-       JFileChooser chooser = new JFileChooser();
+        JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION){
-            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+        if (retVal == chooser.APPROVE_OPTION) {
+            String nomArch = chooser.getSelectedFile().getAbsolutePath();
             this.cargarArchivo(2, nomArch);
 
         }
@@ -513,8 +577,8 @@ public class RegistrarDocumento extends JFrame {
         chooser.setApproveButtonText("Cargar");
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION){
-            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+        if (retVal == chooser.APPROVE_OPTION) {
+            String nomArch = chooser.getSelectedFile().getAbsolutePath();
             this.cargarArchivo(3, nomArch);
 
         }
@@ -533,8 +597,8 @@ public class RegistrarDocumento extends JFrame {
         chooser.setApproveButtonText("Cargar");
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION){
-            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+        if (retVal == chooser.APPROVE_OPTION) {
+            String nomArch = chooser.getSelectedFile().getAbsolutePath();
             this.cargarArchivo(4, nomArch);
 
         }
@@ -549,18 +613,16 @@ public class RegistrarDocumento extends JFrame {
 }//GEN-LAST:event_txtNombreDoc5KeyReleased
 
     private void btnBuscar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar5ActionPerformed
-       JFileChooser chooser = new JFileChooser();
+        JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION){
-            String nomArch=chooser.getSelectedFile().getAbsolutePath();
+        if (retVal == chooser.APPROVE_OPTION) {
+            String nomArch = chooser.getSelectedFile().getAbsolutePath();
             this.cargarArchivo(5, nomArch);
 
         }
     }//GEN-LAST:event_btnBuscar5ActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar1;
@@ -591,5 +653,4 @@ public class RegistrarDocumento extends JFrame {
     private javax.swing.JTextField txtRuta44;
     private javax.swing.JTextField txtRuta55;
     // End of variables declaration//GEN-END:variables
-
 }
