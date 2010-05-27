@@ -17,16 +17,14 @@ public class DocumentoBE {
    private int estado;
    private String nombre;
    private int idUsuario;
-   private int idCategoria;
 
   public DocumentoBE(){}
 
-  public DocumentoBE(int idDocumento,int estado,String nombre,int idUsuario,int idCategoria){
+  public DocumentoBE(int idDocumento,int estado,String nombre,int idUsuario){
         this.estado = estado;
         this.idDocumento = idDocumento;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
-        this.idCategoria = idCategoria;
   }
   public int getIdDocumento(){
      return this.idDocumento;
@@ -55,10 +53,5 @@ public class DocumentoBE {
   public void setNombre(String nombre){
         this.nombre = nombre;
   }
-  public int getIdCategoria(){
-    return this.idCategoria;
-  }
-  public void setCategoria(int idCategoria){
-    this.idCategoria = idCategoria;
-  }
+  
 }
