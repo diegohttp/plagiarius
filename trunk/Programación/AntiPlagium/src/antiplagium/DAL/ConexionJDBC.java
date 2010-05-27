@@ -2,6 +2,7 @@ package antiplagium.DAL;
 
 import java.sql.*;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 public class ConexionJDBC {
 
@@ -11,7 +12,17 @@ public class ConexionJDBC {
     public static Connection conexion = null;
     public static Statement  instruccion = null;
     public static ResultSet  tablaResultados = null;
-    
+
+
+    private String driver;
+    private String connectString;
+    private String user;
+    private String password;
+    private Statement stmt;
+    private Connection con;
+
+
+
     public static void conexion()
     {
         try {
@@ -90,5 +101,25 @@ public class ConexionJDBC {
     {
             return conexion;
     }
+
+    public void ejecutarSentencia(String strSentencia) {
+
+        try {
+            Class.forName(CONTROLADOR);
+            con = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+            stmt = con.createStatement();
+            stmt.executeUpdate(strSentencia);
+        }
+        catch ( Exception e ) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+
+    }
+
+    /*
+     instruccion = conexion.createStatement();
+        tablaResultados = instruccion.executeQuery(queryString);
+     */
+
 
 }
