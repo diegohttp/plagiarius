@@ -224,16 +224,28 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        RegistrarCategoria resCategoria = new RegistrarCategoria();
-        resCategoria.setVisible(true);
+        RegistrarCategoria resCategoria;
+        try {
+            resCategoria = new RegistrarCategoria();
+            resCategoria.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         CategoriaBL cat = new CategoriaBL();
+        DefaultTableModel temp = (DefaultTableModel) this.tblCategoria.getModel();
+        for (int i=temp.getRowCount() - 1; i >= 0; --i){
+            temp.removeRow(i);
+        }
         try {
             ArrayList<CategoriaBE> res = cat.buscarCategoria("", "");
-            DefaultTableModel temp = (DefaultTableModel) this.tblCategoria.getModel();
             for (int i=0; i < res.size(); ++i){
                 Object[]nuevo ={res.get(i).getIdCategoria(),res.get(i).getNombre(),res.get(i).getDescripcion()};
                 temp.addRow(nuevo);
