@@ -4,6 +4,7 @@ package antiplagium.BL;
  * and open the template in the editor.
  */
 
+import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.OracionBE;
 import com.thoughtworks.xstream.XStream;
 import java.io.BufferedReader;
@@ -26,21 +27,42 @@ import org.apache.poi.poifs.eventfilesystem.POIFSReaderListener;
  * @author KIM
  */
 public class DocumentoBL {
-
-    public int idDocumento;
-    public String nombre = "";
-    public ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
-
+    private DocumentoBE datos;
+    private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
     public DocumentoBL() {
-    }
 
-    private String toXml(){
+    }
+    public String getNombre(){
+        return this.datos.getNombre();
+    }
+    public int getEstado(){
+        return this.datos.getEstado();
+    }
+    public int getIdUsuario(){
+        return this.datos.getIdUsuario();
+    }
+    public int getIdDocumento(){
+        return this.datos.getIdDocumento();
+    }
+    public void setDatos(DocumentoBE doc){
+           this.datos = doc;
+    }
+    public String toXml(){
         XStream xstream = new XStream();
         xstream.alias("documento", DocumentoBL.class);
         xstream.alias("oracion", OracionBE.class);
         return xstream.toXML(this);
     }
-    public DocumentoBL(String contenido) {
+   public OracionBE getOracion(int idx){
+        return this.listaOraciones.get(idx);
+   }
+   public int getNumeroOraciones(){
+        return this.listaOraciones.size();
+   }
+   public void addOracion(OracionBE oracion){
+        this.listaOraciones.add(oracion);
+   }
+   public DocumentoBL(String contenido) {
 
         BufferedReader entrada = null;
         try {
@@ -75,7 +97,7 @@ public class DocumentoBL {
 
 
         } catch (Exception ex) {
-            System.out.print("error" + nombre);
+            System.out.print("error" + this.datos.getNombre());
         }
     }
 
@@ -121,17 +143,10 @@ public class DocumentoBL {
                 while (entrada.ready()) {
                     contenido += entrada.readLine() + "\n";
                 }
-
             } else if (extension.compareToIgnoreCase(".doc") == 0) {
-
                 AnalizadorWord analizador = new AnalizadorWord(f.getAbsolutePath());
-
-                    analizador.analizar();
-
-
-
+                analizador.analizar();
                 contenido= analizador.getTexto();
-
             } else;//MENSAJE DE ERROR DE FORMATO
         } catch (Exception e) {
             System.out.println(e.toString());
