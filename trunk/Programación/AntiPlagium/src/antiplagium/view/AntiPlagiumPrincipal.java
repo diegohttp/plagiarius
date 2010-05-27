@@ -3,17 +3,15 @@ package antiplagium.view;
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 import antiplagium.DAL.*;
+import javax.swing.JFrame;
 
-public class AntiPlagiumPrincipal extends JFBase {
+public class AntiPlagiumPrincipal extends JFBase
+{
 
     private Dimension dim;
 
     public AntiPlagiumPrincipal() {        
-        initComponents();
-
-        dim=super.getToolkit().getScreenSize();
-        super.setSize(dim.width, dim.height - 25);
-        super.setVisible(true);
+        initComponents();        
 //      ConexionJDBC.conexion();
     }
 
@@ -37,13 +35,19 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.Color.lightGray);
-        setBounds(new java.awt.Rectangle(0, 0, 1024, 700));
+        setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
+        setMinimumSize(new java.awt.Dimension(1000, 700));
+        setName("JFAntiPlagiumPrincipal"); // NOI18N
+        setResizable(false);
 
         JDPPrincipal.setBackground(java.awt.Color.lightGray);
+        JDPPrincipal.setMaximumSize(new java.awt.Dimension(10, 10));
+        JDPPrincipal.setMinimumSize(new java.awt.Dimension(10, 10));
 
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
         jMenu1.setBackground(new java.awt.Color(0, 153, 153));
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Parents20.png"))); // NOI18N
         jMenu1.setText("Usuarios");
 
         JMIAdministrarUsuarios.setText("Administrar Usuarios");
@@ -73,6 +77,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Copy.png"))); // NOI18N
         jMenu2.setText("Documentos");
 
         jMenuItem2.setText("Gestionar Categoría");
@@ -94,6 +99,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setBackground(new java.awt.Color(0, 153, 153));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mostrar.png"))); // NOI18N
         jMenu3.setText("Detección");
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +126,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setBackground(new java.awt.Color(0, 153, 153));
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
         jMenu4.setText("Reportes");
         jMenuBar1.add(jMenu4);
 
@@ -129,13 +136,13 @@ public class AntiPlagiumPrincipal extends JFBase {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+            .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
         );
 
         pack();
