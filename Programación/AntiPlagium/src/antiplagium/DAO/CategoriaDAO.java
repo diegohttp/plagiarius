@@ -91,12 +91,12 @@ public class CategoriaDAO {
     public static boolean modificar(CategoriaBE objCategoria)throws FileNotFoundException, IOException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentencia = "UPDATE Categoria SET ";
+        String strSentencia = "UPDATE \"Categoria\" SET ";
             strSentencia += "descripcion='"+objCategoria.getDescripcion()+"'," +
                     " nombre='"+objCategoria.getNombre()+ "'"+
-                    " WHERE idCategoria='"+objCategoria.getIdCategoria() +"'";
+                    " WHERE \"idCategoria\"='"+objCategoria.getIdCategoria() +"'";
         try{
-            objConexion.ejecutarQuery(strSentencia);
+            objConexion.ejecutarSentencia(strSentencia);
             return true;
         }
         catch (Exception a){
