@@ -30,7 +30,7 @@ public class UsuarioDAO {
 
   public int ValidarUsuario(String nombreUsuario, String contrasena) throws SQLException{
         try {
-            con = ConexionJDBC.getCon();
+            con = DriverManager.getConnection("jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres", "postgres", "cuadrado");
             stmt = con.createStatement();
             //Se ejecuta una consulta y se devuelve el resultado en ResultSet
             //ResultSet rs = stmt.executeQuery("SELECT * FROM "+"public."+'"'+"Usuario"+'"');
