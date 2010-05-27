@@ -22,23 +22,20 @@ public class CategoriaBL {
 
 
     public boolean registrarCategoria(CategoriaBE objCategoria) throws Exception {
-        boolean exito = false;
 
         if(CategoriaDAO.registrar(objCategoria)){
             return true;
         }
-        return exito;
+        return false;
     }
 
     public boolean modificarCategoria(CategoriaBE objCategoria ) throws Exception {
 
-        boolean exito = false;
-
-        if (CategoriaDAO.modificar((CategoriaBE)objCategoria)){
-            exito = CategoriaDAO.modificar(objCategoria);
+        if (CategoriaDAO.modificar(objCategoria)){
+            return true;
         }
 
-        return exito;
+        return false;
     }
 
     public ArrayList<CategoriaBE> buscarCategoria(String descripcion, String nombre) throws FileNotFoundException, IOException, SQLException{
