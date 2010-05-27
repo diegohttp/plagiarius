@@ -70,7 +70,7 @@ public class ConexionJDBC {
         Vector vector = new Vector();
         
         conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
-        conexion.setAutoCommit(true);
+        conexion.setAutoCommit(false);
         conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         instruccion = conexion.createStatement();
         tablaResultados = instruccion.executeQuery(queryString);
