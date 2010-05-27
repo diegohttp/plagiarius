@@ -21,38 +21,42 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.poifs.eventfilesystem.POIFSReader;
 import org.apache.poi.poifs.eventfilesystem.POIFSReaderEvent;
 import org.apache.poi.poifs.eventfilesystem.POIFSReaderListener;
-
 /**
  *
  * @author KIM
  */
 public class DocumentoBL {
-    private DocumentoBE datos;
-    private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
-    public DocumentoBL() {
-
-    }
-    public String getNombre(){
+   private DocumentoBE datos;
+   private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
+   public DocumentoBL() {
+        this.datos = null;
+        this.listaOraciones = null;
+   }
+   public void setListaraciones(ArrayList<OracionBE> lista){
+        this.listaOraciones = lista;
+   }
+   public String getNombre(){
         return this.datos.getNombre();
-    }
-    public int getEstado(){
+   }
+   public int getEstado(){
         return this.datos.getEstado();
-    }
-    public int getIdUsuario(){
-        return this.datos.getIdUsuario();
-    }
-    public int getIdDocumento(){
+   }
+   public int getIdUsuario(){
+      return this.datos.getIdUsuario();
+   }
+   public int getIdDocumento(){
         return this.datos.getIdDocumento();
-    }
-    public void setDatos(DocumentoBE doc){
+   }
+   public void setDatos(DocumentoBE doc){
            this.datos = doc;
-    }
-    public String toXml(){
+   }
+   public String toXml(){
         XStream xstream = new XStream();
         xstream.alias("documento", DocumentoBL.class);
+        xstream.alias("datos",DocumentoBE.class);
         xstream.alias("oracion", OracionBE.class);
         return xstream.toXML(this);
-    }
+   }
    public OracionBE getOracion(int idx){
         return this.listaOraciones.get(idx);
    }
