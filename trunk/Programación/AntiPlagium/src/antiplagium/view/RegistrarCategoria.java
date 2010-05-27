@@ -18,13 +18,14 @@ import org.freixas.jcalendar.JCalendarCombo;
 import antiplagium.BE.Utilitario;
 import javax.swing.JOptionPane;
 import antiplagium.BL.CategoriaBL;
+import javax.swing.JFrame;
 /**
  *
  * @author PATTY
  */
 
 
-public class RegistrarCategoria extends JIFBase {
+public class RegistrarCategoria extends JFrame {
 
     private JCalendarCombo cmbFechaInicio;
         private String accion;
@@ -37,9 +38,6 @@ public class RegistrarCategoria extends JIFBase {
         initComponents();
         cmbFechaInicio.setSize(220,25);
         jPanel3.add(cmbFechaInicio);
-
-
-
     }
 
     /** This method is called from within the constructor to
@@ -195,11 +193,11 @@ public class RegistrarCategoria extends JIFBase {
         // TODO add your handling code here:
         /* Revisamos si los campos nombre y descripcion son vacios */
         if ((this.txtNomCategoria.getText().compareTo("") == 0)){
-            JOptionPane.showMessageDialog(this,"El campo Nombre no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El campo Nombre no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
             return;
         }
         else if ( (this.txtDescCategoria.getText().compareTo("") == 0) ){
-            JOptionPane.showMessageDialog(this,"El campo Descripción no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"El campo Descripción no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
             return;
         }
         else {
@@ -216,8 +214,6 @@ public class RegistrarCategoria extends JIFBase {
                 }
                     if (boolExito) {
                         JOptionPane.showMessageDialog(null, "La categoria ha sido registrada con éxito", "Mensaje",1);
-
-                        this.dispose();
                     }
         
             //}
@@ -265,13 +261,7 @@ public class RegistrarCategoria extends JIFBase {
     /**
     * @param args the command line arguments
     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarCategoria().setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
