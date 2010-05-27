@@ -102,7 +102,7 @@ public class RegistrarDocumento extends JFrame {
         txtPropietario = new javax.swing.JTextField();
 
         setTitle("Registrar Documento");
-        setMinimumSize(new java.awt.Dimension(447, 447));
+        setMinimumSize(new java.awt.Dimension(871, 521));
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -128,7 +128,7 @@ public class RegistrarDocumento extends JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documentos"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
         jLabel1.setText("Nombre:");
 
@@ -309,7 +309,7 @@ public class RegistrarDocumento extends JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos generales"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos generales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
         jLabel6.setText("Propietario:");
 
