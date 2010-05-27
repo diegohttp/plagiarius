@@ -5,6 +5,7 @@ package antiplagium.BL;
  */
 
 import antiplagium.BE.OracionBE;
+import com.thoughtworks.xstream.XStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -33,6 +34,12 @@ public class DocumentoBL {
     public DocumentoBL() {
     }
 
+    private String toXml(){
+        XStream xstream = new XStream();
+        xstream.alias("documento", DocumentoBL.class);
+        xstream.alias("oracion", OracionBE.class);
+        return xstream.toXML(this);
+    }
     public DocumentoBL(String contenido) {
 
         BufferedReader entrada = null;
