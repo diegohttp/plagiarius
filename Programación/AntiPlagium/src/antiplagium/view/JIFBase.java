@@ -18,6 +18,7 @@ public class JIFBase extends javax.swing.JInternalFrame {
         LBLUsuario = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("SISTEMA ANTIPLAGIUM");
         setPreferredSize(new java.awt.Dimension(1300, 45));
 
         LBLUsuario.setBackground(new java.awt.Color(153, 204, 255));
