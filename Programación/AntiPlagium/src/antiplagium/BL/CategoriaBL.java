@@ -39,7 +39,7 @@ public class CategoriaBL {
     }
 
     public ArrayList<CategoriaBE> buscarCategoria(String descripcion, String nombre) throws FileNotFoundException, IOException, SQLException{
-        return CategoriaDAO.buscar(nombre,descripcion);
+        return CategoriaDAO.buscar(descripcion,nombre);
     }
 
     public CategoriaBE buscarCategoria(int idCategoria) throws FileNotFoundException, IOException{
