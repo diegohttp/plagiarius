@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -147,6 +148,11 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jButton3.setText("Eliminar");
@@ -263,6 +269,31 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int idx = this.tblCategoria.getSelectedRow();
+        if (idx >= 0){
+            DefaultTableModel temp = (DefaultTableModel) this.tblCategoria.getModel();
+            int idCategoria = (Integer)temp.getValueAt(idx, 0);
+            String nombre = (String)temp.getValueAt(idx, 1);
+            String descripcion = (String)temp.getValueAt(idx, 2);
+            CategoriaBE objCategoria = new CategoriaBE(idCategoria,descripcion,nombre);
+            try {
+                RegistrarCategoria res = new RegistrarCategoria(objCategoria);
+                res.setVisible(true);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
     * @param args the command line arguments
