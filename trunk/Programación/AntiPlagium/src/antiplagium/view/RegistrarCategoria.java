@@ -31,15 +31,14 @@ import javax.swing.JFrame;
 
 
 public class RegistrarCategoria extends JFrame {
-
-        private String accion;
-
+    private int TipoOperacion;
     /** Creates new form RegistrarCategoria */
     public RegistrarCategoria() throws FileNotFoundException, IOException, SQLException {
         initComponents();
+        TipoOperacion = 0;
         CategoriaBL cat = new CategoriaBL();
         ArrayList<CategoriaBE> res = cat.buscarCategoria("", "");
-        int tam = -1;
+        int tam = 0;
         for (int i=0;i < res.size(); ++i){
             if (tam < res.get(i).getIdCategoria())
                 tam = res.get(i).getIdCategoria();
@@ -48,6 +47,14 @@ public class RegistrarCategoria extends JFrame {
         this.jTextField1.setText("" + tam + "");
     }
 
+    public RegistrarCategoria(CategoriaBE objCategoria) throws FileNotFoundException, IOException, SQLException {
+        initComponents();
+        TipoOperacion = 1;
+        CategoriaBL cat = new CategoriaBL();
+        this.jTextField1.setText("" + objCategoria.getIdCategoria() + "");
+        this.txtDescCategoria.setText(objCategoria.getDescripcion());
+        this.txtNomCategoria.setText(objCategoria.getNombre());
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -188,19 +195,24 @@ public class RegistrarCategoria extends JFrame {
             boolean boolExito = false;
 
             CategoriaBL categoriaBL = new CategoriaBL();
-
-            //if(this.accion.equals("REGISTRAR")){
                 try {
                     CategoriaBE categ = new CategoriaBE(Integer.parseInt(this.jTextField1.getText()),this.txtDescCategoria.getText(),this.txtNomCategoria.getText());
-                    boolExito = categoriaBL.registrarCategoria(categ);
+                    if (TipoOperacion==0){
+                        boolExito = categoriaBL.registrarCategoria(categ);
+                    }
+                    else {
+                        boolExito = categoriaBL.modificarCategoria(categ);
+                    }
                 } catch (Exception ex) {
                     Logger.getLogger(RegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    if (boolExito) {
+                if (boolExito) {
+                    if (TipoOperacion==0)
                         JOptionPane.showMessageDialog(null, "La categoria ha sido registrada con éxito", "Mensaje",1);
-                    }
-        
-            //}
+                    else
+                        JOptionPane.showMessageDialog(null, "La categoria ha sido modificada con éxito", "Mensaje",1);
+                }
+                this.dispose();
         }
 }//GEN-LAST:event_btnAceptarActionPerformed
 
