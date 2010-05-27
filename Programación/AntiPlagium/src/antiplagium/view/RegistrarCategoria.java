@@ -39,7 +39,11 @@ public class RegistrarCategoria extends JFrame {
         initComponents();
         CategoriaBL cat = new CategoriaBL();
         ArrayList<CategoriaBE> res = cat.buscarCategoria("", "");
-        int tam = res.size();
+        int tam = -1;
+        for (int i=0;i < res.size(); ++i){
+            if (tam < res.get(i).getIdCategoria())
+                tam = res.get(i).getIdCategoria();
+        }
         tam++;
         this.jTextField1.setText("" + tam + "");
     }
@@ -202,6 +206,7 @@ public class RegistrarCategoria extends JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+        this.dispose();
 }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
