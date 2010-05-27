@@ -11,6 +11,10 @@
 
 package antiplagium.view;
 
+import antiplagium.BE.CategoriaBE;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +22,7 @@ import org.freixas.jcalendar.JCalendarCombo;
 import antiplagium.BE.Utilitario;
 import javax.swing.JOptionPane;
 import antiplagium.BL.CategoriaBL;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 /**
  *
@@ -27,17 +32,16 @@ import javax.swing.JFrame;
 
 public class RegistrarCategoria extends JFrame {
 
-    private JCalendarCombo cmbFechaInicio;
         private String accion;
 
     /** Creates new form RegistrarCategoria */
-    public RegistrarCategoria() {
-
-        cmbFechaInicio=new JCalendarCombo();
-
+    public RegistrarCategoria() throws FileNotFoundException, IOException, SQLException {
         initComponents();
-        cmbFechaInicio.setSize(220,25);
-        jPanel3.add(cmbFechaInicio);
+        CategoriaBL cat = new CategoriaBL();
+        ArrayList<CategoriaBE> res = cat.buscarCategoria("", "");
+        int tam = res.size();
+        tam++;
+        this.jTextField1.setText("" + tam + "");
     }
 
     /** This method is called from within the constructor to
@@ -54,12 +58,10 @@ public class RegistrarCategoria extends JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtNomCategoria = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
-        jftfFechaEmision1 = new javax.swing.JFormattedTextField();
         btnCancelar = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtDescCategoria = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar Categoria");
@@ -90,9 +92,6 @@ public class RegistrarCategoria extends JFrame {
             }
         });
 
-        jftfFechaEmision1.setEditable(false);
-        jftfFechaEmision1.setEnabled(false);
-
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,8 +99,6 @@ public class RegistrarCategoria extends JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-
-        jLabel13.setText("Fecha de registro:");
 
         jLabel1.setText("Nombre:");
 
@@ -111,61 +108,47 @@ public class RegistrarCategoria extends JFrame {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setPreferredSize(new java.awt.Dimension(220, 25));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 18, Short.MAX_VALUE)
-        );
+        jTextField1.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(27, 27, 27)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))))
-                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNomCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                            .addComponent(jftfFechaEmision1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDescCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))))
-                .addGap(38, 38, 38))
+                            .addComponent(txtDescCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
+                        .addGap(42, 42, 42))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addComponent(btnLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAceptar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCancelar)
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jftfFechaEmision1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,16 +157,12 @@ public class RegistrarCategoria extends JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtDescCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,7 +187,8 @@ public class RegistrarCategoria extends JFrame {
 
             //if(this.accion.equals("REGISTRAR")){
                 try {
-                    boolExito = categoriaBL.registrarCategoria(txtNomCategoria.getText(), txtDescCategoria.getText());
+                    CategoriaBE categ = new CategoriaBE(Integer.parseInt(this.jTextField1.getText()),this.txtDescCategoria.getText(),this.txtNomCategoria.getText());
+                    boolExito = categoriaBL.registrarCategoria(categ);
                 } catch (Exception ex) {
                     Logger.getLogger(RegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -227,7 +207,6 @@ public class RegistrarCategoria extends JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
        txtNomCategoria.setText("");
        txtDescCategoria.setText("");
-       this.cmbFechaInicio.setDate(new Date());
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtNomCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomCategoriaKeyReleased
@@ -268,11 +247,9 @@ public class RegistrarCategoria extends JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JFormattedTextField jftfFechaEmision1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtDescCategoria;
     private javax.swing.JTextField txtNomCategoria;
     // End of variables declaration//GEN-END:variables
