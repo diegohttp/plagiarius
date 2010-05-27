@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class DetectorBL {
     public ArrayList<ConexionOracionBE> listaConexiones= new ArrayList<ConexionOracionBE>();
     public static ArrayList<String> listaPalNoSignificativas= new ArrayList<String>();
-    public int comparar(DocumentoBE doc1, DocumentoBE doc2){
+    public int comparar(DocumentoBL doc1, DocumentoBL doc2){
         int numOr1= doc1.getNumeroOraciones();
         int numOr2= doc2.getNumeroOraciones();
 
