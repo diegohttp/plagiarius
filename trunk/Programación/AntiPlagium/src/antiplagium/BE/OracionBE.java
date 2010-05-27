@@ -24,4 +24,21 @@ public class OracionBE {
         public String getPalabra(int idx){
             return this.listaPalabras.get(idx);
         }
+
+    public HashMap<String, Integer> getHashPalabras() {
+        return hashPalabras;
+    }
+
+    public void setHashPalabras(HashMap<String, Integer> hashPalabras) {
+        this.hashPalabras = hashPalabras;
+    }
+
+    public ArrayList<String> getListaPalabras() {
+        return listaPalabras;
+    }
+
+    public void setListaPalabras(ArrayList<String> listaPalabras) {
+        this.listaPalabras = listaPalabras;
+    }
+
 }
