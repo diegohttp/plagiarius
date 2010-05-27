@@ -12,9 +12,12 @@
 package antiplagium.view;
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.freixas.jcalendar.JCalendarCombo;
 import antiplagium.BE.Utilitario;
 import javax.swing.JOptionPane;
+import antiplagium.BL.CategoriaBL;
 /**
  *
  * @author PATTY
@@ -24,6 +27,7 @@ import javax.swing.JOptionPane;
 public class RegistrarCategoria extends JIFBase {
 
     private JCalendarCombo cmbFechaInicio;
+        private String accion;
 
     /** Creates new form RegistrarCategoria */
     public RegistrarCategoria() {
@@ -199,7 +203,24 @@ public class RegistrarCategoria extends JIFBase {
             return;
         }
         else {
-                //Falta insercion en la base de datos
+
+            boolean boolExito = false;
+
+            CategoriaBL categoriaBL = new CategoriaBL();
+
+            //if(this.accion.equals("REGISTRAR")){
+                try {
+                    boolExito = categoriaBL.registrarCategoria(txtNomCategoria.getText(), txtDescCategoria.getText());
+                } catch (Exception ex) {
+                    Logger.getLogger(RegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    if (boolExito) {
+                        JOptionPane.showMessageDialog(null, "La categoria ha sido registrada con éxito", "Mensaje",1);
+
+                        this.dispose();
+                    }
+        
+            //}
         }
 }//GEN-LAST:event_btnAceptarActionPerformed
 
