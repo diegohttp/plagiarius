@@ -50,6 +50,9 @@ public class DocumentoBL {
    public void setDatos(DocumentoBE doc){
            this.datos = doc;
    }
+   public int getIdCategoria(){
+        return this.datos.getIdCategoria();
+   }
    public String toXml(){
         XStream xstream = new XStream();
         xstream.alias("documento", DocumentoBL.class);
