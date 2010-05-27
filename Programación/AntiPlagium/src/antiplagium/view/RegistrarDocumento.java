@@ -413,6 +413,7 @@ public class RegistrarDocumento extends JFrame {
 
                 String contenido=DocumentoBL.obtenerContenido(file1);
                 DocumentoBL doc1= new DocumentoBL(contenido);
+                int a= 2;
                 //serializar documento y luego registrarlo en la BD
         //    }
         //}
