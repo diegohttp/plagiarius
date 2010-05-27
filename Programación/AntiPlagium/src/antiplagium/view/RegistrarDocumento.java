@@ -12,9 +12,12 @@ package antiplagium.view;
 
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.DocumentoBL;
+import antiplagium.DAO.DocumentoDAO;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -462,15 +465,42 @@ public class RegistrarDocumento extends JFrame {
                 doc5 = new DocumentoBL(contenido);
             }
         }
-
-        if (doc1!=null); //SERIALIZAR
-        if (doc2!=null); //SERIALIZAR
-        if (doc3!=null); //SERIALIZAR
-        if (doc4!=null); //SERIALIZAR
-        if (doc5!=null); //SERIALIZAR
-
-
-
+        DocumentoDAO docDao = new DocumentoDAO();
+        if (doc1!=null){
+            try {
+                docDao.registrar(doc1);
+            } catch (Exception ex) {
+                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } //SERIALIZAR
+        if (doc2!=null){
+            try {
+                docDao.registrar(doc2);
+            } catch (Exception ex) {
+                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } //SERIALIZAR
+        if (doc3!=null){
+            try {
+                docDao.registrar(doc3);
+            } catch (Exception ex) {
+                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } //SERIALIZAR
+        if (doc4!=null){
+            try {
+                docDao.registrar(doc4);
+            } catch (Exception ex) {
+                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } //SERIALIZAR
+        if (doc5!=null){
+            try {
+                docDao.registrar(doc5);
+            } catch (Exception ex) {
+                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } //SERIALIZAR
 }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
