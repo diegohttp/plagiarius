@@ -12,6 +12,7 @@
 package antiplagium.view;
 
 import antiplagium.BE.Utilitario;
+import antiplagium.BL.DocumentoBL;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -65,20 +66,20 @@ public class RegistrarDocumento extends JFrame {
         btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        javax.swing.JTextField txtNombreDoc1 = new javax.swing.JTextField();
+        txtNombreDoc1 = new javax.swing.JTextField();
         txtRuta11 = new javax.swing.JTextField();
         btnBuscar1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        javax.swing.JTextField txtNombreDoc3 = new javax.swing.JTextField();
+        txtNombreDoc2 = new javax.swing.JTextField();
         txtRuta22 = new javax.swing.JTextField();
         btnBuscar2 = new javax.swing.JButton();
-        javax.swing.JTextField txtNombreDoc4 = new javax.swing.JTextField();
+        txtNombreDoc3 = new javax.swing.JTextField();
         txtRuta33 = new javax.swing.JTextField();
         btnBuscar3 = new javax.swing.JButton();
-        javax.swing.JTextField txtNombreDoc5 = new javax.swing.JTextField();
+        txtNombreDoc4 = new javax.swing.JTextField();
         txtRuta44 = new javax.swing.JTextField();
         btnBuscar4 = new javax.swing.JButton();
-        javax.swing.JTextField txtNombreDoc6 = new javax.swing.JTextField();
+        txtNombreDoc5 = new javax.swing.JTextField();
         txtRuta55 = new javax.swing.JTextField();
         btnBuscar5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -131,7 +132,6 @@ public class RegistrarDocumento extends JFrame {
 
         txtRuta11.setEnabled(false);
 
-        btnBuscar1.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
         btnBuscar1.setText("Buscar");
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +140,24 @@ public class RegistrarDocumento extends JFrame {
         });
 
         jLabel2.setText("Ruta:");
+
+        txtNombreDoc2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreDoc2KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreDoc2KeyReleased(evt);
+            }
+        });
+
+        txtRuta22.setEnabled(false);
+
+        btnBuscar2.setText("Buscar");
+        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar2ActionPerformed(evt);
+            }
+        });
 
         txtNombreDoc3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -150,13 +168,12 @@ public class RegistrarDocumento extends JFrame {
             }
         });
 
-        txtRuta22.setEnabled(false);
+        txtRuta33.setEnabled(false);
 
-        btnBuscar2.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
-        btnBuscar2.setText("Buscar");
-        btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar3.setText("Buscar");
+        btnBuscar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar2ActionPerformed(evt);
+                btnBuscar3ActionPerformed(evt);
             }
         });
 
@@ -169,13 +186,12 @@ public class RegistrarDocumento extends JFrame {
             }
         });
 
-        txtRuta33.setEnabled(false);
+        txtRuta44.setEnabled(false);
 
-        btnBuscar3.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
-        btnBuscar3.setText("Buscar");
-        btnBuscar3.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar4.setText("Buscar");
+        btnBuscar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar3ActionPerformed(evt);
+                btnBuscar4ActionPerformed(evt);
             }
         });
 
@@ -188,28 +204,8 @@ public class RegistrarDocumento extends JFrame {
             }
         });
 
-        txtRuta44.setEnabled(false);
-
-        btnBuscar4.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
-        btnBuscar4.setText("Buscar");
-        btnBuscar4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar4ActionPerformed(evt);
-            }
-        });
-
-        txtNombreDoc6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreDoc6KeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreDoc6KeyReleased(evt);
-            }
-        });
-
         txtRuta55.setEnabled(false);
 
-        btnBuscar5.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/NetBeansProjects/anti/AntiPlagium/src/Iconos/buscar.png")); // NOI18N
         btnBuscar5.setText("Buscar");
         btnBuscar5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,38 +227,38 @@ public class RegistrarDocumento extends JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtRuta11, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                                .addComponent(txtRuta11, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnBuscar1)
                                 .addGap(57, 57, 57))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addContainerGap(365, Short.MAX_VALUE))))
+                                .addContainerGap(379, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(txtRuta22, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(txtRuta22, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar2)
                         .addGap(57, 57, 57))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(txtRuta33, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(txtRuta33, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar3)
                         .addGap(57, 57, 57))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(txtRuta44, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(txtRuta44, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar4)
                         .addGap(57, 57, 57))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNombreDoc6, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(txtRuta55, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(txtRuta55, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar5)
                         .addGap(57, 57, 57))))
@@ -281,22 +277,22 @@ public class RegistrarDocumento extends JFrame {
                     .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRuta22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRuta33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRuta44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreDoc6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRuta55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -381,7 +377,7 @@ public class RegistrarDocumento extends JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(540, Short.MAX_VALUE)
                 .addComponent(btnLimpiar)
@@ -408,8 +404,20 @@ public class RegistrarDocumento extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
+//        if (this.txtRuta11.getText()!=""){
+  //          if (this.txtNombreDoc1.getText()==""){
+                //Mensaje de error
+    //        }
+      //      else{
+                File file1= new File(this.txtRuta11.getText());
+
+                String contenido=DocumentoBL.obtenerContenido(file1);
+                DocumentoBL doc1= new DocumentoBL(contenido);
+                //serializar documento y luego registrarlo en la BD
+        //    }
+        //}
+
+
 }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -419,6 +427,7 @@ public class RegistrarDocumento extends JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
+
 }//GEN-LAST:event_btnCancelarActionPerformed
 
 
@@ -438,7 +447,18 @@ public class RegistrarDocumento extends JFrame {
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        this.txtRuta11.setText("");
+        this.txtRuta22.setText("");
+        this.txtRuta33.setText("");
+        this.txtRuta44.setText("");
+        this.txtRuta55.setText("");
+
+        this.txtNombreDoc1.setText("");
+        this.txtNombreDoc2.setText("");
+        this.txtNombreDoc3.setText("");
+        this.txtNombreDoc4.setText("");
+        this.txtNombreDoc5.setText("");
+
    
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -459,13 +479,13 @@ public class RegistrarDocumento extends JFrame {
         }*/
     }//GEN-LAST:event_txtNombreDoc1KeyReleased
 
-    private void txtNombreDoc3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc3KeyPressed
+    private void txtNombreDoc2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc2KeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDoc3KeyPressed
+}//GEN-LAST:event_txtNombreDoc2KeyPressed
 
-    private void txtNombreDoc3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc3KeyReleased
+    private void txtNombreDoc2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc2KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDoc3KeyReleased
+}//GEN-LAST:event_txtNombreDoc2KeyReleased
 
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
        JFileChooser chooser = new JFileChooser();
@@ -479,13 +499,13 @@ public class RegistrarDocumento extends JFrame {
         }
     }//GEN-LAST:event_btnBuscar2ActionPerformed
 
-    private void txtNombreDoc4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc4KeyPressed
+    private void txtNombreDoc3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc3KeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDoc4KeyPressed
+}//GEN-LAST:event_txtNombreDoc3KeyPressed
 
-    private void txtNombreDoc4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc4KeyReleased
+    private void txtNombreDoc3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc3KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDoc4KeyReleased
+}//GEN-LAST:event_txtNombreDoc3KeyReleased
 
     private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
         JFileChooser chooser = new JFileChooser();
@@ -499,13 +519,13 @@ public class RegistrarDocumento extends JFrame {
         }
     }//GEN-LAST:event_btnBuscar3ActionPerformed
 
-    private void txtNombreDoc5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc5KeyPressed
+    private void txtNombreDoc4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc4KeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDoc5KeyPressed
+}//GEN-LAST:event_txtNombreDoc4KeyPressed
 
-    private void txtNombreDoc5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc5KeyReleased
+    private void txtNombreDoc4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc4KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDoc5KeyReleased
+}//GEN-LAST:event_txtNombreDoc4KeyReleased
 
     private void btnBuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar4ActionPerformed
         JFileChooser chooser = new JFileChooser();
@@ -519,13 +539,13 @@ public class RegistrarDocumento extends JFrame {
         }
     }//GEN-LAST:event_btnBuscar4ActionPerformed
 
-    private void txtNombreDoc6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc6KeyPressed
+    private void txtNombreDoc5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc5KeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDoc6KeyPressed
+}//GEN-LAST:event_txtNombreDoc5KeyPressed
 
-    private void txtNombreDoc6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc6KeyReleased
+    private void txtNombreDoc5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDoc5KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDoc6KeyReleased
+}//GEN-LAST:event_txtNombreDoc5KeyReleased
 
     private void btnBuscar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar5ActionPerformed
        JFileChooser chooser = new JFileChooser();
@@ -549,22 +569,22 @@ public class RegistrarDocumento extends JFrame {
     private javax.swing.JButton btnBuscar5;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextField txtNombreDoc1;
+    private javax.swing.JTextField txtNombreDoc2;
+    private javax.swing.JTextField txtNombreDoc3;
+    private javax.swing.JTextField txtNombreDoc4;
+    private javax.swing.JTextField txtNombreDoc5;
     private javax.swing.JTextField txtPropietario;
     private javax.swing.JTextField txtRuta11;
-    private javax.swing.JTextField txtRuta2;
     private javax.swing.JTextField txtRuta22;
     private javax.swing.JTextField txtRuta33;
     private javax.swing.JTextField txtRuta44;
