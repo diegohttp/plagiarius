@@ -45,7 +45,18 @@ public class CategoriaDAO {
         ConexionJDBC objConexion = new ConexionJDBC();
 
         String strSentencia = " SELECT \"idCategoria\", descripcion, nombre FROM \"Categoria\"";
-            /*strSentencia +=
+        if (descripcion.compareTo("") != 0 && nombre.compareTo("")==0){
+            strSentencia += " WHERE descripcion like '%"+ descripcion + "%' and nombre like '%"+ nombre + "%'" ;
+        }
+        else if (descripcion.compareTo("")!=0){
+            strSentencia += " WHERE descripcion like '%"+ descripcion + "%'";
+        }
+        else if (nombre.compareTo("")!=0){
+            strSentencia += " WHERE nombre like '%"+ nombre + "%'";
+        }
+        strSentencia +=" ORDER BY \"idCategoria\"";
+        System.out.println(strSentencia);
+        /*strSentencia +=
                 " WHERE descripcion like '"+ descripcion+"'||'%' and " +
                 " nombre like '"+ nombre+"'||'%' " +
                 " ORDER BY nombre ;";
@@ -78,8 +89,6 @@ public class CategoriaDAO {
                 objCategoria.setDescripcion(rs.getString(2));
                 objCategoria.setNombre(rs.getString(3));
             }
-
-           
         }
         catch (Exception a){
             System.out.println(a.getMessage());
