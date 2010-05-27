@@ -9,6 +9,48 @@ package antiplagium.BL;
  *
  * @author PATTY
  */
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import antiplagium.DAO.CategoriaDAO;
+import antiplagium.BE.*;
+
+
 public class CategoriaBL {
 
+
+    public boolean registrarCategoria(int idCategoria, String descripcion, String nombre) throws Exception {
+        boolean exito = false;
+
+        CategoriaBE objCategoria = new CategoriaBE (Integer.parseInt (Utilitario.generaCodigo("Categoria",4)), descripcion, nombre);
+
+        if(CategoriaDAO.registrar((CategoriaBE)objCategoria)){
+            exito = CategoriaDAO.registrar(objCategoria);
+        }
+        return exito;
+    }
+
+    public boolean modificarCategoria(CategoriaBE objCategoria ) throws Exception {
+
+        boolean exito = false;
+
+        if (CategoriaDAO.modificar((CategoriaBE)objCategoria)){
+            exito = CategoriaDAO.modificar(objCategoria);
+        }
+
+        return exito;
+    }
+
+    public ArrayList<CategoriaBE> buscarCategoria(String descripcion, String nombre) throws FileNotFoundException, IOException{
+        return CategoriaDAO.buscar(nombre,descripcion);
+    }
+
+    public CategoriaBE buscarCategoria(int idCategoria) throws FileNotFoundException, IOException{
+        return CategoriaDAO.buscar(idCategoria);
+    }
 }
+
+
+
+
