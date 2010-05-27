@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BL.DocumentoBL;
 import antiplagium.DAL.ConexionJDBC;
 /**
  *
@@ -17,12 +18,12 @@ import antiplagium.DAL.ConexionJDBC;
  */
 public class DocumentoDAO {
 
-     public static boolean registrar(DocumentoBE objDocumento) throws Exception
+     public static boolean registrar(DocumentoBL objDocumento) throws Exception
     {
         boolean boolExito = false;
 
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentencia = "INSERT INTO Documento (idDocumento,estado,nombre,idUsuario,contenido) VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getIdUsuario() +"','"+ objDocumento.getOracion(idx) +"');";
+        String strSentencia = "INSERT INTO Documento (idDocumento,estado,nombre,idUsuario,contenido) VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getIdUsuario() +"','"+ objDocumento.toXml() +"');";
 
         try{
             objConexion.ejecutarSentencia(strSentencia);
@@ -38,14 +39,14 @@ public class DocumentoDAO {
         return boolExito;
     }
 
-    public static ArrayList<DocumentoBE> buscar(String nombre,String idUsuario) throws FileNotFoundException, IOException{
+    public static ArrayList<DocumentoBE> buscar(DocumentoBL doc) throws FileNotFoundException, IOException{
 
         ConexionJDBC objConexion = new ConexionJDBC();
 
         String strSentencia = " SELECT idDocumento, estado, nombre, idUsuario, contenido FROM Documento ";
             strSentencia +=
-                " WHERE nombre like '"+ nombre+"'||'%' and " +
-                " idUsuario like '"+ idUsuario+"'||'%' " +
+                " WHERE nombre like '"+ doc.getNombre()+"'||'%' and " +
+                " idUsuario like '"+ doc.getIdUsuario()+"'||'%' " +
                 " ORDER BY nombre ;";
 
         ArrayList<DocumentoBE> arrDocumento = new ArrayList<DocumentoBE>();
@@ -64,9 +65,7 @@ public class DocumentoDAO {
                 strnombre = rs.getString(3);
                 stridUsuario = rs.getString(4);
                 strcontenido = rs.getString(5);
-
-
-                arrDocumento.add(new DocumentoBE(Integer.parseInt (stridDocumento), strestado, strnombre, stridUsuario, strcontenido));
+                //arrDocumento.add(new DocumentoBE(Integer.parseInt (stridDocumento), strestado, strnombre, stridUsuario, strcontenido));
             }
 
         }
@@ -95,8 +94,6 @@ public class DocumentoDAO {
                 objDocumento.setIdUsuario(rs.getInt(4));
                // objDocumento.setContenido(rs.getInt(4));
             }
-
-
         }
         catch (Exception a){
             System.out.println(a.getMessage());
@@ -105,7 +102,7 @@ public class DocumentoDAO {
     }
 
 
-    public static boolean modificar(DocumentoBE objDocumento)throws FileNotFoundException, IOException {
+    public static boolean modificar(DocumentoBL objDocumento)throws FileNotFoundException, IOException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
         String strSentencia = "UPDATE Documento SET ";
@@ -120,10 +117,5 @@ public class DocumentoDAO {
             System.out.println(a.getMessage());
             return false;
         }
-
-
     }
-
-
-
 }
