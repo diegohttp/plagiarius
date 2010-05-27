@@ -1,10 +1,11 @@
 package antiplagium.view;
 
+import antiplagium.BL.PrivilegioBL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
-import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.RolDAO;
-import java.beans.Statement;
-import java.sql.Connection;
+import antiplagium.BL.RolBL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import javax.swing.JOptionPane;
 
 public class JFAdministrarRoles extends JIFBase {
 
+    ResultSet tablaRoles = null;
+    ResultSet tablaPrivilegios = null;
     JDesktopPane jdpPrincipal;
 
     public JFAdministrarRoles(JDesktopPane jdpPrincipal) {
@@ -23,43 +26,37 @@ public class JFAdministrarRoles extends JIFBase {
 
     private void onLoad()
     {        
-            RolDAO rolDAO = new RolDAO();
-            try
+        RolBL rolBL = new RolBL();
+        PrivilegioBL privilegioBL = new PrivilegioBL();
+        try
+        {
+            rolBL.AbrirConexion();
+            tablaRoles = rolBL.getListRoles();
+            while (tablaRoles.next())
             {
-                Vector tablaRoles = rolDAO.getRoles();
-
-                for (int i=0; i<tablaRoles.size(); i++)
-                {
-                    Object[] registro = (Object[])tablaRoles.get(i);
-                    System.out.println(registro[0].toString() + " " + registro[1].toString() + " " + registro[2].toString());
-                    jComboBox1.addItem(registro[1].toString());
-               }
+                jcbRol.addItem(tablaRoles.getString("nombre"));
             }
-            catch(SQLException excepcionSQL)
+            rolBL.CerrarConexion();
+            
+            privilegioBL.AbrirConexion();
+            tablaPrivilegios = privilegioBL.getListPrivilegioPorRol(1);
+            while (tablaPrivilegios.next())
             {
-                JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                System.out.println(tablaPrivilegios.getString("nombre") + " " + tablaPrivilegios.getString("descripcion"));
             }
 
-//        try{
-//            ConexionJDBC.instruccion = ConexionJDBC.conexion.createStatement();
-//            ConexionJDBC.tablaResultados = ConexionJDBC.instruccion.executeQuery("SELECT RP.\"idRol\", R.\"nombre\" AS \"Rol\", RP.\"idPrivilegio\", P.\"nombre\" AS \"Privilegio\" " +
-//                                             "FROM \"RolXPrivilegio\" RP " +
-//                                             "INNER JOIN \"Rol\" R " +
-//                                             "ON RP.\"idRol\" = R.\"idRol\" " +
-//                                             "INNER JOIN \"Privilegio\" P " +
-//                                             "ON RP.\"idPrivilegio\" = P.\"idPrivilegio\"");
-//
-//            //ArrayList<String> arreglo = (ArrayList<String>)rs.getArray("nombre");
-//
-//            while (ConexionJDBC.tablaResultados.next())
-//            {
-//                System.out.println(ConexionJDBC.tablaResultados.getString("idRol") + " " + ConexionJDBC.tablaResultados.getString("Rol") + " " + ConexionJDBC.tablaResultados.getString("idPrivilegio") + " " + ConexionJDBC.tablaResultados.getString("Privilegio"));
-//                //jComboBox1.addItem(rs.getString("nombre"));
-//            }
-//        }
-//        catch(Exception e) {e.printStackTrace();}
 
+        } 
+        catch (ClassNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (SQLException excepcionSQL)
+        {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
 
+        
 
     }
 
@@ -69,7 +66,7 @@ public class JFAdministrarRoles extends JIFBase {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jcbRol = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -87,9 +84,9 @@ public class JFAdministrarRoles extends JIFBase {
 
         jLabel2.setText("Rol");
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jcbRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jcbRolActionPerformed(evt);
             }
         });
 
@@ -101,7 +98,7 @@ public class JFAdministrarRoles extends JIFBase {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,7 +106,7 @@ public class JFAdministrarRoles extends JIFBase {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -236,15 +233,11 @@ public class JFAdministrarRoles extends JIFBase {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JBNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29))
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
         JFAgregarRol jfAgregarRol = new JFAgregarRol();
@@ -268,13 +261,16 @@ public class JFAdministrarRoles extends JIFBase {
         jfAgregarRol.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseReleased
 
+    private void jcbRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbRolActionPerformed
+        
+    }//GEN-LAST:event_jcbRolActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBNuevo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -284,6 +280,7 @@ public class JFAdministrarRoles extends JIFBase {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox jcbRol;
     // End of variables declaration//GEN-END:variables
 
 }
