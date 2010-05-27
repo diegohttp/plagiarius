@@ -21,15 +21,11 @@ import antiplagium.BE.*;
 public class CategoriaBL {
 
 
-    public boolean registrarCategoria(String descripcion, String nombre) throws Exception {
+    public boolean registrarCategoria(CategoriaBE objCategoria) throws Exception {
         boolean exito = false;
 
-       // CategoriaBE objCategoria = new CategoriaBE (Integer.parseInt (Utilitario.generaCodigo("Categoria",4)), descripcion, nombre);
-
-        CategoriaBE objCategoria = new CategoriaBE (1, descripcion, nombre);
-        
-        if(CategoriaDAO.registrar((CategoriaBE)objCategoria)){
-            exito = CategoriaDAO.registrar(objCategoria);
+        if(CategoriaDAO.registrar(objCategoria)){
+            return true;
         }
         return exito;
     }
