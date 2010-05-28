@@ -3,6 +3,16 @@ package antiplagium.view;
 //import org.freixas.jcalendar.JCalendarCombo;
 
 import antiplagium.*;
+import antiplagium.BE.CategoriaBE;
+import antiplagium.BL.CategoriaBL;
+import antiplagium.BL.RolBL;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import org.freixas.jcalendar.JCalendarCombo;
@@ -15,6 +25,8 @@ public class JFAdministrarUsuarios extends JIFBase {
 
     private JCalendarCombo cmbCalendarioInicio = new JCalendarCombo();
     private JCalendarCombo cmbCalendarioFin= new JCalendarCombo();
+    private RolBL rolBL;
+    private CategoriaBL categoriaBl;
 
 //    JDesktopPane desktop;
     /** Creates new form JFAministrarUsuarios */
@@ -28,10 +40,46 @@ public class JFAdministrarUsuarios extends JIFBase {
         cmbCalendarioFin.setSize(247, 29);
         jPanel3.add(cmbCalendarioInicio);
         jPanel4.add(cmbCalendarioFin);
-//        cmbCalendarioInicio.setBounds(200, 105, 200, 20);
-//        jPanel1.add(cmbCalendarioInicio);
-//        cmbCalendarioFin.setBounds(200,135,200,20);
-//        jPanel1.add(cmbCalendarioFin);        
+        rolBL=new RolBL();
+        categoriaBl=new CategoriaBL();
+
+        try {
+
+            rolBL.AbrirConexion();
+            ResultSet registros = rolBL.getListRoles();
+
+            int numeroRegistros=registros.getRow();
+
+            while (registros.next()) {
+                    jCBRol.addItem(registros.getString("nombre"));
+
+            }
+            rolBL.CerrarConexion();
+
+
+            ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
+
+            int cantidadCategorias=listaCategorias.size();
+
+            for(int i=0;i<cantidadCategorias;i++){
+                cboAreaAcademica.addItem(listaCategorias.get(i).getNombre());
+
+            }
+
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+
+   
     }
 
     /** This method is called from within the constructor to
@@ -50,10 +98,10 @@ public class JFAdministrarUsuarios extends JIFBase {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jCBRol = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cboAreaAcademica = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -91,10 +139,9 @@ public class JFAdministrarUsuarios extends JIFBase {
 
         jLabel3.setText("Rol");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCBRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jCBRolActionPerformed(evt);
             }
         });
 
@@ -102,10 +149,9 @@ public class JFAdministrarUsuarios extends JIFBase {
 
         jLabel9.setText("Fecha fin");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ciencias Sociales" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cboAreaAcademica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cboAreaAcademicaActionPerformed(evt);
             }
         });
 
@@ -160,8 +206,8 @@ public class JFAdministrarUsuarios extends JIFBase {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, 269, Short.MAX_VALUE)
+                            .addComponent(jCBRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboAreaAcademica, 0, 269, Short.MAX_VALUE)
                             .addComponent(jTextField1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(244, 244, 244)
@@ -175,7 +221,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -191,7 +237,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                         .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboAreaAcademica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
@@ -310,7 +356,7 @@ public class JFAdministrarUsuarios extends JIFBase {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(254, Short.MAX_VALUE)
+                .addContainerGap(262, Short.MAX_VALUE)
                 .addComponent(JBNuevo)
                 .addGap(18, 18, 18)
                 .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,7 +382,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                     .addComponent(jBEliminar)
                     .addComponent(JBNuevo)
                     .addComponent(jBModificar))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -363,13 +409,13 @@ public class JFAdministrarUsuarios extends JIFBase {
         jfEliminarUsuario.toFront();
 }//GEN-LAST:event_jBEliminarActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cboAreaAcademicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAreaAcademicaActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_jComboBox2ActionPerformed
+}//GEN-LAST:event_cboAreaAcademicaActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jCBRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBRolActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_jComboBox1ActionPerformed
+}//GEN-LAST:event_jCBRolActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -408,11 +454,11 @@ public class JFAdministrarUsuarios extends JIFBase {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBNuevo;
+    private javax.swing.JComboBox cboAreaAcademica;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBModificar;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jCBRol;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
