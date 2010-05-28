@@ -6,10 +6,13 @@ package antiplagium.BL;
 
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.OracionBE;
+import antiplagium.DAO.DocumentoDAO;
 import com.thoughtworks.xstream.XStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -28,10 +31,7 @@ import org.apache.poi.poifs.eventfilesystem.POIFSReaderListener;
  */
 public class DocumentoBL {
 
-   
-    
-
-    public DocumentoBL() {
+        public DocumentoBL() {
         
         
     }
@@ -92,7 +92,15 @@ public class DocumentoBL {
         return contenido;
     }
 
-    
+
+    //LISTAR DOCUMENTOS
+    public static ArrayList<DocumentoBE> ListarDocs(String IdPropietario, String Nombre, int IdCategoria, String objEstado) throws FileNotFoundException, IOException {
+        return DocumentoDAO.ListarDocs(IdPropietario,Nombre,IdCategoria,objEstado);
+                
+    }
+
+
+
 }
 
 class AnalizadorWord {
