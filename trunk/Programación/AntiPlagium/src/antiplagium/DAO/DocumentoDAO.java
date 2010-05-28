@@ -18,7 +18,7 @@ import antiplagium.DAL.ConexionJDBC;
  */
 public class DocumentoDAO {
 
-     public static boolean registrar(DocumentoBL objDocumento) throws Exception
+     public static boolean registrar(DocumentoBE objDocumento) throws Exception
     {
         boolean boolExito = false;
 
@@ -41,7 +41,7 @@ public class DocumentoDAO {
         return boolExito;
     }
 
-    public static ArrayList<DocumentoBE> buscar(DocumentoBL doc) throws FileNotFoundException, IOException{
+    public static ArrayList<DocumentoBE> buscar(DocumentoBE doc) throws FileNotFoundException, IOException{
 
         ConexionJDBC objConexion = new ConexionJDBC();
 
@@ -100,7 +100,7 @@ public class DocumentoDAO {
     }
 
 
-    public static boolean modificar(DocumentoBL objDocumento)throws FileNotFoundException, IOException {
+    public static boolean modificar(DocumentoBE objDocumento)throws FileNotFoundException, IOException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
         String strSentencia = "UPDATE Documento SET ";
