@@ -238,9 +238,9 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jtxtTipoServicio1" max="32767" attributes="1"/>
+                              <Component id="jtxtIdPropietario" max="32767" attributes="1"/>
                               <Component id="jcmbCategoria" max="32767" attributes="1"/>
-                              <Component id="jtxtTipoServicio" alignment="0" pref="148" max="32767" attributes="1"/>
+                              <Component id="jtxtNombre" alignment="0" pref="148" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace pref="73" max="32767" attributes="0"/>
                           <Component id="btnBuscar" min="-2" max="-2" attributes="1"/>
@@ -258,7 +258,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtxtTipoServicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtxtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -268,7 +268,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtxtTipoServicio1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtxtIdPropietario" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="11" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -297,9 +297,9 @@
             <Property name="text" type="java.lang.String" value="Categor&#xed;a:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jtxtTipoServicio">
+        <Component class="javax.swing.JFormattedTextField" name="jtxtNombre">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtTipoServicioActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtNombreActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jcmbCategoria">
@@ -334,9 +334,9 @@
             <Property name="text" type="java.lang.String" value="ID Propietario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jtxtTipoServicio1">
+        <Component class="javax.swing.JFormattedTextField" name="jtxtIdPropietario">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtTipoServicio1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtIdPropietarioActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
