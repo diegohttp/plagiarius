@@ -8,10 +8,13 @@ package antiplagium.DAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAL.ConexionJDBC;
+import java.util.Vector;
 /**
  *
  * @author PATTY
@@ -115,5 +118,85 @@ public class DocumentoDAO {
             System.out.println(a.getMessage());
             return false;
         }
+    }
+
+    public static ArrayList<DocumentoBE> ListarDocs(String IdPropietario, String Nombre, int IdCategoria, String objEstado)throws FileNotFoundException, IOException, SQLException {
+
+        ConexionJDBC objConexion = new ConexionJDBC();
+
+      String strSentencia = " SELECT \"idDocumento\", nombre, idCategoria, idUsuario, estado FROM \"Documento\"";
+
+        boolean esprimero=true;
+        String prop="", cat="",est="", nom="";
+        if (IdPropietario.compareTo("")!=0) {
+            prop="idUsuario like '%"+ IdPropietario + "%'";
+            if (esprimero) {
+                prop=" WHERE "+prop;
+                esprimero=false;
+            }
+            else prop=" AND "+prop;
+        }
+
+        if (Nombre.compareTo("")!=0) {
+            nom="nombre like '%"+ Nombre + "%'";
+            if (esprimero) {
+                nom=" WHERE "+nom;
+                esprimero=false;
+            }
+            else nom=" AND "+nom;
+        }
+
+        if (objEstado.compareTo("")!=0) {
+            est="estado like '%"+ objEstado + "%'";
+            if (esprimero) {
+                est=" WHERE "+est;
+                esprimero=false;
+            }
+            else est=" AND "+est;
+        }
+
+        /*if (IdCategoria.compareTo(null)!=0) {
+            cat="idCategoria like '%"+ IdCategoria + "%'";
+            if (esprimero) {
+                cat=" WHERE "+cat;
+                esprimero=false;
+            }
+            else cat=" AND "+cat;
+        }
+        */
+        strSentencia=strSentencia+prop+cat+est+nom;
+
+/*
+        if (IdPropietario.compareTo("")!=0 && Nombre.compareTo("") != 0 && IdCategoria.equals(0) && objEstado.compareTo("")=0){
+            strSentencia += " WHERE idUsuario like '%"+ IdPropietario + "%' and idCategoria= + IdCategoria + "%'" nombre like '%" + Nombre + "%'"estado like '%"+ objEstado + "%'" ;
+        }
+
+        else if (Nombre.compareTo("") != 0 && IdCategoria.compareTo("")==0 && objEstado.compareTo("")==0){
+            strSentencia += " WHERE nombre like '%"+ Nombre + "%' and idCategoria= + IdCategoria + "%'"
+        }
+
+        else if (Nombre.compareTo("")!=0){
+            strSentencia += " WHERE descripcion like '%"+ Nombre + "%'";
+        }
+        else if (IdCategoria.compareTo("")!=0){
+            strSentencia += " WHERE idCategoria like '%"+ IdCategoria + "%'";
+        }
+*/
+        strSentencia +=" ORDER BY \"idDocumento\"";
+
+        System.out.println(strSentencia);
+       
+        Vector arrDocumento;
+        arrDocumento = objConexion.ejecutarQuery(strSentencia);
+        ArrayList<DocumentoBE> gestorDocumento = new ArrayList<DocumentoBE>();
+
+        for (int i=0; i < arrDocumento.size(); ++i){
+            Object[] registro = (Object[])arrDocumento.get(i);
+            gestorDocumento.add(new DocumentoBE((Integer)registro[0],(String)registro[1],(String)registro[2],(UsuarioBE)registro[3]));
+        }
+        return gestorDocumento;
+
+
+
     }
 }
