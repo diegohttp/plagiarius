@@ -25,7 +25,7 @@ public class DocumentoDAO {
         ConexionJDBC objConexion = new ConexionJDBC();
         String xml = objDocumento.toXml();
 
-        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido) VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getIdUsuario() +"','"+ xml +"');";
+        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido) VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getUsuario() +"','"+ xml +"');";
 
         try{
             objConexion.ejecutarSentencia(strSentencia);
@@ -48,7 +48,7 @@ public class DocumentoDAO {
         String strSentencia = "SELECT \"idDocumento\",\"estado\",\"nombre\",\"idUsuario\" FROM \"Documento\"";
             strSentencia +=
                 " WHERE \"nombre\" like '"+ doc.getNombre()+"'||'%' and " +
-                " \"idUsuario\" like '"+ doc.getIdUsuario()+"'||'%' " +
+                " \"idUsuario\" like '"+ doc.getUsuario()+"'||'%' " +
                 " ORDER BY \"nombre\";";
 
         ArrayList<DocumentoBE> arrDocumento = new ArrayList<DocumentoBE>();
@@ -64,7 +64,7 @@ public class DocumentoDAO {
                 strestado = rs.getString(2);
                 strnombre = rs.getString(3);
                 stridUsuario = rs.getString(4);
-                arrDocumento.add(new DocumentoBE(Integer.parseInt(stridDocumento), Integer.parseInt(strestado), strnombre,Integer.parseInt(stridUsuario)));
+                arrDocumento.add(new DocumentoBE(Integer.parseInt(stridDocumento), (strestado), strnombre,null));
             }
         }
         catch (Exception a){
@@ -87,9 +87,9 @@ public class DocumentoDAO {
 
             while (rs.next()) {
                 objDocumento.setIdDocumento(rs.getInt(1));
-                objDocumento.setEstado(rs.getInt(2));
+                objDocumento.setEstado(rs.getString(2));
                 objDocumento.setNombre(rs.getString(3));
-                objDocumento.setIdUsuario(rs.getInt(4));
+                objDocumento.setUsuario(null);
                // objDocumento.setContenido(rs.getInt(4));
             }
         }
