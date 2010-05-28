@@ -379,7 +379,21 @@ public class BuscarDocumento extends JIFBase {
     }//GEN-LAST:event_jcmbEstado1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String contenido="Esto es un\ndocu\nmento de\nprueba.";
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        contenido+=contenido;
+        JFVisualizarDocumento vis = new JFVisualizarDocumento(contenido);
+        AntiPlagiumPrincipal.JDPPrincipal.add(vis);
+        vis.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public String getNombreDocSeleccionado(){
