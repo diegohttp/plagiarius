@@ -13,7 +13,11 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.UsuarioBE;
+import antiplagium.BE.Utilitario;
+import antiplagium.BL.EstadoBL;
 import antiplagium.BL.UsuarioBL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +34,7 @@ import org.freixas.jcalendar.JCalendarCombo;
  */
 public class JFAgregarUsuario extends JIFBase {
 
+    private EstadoBL estadoBL;
     private JCalendarCombo cmbFechaInicio;
     private JCalendarCombo cmbFechaFin;
     /** Creates new form JFAgregarUsuario1 */
@@ -46,15 +51,32 @@ public class JFAgregarUsuario extends JIFBase {
         jPanel4.add(cmbFechaFin);
         jMenuBar1.setVisible(false);
 
+        estadoBL=new EstadoBL();
+        try {
+            ResultSet registrosEstado = estadoBL.ObtenerEstados();
+            int numeroRegistros=registrosEstado.getRow();
+
+            while (registrosEstado.next()) {
+                    JCBEstado.addItem(registrosEstado.getString("nombre"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+
         if (opcion==1) {
             this.setTitle("Modificar Usuario");
             this.setBounds(10, 10, 497, 640);
           
             jComboBox1.enable(false);
             cmbFechaInicio.enable(false);
-            jComboBox3.enable(false);
+            JCBEstado.enable(false);
             jMenuBar1.setVisible(true);
-            if (jComboBox3.getSelectedItem().toString()=="Activo"){
+            if ((JCBEstado.getSelectedItem().toString())=="Activo"){
                  jMenu1.enable(false);
                  jMenu1.setVisible(false);
             }
@@ -62,6 +84,7 @@ public class JFAgregarUsuario extends JIFBase {
                     jMenu2.setVisible(false);
             }
         }
+
 
     }
 
@@ -76,7 +99,7 @@ public class JFAgregarUsuario extends JIFBase {
 
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
@@ -96,7 +119,7 @@ public class JFAgregarUsuario extends JIFBase {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox();
+        JCBEstado = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -114,6 +137,12 @@ public class JFAgregarUsuario extends JIFBase {
         setPreferredSize(new java.awt.Dimension(497, 610));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Usuario"));
+
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombresKeyReleased(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Principal", "Profesor" }));
 
@@ -156,7 +185,7 @@ public class JFAgregarUsuario extends JIFBase {
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -164,7 +193,7 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +203,7 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -216,7 +245,7 @@ public class JFAgregarUsuario extends JIFBase {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 241, Short.MAX_VALUE)
+            .addGap(0, 232, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,14 +259,12 @@ public class JFAgregarUsuario extends JIFBase {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 241, Short.MAX_VALUE)
+            .addGap(0, 232, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 25, Short.MAX_VALUE)
         );
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Act", "Sus", "Anu" }));
 
         jLabel10.setText("Fecha Inicio");
 
@@ -257,9 +284,9 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel12))
                 .addGap(95, 95, 95)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(JCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -272,7 +299,7 @@ public class JFAgregarUsuario extends JIFBase {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
@@ -322,7 +349,7 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,7 +396,7 @@ public class JFAgregarUsuario extends JIFBase {
         System.out.println(cadenaFechaI);
         System.out.println(fechaI);
         
-        String estado=jComboBox3.getSelectedItem().toString();
+        String estado=JCBEstado.getSelectedItem().toString();
         // debe haber un tabla estado y con el item seleccionado jalar un obejto estado.. pero esta bien por el momento
         int idRol=jComboBox1.getSelectedIndex();
         // con el nombre (o indice) del rol se busca en la BD.. y se forma un objeto RolBE para asignarlo al Usuario
@@ -381,7 +408,7 @@ public class JFAgregarUsuario extends JIFBase {
         // hay q modificar la ventana para seleccionar varias categorias o areas academicas a la que pertenece el Usuario.
 
  
-        usuarioBE = usuarioBL.FormarUsuarioBE(idUsuario,jTextField2.getText(),
+        usuarioBE = usuarioBL.FormarUsuarioBE(idUsuario,txtNombres.getText(),
                                           jTextField3.getText(),jTextField4.getText(),
                                           jTextField5.getText(),jTextField6.getText(),
                                           fechaI,fechaF,
@@ -398,18 +425,31 @@ public class JFAgregarUsuario extends JIFBase {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void txtNombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyReleased
+            Character caracter = new Character(evt.getKeyChar());
+
+        if (!Utilitario.esLetra(caracter)) {
+                    String texto = "";
+                    for (int i = 0; i < this.txtNombres.getText().length(); i++)
+                        if (Utilitario.esLetra(new Character(this.txtNombres.getText().charAt(i))))
+                            texto += this.txtNombres.getText().charAt(i);
+                    this.txtNombres.setText(texto);
+            this.txtNombres.getToolkit().beep();
+        }
+    }//GEN-LAST:event_txtNombresKeyReleased
+    
     /**
     * @param args the command line arguments
     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox JCBEstado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -430,12 +470,12 @@ public class JFAgregarUsuario extends JIFBase {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
 
 }
