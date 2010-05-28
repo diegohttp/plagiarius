@@ -16,6 +16,7 @@ import antiplagium.BE.DocumentoBE;
 import antiplagium.BL.DocumentoBL;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import javax.swing.JFrame;
@@ -332,10 +333,16 @@ public class BuscarDocumento extends JIFBase {
                 IdCategoria = objCategoria.getIdCategoria();
 
                 objEstado=  (String)this.jcmbEstado1.getSelectedItem();
-
-
-            //this.arrDocumentos = DocumentoBL.ListarDocs(jtxtIdPropietario.getText().trim(),jtxtNombre.getText().trim(),IdCategoria,objEstado);
+        try {
+            this.arrDocumentos = DocumentoBL.ListarDocs(jtxtIdPropietario.getText().trim(), jtxtNombre.getText().trim(), IdCategoria, objEstado);
             //llenarGrilla();
+        } catch (FileNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        }
                
 }//GEN-LAST:event_btnBuscarActionPerformed
 
