@@ -21,89 +21,22 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.poifs.eventfilesystem.POIFSReader;
 import org.apache.poi.poifs.eventfilesystem.POIFSReaderEvent;
 import org.apache.poi.poifs.eventfilesystem.POIFSReaderListener;
+
 /**
  *
  * @author KIM
  */
 public class DocumentoBL {
-   private DocumentoBE datos;
-   private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
-   public DocumentoBL() {
-        this.datos = null;
-        this.listaOraciones = null;
-   }
-   public void setListaraciones(ArrayList<OracionBE> lista){
-        this.listaOraciones = lista;
-   }
-   public String getNombre(){
-        return this.datos.getNombre();
-   }
-   public int getEstado(){
-        return this.datos.getEstado();
-   }
-   public int getIdUsuario(){
-      return this.datos.getIdUsuario();
-   }
-   public int getIdDocumento(){
-        return this.datos.getIdDocumento();
-   }
-   public void setDatos(DocumentoBE doc){
-           this.datos = doc;
-   }
-   public String toXml(){
-        XStream xstream = new XStream();
-        xstream.alias("documento", DocumentoBL.class);
-        xstream.alias("datos",DocumentoBE.class);
-        xstream.alias("oracion", OracionBE.class);
-        return xstream.toXML(this);
-   }
-   public OracionBE getOracion(int idx){
-        return this.listaOraciones.get(idx);
-   }
-   public int getNumeroOraciones(){
-        return this.listaOraciones.size();
-   }
-   public void addOracion(OracionBE oracion){
-        this.listaOraciones.add(oracion);
-   }
-   public DocumentoBL(String contenido) {
 
-        BufferedReader entrada = null;
-        try {
-            entrada = new BufferedReader(new StringReader(contenido));
-            while (entrada.ready()) {
-                OracionBE or = new OracionBE();
-                String linea = entrada.readLine();
-                linea = linea.toLowerCase(Locale.ENGLISH);
-                if (linea.compareTo("") == 0) {
-                    continue;
-                }
-                String[] listaPalabras = linea.split(" ");
-                for (int i = 0; i < listaPalabras.length; i++) {
-                    String pal = listaPalabras[i];
-                    //Quitar palabras repetidas y no significativas
-                    if (or.getListaPalabras().contains(pal) || DetectorBL.listaPalNoSignificativas.contains(pal)) {
-                        continue;
-                    }
+   
+    
 
-                    pal = limpiarPalabra(pal);
-                    if (pal.compareTo("") == 0) {
-                        continue;
-                    }
-
-                    or.getListaPalabras().add(pal);
-                    or.getHashPalabras().put(pal, i);
-                }
-                if (or.getListaPalabras().size() > 0) {
-                    this.listaOraciones.add(or);
-                }
-            }
-
-
-        } catch (Exception ex) {
-            System.out.print("error" + this.datos.getNombre());
-        }
+    public DocumentoBL() {
+        
+        
     }
+
+    
 
     public static String limpiarPalabra(String palabra) {
         String pal = "";
@@ -141,7 +74,7 @@ public class DocumentoBL {
         String contenido = "";
         try {
             String extension = f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf('.'), f.getAbsolutePath().lastIndexOf('.') + 4);
- 
+
             if (extension.compareToIgnoreCase(".txt") == 0) {
                 BufferedReader entrada = new BufferedReader(new FileReader(f));
                 while (entrada.ready()) {
@@ -150,7 +83,7 @@ public class DocumentoBL {
             } else if (extension.compareToIgnoreCase(".doc") == 0) {
                 AnalizadorWord analizador = new AnalizadorWord(f.getAbsolutePath());
                 analizador.analizar();
-                contenido= analizador.getTexto();
+                contenido = analizador.getTexto();
             } else;//MENSAJE DE ERROR DE FORMATO
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -158,6 +91,8 @@ public class DocumentoBL {
         System.out.print(contenido);
         return contenido;
     }
+
+    
 }
 
 class AnalizadorWord {
