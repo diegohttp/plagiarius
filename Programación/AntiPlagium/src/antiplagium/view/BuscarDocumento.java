@@ -11,14 +11,25 @@
 
 package antiplagium.view;
 
+import antiplagium.BE.CategoriaBE;
+import antiplagium.BE.DocumentoBE;
+import antiplagium.BL.DocumentoBL;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import org.postgresql.core.Logger;
 
 /**
  *
  * @author PATTY
  */
 public class BuscarDocumento extends JIFBase {
+
+    private ArrayList<DocumentoBE> arrDocumentos = new ArrayList<DocumentoBE>();
+
 
     /** Creates new form Documento2 */
     public BuscarDocumento() {
@@ -40,11 +51,11 @@ public class BuscarDocumento extends JIFBase {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jtxtTipoServicio = new javax.swing.JFormattedTextField();
+        jtxtNombre = new javax.swing.JFormattedTextField();
         jcmbCategoria = new javax.swing.JComboBox();
         btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jtxtTipoServicio1 = new javax.swing.JFormattedTextField();
+        jtxtIdPropietario = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jcmbEstado1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
@@ -117,9 +128,9 @@ public class BuscarDocumento extends JIFBase {
 
         jLabel2.setText("Categoría:");
 
-        jtxtTipoServicio.addActionListener(new java.awt.event.ActionListener() {
+        jtxtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtTipoServicioActionPerformed(evt);
+                jtxtNombreActionPerformed(evt);
             }
         });
 
@@ -142,9 +153,9 @@ public class BuscarDocumento extends JIFBase {
 
         jLabel3.setText("ID Propietario");
 
-        jtxtTipoServicio1.addActionListener(new java.awt.event.ActionListener() {
+        jtxtIdPropietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtTipoServicio1ActionPerformed(evt);
+                jtxtIdPropietarioActionPerformed(evt);
             }
         });
 
@@ -175,9 +186,9 @@ public class BuscarDocumento extends JIFBase {
                         .addContainerGap(232, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtxtTipoServicio1)
+                            .addComponent(jtxtIdPropietario)
                             .addComponent(jcmbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtxtTipoServicio, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                            .addComponent(jtxtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))))
@@ -190,7 +201,7 @@ public class BuscarDocumento extends JIFBase {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jtxtTipoServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -198,7 +209,7 @@ public class BuscarDocumento extends JIFBase {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
-                            .addComponent(jtxtTipoServicio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtxtIdPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -296,21 +307,39 @@ public class BuscarDocumento extends JIFBase {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtxtTipoServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtTipoServicioActionPerformed
+    private void jtxtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtNombreActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_jtxtTipoServicioActionPerformed
+}//GEN-LAST:event_jtxtNombreActionPerformed
 
     private void jcmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbCategoriaActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_jcmbCategoriaActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-    DefaultTableModel temp = (DefaultTableModel) this.jtabPaquetes.getModel();
+    /*DefaultTableModel temp = (DefaultTableModel) this.jtabPaquetes.getModel();
     Object nuevo[]= {"1","Informe","Ingenieria","JJ"}; //esto es por las tres columnas aunque puede variar
     temp.addRow(nuevo);
     nuevo[0]="2"; nuevo[1]="Reporte"; nuevo[2]="Ciencias"; nuevo[3]="DD";
     temp.addRow(nuevo);
+    */
+
+            String objEstado;
+            int IdCategoria;
+
+            CategoriaBE objCategoria = new CategoriaBE();
+
+                objCategoria= (CategoriaBE) this.jcmbCategoria.getSelectedItem();
+                IdCategoria = objCategoria.getIdCategoria();
+
+                objEstado=  (String)this.jcmbEstado1.getSelectedItem();
+
+
+            //this.arrDocumentos = DocumentoBL.ListarDocs(jtxtIdPropietario.getText().trim(),jtxtNombre.getText().trim(),IdCategoria,objEstado);
+            //llenarGrilla();
+               
 }//GEN-LAST:event_btnBuscarActionPerformed
+
+
 
     private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
         // TODO add your handling code here:
@@ -341,9 +370,9 @@ public class BuscarDocumento extends JIFBase {
          regdoc.setTitle("Modificar Documento");
     }//GEN-LAST:event_jMenu2MousePressed
 
-    private void jtxtTipoServicio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtTipoServicio1ActionPerformed
+    private void jtxtIdPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtIdPropietarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtTipoServicio1ActionPerformed
+    }//GEN-LAST:event_jtxtIdPropietarioActionPerformed
 
     private void jcmbEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbEstado1ActionPerformed
         // TODO add your handling code here:
@@ -378,8 +407,8 @@ public class BuscarDocumento extends JIFBase {
     private javax.swing.JComboBox jcmbCategoria;
     private javax.swing.JComboBox jcmbEstado1;
     private javax.swing.JTable jtabPaquetes;
-    private javax.swing.JFormattedTextField jtxtTipoServicio;
-    private javax.swing.JFormattedTextField jtxtTipoServicio1;
+    private javax.swing.JFormattedTextField jtxtIdPropietario;
+    private javax.swing.JFormattedTextField jtxtNombre;
     // End of variables declaration//GEN-END:variables
     private String selectedDoc;
 
