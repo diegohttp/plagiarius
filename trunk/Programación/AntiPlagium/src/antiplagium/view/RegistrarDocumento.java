@@ -10,6 +10,7 @@
  */
 package antiplagium.view;
 
+import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAO.DocumentoDAO;
@@ -418,14 +419,14 @@ public class RegistrarDocumento extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        DocumentoBL doc1=null,doc2=null,doc3=null,doc4=null,doc5=null;
+        DocumentoBE doc1=null,doc2=null,doc3=null,doc4=null,doc5=null;
         if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc1.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 1.");
             } else {
                 File file1 = new File(this.txtRuta11.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc1 = new DocumentoBL(contenido);
+                doc1 = new DocumentoBE(0,0,"nombre",0,contenido);
             }
         }
 
@@ -435,7 +436,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta22.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc2 = new DocumentoBL(contenido);
+                doc2 = new DocumentoBE(0,0,"nombre",0,contenido);
             }
         }
 
@@ -445,7 +446,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta33.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc3 = new DocumentoBL(contenido);
+                doc3 = new DocumentoBE(0,0,"nombre",0,contenido);
             }
         }
 
@@ -455,7 +456,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta44.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc4 = new DocumentoBL(contenido);
+                doc4 = new DocumentoBE(0,0,"nombre",0,contenido);
             }
         }
 
@@ -465,7 +466,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta55.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc5 = new DocumentoBL(contenido);
+                doc5 = new DocumentoBE(0,0,"nombre",0,contenido);
             }
         }
         DocumentoDAO docDao = new DocumentoDAO();
