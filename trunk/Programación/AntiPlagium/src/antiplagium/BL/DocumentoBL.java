@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -94,9 +95,9 @@ public class DocumentoBL {
 
 
     //LISTAR DOCUMENTOS
-    public static ArrayList<DocumentoBE> ListarDocs(String IdPropietario, String Nombre, int IdCategoria, String objEstado) throws FileNotFoundException, IOException {
-        return DocumentoDAO.ListarDocs(IdPropietario,Nombre,IdCategoria,objEstado);
-                
+    public static ArrayList<DocumentoBE> ListarDocs(String IdPropietario, String Nombre, int IdCategoria, String objEstado) throws FileNotFoundException, IOException, SQLException {
+
+        return DocumentoDAO.ListarDocs(IdPropietario,Nombre,IdCategoria,objEstado);           
     }
 
 
