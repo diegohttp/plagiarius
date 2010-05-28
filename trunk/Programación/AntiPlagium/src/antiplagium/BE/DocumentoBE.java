@@ -18,26 +18,27 @@ import java.util.Locale;
 public class DocumentoBE {
 
     private int idDocumento;
-    private int estado;
+    private String estado;
     private String nombre;
-    private int idUsuario;
+    private UsuarioBE idUsuario;
+    private CategoriaBE categoria;
     private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
 
     public DocumentoBE() {
     }
 
-    public DocumentoBE(int idDocumento, int estado, String nombre, int idUsuario) {
+    public DocumentoBE(int idDocumento, String estado, String nombre, UsuarioBE idUsuario) {
         this.estado = estado;
         this.idDocumento = idDocumento;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
     }
 
-    public DocumentoBE(int id, int est, String nom, int idUs, String contenido) {
+    public DocumentoBE(int id, String est, String nom, UsuarioBE Us, String contenido) {
         this.idDocumento = id;
         this.estado = est;
         this.nombre = nom;
-        this.idUsuario = idUs;
+        this.idUsuario = Us;
 
         BufferedReader entrada = null;
         try {
@@ -84,20 +85,20 @@ public class DocumentoBE {
         this.idDocumento = idDocumento;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return this.estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public int getIdUsuario() {
+    public UsuarioBE getUsuario() {
         return this.idUsuario;
     }
     //en la BD dice string!!
 
-    public void setIdUsuario(int idUsuario) {
+    public void setUsuario(UsuarioBE idUsuario) {
         this.idUsuario = idUsuario;
     }
 
