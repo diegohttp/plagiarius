@@ -426,7 +426,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta11.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc1 = new DocumentoBE(0,0,"nombre",0,contenido);
+                doc1 = new DocumentoBE(0,"Activo","nombre",null,contenido);
             }
         }
 
@@ -436,7 +436,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta22.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc2 = new DocumentoBE(0,0,"nombre",0,contenido);
+                doc2 = new DocumentoBE(0,"Activo","nombre",null,contenido);
             }
         }
 
@@ -446,7 +446,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta33.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc3 = new DocumentoBE(0,0,"nombre",0,contenido);
+                doc3 = new DocumentoBE(0,"Activo","nombre",null,contenido);
             }
         }
 
@@ -456,7 +456,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta44.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc4 = new DocumentoBE(0,0,"nombre",0,contenido);
+                doc4 = new DocumentoBE(0,"Activo","nombre",null,contenido);
             }
         }
 
@@ -466,7 +466,7 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta55.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc5 = new DocumentoBE(0,0,"nombre",0,contenido);
+                doc5 = new DocumentoBE(0,"Activo","nombre",null,contenido);
             }
         }
         DocumentoDAO docDao = new DocumentoDAO();
