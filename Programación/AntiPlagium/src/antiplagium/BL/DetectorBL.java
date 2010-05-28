@@ -23,28 +23,7 @@ import java.util.ArrayList;
 public class DetectorBL {
     public ArrayList<ConexionOracionBE> listaConexiones= new ArrayList<ConexionOracionBE>();
     public static ArrayList<String> listaPalNoSignificativas= new ArrayList<String>();
-    public int comparar(DocumentoBL doc1, DocumentoBL doc2){
-        int numOr1= doc1.getNumeroOraciones();
-        int numOr2= doc2.getNumeroOraciones();
-
-        for (int i=0; i<numOr1; i++){
-            ConexionOracionBE con=null;
-            for (int j=0; j<numOr2; j++){
-                int resultado=compararOraciones(doc1.getOracion(i),doc2.getOracion(j));
-                if (resultado>=70) {
-                    ConexionOracionBE con2= new ConexionOracionBE(doc1.getIdDocumento(), doc2.getIdDocumento(),i, j, resultado );
-                    if (con==null) con=con2;
-                    else if (con2.getPorcentaje()>con.getPorcentaje()) con=con2;
-                    if (con.getPorcentaje()==100) break;
-
-                }
-            }
-            this.listaConexiones.add(con);
-        }
-
-        return promedioDeConexionOracionBEes();
-    }
-
+    
     public static void cargarPalabrasNoSignificativas(){
         BufferedReader entrada = null;
         try {
