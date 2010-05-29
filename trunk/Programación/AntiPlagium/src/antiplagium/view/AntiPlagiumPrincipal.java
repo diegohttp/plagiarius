@@ -1,6 +1,11 @@
 package antiplagium.view;
 
 import java.awt.Dimension;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import antiplagium.DAL.*;
 import javax.swing.JFrame;
@@ -172,9 +177,17 @@ public class AntiPlagiumPrincipal extends JFBase
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-          BuscarDocumento buscardoc = new BuscarDocumento();
-          buscardoc.setVisible(true);
-          JDPPrincipal.add(buscardoc);
+        try {
+            BuscarDocumento buscardoc = new BuscarDocumento();
+            buscardoc.setVisible(true);
+            JDPPrincipal.add(buscardoc);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 
