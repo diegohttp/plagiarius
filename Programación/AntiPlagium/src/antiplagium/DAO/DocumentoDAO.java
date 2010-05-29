@@ -124,8 +124,6 @@ public class DocumentoDAO {
     
    
     
-    
-    
     public static ArrayList<DocumentoBE> ListarDocs(String IdPropietario, String Nombre, int IdCategoria, String objEstado)throws FileNotFoundException, IOException, SQLException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
