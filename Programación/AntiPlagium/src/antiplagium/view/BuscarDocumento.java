@@ -13,6 +13,7 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAO.CategoriaDAO;
 import java.io.FileNotFoundException;
@@ -32,28 +33,25 @@ import org.postgresql.core.Logger;
 public class BuscarDocumento extends JIFBase {
 
     private ArrayList<DocumentoBE> arrDocumentos = new ArrayList<DocumentoBE>();
-
+    private CategoriaBL categoriaBl;
 
     /** Creates new form Documento2 */
-    public BuscarDocumento() {
+    public BuscarDocumento() throws FileNotFoundException, IOException, SQLException {
         initComponents();
+        categoriaBl=new CategoriaBL();
+
+        ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
+
+            int cantidadCategorias=listaCategorias.size();
+
+            for(int i=0;i<cantidadCategorias;i++){
+                jcmbCategoria.addItem(listaCategorias.get(i).getNombre());
+
+        
+            }
     }
 
-    public void CargarComboBoxEjemplo()
-      {
-        CategoriaDAO objCategoriaDAO = new CategoriaDAO();
-        Vector<CategoriaBE> oListaObjetoParaComboBox = objCategoriaDAO.ListaDeCategoriaParaComboBox()  ;
-
-        for(int i=0;i<oListaObjetoParaComboBox.size() ;i=i+1)
-          {
-            CategoriaBE oItem = new CategoriaBE(oListaObjetoParaComboBox.get(i).getIdCategoria(),oListaObjetoParaComboBox.get(i).getNombre(),oListaObjetoParaComboBox.get(i).getDescripcion());
-
-            jcmbCategoria.addItem(oItem);
-         }
-     }
-
-
-
+   
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -330,7 +328,17 @@ public class BuscarDocumento extends JIFBase {
 }//GEN-LAST:event_jtxtNombreActionPerformed
 
     private void jcmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbCategoriaActionPerformed
-        // TODO add your handling code here:
+             CategoriaDAO objCategoriaDAO = new CategoriaDAO();
+        ArrayList<CategoriaBE> oListaObjetoParaComboBox = null  ;
+       
+        for(int i=0;i<oListaObjetoParaComboBox.size() ;i=i+1)
+          {
+            CategoriaBE oItem = new CategoriaBE(oListaObjetoParaComboBox.get(i).getIdCategoria(),oListaObjetoParaComboBox.get(i).getNombre(),oListaObjetoParaComboBox.get(i).getDescripcion());
+
+            jcmbCategoria.addItem(oItem);
+         }
+
+        this.add(jcmbCategoria);    // TODO add your handling code here:
 }//GEN-LAST:event_jcmbCategoriaActionPerformed
 
 
