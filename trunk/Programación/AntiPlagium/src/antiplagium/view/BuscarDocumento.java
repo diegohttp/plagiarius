@@ -14,10 +14,12 @@ package antiplagium.view;
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BL.DocumentoBL;
+import antiplagium.DAO.CategoriaDAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +38,21 @@ public class BuscarDocumento extends JIFBase {
     public BuscarDocumento() {
         initComponents();
     }
+
+    public void CargarComboBoxEjemplo()
+      {
+        CategoriaDAO objCategoriaDAO = new CategoriaDAO();
+        Vector<CategoriaBE> oListaObjetoParaComboBox = objCategoriaDAO.ListaDeCategoriaParaComboBox()  ;
+
+        for(int i=0;i<oListaObjetoParaComboBox.size() ;i=i+1)
+          {
+            CategoriaBE oItem = new CategoriaBE(oListaObjetoParaComboBox.get(i).getIdCategoria(),oListaObjetoParaComboBox.get(i).getNombre(),oListaObjetoParaComboBox.get(i).getDescripcion());
+
+            jcmbCategoria.addItem(oItem);
+         }
+     }
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -315,6 +332,9 @@ public class BuscarDocumento extends JIFBase {
     private void jcmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbCategoriaActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_jcmbCategoriaActionPerformed
+
+
+
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
     /*DefaultTableModel temp = (DefaultTableModel) this.jtabPaquetes.getModel();
