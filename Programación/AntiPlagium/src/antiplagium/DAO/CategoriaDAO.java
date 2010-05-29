@@ -116,41 +116,7 @@ public class CategoriaDAO {
 
     }
 
-    //Cargar ComboBox Categoria en Documento
-    public  Vector<CategoriaBE>  ListaDeCategoriaParaComboBox()
-            {
-            ConexionJDBC objConexion = new ConexionJDBC();
-               try
-                    {     ResultSet resultado;
-                          String strSentencia = "SELECT * FROM Categoria";
-                          resultado = (ResultSet) objConexion.ejecutarQuery(strSentencia);
+   
 
-                          Vector<CategoriaBE> data=new Vector<CategoriaBE>();
-
-                           if(resultado.next())
-                             {
-                             do
-                               {
-                                 CategoriaBE oListaTemporal = new CategoriaBE(resultado.getInt(1),resultado.getString(2), resultado.getString(3));
-
-                                 data.addElement(oListaTemporal);
-
-                               }
-                            while(resultado.next());
-                            return data;
-
-
-                }
-                          else
-                        	{
-                            return null;
-                          }
-                    }
-               catch(Exception ex)
-                {
-                   System.out.print(ex);
-                    return null;
-                }
-            } 
 
 }
