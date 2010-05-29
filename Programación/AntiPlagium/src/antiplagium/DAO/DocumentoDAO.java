@@ -5,6 +5,7 @@
 
 package antiplagium.DAO;
 
+import antiplagium.BE.CategoriaBE;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -120,6 +121,11 @@ public class DocumentoDAO {
         }
     }
 
+    
+   
+    
+    
+    
     public static ArrayList<DocumentoBE> ListarDocs(String IdPropietario, String Nombre, int IdCategoria, String objEstado)throws FileNotFoundException, IOException, SQLException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
