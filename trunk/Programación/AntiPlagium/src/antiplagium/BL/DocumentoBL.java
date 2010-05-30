@@ -41,9 +41,8 @@ public class DocumentoBL {
         return 1;
     }
 
-    public static void registrarDocumento(DocumentoBE doc) throws Exception{
-        DocumentoDAO objDocumentoDao= new DocumentoDAO();
-        objDocumentoDao.registrar(doc);
+    public static void registrar(DocumentoBE objDocumento) throws Exception{
+        DocumentoDAO.registrar(objDocumento);
     }
 
     public static String limpiarPalabra(String palabra) {
