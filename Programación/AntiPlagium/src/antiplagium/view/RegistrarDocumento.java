@@ -10,13 +10,16 @@
  */
 package antiplagium.view;
 
+import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAO.DocumentoDAO;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +34,7 @@ import org.freixas.jcalendar.JCalendarCombo;
 public class RegistrarDocumento extends JFrame {
 
     private JCalendarCombo cmbFechaInicio;
+    private UsuarioBE objUsuario;
     /** Creates new form RegistrarDocumento */
     public RegistrarDocumento() {
         cmbFechaInicio=new JCalendarCombo();
@@ -40,6 +44,22 @@ public class RegistrarDocumento extends JFrame {
         cmbFechaInicio.setEditable(false);
         jPanel3.add(cmbFechaInicio);
         jPanel3.setEnabled(false);
+    }
+
+    public RegistrarDocumento(UsuarioBE objUsuario) {
+        cmbFechaInicio=new JCalendarCombo();
+        initComponents();
+        this.objUsuario = objUsuario;
+        this.txtPropietario.setText(this.objUsuario.getNombres());
+        cmbFechaInicio.setSize(220,25);
+        cmbFechaInicio.setDate(new Date());
+        cmbFechaInicio.setEditable(false);
+        jPanel3.add(cmbFechaInicio);
+        jPanel3.setEnabled(false);
+        ArrayList<CategoriaBE> lstCategorias = this.objUsuario.getCategorias();
+        for (int i = 0 ; i < lstCategorias.size(); ++i){
+            this.jComboBox1.addItem(lstCategorias.get(i));
+        }
     }
 
     private void cargarArchivo(int numDoc, String nomArch) {
@@ -423,10 +443,13 @@ public class RegistrarDocumento extends JFrame {
         if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc1.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 1.");
-            } else {
+            }
+            else {
                 File file1 = new File(this.txtRuta11.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc1 = new DocumentoBE(0,"Activo","nombre",null,contenido);
+                int idDoc = DocumentoBL.getMaxId();
+                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                doc1 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -436,7 +459,9 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta22.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc2 = new DocumentoBE(0,"Activo","nombre",null,contenido);
+                int idDoc = DocumentoBL.getMaxId();
+                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                doc2 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -446,7 +471,9 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta33.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc3 = new DocumentoBE(0,"Activo","nombre",null,contenido);
+                int idDoc = DocumentoBL.getMaxId();
+                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                doc3 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -456,7 +483,9 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta44.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc4 = new DocumentoBE(0,"Activo","nombre",null,contenido);
+                int idDoc = DocumentoBL.getMaxId();
+                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                doc4 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -466,7 +495,9 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta55.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                doc5 = new DocumentoBE(0,"Activo","nombre",null,contenido);
+                int idDoc = DocumentoBL.getMaxId();
+                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                doc5 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
         DocumentoDAO docDao = new DocumentoDAO();
@@ -602,7 +633,6 @@ public class RegistrarDocumento extends JFrame {
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
             this.cargarArchivo(3, nomArch);
-
         }
     }//GEN-LAST:event_btnBuscar3ActionPerformed
 
