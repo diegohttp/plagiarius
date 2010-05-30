@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class RolBE {
 
-    private Integer idPrivilegio;
+    private Integer idRol;
     private String  nombre;
     private String  descripcion;
 
@@ -21,12 +21,12 @@ public class RolBE {
 
     public void RolBE(String nombre,String descripcion)
     {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.setNombre(nombre);
+        this.setDescripcion(descripcion);
     }
     
     public Integer getIdPrivilegio() {
-        return idPrivilegio;
+        return idRol;
     }
     
     public String getNombre() {
@@ -39,6 +39,14 @@ public class RolBE {
 
     public ArrayList<Integer> getPrivilegios() {
         return privilegios;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+ 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 
