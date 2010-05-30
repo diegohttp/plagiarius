@@ -20,7 +20,7 @@ public class DocumentoBE {
     private int idDocumento;
     private String estado;
     private String nombre;
-    private UsuarioBE idUsuario;
+    private UsuarioBE usuario;
     private CategoriaBE categoria;
     private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
 
@@ -30,7 +30,7 @@ public class DocumentoBE {
     public DocumentoBE(int idDocumento, String estado, String nombre, UsuarioBE idUsuario,CategoriaBE categoria) {
         this.estado = estado;
         this.idDocumento = idDocumento;
-        this.idUsuario = idUsuario;
+        this.usuario = idUsuario;
         this.nombre = nombre;
         this.categoria = categoria;
     }
@@ -39,7 +39,7 @@ public class DocumentoBE {
         this.idDocumento = id;
         this.estado = est;
         this.nombre = nom;
-        this.idUsuario = Us;
+        this.usuario = Us;
         this.categoria = categoria;
         BufferedReader entrada = null;
         try {
@@ -95,14 +95,14 @@ public class DocumentoBE {
     }
 
     public UsuarioBE getUsuario() {
-        return this.idUsuario;
+        return this.usuario;
     }
     //en la BD dice string!!
-    public int getCategoria(){
-        return this.categoria.getIdCategoria();
+    public CategoriaBE getCategoria(){
+        return this.categoria;
     }
     public void setUsuario(UsuarioBE idUsuario) {
-        this.idUsuario = idUsuario;
+        this.usuario = idUsuario;
     }
 
     public String getNombre() {
