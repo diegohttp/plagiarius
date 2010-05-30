@@ -22,8 +22,7 @@ import java.util.Vector;
  */
 public class DocumentoDAO {
 
-     public static boolean registrar(DocumentoBE objDocumento) throws Exception
-    {
+     public static boolean registrar(DocumentoBE objDocumento) throws Exception {
         boolean boolExito = false;
 
         ConexionJDBC objConexion = new ConexionJDBC();
