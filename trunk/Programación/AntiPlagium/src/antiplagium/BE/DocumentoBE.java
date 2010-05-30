@@ -27,19 +27,20 @@ public class DocumentoBE {
     public DocumentoBE() {
     }
 
-    public DocumentoBE(int idDocumento, String estado, String nombre, UsuarioBE idUsuario) {
+    public DocumentoBE(int idDocumento, String estado, String nombre, UsuarioBE idUsuario,CategoriaBE categoria) {
         this.estado = estado;
         this.idDocumento = idDocumento;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
+        this.categoria = categoria;
     }
 
-    public DocumentoBE(int id, String est, String nom, UsuarioBE Us, String contenido) {
+    public DocumentoBE(int id, String est, String nom, UsuarioBE Us, CategoriaBE categoria,String contenido) {
         this.idDocumento = id;
         this.estado = est;
         this.nombre = nom;
         this.idUsuario = Us;
-
+        this.categoria = categoria;
         BufferedReader entrada = null;
         try {
             entrada = new BufferedReader(new StringReader(contenido));
@@ -113,6 +114,8 @@ public class DocumentoBE {
     public String toXml() {
         XStream xstream = new XStream();
         xstream.alias("documento", DocumentoBE.class);
+        xstream.alias("categoria", CategoriaBE.class);
+        xstream.alias("usuario",UsuarioBE.class);
         xstream.alias("oracion", OracionBE.class);
         return xstream.toXML(this);
     }
