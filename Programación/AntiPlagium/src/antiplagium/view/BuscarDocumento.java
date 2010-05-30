@@ -13,6 +13,7 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAO.CategoriaDAO;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.postgresql.core.Logger;
 
@@ -34,6 +36,7 @@ public class BuscarDocumento extends JIFBase {
 
     private ArrayList<DocumentoBE> arrDocumentos = new ArrayList<DocumentoBE>();
     private CategoriaBL categoriaBl;
+    private UsuarioBE objUsuario;
 
     /** Creates new form Documento2 */
     public BuscarDocumento() throws FileNotFoundException, IOException, SQLException {
@@ -49,6 +52,21 @@ public class BuscarDocumento extends JIFBase {
 
         
             }
+    }
+
+    public BuscarDocumento(UsuarioBE objUsuario) throws FileNotFoundException, IOException, SQLException {
+        initComponents();
+        this.objUsuario = objUsuario;
+
+        categoriaBl=new CategoriaBL();
+
+        ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
+
+        int cantidadCategorias=listaCategorias.size();
+
+        for(int i=0;i<cantidadCategorias;i++){
+            jcmbCategoria.addItem(listaCategorias.get(i));
+        }
     }
 
    
@@ -85,7 +103,7 @@ public class BuscarDocumento extends JIFBase {
         setTitle("Búsqueda Documentos");
         setName(""); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 255))); // NOI18N
 
         jtabPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,7 +149,7 @@ public class BuscarDocumento extends JIFBase {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(0, 0, 255));
         jPanel1.setName("Búsqueda"); // NOI18N
         jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -277,6 +295,11 @@ public class BuscarDocumento extends JIFBase {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jMenu3.setText("Eliminar");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenu3MousePressed(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -286,20 +309,18 @@ public class BuscarDocumento extends JIFBase {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(236, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jButton1)
-                .addGap(33, 33, 33))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton1)
+                        .addGap(33, 33, 33))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,17 +349,8 @@ public class BuscarDocumento extends JIFBase {
 }//GEN-LAST:event_jtxtNombreActionPerformed
 
     private void jcmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbCategoriaActionPerformed
-             CategoriaDAO objCategoriaDAO = new CategoriaDAO();
-        ArrayList<CategoriaBE> oListaObjetoParaComboBox = null  ;
        
-        for(int i=0;i<oListaObjetoParaComboBox.size() ;i=i+1)
-          {
-            CategoriaBE oItem = new CategoriaBE(oListaObjetoParaComboBox.get(i).getIdCategoria(),oListaObjetoParaComboBox.get(i).getNombre(),oListaObjetoParaComboBox.get(i).getDescripcion());
-
-            jcmbCategoria.addItem(oItem);
-         }
-
-        this.add(jcmbCategoria);    // TODO add your handling code here:
+           // TODO add your handling code here:
 }//GEN-LAST:event_jcmbCategoriaActionPerformed
 
 
@@ -386,7 +398,7 @@ public class BuscarDocumento extends JIFBase {
     }//GEN-LAST:event_jPanel1FocusGained
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-           RegistrarDocumento regdoc = new RegistrarDocumento();
+           RegistrarDocumento regdoc = new RegistrarDocumento(this.objUsuario);
            regdoc.setVisible(true);
             // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
@@ -398,7 +410,7 @@ public class BuscarDocumento extends JIFBase {
 
     private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
         // TODO add your handling code here:
-         RegistrarDocumento regdoc = new RegistrarDocumento();
+         RegistrarDocumento regdoc = new RegistrarDocumento(this.objUsuario);
          regdoc.setVisible(true);
          regdoc.setTitle("Registrar Documento");
     }//GEN-LAST:event_jMenu1MousePressed
@@ -435,6 +447,21 @@ public class BuscarDocumento extends JIFBase {
         AntiPlagiumPrincipal.JDPPrincipal.add(vis);
         vis.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
+        // TODO add your handling code here:
+        int idx = this.jtabPaquetes.getSelectedRow();
+        if (idx >= 0){
+            DefaultTableModel temp = (DefaultTableModel) this.jtabPaquetes.getModel();
+            DocumentoBE objDocumento = new DocumentoBE();
+            objDocumento.setUsuario(objUsuario);
+            objDocumento.setIdDocumento(Integer.parseInt((String)temp.getValueAt(idx, 0)));
+
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenu3MousePressed
 
     public String getNombreDocSeleccionado(){
         return this.selectedDoc;
