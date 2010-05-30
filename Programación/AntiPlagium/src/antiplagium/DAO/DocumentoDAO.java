@@ -29,7 +29,7 @@ public class DocumentoDAO {
         ConexionJDBC objConexion = new ConexionJDBC();
         String xml = objDocumento.toXml();
 
-        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido) VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getUsuario() +"','"+ xml +"');";
+        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido,\"idCategoria\") VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getUsuario() +"','"+ xml +"','"+ objDocumento.getCategoria() +"')";
 
         try{
             objConexion.ejecutarSentencia(strSentencia);
@@ -63,11 +63,14 @@ public class DocumentoDAO {
             String strnombre = "";
             String stridUsuario = "";
             String strcontenido = "";
+            String contenido = "";
+
             while (rs.next()) {
                 stridDocumento = rs.getString(1);
                 strestado = rs.getString(2);
                 strnombre = rs.getString(3);
                 stridUsuario = rs.getString(4);
+
                 //arrDocumento.add(new DocumentoBE(Integer.parseInt(stridDocumento), (strestado), strnombre,null));
             }
         }
