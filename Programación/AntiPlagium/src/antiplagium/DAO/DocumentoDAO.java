@@ -29,7 +29,7 @@ public class DocumentoDAO {
         ConexionJDBC objConexion = new ConexionJDBC();
         String xml = objDocumento.toXml();
 
-        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido,\"idCategoria\") VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getUsuario() +"','"+ xml +"','"+ objDocumento.getCategoria() +"')";
+        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido,\"idCategoria\") VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getUsuario().getIdUsuario() +"','"+ xml +"','"+ objDocumento.getCategoria().getIdCategoria() + "')";
 
         try{
             objConexion.ejecutarSentencia(strSentencia);
