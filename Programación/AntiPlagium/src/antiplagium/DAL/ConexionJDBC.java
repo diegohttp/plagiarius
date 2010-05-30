@@ -82,16 +82,6 @@ public class ConexionJDBC {
         conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         instruccion = conexion.createStatement();
         tablaResultados = instruccion.executeQuery(queryString);
-
-        
-        while (tablaResultados.next()) {
-                  System.out.println(tablaResultados.getString("nombre"));
-        }
-
-//        tablaResultados.close();
-//        instruccion.close();
-//        conexion.close();
-
         return tablaResultados;
     }
 
