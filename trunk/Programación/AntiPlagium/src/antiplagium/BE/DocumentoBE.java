@@ -98,7 +98,9 @@ public class DocumentoBE {
         return this.idUsuario;
     }
     //en la BD dice string!!
-
+    public int getCategoria(){
+        return this.categoria.getIdCategoria();
+    }
     public void setUsuario(UsuarioBE idUsuario) {
         this.idUsuario = idUsuario;
     }
