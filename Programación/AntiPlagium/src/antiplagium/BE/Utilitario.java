@@ -48,41 +48,37 @@ public final class Utilitario {
     //intCantidadCaracteres es el numero de caracteres de ese ID en la base de datos
     //tienen que revisar cuantos caracteres tiene el ID de esa tabla: hay de 5, 10 y 15
 
-    public static String generaCodigo(String strNombreTabla, int intCantidadCaracteres) throws FileNotFoundException, IOException {
+    public static int generaCodigo(String strNombreTabla) throws FileNotFoundException, IOException {
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentencia = "SELECT MAX(Id"+strNombreTabla+") FROM "+strNombreTabla;
+        String strSentencia = "SELECT MAX(\"id"+strNombreTabla+"\") FROM \""+strNombreTabla+"\"";
         String strId = "";
-
+        /* para debuging */
+        System.out.println(strSentencia);
 
         try {
-            ResultSet rs = (ResultSet) objConexion.ejecutarQuery(strSentencia);
-
-            if (rs.next()) {
+            ResultSet rs = (ResultSet) objConexion.ejecutarQueryResultSet(strSentencia);
+            int intId;
+            if (rs.next()){
                 strId = rs.getString(1);
                 if (strId!=null && !strId.equals("")) {
-                    int intId = Integer.parseInt(strId);
+                    intId = Integer.parseInt(strId);
                     intId++;
-                    strId = "" + intId;
-                    while (strId.length() < intCantidadCaracteres)
-                        strId = "0" + strId;
+                    return intId;
                 }
                 else{
-                    strId="";
-                    for( int i=1; i<intCantidadCaracteres;i++) strId +="0";
-                    strId +=1;
+                    intId = 1;
+                    return intId;
                 }
              }
              else{
-                 strId="";
-                 for( int i=1; i<intCantidadCaracteres;i++) strId +="0";
-                 strId +=1;
+                 intId = 1;
+                 return 1;
              }
 
         }
         catch (Exception a){
             System.out.println(a.getMessage());
         }
-
-        return strId;
+        return 0;
     }
 }
