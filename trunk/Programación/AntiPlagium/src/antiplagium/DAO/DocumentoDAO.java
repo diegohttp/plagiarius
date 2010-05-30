@@ -68,7 +68,7 @@ public class DocumentoDAO {
                 strestado = rs.getString(2);
                 strnombre = rs.getString(3);
                 stridUsuario = rs.getString(4);
-                arrDocumento.add(new DocumentoBE(Integer.parseInt(stridDocumento), (strestado), strnombre,null));
+                //arrDocumento.add(new DocumentoBE(Integer.parseInt(stridDocumento), (strestado), strnombre,null));
             }
         }
         catch (Exception a){
@@ -196,7 +196,7 @@ public class DocumentoDAO {
 
         for (int i=0; i < arrDocumento.size(); ++i){
             Object[] registro = (Object[])arrDocumento.get(i);
-            gestorDocumento.add(new DocumentoBE((Integer)registro[0],(String)registro[1],(String)registro[2],(UsuarioBE)registro[3]));
+            //gestorDocumento.add(new DocumentoBE((Integer)registro[0],(String)registro[1],(String)registro[2],(UsuarioBE)registro[3]));
         }
         return gestorDocumento;
 
