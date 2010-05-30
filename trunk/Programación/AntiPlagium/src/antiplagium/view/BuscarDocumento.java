@@ -345,25 +345,30 @@ public class BuscarDocumento extends JIFBase {
 
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-    /*DefaultTableModel temp = (DefaultTableModel) this.jtabPaquetes.getModel();
-    Object nuevo[]= {"1","Informe","Ingenieria","JJ"}; //esto es por las tres columnas aunque puede variar
-    temp.addRow(nuevo);
-    nuevo[0]="2"; nuevo[1]="Reporte"; nuevo[2]="Ciencias"; nuevo[3]="DD";
-    temp.addRow(nuevo);
-    */
 
-            String objEstado;
-            int IdCategoria;
+        String objEstado;
+        int IdCategoria;
 
-            CategoriaBE objCategoria = new CategoriaBE();
+        CategoriaBE objCategoria = new CategoriaBE();
 
-                objCategoria= (CategoriaBE) this.jcmbCategoria.getSelectedItem();
-                IdCategoria = objCategoria.getIdCategoria();
+        objCategoria= (CategoriaBE) this.jcmbCategoria.getSelectedItem();
+        IdCategoria = objCategoria.getIdCategoria();
 
-                objEstado=  (String)this.jcmbEstado1.getSelectedItem();
+        objEstado=  (String)this.jcmbEstado1.getSelectedItem();
         try {
             this.arrDocumentos = DocumentoBL.ListarDocs(jtxtIdPropietario.getText().trim(), jtxtNombre.getText().trim(), IdCategoria, objEstado);
-            //llenarGrilla();
+            /* Obtenemos el modelo */
+            DefaultTableModel tmp = (DefaultTableModel) this.jtabPaquetes.getModel();
+            /* Limpiamos la tabla */
+            for (int i=tmp.getRowCount() - 1; i >= 0; --i){
+                tmp.removeRow(i);
+            }
+            /* Llenamos la grilla */
+            for (int i=0; i < arrDocumentos.size() ; ++i){
+                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getIdCategoria() , arrDocumentos.get(i).getUsuario().getIdUsuario() , arrDocumentos.get(i).getEstado()  };
+                tmp.addRow(nuevo);
+            }
+
         } catch (FileNotFoundException ex) {
             java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
