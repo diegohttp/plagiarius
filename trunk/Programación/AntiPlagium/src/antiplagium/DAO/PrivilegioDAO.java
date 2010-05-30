@@ -5,18 +5,28 @@ import java.sql.*;
 
 public class PrivilegioDAO {
 
-    private static String SQL_GETPRIVILEGIOS = "SELECT RXP.\"idRol\", P.\"idPrivilegio\", \"nombre\", \"descripcion\" " +
+    private static String SQL_GETPRIVILEGIOS = "SELECT RXP.\"idRol\", P.\"idPrivilegio\", P.\"nombre\", P.\"descripcion\" " +
                                                "FROM \"Privilegio\" P " +
                                                "LEFT OUTER JOIN \"RolXPrivilegio\" RXP  ON P.\"idPrivilegio\" = RXP.\"idPrivilegio\" " +
-                                               "WHERE \"idRol\" = ";
+                                               "INNER JOIN \"Rol\" R ON RXP.\"idRol\" = R.\"idRol\" " +
+                                               "WHERE R.\"nombre\" = " ;
 
-    public ResultSet getPrivilegiosPorRol(Integer idRol) throws SQLException
+    private static String SQL_PRIVILEGIOS = "SELECT \"idPrivilegio\", \"nombre\", \"descripcion\" " +
+                                            "FROM \"Privilegio\" ";
+
+    public ResultSet getPrivilegiosPorRol(String nombreRol) throws SQLException
     {
         ResultSet tablaResultados = null;
 
-        SQL_GETPRIVILEGIOS = SQL_GETPRIVILEGIOS + idRol.toString(); 
+        SQL_GETPRIVILEGIOS = SQL_GETPRIVILEGIOS + nombreRol; 
         tablaResultados = ConexionJDBC.ejecutarQueryString(SQL_GETPRIVILEGIOS);
         return tablaResultados;
     }
 
+    public ResultSet getListPrivilegios() throws SQLException
+    {
+        ResultSet tablaResultados = null;
+        tablaResultados = ConexionJDBC.ejecutarQueryString(SQL_PRIVILEGIOS);
+        return tablaResultados;
+    }
 }
