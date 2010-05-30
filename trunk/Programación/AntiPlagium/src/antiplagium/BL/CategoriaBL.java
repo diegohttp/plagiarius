@@ -42,9 +42,6 @@ public class CategoriaBL {
         return CategoriaDAO.buscar(descripcion,nombre);
     }
 
-    public CategoriaBE buscarCategoria(int idCategoria) throws FileNotFoundException, IOException{
-        return CategoriaDAO.buscar(idCategoria);
-    }
 }
 
 
