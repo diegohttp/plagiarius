@@ -72,31 +72,6 @@ public class CategoriaDAO {
         return gestorCategoria;
     }
 
-    public static CategoriaBE buscar(int idCategoria) throws FileNotFoundException, IOException{
-
-        ConexionJDBC objConexion = new ConexionJDBC();
-
-        String strSentencia = " SELECT idCategoria,descripcion,nombre from Categoria";
-            strSentencia += " WHERE idCategoria ='"+idCategoria+"' ";
-
-        CategoriaBE objCategoria = new CategoriaBE();
-
-        try {
-            ResultSet rs = (ResultSet) objConexion.ejecutarQuery(strSentencia);
-
-            while (rs.next()) {
-                objCategoria.setIdCategoria(rs.getInt(1));
-                objCategoria.setDescripcion(rs.getString(2));
-                objCategoria.setNombre(rs.getString(3));
-            }
-        }
-        catch (Exception a){
-            System.out.println(a.getMessage());
-        }
-        return objCategoria;
-    }
-
-
     public static boolean modificar(CategoriaBE objCategoria)throws FileNotFoundException, IOException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
@@ -113,10 +88,6 @@ public class CategoriaDAO {
             return false;
         }
         
-
     }
-
-   
-
 
 }
