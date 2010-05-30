@@ -16,6 +16,7 @@ import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAO.DocumentoDAO;
+import antiplagium.BE.UsuarioBE;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,7 +37,10 @@ import org.freixas.jcalendar.JCalendarCombo;
 public class RegistrarDocumento extends JFrame {
 
     private JCalendarCombo cmbFechaInicio;
+    private UsuarioBE objUsuarioBE;
+    private CategoriaBE objCategoriaBE;
     private UsuarioBE objUsuario;
+
     /** Creates new form RegistrarDocumento */
     public RegistrarDocumento() {
         cmbFechaInicio=new JCalendarCombo();
@@ -150,7 +154,7 @@ public class RegistrarDocumento extends JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), java.awt.Color.blue)); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documentos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
         jLabel1.setText("Nombre:");
 
@@ -271,7 +275,7 @@ public class RegistrarDocumento extends JFrame {
                                 .addGap(24, 24, 24))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addContainerGap(397, Short.MAX_VALUE))))
+                                .addContainerGap(403, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -335,9 +339,9 @@ public class RegistrarDocumento extends JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos generales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), java.awt.Color.blue)); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos generales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
-        jLabel6.setText("Propietario:");
+        jLabel6.setText("ID Propietario:");
 
         jLabel12.setText("Categoría:");
 
@@ -365,6 +369,11 @@ public class RegistrarDocumento extends JFrame {
         );
 
         txtPropietario.setEnabled(false);
+        txtPropietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPropietarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -383,7 +392,7 @@ public class RegistrarDocumento extends JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,6 +458,12 @@ public class RegistrarDocumento extends JFrame {
             else {
                 File file1 = new File(this.txtRuta11.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
+
+
+                //JOptionPane.showMessageDialog(null,objUsuarioBE.getNombreUsuario());
+
+
+                doc1 = new DocumentoBE(2,"Activo","nombre",objUsuarioBE, objCategoriaBE, contenido);
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
@@ -459,6 +474,7 @@ public class RegistrarDocumento extends JFrame {
                 }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
                 doc1 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+
             }
         }
 
@@ -528,6 +544,8 @@ public class RegistrarDocumento extends JFrame {
                 }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
                 doc5 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+
+
             }
         }
         if (doc1!=null){
@@ -704,6 +722,14 @@ public class RegistrarDocumento extends JFrame {
 
         }
     }//GEN-LAST:event_btnBuscar5ActionPerformed
+
+
+
+
+    private void txtPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPropietarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPropietarioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar1;
