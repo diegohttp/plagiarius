@@ -1,5 +1,6 @@
 package antiplagium.BL;
 
+import antiplagium.BE.RolBE;
 import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.RolDAO;
 import java.sql.ResultSet;
@@ -26,6 +27,26 @@ public class RolBL {
         tablaRoles = rolDao.getRolesList();
 
         return tablaRoles;
+    }
+
+    public void insertRol(RolBE rolBE) throws SQLException
+    {
+        RolDAO rolDAO = new RolDAO();
+        ResultSet tabla = null;
+        Integer id = 0;
+
+        tabla = rolDAO.getLastID();
+        if (tabla != null)
+        {
+            while(tabla.next())
+            {
+                id = (Integer)tabla.getObject("idRol");
+            }
+        }
+        if (id != 0)
+        {
+            rolDAO.insertRol(id + 1, rolBE.getNombre(), rolBE.getDescripcion());
+        } 
     }
 
 }
