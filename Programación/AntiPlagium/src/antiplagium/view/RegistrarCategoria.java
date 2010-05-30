@@ -36,21 +36,13 @@ public class RegistrarCategoria extends JFrame {
     public RegistrarCategoria() throws FileNotFoundException, IOException, SQLException {
         initComponents();
         TipoOperacion = 0;
-        CategoriaBL cat = new CategoriaBL();
-        ArrayList<CategoriaBE> res = cat.buscarCategoria("", "");
-        int tam = 0;
-        for (int i=0;i < res.size(); ++i){
-            if (tam < res.get(i).getIdCategoria())
-                tam = res.get(i).getIdCategoria();
-        }
-        tam++;
-        this.jTextField1.setText("" + tam + "");
+        int idCategoria = Utilitario.generaCodigo("Categoria");
+        this.jTextField1.setText("" + idCategoria + "");
     }
 
     public RegistrarCategoria(CategoriaBE objCategoria) throws FileNotFoundException, IOException, SQLException {
         initComponents();
         TipoOperacion = 1;
-        CategoriaBL cat = new CategoriaBL();
         this.jTextField1.setText("" + objCategoria.getIdCategoria() + "");
         this.txtDescCategoria.setText(objCategoria.getDescripcion());
         this.txtNomCategoria.setText(objCategoria.getNombre());
