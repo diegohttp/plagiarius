@@ -131,7 +131,11 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+<<<<<<< .mine
+                                  <EmptySpace pref="403" max="32767" attributes="0"/>
+=======
                                   <EmptySpace pref="457" max="32767" attributes="0"/>
+>>>>>>> .r436
                               </Group>
                           </Group>
                       </Group>
@@ -367,7 +371,11 @@
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" pref="187" max="-2" attributes="0"/>
+<<<<<<< .mine
+                  <EmptySpace pref="153" max="32767" attributes="0"/>
+=======
                   <EmptySpace pref="167" max="32767" attributes="0"/>
+>>>>>>> .r436
               </Group>
           </Group>
         </DimensionLayout>
@@ -401,7 +409,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Propietario:"/>
+            <Property name="text" type="java.lang.String" value="ID Propietario:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
@@ -458,6 +466,9 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPropietarioActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
