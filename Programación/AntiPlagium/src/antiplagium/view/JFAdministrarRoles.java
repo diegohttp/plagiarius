@@ -35,13 +35,13 @@ public class JFAdministrarRoles extends JIFBase {
             }
             rolBL.CerrarConexion();
             
-            privilegioBL.AbrirConexion();
-            tablaPrivilegios = privilegioBL.getListPrivilegioPorRol(jcbRol.getSelectedItem().toString());
-            while (tablaPrivilegios.next())
-            {
-                System.out.println(tablaPrivilegios.getString("nombre") + " " + tablaPrivilegios.getString("descripcion"));
-            }
-            privilegioBL.CerrarConexion();
+//            privilegioBL.AbrirConexion();
+//            tablaPrivilegios = privilegioBL.getListPrivilegioPorRol(jcbRol.getSelectedItem().toString());
+//            while (tablaPrivilegios.next())
+//            {
+//                System.out.println(tablaPrivilegios.getString("nombre") + " " + tablaPrivilegios.getString("descripcion"));
+//            }
+//            privilegioBL.CerrarConexion();
         } 
         catch (ClassNotFoundException ex)
         {
