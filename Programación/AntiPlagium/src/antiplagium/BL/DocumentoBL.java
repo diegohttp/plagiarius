@@ -32,12 +32,19 @@ import org.apache.poi.poifs.eventfilesystem.POIFSReaderListener;
  */
 public class DocumentoBL {
 
-        public DocumentoBL() {
+    public DocumentoBL() {
         
         
     }
+    /* Metodo temporal para que luego se use el indice correletario desde BD */
+    public static int getMaxId(){
+        return 1;
+    }
 
-    
+    public static void registrarDocumento(DocumentoBE doc) throws Exception{
+        DocumentoDAO objDocumentoDao= new DocumentoDAO();
+        objDocumentoDao.registrar(doc);
+    }
 
     public static String limpiarPalabra(String palabra) {
         String pal = "";
