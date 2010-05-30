@@ -1,21 +1,18 @@
 package antiplagium.view;
 
 import antiplagium.BL.PrivilegioBL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
-import antiplagium.DAO.RolDAO;
 import antiplagium.BL.RolBL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class JFAdministrarRoles extends JIFBase {
 
     ResultSet tablaRoles = null;
     ResultSet tablaPrivilegios = null;
+    DefaultTableModel modeloTablaPrivilegios = new DefaultTableModel();
     JDesktopPane jdpPrincipal;
 
     public JFAdministrarRoles(JDesktopPane jdpPrincipal) {
@@ -39,13 +36,12 @@ public class JFAdministrarRoles extends JIFBase {
             rolBL.CerrarConexion();
             
             privilegioBL.AbrirConexion();
-            tablaPrivilegios = privilegioBL.getListPrivilegioPorRol(1);
+            tablaPrivilegios = privilegioBL.getListPrivilegioPorRol(jcbRol.getSelectedItem().toString());
             while (tablaPrivilegios.next())
             {
                 System.out.println(tablaPrivilegios.getString("nombre") + " " + tablaPrivilegios.getString("descripcion"));
             }
-
-
+            privilegioBL.CerrarConexion();
         } 
         catch (ClassNotFoundException ex)
         {
@@ -56,8 +52,12 @@ public class JFAdministrarRoles extends JIFBase {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
-        
-
+       modeloTablaPrivilegios = new DefaultTableModel(){
+       @Override
+              public boolean isCellEditable(int rowIndex, int mColIndex){
+                  return false;
+              }
+       };
     }
 
     @SuppressWarnings("unchecked")
