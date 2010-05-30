@@ -36,15 +36,13 @@ public class DocumentoBL {
         
         
     }
-    /* Metodo temporal para que luego se use el indice correletario desde BD */
-    public static int getMaxId(){
-        return 1;
-    }
 
     public static void registrar(DocumentoBE objDocumento) throws Exception{
         DocumentoDAO.registrar(objDocumento);
     }
-
+    public static boolean eliminar(DocumentoBE objDocumento){
+        return DocumentoDAO.eliminarDocumento(objDocumento);
+    }
     public static String limpiarPalabra(String palabra) {
         String pal = "";
         for (int i = 0; i < palabra.length(); i++) {
