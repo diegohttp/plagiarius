@@ -451,6 +451,7 @@ public class RegistrarDocumento extends JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         DocumentoBE doc1=null,doc2=null,doc3=null,doc4=null,doc5=null;
+        boolean error = false;
         if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc1.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 1.");
@@ -458,12 +459,6 @@ public class RegistrarDocumento extends JFrame {
             else {
                 File file1 = new File(this.txtRuta11.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-
-
-                //JOptionPane.showMessageDialog(null,objUsuarioBE.getNombreUsuario());
-
-
-                doc1 = new DocumentoBE(2,"Activo","nombre",objUsuarioBE, objCategoriaBE, contenido);
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
