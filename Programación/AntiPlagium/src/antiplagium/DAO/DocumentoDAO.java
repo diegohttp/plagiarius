@@ -44,6 +44,11 @@ public class DocumentoDAO {
         return boolExito;
     }
 
+    public static boolean eliminarDocumento(DocumentoBE objDocumento){
+        boolean exito = true;
+        return exito;
+    }
+
     public static ArrayList<DocumentoBE> buscar(DocumentoBE doc) throws FileNotFoundException, IOException{
 
         ConexionJDBC objConexion = new ConexionJDBC();
