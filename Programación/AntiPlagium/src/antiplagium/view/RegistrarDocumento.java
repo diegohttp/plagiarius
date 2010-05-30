@@ -522,7 +522,14 @@ public class RegistrarDocumento extends JFrame {
             } else {
                 File file1 = new File(this.txtRuta44.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
-                int idDoc = DocumentoBL.getMaxId();
+                int idDoc = 0;
+                try {
+                    idDoc = Utilitario.generaCodigo("Documento");
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
                 doc4 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
