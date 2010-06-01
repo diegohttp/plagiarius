@@ -52,8 +52,6 @@ public class BuscarDocumento extends JIFBase {
 
         for(int i=0;i<cantidadCategorias;i++){
             jcmbCategoria.addItem(listaCategorias.get(i).getNombre());
-
-
         }
     }
 
@@ -368,8 +366,6 @@ public class BuscarDocumento extends JIFBase {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         String objEstado;
-        int IdCategoria;
-
         CategoriaBE objCategoria = null;
         UsuarioBE objUsuario = null;
         /* Si la categoria es todas el objeto debe ser nulo, no especificado */
@@ -398,7 +394,7 @@ public class BuscarDocumento extends JIFBase {
             }
             /* Llenamos la grilla */
             for (int i=0; i < arrDocumentos.size() ; ++i){
-                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getIdCategoria() , arrDocumentos.get(i).getUsuario().getIdUsuario() , arrDocumentos.get(i).getEstado()  };
+                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
                 tmp.addRow(nuevo);
             }
 
@@ -452,21 +448,16 @@ public class BuscarDocumento extends JIFBase {
     }//GEN-LAST:event_jcmbEstado1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String contenido="Esto es un\ndocu\nmento de\nprueba.";
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        contenido+=contenido;
-        JFVisualizarDocumento vis = new JFVisualizarDocumento(contenido);
-        AntiPlagiumPrincipal.JDPPrincipal.add(vis);
-        vis.setVisible(true);
+        int idx = this.jtabPaquetes.getSelectedRow();
+        if (idx >= 0){
+            String contenido = this.arrDocumentos.get(idx).toString();
+            JFVisualizarDocumento vis = new JFVisualizarDocumento(contenido);
+            AntiPlagiumPrincipal.JDPPrincipal.add(vis);
+            vis.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Mostrar Contenido", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
