@@ -28,8 +28,8 @@ public class DocumentoDAO {
         ConexionJDBC objConexion = new ConexionJDBC();
         String xml = objDocumento.toXml();
 
-        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido,\"idCategoria\") VALUES ('" + objDocumento.getIdDocumento() +"','"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getUsuario().getIdUsuario() +"','"+ xml +"','"+ objDocumento.getCategoria().getIdCategoria() + "')";
-
+        String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido,\"idCategoria\") VALUES (" + objDocumento.getIdDocumento() +",'"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getUsuario().getIdUsuario() +"','"+ xml +"',"+ objDocumento.getCategoria().getIdCategoria() + ")";
+        System.out.println(strSentencia);
         try{
             objConexion.ejecutarSentencia(strSentencia);
 
@@ -188,7 +188,7 @@ public class DocumentoDAO {
 
         for (int i=0; i < arrDocumento.size(); ++i){
             Object[] registro = (Object[])arrDocumento.get(i);
-            DocumentoBE doc = new DocumentoBE();
+            /*DocumentoBE doc = new DocumentoBE();
             doc.setIdDocumento((Integer)registro[0]);
             doc.setEstado((String)registro[1]);
             doc.setNombre((String)registro[2]);
@@ -197,12 +197,12 @@ public class DocumentoDAO {
             doc.setUsuario(objUsuario);
             CategoriaBE objCategoria = new CategoriaBE();
             objCategoria.setIdCategoria((Integer)registro[5]);
-            doc.setCategoria(objCategoria);
+            doc.setCategoria(objCategoria);*/
+            DocumentoBE doc = null;
+            String contenido = (String)registro[4];
+            doc = DocumentoBL.getFromXml(contenido);
             gestorDocumento.add(doc);
         }
         return gestorDocumento;
-
-
-
     }
 }
