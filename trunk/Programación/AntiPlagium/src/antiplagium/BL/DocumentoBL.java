@@ -4,8 +4,10 @@ package antiplagium.BL;
  * and open the template in the editor.
  */
 
+import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.OracionBE;
+import antiplagium.BE.UsuarioBE;
 import antiplagium.DAO.DocumentoDAO;
 import com.thoughtworks.xstream.XStream;
 import java.io.BufferedReader;
@@ -100,11 +102,19 @@ public class DocumentoBL {
 
     //LISTAR DOCUMENTOS
     public static ArrayList<DocumentoBE> ListarDocs(DocumentoBE objDocumento) throws FileNotFoundException, IOException, SQLException {
-
         return DocumentoDAO.ListarDocs(objDocumento);
     }
 
-
+    public static DocumentoBE getFromXml(String contenido){
+        DocumentoBE doc = null;
+        XStream xstream = new XStream();
+        xstream.alias("documento", DocumentoBE.class);
+        xstream.alias("categoria", CategoriaBE.class);
+        xstream.alias("usuario",UsuarioBE.class);
+        xstream.alias("oracion", OracionBE.class);
+        doc = (DocumentoBE)xstream.fromXML(contenido);
+        return doc;
+    }
 
 }
 
