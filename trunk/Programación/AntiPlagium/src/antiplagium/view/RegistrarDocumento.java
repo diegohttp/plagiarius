@@ -463,13 +463,18 @@ public class RegistrarDocumento extends JFrame {
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
+                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    doc1 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+                    try {
+                        DocumentoBL.registrar(doc1);
+                    } catch (Exception ex) {
+                        Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc1 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -482,13 +487,18 @@ public class RegistrarDocumento extends JFrame {
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
+                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    doc2 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc2.getText(), objUsuario, objCategoria,contenido);
+                    try {
+                        DocumentoBL.registrar(doc2);
+                    } catch (Exception ex) {
+                        Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc2 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -501,13 +511,18 @@ public class RegistrarDocumento extends JFrame {
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
+                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    doc3 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc3.getText(), objUsuario, objCategoria,contenido);
+                    try {
+                        DocumentoBL.registrar(doc3);
+                    } catch (Exception ex) {
+                        Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc3 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -520,13 +535,18 @@ public class RegistrarDocumento extends JFrame {
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
+                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    doc4 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc4.getText(), objUsuario, objCategoria,contenido);
+                    try {
+                        DocumentoBL.registrar(doc4);
+                    } catch (Exception ex) {
+                        Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc4 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -539,52 +559,20 @@ public class RegistrarDocumento extends JFrame {
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
+                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    doc5 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc5.getText(), objUsuario, objCategoria,contenido);
+                    try {
+                        DocumentoBL.registrar(doc5);
+                    } catch (Exception ex) {
+                        Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc5 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
-
-
             }
         }
-        if (doc1!=null){
-            try {
-                DocumentoBL.registrar(doc1);
-            } catch (Exception ex) {
-                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } //SERIALIZAR
-        if (doc2!=null){
-            try {
-                DocumentoBL.registrar(doc2);
-            } catch (Exception ex) {
-                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } //SERIALIZAR
-        if (doc3!=null){
-            try {
-                DocumentoBL.registrar(doc3);
-            } catch (Exception ex) {
-                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } //SERIALIZAR
-        if (doc4!=null){
-            try {
-                DocumentoBL.registrar(doc4);
-            } catch (Exception ex) {
-                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } //SERIALIZAR
-        if (doc5!=null){
-            try {
-                DocumentoBL.registrar(doc5);
-            } catch (Exception ex) {
-                Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } //SERIALIZAR
 }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
