@@ -112,7 +112,9 @@ public class DocumentoBE {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    public void setCategoria(CategoriaBE categoria){
+        this.categoria = categoria;
+    }
     public String toXml() {
         XStream xstream = new XStream();
         xstream.alias("documento", DocumentoBE.class);
