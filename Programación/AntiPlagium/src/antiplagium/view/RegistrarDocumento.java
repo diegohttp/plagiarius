@@ -470,7 +470,6 @@ public class RegistrarDocumento extends JFrame {
                 }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
                 doc1 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
-
             }
         }
 
