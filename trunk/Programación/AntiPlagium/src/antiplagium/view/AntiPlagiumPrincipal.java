@@ -1,5 +1,7 @@
 package antiplagium.view;
 
+import antiplagium.BE.CategoriaBE;
+import antiplagium.BE.UsuarioBE;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import antiplagium.DAL.*;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 public class AntiPlagiumPrincipal extends JFBase
@@ -178,7 +181,22 @@ public class AntiPlagiumPrincipal extends JFBase
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         try {
-            BuscarDocumento buscardoc = new BuscarDocumento();
+            /* Codigo agregado solo para pruebas */
+            ArrayList<CategoriaBE> aCategoria = new ArrayList<CategoriaBE>();
+            aCategoria.add(new CategoriaBE());
+            aCategoria.get(0).setIdCategoria(4);
+            aCategoria.get(0).setNombre("Filosofia");
+            aCategoria.add(new CategoriaBE());
+            aCategoria.get(1).setIdCategoria(5);
+            aCategoria.get(1).setNombre("Derecho");
+            UsuarioBE objUsuario = new UsuarioBE();
+            objUsuario.setIdUsuario(1);
+            objUsuario.setNombres("Piere");
+            objUsuario.setCategorias(aCategoria);
+            objUsuario.setApellidoPaterno("Cordero");
+            objUsuario.setApellidoMaterno("Principe");
+            /* Eliminar luego de probar */
+            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
             buscardoc.setVisible(true);
             JDPPrincipal.add(buscardoc);
         } catch (FileNotFoundException ex) {
