@@ -50,6 +50,9 @@ public class RegistrarDocumento extends JFrame {
         cmbFechaInicio.setEditable(false);
         jPanel3.add(cmbFechaInicio);
         jPanel3.setEnabled(false);
+        
+        
+        
     }
 
     public RegistrarDocumento(UsuarioBE objUsuario) {
@@ -63,6 +66,9 @@ public class RegistrarDocumento extends JFrame {
         jPanel3.add(cmbFechaInicio);
         jPanel3.setEnabled(false);
         this.jComboBox1.removeAllItems();
+
+        /*lista las categorias solo de usuario*/
+        
         ArrayList<CategoriaBE> lstCategorias = this.objUsuario.getCategorias();
         for (int i = 0 ; i < lstCategorias.size(); ++i){
             this.jComboBox1.addItem(lstCategorias.get(i));
