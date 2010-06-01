@@ -573,6 +573,7 @@ public class RegistrarDocumento extends JFrame {
                 }
             }
         }
+        JOptionPane.showMessageDialog(null, "El documento se ha registrado con éxito.", "Mensaje",1);
 }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
