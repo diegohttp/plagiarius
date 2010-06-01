@@ -42,16 +42,18 @@ public class BuscarDocumento extends JIFBase {
     public BuscarDocumento() throws FileNotFoundException, IOException, SQLException {
         initComponents();
         categoriaBl=new CategoriaBL();
-
+        CategoriaBE tmp = new CategoriaBE();
+        tmp.setIdCategoria(0);
+        tmp.setNombre("Todas");
         ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
+        listaCategorias.add(0 , tmp);
+        int cantidadCategorias=listaCategorias.size();
 
-            int cantidadCategorias=listaCategorias.size();
+        for(int i=0;i<cantidadCategorias;i++){
+            jcmbCategoria.addItem(listaCategorias.get(i).getNombre());
 
-            for(int i=0;i<cantidadCategorias;i++){
-                jcmbCategoria.addItem(listaCategorias.get(i).getNombre());
 
-        
-            }
+        }
     }
 
     public BuscarDocumento(UsuarioBE objUsuario) throws FileNotFoundException, IOException, SQLException {
@@ -59,9 +61,11 @@ public class BuscarDocumento extends JIFBase {
         this.objUsuario = objUsuario;
 
         categoriaBl=new CategoriaBL();
-
-        ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
-
+        CategoriaBE tmp = new CategoriaBE();
+        tmp.setIdCategoria(0);
+        tmp.setNombre("Todas");
+        ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
+        listaCategorias.add(0 , tmp);
         int cantidadCategorias=listaCategorias.size();
 
         for(int i=0;i<cantidadCategorias;i++){
@@ -103,7 +107,7 @@ public class BuscarDocumento extends JIFBase {
         setTitle("Búsqueda Documentos");
         setName(""); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 255))); // NOI18N
 
         jtabPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,7 +153,7 @@ public class BuscarDocumento extends JIFBase {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(0, 0, 255));
         jPanel1.setName("Búsqueda"); // NOI18N
         jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -168,7 +172,6 @@ public class BuscarDocumento extends JIFBase {
             }
         });
 
-        jcmbCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Todos>" }));
         jcmbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcmbCategoriaActionPerformed(evt);
@@ -195,7 +198,7 @@ public class BuscarDocumento extends JIFBase {
 
         jLabel4.setText("Estado");
 
-        jcmbEstado1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        jcmbEstado1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "activo", "inactivo" }));
         jcmbEstado1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcmbEstado1ActionPerformed(evt);
@@ -361,14 +364,26 @@ public class BuscarDocumento extends JIFBase {
         String objEstado;
         int IdCategoria;
 
-        CategoriaBE objCategoria = new CategoriaBE();
-
+        CategoriaBE objCategoria = null;
+        UsuarioBE objUsuario = null;
+        /* Si la categoria es todas el objeto debe ser nulo, no especificado */
         objCategoria= (CategoriaBE) this.jcmbCategoria.getSelectedItem();
-        IdCategoria = objCategoria.getIdCategoria();
-
-        objEstado=  (String)this.jcmbEstado1.getSelectedItem();
+        if (objCategoria.getNombre().compareTo("Todas") == 0){
+            objCategoria = null;
+        }
+        /* Si se especifico un IdUsuario se crea el usuario */
+        if (this.jtxtIdPropietario.getText().compareTo("") != 0){
+            objUsuario = new UsuarioBE();
+            objUsuario.setIdUsuario(Integer.parseInt(this.jtxtIdPropietario.getText()));
+        }
+        DocumentoBE objDocumento = new DocumentoBE();
+        objDocumento.setUsuario(objUsuario);
+        objDocumento.setCategoria(objCategoria);
+        objDocumento.setNombre(this.jtxtNombre.getText());
+        objEstado = (String) this.jcmbEstado1.getSelectedItem();
+        objDocumento.setEstado(objEstado);
         try {
-            this.arrDocumentos = DocumentoBL.ListarDocs(jtxtIdPropietario.getText().trim(), jtxtNombre.getText().trim(), IdCategoria, objEstado);
+            this.arrDocumentos = DocumentoBL.ListarDocs(objDocumento);
             /* Obtenemos el modelo */
             DefaultTableModel tmp = (DefaultTableModel) this.jtabPaquetes.getModel();
             /* Limpiamos la tabla */
