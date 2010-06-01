@@ -131,68 +131,53 @@ public class DocumentoDAO {
     
    
     
-    public static ArrayList<DocumentoBE> ListarDocs(String IdPropietario, String Nombre, int IdCategoria, String objEstado)throws FileNotFoundException, IOException, SQLException {
+    public static ArrayList<DocumentoBE> ListarDocs(DocumentoBE objDocumento)throws FileNotFoundException, IOException, SQLException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
 
-      String strSentencia = " SELECT \"idDocumento\", nombre, idCategoria, idUsuario, estado FROM \"Documento\"";
+        String strSentencia = "SELECT * FROM \"Documento\"";
 
         boolean esprimero=true;
         String prop="", cat="",est="", nom="";
-        if (IdPropietario.compareTo("")!=0) {
-            prop="idUsuario like '%"+ IdPropietario + "%'";
+
+        if (objDocumento.getUsuario() != null) {
+            prop="\"idUsuario\" = "+ objDocumento.getUsuario().getIdUsuario();
             if (esprimero) {
-                prop=" WHERE "+prop;
+                prop = " WHERE "+ prop;
                 esprimero=false;
             }
-            else prop=" AND "+prop;
+            else prop  =" AND "+ prop;
         }
 
-        if (Nombre.compareTo("")!=0) {
-            nom="nombre like '%"+ Nombre + "%'";
+        if (objDocumento.getNombre().compareTo("")!=0) {
+            nom="nombre like '%"+ objDocumento.getNombre() + "%'";
             if (esprimero) {
-                nom=" WHERE "+nom;
+                prop += " WHERE "+ nom;
                 esprimero=false;
             }
-            else nom=" AND "+nom;
+            else prop +=" AND " + nom;
         }
 
-        if (objEstado.compareTo("")!=0) {
-            est="estado like '%"+ objEstado + "%'";
+        if (objDocumento.getEstado().compareTo("")!=0) {
+            est ="estado like '%"+ objDocumento.getEstado() + "%'";
             if (esprimero) {
-                est=" WHERE "+est;
+                prop += " WHERE "+ est;
                 esprimero=false;
             }
-            else est=" AND "+est;
+            else prop +=" AND "+ est;
         }
 
-        /*if (IdCategoria.compareTo(null)!=0) {
-            cat="idCategoria like '%"+ IdCategoria + "%'";
+        if (objDocumento.getCategoria() != null){
+            cat ="\"idCategoria\" = "+ objDocumento.getCategoria().getIdCategoria();
             if (esprimero) {
-                cat=" WHERE "+cat;
+                prop += " WHERE "+ cat;
                 esprimero=false;
             }
-            else cat=" AND "+cat;
-        }
-        */
-        strSentencia=strSentencia+prop+cat+est+nom;
-
-/*
-        if (IdPropietario.compareTo("")!=0 && Nombre.compareTo("") != 0 && IdCategoria.equals(0) && objEstado.compareTo("")=0){
-            strSentencia += " WHERE idUsuario like '%"+ IdPropietario + "%' and idCategoria= + IdCategoria + "%'" nombre like '%" + Nombre + "%'"estado like '%"+ objEstado + "%'" ;
+            else prop += " AND "+ cat;
         }
 
-        else if (Nombre.compareTo("") != 0 && IdCategoria.compareTo("")==0 && objEstado.compareTo("")==0){
-            strSentencia += " WHERE nombre like '%"+ Nombre + "%' and idCategoria= + IdCategoria + "%'"
-        }
+        strSentencia += prop;
 
-        else if (Nombre.compareTo("")!=0){
-            strSentencia += " WHERE descripcion like '%"+ Nombre + "%'";
-        }
-        else if (IdCategoria.compareTo("")!=0){
-            strSentencia += " WHERE idCategoria like '%"+ IdCategoria + "%'";
-        }
-*/
         strSentencia +=" ORDER BY \"idDocumento\"";
 
         System.out.println(strSentencia);
@@ -203,7 +188,17 @@ public class DocumentoDAO {
 
         for (int i=0; i < arrDocumento.size(); ++i){
             Object[] registro = (Object[])arrDocumento.get(i);
-            //gestorDocumento.add(new DocumentoBE((Integer)registro[0],(String)registro[1],(String)registro[2],(UsuarioBE)registro[3]));
+            DocumentoBE doc = new DocumentoBE();
+            doc.setIdDocumento((Integer)registro[0]);
+            doc.setEstado((String)registro[1]);
+            doc.setNombre((String)registro[2]);
+            UsuarioBE objUsuario = new UsuarioBE();
+            objUsuario.setIdUsuario(Integer.parseInt((String)registro[3]));
+            doc.setUsuario(objUsuario);
+            CategoriaBE objCategoria = new CategoriaBE();
+            objCategoria.setIdCategoria((Integer)registro[5]);
+            doc.setCategoria(objCategoria);
+            gestorDocumento.add(doc);
         }
         return gestorDocumento;
 
