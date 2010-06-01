@@ -99,9 +99,9 @@ public class DocumentoBL {
 
 
     //LISTAR DOCUMENTOS
-    public static ArrayList<DocumentoBE> ListarDocs(String IdPropietario, String Nombre, int IdCategoria, String objEstado) throws FileNotFoundException, IOException, SQLException {
+    public static ArrayList<DocumentoBE> ListarDocs(DocumentoBE objDocumento) throws FileNotFoundException, IOException, SQLException {
 
-        return DocumentoDAO.ListarDocs(IdPropietario,Nombre,IdCategoria,objEstado);           
+        return DocumentoDAO.ListarDocs(objDocumento);
     }
 
 
