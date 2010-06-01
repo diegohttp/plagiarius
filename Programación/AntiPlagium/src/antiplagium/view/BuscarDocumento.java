@@ -14,6 +14,7 @@ package antiplagium.view;
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.UsuarioBE;
+import antiplagium.BE.Utilitario;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAO.CategoriaDAO;
@@ -193,6 +194,11 @@ public class BuscarDocumento extends JIFBase {
         jtxtIdPropietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtxtIdPropietarioActionPerformed(evt);
+            }
+        });
+        jtxtIdPropietario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtxtIdPropietarioKeyReleased(evt);
             }
         });
 
@@ -477,6 +483,19 @@ public class BuscarDocumento extends JIFBase {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenu3MousePressed
+
+    private void jtxtIdPropietarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtIdPropietarioKeyReleased
+        // TODO add your handling code here:
+        Character caracter = new Character(evt.getKeyChar());
+        if (!Utilitario.esDigito(caracter)) {
+            String texto = "";
+            for (int i = 0; i < this.jtxtIdPropietario.getText().length(); i++)
+                if (Utilitario.esDigito(new Character(this.jtxtIdPropietario.getText().charAt(i))))
+                    texto += this.jtxtIdPropietario.getText().charAt(i);
+            this.jtxtIdPropietario.setText(texto);
+            this.jtxtIdPropietario.getToolkit().beep();
+        }
+    }//GEN-LAST:event_jtxtIdPropietarioKeyReleased
 
     public String getNombreDocSeleccionado(){
         return this.selectedDoc;
