@@ -62,6 +62,7 @@ public class RegistrarDocumento extends JFrame {
         cmbFechaInicio.setEditable(false);
         jPanel3.add(cmbFechaInicio);
         jPanel3.setEnabled(false);
+        this.jComboBox1.removeAllItems();
         ArrayList<CategoriaBE> lstCategorias = this.objUsuario.getCategorias();
         for (int i = 0 ; i < lstCategorias.size(); ++i){
             this.jComboBox1.addItem(lstCategorias.get(i));
@@ -468,7 +469,7 @@ public class RegistrarDocumento extends JFrame {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc1 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+                doc1 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
 
             }
         }
@@ -488,7 +489,7 @@ public class RegistrarDocumento extends JFrame {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc2 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+                doc2 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -507,7 +508,7 @@ public class RegistrarDocumento extends JFrame {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc3 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+                doc3 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -526,7 +527,7 @@ public class RegistrarDocumento extends JFrame {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc4 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+                doc4 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
             }
         }
 
@@ -545,7 +546,7 @@ public class RegistrarDocumento extends JFrame {
                     Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                doc5 = new DocumentoBE(idDoc, "Activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+                doc5 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
 
 
             }
