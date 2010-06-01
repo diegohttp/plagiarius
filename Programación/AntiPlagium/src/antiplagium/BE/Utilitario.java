@@ -27,6 +27,17 @@ public final class Utilitario {
         else
             return true;
     }
+
+    public static boolean esDigito(Character caracter){
+        char c = caracter.charValue();
+        if ( !(Character.isDigit(c) //si es letra
+                || c == 8 //o backspace
+            ))
+            return false;
+        else
+            return true;
+    }
+
     public static boolean esLetra(Character caracter){
         char c = caracter.charValue();
         if ( !(Character.isLetter(c) //si es letra
