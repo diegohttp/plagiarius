@@ -75,21 +75,7 @@ public class RegistrarDocumento extends JFrame {
         }
     }
     
-    /*Para el modificar*/
-    public  RegistrarDocumento(String strTitulo, int IdDocumento) {
-        initComponents();
-        this.setTitle(strTitulo);
-        this.objDocumento = DocumentoBL.buscarDocumento(IdDocumento);
-
-            llenaCombosModificar();
-
-            jtxtApellidoPaterno.setText(objCliente.getStrApePaterno());
-            jtxtApellidoMaterno.setText(objCliente.getStrApeMaterno());
-            jtxtNombres.setText(objCliente.getStrNombres());
-           
-
-            this.setVisible(true);
-        }
+ 
 
     
     
