@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import java.io.FileInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.poi.hpsf.PropertySetFactory;
 import org.apache.poi.hpsf.SummaryInformation;
 import org.apache.poi.hwpf.extractor.WordExtractor;
@@ -34,8 +36,9 @@ import org.apache.poi.poifs.eventfilesystem.POIFSReaderListener;
  */
 public class DocumentoBL {
 
+    private DocumentoBE objDocumentoBE;
+
     public DocumentoBL() {
-        
         
     }
 
@@ -76,6 +79,16 @@ public class DocumentoBL {
 
         return pal;
     }
+
+    // this.objDocumento = DocumentoBL.buscarDocumento(IdDocumento);
+
+
+    public DocumentoBE buscarDocumento(int IdDocumento) throws FileNotFoundException, IOException {
+      return  objDocumentoBE = DocumentoDAO.buscar(IdDocumento);
+    }
+
+
+
 
     public static String obtenerContenido(File f) {
         String contenido = "";
