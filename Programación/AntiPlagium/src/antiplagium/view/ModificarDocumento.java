@@ -13,10 +13,8 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
-import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
-import antiplagium.BL.UsuarioBL;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -34,13 +32,7 @@ public class ModificarDocumento extends javax.swing.JFrame {
 private CategoriaBL categoriaBl;
 private DocumentoBE objDocumento;
     /** Creates new form ModificarDocumento */
-
-
-
-public ModificarDocumento(){
-}
-
-    public ModificarDocumento(int IdDocumento) {
+   public ModificarDocumento(int IdDocumento) {
 
         initComponents();
         
@@ -71,7 +63,7 @@ public ModificarDocumento(){
             ComboCategoria.addItem(listaCategorias.get(i));
         }
 
-        Integer index = CategoriaBL.indexCategoria(listaCategorias,objDocumento.getCategoria().getNombre());
+        Integer index = CategoriaBL.indexCategoria(listaCategorias,objDocumento.getCategoria().getIdCategoria());
         ComboCategoria.setSelectedIndex(index+1);
 
 
