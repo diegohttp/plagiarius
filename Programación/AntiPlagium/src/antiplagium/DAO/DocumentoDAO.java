@@ -88,8 +88,9 @@ public class DocumentoDAO {
 
         ConexionJDBC objConexion = new ConexionJDBC();
 
-        String strSentencia =  " SELECT idDocumento, estado, nombre, idUsuario, contenido FROM Documento ";
-            strSentencia += " WHERE idDocumento ='"+idDocumento+"' ";
+
+        String strSentencia =  "SELECT \"idDocumento\",\"estado\",\"nombre\",\"idUsuario\" FROM \"Documento\"";
+            strSentencia += " WHERE \"idDocumento\" ='"+idDocumento+"' ";
 
         DocumentoBE objDocumento = new DocumentoBE();
 
