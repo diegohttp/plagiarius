@@ -106,7 +106,7 @@ public class BuscarDocumento extends JIFBase {
         setTitle("Búsqueda Documentos");
         setName(""); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
 
         jtabPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,7 +152,7 @@ public class BuscarDocumento extends JIFBase {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(0, 0, 255));
         jPanel1.setName("Búsqueda"); // NOI18N
         jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -298,6 +298,11 @@ public class BuscarDocumento extends JIFBase {
                 jMenu2MousePressed(evt);
             }
         });
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Modificar(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
@@ -305,6 +310,11 @@ public class BuscarDocumento extends JIFBase {
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jMenu3MousePressed(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
             }
         });
         jMenuBar1.add(jMenu3);
@@ -487,6 +497,23 @@ public class BuscarDocumento extends JIFBase {
             this.jtxtIdPropietario.getToolkit().beep();
         }
     }//GEN-LAST:event_jtxtIdPropietarioKeyReleased
+
+
+    /*Eliminar*/
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+         
+
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void Modificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar
+        if (this.jtabPaquetes.getSelectedRowCount() != 1)
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje",0);
+        else {
+               ModificarDocumento vModificarDocumento = new ModificarDocumento(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
+                this.dispose();
+            }
+    }//GEN-LAST:event_Modificar
 
     public String getNombreDocSeleccionado(){
         return this.selectedDoc;
