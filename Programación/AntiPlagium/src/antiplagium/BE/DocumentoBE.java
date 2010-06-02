@@ -24,6 +24,14 @@ public class DocumentoBE {
     private CategoriaBE categoria;
     private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
 
+    public ArrayList<OracionBE> getListaOraciones() {
+        return listaOraciones;
+    }
+
+    public void setListaOraciones(ArrayList<OracionBE> listaOraciones) {
+        this.listaOraciones = listaOraciones;
+    }
+
     public DocumentoBE() {
     }
 
