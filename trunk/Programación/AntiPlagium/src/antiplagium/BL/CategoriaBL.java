@@ -42,6 +42,19 @@ public class CategoriaBL {
         return CategoriaDAO.buscar(descripcion,nombre);
     }
 
+    public static int indexCategoria(ArrayList<CategoriaBE> arrCategoria,String nomCategoria){
+
+        int intIndex=-1;
+        for( int i=0; i< arrCategoria.size();i++){
+            if (arrCategoria.get(i).getNombre().compareTo(nomCategoria)==0){
+                intIndex=i;
+            }
+        }
+
+        return intIndex;
+    }
+
+
 }
 
 
