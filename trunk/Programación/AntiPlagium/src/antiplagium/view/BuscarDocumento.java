@@ -442,11 +442,22 @@ public class BuscarDocumento extends JIFBase {
          regdoc.setTitle("Registrar Documento");
     }//GEN-LAST:event_jMenu1MousePressed
 
+
+    //Modificar!
+
     private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
         // TODO add your handling code here:
-         RegistrarDocumento regdoc = new RegistrarDocumento();
-         regdoc.setVisible(true);
-         regdoc.setTitle("Modificar Documento");
+        if (this.jtabPaquetes.getSelectedRowCount() != 1)
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje",0);
+
+        else {
+            
+              System.out.println(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
+
+               ModificarDocumento vModificarDocumento = new ModificarDocumento(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
+               vModificarDocumento.setVisible(true);
+               this.dispose();
+            }
     }//GEN-LAST:event_jMenu2MousePressed
 
     private void jtxtIdPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtIdPropietarioActionPerformed
@@ -479,6 +490,10 @@ public class BuscarDocumento extends JIFBase {
             objDocumento.setUsuario(objUsuario);
             objDocumento.setIdDocumento(Integer.parseInt((String)temp.getValueAt(idx, 0)));
 
+            DocumentoBL objDocumentoBL = new DocumentoBL();
+            boolean result = objDocumentoBL.eliminar(objDocumento);
+            if (result)
+                    JOptionPane.showMessageDialog(null, "El Documento se elimino con éxito", "Mensaje",0);
         }
         else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
