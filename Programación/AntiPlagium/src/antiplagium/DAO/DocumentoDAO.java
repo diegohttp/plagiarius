@@ -45,8 +45,19 @@ public class DocumentoDAO {
     }
 
     public static boolean eliminarDocumento(DocumentoBE objDocumento){
-        boolean exito = true;
-        return exito;
+        ConexionJDBC objConexion = new ConexionJDBC();
+
+        String strSentencia = "UPDATE \"idDocumento\" SET ";
+            strSentencia += "estado = 'inactivo'"+ 
+                        " WHERE \"idDocumento\" ='"+objDocumento.getIdDocumento()+";";
+        try{
+            objConexion.ejecutarQuery(strSentencia);
+            return true;
+        }
+        catch (Exception a){
+            System.out.println(a.getMessage());
+            return false;
+        }
     }
 
     public static ArrayList<DocumentoBE> buscar(DocumentoBE doc) throws FileNotFoundException, IOException{
@@ -115,7 +126,7 @@ public class DocumentoDAO {
     public static boolean modificar(DocumentoBE objDocumento)throws FileNotFoundException, IOException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentencia = "UPDATE Documento SET ";
+        String strSentencia = "UPDATE \"idDocumento\" SET ";
             strSentencia += "estado='"+objDocumento.getEstado()+"'," +
                     " nombre='"+objDocumento.getNombre()+ "'"+
                     " WHERE idDocumento='"+objDocumento.getIdDocumento() +"'";
