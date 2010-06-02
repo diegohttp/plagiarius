@@ -40,6 +40,7 @@ public class RegistrarDocumento extends JFrame {
     private UsuarioBE objUsuarioBE;
     private CategoriaBE objCategoriaBE;
     private UsuarioBE objUsuario;
+    private DocumentoBE objDocumento;
 
     /** Creates new form RegistrarDocumento */
     public RegistrarDocumento() {
@@ -51,8 +52,7 @@ public class RegistrarDocumento extends JFrame {
         jPanel3.add(cmbFechaInicio);
         jPanel3.setEnabled(false);
         
-        
-        
+     
     }
 
     public RegistrarDocumento(UsuarioBE objUsuario) {
@@ -74,6 +74,27 @@ public class RegistrarDocumento extends JFrame {
             this.jComboBox1.addItem(lstCategorias.get(i));
         }
     }
+    
+    /*Para el modificar*/
+    public  RegistrarDocumento(String strTitulo, int IdDocumento) {
+        initComponents();
+        this.setTitle(strTitulo);
+        this.objDocumento = DocumentoBL.buscarDocumento(IdDocumento);
+
+            llenaCombosModificar();
+
+            jtxtApellidoPaterno.setText(objCliente.getStrApePaterno());
+            jtxtApellidoMaterno.setText(objCliente.getStrApeMaterno());
+            jtxtNombres.setText(objCliente.getStrNombres());
+           
+
+            this.setVisible(true);
+        }
+
+    
+    
+    
+    
 
     private void cargarArchivo(int numDoc, String nomArch) {
         switch (numDoc) {
