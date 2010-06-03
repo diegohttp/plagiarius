@@ -42,8 +42,8 @@ public class JFAdministrarUsuarios extends JIFBase {
 //        setContentPane(desktop);
         initComponents();
 
-        cmbCalendarioInicio.setSize(247,29);
-        cmbCalendarioFin.setSize(247, 29);
+        cmbCalendarioInicio.setSize(269,29);
+        cmbCalendarioFin.setSize(269, 29);
         jPFechaInicio.add(cmbCalendarioInicio);
         jPFechaFin.add(cmbCalendarioFin);
         rolBL=new RolBL();
@@ -55,7 +55,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             ResultSet registros = rolBL.getListRoles();
 
             int numeroRegistros=registros.getRow();
-
+            jCBRol.addItem("Todos");
             while (registros.next()) {
                     jCBRol.addItem(registros.getString("nombre"));
 
@@ -65,6 +65,7 @@ public class JFAdministrarUsuarios extends JIFBase {
 
             ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
 
+            jCBArea.addItem("Todos");
             int cantidadCategorias=listaCategorias.size();
 
             for(int i=0;i<cantidadCategorias;i++){
@@ -268,7 +269,7 @@ public class JFAdministrarUsuarios extends JIFBase {
 
         jTListaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre Usuario", "Nombre Completo", "Rol", "Fecha Caducidad", "Area Academica"
@@ -388,7 +389,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,7 +403,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                     .addComponent(jBEliminar)
                     .addComponent(JBNuevo)
                     .addComponent(jBModificar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -478,8 +479,8 @@ public class JFAdministrarUsuarios extends JIFBase {
             usuarioBL.AbrirConexion();
             String usuario=jTFUsuario.getText();
             String nombreCompleto=JTFNombreCompleto.getText();
-            int idRol=jCBRol.getSelectedIndex()+1;
-            int idArea=jCBArea.getSelectedIndex()+1;
+            int idRol=jCBRol.getSelectedIndex();
+            int idArea=jCBArea.getSelectedIndex();
             SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
             String cadenaFechaI=formato.format(cmbCalendarioInicio.getDate());
             String cadenaFechaF=formato.format(cmbCalendarioFin.getDate());
@@ -488,7 +489,11 @@ public class JFAdministrarUsuarios extends JIFBase {
 
             if (rs != null) {
 
+
                     DefaultTableModel modelo = (DefaultTableModel) jTListaUsuarios.getModel();
+                    while (modelo.getRowCount()>0){
+                        modelo.removeRow(0);
+                    }
                     ResultSetMetaData rsmd = rs.getMetaData();
                     int numeroColum = rsmd.getColumnCount();
                     while (rs.next()) {
