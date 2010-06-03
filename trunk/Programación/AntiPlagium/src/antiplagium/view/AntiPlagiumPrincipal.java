@@ -198,7 +198,7 @@ public class AntiPlagiumPrincipal extends JFBase
             /* Eliminar luego de probar */
             BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
             buscardoc.setVisible(true);
-            JDPPrincipal.add(buscardoc);
+            //JDPPrincipal.add(buscardoc);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
