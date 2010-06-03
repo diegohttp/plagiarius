@@ -167,6 +167,9 @@ public class UsuarioDAO {
             String queryListaUsuarios = " select A.\"nombreUsuario\", A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" as NombreCompleto, B.nombre as NombreRol, \"fechaVencimiento\",D.nombre as NombreCategoria ";
             queryListaUsuarios += " from \"Usuario\" A INNER JOIN \"Rol\" B ON A.\"idRol\"=B.\"idRol\" INNER JOIN \"UsuarioXCategoria\" C ON A.\"idUsuario\"=C.\"idUsuario\" INNER JOIN \"Categoria\" D on C.\"idCategoria\"=D.\"idCategoria\" ";
             queryListaUsuarios += " where A.\"nombreUsuario\" like '%"+usuario+"%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%"+nombreCompleto+"%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" like '%"+idRol+"%' and C.\"idCategoria\" like '%"+idArea+"%' ";
+
+            System.out.println(queryListaUsuarios);
+            
             ResultSet rs = ConexionJDBC.ejecutarQueryString(queryListaUsuarios);
             return rs;
         } catch (SQLException ex) {
