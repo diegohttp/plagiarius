@@ -4,6 +4,7 @@ import antiplagium.BE.RolBE;
 import antiplagium.BL.*;
 import java.awt.*;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -28,9 +29,9 @@ public class JFAgregarRol extends JIFBase {
                   return false;
               }
        };
-       modeloTablaPrivilegios.addColumn("idPrivilegio");
-       modeloTablaPrivilegios.addColumn("nombre");
-       modeloTablaPrivilegios.addColumn("descripcion");              
+       modeloTablaPrivilegios.addColumn("ID");
+       modeloTablaPrivilegios.addColumn("Nombre");
+       modeloTablaPrivilegios.addColumn("Descripcion");
 
         try
         {
@@ -38,29 +39,36 @@ public class JFAgregarRol extends JIFBase {
             tablaPrivilegios = privilegioBL.getListPrivilegios();
 
             if (tablaPrivilegios != null)
-            {
-                int numFilas = 0;
+            {                
                 while (tablaPrivilegios.next()) {
 
                     Object[] fila = new Object[4];
 
                     fila[0] = tablaPrivilegios.getObject("idPrivilegio");
                     fila[1] = tablaPrivilegios.getObject("nombre").toString().trim();
-                    fila[2] = tablaPrivilegios.getObject("descripcion").toString().trim();                    
-                    
-                    numFilas++;
+                    fila[2] = tablaPrivilegios.getObject("descripcion").toString().trim();
+                                        
                     modeloTablaPrivilegios.addRow(fila);
                 }
                 
-                Boolean[] columna = new Boolean[numFilas];
-                for (int i=0; i<numFilas; i++)
+                Boolean[] columna = new Boolean[modeloTablaPrivilegios.getRowCount()];
+                for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
                 {
-                    columna[i] = new Boolean(true);
+                    columna[i] = new Boolean(false);
                 }
-                modeloTablaPrivilegios.addColumn("selected", columna);
+                modeloTablaPrivilegios.addColumn("", columna);
+
                 JTPrivilegios.setModel(modeloTablaPrivilegios);
-                JTPrivilegios.getColumn("selected").setCellRenderer(new MultiRenderer());
-                JTPrivilegios.getColumn("selected").setCellEditor(new CheckBoxCellEditor());
+                JTPrivilegios.getColumnModel().getColumn(0).setPreferredWidth(25);
+                JTPrivilegios.getColumnModel().getColumn(1).setPreferredWidth(150);
+                JTPrivilegios.getColumnModel().getColumn(2).setPreferredWidth(175);
+                JTPrivilegios.getColumnModel().getColumn(3).setPreferredWidth(30);
+                TableColumn boolColumn = JTPrivilegios.getColumnModel().getColumn(3);
+                boolColumn.setCellEditor(new DefaultCellEditor(new JCheckBox()));
+                boolColumn.setCellRenderer(new MultiRenderer());
+                
+                //JTPrivilegios.getColumn("").setCellRenderer(new MultiRenderer());
+                //JTPrivilegios.getColumn("").setCellEditor(new CheckBoxCellEditor());
                 JTPrivilegios.updateUI();
             }
             privilegioBL.CerrarConexion();
@@ -80,11 +88,11 @@ public class JFAgregarRol extends JIFBase {
         private static final long serialVersionUID = 1L;
         JCheckBox checkBox = new JCheckBox();
 
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             if (value instanceof Boolean) { // Boolean
                 checkBox.setSelected(((Boolean) value).booleanValue());
                 checkBox.setHorizontalAlignment(JLabel.CENTER);
+                checkBox.setBackground(Color.white);
                 return checkBox;
             }
             String str = (value == null) ? "" : value.toString();
@@ -92,99 +100,6 @@ public class JFAgregarRol extends JIFBase {
                     hasFocus, row, column);
         }
     }
-
-//    class MultiEditor implements TableCellEditor {
-//
-//        private final static int BOOLEAN = 1;
-//        private final static int STRING = 2;
-//        private final static int NUM_EDITOR = 3;
-//        DefaultCellEditor[] cellEditors;
-//        int flg;
-
-//        public MultiEditor() {
-//            cellEditors = new DefaultCellEditor[NUM_EDITOR];
-//            // ----------------------------------------------------
-//            JCheckBox checkBox = new JCheckBox();
-//            checkBox.setHorizontalAlignment(JLabel.CENTER);
-//            cellEditors[BOOLEAN] = new DefaultCellEditor(checkBox);
-//            // ----------------------------------------------------
-//            JTextField textField = new JTextField();
-//            cellEditors[STRING] = new DefaultCellEditor(textField);
-//            // ----------------------------------------------------
-//            flg = BOOLEAN;
-//        }
-//
-//        public Component getTableCellEditorComponent(JTable table, Object value,
-//                boolean isSelected, int row, int column) {
-//            System.err.println("getTableCellEditorComponent called:");
-//            System.err.println("   isSelected: " + isSelected);
-//            System.err.println("   row: " + row);
-//            System.err.println("   col: " + column);
-//
-//            if (value instanceof Boolean) { // Boolean
-//                System.err.println("   Boolean");
-//                flg = BOOLEAN;
-//                return cellEditors[BOOLEAN].getTableCellEditorComponent(table,
-//                        value, isSelected, row, column);
-//            } else if (value instanceof String) { // String
-//                System.err.println("   String");
-//                flg = STRING;
-//                return cellEditors[STRING].getTableCellEditorComponent(table,
-//                        value, isSelected, row, column);
-//            } else {
-//                System.err.println("   Trouble!");
-//            }
-//            return null;
-//        }
-//
-//        public Object getCellEditorValue() {
-//            System.err.println("getCellEditorValue called");
-//            System.err.println("   flg = " + flg);
-//            switch (flg) {
-//                case BOOLEAN:
-//                case STRING:
-//                    return cellEditors[flg].getCellEditorValue();
-//                default:
-//                    return null;
-//            }
-//        }
-//
-//        public Component getComponent() {
-//            return cellEditors[flg].getComponent();
-//        }
-//
-//        public boolean stopCellEditing() {
-//            return cellEditors[flg].stopCellEditing();
-//        }
-//
-//        public void cancelCellEditing() {
-//            cellEditors[flg].cancelCellEditing();
-//        }
-//
-//        public boolean isCellEditable(EventObject anEvent) {
-//            return cellEditors[flg].isCellEditable(anEvent);
-//        }
-//
-//        public boolean shouldSelectCell(EventObject anEvent) {
-//            return cellEditors[flg].shouldSelectCell(anEvent);
-//        }
-//
-//        public void addCellEditorListener(CellEditorListener l) {
-//            cellEditors[flg].addCellEditorListener(l);
-//        }
-//
-//        public void removeCellEditorListener(CellEditorListener l) {
-//            cellEditors[flg].removeCellEditorListener(l);
-//        }
-//
-//        public void setClickCountToStart(int n) {
-//            cellEditors[flg].setClickCountToStart(n);
-//        }
-//
-//        public int getClickCountToStart() {
-//            return cellEditors[flg].getClickCountToStart();
-//        }
-//    }
 
     class CheckBoxCellEditor extends AbstractCellEditor implements TableCellEditor {
 
@@ -196,20 +111,12 @@ public class JFAgregarRol extends JIFBase {
             checkBox.setBackground(Color.white);
         }
 
-        public Component getTableCellEditorComponent(
-                JTable table,
-                Object value,
-                boolean isSelected,
-                int row,
-                int column) {
-
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             checkBox.setSelected(((Boolean) value).booleanValue());
-
-            //            Component c = table.getDefaultRenderer(String.class).getTableCellRendererComponent(table, value, isSelected, false, row, column);
-            //            if (c != null) {
-            //                checkBox.setBackground(c.getBackground());
-            //            }
-
+            Component c = table.getDefaultRenderer(String.class).getTableCellRendererComponent(table, value, isSelected, false, row, column);
+            if (c != null) {
+                checkBox.setBackground(c.getBackground());
+            }
             return checkBox;
         }
 
@@ -219,9 +126,6 @@ public class JFAgregarRol extends JIFBase {
     }
 
 
-
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -229,7 +133,7 @@ public class JFAgregarRol extends JIFBase {
         JBGuardar = new javax.swing.JButton();
         JPGrupo = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        JTFNombreRol = new javax.swing.JTextField();
         JBCancelar = new javax.swing.JButton();
         JPPrivilegios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -238,7 +142,6 @@ public class JFAgregarRol extends JIFBase {
         setClosable(false);
         setTitle("Agregar Rol");
 
-        JBGuardar.setIcon(new javax.swing.ImageIcon("D:\\PUCP\\2010-I\\DP1\\GoogleCode\\Programación\\AntiPlagium\\Iconos\\guardar.png")); // NOI18N
         JBGuardar.setText("Guardar");
         JBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +162,7 @@ public class JFAgregarRol extends JIFBase {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JTFNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(111, 111, 111))
         );
         JPGrupoLayout.setVerticalGroup(
@@ -267,11 +170,10 @@ public class JFAgregarRol extends JIFBase {
             .addGroup(JPGrupoLayout.createSequentialGroup()
                 .addGroup(JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTFNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        JBCancelar.setIcon(new javax.swing.ImageIcon("D:\\PUCP\\2010-I\\DP1\\GoogleCode\\Programación\\AntiPlagium\\Iconos\\salir.png")); // NOI18N
         JBCancelar.setText("Salir");
         JBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,7 +188,7 @@ public class JFAgregarRol extends JIFBase {
 
             },
             new String [] {
-                "idPrivilegio", "nombre", "descripcion", "selected"
+                "ID", "Nombre", "descripcion", ""
             }
         ) {
             Class[] types = new Class [] {
@@ -305,11 +207,18 @@ public class JFAgregarRol extends JIFBase {
             }
         });
         jScrollPane1.setViewportView(JTPrivilegios);
-        JTPrivilegios.getColumnModel().getColumn(0).setResizable(false);
-        JTPrivilegios.getColumnModel().getColumn(1).setResizable(false);
-        JTPrivilegios.getColumnModel().getColumn(2).setResizable(false);
-        JTPrivilegios.getColumnModel().getColumn(3).setResizable(false);
+        JTPrivilegios.getColumnModel().getColumn(0).setMinWidth(40);
+        JTPrivilegios.getColumnModel().getColumn(0).setPreferredWidth(40);
+        JTPrivilegios.getColumnModel().getColumn(0).setMaxWidth(40);
+        JTPrivilegios.getColumnModel().getColumn(1).setMinWidth(120);
+        JTPrivilegios.getColumnModel().getColumn(1).setPreferredWidth(120);
+        JTPrivilegios.getColumnModel().getColumn(1).setMaxWidth(120);
+        JTPrivilegios.getColumnModel().getColumn(2).setMinWidth(160);
+        JTPrivilegios.getColumnModel().getColumn(2).setPreferredWidth(160);
+        JTPrivilegios.getColumnModel().getColumn(2).setMaxWidth(160);
+        JTPrivilegios.getColumnModel().getColumn(3).setMinWidth(25);
         JTPrivilegios.getColumnModel().getColumn(3).setPreferredWidth(25);
+        JTPrivilegios.getColumnModel().getColumn(3).setMaxWidth(25);
 
         javax.swing.GroupLayout JPPrivilegiosLayout = new javax.swing.GroupLayout(JPPrivilegios);
         JPPrivilegios.setLayout(JPPrivilegiosLayout);
@@ -324,7 +233,7 @@ public class JFAgregarRol extends JIFBase {
             JPPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPPrivilegiosLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -367,15 +276,21 @@ public class JFAgregarRol extends JIFBase {
 
         RolBL rolBL = new RolBL();
         RolBE rolBE = new RolBE();
+        ArrayList<Integer> listaIDPrivilegios = new ArrayList<Integer>();
 
-        rolBE.setNombre(jTextField1.getText());
+        rolBE.setNombre(JTFNombreRol.getText());
+        for (int i = 0; i<modeloTablaPrivilegios.getRowCount(); i++)
+        {
+            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true)
+            {
+                listaIDPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
+            }
+        }
 
         try
         {
             rolBL.AbrirConexion();
-
-            rolBL.insertRol(rolBE);
-            
+            rolBL.insertRol(rolBE, listaIDPrivilegios);
             rolBL.CerrarConexion();
         }
         catch(ClassNotFoundException ex)
@@ -387,13 +302,6 @@ public class JFAgregarRol extends JIFBase {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
-
-//        PrivilegioBL privilegioBL = new PrivilegioBL();
-//        PrivilegioBE privilegioBE = new PrivilegioBE();
-
-
-
-
     }//GEN-LAST:event_JBGuardarActionPerformed
 
 
@@ -402,10 +310,10 @@ public class JFAgregarRol extends JIFBase {
     private javax.swing.JButton JBGuardar;
     private javax.swing.JPanel JPGrupo;
     private javax.swing.JPanel JPPrivilegios;
+    private javax.swing.JTextField JTFNombreRol;
     private javax.swing.JTable JTPrivilegios;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
 }

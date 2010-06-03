@@ -58,9 +58,6 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="JBGuardar">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\PUCP\2010-I\DP1\GoogleCode\Programaci&#xf3;n\AntiPlagium\Iconos\guardar.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
       <Events>
@@ -85,7 +82,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" pref="90" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="162" max="-2" attributes="0"/>
+                  <Component id="JTFNombreRol" min="-2" pref="162" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -95,7 +92,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTFNombreRol" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -111,15 +108,12 @@
             <Property name="text" type="java.lang.String" value="Nombre del Rol"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="JTFNombreRol">
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="JBCancelar">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="D:\PUCP\2010-I\DP1\GoogleCode\Programaci&#xf3;n\AntiPlagium\Iconos\salir.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
@@ -151,7 +145,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="191" max="-2" attributes="0"/>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -168,30 +162,30 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="0">
-                    <Column editable="false" title="idPrivilegio" type="java.lang.Integer"/>
-                    <Column editable="false" title="nombre" type="java.lang.String"/>
+                    <Column editable="false" title="ID" type="java.lang.Integer"/>
+                    <Column editable="false" title="Nombre" type="java.lang.String"/>
                     <Column editable="false" title="descripcion" type="java.lang.String"/>
-                    <Column editable="false" title="selected" type="java.lang.Boolean"/>
+                    <Column editable="false" title="" type="java.lang.Boolean"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="40" minWidth="40" prefWidth="40" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="120" minWidth="120" prefWidth="120" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="160" minWidth="160" prefWidth="160" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="25" resizable="false">
+                    <Column maxWidth="25" minWidth="25" prefWidth="25" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
