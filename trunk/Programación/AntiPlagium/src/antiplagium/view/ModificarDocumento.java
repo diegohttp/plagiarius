@@ -63,8 +63,8 @@ private DocumentoBE objDocumento;
             ComboCategoria.addItem(listaCategorias.get(i));
         }
 
-        Integer index = CategoriaBL.indexCategoria(listaCategorias,objDocumento.getCategoria().getIdCategoria());
-        ComboCategoria.setSelectedIndex(index+1);
+//        Integer index = CategoriaBL.indexCategoria(listaCategorias,objDocumento.getCategoria().getIdCategoria());
+   //     ComboCategoria.setSelectedIndex(index+1);
 
 
             txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
