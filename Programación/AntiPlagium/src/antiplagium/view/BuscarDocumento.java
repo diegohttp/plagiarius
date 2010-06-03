@@ -464,12 +464,20 @@ public class BuscarDocumento extends JDialog {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje",0);
 
         else {
-            
               System.out.println(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
-
-               ModificarDocumento vModificarDocumento = new ModificarDocumento(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
-               vModificarDocumento.setVisible(true);
-               this.dispose();
+              ModificarDocumento vModificarDoc = null;
+            try {
+                vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
+            } catch (FileNotFoundException ex) {
+                java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              vModificarDoc.setVisible(true);
+              vModificarDoc.setTitle("Modificar Documento");
+               
             }
     }//GEN-LAST:event_jMenu2MousePressed
 
@@ -496,21 +504,16 @@ public class BuscarDocumento extends JDialog {
 
     private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
         // TODO add your handling code here:
-        int idx = this.jtabPaquetes.getSelectedRow();
-        if (idx >= 0){
-            DefaultTableModel temp = (DefaultTableModel) this.jtabPaquetes.getModel();
-            DocumentoBE objDocumento = new DocumentoBE();
-            objDocumento.setUsuario(objUsuario);
-            objDocumento.setIdDocumento(Integer.parseInt((String)temp.getValueAt(idx, 0)));
-
+        if (this.jtabPaquetes.getSelectedRowCount()!=1)
+           JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+        else
+        {
             DocumentoBL objDocumentoBL = new DocumentoBL();
-            boolean result = objDocumentoBL.eliminar(objDocumento);
+            boolean result = objDocumentoBL.eliminar(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
             if (result)
                     JOptionPane.showMessageDialog(null, "El Documento se elimino con éxito", "Mensaje",0);
         }
-        else {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
-        }
+        
     }//GEN-LAST:event_jMenu3MousePressed
 
     private void jtxtIdPropietarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtIdPropietarioKeyReleased
@@ -535,12 +538,7 @@ public class BuscarDocumento extends JDialog {
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void Modificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar
-        if (this.jtabPaquetes.getSelectedRowCount() != 1)
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje",0);
-        else {
-               ModificarDocumento vModificarDocumento = new ModificarDocumento(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
-                this.dispose();
-            }
+       
     }//GEN-LAST:event_Modificar
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
