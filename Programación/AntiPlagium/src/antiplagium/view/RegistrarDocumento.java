@@ -75,13 +75,6 @@ public class RegistrarDocumento extends JFrame {
         }
     }
     
- 
-
-    
-    
-    
-    
-
     private void cargarArchivo(int numDoc, String nomArch) {
         switch (numDoc) {
             case 1:
