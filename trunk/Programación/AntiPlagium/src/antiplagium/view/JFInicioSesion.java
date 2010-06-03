@@ -55,7 +55,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTFNombreUsuario = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPContrasena = new javax.swing.JPanel();
@@ -134,7 +134,12 @@ public class JFInicioSesion extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("DejaVu Sans", 1, 10));
         jLabel3.setText("¿Olvidó su contraseña?");
@@ -166,7 +171,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +180,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(jButton1)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton2))
+                        .addComponent(jBCancelar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -204,7 +209,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2)
+                        .addComponent(jBCancelar)
                         .addComponent(jButton1))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -256,7 +261,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
               this.setVisible(false);
               AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal();
               principal.setVisible(true);
-
+              this.dispose();
         }
         else{
             jPError.setVisible(true);
@@ -271,14 +276,18 @@ public class JFInicioSesion extends javax.swing.JFrame {
         jLabel3.setForeground(Color.BLUE);
 }//GEN-LAST:event_jLabel3MouseEntered
 
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBCancelarActionPerformed
+
     /**
     * @param args the command line arguments
     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
