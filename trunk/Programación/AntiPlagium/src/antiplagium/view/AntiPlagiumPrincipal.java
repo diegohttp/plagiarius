@@ -219,6 +219,7 @@ public class AntiPlagiumPrincipal extends JFBase
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         JFCompararDocumentos frmCompararDocumentos = new JFCompararDocumentos();
+        AntiPlagiumPrincipal.JDPPrincipal.add(frmCompararDocumentos);
         frmCompararDocumentos.setVisible(true);
         //JDPPrincipal.add(frmCompararDocumentos);
     }//GEN-LAST:event_jMenuItem4ActionPerformed

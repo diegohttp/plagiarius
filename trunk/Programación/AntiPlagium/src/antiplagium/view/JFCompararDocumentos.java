@@ -1,5 +1,13 @@
 package antiplagium.view;
 
+import antiplagium.BE.CategoriaBE;
+import antiplagium.BE.UsuarioBE;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Renzo
  */
-public class JFCompararDocumentos extends JFrame {
+public class JFCompararDocumentos extends JIFBase {
 
     /** Creates new form JFCompararDocumentos */
     public JFCompararDocumentos() {
@@ -24,7 +32,7 @@ public class JFCompararDocumentos extends JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNomDoc = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -35,20 +43,25 @@ public class JFCompararDocumentos extends JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setResizable(false);
         setTitle("Comparar Documentos");
+        setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documento a Comparar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documento a Comparar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNomDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNomDocActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Nombre");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -60,10 +73,10 @@ public class JFCompararDocumentos extends JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNomDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(112, 112, 112))
@@ -73,13 +86,13 @@ public class JFCompararDocumentos extends JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNomDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documentos a Verificar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documentos a Verificar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,16 +200,35 @@ public class JFCompararDocumentos extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNomDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNomDocActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        JDCompararDocumentos frmC = new JDCompararDocumentos(this,1);
-        frmC.setVisible(true);
-        //BuscarDocumento frmBuscarDocumento = new BuscarDocumento();
-        //frmBuscarDocumento.setVisible(true);
+       try {
+            /* Codigo agregado solo para pruebas */
+            ArrayList<CategoriaBE> aCategoria = new ArrayList<CategoriaBE>();
+            aCategoria.add(new CategoriaBE());
+            aCategoria.get(0).setIdCategoria(4);
+            aCategoria.get(0).setNombre("Filosofia");
+            aCategoria.add(new CategoriaBE());
+            aCategoria.get(1).setIdCategoria(5);
+            aCategoria.get(1).setNombre("Derecho");
+            UsuarioBE objUsuario = new UsuarioBE();
+            objUsuario.setIdUsuario(1);
+            objUsuario.setNombres("Piere");
+            objUsuario.setCategorias(aCategoria);
+            objUsuario.setApellidoPaterno("Cordero");
+            objUsuario.setApellidoMaterno("Principe");
+            /* Eliminar luego de probar */
+            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
+            buscardoc.setVisible(true);
+            AntiPlagiumPrincipal.JDPPrincipal.add(buscardoc);
+
+            this.txtNomDoc.setText(buscardoc.docSel.getNombre());
+        } catch (Exception ex) {
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -212,9 +244,13 @@ public class JFCompararDocumentos extends JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        JDCompararDocumentos frmC = new JDCompararDocumentos(this,0);
-        frmC.setVisible(true);
+        try {
+            // TODO add your handling code here:
+            BuscarDocumento frmC = new BuscarDocumento();
+            frmC.setVisible(true);
+        } catch (Exception ex) {
+           System.out.println(ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -227,6 +263,10 @@ public class JFCompararDocumentos extends JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
     public void agregarFila(String texto){
         DefaultTableModel temp = (DefaultTableModel) this.jTable1.getModel();
         Object nuevo[]= {""}; //esto es por las tres columnas aunque puede variar
@@ -235,7 +275,7 @@ public class JFCompararDocumentos extends JFrame {
     }
 
     public void setNombre(String nombre){
-        this.jTextField1.setText(nombre);
+        this.txtNomDoc.setText(nombre);
     }
     /**
     * @param args the command line arguments
@@ -251,7 +291,7 @@ public class JFCompararDocumentos extends JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtNomDoc;
     // End of variables declaration//GEN-END:variables
 
 }
