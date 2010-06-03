@@ -10,8 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import antiplagium.DAL.*;
+import java.awt.MenuBar;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 
 public class AntiPlagiumPrincipal extends JFBase
 {
@@ -21,6 +23,8 @@ public class AntiPlagiumPrincipal extends JFBase
     public AntiPlagiumPrincipal() {        
         initComponents();        
 //      ConexionJDBC.conexion();
+        JMenuBar menu = this.getJMenuBar();
+        aplicarSeguridad(menu);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +33,7 @@ public class AntiPlagiumPrincipal extends JFBase
 
         JDPPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        JMUsuarios = new javax.swing.JMenu();
         JMIAdministrarUsuarios = new javax.swing.JMenuItem();
         JMIAdministrarGrupos = new javax.swing.JMenuItem();
         JMLogUsuario = new javax.swing.JMenuItem();
@@ -39,7 +43,7 @@ public class AntiPlagiumPrincipal extends JFBase
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        JMReportes = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.Color.lightGray);
@@ -54,9 +58,10 @@ public class AntiPlagiumPrincipal extends JFBase
 
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
-        jMenu1.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Parents20.png"))); // NOI18N
-        jMenu1.setText("Usuarios");
+        JMUsuarios.setBackground(new java.awt.Color(0, 153, 153));
+        JMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Parents20.png"))); // NOI18N
+        JMUsuarios.setText("Usuarios");
+        JMUsuarios.setName("JMUsuarios"); // NOI18N
 
         JMIAdministrarUsuarios.setText("Administrar Usuarios");
         JMIAdministrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +69,7 @@ public class AntiPlagiumPrincipal extends JFBase
                 JMIAdministrarUsuariosActionPerformed(evt);
             }
         });
-        jMenu1.add(JMIAdministrarUsuarios);
+        JMUsuarios.add(JMIAdministrarUsuarios);
 
         JMIAdministrarGrupos.setText("Administrar Roles");
         JMIAdministrarGrupos.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +77,7 @@ public class AntiPlagiumPrincipal extends JFBase
                 JMIAdministrarGruposActionPerformed(evt);
             }
         });
-        jMenu1.add(JMIAdministrarGrupos);
+        JMUsuarios.add(JMIAdministrarGrupos);
 
         JMLogUsuario.setText("Log de Usuarios");
         JMLogUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -80,13 +85,14 @@ public class AntiPlagiumPrincipal extends JFBase
                 JMLogUsuarioActionPerformed(evt);
             }
         });
-        jMenu1.add(JMLogUsuario);
+        JMUsuarios.add(JMLogUsuario);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(JMUsuarios);
 
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Copy.png"))); // NOI18N
         jMenu2.setText("Documentos");
+        jMenu2.setName("JMDocumentos"); // NOI18N
 
         jMenuItem2.setText("Gestionar Categoría");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +115,7 @@ public class AntiPlagiumPrincipal extends JFBase
         jMenu3.setBackground(new java.awt.Color(0, 153, 153));
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mostrar.png"))); // NOI18N
         jMenu3.setText("Detección");
+        jMenu3.setName("JMDeteccion"); // NOI18N
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu3ActionPerformed(evt);
@@ -133,10 +140,11 @@ public class AntiPlagiumPrincipal extends JFBase
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
-        jMenu4.setText("Reportes");
-        jMenuBar1.add(jMenu4);
+        JMReportes.setBackground(new java.awt.Color(0, 153, 153));
+        JMReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
+        JMReportes.setText("Reportes");
+        JMReportes.setName("JMReportes"); // NOI18N
+        jMenuBar1.add(JMReportes);
 
         setJMenuBar(jMenuBar1);
 
@@ -253,10 +261,10 @@ public class AntiPlagiumPrincipal extends JFBase
     private javax.swing.JMenuItem JMIAdministrarGrupos;
     private javax.swing.JMenuItem JMIAdministrarUsuarios;
     private javax.swing.JMenuItem JMLogUsuario;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu JMReportes;
+    private javax.swing.JMenu JMUsuarios;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
