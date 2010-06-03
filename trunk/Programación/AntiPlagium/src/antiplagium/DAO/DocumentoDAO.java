@@ -128,11 +128,12 @@ public class DocumentoDAO {
 
         ConexionJDBC objConexion = new ConexionJDBC();
         String strSentencia = "UPDATE \"Documento\" SET ";
-            strSentencia += "estado='"+objDocumento.getEstado()+"'," +
-                    " nombre='"+objDocumento.getNombre()+ "'"+
-                    " WHERE idDocumento='"+objDocumento.getIdDocumento() +"'";
+        strSentencia += " nombre = '"+objDocumento.getNombre()+ "',"+
+                " \"idCategoria\" = " + objDocumento.getCategoria().getIdCategoria();
+        strSentencia += " WHERE \"idDocumento\" = " + objDocumento.getIdDocumento();
+        System.out.println(strSentencia);
         try{
-            objConexion.ejecutarQuery(strSentencia);
+            objConexion.ejecutarSentencia(strSentencia);
             return true;
         }
         catch (Exception a){
@@ -203,20 +204,17 @@ public class DocumentoDAO {
             Object[] registro = (Object[])arrDocumento.get(i);
             /*DocumentoBE doc = new DocumentoBE();
             doc.setIdDocumento((Integer)registro[0]);
-            doc.setEstado((String)registro[1]);
-            doc.setNombre((String)registro[2]);
             UsuarioBE objUsuario = new UsuarioBE();
             objUsuario.setIdUsuario(Integer.parseInt((String)registro[3]));
-            doc.setUsuario(objUsuario);
-            CategoriaBE objCategoria = new CategoriaBE();
-            objCategoria.setIdCategoria((Integer)registro[5]);
-            doc.setCategoria(objCategoria);*/
+            doc.setUsuario(objUsuario);*/
             DocumentoBE doc = null;
             String contenido = (String)registro[4];
             int idCategoria = (Integer)registro[5];
             CategoriaBE categoria = CategoriaBL.buscarIdCategoria(idCategoria);
             doc = DocumentoBL.getFromXml(contenido);
             doc.setCategoria(categoria);
+            doc.setNombre((String)registro[2]);
+            doc.setEstado((String)registro[1]);
             gestorDocumento.add(doc);
         }
         return gestorDocumento;
