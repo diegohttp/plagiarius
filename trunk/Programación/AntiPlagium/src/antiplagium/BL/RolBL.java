@@ -5,6 +5,9 @@ import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.RolDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
 
 
 public class RolBL {
@@ -29,7 +32,23 @@ public class RolBL {
         return tablaRoles;
     }
 
-    public void insertRol(RolBE rolBE) throws SQLException
+    public ResultSet getPrivilegiosPorROl(String nombreROl) throws SQLException
+    {
+        ResultSet tablaPrivilegios = null;
+        RolDAO rolDAO = new RolDAO();
+        tablaPrivilegios = rolDAO.getPrivilegiosPorRol(nombreROl);
+        return tablaPrivilegios;
+    }
+
+    public Vector getPrivilegiosPorROl2(String nombreROl) throws SQLException
+    {
+        Vector tablaPrivilegios = null;
+        RolDAO rolDAO = new RolDAO();
+        tablaPrivilegios = rolDAO.getPrivilegiosPorRol2(nombreROl);
+        return tablaPrivilegios;
+    }
+
+    public void insertRol(RolBE rolBE, ArrayList<Integer> listPrivilegios) throws SQLException
     {
         RolDAO rolDAO = new RolDAO();
         ResultSet tabla = null;
@@ -46,7 +65,15 @@ public class RolBL {
         if (id != 0)
         {
             rolDAO.insertRol(id + 1, rolBE.getNombre(), rolBE.getDescripcion());
+
+            Iterator i = listPrivilegios.iterator();
+            while(i.hasNext())
+            {
+                rolDAO.insertDetallePrivilegio(id + 1, (Integer)i.next());
+            }
         } 
     }
+
+
 
 }
