@@ -54,7 +54,7 @@ public class BuscarDocumento extends JDialog {
         int cantidadCategorias=listaCategorias.size();
 
         for(int i=0;i<cantidadCategorias;i++){
-            jcmbCategoria.addItem(listaCategorias.get(i).getNombre());
+            cboCategoria.addItem(listaCategorias.get(i).getNombre());
         }
     }
 
@@ -71,7 +71,7 @@ public class BuscarDocumento extends JDialog {
         int cantidadCategorias=listaCategorias.size();
 
         for(int i=0;i<cantidadCategorias;i++){
-            jcmbCategoria.addItem(listaCategorias.get(i));
+            cboCategoria.addItem(listaCategorias.get(i));
         }
     }
 
@@ -89,15 +89,15 @@ public class BuscarDocumento extends JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabPaquetes = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jtxtNombre = new javax.swing.JFormattedTextField();
-        jcmbCategoria = new javax.swing.JComboBox();
+        lblNombre = new javax.swing.JLabel();
+        lblCategoria = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JFormattedTextField();
+        cboCategoria = new javax.swing.JComboBox();
         btnBuscar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jtxtIdPropietario = new javax.swing.JFormattedTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jcmbEstado1 = new javax.swing.JComboBox();
+        lblIdUsuario = new javax.swing.JLabel();
+        txtIdUsuario = new javax.swing.JFormattedTextField();
+        lblEstado = new javax.swing.JLabel();
+        cboEstado = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -164,19 +164,19 @@ public class BuscarDocumento extends JDialog {
             }
         });
 
-        jLabel1.setText("Nombre:");
+        lblNombre.setText("Nombre:");
 
-        jLabel2.setText("Categoría:");
+        lblCategoria.setText("Categoría:");
 
-        jtxtNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtNombreActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
 
-        jcmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+        cboCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbCategoriaActionPerformed(evt);
+                cboCategoriaActionPerformed(evt);
             }
         });
 
@@ -190,25 +190,25 @@ public class BuscarDocumento extends JDialog {
             }
         });
 
-        jLabel3.setText("ID Propietario");
+        lblIdUsuario.setText("ID Propietario");
 
-        jtxtIdPropietario.addActionListener(new java.awt.event.ActionListener() {
+        txtIdUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtIdPropietarioActionPerformed(evt);
+                txtIdUsuarioActionPerformed(evt);
             }
         });
-        jtxtIdPropietario.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtxtIdPropietarioKeyReleased(evt);
+                txtIdUsuarioKeyReleased(evt);
             }
         });
 
-        jLabel4.setText("Estado");
+        lblEstado.setText("Estado");
 
-        jcmbEstado1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "activo", "inactivo" }));
-        jcmbEstado1.addActionListener(new java.awt.event.ActionListener() {
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "activo", "inactivo" }));
+        cboEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcmbEstado1ActionPerformed(evt);
+                cboEstadoActionPerformed(evt);
             }
         });
 
@@ -219,20 +219,20 @@ public class BuscarDocumento extends JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(lblNombre)
+                    .addComponent(lblCategoria)
+                    .addComponent(lblIdUsuario)
+                    .addComponent(lblEstado))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jcmbEstado1, 0, 150, Short.MAX_VALUE)
+                        .addComponent(cboEstado, 0, 150, Short.MAX_VALUE)
                         .addContainerGap(234, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtxtIdPropietario)
-                            .addComponent(jcmbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtxtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                            .addComponent(txtIdUsuario)
+                            .addComponent(cboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))))
@@ -244,20 +244,20 @@ public class BuscarDocumento extends JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblNombre)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jcmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCategoria)
+                            .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jtxtIdPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblIdUsuario)
+                            .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jcmbEstado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblEstado)
+                            .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -374,14 +374,14 @@ public class BuscarDocumento extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtxtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtNombreActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_jtxtNombreActionPerformed
+}//GEN-LAST:event_txtNombreActionPerformed
 
-    private void jcmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbCategoriaActionPerformed
+    private void cboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaActionPerformed
        
            // TODO add your handling code here:
-}//GEN-LAST:event_jcmbCategoriaActionPerformed
+}//GEN-LAST:event_cboCategoriaActionPerformed
 
 
 
@@ -392,20 +392,20 @@ public class BuscarDocumento extends JDialog {
         CategoriaBE objCategoria = null;
         UsuarioBE objUsuario = null;
         /* Si la categoria es todas el objeto debe ser nulo, no especificado */
-        objCategoria= (CategoriaBE) this.jcmbCategoria.getSelectedItem();
+        objCategoria= (CategoriaBE) this.cboCategoria.getSelectedItem();
         if (objCategoria.getNombre().compareTo("Todas") == 0){
             objCategoria = null;
         }
         /* Si se especifico un IdUsuario se crea el usuario */
-        if (this.jtxtIdPropietario.getText().compareTo("") != 0){
+        if (this.txtIdUsuario.getText().compareTo("") != 0){
             objUsuario = new UsuarioBE();
-            objUsuario.setIdUsuario(Integer.parseInt(this.jtxtIdPropietario.getText()));
+            objUsuario.setIdUsuario(Integer.parseInt(this.txtIdUsuario.getText()));
         }
         DocumentoBE objDocumento = new DocumentoBE();
         objDocumento.setUsuario(objUsuario);
         objDocumento.setCategoria(objCategoria);
-        objDocumento.setNombre(this.jtxtNombre.getText());
-        objEstado = (String) this.jcmbEstado1.getSelectedItem();
+        objDocumento.setNombre(this.txtNombre.getText());
+        objEstado = (String) this.cboEstado.getSelectedItem();
         objDocumento.setEstado(objEstado);
         try {
             this.arrDocumentos = DocumentoBL.ListarDocs(objDocumento);
@@ -465,12 +465,18 @@ public class BuscarDocumento extends JDialog {
         // TODO add your handling code here:
         int idx = this.jtabPaquetes.getSelectedRow();
         if ( idx < 0){
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje",0);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila", "Mensaje",0);
         }
         else {
               //System.out.println(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
               ModificarDocumento vModificarDoc = null;
             try {
+
+                if (this.objUsuario.getIdUsuario() != this.arrDocumentos.get(idx).getUsuario().getIdUsuario()){
+                    JOptionPane.showMessageDialog(this, "Debe ser propietario del documento para modificar sus datos", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(idx));
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
@@ -485,13 +491,13 @@ public class BuscarDocumento extends JDialog {
             }
     }//GEN-LAST:event_jMenu2MousePressed
 
-    private void jtxtIdPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtIdPropietarioActionPerformed
+    private void txtIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtIdPropietarioActionPerformed
+    }//GEN-LAST:event_txtIdUsuarioActionPerformed
 
-    private void jcmbEstado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbEstado1ActionPerformed
+    private void cboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcmbEstado1ActionPerformed
+    }//GEN-LAST:event_cboEstadoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int idx = this.jtabPaquetes.getSelectedRow();
@@ -520,18 +526,18 @@ public class BuscarDocumento extends JDialog {
         
     }//GEN-LAST:event_jMenu3MousePressed
 
-    private void jtxtIdPropietarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtIdPropietarioKeyReleased
+    private void txtIdUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdUsuarioKeyReleased
         // TODO add your handling code here:
         Character caracter = new Character(evt.getKeyChar());
         if (!Utilitario.esDigito(caracter)) {
             String texto = "";
-            for (int i = 0; i < this.jtxtIdPropietario.getText().length(); i++)
-                if (Utilitario.esDigito(new Character(this.jtxtIdPropietario.getText().charAt(i))))
-                    texto += this.jtxtIdPropietario.getText().charAt(i);
-            this.jtxtIdPropietario.setText(texto);
-            this.jtxtIdPropietario.getToolkit().beep();
+            for (int i = 0; i < this.txtIdUsuario.getText().length(); i++)
+                if (Utilitario.esDigito(new Character(this.txtIdUsuario.getText().charAt(i))))
+                    texto += this.txtIdUsuario.getText().charAt(i);
+            this.txtIdUsuario.setText(texto);
+            this.txtIdUsuario.getToolkit().beep();
         }
-    }//GEN-LAST:event_jtxtIdPropietarioKeyReleased
+    }//GEN-LAST:event_txtIdUsuarioKeyReleased
 
 
     /*Eliminar*/
@@ -568,13 +574,11 @@ public class BuscarDocumento extends JDialog {
     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JComboBox cboCategoria;
+    private javax.swing.JComboBox cboEstado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     public javax.swing.JMenu jMenu1;
     public javax.swing.JMenu jMenu2;
     public javax.swing.JMenu jMenu3;
@@ -582,11 +586,13 @@ public class BuscarDocumento extends JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox jcmbCategoria;
-    private javax.swing.JComboBox jcmbEstado1;
     private javax.swing.JTable jtabPaquetes;
-    private javax.swing.JFormattedTextField jtxtIdPropietario;
-    private javax.swing.JFormattedTextField jtxtNombre;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblIdUsuario;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JFormattedTextField txtIdUsuario;
+    private javax.swing.JFormattedTextField txtNombre;
     // End of variables declaration//GEN-END:variables
     private String selectedDoc;
 
