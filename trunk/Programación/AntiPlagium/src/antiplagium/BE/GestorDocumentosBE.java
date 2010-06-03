@@ -22,6 +22,10 @@ public class GestorDocumentosBE {
     public int cantElementos(){
         return this.gestorDocumento.size();
     }
+
+    public void remove(int i){
+        this.gestorDocumento.remove(i);
+    }
     public void add(DocumentoBE elem){
         if (elem != null) this.gestorDocumento.add(elem);
     }
@@ -29,5 +33,8 @@ public class GestorDocumentosBE {
         if (idx < 0 || this.gestorDocumento.size() - 1 < idx)
             return null;
         return this.gestorDocumento.get(idx);
+    }
+    public boolean contains(DocumentoBE doc){
+        return this.gestorDocumento.contains(doc);
     }
 }
