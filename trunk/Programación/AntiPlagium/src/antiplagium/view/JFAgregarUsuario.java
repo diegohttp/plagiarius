@@ -12,6 +12,7 @@
 package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
+import antiplagium.BE.EstadoBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.EstadoBL;
@@ -39,53 +40,48 @@ public class JFAgregarUsuario extends JIFBase {
     private JCalendarCombo cmbFechaFin;
     /** Creates new form JFAgregarUsuario1 */
     public JFAgregarUsuario(int opcion) {
-        //        super("", true, true, false, true);
-
-//        jMBCambioEstado.setVisible(false);
-        cmbFechaInicio=new JCalendarCombo();
-        cmbFechaFin=new JCalendarCombo();
-        initComponents();
-        cmbFechaInicio.setSize(245,29);
-        cmbFechaFin.setSize(245, 29);
-        jPanel3.add(cmbFechaInicio);
-        jPanel4.add(cmbFechaFin);
-        jMenuBar1.setVisible(false);
-
-        estadoBL=new EstadoBL();
-        try {
-            ResultSet registrosEstado = estadoBL.ObtenerEstados();
-            int numeroRegistros=registrosEstado.getRow();
-
-            while (registrosEstado.next()) {
-                    JCBEstado.addItem(registrosEstado.getString("nombre"));
+       try {
+            cmbFechaInicio = new JCalendarCombo();
+            cmbFechaFin = new JCalendarCombo();
+            initComponents();
+            cmbFechaInicio.setSize(245, 29);
+            cmbFechaFin.setSize(245, 29);
+            jPanel3.add(cmbFechaInicio);
+            jPanel4.add(cmbFechaFin);
+            jMenuBar1.setVisible(false);
+            estadoBL = new EstadoBL();
+            UsuarioBL usuarioBL = new UsuarioBL();
+            ArrayList<EstadoBE> registrosEstado = estadoBL.ObtenerEstados();
+            if (registrosEstado != null) {
+                System.out.println(registrosEstado.size());
+                int numeroRegistros = registrosEstado.size();
+                for (int i = 0; i <= numeroRegistros - 1; i++) {
+                    JCBEstado.addItem(registrosEstado.get(i).getNombre());
+                }
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            if (opcion == 1) {
+                this.setTitle("Modificar Usuario");
+                this.setBounds(10, 10, 497, 640);
+                jComboBox1.enable(false);
+                cmbFechaInicio.enable(false);
+                JCBEstado.enable(false);
+                jMenuBar1.setVisible(true);
+                if ((JCBEstado.getSelectedItem().toString()) == "Activo") {
+                    jMenu1.enable(false);
+                    jMenu1.setVisible(false);
+                } else {
+                    jMenu2.enable(false);
+                    jMenu2.setVisible(false);
+                }
+            } else {
+                int idUsuariosiguiente = usuarioBL.getIdUsuarioSiguiente();
+                jTFCodigo.setText(String.valueOf(idUsuariosiguiente));
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
-        if (opcion==1) {
-            this.setTitle("Modificar Usuario");
-            this.setBounds(10, 10, 497, 640);
-          
-            jComboBox1.enable(false);
-            cmbFechaInicio.enable(false);
-            JCBEstado.enable(false);
-            jMenuBar1.setVisible(true);
-            if ((JCBEstado.getSelectedItem().toString())=="Activo"){
-                 jMenu1.enable(false);
-                 jMenu1.setVisible(false);
-            }
-            else{   jMenu2.enable(false);
-                    jMenu2.setVisible(false);
-            }
-        }
-
-
     }
 
     /** This method is called from within the constructor to
@@ -98,7 +94,7 @@ public class JFAgregarUsuario extends JIFBase {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jTFCodigo = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
@@ -184,7 +180,7 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                    .addComponent(jTFCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                     .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -199,7 +195,7 @@ public class JFAgregarUsuario extends JIFBase {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -377,7 +373,7 @@ public class JFAgregarUsuario extends JIFBase {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        String estado, RolBE idRol, ArrayList<CategoriaBE> categorias,TipoCeseBE idTipoCese
-        UsuarioBL usuarioBL=new UsuarioBL();
+UsuarioBL usuarioBL=new UsuarioBL();
         UsuarioBE usuarioBE=null;
         boolean r = false;
 
@@ -395,19 +391,19 @@ public class JFAgregarUsuario extends JIFBase {
         }
         System.out.println(cadenaFechaI);
         System.out.println(fechaI);
-        
+
         String estado=JCBEstado.getSelectedItem().toString();
         // debe haber un tabla estado y con el item seleccionado jalar un obejto estado.. pero esta bien por el momento
         int idRol=jComboBox1.getSelectedIndex();
         // con el nombre (o indice) del rol se busca en la BD.. y se forma un objeto RolBE para asignarlo al Usuario
         int idTipoCese=0;
          // con el nombre (o indice) del tipo de cese se busca en la BD.. y se forma un objeto tipoCeseBE para asignarlo al Usuario
-        int idUsuario=Integer.parseInt(jTextField1.getText().trim());
+        int idUsuario=Integer.parseInt(jTFCodigo.getText().trim());
 
         ArrayList<CategoriaBE> listaCategorias=null;
         // hay q modificar la ventana para seleccionar varias categorias o areas academicas a la que pertenece el Usuario.
 
- 
+
         usuarioBE = usuarioBL.FormarUsuarioBE(idUsuario,txtNombres.getText(),
                                           jTextField3.getText(),jTextField4.getText(),
                                           jTextField5.getText(),jTextField6.getText(),
@@ -469,7 +465,7 @@ public class JFAgregarUsuario extends JIFBase {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

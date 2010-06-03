@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ConexionJDBC {
 
-    private static final String CONTROLADOR = "org.postgresql.Driver";
+   private static final String CONTROLADOR = "org.postgresql.Driver";
     private static final String URL_BASEDATOS = "jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres";
     //private static final String URL_BASEDATOS = "jdbc:postgresql://LocalHost:5433/postgres";
 
@@ -32,7 +32,7 @@ public class ConexionJDBC {
         {
             //carga clase controlador
             Class.forName(CONTROLADOR);
-           
+
         }
         catch (ClassNotFoundException noEncontroClase)
         {
@@ -44,13 +44,13 @@ public class ConexionJDBC {
     public static Vector ejecutarQuery(String queryString) throws SQLException
     {
         Vector vector = new Vector();
-        
+
         conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
         conexion.setAutoCommit(false);
         conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         instruccion = conexion.createStatement();
         tablaResultados = instruccion.executeQuery(queryString);
-        
+
         if (tablaResultados.getMetaData().getColumnCount() > 0)
         {
             int nroColumnas = tablaResultados.getMetaData().getColumnCount();
@@ -69,10 +69,10 @@ public class ConexionJDBC {
         tablaResultados.close();
         instruccion.close();
         conexion.close();
-                              
+
         return vector;
     }
-       
+
     public static ResultSet ejecutarQueryResultSet(String queryString) throws SQLException
     {
         ResultSet tablaResultados = null;
@@ -120,6 +120,7 @@ public class ConexionJDBC {
             con = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
             stmt = con.createStatement();
             stmt.executeUpdate(strSentencia);
+
         }
         catch ( Exception e ) {
             JOptionPane.showMessageDialog(null,e.getMessage());
@@ -131,6 +132,5 @@ public class ConexionJDBC {
      instruccion = conexion.createStatement();
         tablaResultados = instruccion.executeQuery(queryString);
      */
-
 
 }
