@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -35,6 +36,7 @@ public class ModificarDocumento extends JFrame {
 private CategoriaBL categoriaBl;
 private DocumentoBE objDocumento ;
 private DocumentoBL objDocumentoBL;
+private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
     /** Creates new form ModificarDocumento */
 
     public ModificarDocumento(DocumentoBE objDocumento) throws FileNotFoundException, IOException, SQLException{
@@ -47,8 +49,11 @@ private DocumentoBL objDocumentoBL;
         ArrayList<CategoriaBE> listaCategorias = this.objDocumento.getUsuario().getCategorias();
         int cantidadCategorias=listaCategorias.size();
         for(int i=0;i<cantidadCategorias;i++){
+            idxToId.put(listaCategorias.get(i).getIdCategoria(), i);
             ComboCategoria.addItem(listaCategorias.get(i));
         }
+        int idx = this.idxToId.get(this.objDocumento.getCategoria().getIdCategoria());
+        this.ComboCategoria.setSelectedIndex(idx);
         txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
         txtNombreDoc.setText(objDocumento.getNombre());
         txtPropietario.setText(objDocumento.getUsuario().getNombres());
@@ -98,6 +103,11 @@ private DocumentoBL objDocumentoBL;
         jButton2.setAlignmentY(0.0F);
         jButton2.setMaximumSize(new java.awt.Dimension(64, 33));
         jButton2.setPreferredSize(new java.awt.Dimension(83, 33));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,9 +173,24 @@ private DocumentoBL objDocumentoBL;
            JOptionPane.showMessageDialog(this, "El campo propietario no puede ser vacio", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
        }
        else {
-
+            DocumentoBE nuevo = new DocumentoBE();
+            nuevo.setIdDocumento(this.objDocumento.getIdDocumento());
+            nuevo.setCategoria((CategoriaBE)this.ComboCategoria.getSelectedItem());
+            nuevo.setNombre(this.txtNombreDoc.getText());
+            if (DocumentoBL.modificar(nuevo)){
+                JOptionPane.showMessageDialog(this, "El documento fue modificado con exito", "Modificar Documento", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Hubo un error al modificar el documento , operación cancelada", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+            }
+            this.dispose();
        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
 
