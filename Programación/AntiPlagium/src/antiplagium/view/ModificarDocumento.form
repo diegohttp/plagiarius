@@ -30,21 +30,21 @@
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="ComboCategoria" pref="238" max="32767" attributes="1"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtPropietario" max="32767" attributes="1"/>
-                      <Component id="txtNombreDoc" alignment="0" pref="190" max="32767" attributes="1"/>
-                      <Component id="txtIdDocumento" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="1">
-                          <Component id="jButton1" min="-2" pref="91" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton2" max="32767" attributes="0"/>
-                      </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnLimpiar" pref="89" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="91" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="ComboCategoria" alignment="0" pref="186" max="32767" attributes="1"/>
+                  <Component id="txtPropietario" alignment="0" pref="186" max="32767" attributes="1"/>
+                  <Component id="txtNombreDoc" alignment="0" pref="186" max="32767" attributes="1"/>
+                  <Component id="txtIdDocumento" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="22" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton2" pref="88" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,8 +73,9 @@
               </Group>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jButton2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="btnLimpiar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
@@ -149,6 +150,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLimpiar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Iconos/limpiar.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Limpiar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
