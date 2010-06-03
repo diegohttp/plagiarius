@@ -420,6 +420,9 @@ public class BuscarDocumento extends JDialog {
                 Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
                 tmp.addRow(nuevo);
             }
+            if (this.arrDocumentos.size() == 0){
+                 JOptionPane.showMessageDialog(this, "La búsqueda no encontro ningún resultado", "Buscar Documento", JOptionPane.INFORMATION_MESSAGE);
+            }
 
         } catch (FileNotFoundException ex) {
             java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
