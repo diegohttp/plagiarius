@@ -460,14 +460,15 @@ public class BuscarDocumento extends JDialog {
 
     private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
         // TODO add your handling code here:
-        if (this.jtabPaquetes.getSelectedRowCount() != 1)
+        int idx = this.jtabPaquetes.getSelectedRow();
+        if ( idx < 0){
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje",0);
-
+        }
         else {
-              System.out.println(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
+              //System.out.println(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
               ModificarDocumento vModificarDoc = null;
             try {
-                vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
+                vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(idx));
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
