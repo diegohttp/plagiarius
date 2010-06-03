@@ -5,6 +5,7 @@ import antiplagium.BL.*;
 import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -12,27 +13,27 @@ public class JFAgregarRol extends JIFBase {
 
     ResultSet tablaPrivilegios;
     DefaultTableModel modeloTablaPrivilegios;
+    ArrayList<Integer> listaPrivilegios;
 
     public JFAgregarRol() {
         initComponents();
         onLoad();
     }
 
+    public JFAgregarRol(String nombreRol, ArrayList<Integer> listaPrivilegios){
+        initComponents();
+        JTFNombreRol.setText(nombreRol);
+        this.listaPrivilegios = listaPrivilegios;
+        onLoad();
+        onLoadModificar();
+    }
+
     private void onLoad()
     {
        PrivilegioBL privilegioBL = new PrivilegioBL();
 
-       modeloTablaPrivilegios = new DefaultTableModel(){
-       @Override
-              public boolean isCellEditable(int row, int col){
-                  if (col == 3) return true;
-                  return false;
-              }
-       };
-       modeloTablaPrivilegios.addColumn("ID");
-       modeloTablaPrivilegios.addColumn("Nombre");
-       modeloTablaPrivilegios.addColumn("Descripcion");
-
+       creaModeloTablaPrivilegios();
+       
         try
         {
             privilegioBL.AbrirConexion();
@@ -81,6 +82,37 @@ public class JFAgregarRol extends JIFBase {
         {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+    }   
+
+    private void creaModeloTablaPrivilegios()
+    {
+       modeloTablaPrivilegios = new DefaultTableModel(){
+       @Override
+              public boolean isCellEditable(int row, int col){
+                  if (col == 3) return true;
+                  return false;
+              }
+       };
+       modeloTablaPrivilegios.addColumn("ID");
+       modeloTablaPrivilegios.addColumn("Nombre");
+       modeloTablaPrivilegios.addColumn("Descripcion");
+    }
+
+    private void onLoadModificar()
+    {
+        Iterator<Integer> it = listaPrivilegios.iterator();
+        while (it.hasNext())
+        {
+            int val2 = it.next().intValue();
+            for (int i = 0; i < modeloTablaPrivilegios.getRowCount(); i++) {
+                int val1 = ((Integer) modeloTablaPrivilegios.getValueAt(i, 0)).intValue();            
+                if (val1 == val2)
+                {
+                    modeloTablaPrivilegios.setValueAt(true, i, 3);
+                }
+            }
+        }
+        JTPrivilegios.updateUI();
     }
 
     class MultiRenderer extends DefaultTableCellRenderer {
@@ -124,7 +156,6 @@ public class JFAgregarRol extends JIFBase {
             return Boolean.valueOf(checkBox.isSelected());
         }
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -303,7 +334,6 @@ public class JFAgregarRol extends JIFBase {
         }
 
     }//GEN-LAST:event_JBGuardarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCancelar;
