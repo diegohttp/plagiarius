@@ -23,58 +23,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
  * @author PATTY
  */
-public class ModificarDocumento extends javax.swing.JInternalFrame {
+public class ModificarDocumento extends JFrame {
 
 private CategoriaBL categoriaBl;
 private DocumentoBE objDocumento ;
 private DocumentoBL objDocumentoBL;
     /** Creates new form ModificarDocumento */
 
-    public ModificarDocumento(int IdDocumento) throws FileNotFoundException, IOException, SQLException{
+    public ModificarDocumento(DocumentoBE objDocumento) throws FileNotFoundException, IOException, SQLException{
 
         initComponents();
         this.setTitle("Modificar Documento");
-        
+        this.objDocumento = objDocumento;
         objDocumentoBL = new DocumentoBL();
-        
-        objDocumento = objDocumentoBL.buscarDocumento(IdDocumento);
-
-
-
-         /*el combo*/
-        categoriaBl =new CategoriaBL();
-        CategoriaBE tmp = new CategoriaBE();
-        tmp.setIdCategoria(0);
-        tmp.setNombre("Todas");
-
-        ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
-        listaCategorias.add(0 , tmp);
+        //categoriaBl =new CategoriaBL();
+        ArrayList<CategoriaBE> listaCategorias = this.objDocumento.getUsuario().getCategorias();
         int cantidadCategorias=listaCategorias.size();
-
         for(int i=0;i<cantidadCategorias;i++){
             ComboCategoria.addItem(listaCategorias.get(i));
         }
-
-
-        System.out.println(objDocumento.getCategoria().getIdCategoria());
-
-       // Integer index = CategoriaBL.indexCategoria(listaCategorias,objDocumento.getCategoria().getIdCategoria());
-       // ComboCategoria.setSelectedIndex(index+1);
-
-          txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
-          txtNombreDoc.setText(objDocumento.getNombre());
-          txtPropietario.setText(objDocumento.getEstado());
-
-
-            this.setVisible(true);
-
+        txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
+        txtNombreDoc.setText(objDocumento.getNombre());
+        txtPropietario.setText(objDocumento.getUsuario().getNombres());
+        this.setVisible(true);
     }
-
        /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -96,7 +74,7 @@ private DocumentoBL objDocumentoBL;
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Id Documento");
 
@@ -107,6 +85,8 @@ private DocumentoBL objDocumentoBL;
         jLabel3.setText("Categoría");
 
         jLabel4.setText("Propietario");
+
+        txtPropietario.setEnabled(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
         jButton1.setText("Guardar");
