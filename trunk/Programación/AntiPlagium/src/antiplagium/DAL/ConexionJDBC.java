@@ -99,11 +99,15 @@ public class ConexionJDBC {
         instruccion = conexion.createStatement();
     }
 
-
     public static ResultSet ejecutarQueryString(String query) throws SQLException
     {
         tablaResultados = instruccion.executeQuery(query);
         return tablaResultados;
+    }
+
+    public static void ejecutarUpdateString(String query) throws SQLException
+    {
+        instruccion.executeUpdate(query);
     }
 
     public static void cerrarConexion() throws SQLException
@@ -112,7 +116,6 @@ public class ConexionJDBC {
         instruccion.close();
         tablaResultados.close();
     }
-
 
     public void ejecutarSentencia(String strSentencia) {
 
