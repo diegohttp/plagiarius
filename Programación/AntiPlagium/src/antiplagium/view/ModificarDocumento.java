@@ -15,6 +15,7 @@ import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
+import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -27,18 +28,23 @@ import java.util.logging.Logger;
  *
  * @author PATTY
  */
-public class ModificarDocumento extends javax.swing.JFrame {
+public class ModificarDocumento extends javax.swing.JInternalFrame {
 
 private CategoriaBL categoriaBl;
-private DocumentoBE objDocumento;
+private DocumentoBE objDocumento ;
+private DocumentoBL objDocumentoBL;
     /** Creates new form ModificarDocumento */
-   public ModificarDocumento(int IdDocumento) {
+
+    public ModificarDocumento(int IdDocumento) throws FileNotFoundException, IOException, SQLException{
 
         initComponents();
-        
         this.setTitle("Modificar Documento");
+        
+        objDocumentoBL = new DocumentoBL();
+        
+        objDocumento = objDocumentoBL.buscarDocumento(IdDocumento);
 
-        //objDocumento = DocumentoBL.buscarDocumento(IdDocumento);
+
 
          /*el combo*/
         categoriaBl =new CategoriaBL();
@@ -46,16 +52,7 @@ private DocumentoBE objDocumento;
         tmp.setIdCategoria(0);
         tmp.setNombre("Todas");
 
-        ArrayList<CategoriaBE> listaCategorias = null;
-        try {
-            listaCategorias = categoriaBl.buscarCategoria("", "");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ModificarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ModificarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ModificarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
         listaCategorias.add(0 , tmp);
         int cantidadCategorias=listaCategorias.size();
 
@@ -63,13 +60,15 @@ private DocumentoBE objDocumento;
             ComboCategoria.addItem(listaCategorias.get(i));
         }
 
-//        Integer index = CategoriaBL.indexCategoria(listaCategorias,objDocumento.getCategoria().getIdCategoria());
-   //     ComboCategoria.setSelectedIndex(index+1);
 
+        System.out.println(objDocumento.getCategoria().getIdCategoria());
 
-            txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
-            txtNombreDoc.setText(objDocumento.getNombre());
-            txtPropietario.setText(objDocumento.getEstado());
+       // Integer index = CategoriaBL.indexCategoria(listaCategorias,objDocumento.getCategoria().getIdCategoria());
+       // ComboCategoria.setSelectedIndex(index+1);
+
+          txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
+          txtNombreDoc.setText(objDocumento.getNombre());
+          txtPropietario.setText(objDocumento.getEstado());
 
 
             this.setVisible(true);
@@ -187,11 +186,11 @@ private DocumentoBE objDocumento;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //        String estado, RolBE idRol, ArrayList<CategoriaBE> categorias,TipoCeseBE idTipoCese
-     
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
-   
+
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ComboCategoria;
