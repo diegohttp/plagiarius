@@ -45,8 +45,8 @@ public class DocumentoBL {
     public static void registrar(DocumentoBE objDocumento) throws Exception{
         DocumentoDAO.registrar(objDocumento);
     }
-    public static boolean eliminar(DocumentoBE objDocumento){
-        return DocumentoDAO.eliminarDocumento(objDocumento);
+    public static boolean eliminar(int IdDocumento){
+        return DocumentoDAO.eliminarDocumento(IdDocumento);
     }
     public static String limpiarPalabra(String palabra) {
         String pal = "";
