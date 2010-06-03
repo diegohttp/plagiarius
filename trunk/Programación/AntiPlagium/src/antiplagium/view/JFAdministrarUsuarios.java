@@ -56,6 +56,7 @@ public class JFAdministrarUsuarios extends JIFBase {
 
             int numeroRegistros=registros.getRow();
             jCBRol.addItem("Todos");
+            jCBRol.addItem("Ninguno");
             while (registros.next()) {
                     jCBRol.addItem(registros.getString("nombre"));
 
@@ -66,6 +67,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
 
             jCBArea.addItem("Todos");
+            jCBArea.addItem("Ninguno");
             int cantidadCategorias=listaCategorias.size();
 
             for(int i=0;i<cantidadCategorias;i++){
@@ -479,8 +481,8 @@ public class JFAdministrarUsuarios extends JIFBase {
             usuarioBL.AbrirConexion();
             String usuario=jTFUsuario.getText();
             String nombreCompleto=JTFNombreCompleto.getText();
-            int idRol=jCBRol.getSelectedIndex();
-            int idArea=jCBArea.getSelectedIndex();
+            int idRol=jCBRol.getSelectedIndex()-1;
+            int idArea=jCBArea.getSelectedIndex()-1;
             SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
             String cadenaFechaI=formato.format(cmbCalendarioInicio.getDate());
             String cadenaFechaF=formato.format(cmbCalendarioFin.getDate());

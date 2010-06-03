@@ -164,11 +164,12 @@ public class UsuarioDAO {
 
   public ResultSet getConsultaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea){
         try {
+
             String cadidRol="";
             String cadidArea="";
 
-            if(idRol!=0) { cadidRol=String.valueOf(idRol);}
-            if(idArea!=0){ cadidArea=String.valueOf(idArea); }
+            if(idRol>0) { cadidRol=String.valueOf(idRol);}
+            if(idArea>0){ cadidArea=String.valueOf(idArea); }
 
             String queryListaUsuarios = " select A.\"nombreUsuario\", A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" as NombreCompleto, B.nombre as NombreRol, \"fechaVencimiento\",D.nombre as NombreCategoria ";
             queryListaUsuarios += " from \"Usuario\" A INNER JOIN \"Rol\" B ON A.\"idRol\"=B.\"idRol\" INNER JOIN \"UsuarioXCategoria\" C ON A.\"idUsuario\"=C.\"idUsuario\" INNER JOIN \"Categoria\" D on C.\"idCategoria\"=D.\"idCategoria\" ";
