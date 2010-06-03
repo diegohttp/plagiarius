@@ -580,6 +580,7 @@ public class RegistrarDocumento extends JFrame {
             }
         }
         JOptionPane.showMessageDialog(null, "El documento se ha registrado con éxito.", "Mensaje",1);
+        this.dispose();
 }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -588,7 +589,7 @@ public class RegistrarDocumento extends JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
 
 }//GEN-LAST:event_btnCancelarActionPerformed
 
