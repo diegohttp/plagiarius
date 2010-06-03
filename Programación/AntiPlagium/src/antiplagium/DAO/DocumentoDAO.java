@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.UsuarioBE;
+import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAL.ConexionJDBC;
 import java.util.Vector;
@@ -212,7 +213,10 @@ public class DocumentoDAO {
             doc.setCategoria(objCategoria);*/
             DocumentoBE doc = null;
             String contenido = (String)registro[4];
+            int idCategoria = (Integer)registro[5];
+            CategoriaBE categoria = CategoriaBL.buscarIdCategoria(idCategoria);
             doc = DocumentoBL.getFromXml(contenido);
+            doc.setCategoria(categoria);
             gestorDocumento.add(doc);
         }
         return gestorDocumento;
