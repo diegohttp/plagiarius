@@ -5,6 +5,7 @@ import antiplagium.BL.RolBL;
 import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -281,7 +282,16 @@ public class JFAdministrarRoles extends JIFBase {
 }//GEN-LAST:event_JBEliminarActionPerformed
 
     private void JBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBModificarActionPerformed
+        ArrayList<Integer> listaPrivilegios = new ArrayList<Integer>();
+        for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
+        {
+            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true) listaPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
+        }
 
+        JFAgregarRol jfAgregarRol = new JFAgregarRol(jcbRol.getSelectedItem().toString(), listaPrivilegios);
+        AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
+        jfAgregarRol.toFront();
+        jfAgregarRol.setVisible(true);
 }//GEN-LAST:event_JBModificarActionPerformed
 
     private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
