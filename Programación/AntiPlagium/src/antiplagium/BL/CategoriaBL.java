@@ -54,7 +54,10 @@ public class CategoriaBL {
         return intIndex;
     }
 
-
+    public CategoriaBE buscarIdCategoria(int idCategoria){
+        CategoriaBE cat = CategoriaDAO.buscarIdCategoria(idCategoria);
+        return cat;
+    }
 }
 
 
