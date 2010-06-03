@@ -1,25 +1,92 @@
 
 package antiplagium.view;
 
+import antiplagium.BL.SeguridadBL;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import javax.swing.UIManager;
 
 public class JFBase extends javax.swing.JFrame {
 
     private Dimension dim;
+    private static String nombreUsuario =   "";
+    private static String nombreRol =       "Principal";
 
-    public JFBase() {
+    public JFBase()
+    {
         initComponents();
         try
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }
-            catch (Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }               
         this.getContentPane().setBackground(Color.lightGray);        
+    }
+
+    protected void aplicarSeguridad(JMenuBar menu)
+    {
+        String nombreVentana = this.getName();        
+        ResultSet tablaControles;
+        Vector vector = new Vector();
+        JRootPane jroot = this.getRootPane();
+        Component[] componentes = jroot.getJMenuBar().getComponents();
+
+        SeguridadBL seguridadBL = new SeguridadBL();
+        try
+        {
+            seguridadBL.AbrirConexion();
+            tablaControles = seguridadBL.getListControlesDeshabilitadosPorRol(nombreVentana, nombreRol);
+
+            if (tablaControles.getMetaData().getColumnCount() > 0)
+            {
+                int nroColumnas = tablaControles.getMetaData().getColumnCount();
+                while(tablaControles.next())
+                {
+                    Object[] registro = new Object[nroColumnas];
+                    for (int i=0; i < nroColumnas; i++)
+                    {
+                        registro[i] = tablaControles.getObject(i+1);
+                    }
+                    vector.addElement(registro);
+                }
+            }
+            seguridadBL.CerrarConexion();
+        }
+        catch (ClassNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (SQLException excepcionSQL)
+        {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+        for(int i=0 ; i< vector.size(); i++)
+        {
+            Object[] registro = (Object[])vector.get(i);
+            String nombreControl = registro[3].toString();
+
+            System.out.println(nombreControl);
+
+            for (int k=0; k < menu.getMenuCount() ;k++)
+            {
+                if (menu.getMenu(k).getName().equals(nombreControl))
+                {
+                        menu.getMenu(k).setVisible(false);
+                        break;
+                }
+            }
+        }
     }
     
     @SuppressWarnings("unchecked")
