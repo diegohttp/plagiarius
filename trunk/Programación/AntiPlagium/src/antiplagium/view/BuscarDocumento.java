@@ -504,7 +504,7 @@ public class BuscarDocumento extends JDialog {
         if (idx >= 0){
             String contenido = this.arrDocumentos.get(idx).toString();
             JFVisualizarDocumento vis = new JFVisualizarDocumento(contenido);
-            AntiPlagiumPrincipal.JDPPrincipal.add(vis);
+            vis.setModal(true);
             vis.setVisible(true);
         }
         else {

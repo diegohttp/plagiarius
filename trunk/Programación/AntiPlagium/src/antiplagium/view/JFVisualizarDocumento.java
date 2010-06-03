@@ -10,11 +10,13 @@
  */
 package antiplagium.view;
 
+import javax.swing.JDialog;
+
 /**
  *
  * @author a20062010
  */
-public class JFVisualizarDocumento extends JIFBase {
+public class JFVisualizarDocumento extends JDialog{
 
     /** Creates new form JFVisualizarDocumento */
     public JFVisualizarDocumento(String doc) {
@@ -42,8 +44,6 @@ public class JFVisualizarDocumento extends JIFBase {
         btnAceptar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-
-        setClosable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Contenido"));
 
