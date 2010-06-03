@@ -9,7 +9,9 @@ import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.RolBE;
 import antiplagium.BE.TipoCeseBE;
 import antiplagium.BE.UsuarioBE;
+import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.UsuarioDAO;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,8 +61,14 @@ public class UsuarioBL {
         return usuarioBE;
     }
 
+    public int getIdUsuarioSiguiente() throws SQLException, ClassNotFoundException{
+        int idUsuarioSig=0;
+        idUsuarioSig=usuarioDAO.getIdUsuarioSig();
+        return idUsuarioSig;
+    }
+
     public boolean guardarUsuario(UsuarioBE nuevoUsuario){
-        
+
         try {
             r= usuarioDAO.InsertarUsuario(nuevoUsuario);
             return r;
@@ -68,7 +76,24 @@ public class UsuarioBL {
             Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
             return r;
         }
-        
+
+    }
+
+    public ResultSet getListaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea){
+        ResultSet rs=null;
+        rs=usuarioDAO.getConsultaUsuarios(usuario,nombreCompleto, cadenaFechaI, cadenaFechaF, idRol,  idArea);
+        return rs;
+    }
+
+
+    public void AbrirConexion() throws SQLException, ClassNotFoundException
+    {
+        ConexionJDBC.abrirConexion();
+    }
+
+    public void CerrarConexion() throws SQLException
+    {
+        ConexionJDBC.cerrarConexion();
     }
 
 }

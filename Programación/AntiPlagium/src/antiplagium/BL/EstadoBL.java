@@ -17,24 +17,32 @@ import java.util.ArrayList;
  */
 public class EstadoBL {
 
-    private EstadoDAO estadoDAO;
+     private EstadoDAO estadoDAO;
 
     public EstadoBL(){
         estadoDAO=new EstadoDAO();
 
     }
 
-    public ResultSet ObtenerEstados() throws SQLException, ClassNotFoundException{
+    public ArrayList<EstadoBE> ObtenerEstados() throws SQLException, ClassNotFoundException{
         estadoDAO.AbrirConexion();
         ResultSet registros=estadoDAO.ConsultarEstados();
+        ArrayList<EstadoBE> listaEstados=null;
+        EstadoBE estadoBE=null;
+
+        if (registros!=null){
+           listaEstados=new ArrayList<EstadoBE>();
+           while(registros.next()){
+               int idEstado=registros.getInt("idEstado");
+               String nombre=registros.getString("Descripcion");
+               String descripcion=registros.getString("Nombre");
+               System.out.println(idEstado+nombre+descripcion);
+               estadoBE=new EstadoBE(idEstado,nombre,descripcion);
+               listaEstados.add(estadoBE);
+            }
+        }
         estadoDAO.CerrarConexion();
-        return registros;
+        return listaEstados;
     }
-
-
-
-
-
-
 
 }

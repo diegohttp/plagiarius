@@ -31,5 +31,4 @@ public class EstadoDAO {
         ResultSet registrosEstado = ConexionJDBC.ejecutarQueryString(query);
         return registrosEstado;
     }
-
 }

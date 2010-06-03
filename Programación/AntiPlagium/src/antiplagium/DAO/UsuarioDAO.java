@@ -23,7 +23,7 @@ public class UsuarioDAO {
     String squery;
 
   public UsuarioDAO(){
-        ConexionJDBC.conexion();
+        //ConexionJDBC.conexion();
         error=false;
         squery="";
   }
@@ -82,7 +82,7 @@ public class UsuarioDAO {
         }
 
 
-        
+
   }
 
   public boolean InsertarUsuario(UsuarioBE nuevoUsuario) throws SQLException{
@@ -142,6 +142,37 @@ public class UsuarioDAO {
                 }
         }
 
+  }
+
+  public int getIdUsuarioSig() throws SQLException, ClassNotFoundException{
+
+      ConexionJDBC.abrirConexion();
+
+      int idUsuarioSig=0;
+      String queryGetIdSig="select max(\"idUsuario\") from \"Usuario\"";
+      ResultSet rs =ConexionJDBC.ejecutarQueryString(queryGetIdSig);
+
+      if (rs.next()){
+        idUsuarioSig=rs.getInt(1)+1;
+      }
+
+      ConexionJDBC.cerrarConexion();
+
+      return idUsuarioSig;
+
+  }
+
+  public ResultSet getConsultaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea){
+        try {
+            String queryListaUsuarios = " select A.\"nombreUsuario\", A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" as NombreCompleto, B.nombre as NombreRol, \"fechaVencimiento\",D.nombre as NombreCategoria ";
+            queryListaUsuarios += " from \"Usuario\" A INNER JOIN \"Rol\" B ON A.\"idRol\"=B.\"idRol\" INNER JOIN \"UsuarioXCategoria\" C ON A.\"idUsuario\"=C.\"idUsuario\" INNER JOIN \"Categoria\" D on C.\"idCategoria\"=D.\"idCategoria\" ";
+            queryListaUsuarios += " where A.\"nombreUsuario\" like '%"+usuario+"%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%"+nombreCompleto+"%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" like '%"+idRol+"%' and C.\"idCategoria\" like '%"+idArea+"%' ";
+            ResultSet rs = ConexionJDBC.ejecutarQueryString(queryListaUsuarios);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
   }
 
 }
