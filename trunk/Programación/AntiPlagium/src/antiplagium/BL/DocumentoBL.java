@@ -45,6 +45,18 @@ public class DocumentoBL {
     public static void registrar(DocumentoBE objDocumento) throws Exception{
         DocumentoDAO.registrar(objDocumento);
     }
+
+    public static boolean modificar(DocumentoBE objDocumento){
+        try {
+            return DocumentoDAO.modificar(objDocumento);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DocumentoBL.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DocumentoBL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
     public static boolean eliminar(int IdDocumento){
         return DocumentoDAO.eliminarDocumento(IdDocumento);
     }
