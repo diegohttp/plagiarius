@@ -2,6 +2,7 @@ package antiplagium.BL;
 
 import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.PrivilegioDAO;
+import antiplagium.DAO.RolDAO;
 import java.sql.*;
 
 public class PrivilegioBL {
@@ -31,6 +32,6 @@ public void AbrirConexion() throws SQLException, ClassNotFoundException
         PrivilegioDAO privilegioDAO = new PrivilegioDAO();
         tablaPrivilegios = privilegioDAO.getListPrivilegios();
         return tablaPrivilegios;
-    }
+    }    
 
 }
