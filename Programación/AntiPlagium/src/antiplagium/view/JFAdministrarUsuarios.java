@@ -478,8 +478,8 @@ public class JFAdministrarUsuarios extends JIFBase {
             usuarioBL.AbrirConexion();
             String usuario=jTFUsuario.getText();
             String nombreCompleto=JTFNombreCompleto.getText();
-            int idRol=jCBRol.getSelectedIndex();
-            int idArea=jCBArea.getSelectedIndex();
+            int idRol=jCBRol.getSelectedIndex()+1;
+            int idArea=jCBArea.getSelectedIndex()+1;
             SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
             String cadenaFechaI=formato.format(cmbCalendarioInicio.getDate());
             String cadenaFechaF=formato.format(cmbCalendarioFin.getDate());
@@ -502,6 +502,7 @@ public class JFAdministrarUsuarios extends JIFBase {
             }
 
             usuarioBL.CerrarConexion();
+            
         } catch (SQLException ex) {
             Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
