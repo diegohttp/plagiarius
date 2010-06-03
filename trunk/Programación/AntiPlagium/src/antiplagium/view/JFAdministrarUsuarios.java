@@ -12,8 +12,10 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
@@ -37,52 +39,52 @@ public class JFAdministrarUsuarios extends JIFBase {
 //    JDesktopPane desktop;
     /** Creates new form JFAministrarUsuarios */
     public JFAdministrarUsuarios() {
-//         super("", true, true, false, true);
-//        desktop=new JDesktopPane();
-//        setContentPane(desktop);
-        initComponents();
 
-        cmbCalendarioInicio.setSize(269,29);
-        cmbCalendarioFin.setSize(269, 29);
-        jPFechaInicio.add(cmbCalendarioInicio);
-        jPFechaFin.add(cmbCalendarioFin);
-        rolBL=new RolBL();
-        categoriaBl=new CategoriaBL();
 
         try {
-
-            rolBL.AbrirConexion();
-            ResultSet registros = rolBL.getListRoles();
-
-            int numeroRegistros=registros.getRow();
-            jCBRol.addItem("Todos");
-            jCBRol.addItem("Ninguno");
-            while (registros.next()) {
+            //         super("", true, true, false, true);
+            //        desktop=new JDesktopPane();
+            //        setContentPane(desktop);
+            initComponents();
+            cmbCalendarioInicio.setSize(269, 29);
+            Date fechaI = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            fechaI = formato.parse("2010-05-01");
+            cmbCalendarioInicio.setDate(fechaI);
+            cmbCalendarioFin.setSize(269, 29);
+            jPFechaInicio.add(cmbCalendarioInicio);
+            jPFechaFin.add(cmbCalendarioFin);
+            rolBL = new RolBL();
+            categoriaBl = new CategoriaBL();
+            try {
+                rolBL.AbrirConexion();
+                ResultSet registros = rolBL.getListRoles();
+                int numeroRegistros = registros.getRow();
+                jCBRol.addItem("Todos");
+                jCBRol.addItem("Ninguno");
+                while (registros.next()) {
                     jCBRol.addItem(registros.getString("nombre"));
-
+                }
+                rolBL.CerrarConexion();
+                ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
+                jCBArea.addItem("Todos");
+                jCBArea.addItem("Ninguno");
+                int cantidadCategorias = listaCategorias.size();
+                for (int i = 0; i < cantidadCategorias; i++) {
+                    jCBArea.addItem(listaCategorias.get(i).getNombre());
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
-            rolBL.CerrarConexion();
 
 
-            ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
-
-            jCBArea.addItem("Todos");
-            jCBArea.addItem("Ninguno");
-            int cantidadCategorias=listaCategorias.size();
-
-            for(int i=0;i<cantidadCategorias;i++){
-                jCBArea.addItem(listaCategorias.get(i).getNombre());
-
-            }
-
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ParseException ex) {
             Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
