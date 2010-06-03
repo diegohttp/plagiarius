@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +34,7 @@ import org.postgresql.core.Logger;
  *
  * @author PATTY
  */
-public class BuscarDocumento extends JIFBase {
+public class BuscarDocumento extends JDialog {
 
     private ArrayList<DocumentoBE> arrDocumentos = new ArrayList<DocumentoBE>();
     private CategoriaBL categoriaBl;

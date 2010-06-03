@@ -222,9 +222,11 @@ public class JFCompararDocumentos extends JIFBase {
             objUsuario.setApellidoMaterno("Principe");
             /* Eliminar luego de probar */
             BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
-            buscardoc.setVisible(true);
-            AntiPlagiumPrincipal.JDPPrincipal.add(buscardoc);
-
+           // buscardoc.setVisible(true);
+            //AntiPlagiumPrincipal.JDPPrincipal.add(buscardoc);
+            
+            buscardoc.setModal(true);
+           buscardoc.setVisible(true);
             this.txtNomDoc.setText(buscardoc.docSel.getNombre());
         } catch (Exception ex) {
             
