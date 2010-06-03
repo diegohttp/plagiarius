@@ -29,4 +29,6 @@ public class PrivilegioDAO {
         tablaResultados = ConexionJDBC.ejecutarQueryString(SQL_PRIVILEGIOS);
         return tablaResultados;
     }
+
+    
 }
