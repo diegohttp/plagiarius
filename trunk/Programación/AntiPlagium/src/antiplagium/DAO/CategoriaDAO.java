@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import antiplagium.BE.CategoriaBE;
 import antiplagium.DAL.ConexionJDBC;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author PATTY
@@ -88,6 +90,27 @@ public class CategoriaDAO {
             return false;
         }
         
+    }
+
+    public static CategoriaBE buscarIdCategoria(int idCategoria) {
+        CategoriaBE cat = null;
+
+        try {
+            String strSentencia = "SELECT * FROM \"Categoria\" WHERE \"idCategoria\" = " + idCategoria;
+            ConexionJDBC objConexion = new ConexionJDBC();
+            Vector arrCategoria;
+            arrCategoria = objConexion.ejecutarQuery(strSentencia);
+            ArrayList<CategoriaBE> gestorCategoria = new ArrayList<CategoriaBE>();
+            for (int i = 0; i < arrCategoria.size(); ++i) {
+                Object[] registro = (Object[]) arrCategoria.get(i);
+                gestorCategoria.add(new CategoriaBE((Integer) registro[0], (String) registro[1], (String) registro[2]));
+            }
+            cat = gestorCategoria.get(0);
+            return cat;
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cat;
     }
 
 }
