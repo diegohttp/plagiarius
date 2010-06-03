@@ -44,14 +44,14 @@ public class DocumentoDAO {
         return boolExito;
     }
 
-    public static boolean eliminarDocumento(DocumentoBE objDocumento){
+    public static boolean eliminarDocumento(int IdDocumento){
         ConexionJDBC objConexion = new ConexionJDBC();
 
-        String strSentencia = "UPDATE \"idDocumento\" SET ";
+        String strSentencia = "UPDATE \"Documento\" SET ";
             strSentencia += "estado = 'inactivo'"+ 
-                        " WHERE \"idDocumento\" ='"+objDocumento.getIdDocumento()+";";
+                        " WHERE \"idDocumento\" ="+IdDocumento+";";
         try{
-            objConexion.ejecutarQuery(strSentencia);
+            objConexion.ejecutarSentencia(strSentencia);
             return true;
         }
         catch (Exception a){
@@ -101,7 +101,7 @@ public class DocumentoDAO {
 
 
         String strSentencia =  "SELECT \"idDocumento\",\"estado\",\"nombre\",\"idUsuario\" FROM \"Documento\"";
-            strSentencia += " WHERE \"idDocumento\" ='"+idDocumento+"' ";
+            strSentencia += " WHERE \"idDocumento\" ="+idDocumento+" ";
 
         DocumentoBE objDocumento = new DocumentoBE();
 
@@ -126,7 +126,7 @@ public class DocumentoDAO {
     public static boolean modificar(DocumentoBE objDocumento)throws FileNotFoundException, IOException {
 
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentencia = "UPDATE \"idDocumento\" SET ";
+        String strSentencia = "UPDATE \"Documento\" SET ";
             strSentencia += "estado='"+objDocumento.getEstado()+"'," +
                     " nombre='"+objDocumento.getNombre()+ "'"+
                     " WHERE idDocumento='"+objDocumento.getIdDocumento() +"'";
