@@ -57,7 +57,7 @@ public class RolDAO {
         String SQL_Insert = null;
 
         SQL_Insert = SQL_INSERT_ROL + idRol.toString() + ", \'" + nombreRol + "\', \'" + descripcion + "\')" ;
-        ConexionJDBC.ejecutarUpdateString(SQL_INSERT_ROL);
+        ConexionJDBC.ejecutarUpdateString(SQL_Insert);
     }
 
     public void insertDetallePrivilegio(Integer idRol, Integer idPrivilegio) throws SQLException
