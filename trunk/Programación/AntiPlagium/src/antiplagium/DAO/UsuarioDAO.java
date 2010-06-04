@@ -80,7 +80,7 @@ public class UsuarioDAO {
            if (u.getFechaVencimiento()!=null)   cadenaFechaF="'"+formato.format(u.getFechaVencimiento())+"'";
            if (u.getFechaCese()!=null)          cadenaFechaC="'"+formato.format(u.getFechaCese())+"'";
            
-           if (u.getRolBE()!=null && u.getRolBE().getIdRol()!=0)                    cadenaIdROl="'"+u.getIdUsuario()+"'";
+           if (u.getRolBE()!=null && u.getRolBE().getIdRol()!=0)                    cadenaIdROl="'"+u.getRolBE().getIdRol()+"'";
            if (u.getTipoCeseBE()!=null && u.getTipoCeseBE().getIdTipoCEse()!=0)     cadenaIdTipoCese="'"+u.getTipoCeseBE().getIdTipoCEse()+"'";
            if (u.getEstadoBE()!=null && u.getEstadoBE().getIdEstado()!=0)           cadenaIdEstado="'"+u.getEstadoBE().getIdEstado()+"'";
             
