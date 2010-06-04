@@ -478,7 +478,7 @@ public class BuscarDocumento extends JDialog {
                     JOptionPane.showMessageDialog(this, "Debe ser propietario del documento para modificar sus datos", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
+                this.arrDocumentos.get(idx).setUsuario(objUsuario);
                 vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(idx));
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
