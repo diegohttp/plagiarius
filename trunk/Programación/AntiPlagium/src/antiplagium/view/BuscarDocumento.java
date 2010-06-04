@@ -418,7 +418,7 @@ public class BuscarDocumento extends JDialog {
             }
             /* Llenamos la grilla */
             for (int i=0; i < arrDocumentos.size() ; ++i){
-                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getIdCategoria() , arrDocumentos.get(i).getUsuario().getIdUsuario() , arrDocumentos.get(i).getEstado()  };
+                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getIdUsuario() , arrDocumentos.get(i).getEstado()  };
                 tmp.addRow(nuevo);
             }
             if (this.arrDocumentos.size() == 0){
