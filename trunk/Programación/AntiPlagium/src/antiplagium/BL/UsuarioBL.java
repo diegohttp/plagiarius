@@ -70,7 +70,12 @@ public class UsuarioBL {
     public boolean guardarUsuario(UsuarioBE nuevoUsuario){
 
         try {
+            ConexionJDBC.abrirConexion();
             r= usuarioDAO.InsertarUsuario(nuevoUsuario);
+            ConexionJDBC.cerrarConexion();
+            return r;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
             return r;
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
