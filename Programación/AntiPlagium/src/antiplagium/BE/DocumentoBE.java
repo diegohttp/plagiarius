@@ -23,11 +23,17 @@ public class DocumentoBE {
     private UsuarioBE usuario;
     private CategoriaBE categoria;
     private ArrayList<OracionBE> listaOraciones = new ArrayList<OracionBE>();
+    private String contenido;
 
     public ArrayList<OracionBE> getListaOraciones() {
         return listaOraciones;
     }
-
+    public String getContenido(){
+        return this.contenido;
+    }
+    public void setContenido(String contenido){
+        this.contenido = contenido;
+    }
     public void setListaOraciones(ArrayList<OracionBE> listaOraciones) {
         this.listaOraciones = listaOraciones;
     }
