@@ -91,7 +91,7 @@ public class UsuarioDAO {
                     cadenaFechaC+","+cadenaIdROl+ ","+cadenaIdTipoCese+","+cadenaIdEstado+");";
 
             System.out.println(squery);
-            stmt.executeUpdate(squery);
+            ConexionJDBC.ejecutarUpdateString(squery);
            
             error=true;
             return error;

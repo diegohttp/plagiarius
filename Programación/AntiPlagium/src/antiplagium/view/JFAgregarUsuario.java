@@ -13,6 +13,8 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.EstadoBE;
+import antiplagium.BE.RolBE;
+import antiplagium.BE.TipoCeseBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.EstadoBL;
@@ -436,6 +438,12 @@ public class JFAgregarUsuario extends JIFBase {
         int idRol=jCBRol.getSelectedIndex()+1;
         int idTipoCese=0;
         int idUsuario=Integer.parseInt(jTFCodigo.getText().trim());
+        EstadoBE estadoBE = new EstadoBE();
+        estadoBE.setIdEstado(idEstado);
+        RolBE rolBE = new RolBE();
+        rolBE.setIdRol(idRol);
+        TipoCeseBE tipoCeseBE = new TipoCeseBE();
+        tipoCeseBE.setIdTipoCEse(idTipoCese);
 
         ArrayList<CategoriaBE> listaCategorias=null;
         // hay q modificar la ventana para seleccionar varias categorias o areas academicas a la que pertenece el Usuario.
