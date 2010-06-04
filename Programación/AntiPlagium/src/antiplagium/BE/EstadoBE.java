@@ -22,6 +22,10 @@ public class EstadoBE {
 
     }
 
+    public EstadoBE() {
+
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

@@ -28,60 +28,37 @@ public class UsuarioDAO {
         squery="";
   }
 
-  public int ValidarUsuario(String nombreUsuario, String contrasena) throws SQLException{
+  public int ValidarUsuario(String nombreUsuario, String contrasena) {
         try {
-            con = DriverManager.getConnection("jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres", "postgres", "cuadrado");
-            stmt = con.createStatement();
-            //Se ejecuta una consulta y se devuelve el resultado en ResultSet
-            //ResultSet rs = stmt.executeQuery("SELECT * FROM "+"public."+'"'+"Usuario"+'"');
-            char cd='"';
-            String cs="'";
-            char nt='A';
-            squery="SELECT * FROM " +cd+ "Usuario" +cd+" AS "+nt;
-            squery+=" WHERE "+nt+"."+cd+"nombreUsuario"+cd+"="+cs+nombreUsuario+cs+" and "+nt+"."+cd+"password"+cd+"="+cs+contrasena+ cs;
-            squery+=";";
+            ConexionJDBC.abrirConexion();
+            char cd = '"';
+            String cs = "'";
+            char nt = 'A';
+            squery = "SELECT * FROM " + cd + "Usuario" + cd + " AS " + nt;
+            squery += " WHERE " + nt + "." + cd + "nombreUsuario" + cd + "=" + cs + nombreUsuario + cs + " and " + nt + "." + cd + "password" + cd + "=" + cs + contrasena + cs;
+            squery += ";";
             System.out.println(squery);
-
-            ResultSet rs = stmt.executeQuery(squery);
-            /* Se realizan iteraciones a través del ResultSet y se imprimen en pantalla los valores de
-            algunos atributos del renglón. El ResultSet mantiene un apuntador al renglón de datos
-            actual, inicialmente el apuntador es posicionado antes del primer renglón. El método next
-            mueve el apuntador al siguiente renglón. */
-
-            int numeroRegistros=rs.getRow();
+            ResultSet rs = ConexionJDBC.ejecutarQueryString(squery);
+            int numeroRegistros = rs.getRow();
             System.out.println(numeroRegistros);
             while (rs.next()) {
                 System.out.println(rs.getString("nombres"));
-                numeroRegistros=rs.getRow();
+                numeroRegistros = rs.getRow();
                 System.out.println(numeroRegistros);
             }
-
-
-//            numeroRegistros=rs.getRow();
-//            System.out.println(numeroRegistros);
-            squery="";
-            if (numeroRegistros==1) {
-                stmt.close();
-                con.close();
+            ConexionJDBC.cerrarConexion();
+            if (numeroRegistros == 1) {
                 return 0;
-            }
-            else{
-                stmt.close();
-                con.close();
+            } else {
                 return 1;
             }
-
-
-
         } catch (SQLException ex) {
-            squery="";
-            stmt.close();
-            con.close();
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
+            return 1;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return 1;
         }
-
-
 
   }
 
@@ -103,9 +80,9 @@ public class UsuarioDAO {
            if (u.getFechaRegistro()!= null)     cadenaFechaI="'"+formato.format(u.getFechaRegistro())+"'";
            if (u.getFechaVencimiento()!=null)   cadenaFechaF="'"+formato.format(u.getFechaVencimiento())+"'";
            if (u.getFechaCese()!=null)          cadenaFechaC="'"+formato.format(u.getFechaCese())+"'";
-           if (u.getIdRol()!=null)              cadenaIdROl="'"+2+"'";
+           if (u.getRolBE()!=null)              cadenaIdROl="'"+2+"'";
                                                 /*cadenaIdROl="'"+u.getIdRol().getIdRol()+"'"; no se puede aun*/
-           if (u.getIdTipoCese()!=null)         cadenaIdTipoCese="'"+u.getIdTipoCese()+"'";
+           if (u.getTipoCeseBE()!=null)         cadenaIdTipoCese="'"+u.getTipoCeseBE().getIdTipoCEse()+"'";
 
             con = ConexionJDBC.getCon();
             con.setAutoCommit(false);
@@ -114,7 +91,7 @@ public class UsuarioDAO {
             squery+=u.getIdUsuario()+",'"+u.getNombres()+"','"+u.getApellidoPaterno()+"','"+
                     u.getApellidoMaterno()+"','"+u.getNombreUsuario()+ "','"+u.getPassword()+
                     "',"+cadenaFechaI+ ","+cadenaFechaF+ ","+
-                    cadenaFechaC+ ",'"+ u.getEstado()+ "',"+cadenaIdROl+ ","+cadenaIdTipoCese+");";
+                    cadenaFechaC+ ",'"+ u.getEstadoBE().getNombre()+ "',"+cadenaIdROl+ ","+cadenaIdTipoCese+");";
 
             System.out.println(squery);
             stmt.executeUpdate(squery);
@@ -164,7 +141,7 @@ public class UsuarioDAO {
 
   public ResultSet getConsultaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea){
         try {
-            String queryListaUsuarios = " select A.\"nombreUsuario\", A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" as NombreCompleto, B.nombre as NombreRol, \"fechaVencimiento\",D.nombre as NombreCategoria ";
+            String queryListaUsuarios = " select A.\"idUsuario\", A.\"nombreUsuario\", A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" as NombreCompleto, B.nombre as NombreRol, \"fechaVencimiento\",D.nombre as NombreCategoria ";
 
             String cadidRol="";
             String cadidArea="";
@@ -223,7 +200,8 @@ public class UsuarioDAO {
 
             }
 
-
+            queryListaUsuarios+=" ORDER BY A.\"idUsuario\"";
+            
             System.out.println(queryListaUsuarios);
             
             ResultSet rs = ConexionJDBC.ejecutarQueryString(queryListaUsuarios);
@@ -232,6 +210,31 @@ public class UsuarioDAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+  }
+
+  public ResultSet getUsuario(int idUsuario){
+        try {
+            String queryBusqueda = "Select * from \"Usuario\" A where A.\"idUsuario\"=" + String.valueOf(idUsuario);
+            ResultSet rs = ConexionJDBC.ejecutarQueryString(queryBusqueda);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+  }
+
+  public ResultSet getCategorias(int idUsuario){
+        try {
+            String queryBusquedaCat = "Select C.* from \"UsuarioXCategoria\" A INNER JOIN \"Usuario\" B ON A.\"idUsuario\"=B.\"idUsuario\" INNER JOIN \"Categoria\" C ON A.\"idCategoria\"=C.\"idCategoria\" ";
+            queryBusquedaCat+=" Where B.\"idUsuario\"="+String.valueOf(idUsuario);
+            System.out.println(queryBusquedaCat);
+            ResultSet rsCategorias = ConexionJDBC.ejecutarQueryString(queryBusquedaCat);
+            return rsCategorias;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
   }
 
 }

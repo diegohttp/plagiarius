@@ -20,7 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.bind.ParseConversionEvent;
 import org.freixas.jcalendar.JCalendarCombo;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
@@ -276,14 +278,14 @@ public class JFAdministrarUsuarios extends JIFBase {
 
             },
             new String [] {
-                "Nombre Usuario", "Nombre Completo", "Rol", "Fecha Caducidad", "Area Academica"
+                "Codigo", "Nombre Usuario", "Nombre Completo", "Rol", "Fecha Caducidad", "Area Academica"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -407,17 +409,29 @@ public class JFAdministrarUsuarios extends JIFBase {
                     .addComponent(jBEliminar)
                     .addComponent(JBNuevo)
                     .addComponent(jBModificar))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(1);
-        jfAgregarUsuario.setVisible(true);
-        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-        jfAgregarUsuario.toFront();
+        
+        int iFila=-1;
+        iFila=jTListaUsuarios.getSelectedRow();
+
+        System.out.println("numero de fila"+iFila);
+
+        if (iFila==-1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
+            JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(idUsuario);
+            jfAgregarUsuario.setVisible(true);
+            AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
+            jfAgregarUsuario.toFront();
+        }
 }//GEN-LAST:event_jBModificarActionPerformed
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed

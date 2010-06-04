@@ -19,10 +19,35 @@ public class UsuarioBE {
     private Date fechaRegistro;
     private Date fechaVencimiento;
     private Date fechaCese;
-    private String estado;
-    private RolBE idRol;
+    private EstadoBE estadoBE;
+    private RolBE rolBE;
     private ArrayList<CategoriaBE> categorias;
-    private TipoCeseBE idTipoCese;
+    private TipoCeseBE tipoCeseBE;
+
+    public EstadoBE getEstadoBE() {
+        return estadoBE;
+    }
+
+    public void setEstadoBE(EstadoBE estadoBE) {
+        this.estadoBE = estadoBE;
+    }
+
+    public RolBE getRolBE() {
+        return rolBE;
+    }
+
+    public void setRolBE(RolBE rolBE) {
+        this.rolBE = rolBE;
+    }
+
+
+    public TipoCeseBE getTipoCeseBE() {
+        return tipoCeseBE;
+    }
+
+    public void setTipoCeseBE(TipoCeseBE tipoCeseBE) {
+        this.tipoCeseBE = tipoCeseBE;
+    }
 
     public String getApellidoMaterno() {
         return apellidoMaterno;
@@ -48,13 +73,7 @@ public class UsuarioBE {
         this.categorias = categorias;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+    
 
     public Date getFechaCese() {
         return fechaCese;
@@ -80,21 +99,7 @@ public class UsuarioBE {
         this.fechaVencimiento = fechaVencimiento;
     }
 
-    public RolBE getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(RolBE idRol) {
-        this.idRol = idRol;
-    }
-
-    public TipoCeseBE getIdTipoCese() {
-        return idTipoCese;
-    }
-
-    public void setIdTipoCese(TipoCeseBE idTipoCese) {
-        this.idTipoCese = idTipoCese;
-    }
+   
 
     public int getIdUsuario() {
         return idUsuario;
@@ -128,7 +133,7 @@ public class UsuarioBE {
         this.password = password;
     }
 
-    public UsuarioBE ( int idUsuario,String nombres,String apellidoPaterno,String apellidoMaterno,String nombreUsuario,String password,Date fechaRegistro,Date fechaVencimiento,Date fechaCese,String estado,RolBE idRol,ArrayList<CategoriaBE> categorias, TipoCeseBE idTipoCese){
+    public UsuarioBE ( int idUsuario,String nombres,String apellidoPaterno,String apellidoMaterno,String nombreUsuario,String password,Date fechaRegistro,Date fechaVencimiento,Date fechaCese,EstadoBE estadoBE,RolBE rolBE,ArrayList<CategoriaBE> categorias, TipoCeseBE tipoCeseBE){
 
            this.idUsuario=idUsuario;
            this.nombres=nombres;
@@ -139,10 +144,10 @@ public class UsuarioBE {
            this.fechaRegistro=fechaRegistro;
            this.fechaVencimiento=fechaVencimiento;
            this.fechaCese=fechaCese;
-           this.estado=estado;
-           this.idRol=idRol;
+           this.estadoBE=estadoBE;
+           this.rolBE=rolBE;
            this.categorias=categorias;
-           this.idTipoCese=idTipoCese;
+           this.tipoCeseBE=tipoCeseBE;
      }
 
     public UsuarioBE(){

@@ -50,5 +50,14 @@ public class RolBE {
     }
 
 
+    public Integer getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
+    }
+
+
 
 }

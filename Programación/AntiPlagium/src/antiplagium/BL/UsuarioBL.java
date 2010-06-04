@@ -6,12 +6,14 @@
 package antiplagium.BL;
 
 import antiplagium.BE.CategoriaBE;
+import antiplagium.BE.EstadoBE;
 import antiplagium.BE.RolBE;
 import antiplagium.BE.TipoCeseBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.UsuarioDAO;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,24 +42,22 @@ public class UsuarioBL {
     }
 
     public int AutenticarUsuario(String nombreUsuario, String contrasena){
-        try {
+        
             usuarioValido = usuarioDAO.ValidarUsuario(nombreUsuario, contrasena);
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         return usuarioValido;
     }
 
     public UsuarioBE FormarUsuarioBE( int idUsuario, String nombres,String apellidoPaterno,
                                       String apellidoMaterno,String nombreUsuario, String password,
                                       Date fechaRegistro, Date fechaVencimiento,Date fechaCese,
-                                      String estado, RolBE idRol, ArrayList<CategoriaBE> categorias,
-                                      TipoCeseBE idTipoCese){
+                                      EstadoBE estadoBE, RolBE rolBE, ArrayList<CategoriaBE> categorias,
+                                      TipoCeseBE tipoCeseBE){
 
 
         usuarioBE=new UsuarioBE(idUsuario, nombres, apellidoPaterno, apellidoMaterno, nombreUsuario,
-                                password, fechaRegistro, fechaVencimiento, fechaCese, estado, idRol,
-                                categorias, idTipoCese);
+                                password, fechaRegistro, fechaVencimiento, fechaCese, estadoBE, rolBE,
+                                categorias, tipoCeseBE);
         return usuarioBE;
     }
 
@@ -85,6 +85,89 @@ public class UsuarioBL {
         return rs;
     }
 
+
+    public UsuarioBE getUsuarioBE(int idUsuario){
+        try {
+            ConexionJDBC.abrirConexion();
+            ResultSet rsUsuarioBE;
+            rsUsuarioBE = usuarioDAO.getUsuario(idUsuario);
+
+            int codigo = 0;
+            String nombres = null;
+            String apellidoPaterno = null;
+            String apellidoMaterno = null;
+            String nombreUsuario = null;
+            String password = null;
+            Date fechaRegistro = null;
+            Date fechaVencimiento = null;
+            Date fechaCese = null;
+            int idRol;
+            int idTipoCese;
+            int idEstado;
+            EstadoBE estadoBE = null;
+            RolBE rolBE = null;
+            TipoCeseBE tipoCeseBE = null;
+            if (rsUsuarioBE != null) {
+                try {
+                    while (rsUsuarioBE.next()) {
+                        codigo = (Integer) rsUsuarioBE.getObject(1);
+                        nombres = (String) rsUsuarioBE.getObject(2);
+                        apellidoPaterno = (String) rsUsuarioBE.getObject(3);
+                        apellidoMaterno = (String) rsUsuarioBE.getObject(4);
+                        nombreUsuario = (String) rsUsuarioBE.getObject(5);
+                        password = (String) rsUsuarioBE.getObject(6);
+                        fechaRegistro = (Date) rsUsuarioBE.getObject(7);
+                        fechaVencimiento = (Date) rsUsuarioBE.getObject(8);
+                        fechaCese = (Date) rsUsuarioBE.getObject(9);
+                        idRol = (Integer) rsUsuarioBE.getObject(10);
+                        if (rsUsuarioBE.getObject(11)!=null){
+                            idTipoCese = (Integer) rsUsuarioBE.getObject(11);
+                        }
+                        else { idTipoCese=0; }
+                        idEstado = (Integer) rsUsuarioBE.getObject(12);
+                        estadoBE = new EstadoBE();
+                        estadoBE.setIdEstado(idEstado);
+                        rolBE = new RolBE();
+                        rolBE.setIdRol(idRol);
+                        tipoCeseBE = new TipoCeseBE();
+                        tipoCeseBE.setIdTipoCEse(idTipoCese);
+                    }
+                 ConexionJDBC.cerrarConexion();
+                 ConexionJDBC.abrirConexion();
+                 ResultSet rsCategorias;
+                 rsCategorias = usuarioDAO.getCategorias(idUsuario);
+
+                    ArrayList<CategoriaBE> categorias = null;
+                    if (rsCategorias != null) {
+                        categorias = new ArrayList<CategoriaBE>();
+                        while (rsCategorias.next()) {
+                            CategoriaBE catBE = null;
+                            int idCategoria = rsCategorias.getInt("idCategoria");
+                            String descripcion = rsCategorias.getString("descripcion");
+                            String nombre = rsCategorias.getString("nombre");
+                            catBE = new CategoriaBE(idCategoria, descripcion, nombre);
+                            categorias.add(catBE);
+                        }
+                    }
+                    usuarioBE = new UsuarioBE(codigo, nombres, apellidoPaterno, apellidoMaterno, nombreUsuario, password, fechaRegistro, fechaVencimiento, fechaCese, estadoBE, rolBE, categorias, tipoCeseBE);
+                    ConexionJDBC.cerrarConexion();
+                    return usuarioBE;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
+                }
+            } else {
+                    return null;
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public void AbrirConexion() throws SQLException, ClassNotFoundException
     {
