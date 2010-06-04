@@ -247,8 +247,8 @@
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="cboEstado" pref="150" max="32767" attributes="1"/>
-                          <EmptySpace pref="234" max="32767" attributes="0"/>
+                          <Component id="cboEstado" pref="152" max="32767" attributes="1"/>
+                          <EmptySpace pref="236" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -256,7 +256,7 @@
                               <Component id="cboCategoria" max="32767" attributes="1"/>
                               <Component id="txtNombre" alignment="0" pref="148" max="32767" attributes="1"/>
                           </Group>
-                          <EmptySpace pref="77" max="32767" attributes="0"/>
+                          <EmptySpace pref="81" max="32767" attributes="0"/>
                           <Component id="btnBuscar" min="-2" max="-2" attributes="1"/>
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
