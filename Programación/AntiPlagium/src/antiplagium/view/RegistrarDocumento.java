@@ -470,7 +470,14 @@ public class RegistrarDocumento extends JFrame {
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
                     CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                    doc1 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
+                    doc1 = new DocumentoBE();
+                    doc1.setCategoria(objCategoria);
+                    doc1.setUsuario(objUsuario);
+                    doc1.setNombre(this.txtNombreDoc1.getText());
+                    doc1.setIdDocumento(idDoc);
+                    doc1.setContenido(contenido);
+                    doc1.setEstado("activo");
+                    //doc1 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc1);
                     } catch (Exception ex) {
@@ -494,7 +501,14 @@ public class RegistrarDocumento extends JFrame {
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
                     CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                    doc2 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc2.getText(), objUsuario, objCategoria,contenido);
+                    doc2 = new DocumentoBE();
+                    doc2.setCategoria(objCategoria);
+                    doc2.setUsuario(objUsuario);
+                    doc2.setNombre(this.txtNombreDoc2.getText());
+                    doc2.setIdDocumento(idDoc);
+                    doc2.setContenido(contenido);
+                    doc2.setEstado("activo");
+                    //doc2 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc2.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc2);
                     } catch (Exception ex) {
@@ -518,7 +532,14 @@ public class RegistrarDocumento extends JFrame {
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
                     CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                    doc3 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc3.getText(), objUsuario, objCategoria,contenido);
+                    doc3 = new DocumentoBE();
+                    doc3.setCategoria(objCategoria);
+                    doc3.setUsuario(objUsuario);
+                    doc3.setNombre(this.txtNombreDoc3.getText());
+                    doc3.setIdDocumento(idDoc);
+                    doc3.setContenido(contenido);
+                    doc3.setEstado("activo");
+                    //doc3 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc3.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc3);
                     } catch (Exception ex) {
@@ -542,7 +563,14 @@ public class RegistrarDocumento extends JFrame {
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
                     CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                    doc4 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc4.getText(), objUsuario, objCategoria,contenido);
+                    doc4 = new DocumentoBE();
+                    doc4.setCategoria(objCategoria);
+                    doc4.setUsuario(objUsuario);
+                    doc4.setNombre(this.txtNombreDoc4.getText());
+                    doc4.setIdDocumento(idDoc);
+                    doc4.setContenido(contenido);
+                    doc4.setEstado("activo");
+                    //doc4 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc4.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc4);
                     } catch (Exception ex) {
@@ -566,7 +594,14 @@ public class RegistrarDocumento extends JFrame {
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
                     CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
-                    doc5 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc5.getText(), objUsuario, objCategoria,contenido);
+                    doc5 = new DocumentoBE();
+                    doc5.setCategoria(objCategoria);
+                    doc5.setUsuario(objUsuario);
+                    doc5.setNombre(this.txtNombreDoc5.getText());
+                    doc5.setIdDocumento(idDoc);
+                    doc5.setContenido(contenido);
+                    doc5.setEstado("activo");
+                    //doc5 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc5.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc5);
                     } catch (Exception ex) {
