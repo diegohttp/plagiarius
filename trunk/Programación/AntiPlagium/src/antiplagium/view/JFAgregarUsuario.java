@@ -16,6 +16,7 @@ import antiplagium.BE.EstadoBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.EstadoBL;
+import antiplagium.BL.RolBL;
 import antiplagium.BL.UsuarioBL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,14 +37,21 @@ import org.freixas.jcalendar.JCalendarCombo;
 public class JFAgregarUsuario extends JIFBase {
 
     private EstadoBL estadoBL;
+    private RolBL rolBL;
     private JCalendarCombo cmbFechaInicio;
     private JCalendarCombo cmbFechaFin;
+    private int opcion;
+    private UsuarioBE usuarioBE=null;
+    private int codigoUsuario;
     /** Creates new form JFAgregarUsuario1 */
-    public JFAgregarUsuario(int opcion) {
+    public JFAgregarUsuario(int idUsuario) {
        try {
+
+            initComponents();
+
+            this.opcion=idUsuario;
             cmbFechaInicio = new JCalendarCombo();
             cmbFechaFin = new JCalendarCombo();
-            initComponents();
             cmbFechaInicio.setSize(245, 29);
             cmbFechaFin.setSize(245, 29);
             jPanel3.add(cmbFechaInicio);
@@ -51,32 +59,51 @@ public class JFAgregarUsuario extends JIFBase {
             jMenuBar1.setVisible(false);
             estadoBL = new EstadoBL();
             UsuarioBL usuarioBL = new UsuarioBL();
+            rolBL=new RolBL();
+
+            rolBL.AbrirConexion();
+            ResultSet registros = rolBL.getListRoles();
+            int cantidadR = registros.getRow();
+            while (registros.next()) {
+                jCBRol.addItem(registros.getString("nombre"));
+            }
+            rolBL.CerrarConexion();
+
+
             ArrayList<EstadoBE> registrosEstado = estadoBL.ObtenerEstados();
+
             if (registrosEstado != null) {
                 System.out.println(registrosEstado.size());
                 int numeroRegistros = registrosEstado.size();
                 for (int i = 0; i <= numeroRegistros - 1; i++) {
-                    JCBEstado.addItem(registrosEstado.get(i).getNombre());
+                    jCBEstado.addItem(registrosEstado.get(i).getNombre());
                 }
             }
-            if (opcion == 1) {
+
+            if (idUsuario >= 1) {
+                usuarioBE=usuarioBL.getUsuarioBE(idUsuario);
+                MostrarDatos(usuarioBE);
                 this.setTitle("Modificar Usuario");
                 this.setBounds(10, 10, 497, 640);
-                jComboBox1.enable(false);
+                jCBRol.enable(false);
                 cmbFechaInicio.enable(false);
-                JCBEstado.enable(false);
+                jCBEstado.enable(false);
                 jMenuBar1.setVisible(true);
-                if ((JCBEstado.getSelectedItem().toString()) == "Activo") {
+                if ((jCBEstado.getSelectedItem().toString()) == "Activo") {
                     jMenu1.enable(false);
                     jMenu1.setVisible(false);
                 } else {
                     jMenu2.enable(false);
                     jMenu2.setVisible(false);
                 }
+
             } else {
+                usuarioBE=new UsuarioBE();
                 int idUsuariosiguiente = usuarioBL.getIdUsuarioSiguiente();
                 jTFCodigo.setText(String.valueOf(idUsuariosiguiente));
+                usuarioBE.setIdUsuario(idUsuariosiguiente);
             }
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -95,14 +122,13 @@ public class JFAgregarUsuario extends JIFBase {
 
         jPanel1 = new javax.swing.JPanel();
         jTFCodigo = new javax.swing.JTextField();
-        txtNombres = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        jTFNombres = new javax.swing.JTextField();
+        jTFApPat = new javax.swing.JTextField();
+        jTFApMat = new javax.swing.JTextField();
+        jTFNomUsuario = new javax.swing.JTextField();
+        jTFContrasena = new javax.swing.JTextField();
+        jTFCorreoE = new javax.swing.JTextField();
+        jCBRol = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -112,16 +138,18 @@ public class JFAgregarUsuario extends JIFBase {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jTFArea = new javax.swing.JTextField();
+        jBVer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        JCBEstado = new javax.swing.JComboBox();
+        jCBEstado = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBGuardar = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
+        jBLimpiar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -134,15 +162,11 @@ public class JFAgregarUsuario extends JIFBase {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Usuario"));
 
-        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTFNombres.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombresKeyReleased(evt);
+                jTFNombresKeyReleased(evt);
             }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Principal", "Profesor" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contabilidad", "Derecho", "Ingenieria Informatica", " ", " " }));
 
         jLabel1.setText("Codigo");
 
@@ -162,6 +186,15 @@ public class JFAgregarUsuario extends JIFBase {
 
         jLabel9.setText("Apellido Paterno");
 
+        jBVer.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        jBVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
+        jBVer.setText("Ver Lista");
+        jBVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,17 +212,20 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTFCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                    .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTFCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(jTFNombres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(jTFApPat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(jTFApMat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(jTFNomUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(jTFContrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(jCBRol, 0, 246, Short.MAX_VALUE)
+                    .addComponent(jTFCorreoE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTFArea, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBVer)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,35 +235,36 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFApPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFApMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFNomUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jTFArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBVer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFCorreoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addContainerGap())
         );
@@ -241,7 +278,7 @@ public class JFAgregarUsuario extends JIFBase {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
+            .addGap(0, 247, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +292,7 @@ public class JFAgregarUsuario extends JIFBase {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
+            .addGap(0, 247, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,9 +317,9 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel12))
                 .addGap(95, 95, 95)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(JCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -295,7 +332,7 @@ public class JFAgregarUsuario extends JIFBase {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
@@ -305,24 +342,28 @@ public class JFAgregarUsuario extends JIFBase {
                 .addContainerGap())
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.setAlignmentY(0.0F);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
+        jBGuardar.setText("Guardar");
+        jBGuardar.setAlignmentY(0.0F);
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBGuardarActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/salir.png"))); // NOI18N
-        jButton2.setText("Salir");
-        jButton2.setAlignmentY(0.0F);
-        jButton2.setMaximumSize(new java.awt.Dimension(64, 33));
-        jButton2.setPreferredSize(new java.awt.Dimension(83, 33));
+        jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/salir.png"))); // NOI18N
+        jBSalir.setText("Salir");
+        jBSalir.setAlignmentY(0.0F);
+        jBSalir.setPreferredSize(new java.awt.Dimension(83, 33));
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
-        jButton3.setText("Limpiar");
-        jButton3.setAlignmentY(0.0F);
+        jBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
+        jBLimpiar.setText("Limpiar");
+        jBLimpiar.setAlignmentY(0.0F);
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         jMenu1.setText("Reactivar");
@@ -345,12 +386,12 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addContainerGap(114, Short.MAX_VALUE)
+                .addComponent(jBGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(jBLimpiar)
                 .addGap(103, 103, 103))
         );
         layout.setVerticalGroup(
@@ -362,19 +403,19 @@ public class JFAgregarUsuario extends JIFBase {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jBGuardar)
+                    .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBLimpiar))
                 .addGap(169, 169, 169))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
 //        String estado, RolBE idRol, ArrayList<CategoriaBE> categorias,TipoCeseBE idTipoCese
-UsuarioBL usuarioBL=new UsuarioBL();
-        UsuarioBE usuarioBE=null;
+        UsuarioBL usuarioBL=new UsuarioBL();
+       
         boolean r = false;
 
         Date fechaI=new Date();
@@ -392,9 +433,9 @@ UsuarioBL usuarioBL=new UsuarioBL();
         System.out.println(cadenaFechaI);
         System.out.println(fechaI);
 
-        String estado=JCBEstado.getSelectedItem().toString();
+        String estado=jCBEstado.getSelectedItem().toString();
         // debe haber un tabla estado y con el item seleccionado jalar un obejto estado.. pero esta bien por el momento
-        int idRol=jComboBox1.getSelectedIndex();
+        int idRol=jCBRol.getSelectedIndex();
         // con el nombre (o indice) del rol se busca en la BD.. y se forma un objeto RolBE para asignarlo al Usuario
         int idTipoCese=0;
          // con el nombre (o indice) del tipo de cese se busca en la BD.. y se forma un objeto tipoCeseBE para asignarlo al Usuario
@@ -404,11 +445,11 @@ UsuarioBL usuarioBL=new UsuarioBL();
         // hay q modificar la ventana para seleccionar varias categorias o areas academicas a la que pertenece el Usuario.
 
 
-        usuarioBE = usuarioBL.FormarUsuarioBE(idUsuario,txtNombres.getText(),
-                                          jTextField3.getText(),jTextField4.getText(),
-                                          jTextField5.getText(),jTextField6.getText(),
+        usuarioBE = usuarioBL.FormarUsuarioBE(idUsuario,jTFNombres.getText(),
+                                          jTFApPat.getText(),jTFApMat.getText(),
+                                          jTFNomUsuario.getText(),jTFContrasena.getText(),
                                           fechaI,fechaF,
-                                          null,estado,null,
+                                          null,null,null,
                                           listaCategorias,null );
 
         r=usuarioBL.guardarUsuario(usuarioBE);
@@ -419,33 +460,64 @@ UsuarioBL usuarioBL=new UsuarioBL();
                this.dispose();
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
-    private void txtNombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyReleased
+    private void jTFNombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombresKeyReleased
             Character caracter = new Character(evt.getKeyChar());
 
         if (!Utilitario.esLetra(caracter)) {
                     String texto = "";
-                    for (int i = 0; i < this.txtNombres.getText().length(); i++)
-                        if (Utilitario.esLetra(new Character(this.txtNombres.getText().charAt(i))))
-                            texto += this.txtNombres.getText().charAt(i);
-                    this.txtNombres.setText(texto);
-            this.txtNombres.getToolkit().beep();
+                    for (int i = 0; i < this.jTFNombres.getText().length(); i++)
+                        if (Utilitario.esLetra(new Character(this.jTFNombres.getText().charAt(i))))
+                            texto += this.jTFNombres.getText().charAt(i);
+                    this.jTFNombres.setText(texto);
+            this.jTFNombres.getToolkit().beep();
         }
-    }//GEN-LAST:event_txtNombresKeyReleased
-    
+    }//GEN-LAST:event_jTFNombresKeyReleased
+
+    private void jBVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVerActionPerformed
+        
+        JFCategoriaXUsuario jfCategoriaXUsuario=new JFCategoriaXUsuario(Integer.parseInt(jTFCodigo.getText()));
+        jfCategoriaXUsuario.setVisible(true);
+        AntiPlagiumPrincipal.getJDesktopPane().add(jfCategoriaXUsuario);
+        jfCategoriaXUsuario.toFront();
+
+    }//GEN-LAST:event_jBVerActionPerformed
+
+
+
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+
+    public void MostrarDatos(UsuarioBE usuarioBE){
+        jTFCodigo.setText(String.valueOf(usuarioBE.getIdUsuario()));
+        jTFNombres.setText(usuarioBE.getNombres());
+        jTFApPat.setText(usuarioBE.getApellidoPaterno());
+        jTFApMat.setText(usuarioBE.getApellidoMaterno());
+        jTFNomUsuario.setText(usuarioBE.getNombreUsuario());
+        jTFContrasena.setText(usuarioBE.getPassword());
+        jCBRol.setSelectedIndex(usuarioBE.getRolBE().getIdRol()-1);
+        jCBEstado.setSelectedIndex(usuarioBE.getEstadoBE().getIdEstado()-1);
+        cmbFechaInicio.setDate(usuarioBE.getFechaRegistro());
+        cmbFechaFin.setDate(usuarioBE.getFechaVencimiento());
+
+    }
+
+
     /**
     * @param args the command line arguments
     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox JCBEstado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JButton jBGuardar;
+    private javax.swing.JButton jBLimpiar;
+    private javax.swing.JButton jBSalir;
+    private javax.swing.JButton jBVer;
+    private javax.swing.JComboBox jCBEstado;
+    private javax.swing.JComboBox jCBRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -465,13 +537,14 @@ UsuarioBL usuarioBL=new UsuarioBL();
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextField jTFApMat;
+    private javax.swing.JTextField jTFApPat;
+    private javax.swing.JTextField jTFArea;
     private javax.swing.JTextField jTFCodigo;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField jTFContrasena;
+    private javax.swing.JTextField jTFCorreoE;
+    private javax.swing.JTextField jTFNomUsuario;
+    private javax.swing.JTextField jTFNombres;
     // End of variables declaration//GEN-END:variables
 
 }

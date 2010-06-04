@@ -22,6 +22,10 @@ public class TipoCeseBE {
         this.descripcion=desc;
     }
 
+    public TipoCeseBE(){
+
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
