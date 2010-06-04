@@ -12,29 +12,25 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
-import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.DocumentoBL;
-import antiplagium.DAO.DocumentoDAO;
 import antiplagium.BE.UsuarioBE;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.freixas.jcalendar.JCalendarCombo;
 /**
  *
  * @author PATTY
  */
-public class RegistrarDocumento extends JFrame {
+public class RegistrarDocumento extends JDialog {
 
     private JCalendarCombo cmbFechaInicio;
     private UsuarioBE objUsuarioBE;
@@ -66,6 +62,7 @@ public class RegistrarDocumento extends JFrame {
         jPanel3.add(cmbFechaInicio);
         jPanel3.setEnabled(false);
         this.jComboBox1.removeAllItems();
+       
 
         /*lista las categorias solo de usuario*/
         

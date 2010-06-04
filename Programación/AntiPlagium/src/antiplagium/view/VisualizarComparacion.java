@@ -58,8 +58,6 @@ public class VisualizarComparacion extends javax.swing.JDialog {
         lblTiempo = new javax.swing.JLabel();
         lblNivel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento comparado"));
 
         jPanel2.setBackground(new java.awt.Color(153, 143, 134));
