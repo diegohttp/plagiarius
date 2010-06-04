@@ -336,7 +336,14 @@ public class JFCompararDocumentos extends JDialog {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        if (this.tablaDocs.getRowCount()<1){
+            JOptionPane.showMessageDialog(null, "Se debe escoger al menos un documento contra el cual comparar.");
+            return;
+        }
         this.setVisible(false);
+        VisualizarComparacion vis = new VisualizarComparacion(this.doc1,this.docs);
+        vis.setModal(true);
+        vis.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
