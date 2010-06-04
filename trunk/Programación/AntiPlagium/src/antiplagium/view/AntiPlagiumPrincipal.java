@@ -64,6 +64,7 @@ public class AntiPlagiumPrincipal extends JFBase
         JMUsuarios.setName("JMUsuarios"); // NOI18N
 
         JMIAdministrarUsuarios.setText("Administrar Usuarios");
+        JMIAdministrarUsuarios.setName("JMIAdministrarUsuarios"); // NOI18N
         JMIAdministrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JMIAdministrarUsuariosActionPerformed(evt);
@@ -72,6 +73,7 @@ public class AntiPlagiumPrincipal extends JFBase
         JMUsuarios.add(JMIAdministrarUsuarios);
 
         JMIAdministrarGrupos.setText("Administrar Roles");
+        JMIAdministrarGrupos.setName("JMIAdministrarRoles"); // NOI18N
         JMIAdministrarGrupos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JMIAdministrarGruposActionPerformed(evt);
@@ -80,6 +82,7 @@ public class AntiPlagiumPrincipal extends JFBase
         JMUsuarios.add(JMIAdministrarGrupos);
 
         JMLogUsuario.setText("Log de Usuarios");
+        JMLogUsuario.setName("JMILogDeUsuarios"); // NOI18N
         JMLogUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JMLogUsuarioActionPerformed(evt);
@@ -95,6 +98,7 @@ public class AntiPlagiumPrincipal extends JFBase
         jMenu2.setName("JMDocumentos"); // NOI18N
 
         jMenuItem2.setText("Gestionar Categoría");
+        jMenuItem2.setName("JMIGestionarCategoria"); // NOI18N
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -103,6 +107,7 @@ public class AntiPlagiumPrincipal extends JFBase
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Gestionar Documento");
+        jMenuItem3.setName("JMIGestionarDocumento"); // NOI18N
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -123,6 +128,7 @@ public class AntiPlagiumPrincipal extends JFBase
         });
 
         jMenuItem4.setText("Comparar documentos");
+        jMenuItem4.setName("JMICompararDocumentos"); // NOI18N
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -131,6 +137,7 @@ public class AntiPlagiumPrincipal extends JFBase
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Mostrar resultados");
+        jMenuItem5.setName("JMIMostrarResultados"); // NOI18N
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
