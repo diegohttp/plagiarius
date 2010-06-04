@@ -453,8 +453,8 @@ public class JFAgregarUsuario extends JIFBase {
                                           jTFApPat.getText(),jTFApMat.getText(),
                                           jTFNomUsuario.getText(),jTFContrasena.getText(),
                                           fechaI,fechaF,
-                                          fechaC,null,null,
-                                          listaCategorias,null );
+                                          fechaC,estadoBE,rolBE,
+                                          listaCategorias,tipoCeseBE );
 
         r=usuarioBL.guardarUsuario(usuarioBE);
         if (r==false){
