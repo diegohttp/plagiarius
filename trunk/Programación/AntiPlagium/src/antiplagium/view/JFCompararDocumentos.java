@@ -48,8 +48,8 @@ public class JFCompararDocumentos extends JDialog {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setResizable(false);
         setTitle("Comparar Documentos");
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documento a Comparar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
@@ -83,7 +83,7 @@ public class JFCompararDocumentos extends JDialog {
             }
         });
 
-        jLabel4.setText("Propíetario");
+        jLabel4.setText("Propietario");
 
         txtNomProp.setEnabled(false);
         txtNomProp.addActionListener(new java.awt.event.ActionListener() {
@@ -340,10 +340,11 @@ public class JFCompararDocumentos extends JDialog {
             JOptionPane.showMessageDialog(null, "Se debe escoger al menos un documento contra el cual comparar.");
             return;
         }
-        this.setVisible(false);
+        
         VisualizarComparacion vis = new VisualizarComparacion(this.doc1,this.docs);
         vis.setModal(true);
         vis.setVisible(true);
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

@@ -45,6 +45,7 @@ public class BuscarDocumento extends JDialog {
     /** Creates new form Documento2 */
     public BuscarDocumento() throws FileNotFoundException, IOException, SQLException {
         initComponents();
+        this.btnAceptar.setVisible(false);
         categoriaBl=new CategoriaBL();
         CategoriaBE tmp = new CategoriaBE();
         tmp.setIdCategoria(0);
@@ -100,7 +101,7 @@ public class BuscarDocumento extends JDialog {
         cboEstado = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -280,11 +281,11 @@ public class BuscarDocumento extends JDialog {
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
-        jButton5.setText("Aceptar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
@@ -345,8 +346,8 @@ public class BuscarDocumento extends JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addComponent(btnAceptar)
                 .addGap(31, 31, 31)
                 .addComponent(jButton1)
                 .addGap(33, 33, 33))
@@ -361,7 +362,7 @@ public class BuscarDocumento extends JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton5)
+                    .addComponent(btnAceptar)
                     .addComponent(jButton2))
                 .addGap(26, 26, 26))
         );
@@ -442,6 +443,7 @@ public class BuscarDocumento extends JDialog {
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
            RegistrarDocumento regdoc = new RegistrarDocumento(this.objUsuario);
+           regdoc.setModal(true);
            regdoc.setVisible(true);
             // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
@@ -551,7 +553,7 @@ public class BuscarDocumento extends JDialog {
        
     }//GEN-LAST:event_Modificar
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int idx = this.jtabPaquetes.getSelectedRow();
         if (idx >= 0){
             docSel = this.arrDocumentos.get(idx);
@@ -563,7 +565,7 @@ public class BuscarDocumento extends JDialog {
 
 
         this.setVisible(false);
-}//GEN-LAST:event_jButton5ActionPerformed
+}//GEN-LAST:event_btnAceptarActionPerformed
 
     public String getNombreDocSeleccionado(){
         return this.selectedDoc;
@@ -573,12 +575,12 @@ public class BuscarDocumento extends JDialog {
     * @param args the command line arguments
     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JComboBox cboCategoria;
     private javax.swing.JComboBox cboEstado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     public javax.swing.JMenu jMenu1;
     public javax.swing.JMenu jMenu2;
     public javax.swing.JMenu jMenu3;
