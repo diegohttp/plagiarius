@@ -119,12 +119,21 @@ public class UsuarioBL {
                         fechaRegistro = (Date) rsUsuarioBE.getObject(7);
                         fechaVencimiento = (Date) rsUsuarioBE.getObject(8);
                         fechaCese = (Date) rsUsuarioBE.getObject(9);
-                        idRol = (Integer) rsUsuarioBE.getObject(10);
+
+                        if(rsUsuarioBE.getObject(10)!=null){
+                            idRol = (Integer) rsUsuarioBE.getObject(10);
+                        }
+                        else {idRol=0;}
                         if (rsUsuarioBE.getObject(11)!=null){
                             idTipoCese = (Integer) rsUsuarioBE.getObject(11);
                         }
                         else { idTipoCese=0; }
-                        idEstado = (Integer) rsUsuarioBE.getObject(12);
+
+                        if(rsUsuarioBE.getObject(12)!=null){
+                            idEstado = (Integer) rsUsuarioBE.getObject(12);
+                        }
+                        else{idEstado=0;}
+
                         estadoBE = new EstadoBE();
                         estadoBE.setIdEstado(idEstado);
                         rolBE = new RolBE();
