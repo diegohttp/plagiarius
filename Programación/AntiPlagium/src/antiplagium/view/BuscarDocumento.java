@@ -417,7 +417,7 @@ public class BuscarDocumento extends JDialog {
             }
             /* Llenamos la grilla */
             for (int i=0; i < arrDocumentos.size() ; ++i){
-                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
+                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getIdCategoria() , arrDocumentos.get(i).getUsuario().getIdUsuario() , arrDocumentos.get(i).getEstado()  };
                 tmp.addRow(nuevo);
             }
             if (this.arrDocumentos.size() == 0){
@@ -502,7 +502,7 @@ public class BuscarDocumento extends JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int idx = this.jtabPaquetes.getSelectedRow();
         if (idx >= 0){
-            String contenido = this.arrDocumentos.get(idx).toString();
+            String contenido = this.arrDocumentos.get(idx).getContenido();
             JFVisualizarDocumento vis = new JFVisualizarDocumento(contenido);
             vis.setModal(true);
             vis.setVisible(true);
