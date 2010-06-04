@@ -333,7 +333,7 @@ public class JFAgregarRol extends JIFBase {
         {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-
+        this.dispose();
     }//GEN-LAST:event_JBGuardarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
