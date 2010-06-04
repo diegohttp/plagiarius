@@ -24,6 +24,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="JMIAdministrarUsuarios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Administrar Usuarios"/>
+                <Property name="name" type="java.lang.String" value="JMIAdministrarUsuarios" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIAdministrarUsuariosActionPerformed"/>
@@ -32,6 +33,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="JMIAdministrarGrupos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Administrar Roles"/>
+                <Property name="name" type="java.lang.String" value="JMIAdministrarRoles" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIAdministrarGruposActionPerformed"/>
@@ -40,6 +42,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="JMLogUsuario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Log de Usuarios"/>
+                <Property name="name" type="java.lang.String" value="JMILogDeUsuarios" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMLogUsuarioActionPerformed"/>
@@ -62,6 +65,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gestionar Categor&#xed;a"/>
+                <Property name="name" type="java.lang.String" value="JMIGestionarCategoria" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
@@ -70,6 +74,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gestionar Documento"/>
+                <Property name="name" type="java.lang.String" value="JMIGestionarDocumento" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
@@ -95,6 +100,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Comparar documentos"/>
+                <Property name="name" type="java.lang.String" value="JMICompararDocumentos" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
@@ -103,6 +109,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mostrar resultados"/>
+                <Property name="name" type="java.lang.String" value="JMIMostrarResultados" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
