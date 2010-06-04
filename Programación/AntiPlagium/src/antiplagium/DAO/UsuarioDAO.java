@@ -66,57 +66,42 @@ public class UsuarioDAO {
 
       try {
           UsuarioBE u=nuevoUsuario;
+
           String cadenaFechaI=null;
           String cadenaFechaF=null;
           String cadenaFechaC=null;
           String cadenaIdROl=null;
           String cadenaIdTipoCese=null;
+          String cadenaIdEstado=null;
 
-        //Switch to manual transaction mode by setting
-        //autocommit to false. Note that this starts the first
-        //manual transaction.
            SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
 
            if (u.getFechaRegistro()!= null)     cadenaFechaI="'"+formato.format(u.getFechaRegistro())+"'";
            if (u.getFechaVencimiento()!=null)   cadenaFechaF="'"+formato.format(u.getFechaVencimiento())+"'";
            if (u.getFechaCese()!=null)          cadenaFechaC="'"+formato.format(u.getFechaCese())+"'";
-           if (u.getRolBE()!=null)              cadenaIdROl="'"+2+"'";
-                                                /*cadenaIdROl="'"+u.getIdRol().getIdRol()+"'"; no se puede aun*/
-           if (u.getTipoCeseBE()!=null)         cadenaIdTipoCese="'"+u.getTipoCeseBE().getIdTipoCEse()+"'";
-
-            con = ConexionJDBC.getCon();
-            con.setAutoCommit(false);
-            stmt = con.createStatement();
-            squery+="INSERT INTO \"Usuario\"(\"idUsuario\", nombres, \"apellidoPaterno\", \"apellidoMaterno\", \"nombreUsuario\", \"password\", \"fechaRegistro\", \"fechaVencimiento\", \"fechaCese\",estado, \"idRol\", \"idTipoCese\") VALUES (";
+           
+           if (u.getRolBE()!=null && u.getRolBE().getIdRol()!=0)                    cadenaIdROl="'"+u.getIdUsuario()+"'";
+           if (u.getTipoCeseBE()!=null && u.getTipoCeseBE().getIdTipoCEse()!=0)     cadenaIdTipoCese="'"+u.getTipoCeseBE().getIdTipoCEse()+"'";
+           if (u.getEstadoBE()!=null && u.getEstadoBE().getIdEstado()!=0)           cadenaIdEstado="'"+u.getEstadoBE().getIdEstado()+"'";
+            
+            squery+="INSERT INTO \"Usuario\"(\"idUsuario\", nombres, \"apellidoPaterno\", \"apellidoMaterno\", \"nombreUsuario\", \"password\", \"fechaRegistro\", \"fechaVencimiento\", \"fechaCese\", \"idRol\", \"idTipoCese\",\"idEstado\") VALUES (";
             squery+=u.getIdUsuario()+",'"+u.getNombres()+"','"+u.getApellidoPaterno()+"','"+
                     u.getApellidoMaterno()+"','"+u.getNombreUsuario()+ "','"+u.getPassword()+
                     "',"+cadenaFechaI+ ","+cadenaFechaF+ ","+
-                    cadenaFechaC+ ",'"+ u.getEstadoBE().getNombre()+ "',"+cadenaIdROl+ ","+cadenaIdTipoCese+");";
+                    cadenaFechaC+","+cadenaIdROl+ ","+cadenaIdTipoCese+","+cadenaIdEstado+");";
 
             System.out.println(squery);
             stmt.executeUpdate(squery);
-            con.commit(); //This commits the transaction and starts a new one.
-
-            stmt.close(); //This turns off the transaction.
-            con.close();
-            System.out.println("Transaction succeeded. Both records were written to the database.");
+           
             error=true;
             return error;
       }
         catch (SQLException ex) {
                                 ex.printStackTrace();
 
-                try {
-                    con.rollback();
-                    stmt.close(); //This turns off the transaction.
-                    con.close();
                     System.out.println("Transaction failed. No records were written to the database.");
                     return error;
-                }
-                catch (SQLException se) {
-                        se.printStackTrace();
-                        return error;
-                }
+               
         }
 
   }

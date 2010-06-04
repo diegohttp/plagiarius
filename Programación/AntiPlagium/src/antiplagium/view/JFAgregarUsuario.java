@@ -48,7 +48,7 @@ public class JFAgregarUsuario extends JIFBase {
        try {
 
             initComponents();
-
+            jTFCodigo.enable(false);
             this.opcion=idUsuario;
             cmbFechaInicio = new JCalendarCombo();
             cmbFechaFin = new JCalendarCombo();
@@ -420,6 +420,7 @@ public class JFAgregarUsuario extends JIFBase {
 
         Date fechaI=new Date();
         Date fechaF=new Date();
+        Date fechaC=null;
 
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
         String cadenaFechaI=formato.format(cmbFechaInicio.getDate());
@@ -430,15 +431,10 @@ public class JFAgregarUsuario extends JIFBase {
         } catch (ParseException ex) {
             Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(cadenaFechaI);
-        System.out.println(fechaI);
-
-        String estado=jCBEstado.getSelectedItem().toString();
-        // debe haber un tabla estado y con el item seleccionado jalar un obejto estado.. pero esta bien por el momento
-        int idRol=jCBRol.getSelectedIndex();
-        // con el nombre (o indice) del rol se busca en la BD.. y se forma un objeto RolBE para asignarlo al Usuario
+        
+        int  idEstado=jCBEstado.getSelectedIndex()+1;
+        int idRol=jCBRol.getSelectedIndex()+1;
         int idTipoCese=0;
-         // con el nombre (o indice) del tipo de cese se busca en la BD.. y se forma un objeto tipoCeseBE para asignarlo al Usuario
         int idUsuario=Integer.parseInt(jTFCodigo.getText().trim());
 
         ArrayList<CategoriaBE> listaCategorias=null;
@@ -449,7 +445,7 @@ public class JFAgregarUsuario extends JIFBase {
                                           jTFApPat.getText(),jTFApMat.getText(),
                                           jTFNomUsuario.getText(),jTFContrasena.getText(),
                                           fechaI,fechaF,
-                                          null,null,null,
+                                          fechaC,null,null,
                                           listaCategorias,null );
 
         r=usuarioBL.guardarUsuario(usuarioBE);
