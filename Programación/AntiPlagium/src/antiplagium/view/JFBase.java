@@ -7,8 +7,10 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import javax.swing.UIManager;
@@ -35,11 +37,13 @@ public class JFBase extends javax.swing.JFrame {
 
     protected void aplicarSeguridad(JMenuBar menu)
     {
-        String nombreVentana = this.getName();        
+        if (nombreRol == "Administrador") return;
+        String nombreVentana = this.getName();
         ResultSet tablaControles;
         Vector vector = new Vector();
         JRootPane jroot = this.getRootPane();
         Component[] componentes = jroot.getJMenuBar().getComponents();
+        Component[] componentesInternos;
 
         SeguridadBL seguridadBL = new SeguridadBL();
         try
@@ -79,11 +83,19 @@ public class JFBase extends javax.swing.JFrame {
             System.out.println(nombreControl);
 
             for (int k=0; k < menu.getMenuCount() ;k++)
-            {
+            {                
+                componentesInternos = menu.getMenu(k).getMenuComponents();
+                for(int j=0; j < componentesInternos.length; j++)
+                {
+                    if (((JMenuItem)componentesInternos[j]).getName().equals(nombreControl))
+                    {
+                        ((JMenuItem)componentesInternos[j]).setVisible(false);
+                    }
+                }
+
                 if (menu.getMenu(k).getName().equals(nombreControl))
                 {
                         menu.getMenu(k).setVisible(false);
-                        break;
                 }
             }
         }
