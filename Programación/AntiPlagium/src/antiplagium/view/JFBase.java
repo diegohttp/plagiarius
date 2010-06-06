@@ -1,6 +1,7 @@
 
 package antiplagium.view;
 
+import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.SeguridadBL;
 import java.awt.Color;
 import java.awt.Component;
@@ -20,10 +21,13 @@ public class JFBase extends javax.swing.JFrame {
     private Dimension dim;
     private static String nombreUsuario =   "";
     private static String nombreRol =       "Principal";
+    public static UsuarioBE usuarioBE=null;
 
-    public JFBase()
+    public JFBase(UsuarioBE usuarioBE)
     {
+        this.usuarioBE=usuarioBE;
         initComponents();
+        LBLUsuario.setText(usuarioBE.getNombreUsuario());
         try
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

@@ -40,32 +40,43 @@ public class JFAgregarUsuario extends JIFBase {
 
     private EstadoBL estadoBL;
     private RolBL rolBL;
+    private UsuarioBL usuarioBL;
+
     private JCalendarCombo cmbFechaInicio;
     private JCalendarCombo cmbFechaFin;
     private int opcion;
-    private UsuarioBE usuarioBE=null;
     private int codigoUsuario;
+
+    private UsuarioBE usuarioBE=null;
+    private UsuarioBE usuarioBEOringinal=null;
+    
     /** Creates new form JFAgregarUsuario1 */
     public JFAgregarUsuario(int idUsuario) {
        try {
 
             initComponents();
+
             jTFCodigo.enable(false);
             this.opcion=idUsuario;
+
             cmbFechaInicio = new JCalendarCombo();
             cmbFechaFin = new JCalendarCombo();
             cmbFechaInicio.setSize(245, 29);
             cmbFechaFin.setSize(245, 29);
             jPanel3.add(cmbFechaInicio);
             jPanel4.add(cmbFechaFin);
+
             jMenuBar1.setVisible(false);
+
             estadoBL = new EstadoBL();
-            UsuarioBL usuarioBL = new UsuarioBL();
+
+            usuarioBL = new UsuarioBL();
+
             rolBL=new RolBL();
 
             rolBL.AbrirConexion();
             ResultSet registros = rolBL.getListRoles();
-            int cantidadR = registros.getRow();
+            //int cantidadR = registros.getRow();
             while (registros.next()) {
                 jCBRol.addItem(registros.getString("nombre"));
             }
@@ -73,7 +84,6 @@ public class JFAgregarUsuario extends JIFBase {
 
 
             ArrayList<EstadoBE> registrosEstado = estadoBL.ObtenerEstados();
-
             if (registrosEstado != null) {
                 System.out.println(registrosEstado.size());
                 int numeroRegistros = registrosEstado.size();
@@ -83,8 +93,8 @@ public class JFAgregarUsuario extends JIFBase {
             }
 
             if (idUsuario >= 1) {
-                usuarioBE=usuarioBL.getUsuarioBE(idUsuario);
-                MostrarDatos(usuarioBE);
+                usuarioBEOringinal=usuarioBL.getUsuarioBE(idUsuario);
+                MostrarDatos(usuarioBEOringinal);
                 this.setTitle("Modificar Usuario");
                 this.setBounds(10, 10, 497, 640);
                 jCBRol.enable(false);
@@ -438,12 +448,14 @@ public class JFAgregarUsuario extends JIFBase {
         int idRol=jCBRol.getSelectedIndex()+1;
         int idTipoCese=0;
         int idUsuario=Integer.parseInt(jTFCodigo.getText().trim());
+
         EstadoBE estadoBE = new EstadoBE();
         estadoBE.setIdEstado(idEstado);
         RolBE rolBE = new RolBE();
         rolBE.setIdRol(idRol);
         TipoCeseBE tipoCeseBE = new TipoCeseBE();
         tipoCeseBE.setIdTipoCEse(idTipoCese);
+
 
         ArrayList<CategoriaBE> listaCategorias=null;
         // hay q modificar la ventana para seleccionar varias categorias o areas academicas a la que pertenece el Usuario.
@@ -454,9 +466,17 @@ public class JFAgregarUsuario extends JIFBase {
                                           jTFNomUsuario.getText(),jTFContrasena.getText(),
                                           fechaI,fechaF,
                                           fechaC,estadoBE,rolBE,
-                                          listaCategorias,tipoCeseBE );
+                                          listaCategorias,tipoCeseBE,jTFCorreoE.getText());
 
-        r=usuarioBL.guardarUsuario(usuarioBE);
+
+        if(usuarioBEOringinal!=null){
+            r=usuarioBL.actualizarUsuario(usuarioBE, usuarioBEOringinal);
+        }
+        else{
+            r=usuarioBL.guardarUsuario(usuarioBE);
+        }
+
+
         if (r==false){
             JOptionPane.showMessageDialog(this,"Error. Verifique los datos ingresados", "Mensaje derror", JOptionPane.ERROR_MESSAGE);
         }
@@ -506,7 +526,7 @@ public class JFAgregarUsuario extends JIFBase {
         jCBEstado.setSelectedIndex(usuarioBE.getEstadoBE().getIdEstado()-1);
         cmbFechaInicio.setDate(usuarioBE.getFechaRegistro());
         cmbFechaFin.setDate(usuarioBE.getFechaVencimiento());
-
+        jTFCorreoE.setText(usuarioBE.getEmail());
     }
 
 

@@ -23,6 +23,15 @@ public class UsuarioBE {
     private RolBE rolBE;
     private ArrayList<CategoriaBE> categorias;
     private TipoCeseBE tipoCeseBE;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public EstadoBE getEstadoBE() {
         return estadoBE;
@@ -133,7 +142,7 @@ public class UsuarioBE {
         this.password = password;
     }
 
-    public UsuarioBE ( int idUsuario,String nombres,String apellidoPaterno,String apellidoMaterno,String nombreUsuario,String password,Date fechaRegistro,Date fechaVencimiento,Date fechaCese,EstadoBE estadoBE,RolBE rolBE,ArrayList<CategoriaBE> categorias, TipoCeseBE tipoCeseBE){
+    public UsuarioBE ( int idUsuario,String nombres,String apellidoPaterno,String apellidoMaterno,String nombreUsuario,String password,Date fechaRegistro,Date fechaVencimiento,Date fechaCese,EstadoBE estadoBE,RolBE rolBE,ArrayList<CategoriaBE> categorias, TipoCeseBE tipoCeseBE, String email){
 
            this.idUsuario=idUsuario;
            this.nombres=nombres;
@@ -148,6 +157,7 @@ public class UsuarioBE {
            this.rolBE=rolBE;
            this.categorias=categorias;
            this.tipoCeseBE=tipoCeseBE;
+           this.email=email;
      }
 
     public UsuarioBE(){

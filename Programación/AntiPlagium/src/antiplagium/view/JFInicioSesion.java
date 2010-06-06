@@ -11,6 +11,7 @@
 
 package antiplagium.view;
 
+import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.UsuarioBL;
 import antiplagium.DAL.ConexionJDBC;
 import java.awt.Color;
@@ -25,6 +26,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
     private UsuarioBL usuarioBL;
     private int autenticoUsuario;
     private JPasswordField jPFContrasena;
+    private UsuarioBE usuarioBE;
 
     /** Creates new form JFInicioSesion */
     public JFInicioSesion() {
@@ -131,6 +133,11 @@ public class JFInicioSesion extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton1KeyReleased(evt);
             }
         });
 
@@ -247,27 +254,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
 }//GEN-LAST:event_jTFNombreUsuarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        usuarioBL=new UsuarioBL();
-
-        int a=jPFContrasena.getPassword().length;
-        String cad="";
-        for(int i=0;i<a;i++){
-          cad+=jPFContrasena.getPassword()[i];
-         System.out.println(jPFContrasena.getPassword()[i]);
-        }
-        autenticoUsuario=usuarioBL.AutenticarUsuario(jTFNombreUsuario.getText(),cad);
-
-        if (autenticoUsuario==0) {
-              this.setVisible(false);
-              AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal();
-              principal.setVisible(true);
-              this.dispose();
-        }
-        else{
-            jPError.setVisible(true);
-        }
-            
-
+        this.IniciarSesion();
             
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -279,6 +266,33 @@ public class JFInicioSesion extends javax.swing.JFrame {
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
+        this.IniciarSesion();
+    }//GEN-LAST:event_jButton1KeyReleased
+
+    private void IniciarSesion(){
+        usuarioBL=new UsuarioBL();
+
+        int a=jPFContrasena.getPassword().length;
+        String cad="";
+        for(int i=0;i<a;i++){
+          cad+=jPFContrasena.getPassword()[i];
+         System.out.println(jPFContrasena.getPassword()[i]);
+        }
+        autenticoUsuario=usuarioBL.AutenticarUsuario(jTFNombreUsuario.getText(),cad);
+
+        if (autenticoUsuario>0) {
+              usuarioBE=usuarioBL.getUsuarioBE(autenticoUsuario);
+              this.setVisible(false);
+              AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal(usuarioBE);
+              principal.setVisible(true);
+              this.dispose();
+        }
+        else{
+            jPError.setVisible(true);
+        }
+    }
 
     /**
     * @param args the command line arguments
