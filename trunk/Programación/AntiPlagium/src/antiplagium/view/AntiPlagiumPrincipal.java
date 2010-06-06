@@ -20,7 +20,8 @@ public class AntiPlagiumPrincipal extends JFBase
 
     private Dimension dim;
 
-    public AntiPlagiumPrincipal() {        
+    public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
+        super(usuarioBE);
         initComponents();        
 //      ConexionJDBC.conexion();
         JMenuBar menu = this.getJMenuBar();

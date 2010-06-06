@@ -8,6 +8,7 @@ public class JIFBase extends javax.swing.JInternalFrame {
 
     public JIFBase() {
         super("", true, true, false, true);
+        //LBLUsuario.setText(JFBase.usuarioBE.getNombreUsuario());
         
     }
   

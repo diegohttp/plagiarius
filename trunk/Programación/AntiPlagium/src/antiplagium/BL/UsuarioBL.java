@@ -52,12 +52,12 @@ public class UsuarioBL {
                                       String apellidoMaterno,String nombreUsuario, String password,
                                       Date fechaRegistro, Date fechaVencimiento,Date fechaCese,
                                       EstadoBE estadoBE, RolBE rolBE, ArrayList<CategoriaBE> categorias,
-                                      TipoCeseBE tipoCeseBE){
+                                      TipoCeseBE tipoCeseBE,String email){
 
 
         usuarioBE=new UsuarioBE(idUsuario, nombres, apellidoPaterno, apellidoMaterno, nombreUsuario,
                                 password, fechaRegistro, fechaVencimiento, fechaCese, estadoBE, rolBE,
-                                categorias, tipoCeseBE);
+                                categorias, tipoCeseBE,email);
         return usuarioBE;
     }
 
@@ -82,6 +82,22 @@ public class UsuarioBL {
             return r;
         }
 
+    }
+
+    public boolean actualizarUsuario(UsuarioBE nuevoUsuario,UsuarioBE originalUsuario){
+        try {
+            ConexionJDBC.abrirConexion();
+            r = usuarioDAO.ActualizarUsuario(nuevoUsuario, originalUsuario);
+            ConexionJDBC.cerrarConexion();
+            return r;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+            return r;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+            return r;
+        }
     }
 
     public ResultSet getListaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea){
@@ -112,6 +128,8 @@ public class UsuarioBL {
             EstadoBE estadoBE = null;
             RolBE rolBE = null;
             TipoCeseBE tipoCeseBE = null;
+            String email=null;
+
             if (rsUsuarioBE != null) {
                 try {
                     while (rsUsuarioBE.next()) {
@@ -129,6 +147,7 @@ public class UsuarioBL {
                             idRol = (Integer) rsUsuarioBE.getObject(10);
                         }
                         else {idRol=0;}
+
                         if (rsUsuarioBE.getObject(11)!=null){
                             idTipoCese = (Integer) rsUsuarioBE.getObject(11);
                         }
@@ -138,6 +157,8 @@ public class UsuarioBL {
                             idEstado = (Integer) rsUsuarioBE.getObject(12);
                         }
                         else{idEstado=0;}
+                        
+                        email=(String)rsUsuarioBE.getObject(13);
 
                         estadoBE = new EstadoBE();
                         estadoBE.setIdEstado(idEstado);
@@ -147,6 +168,7 @@ public class UsuarioBL {
                         tipoCeseBE.setIdTipoCEse(idTipoCese);
                     }
                  ConexionJDBC.cerrarConexion();
+
                  ConexionJDBC.abrirConexion();
                  ResultSet rsCategorias;
                  rsCategorias = usuarioDAO.getCategorias(idUsuario);
@@ -163,8 +185,11 @@ public class UsuarioBL {
                             categorias.add(catBE);
                         }
                     }
-                    usuarioBE = new UsuarioBE(codigo, nombres, apellidoPaterno, apellidoMaterno, nombreUsuario, password, fechaRegistro, fechaVencimiento, fechaCese, estadoBE, rolBE, categorias, tipoCeseBE);
+
+                    usuarioBE = new UsuarioBE(codigo, nombres, apellidoPaterno, apellidoMaterno, nombreUsuario, password, fechaRegistro, fechaVencimiento, fechaCese, estadoBE, rolBE, categorias, tipoCeseBE,email);
+
                     ConexionJDBC.cerrarConexion();
+
                     return usuarioBE;
                 } catch (SQLException ex) {
                     Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);

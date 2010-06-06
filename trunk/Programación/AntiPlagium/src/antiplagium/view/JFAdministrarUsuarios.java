@@ -48,18 +48,24 @@ public class JFAdministrarUsuarios extends JIFBase {
             //        desktop=new JDesktopPane();
             //        setContentPane(desktop);
             initComponents();
+            //JTFNombreCompleto.setText(JFBase.usuarioBE.getApellidoPaterno());
             cmbCalendarioInicio.setSize(269, 29);
             Date fechaI = new Date();
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             fechaI = formato.parse("2010-05-01");
+
             cmbCalendarioInicio.setDate(fechaI);
             cmbCalendarioFin.setSize(269, 29);
+
             jPFechaInicio.add(cmbCalendarioInicio);
             jPFechaFin.add(cmbCalendarioFin);
+
             rolBL = new RolBL();
             categoriaBl = new CategoriaBL();
+
             try {
                 rolBL.AbrirConexion();
+
                 ResultSet registros = rolBL.getListRoles();
                 int numeroRegistros = registros.getRow();
                 jCBRol.addItem("Todos");
@@ -68,6 +74,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                     jCBRol.addItem(registros.getString("nombre"));
                 }
                 rolBL.CerrarConexion();
+
                 ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
                 jCBArea.addItem("Todos");
                 jCBArea.addItem("Ninguno");
@@ -75,6 +82,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                 for (int i = 0; i < cantidadCategorias; i++) {
                     jCBArea.addItem(listaCategorias.get(i).getNombre());
                 }
+
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -128,9 +136,9 @@ public class JFAdministrarUsuarios extends JIFBase {
         JBNuevo = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jMNuevo = new javax.swing.JMenu();
+        jMModificar = new javax.swing.JMenu();
+        jMEliminar = new javax.swing.JMenu();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -145,12 +153,6 @@ public class JFAdministrarUsuarios extends JIFBase {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
 
         jLabel2.setText("Nombre deUsuario");
-
-        jTFUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFUsuarioActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Rol");
 
@@ -340,41 +342,38 @@ public class JFAdministrarUsuarios extends JIFBase {
 
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
 
-        jMenu1.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
-        jMenu1.setText("Nuevo");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMNuevo.setBackground(new java.awt.Color(0, 153, 153));
+        jMNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
+        jMNuevo.setText("Nuevo");
+        jMNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMenu1MouseReleased(evt);
+                jMNuevoMouseReleased(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMNuevo);
 
-        jMenu2.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
-        jMenu2.setText("Modificar");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
-            }
+        jMModificar.setBackground(new java.awt.Color(0, 153, 153));
+        jMModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
+        jMModificar.setText("Modificar");
+        jMModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMenu2MouseReleased(evt);
+                jMModificarMouseReleased(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMModificar);
 
-        jMenu5.setBackground(new java.awt.Color(0, 153, 153));
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
-        jMenu5.setText("Eliminar");
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMEliminar.setBackground(new java.awt.Color(0, 153, 153));
+        jMEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
+        jMEliminar.setText("Eliminar");
+        jMEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
+                jMEliminarMouseClicked(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMenu5MouseReleased(evt);
+                jMEliminarMouseReleased(evt);
             }
         });
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jMEliminar);
 
         setJMenuBar(jMenuBar1);
 
@@ -409,7 +408,7 @@ public class JFAdministrarUsuarios extends JIFBase {
                     .addComponent(jBEliminar)
                     .addComponent(JBNuevo)
                     .addComponent(jBModificar))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -456,39 +455,31 @@ public class JFAdministrarUsuarios extends JIFBase {
         // TODO add your handling code here:
 }//GEN-LAST:event_jCBRolActionPerformed
 
-    private void jTFUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFUsuarioActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jTFUsuarioActionPerformed
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+    private void jMEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMEliminarMouseClicked
         
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_jMEliminarMouseClicked
 
-
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        
-    }//GEN-LAST:event_jMenu5MouseClicked
-
-    private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
+    private void jMNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMNuevoMouseReleased
         JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(0);
         jfAgregarUsuario.setVisible(true);
         AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
         jfAgregarUsuario.toFront();
-    }//GEN-LAST:event_jMenu1MouseReleased
+    }//GEN-LAST:event_jMNuevoMouseReleased
 
-    private void jMenu2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseReleased
+    private void jMModificarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMModificarMouseReleased
         JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(1);
         jfAgregarUsuario.setVisible(true);
         AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
         jfAgregarUsuario.toFront();
-    }//GEN-LAST:event_jMenu2MouseReleased
+    }//GEN-LAST:event_jMModificarMouseReleased
 
-    private void jMenu5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseReleased
+    private void jMEliminarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMEliminarMouseReleased
         JFEliminarUsuario jfEliminarUsuario = new JFEliminarUsuario();
         jfEliminarUsuario.setVisible(true);
         AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
         jfEliminarUsuario.toFront();
-    }//GEN-LAST:event_jMenu5MouseReleased
+    }//GEN-LAST:event_jMEliminarMouseReleased
 
     private void jBConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarActionPerformed
         try {
@@ -549,11 +540,11 @@ public class JFAdministrarUsuarios extends JIFBase {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMEliminar;
+    private javax.swing.JMenu jMModificar;
+    private javax.swing.JMenu jMNuevo;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPFechaFin;
