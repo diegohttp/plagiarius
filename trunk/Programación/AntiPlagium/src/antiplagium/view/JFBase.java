@@ -18,8 +18,7 @@ import javax.swing.UIManager;
 
 public class JFBase extends javax.swing.JFrame {
 
-    private Dimension dim;
-    private static String nombreUsuario =   "";
+    private Dimension dim;    
     private static String nombreRol =       "Principal";
     public static UsuarioBE usuarioBE=null;
 
