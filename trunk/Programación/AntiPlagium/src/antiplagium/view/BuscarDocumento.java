@@ -442,9 +442,12 @@ public class BuscarDocumento extends JDialog {
     }//GEN-LAST:event_jPanel1FocusGained
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-           RegistrarDocumento regdoc = new RegistrarDocumento(this.objUsuario);
-           regdoc.setModal(true);
-           regdoc.setVisible(true);
+           JDRegistrarDocumento reg = new JDRegistrarDocumento(this.objUsuario);
+           reg.setModal(true);
+           reg.setVisible(true);
+           //RegistrarDocumento regdoc = new RegistrarDocumento(this.objUsuario);
+           //regdoc.setModal(true);
+           //regdoc.setVisible(true);
             // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
@@ -455,9 +458,10 @@ public class BuscarDocumento extends JDialog {
 
     private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
         // TODO add your handling code here:
-         RegistrarDocumento regdoc = new RegistrarDocumento(this.objUsuario);
-         regdoc.setVisible(true);
-         regdoc.setTitle("Registrar Documento");
+        JDRegistrarDocumento reg = new JDRegistrarDocumento(this.objUsuario);
+        reg.setTitle("Registrar Documento");
+        reg.setModal(true);
+        reg.setVisible(true);
     }//GEN-LAST:event_jMenu1MousePressed
 
 
