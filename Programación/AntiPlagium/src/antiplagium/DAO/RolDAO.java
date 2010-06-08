@@ -16,10 +16,12 @@ public class RolDAO {
     private static String SQL_INSERT_PRIVILEGIOXROL = "INSERT INTO \"RolXPrivilegio\"(\"idPrivilegio\", \"idRol\") " +
                                                       "VALUES( " ;
 
+    private static String SQL_UPDATE_ROL = "UPDATE \"Rol\" SET \"idRol\"= " ;
+
     private static String SQL_SELECT_PRIVILEGIOS_X_ROL = "SELECT \"idPrivilegio\", RXP.\"idRol\" " +
                                                          "FROM \"RolXPrivilegio\" RXP " +
                                                          "INNER JOIN \"Rol\" R on  R.\"idRol\" = RXP.\"idRol\" " +
-                                                         "WHERE R.\"nombre\" = '" ;
+                                                         "WHERE R.\"nombre\" = '" ;    
         
     public ResultSet getRolesList() throws SQLException
     {
@@ -58,6 +60,15 @@ public class RolDAO {
 
         SQL_Insert = SQL_INSERT_ROL + idRol.toString() + ", \'" + nombreRol + "\', \'" + descripcion + "\')" ;
         ConexionJDBC.ejecutarUpdateString(SQL_Insert);
+    }
+
+    public void updateRol(Integer idRol, String nombreRol, String descripcion) throws SQLException
+    {
+        boolean _successful = false;
+        String SQL_UPDATE = null;
+          
+        SQL_UPDATE = SQL_UPDATE_ROL + idRol.toString() + ", \"nombre\"= \'" + nombreRol + "\', \"descripcion\" = \'" + descripcion + "\' WHERE \"idRol\" = " + idRol.toString();
+        ConexionJDBC.ejecutarQueryString(SQL_UPDATE);
     }
 
     public void insertDetallePrivilegio(Integer idRol, Integer idPrivilegio) throws SQLException
