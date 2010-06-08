@@ -17,16 +17,21 @@ import javax.swing.JDialog;
  * @author a20062010
  */
 public class JFVisualizarDocumento extends JDialog{
-    private int modo;
     /** Creates new form JFVisualizarDocumento */
-    public JFVisualizarDocumento(int modo,String doc) {
+    private ModificarDocumento padre = null;
+
+    public JFVisualizarDocumento(String doc) {
         super();
         initComponents();
-        this.modo = modo;
+        this.jMenuBar1.setVisible(false);
         jTextDoc.setText(doc);
-        if (this.modo == 0){
-            this.mnuModificar.setVisible(false);
-        }
+    }
+
+    public JFVisualizarDocumento(ModificarDocumento padre,String doc) {
+        super();
+        initComponents();
+        this.padre = padre;
+        jTextDoc.setText(doc);
     }
 
     /** This method is called from within the constructor to
@@ -169,6 +174,13 @@ public class JFVisualizarDocumento extends JDialog{
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if (padre == null){
+            this.setVisible(false);
+        }
+        else {
+            this.padre.setContenidoDoc(this.jTextDoc.getText());
+            this.setVisible(false);
+        }
 }//GEN-LAST:event_btnAceptarActionPerformed
     /**
      * @param args the command line arguments
