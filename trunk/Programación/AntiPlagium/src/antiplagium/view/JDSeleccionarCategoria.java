@@ -24,7 +24,7 @@ public class JDSeleccionarCategoria extends javax.swing.JDialog {
      private JDRegistrarDocumento padre;
      /** Creates new form JDSeleccionarCategoria */
     public JDSeleccionarCategoria(JDRegistrarDocumento padre,ArrayList<Boolean> seleccionado , ArrayList<CategoriaBE> gestorCategoria) {
-        super(padre,false);
+        //super(padre,false);
         initComponents();
         this.padre = padre;
         this.categorias = gestorCategoria;
@@ -73,12 +73,19 @@ public class JDSeleccionarCategoria extends javax.swing.JDialog {
 
             },
             new String [] {
-                "", "Categoria"
+                "Seleccionar", "Categoria"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -100,7 +107,7 @@ public class JDSeleccionarCategoria extends javax.swing.JDialog {
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
