@@ -37,6 +37,8 @@ public class JDRegistrarDocumento extends javax.swing.JFrame {
     private CategoriaBE objCategoriaBE;
     private UsuarioBE objUsuario;
     private DocumentoBE objDocumento;
+    private ArrayList<Boolean> catSelecionada;
+    private ArrayList<CategoriaBE> lstCategorias;
     /** Creates new form JDRegistrarDocumento */
     public JDRegistrarDocumento(UsuarioBE objUsuario) {
         cmbFechaInicio=new JCalendarCombo();
@@ -50,9 +52,10 @@ public class JDRegistrarDocumento extends javax.swing.JFrame {
         jPanel3.setEnabled(false);
         this.jComboBox1.removeAllItems();
 
-        ArrayList<CategoriaBE> lstCategorias = this.objUsuario.getCategorias();
+        lstCategorias = this.objUsuario.getCategorias();
         for (int i = 0 ; i < lstCategorias.size(); ++i){
             this.jComboBox1.addItem(lstCategorias.get(i));
+            this.catSelecionada.add(new Boolean(false));
         }
 
     }
@@ -172,10 +175,15 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 25, Short.MAX_VALUE)
         );
 
         jButton1.setText("Seleccione");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -373,7 +381,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombreDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                            .addComponent(txtNombreDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(txtRuta11))
@@ -383,7 +391,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombreDoc2, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                            .addComponent(txtNombreDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(txtRuta22))
@@ -394,7 +402,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombreDoc3, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                            .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(txtRuta33))
@@ -405,7 +413,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombreDoc4, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                            .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(txtRuta44))
@@ -416,7 +424,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombreDoc5, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                            .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel12)
                             .addComponent(jLabel13)
                             .addComponent(txtRuta55))
@@ -736,6 +744,12 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
 
         }
     }//GEN-LAST:event_btnBuscar5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JDSeleccionarCategoria selectCat = new JDSeleccionarCategoria(this.catSelecionada,this.lstCategorias);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
     * @param args the command line arguments
