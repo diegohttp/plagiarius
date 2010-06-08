@@ -107,15 +107,6 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
     * @param args the command line arguments
     */
 
-
-
-
-
-
-
-
-
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -501,16 +492,26 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
             this.cargarArchivo(1, nomArch);
-
         }
 }//GEN-LAST:event_btnBuscar1ActionPerformed
 
+private boolean seleccionoCategoria(){
+    for (int i=0; i  < this.catSelecionada.size(); ++i)
+            if (this.catSelecionada.get(i))
+                return true;
+    return false;
+}
+
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         DocumentoBE doc1=null,doc2=null,doc3=null,doc4=null,doc5=null;
-        boolean error = false;
+        if (!this.seleccionoCategoria()){
+            JOptionPane.showMessageDialog(null, "Se debe seleccionar alguna(s) categoria(s) para el (los) documento(s).");
+            return;
+        }
         if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc1.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 1.");
+                return;
             }
             else {
                 File file1 = new File(this.txtRuta11.getText());
@@ -543,6 +544,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         if (this.txtRuta22.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc2.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 2.");
+                return;
             } else {
                 File file1 = new File(this.txtRuta22.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
@@ -574,6 +576,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         if (this.txtRuta33.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc3.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 3.");
+                return;
             } else {
                 File file1 = new File(this.txtRuta33.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
@@ -605,6 +608,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         if (this.txtRuta44.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc4.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 4.");
+                return;
             } else {
                 File file1 = new File(this.txtRuta44.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
@@ -636,6 +640,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         if (this.txtRuta55.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc5.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 5.");
+                return;
             } else {
                 File file1 = new File(this.txtRuta55.getText());
                 String contenido = DocumentoBL.obtenerContenido(file1);
@@ -727,6 +732,10 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         }
     }//GEN-LAST:event_btnBuscar4ActionPerformed
 
+    public void setCategoriaSeleccionada(ArrayList<Boolean> seleccion){
+        this.catSelecionada = seleccion;
+    }
+
     private void btnBuscar5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar5MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscar5MouseClicked
@@ -747,8 +756,8 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JDSeleccionarCategoria selectCat = new JDSeleccionarCategoria(this.catSelecionada,this.lstCategorias);
-
+        JDSeleccionarCategoria selectCat = new JDSeleccionarCategoria(this,this.catSelecionada,this.lstCategorias);
+        selectCat.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
