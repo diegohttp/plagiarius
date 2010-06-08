@@ -1,92 +1,65 @@
 package antiplagium.view;
 
+import antiplagium.BE.RolBE;
 import antiplagium.BL.PrivilegioBL;
 import antiplagium.BL.RolBL;
 import java.awt.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
 public class JFAdministrarRoles extends JIFBase {
-
-    ResultSet tablaRoles = null;
+    
+    DefaultTableModel modeloTablaPrivilegios;
     ResultSet tablaPrivilegios = null;
-    DefaultTableModel modeloTablaPrivilegios = new DefaultTableModel();
-    JDesktopPane jdpPrincipal;
+    ResultSet tablaRoles = null;
+
+    ArrayList<RolBE> listaRolesBE = new ArrayList<RolBE>();
 
     public JFAdministrarRoles(JDesktopPane jdpPrincipal) {
-        initComponents();
-        this.jdpPrincipal = jdpPrincipal;
+        initComponents();    
         this.onLoad();
     }
 
     private void onLoad()
-    {        
+    {
         RolBL rolBL = new RolBL();
         PrivilegioBL privilegioBL = new PrivilegioBL();
 
-        modeloTablaPrivilegios = new DefaultTableModel(){
-       @Override
-              public boolean isCellEditable(int row, int col){                  
-                  return false;
-              }
-       };
-       modeloTablaPrivilegios.addColumn("ID");
-       modeloTablaPrivilegios.addColumn("Nombre");
-       modeloTablaPrivilegios.addColumn("Descripcion");
-       
+        modeloTablaPrivilegios = (DefaultTableModel) JTPrivilegios.getModel();
+
         try
         {
             rolBL.AbrirConexion();
             tablaRoles = rolBL.getListRoles();
-            while (tablaRoles.next()) jcbRol.addItem(tablaRoles.getString("nombre"));
+            while (tablaRoles.next())
+            {                
+                jcbRol.addItem(new RolBE(tablaRoles.getInt("idRol"), tablaRoles.getString("nombre"), tablaRoles.getString("nombre")));
+            }
             rolBL.CerrarConexion();
 
             privilegioBL.AbrirConexion();
             tablaPrivilegios = privilegioBL.getListPrivilegios();
-            if (tablaPrivilegios != null)
-            {
-                int numFilas = 0;
-                while (tablaPrivilegios.next()) {
-
+            if (tablaPrivilegios != null) {
+                while (tablaPrivilegios.next())
+                {
                     Object[] fila = new Object[4];
-
                     fila[0] = tablaPrivilegios.getObject("idPrivilegio");
                     fila[1] = tablaPrivilegios.getObject("nombre").toString().trim();
                     fila[2] = tablaPrivilegios.getObject("descripcion").toString().trim();
-
-                    numFilas++;
+                    fila[3] = false;
                     modeloTablaPrivilegios.addRow(fila);
                 }
-
-                Boolean[] columna = new Boolean[numFilas];
-                for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++) columna[i] = new Boolean(false);
-
-                modeloTablaPrivilegios.addColumn("", columna);
-                JTPrivilegios.setModel(modeloTablaPrivilegios);
-                JTPrivilegios.getColumnModel().getColumn(0).setPreferredWidth(25);
-                JTPrivilegios.getColumnModel().getColumn(1).setPreferredWidth(150);
-                JTPrivilegios.getColumnModel().getColumn(2).setPreferredWidth(175);
-                JTPrivilegios.getColumnModel().getColumn(3).setPreferredWidth(30);
-                JTPrivilegios.getColumn("").setCellRenderer(new MultiRenderer());
-                JTPrivilegios.updateUI();
             }
             privilegioBL.CerrarConexion();
-        } 
-        catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        catch (SQLException excepcionSQL)
-        {
+        } catch (SQLException excepcionSQL) {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }     
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -153,14 +126,14 @@ public class JFAdministrarRoles extends JIFBase {
 
             },
             new String [] {
-                "Privilegio", ""
+                "ID", "Privilegio", "Descripcion", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -171,11 +144,13 @@ public class JFAdministrarRoles extends JIFBase {
                 return canEdit [columnIndex];
             }
         });
+        JTPrivilegios.setName("JTPrivilegios"); // NOI18N
         jScrollPane1.setViewportView(JTPrivilegios);
-        JTPrivilegios.getColumnModel().getColumn(0).setResizable(false);
-        JTPrivilegios.getColumnModel().getColumn(0).setPreferredWidth(60);
-        JTPrivilegios.getColumnModel().getColumn(1).setResizable(false);
-        JTPrivilegios.getColumnModel().getColumn(1).setPreferredWidth(140);
+        JTPrivilegios.getColumnModel().getColumn(0).setPreferredWidth(20);
+        JTPrivilegios.getColumnModel().getColumn(1).setMinWidth(120);
+        JTPrivilegios.getColumnModel().getColumn(1).setPreferredWidth(100);
+        JTPrivilegios.getColumnModel().getColumn(2).setPreferredWidth(120);
+        JTPrivilegios.getColumnModel().getColumn(3).setPreferredWidth(20);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -257,7 +232,7 @@ public class JFAdministrarRoles extends JIFBase {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(28, 28, 28)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,7 +265,7 @@ public class JFAdministrarRoles extends JIFBase {
             if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true) listaPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
         }
 
-        JFAgregarRol jfAgregarRol = new JFAgregarRol(jcbRol.getSelectedItem().toString(), listaPrivilegios);
+        JFAgregarRol jfAgregarRol = new JFAgregarRol((RolBE)jcbRol.getSelectedItem(), listaPrivilegios);
         AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
         jfAgregarRol.toFront();
         jfAgregarRol.setVisible(true);
@@ -312,7 +287,7 @@ public class JFAdministrarRoles extends JIFBase {
         try
         {
             rolBL.AbrirConexion();
-            tablaPrivilegiosXRol = rolBL.getPrivilegiosPorROl((String) jcbRol.getSelectedItem());
+            tablaPrivilegiosXRol = rolBL.getPrivilegiosPorROl(((RolBE)jcbRol.getSelectedItem()).getNombre());
             if (tablaPrivilegiosXRol != null)
             {
                 while(tablaPrivilegiosXRol.next())
