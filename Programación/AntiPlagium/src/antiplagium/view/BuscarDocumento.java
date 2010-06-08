@@ -505,7 +505,7 @@ public class BuscarDocumento extends JDialog {
         int idx = this.jtabPaquetes.getSelectedRow();
         if (idx >= 0){
             String contenido = this.arrDocumentos.get(idx).getContenido();
-            JFVisualizarDocumento vis = new JFVisualizarDocumento(contenido);
+            JFVisualizarDocumento vis = new JFVisualizarDocumento(0,contenido);
             vis.setModal(true);
             vis.setVisible(true);
         }
