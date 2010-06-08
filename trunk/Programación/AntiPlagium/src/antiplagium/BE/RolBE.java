@@ -19,6 +19,21 @@ public class RolBE {
 
     private ArrayList<Integer> privilegios;
 
+    public RolBE()
+    {
+        this.setIdRol(0);
+        this.setNombre("");
+        this.setDescripcion("");
+        
+    }
+
+    public RolBE(int idRol, String nombre,String descripcion)
+    {
+        this.setIdRol(idRol);
+        this.setNombre(nombre);
+        this.setDescripcion(descripcion);
+    }
+
     public void RolBE(String nombre,String descripcion)
     {
         this.setNombre(nombre);
@@ -58,6 +73,10 @@ public class RolBE {
         this.idRol = idRol;
     }
 
-
-
+    @Override
+    public String toString()
+    {
+        return this.getNombre();
+    }
+            
 }
