@@ -22,12 +22,12 @@ import javax.swing.table.DefaultTableModel;
 public class JDSeleccionarCategoria extends javax.swing.JDialog {
      ArrayList<CategoriaBE> categorias;
     /** Creates new form JDSeleccionarCategoria */
-    public JDSeleccionarCategoria(ArrayList<CategoriaBE> gestorCategoria) {
+    public JDSeleccionarCategoria(ArrayList<Boolean> seleccionado , ArrayList<CategoriaBE> gestorCategoria) {
         initComponents();
         this.categorias = gestorCategoria;
         DefaultTableModel tmp = (DefaultTableModel) this.jTable1.getModel();
         for (int i=0; i < categorias.size(); ++i){
-           Object[] elem= { new Boolean(false) , categorias.get(i)};
+           Object[] elem= { seleccionado.get(i) , categorias.get(i)};
            tmp.addRow(elem);
         }
     }
