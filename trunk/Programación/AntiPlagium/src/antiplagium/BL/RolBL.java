@@ -73,7 +73,12 @@ public class RolBL {
             }
         } 
     }
-
-
-
+    
+    public void updateRol(RolBE rolBE, ArrayList<Integer> listPrivilegios) throws SQLException
+    {
+        RolDAO rolDAO = new RolDAO();
+        ResultSet tabla = null;        
+                       
+        rolDAO.updateRol(rolBE.getIdRol(), rolBE.getNombre(), rolBE.getDescripcion());
+    }
 }
