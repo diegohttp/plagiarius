@@ -492,6 +492,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
+            this.txtNombreDoc1.setText(chooser.getSelectedFile().getName());
             this.cargarArchivo(1, nomArch);
         }
 }//GEN-LAST:event_btnBuscar1ActionPerformed
@@ -692,8 +693,8 @@ private boolean seleccionoCategoria(){
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
+            this.txtNombreDoc2.setText(chooser.getSelectedFile().getName());
             this.cargarArchivo(2, nomArch);
-
         }
     }//GEN-LAST:event_btnBuscar2ActionPerformed
 
@@ -703,6 +704,15 @@ private boolean seleccionoCategoria(){
 
     private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
         // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setApproveButtonText("Cargar");
+        //chooser.addChoosableFileFilter(new TxTFilter());
+        int retVal = chooser.showOpenDialog(this);
+        if (retVal == chooser.APPROVE_OPTION) {
+            String nomArch = chooser.getSelectedFile().getAbsolutePath();
+            this.txtNombreDoc3.setText(chooser.getSelectedFile().getName());
+            this.cargarArchivo(3, nomArch);
+        }
     }//GEN-LAST:event_btnBuscar3ActionPerformed
 
     private void btnBuscar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar4MouseClicked
@@ -714,8 +724,8 @@ private boolean seleccionoCategoria(){
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
-            this.cargarArchivo(3, nomArch);
-
+            this.txtNombreDoc4.setText(chooser.getSelectedFile().getName());
+            this.cargarArchivo(4, nomArch);
         }
     }//GEN-LAST:event_btnBuscar4MouseClicked
 
@@ -728,8 +738,8 @@ private boolean seleccionoCategoria(){
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
-            this.cargarArchivo(5, nomArch);
-
+            this.txtNombreDoc4.setText(chooser.getSelectedFile().getName());
+            this.cargarArchivo(4, nomArch);
         }
     }//GEN-LAST:event_btnBuscar4ActionPerformed
 
@@ -750,8 +760,8 @@ private boolean seleccionoCategoria(){
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
+            this.txtNombreDoc5.setText(chooser.getSelectedFile().getName());
             this.cargarArchivo(5, nomArch);
-
         }
     }//GEN-LAST:event_btnBuscar5ActionPerformed
 
