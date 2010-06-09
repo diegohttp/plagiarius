@@ -17,17 +17,20 @@ import java.util.ArrayList;
  */
 public class DetectorBL {
     public ArrayList<ConexionOracionBE> listaConexiones= new ArrayList<ConexionOracionBE>();
+    private int resultado;
     public static ArrayList<String> listaPalNoSignificativas= new ArrayList<String>();
     public static String letrasNoSignificativas= "";
-    public int comparar(DocumentoBE doc1, DocumentoBE doc2){
+
+
+    public void comparar(DocumentoBE doc1, DocumentoBE doc2){
         int numOr1= doc1.getListaOraciones().size();
         int numOr2= doc2.getListaOraciones().size();
 
         for (int i=0; i<numOr1; i++){
             ConexionOracionBE con=null;
             for (int j=0; j<numOr2; j++){
-                int resultado=compararOraciones(doc1.getListaOraciones().get(i),doc2.getListaOraciones().get(j));
-                if (resultado>=70) {
+                int resultadoOr=compararOraciones(doc1.getListaOraciones().get(i),doc2.getListaOraciones().get(j));
+                if (resultadoOr>=70) {
                     ConexionOracionBE con2= new ConexionOracionBE(doc1.getIdDocumento(), doc2.getIdDocumento(),i, j, resultado );
                     if (con==null) con=con2;
                     else if (con2.getPorcentaje()>con.getPorcentaje()) con=con2;
@@ -38,7 +41,7 @@ public class DetectorBL {
             this.listaConexiones.add(con);
         }
 
-        return promedioDeConexiones();
+        resultado=  promedioDeConexiones();
     }
 
     public static void cargarPalabrasNoSignificativas(){
@@ -64,7 +67,7 @@ public class DetectorBL {
             entrada = new BufferedReader(new FileReader(f));
             while (entrada.ready()){
                 String linea=entrada.readLine();
-
+                DetectorBL.letrasNoSignificativas+=linea;
 
             }
         } catch (Exception ex) {

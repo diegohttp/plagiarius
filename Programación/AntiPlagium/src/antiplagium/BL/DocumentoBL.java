@@ -64,7 +64,7 @@ public class DocumentoBL {
         String pal = "";
         for (int i = 0; i < palabra.length(); i++) {
             char c = palabra.charAt(i);
-            if (c == ',' || c == '.' || c == '?' || c == '¿' || c == '!' || c == '¡') {
+            if (DetectorBL.letrasNoSignificativas.contains(""+c)) {
                 continue;
             }
 
