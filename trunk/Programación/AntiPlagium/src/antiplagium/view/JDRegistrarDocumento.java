@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 import org.freixas.jcalendar.JCalendarCombo;
 
 /*
@@ -225,11 +226,6 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         txtRuta11.setEnabled(false);
 
         btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
-        btnBuscar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscar1MouseClicked(evt);
-            }
-        });
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscar1ActionPerformed(evt);
@@ -261,11 +257,6 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         txtRuta55.setEnabled(false);
 
         btnBuscar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
-        btnBuscar2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscar2MouseClicked(evt);
-            }
-        });
         btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscar2ActionPerformed(evt);
@@ -273,11 +264,6 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         });
 
         btnBuscar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
-        btnBuscar3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscar3MouseClicked(evt);
-            }
-        });
         btnBuscar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscar3ActionPerformed(evt);
@@ -285,11 +271,6 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         });
 
         btnBuscar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
-        btnBuscar4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscar4MouseClicked(evt);
-            }
-        });
         btnBuscar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscar4ActionPerformed(evt);
@@ -297,11 +278,6 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         });
 
         btnBuscar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
-        btnBuscar5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscar5MouseClicked(evt);
-            }
-        });
         btnBuscar5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscar5ActionPerformed(evt);
@@ -480,14 +456,14 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void btnBuscar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar1MouseClicked
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnBuscar1MouseClicked
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
 // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
+        ExtensionValida ext = new ExtensionValida();
+        chooser.setFileFilter(ext);
+        chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
@@ -506,10 +482,11 @@ private boolean seleccionoCategoria(){
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         DocumentoBE doc1=null,doc2=null,doc3=null,doc4=null,doc5=null;
-        if (!this.seleccionoCategoria()){
+        /* Falta implementar la parte de multiples categorias para documentos */
+        /*if (!this.seleccionoCategoria()){
             JOptionPane.showMessageDialog(null, "Se debe seleccionar alguna(s) categoria(s) para el (los) documento(s).");
             return;
-        }
+        }*/
         if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc1.getText().compareTo("") == 0) {
                 JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 1.");
@@ -680,15 +657,14 @@ private boolean seleccionoCategoria(){
         this.dispose();
 }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnBuscar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar2MouseClicked
-
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
+        ExtensionValida ext = new ExtensionValida();
+        chooser.setFileFilter(ext);
+        chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
@@ -698,14 +674,13 @@ private boolean seleccionoCategoria(){
         }
     }//GEN-LAST:event_btnBuscar2ActionPerformed
 
-    private void btnBuscar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar3MouseClicked
-
     private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
+        ExtensionValida ext = new ExtensionValida();
+        chooser.setFileFilter(ext);
+        chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
@@ -715,25 +690,14 @@ private boolean seleccionoCategoria(){
         }
     }//GEN-LAST:event_btnBuscar3ActionPerformed
 
-    private void btnBuscar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar4MouseClicked
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setApproveButtonText("Cargar");
-        //chooser.addChoosableFileFilter(new TxTFilter());
-        int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION) {
-            String nomArch = chooser.getSelectedFile().getAbsolutePath();
-            this.txtNombreDoc4.setText(chooser.getSelectedFile().getName());
-            this.cargarArchivo(4, nomArch);
-        }
-    }//GEN-LAST:event_btnBuscar4MouseClicked
-
     private void btnBuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar4ActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
+        ExtensionValida ext = new ExtensionValida();
+        chooser.setFileFilter(ext);
+        chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
@@ -747,15 +711,14 @@ private boolean seleccionoCategoria(){
         this.catSelecionada = seleccion;
     }
 
-    private void btnBuscar5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar5MouseClicked
-
     private void btnBuscar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar5ActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
+        ExtensionValida ext = new ExtensionValida();
+        chooser.setFileFilter(ext);
         chooser.setApproveButtonText("Cargar");
+        chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
@@ -817,4 +780,34 @@ private boolean seleccionoCategoria(){
     private javax.swing.JTextField txtRuta44;
     private javax.swing.JTextField txtRuta55;
     // End of variables declaration//GEN-END:variables
+
+    class ExtensionValida extends FileFilter {
+
+        public String getExtension(File f) {
+            String ext = null;
+            String s = f.getName();
+            int i = s.lastIndexOf('.');
+
+            if (i > 0 &&  i < s.length() - 1) {
+                ext = s.substring(i+1).toLowerCase();
+            }
+            return ext;
+        }
+        @Override
+        public boolean accept(File f) {
+            if (f.isDirectory()){
+                return true;
+            }
+            String ext = this.getExtension(f);
+            if (ext != null && (ext.equals("txt") || ext.equals("doc")))
+                return true;
+            return false;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Solo .txt y .doc";
+        }
+    }
+
 }
