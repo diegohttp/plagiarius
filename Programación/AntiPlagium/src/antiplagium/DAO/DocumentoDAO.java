@@ -130,6 +130,7 @@ public class DocumentoDAO {
         String strSentencia = "UPDATE \"Documento\" SET ";
         strSentencia += " nombre = '"+objDocumento.getNombre()+ "',"+
                 " \"idCategoria\" = " + objDocumento.getCategoria().getIdCategoria();
+        strSentencia += ", contenido = '" + objDocumento.getContenido() + "'";
         strSentencia += " WHERE \"idDocumento\" = " + objDocumento.getIdDocumento();
         System.out.println(strSentencia);
         try{
