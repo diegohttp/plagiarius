@@ -49,12 +49,8 @@ public class DocumentoBE {
         this.categoria = categoria;
     }
 
-    public DocumentoBE(int id, String est, String nom, UsuarioBE Us, CategoriaBE categoria,String contenido) {
-        this.idDocumento = id;
-        this.estado = est;
-        this.nombre = nom;
-        this.usuario = Us;
-        this.categoria = categoria;
+    public void armarEstructura() {
+       
         BufferedReader entrada = null;
         try {
             entrada = new BufferedReader(new StringReader(contenido));
