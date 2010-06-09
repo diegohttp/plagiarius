@@ -341,7 +341,7 @@ public class JFCompararDocumentos extends JDialog {
             return;
         }
         
-        VisualizarComparacion vis = new VisualizarComparacion(this.doc1,this.docs);
+        JDVisualizarComparacion vis = new JDVisualizarComparacion(this.doc1,this.docs);
         vis.setModal(true);
         vis.setVisible(true);
         

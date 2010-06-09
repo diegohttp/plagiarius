@@ -4,7 +4,7 @@
  */
 
 /*
- * VisualizarComparacion.java
+ * JDVisualizarComparacion.java
  *
  * Created on 03/06/2010, 06:56:17 PM
  */
@@ -18,13 +18,13 @@ import java.util.ArrayList;
  *
  * @author a20062010
  */
-public class VisualizarComparacion extends javax.swing.JDialog {
+public class JDVisualizarComparacion extends javax.swing.JDialog {
 
     private DocumentoBE doc1;
     private GestorDocumentosBE listaDocs = new GestorDocumentosBE();
 
     
-    public VisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
+    public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
         this.doc1=doc;
         this.listaDocs=listaDoc;
         initComponents();
