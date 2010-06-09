@@ -199,6 +199,7 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
             nuevo.setIdDocumento(this.objDocumento.getIdDocumento());
             nuevo.setCategoria((CategoriaBE)this.ComboCategoria.getSelectedItem());
             nuevo.setNombre(this.txtNombreDoc.getText());
+            nuevo.setContenido(this.objDocumento.getContenido());
             if (DocumentoBL.modificar(nuevo)){
                 JOptionPane.showMessageDialog(this, "El documento fue modificado con exito", "Modificar Documento", JOptionPane.INFORMATION_MESSAGE);
             }
