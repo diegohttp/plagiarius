@@ -12,6 +12,7 @@ package antiplagium.view;
 
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.GestorDocumentosBE;
+import antiplagium.BL.DetectorBL;
 import java.util.ArrayList;
 
 /**
@@ -21,16 +22,50 @@ import java.util.ArrayList;
 public class JDVisualizarComparacion extends javax.swing.JDialog {
 
     private DocumentoBE doc1;
-    private GestorDocumentosBE listaDocs = new GestorDocumentosBE();
+    private GestorDocumentosBE docs = new GestorDocumentosBE();
+    private ArrayList<DetectorBL> detectores = new ArrayList<DetectorBL>();
 
-    
     public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
-        this.doc1=doc;
-        this.listaDocs=listaDoc;
+        this.doc1 = doc;
+        this.docs = listaDoc;
         initComponents();
 
         this.lblDoc1.setText(doc1.getNombre());
-        this.lblDoc2.setText(listaDocs.get(0).getNombre());
+        this.lblDoc2.setText(docs.get(0).getNombre());
+
+        this.realizarComparacion();
+        return;
+
+    }
+
+    public void realizarComparacion() {
+        this.lblTiempo.setText("Realizando comparación...");
+
+        this.pgbComparacion.setMaximum(100);
+
+        int paso= 100/this.docs.cantElementos(), valorActual=0;
+         this.pgbComparacion.setValue(valorActual);
+
+        this.doc1.armarEstructura();
+
+        long tInicio= System.currentTimeMillis();
+
+        for (int i = 0; i < this.docs.cantElementos(); i++) {
+            DetectorBL dec= new DetectorBL();
+            docs.get(i).armarEstructura();
+            dec.comparar(doc1, docs.get(i));
+            this.detectores.add(dec);
+            valorActual+=paso;
+            this.pgbComparacion.setValue(valorActual);
+            if (i==this.docs.cantElementos()-1)  this.pgbComparacion.setValue(100);
+        }
+
+        long tFin= System.currentTimeMillis();
+
+        this.lblTiempo.setText("Tiempo total de comparación: "+(tFin-tInicio)+" ms.");
+
+        
+        
     }
 
     /** This method is called from within the constructor to
