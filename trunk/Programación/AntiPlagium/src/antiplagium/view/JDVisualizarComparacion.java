@@ -25,16 +25,27 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private GestorDocumentosBE docs = new GestorDocumentosBE();
     private ArrayList<DetectorBL> detectores = new ArrayList<DetectorBL>();
 
+    private int docActual=0;
+
     public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
         this.doc1 = doc;
         this.docs = listaDoc;
         initComponents();
+        this.etiquetarValoresIniciales();
 
+        this.realizarComparacion();
+
+        this.actualizar();
+    }
+
+    public void etiquetarValoresIniciales(){
         this.lblDoc1.setText(doc1.getNombre());
         this.lblDoc2.setText(docs.get(0).getNombre());
 
-        this.realizarComparacion();
-        return;
+        this.txtDoc1.setText(doc1.getContenido());
+        this.txtDoc2.setText(docs.get(0).getContenido());
+
+        this.lblTotalDocs.setText("de "+docs.cantElementos());
 
     }
 
@@ -68,6 +79,24 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         
     }
 
+    public void actualizar(){
+        this.lblDoc2.setText(docs.get(docActual).getNombre());
+        this.txtDoc1.setText(doc1.getContenido());
+        this.txtDoc2.setText(docs.get(docActual).getContenido());
+        int res=detectores.get(docActual).getResultado();
+        this.lblPorc.setText("Porcentaje de similitud: "+res +" %");
+
+        if (res<50){
+            this.lblNivel.setText("Bajo");
+        }
+        else if (res<70){
+            this.lblNivel.setText("Medio");
+        }
+        else this.lblNivel.setText("Alto");
+
+        this.txtNumDoc.setText(""+docActual);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -80,18 +109,23 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextDoc = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtDoc1 = new javax.swing.JTextPane();
         pgbComparacion = new javax.swing.JProgressBar();
         lblDoc1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextDoc1 = new javax.swing.JTextArea();
+        txtDoc2 = new javax.swing.JTextPane();
         lblDoc2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         lblPorc = new javax.swing.JLabel();
         lblTiempo = new javax.swing.JLabel();
         lblNivel = new javax.swing.JLabel();
+        txtNumDoc = new javax.swing.JTextField();
+        btnDocAnterior = new javax.swing.JButton();
+        lblTotalDocs = new javax.swing.JLabel();
+        btnDocSgte = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento comparado"));
 
@@ -101,11 +135,10 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextDoc.setColumns(20);
-        jTextDoc.setEditable(false);
-        jTextDoc.setRows(5);
-        jTextDoc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane1.setViewportView(jTextDoc);
+        txtDoc1.setEditable(false);
+        jScrollPane3.setViewportView(txtDoc1);
+
+        jScrollPane1.setViewportView(jScrollPane3);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,6 +174,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        lblDoc1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         lblDoc1.setText("Doc1");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento de referencia"));
@@ -151,11 +185,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextDoc1.setColumns(20);
-        jTextDoc1.setEditable(false);
-        jTextDoc1.setRows(5);
-        jTextDoc1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane2.setViewportView(jTextDoc1);
+        txtDoc2.setEditable(false);
+        jScrollPane2.setViewportView(txtDoc2);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -191,6 +222,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        lblDoc2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         lblDoc2.setText("Doc2");
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
@@ -205,8 +237,27 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
         lblTiempo.setText("Tiempo total de comparación:");
 
-        lblNivel.setFont(new java.awt.Font("Showcard Gothic", 1, 11)); // NOI18N
+        lblNivel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblNivel.setText("Alto");
+
+        txtNumDoc.setEnabled(false);
+
+        btnDocAnterior.setText("^");
+        btnDocAnterior.setEnabled(false);
+        btnDocAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocAnteriorActionPerformed(evt);
+            }
+        });
+
+        lblTotalDocs.setText("jLabel1");
+
+        btnDocSgte.setText("v");
+        btnDocSgte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocSgteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,20 +266,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(pgbComparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
-                                .addComponent(lblPorc)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTiempo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
-                                .addComponent(lblNivel)
-                                .addGap(257, 257, 257)))
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57))
+                    .addComponent(pgbComparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTiempo)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,34 +275,63 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDoc2)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(90, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(lblPorc)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(lblNivel)
+                                                .addGap(158, 158, 158)))
+                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnDocSgte)
+                                    .addComponent(btnDocAnterior)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(lblTotalDocs)))))))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDoc1)
-                    .addComponent(lblDoc2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPorc)
-                            .addComponent(pgbComparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTiempo)
-                            .addComponent(lblNivel))))
-                .addGap(19, 19, 19))
+                            .addComponent(lblDoc1)
+                            .addComponent(lblDoc2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(pgbComparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblTiempo)
+                                        .addComponent(lblNivel)))
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPorc)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(258, 258, 258)
+                        .addComponent(btnDocAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTotalDocs))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDocSgte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,10 +341,26 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.setVisible(false);
 }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnDocAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocAnteriorActionPerformed
+        this.docActual--;
+        this.btnDocSgte.setEnabled(true);
+        if (docActual==0) this.btnDocAnterior.setEnabled(false);
+        this.actualizar();
+}//GEN-LAST:event_btnDocAnteriorActionPerformed
+
+    private void btnDocSgteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocSgteActionPerformed
+        this.docActual++;
+        this.btnDocAnterior.setEnabled(true);
+        if (docActual==docs.cantElementos()-1) this.btnDocSgte.setEnabled(false);
+        this.actualizar();
+}//GEN-LAST:event_btnDocSgteActionPerformed
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDocAnterior;
+    private javax.swing.JButton btnDocSgte;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -284,13 +368,16 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextDoc;
-    private javax.swing.JTextArea jTextDoc1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblDoc1;
     private javax.swing.JLabel lblDoc2;
     private javax.swing.JLabel lblNivel;
     private javax.swing.JLabel lblPorc;
     private javax.swing.JLabel lblTiempo;
+    private javax.swing.JLabel lblTotalDocs;
     private javax.swing.JProgressBar pgbComparacion;
+    private javax.swing.JTextPane txtDoc1;
+    private javax.swing.JTextPane txtDoc2;
+    private javax.swing.JTextField txtNumDoc;
     // End of variables declaration//GEN-END:variables
 }
