@@ -31,14 +31,16 @@ public class DetectorBL {
             for (int j=0; j<numOr2; j++){
                 int resultadoOr=compararOraciones(doc1.getListaOraciones().get(i),doc2.getListaOraciones().get(j));
                 if (resultadoOr>=70) {
-                    ConexionOracionBE con2= new ConexionOracionBE(doc1.getIdDocumento(), doc2.getIdDocumento(),i, j, resultado );
+                    ConexionOracionBE con2= new ConexionOracionBE(doc1.getIdDocumento(), doc2.getIdDocumento(),i, j, resultadoOr );
                     if (con==null) con=con2;
-                    else if (con2.getPorcentaje()>con.getPorcentaje()) con=con2;
-                    if (con.getPorcentaje()==100) break;
+                    else if (con2.getPorcentaje()>con.getPorcentaje()) {
+                        con=con2;
+                        if (con.getPorcentaje()==100) break;
+                    }
 
                 }
             }
-            this.listaConexiones.add(con);
+            if (con!=null) this.listaConexiones.add(con);
         }
 
         resultado=  promedioDeConexiones();
