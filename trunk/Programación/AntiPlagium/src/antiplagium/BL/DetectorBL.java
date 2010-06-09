@@ -97,6 +97,22 @@ public class DetectorBL {
         int porc2=(int)((float)numRep/numPal2*100);
         return (porc1+porc2)/2;
     }
+
+    public ArrayList<ConexionOracionBE> getListaConexiones() {
+        return listaConexiones;
+    }
+
+    public void setListaConexiones(ArrayList<ConexionOracionBE> listaConexiones) {
+        this.listaConexiones = listaConexiones;
+    }
+
+    public int getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(int resultado) {
+        this.resultado = resultado;
+    }
 }
 
 
