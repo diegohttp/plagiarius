@@ -227,14 +227,14 @@ public class BuscarDocumento extends JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cboEstado, 0, 150, Short.MAX_VALUE)
-                        .addContainerGap(234, Short.MAX_VALUE))
+                        .addComponent(cboEstado, 0, 152, Short.MAX_VALUE)
+                        .addContainerGap(236, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtIdUsuario)
                             .addComponent(cboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))))
         );
@@ -296,11 +296,6 @@ public class BuscarDocumento extends JDialog {
                 jMenu1MousePressed(evt);
             }
         });
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
@@ -310,11 +305,6 @@ public class BuscarDocumento extends JDialog {
                 jMenu2MousePressed(evt);
             }
         });
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Modificar(evt);
-            }
-        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
@@ -322,11 +312,6 @@ public class BuscarDocumento extends JDialog {
         jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jMenu3MousePressed(evt);
-            }
-        });
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
             }
         });
         jMenuBar1.add(jMenu3);
@@ -441,16 +426,6 @@ public class BuscarDocumento extends JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1FocusGained
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-           JDRegistrarDocumento reg = new JDRegistrarDocumento(this.objUsuario);
-           reg.setModal(true);
-           reg.setVisible(true);
-           //RegistrarDocumento regdoc = new RegistrarDocumento(this.objUsuario);
-           //regdoc.setModal(true);
-           //regdoc.setVisible(true);
-            // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -484,10 +459,10 @@ public class BuscarDocumento extends JDialog {
             } catch (SQLException ex) {
                 java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             }
-              vModificarDoc.setVisible(true);
-              vModificarDoc.setTitle("Modificar Documento");
-               
-            }
+            vModificarDoc.setTitle("Modificar Documento");
+            vModificarDoc.setModal(true);
+            vModificarDoc.setVisible(true);
+        }
     }//GEN-LAST:event_jMenu2MousePressed
 
     private void txtIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdUsuarioActionPerformed
@@ -540,15 +515,6 @@ public class BuscarDocumento extends JDialog {
 
 
     /*Eliminar*/
-
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-         
-
-    }//GEN-LAST:event_jMenu3ActionPerformed
-
-    private void Modificar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar
-       
-    }//GEN-LAST:event_Modificar
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int idx = this.jtabPaquetes.getSelectedRow();
