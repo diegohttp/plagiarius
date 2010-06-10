@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
-public class JFAdministrarRoles extends JIFBase {
+public class JDAdministrarRoles extends JDialog {
     
     DefaultTableModel modeloTablaPrivilegios;
     ResultSet tablaPrivilegios = null;
@@ -19,8 +19,9 @@ public class JFAdministrarRoles extends JIFBase {
 
     ArrayList<RolBE> listaRolesBE = new ArrayList<RolBE>();
 
-    public JFAdministrarRoles(JDesktopPane jdpPrincipal) {
-        initComponents();    
+    public JDAdministrarRoles()
+    {
+        initComponents();
         this.onLoad();
     }
 
@@ -81,8 +82,8 @@ public class JFAdministrarRoles extends JIFBase {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
-        setResizable(false);
         setTitle("Administrar Roles");
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("ROL"));
 
@@ -248,9 +249,9 @@ public class JFAdministrarRoles extends JIFBase {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
-        JFAgregarRol jfAgregarRol = new JFAgregarRol();
-        AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
-        jfAgregarRol.toFront();
+        JDAgregarRol jfAgregarRol = new JDAgregarRol();
+        jfAgregarRol.setLocationRelativeTo(this);
+        jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
 }//GEN-LAST:event_JBNuevoActionPerformed
 
@@ -265,14 +266,14 @@ public class JFAdministrarRoles extends JIFBase {
             if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true) listaPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
         }
 
-        JFAgregarRol jfAgregarRol = new JFAgregarRol((RolBE)jcbRol.getSelectedItem(), listaPrivilegios);
-        AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
-        jfAgregarRol.toFront();
+        JDAgregarRol jfAgregarRol = new JDAgregarRol((RolBE)jcbRol.getSelectedItem(), listaPrivilegios);
+        jfAgregarRol.setLocationRelativeTo(this);
+        jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
 }//GEN-LAST:event_JBModificarActionPerformed
 
     private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
-        JFAgregarRol jfAgregarRol = new JFAgregarRol();
+        JDAgregarRol jfAgregarRol = new JDAgregarRol();
         AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
         jfAgregarRol.toFront();
         jfAgregarRol.setVisible(true);

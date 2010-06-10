@@ -9,7 +9,7 @@ import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class JFAgregarRol extends JIFBase {
+public class JDAgregarRol extends JDialog {
 
     ResultSet tablaPrivilegios;
     DefaultTableModel modeloTablaPrivilegios;
@@ -19,14 +19,15 @@ public class JFAgregarRol extends JIFBase {
 
     RolBE rolBE;
 
-    public JFAgregarRol() {
+    public JDAgregarRol()
+    {
         initComponents();
         this.rolBE = new RolBE();
         onLoad();
         esModificar = false;
     }
 
-    public JFAgregarRol(RolBE rolBE, ArrayList<Integer> listaPrivilegios)
+    public JDAgregarRol(RolBE rolBE, ArrayList<Integer> listaPrivilegios)
     {
         initComponents();
         this.rolBE = rolBE;
@@ -191,7 +192,7 @@ public class JFAgregarRol extends JIFBase {
             JPPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPPrivilegiosLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
