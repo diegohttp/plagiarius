@@ -23,7 +23,6 @@ public class AntiPlagiumPrincipal extends JFBase
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
         super(usuarioBE);
         initComponents();        
-//      ConexionJDBC.conexion();
         JMenuBar menu = this.getJMenuBar();
         aplicarSeguridad(menu);
     }
@@ -181,10 +180,10 @@ public class AntiPlagiumPrincipal extends JFBase
 }//GEN-LAST:event_JMIAdministrarUsuariosActionPerformed
 
     private void JMIAdministrarGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarGruposActionPerformed
-        JFAdministrarRoles jfAdministrarRoles = new JFAdministrarRoles(JDPPrincipal);
-        jfAdministrarRoles.setVisible(true);
-        JDPPrincipal.add(jfAdministrarRoles);
-        
+        JDAdministrarRoles jfAdministrarRoles = new JDAdministrarRoles();
+        jfAdministrarRoles.setModal(true);
+        jfAdministrarRoles.setLocationRelativeTo(this);
+        jfAdministrarRoles.setVisible(true);                
 }//GEN-LAST:event_JMIAdministrarGruposActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -225,7 +224,6 @@ public class AntiPlagiumPrincipal extends JFBase
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-
     private void jMenuItem4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem4MouseClicked
         // TODO add your handling code here:
         JFCompararDocumentos frmCompararDocumentos = new JFCompararDocumentos();
@@ -241,7 +239,6 @@ public class AntiPlagiumPrincipal extends JFBase
         frmCompararDocumentos.setVisible(true);
         //JDPPrincipal.add(frmCompararDocumentos);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         
