@@ -58,7 +58,8 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             this.cboCategoria.addItem(lstCategorias.get(i));
             this.catSelecionada.add(new Boolean(false));
         }
-
+        /* Aun no esta implementado */
+        this.btnSeleccionarCategoria.setVisible(false);
     }
 
     private void cargarArchivo(int numDoc, String nomArch) {
@@ -117,7 +118,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         jLabel3 = new javax.swing.JLabel();
         cboCategoria = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnSeleccionarCategoria = new javax.swing.JButton();
         pnlDatosGen = new javax.swing.JPanel();
         txtNombreDoc1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -173,10 +174,10 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
             .addGap(0, 25, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Seleccione");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSeleccionarCategoria.setText("Seleccione");
+        btnSeleccionarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSeleccionarCategoriaActionPerformed(evt);
             }
         });
 
@@ -199,7 +200,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                    .addComponent(btnSeleccionarCategoria))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -215,7 +216,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnSeleccionarCategoria))
                 .addGap(34, 34, 34))
         );
 
@@ -740,12 +741,12 @@ private boolean seleccionoCategoria(){
         }
     }//GEN-LAST:event_btnBuscar5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSeleccionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarCategoriaActionPerformed
         JDSeleccionarCategoria selectCat = new JDSeleccionarCategoria(this,this.catSelecionada,this.lstCategorias);
         selectCat.setTitle("Seleccionar Categoria(s)");
         selectCat.setModal(true);
         selectCat.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSeleccionarCategoriaActionPerformed
 
     private void btnCargarDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDirectorioActionPerformed
         JFileChooser chooser = new JFileChooser();
@@ -793,8 +794,8 @@ private boolean seleccionoCategoria(){
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCargarDirectorio;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSeleccionarCategoria;
     private javax.swing.JComboBox cboCategoria;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
