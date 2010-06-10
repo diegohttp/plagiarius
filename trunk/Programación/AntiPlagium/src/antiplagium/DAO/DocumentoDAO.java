@@ -65,7 +65,7 @@ public class DocumentoDAO {
 
     public static boolean existeDocumento(String nombre){
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentecia = "SELECT * FROM \"Documento\" WHERE nombre = " + nombre;
+        String strSentecia = "SELECT * FROM \"Documento\" WHERE nombre = " + nombre + " AND estado = 'activo'";
         try {
             Vector lst = objConexion.ejecutarQuery(strSentecia);
             return lst.size() > 0;
