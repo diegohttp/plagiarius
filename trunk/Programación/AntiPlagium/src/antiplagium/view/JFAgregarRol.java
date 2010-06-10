@@ -13,7 +13,8 @@ public class JFAgregarRol extends JIFBase {
 
     ResultSet tablaPrivilegios;
     DefaultTableModel modeloTablaPrivilegios;
-    ArrayList<Integer> listaPrivilegios;
+    ArrayList<Integer> listaPrivilegiosSinModificar;
+    ArrayList<Integer> listaIDPrivilegios;
     Boolean esModificar;
 
     RolBE rolBE;
@@ -29,7 +30,7 @@ public class JFAgregarRol extends JIFBase {
     {
         initComponents();
         this.rolBE = rolBE;
-        this.listaPrivilegios = listaPrivilegios;
+        this.listaPrivilegiosSinModificar = listaPrivilegios;
         onLoad();
         onLoadModificar();
         esModificar = true;
@@ -44,12 +45,10 @@ public class JFAgregarRol extends JIFBase {
         {
             privilegioBL.AbrirConexion();
             tablaPrivilegios = privilegioBL.getListPrivilegios();
-
             if (tablaPrivilegios != null)
             {                
                 while (tablaPrivilegios.next())
                 {
-
                     Object[] fila = new Object[4];
                     fila[0] = tablaPrivilegios.getObject("idPrivilegio");
                     fila[1] = tablaPrivilegios.getObject("nombre").toString().trim();
@@ -73,16 +72,13 @@ public class JFAgregarRol extends JIFBase {
     private void onLoadModificar()
     {
         JTFNombreRol.setText(rolBE.getNombre());
-        Iterator<Integer> it = listaPrivilegios.iterator();
-        while (it.hasNext())
-        {
-            int val2 = it.next().intValue();
-            for (int i = 0; i < modeloTablaPrivilegios.getRowCount(); i++) {
+        for (Integer id : listaPrivilegiosSinModificar)
+        {            
+            int idPrivilegio = id.intValue();
+            for (int i = 0; i < modeloTablaPrivilegios.getRowCount(); i++)
+            {
                 int val1 = ((Integer) modeloTablaPrivilegios.getValueAt(i, 0)).intValue();            
-                if (val1 == val2)
-                {
-                    modeloTablaPrivilegios.setValueAt(true, i, 3);
-                }
+                if ( val1 ==  idPrivilegio ) modeloTablaPrivilegios.setValueAt(true, i, 3);
             }
         }        
     }
@@ -237,20 +233,21 @@ public class JFAgregarRol extends JIFBase {
     private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
 
         RolBL rolBL = new RolBL();        
-        ArrayList<Integer> listaIDPrivilegios = new ArrayList<Integer>();
+        listaIDPrivilegios = new ArrayList<Integer>();
 
         rolBE.setNombre(JTFNombreRol.getText());
         for (int i = 0; i<modeloTablaPrivilegios.getRowCount(); i++)
         {
-            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true )
-            {
-                listaIDPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
-            }
+           if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true ) 
+               listaIDPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));                
         }
         try
         {
             rolBL.AbrirConexion();
-            if (esModificar) rolBL.updateRol(rolBE, listaIDPrivilegios);
+            if (esModificar)
+            {
+                rolBL.updateRol(rolBE, listaPrivilegiosSinModificar, listaIDPrivilegios);
+            }
             else rolBL.insertRol(rolBE, listaIDPrivilegios);
             rolBL.CerrarConexion();
         }

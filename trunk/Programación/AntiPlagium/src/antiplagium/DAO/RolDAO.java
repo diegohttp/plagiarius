@@ -21,7 +21,10 @@ public class RolDAO {
     private static String SQL_SELECT_PRIVILEGIOS_X_ROL = "SELECT \"idPrivilegio\", RXP.\"idRol\" " +
                                                          "FROM \"RolXPrivilegio\" RXP " +
                                                          "INNER JOIN \"Rol\" R on  R.\"idRol\" = RXP.\"idRol\" " +
-                                                         "WHERE R.\"nombre\" = '" ;    
+                                                         "WHERE R.\"nombre\" = '" ;
+
+    private static String SQL_DELETE_PRIVILEGIO_X_ROL = "DELETE FROM \"RolXPrivilegio\" " +
+                                                        "WHERE \"idRol\" = ";
         
     public ResultSet getRolesList() throws SQLException
     {
@@ -68,7 +71,7 @@ public class RolDAO {
         String SQL_UPDATE = null;
           
         SQL_UPDATE = SQL_UPDATE_ROL + idRol.toString() + ", \"nombre\"= \'" + nombreRol + "\', \"descripcion\" = \'" + descripcion + "\' WHERE \"idRol\" = " + idRol.toString();
-        ConexionJDBC.ejecutarQueryString(SQL_UPDATE);
+        ConexionJDBC.ejecutarUpdateString(SQL_UPDATE);
     }
 
     public void insertDetallePrivilegio(Integer idRol, Integer idPrivilegio) throws SQLException
@@ -76,5 +79,12 @@ public class RolDAO {
         String SQL_Insert = null;
         SQL_Insert = SQL_INSERT_PRIVILEGIOXROL + idPrivilegio.toString() + ", " + idRol.toString() + ")" ;
         ConexionJDBC.ejecutarUpdateString(SQL_Insert);
-    }    
+    }
+
+    public void deleteDetallePrivilegio(Integer idRol, Integer idPrivilegio) throws SQLException
+    {
+        String SQL_DELETE = null;    
+        SQL_DELETE = SQL_DELETE_PRIVILEGIO_X_ROL + idRol.toString() + " and \"idPrivilegio\" = " + idPrivilegio.toString();
+        ConexionJDBC.ejecutarUpdateString(SQL_DELETE);
+    }
 }
