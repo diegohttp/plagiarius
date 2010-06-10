@@ -51,11 +51,11 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         cmbFechaInicio.setEditable(false);
         jPanel3.add(cmbFechaInicio);
         jPanel3.setEnabled(false);
-        this.jComboBox1.removeAllItems();
+        this.cboCategoria.removeAllItems();
         this.catSelecionada = new ArrayList<Boolean>();
         lstCategorias = this.objUsuario.getCategorias();
         for (int i = 0 ; i < lstCategorias.size(); ++i){
-            this.jComboBox1.addItem(lstCategorias.get(i));
+            this.cboCategoria.addItem(lstCategorias.get(i));
             this.catSelecionada.add(new Boolean(false));
         }
 
@@ -116,10 +116,10 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cboCategoria = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        pnlDatosGen = new javax.swing.JPanel();
         txtNombreDoc1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -148,6 +148,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
@@ -189,7 +190,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPropietario, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,12 +213,12 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(34, 34, 34))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos generales"));
+        pnlDatosGen.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos generales"));
 
         jLabel4.setText("Nombre:");
 
@@ -284,14 +285,14 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDatosGenLayout = new javax.swing.GroupLayout(pnlDatosGen);
+        pnlDatosGen.setLayout(pnlDatosGenLayout);
+        pnlDatosGenLayout.setHorizontalGroup(
+            pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosGenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,7 +302,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                         .addComponent(txtRuta11, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,7 +312,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                         .addComponent(txtRuta22, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,7 +322,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                         .addComponent(txtRuta33, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,7 +332,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                         .addComponent(txtRuta44, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,12 +344,12 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                         .addComponent(btnBuscar5)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pnlDatosGenLayout.setVerticalGroup(
+            pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosGenLayout.createSequentialGroup()
+                .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
+                        .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
@@ -356,48 +357,48 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                         .addGap(23, 23, 23))
                     .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
+                        .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc2, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(txtRuta22))
                         .addGap(23, 23, 23))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(btnBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
+                        .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc3, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(txtRuta33))
                         .addGap(23, 23, 23))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(btnBuscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
+                        .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc4, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(txtRuta44))
                         .addGap(23, 23, 23))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(btnBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
+                        .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc5, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(jLabel12)
                             .addComponent(jLabel13)
                             .addComponent(txtRuta55))
                         .addGap(44, 44, 44))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(btnBuscar5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))))
         );
@@ -421,6 +422,13 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
 
+        jButton2.setText("Cargar de Directorio");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -435,8 +443,9 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(pnlDatosGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -444,14 +453,19 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(pnlDatosGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -461,7 +475,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
 // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
-        ExtensionValida ext = new ExtensionValida();
+        ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
@@ -498,7 +512,7 @@ private boolean seleccionoCategoria(){
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
-                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
                     doc1 = new DocumentoBE();
                     doc1.setCategoria(objCategoria);
                     doc1.setUsuario(objUsuario);
@@ -530,7 +544,7 @@ private boolean seleccionoCategoria(){
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
-                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
                     doc2 = new DocumentoBE();
                     doc2.setCategoria(objCategoria);
                     doc2.setUsuario(objUsuario);
@@ -562,7 +576,7 @@ private boolean seleccionoCategoria(){
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
-                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
                     doc3 = new DocumentoBE();
                     doc3.setCategoria(objCategoria);
                     doc3.setUsuario(objUsuario);
@@ -594,7 +608,7 @@ private boolean seleccionoCategoria(){
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
-                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
                     doc4 = new DocumentoBE();
                     doc4.setCategoria(objCategoria);
                     doc4.setUsuario(objUsuario);
@@ -626,7 +640,7 @@ private boolean seleccionoCategoria(){
                 int idDoc = 0;
                 try {
                     idDoc = Utilitario.generaCodigo("Documento");
-                    CategoriaBE objCategoria = (CategoriaBE) this.jComboBox1.getSelectedItem();
+                    CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
                     doc5 = new DocumentoBE();
                     doc5.setCategoria(objCategoria);
                     doc5.setUsuario(objUsuario);
@@ -662,7 +676,7 @@ private boolean seleccionoCategoria(){
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
-        ExtensionValida ext = new ExtensionValida();
+        ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
@@ -678,7 +692,7 @@ private boolean seleccionoCategoria(){
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
-        ExtensionValida ext = new ExtensionValida();
+        ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
@@ -695,7 +709,7 @@ private boolean seleccionoCategoria(){
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
-        ExtensionValida ext = new ExtensionValida();
+        ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
         //chooser.addChoosableFileFilter(new TxTFilter());
@@ -715,7 +729,7 @@ private boolean seleccionoCategoria(){
         // TODO add your handling code here:
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
-        ExtensionValida ext = new ExtensionValida();
+        ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setApproveButtonText("Cargar");
         chooser.setAcceptAllFileFilterUsed(false);
@@ -736,6 +750,46 @@ private boolean seleccionoCategoria(){
         selectCat.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setApproveButtonText("Cargar");
+        ExtensionValida ext = new ExtensionValida(true);
+        chooser.setFileFilter(ext);
+        chooser.setAcceptAllFileFilterUsed(false);
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        //chooser.addChoosableFileFilter(new TxTFilter());
+        int retVal = chooser.showOpenDialog(this);
+        if (retVal == chooser.APPROVE_OPTION) {
+            String ruta = chooser.getSelectedFile().getAbsolutePath();
+            File dir = new File(ruta);
+            File [] nomArch = dir.listFiles();
+            for (int i = 0; i < nomArch.length; ++i){
+                String exten = Utilitario.getExtension(nomArch[i]);
+                if (exten != null && (exten.equals("txt") || exten.equals("doc"))){
+                    System.out.println(nomArch[i].getName());
+                    DocumentoBE doc = null;
+                    try {
+                        int idDoc = Utilitario.generaCodigo("Documento");
+                        CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+                        doc = new DocumentoBE(idDoc, "activo" , nomArch[i].getName() , objUsuario, objCategoria);
+                        doc.setContenido(DocumentoBL.obtenerContenido(nomArch[i]));
+                        try {
+                            DocumentoBL.registrar(doc);
+                        } catch (Exception ex) {
+                            Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -750,8 +804,9 @@ private boolean seleccionoCategoria(){
     private javax.swing.JButton btnBuscar5;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JComboBox cboCategoria;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -766,8 +821,8 @@ private boolean seleccionoCategoria(){
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel pnlDatosGen;
     private javax.swing.JTextField txtNombreDoc1;
     private javax.swing.JTextField txtNombreDoc2;
     private javax.swing.JTextField txtNombreDoc3;
@@ -782,7 +837,10 @@ private boolean seleccionoCategoria(){
     // End of variables declaration//GEN-END:variables
 
     class ExtensionValida extends FileFilter {
-
+        boolean opcion;
+        ExtensionValida(boolean soloDir){
+            opcion = soloDir;
+        }
         public String getExtension(File f) {
             String ext = null;
             String s = f.getName();
@@ -798,9 +856,12 @@ private boolean seleccionoCategoria(){
             if (f.isDirectory()){
                 return true;
             }
-            String ext = this.getExtension(f);
-            if (ext != null && (ext.equals("txt") || ext.equals("doc")))
-                return true;
+
+            if (!opcion){
+                String ext = this.getExtension(f);
+                if (ext != null && (ext.equals("txt") || ext.equals("doc")))
+                    return true;
+            }
             return false;
         }
 
