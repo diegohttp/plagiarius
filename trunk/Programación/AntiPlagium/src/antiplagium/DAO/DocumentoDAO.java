@@ -17,6 +17,8 @@ import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.DAL.ConexionJDBC;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author PATTY
@@ -61,39 +63,16 @@ public class DocumentoDAO {
         }
     }
 
-    public static ArrayList<DocumentoBE> buscar(DocumentoBE doc) throws FileNotFoundException, IOException{
-
+    public static boolean existeDocumento(String nombre){
         ConexionJDBC objConexion = new ConexionJDBC();
-
-        String strSentencia = "SELECT \"idDocumento\",\"estado\",\"nombre\",\"idUsuario\" FROM \"Documento\"";
-            strSentencia +=
-                " WHERE \"nombre\" like '"+ doc.getNombre()+"'||'%' and " +
-                " \"idUsuario\" like '"+ doc.getUsuario()+"'||'%' " +
-                " ORDER BY \"nombre\";";
-
-        ArrayList<DocumentoBE> arrDocumento = new ArrayList<DocumentoBE>();
+        String strSentecia = "SELECT * FROM \"Documento\" WHERE nombre = " + nombre;
         try {
-            ResultSet rs = (ResultSet) objConexion.ejecutarQuery(strSentencia);
-            String stridDocumento = "";
-            String strestado = "";
-            String strnombre = "";
-            String stridUsuario = "";
-            String strcontenido = "";
-            String contenido = "";
-
-            while (rs.next()) {
-                stridDocumento = rs.getString(1);
-                strestado = rs.getString(2);
-                strnombre = rs.getString(3);
-                stridUsuario = rs.getString(4);
-
-                //arrDocumento.add(new DocumentoBE(Integer.parseInt(stridDocumento), (strestado), strnombre,null));
-            }
+            Vector lst = objConexion.ejecutarQuery(strSentecia);
+            return lst.size() > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(DocumentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch (Exception a){
-            System.out.println(a.getMessage());
-        }
-        return arrDocumento;
+        return true;
     }
 
     public static DocumentoBE buscar(int idDocumento) throws FileNotFoundException, IOException{
@@ -102,7 +81,7 @@ public class DocumentoDAO {
 
 
         String strSentencia =  "SELECT \"idDocumento\",\"estado\",\"nombre\",\"idUsuario\" FROM \"Documento\"";
-            strSentencia += " WHERE \"idDocumento\" ="+idDocumento+" ";
+        strSentencia += " WHERE \"idDocumento\" ="+idDocumento+" ";
 
         DocumentoBE objDocumento = new DocumentoBE();
 
