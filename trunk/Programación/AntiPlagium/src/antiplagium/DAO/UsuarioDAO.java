@@ -70,6 +70,9 @@ public class UsuarioDAO {
   public boolean InsertarUsuario(UsuarioBE nuevoUsuario) throws SQLException{
 
       try {
+
+          ConexionJDBC.abrirConexion();
+
           UsuarioBE u=nuevoUsuario;
 
           String cadenaFechaI=null;
@@ -98,11 +101,31 @@ public class UsuarioDAO {
 
             System.out.println(squery);
             ConexionJDBC.ejecutarUpdateString(squery);
-           
+
+            ConexionJDBC.cerrarConexion();
+
+            ConexionJDBC.abrirConexion();
+
+            squery = "";
+            for (int i = 0; i < nuevoUsuario.getCategorias().size(); i++) {
+
+                        squery = "";
+                        squery = " INSERT INTO \"UsuarioXCategoria\" (\"idUsuario\",\"idCategoria\") ";
+                        squery += " VALUES(" + nuevoUsuario.getIdUsuario() + "," + nuevoUsuario.getCategorias().get(i).getIdCategoria() + ") ";
+                        System.out.println(squery);
+                        ConexionJDBC.ejecutarUpdateString(squery);
+                }
+
+
+            ConexionJDBC.cerrarConexion();
+
             error=true;
             return error;
       }
-        catch (SQLException ex) {
+        catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return error;
+        }        catch (SQLException ex) {
                                 ex.printStackTrace();
 
                     System.out.println("Transaction failed. No records were written to the database.");
@@ -113,61 +136,143 @@ public class UsuarioDAO {
   }
 
   public boolean ActualizarUsuario(UsuarioBE nuevoUsuario, UsuarioBE originalUsuario){
-
-
-        squery="UPDATE \"Usuario\" SET ";
-        String campos="";
-        if(nuevoUsuario.getNombres()!=originalUsuario.getNombres()){
-            campos+="nombres='"+nuevoUsuario.getNombres()+"',";
-        }       
-        if(nuevoUsuario.getApellidoPaterno()!=originalUsuario.getApellidoPaterno()){
-            campos+="\"apellidoPaterno\"='"+nuevoUsuario.getApellidoPaterno()+"',";
-        }
-        if(nuevoUsuario.getApellidoMaterno()!=originalUsuario.getApellidoMaterno()){
-            campos+="\"apellidoMaterno\"='"+nuevoUsuario.getApellidoMaterno()+"',";
-        }
-        if(nuevoUsuario.getNombreUsuario()!=originalUsuario.getNombreUsuario()){
-            campos+="\"nombreUsuario\"='"+nuevoUsuario.getNombreUsuario()+"',";
-        }
-        if(nuevoUsuario.getPassword()!=originalUsuario.getPassword()){
-            campos+="password='"+nuevoUsuario.getPassword()+"',";
-        }
-        if(nuevoUsuario.getRolBE().getIdRol()!=originalUsuario.getRolBE().getIdRol()){
-            //String cadenaIdROl="'"+nuevoUsuario.getRolBE().getIdRol()+"'";
-            //campos+="\"idRol\"="+cadenaIdROl+",";
-            campos+="\"idRol\"="+nuevoUsuario.getRolBE().getIdRol();
-        }
-        if(nuevoUsuario.getEmail()!=originalUsuario.getEmail()){
-            campos+="\"email\"='"+nuevoUsuario.getEmail()+"',";
-        }
-        if(nuevoUsuario.getFechaVencimiento()!=originalUsuario.getFechaVencimiento()){
-             SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
-             String cadenaFechaF=null;
-             if (nuevoUsuario.getFechaVencimiento()!=null) cadenaFechaF="'"+formato.format(nuevoUsuario.getFechaVencimiento())+"'";
-             campos+="\"fechaVencimiento\"="+cadenaFechaF+",";
-        }
-        
-        
-        if (campos!=""){
-            try {
-                int longitud = campos.length();
-                char[] copia = campos.toCharArray();
-                String aux = campos.copyValueOf(copia, 0, longitud - 1);
-                campos = aux;
-                squery += campos;
-                squery +=  "WHERE \"idUsuario\"=" + nuevoUsuario.getIdUsuario();
-                System.out.println(squery);
-                ConexionJDBC.ejecutarUpdateString(squery);
-                return true;
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+      Boolean rpta = false;
+      try {
+            ConexionJDBC.abrirConexion();
+            
+            squery = "UPDATE \"Usuario\" SET ";
+            String campos = "";
+            if (nuevoUsuario.getNombres() != originalUsuario.getNombres()) {
+                campos += "nombres='" + nuevoUsuario.getNombres() + "',";
             }
+            if (nuevoUsuario.getApellidoPaterno() != originalUsuario.getApellidoPaterno()) {
+                campos += "\"apellidoPaterno\"='" + nuevoUsuario.getApellidoPaterno() + "',";
+            }
+            if (nuevoUsuario.getApellidoMaterno() != originalUsuario.getApellidoMaterno()) {
+                campos += "\"apellidoMaterno\"='" + nuevoUsuario.getApellidoMaterno() + "',";
+            }
+            if (nuevoUsuario.getNombreUsuario() != originalUsuario.getNombreUsuario()) {
+                campos += "\"nombreUsuario\"='" + nuevoUsuario.getNombreUsuario() + "',";
+            }
+            if (nuevoUsuario.getPassword() != originalUsuario.getPassword()) {
+                campos += "password='" + nuevoUsuario.getPassword() + "',";
+            }
+            if (nuevoUsuario.getRolBE().getIdRol() != originalUsuario.getRolBE().getIdRol()) {
+                //String cadenaIdROl="'"+nuevoUsuario.getRolBE().getIdRol()+"'";
+                //campos+="\"idRol\"="+cadenaIdROl+",";
+                campos += "\"idRol\"=" + nuevoUsuario.getRolBE().getIdRol();
+            }
+            if (nuevoUsuario.getEmail() != originalUsuario.getEmail()) {
+                campos += "\"email\"='" + nuevoUsuario.getEmail() + "',";
+            }
+            if (nuevoUsuario.getFechaVencimiento() != originalUsuario.getFechaVencimiento()) {
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                String cadenaFechaF = null;
+                if (nuevoUsuario.getFechaVencimiento() != null) {
+                    cadenaFechaF = "'" + formato.format(nuevoUsuario.getFechaVencimiento()) + "'";
+                }
+                campos += "\"fechaVencimiento\"=" + cadenaFechaF + ",";
+            }
+            if (campos != "") {
+                try {
+                    int longitud = campos.length();
+                    char[] copia = campos.toCharArray();
+                    String aux = campos.copyValueOf(copia, 0, longitud - 1);
+                    campos = aux;
+                    squery += campos;
+                    squery += "WHERE \"idUsuario\"=" + nuevoUsuario.getIdUsuario();
+                    System.out.println(squery);
+                    ConexionJDBC.ejecutarUpdateString(squery);
+                    rpta = true;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else {
+                rpta = false;
+            }
+
+            ConexionJDBC.cerrarConexion();
+            
+            ConexionJDBC.abrirConexion();
+            
+            squery = "";
+            for (int i = 0; i < nuevoUsuario.getCategorias().size(); i++) {
+                Boolean agregar = true;
+                for (int j = 0; j < originalUsuario.getCategorias().size(); j++) {
+                    if (nuevoUsuario.getCategorias().get(i).getIdCategoria() == originalUsuario.getCategorias().get(j).getIdCategoria()) {
+                        agregar = false;
+                        break;
+                    }
+                }
+                if (agregar == true) {
+                    try {
+                        squery = "";
+                        squery = " INSERT INTO \"UsuarioXCategoria\" (\"idUsuario\",\"idCategoria\") ";
+                        squery += " VALUES(" + nuevoUsuario.getIdUsuario() + "," + nuevoUsuario.getCategorias().get(i).getIdCategoria() + ") ";
+                        System.out.println(squery);
+                        ConexionJDBC.ejecutarUpdateString(squery);
+                        rpta = true;
+                    } catch (SQLException ex) {
+                        Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            
+            ConexionJDBC.cerrarConexion();
+            
+            ConexionJDBC.abrirConexion();
+            
+            squery = "";
+            for (int i = 0; i < originalUsuario.getCategorias().size(); i++) {
+                Boolean eliminar = true;
+                for (int j = 0; j < nuevoUsuario.getCategorias().size(); j++) {
+                    if (nuevoUsuario.getCategorias().get(j).getIdCategoria() == originalUsuario.getCategorias().get(i).getIdCategoria()) {
+                        eliminar = false;
+                        break;
+                    }
+                }
+                if (eliminar == true) {
+                    try {
+                        squery = " DELETE FROM \"UsuarioXCategoria\" ";
+                        squery += "WHERE \"idUsuario\"=" + originalUsuario.getIdUsuario() + " and \"idCategoria\"=" + originalUsuario.getCategorias().get(i).getIdCategoria();
+                        System.out.println(squery);
+                        ConexionJDBC.ejecutarUpdateString(squery);
+                        rpta = true;
+                    } catch (SQLException ex) {
+                        Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            ConexionJDBC.cerrarConexion();
+            return rpta;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return rpta;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return rpta;
+
         }
-        else{
+  }
+
+  public Boolean EliminarUsuario(UsuarioBE usuarioBE){
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            String cadenaFechaF = null;
+            if (usuarioBE.getFechaCese() != null) {
+                cadenaFechaF = "'" + formato.format(usuarioBE.getFechaCese()) + "'";
+            }
+            squery = " UPDATE \"Usuario\" SET \"fechaCese\"=" + cadenaFechaF + ", \"idEstado\"=" + usuarioBE.getEstadoBE().getIdEstado();
+            squery += " WHERE \"idUsuario\"= " + usuarioBE.getIdUsuario();
+            ConexionJDBC.ejecutarUpdateString(squery);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        
-        return false;
+
+
   }
 
   public int getIdUsuarioSig() throws SQLException, ClassNotFoundException{
