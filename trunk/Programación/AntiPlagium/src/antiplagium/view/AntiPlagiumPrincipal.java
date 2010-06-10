@@ -172,10 +172,13 @@ public class AntiPlagiumPrincipal extends JFBase
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMIAdministrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarUsuariosActionPerformed
-        JFAdministrarUsuarios jfUsuarios= new JFAdministrarUsuarios();
+        JDAdministrarUsuarios jfUsuarios= new JDAdministrarUsuarios();
+        jfUsuarios.setModal(true);
+        jfUsuarios.setLocationRelativeTo(this);
         jfUsuarios.setVisible(true);
+
 //        desktop.add(jfUsuarios);
-        JDPPrincipal.add(jfUsuarios);
+//        JDPPrincipal.add(jfUsuarios);
 
 }//GEN-LAST:event_JMIAdministrarUsuariosActionPerformed
 
@@ -188,6 +191,8 @@ public class AntiPlagiumPrincipal extends JFBase
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
          JFAdministrarCategoria admCategoria = new JFAdministrarCategoria();
+         admCategoria.setModal(true);
+         admCategoria.setLocationRelativeTo(this);
          admCategoria.setVisible(true);
         //RegistrarCategoria registrarCategoria = new  RegistrarCategoria();
          //registrarCategoria.setVisible(true);
