@@ -457,27 +457,20 @@ public class BuscarDocumento extends JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
-        // TODO add your handling code here:
         JDRegistrarDocumento reg = new JDRegistrarDocumento(this.objUsuario);
         reg.setTitle("Registrar Documento");
         reg.setModal(true);
         reg.setVisible(true);
     }//GEN-LAST:event_jMenu1MousePressed
 
-
-    //Modificar!
-
     private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
-        // TODO add your handling code here:
         int idx = this.jtabPaquetes.getSelectedRow();
         if ( idx < 0){
             JOptionPane.showMessageDialog(this, "Debe seleccionar una fila", "Mensaje",0);
         }
         else {
-              //System.out.println(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
               ModificarDocumento vModificarDoc = null;
             try {
-
                 if (this.objUsuario.getIdUsuario() != this.arrDocumentos.get(idx).getUsuario().getIdUsuario()){
                     JOptionPane.showMessageDialog(this, "Debe ser propietario del documento para modificar sus datos", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
                     return;
