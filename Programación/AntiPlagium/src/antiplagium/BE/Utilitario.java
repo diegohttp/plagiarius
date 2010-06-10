@@ -6,6 +6,7 @@
 package antiplagium.BE;
 
 import antiplagium.DAL.ConexionJDBC;
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.FileNotFoundException;
@@ -91,5 +92,16 @@ public final class Utilitario {
             System.out.println(a.getMessage());
         }
         return 0;
+    }
+
+    public static String getExtension(File f) {
+            String ext = null;
+            String s = f.getName();
+            int i = s.lastIndexOf('.');
+
+            if (i > 0 &&  i < s.length() - 1) {
+                ext = s.substring(i+1).toLowerCase();
+            }
+            return ext;
     }
 }
