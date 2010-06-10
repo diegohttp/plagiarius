@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
+import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +31,7 @@ import sun.swing.table.DefaultTableCellHeaderRenderer;
  *
  * @author a20050354
  */
-public class JFAdministrarUsuarios extends JIFBase {
+public class JDAdministrarUsuarios extends JDialog {
 
     private JCalendarCombo cmbCalendarioInicio = new JCalendarCombo();
     private JCalendarCombo cmbCalendarioFin= new JCalendarCombo();
@@ -40,7 +41,7 @@ public class JFAdministrarUsuarios extends JIFBase {
 
 //    JDesktopPane desktop;
     /** Creates new form JFAministrarUsuarios */
-    public JFAdministrarUsuarios() {
+    public JDAdministrarUsuarios() {
 
 
         try {
@@ -84,18 +85,18 @@ public class JFAdministrarUsuarios extends JIFBase {
                 }
 
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
 
 
         } catch (ParseException ex) {
-            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
@@ -147,7 +148,6 @@ public class JFAdministrarUsuarios extends JIFBase {
         jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximizable(true);
         setTitle("Administrar Usuarios");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
@@ -423,18 +423,22 @@ public class JFAdministrarUsuarios extends JIFBase {
         }
         else{
             int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
-            JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(idUsuario);
+            JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(idUsuario);
+            jfAgregarUsuario.setModal(true);
+            jfAgregarUsuario.setLocationRelativeTo(this);
             jfAgregarUsuario.setVisible(true);
-            AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-            jfAgregarUsuario.toFront();
+//            AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
+//            jfAgregarUsuario.toFront();
         }
 }//GEN-LAST:event_jBModificarActionPerformed
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
-        JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(0);
-        jfAgregarUsuario.setVisible(true);
-        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-        jfAgregarUsuario.toFront();
+        JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
+        jfAgregarUsuario.setModal(true);
+        jfAgregarUsuario.setLocationRelativeTo(this);
+        jfAgregarUsuario.setVisible(true);        
+//        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
+//        jfAgregarUsuario.toFront();
 }//GEN-LAST:event_JBNuevoActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -449,9 +453,11 @@ public class JFAdministrarUsuarios extends JIFBase {
         else{
             int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
             JFEliminarUsuario jfEliminarUsuario = new JFEliminarUsuario(idUsuario);
+            jfEliminarUsuario.setModal(true);
+            jfEliminarUsuario.setLocationRelativeTo(this);
             jfEliminarUsuario.setVisible(true);
-            AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
-            jfEliminarUsuario.toFront();
+//            AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
+//            jfEliminarUsuario.toFront();
         }
 }//GEN-LAST:event_jBEliminarActionPerformed
 
@@ -465,10 +471,12 @@ public class JFAdministrarUsuarios extends JIFBase {
 
 
     private void jMNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMNuevoMouseReleased
-        JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(0);
+        JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
+        jfAgregarUsuario.setModal(true);
+        jfAgregarUsuario.setLocationRelativeTo(this);
         jfAgregarUsuario.setVisible(true);
-        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-        jfAgregarUsuario.toFront();
+//        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
+//        jfAgregarUsuario.toFront();
     }//GEN-LAST:event_jMNuevoMouseReleased
 
     private void jMModificarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMModificarMouseReleased
@@ -482,10 +490,12 @@ public class JFAdministrarUsuarios extends JIFBase {
         }
         else{
             int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
-            JFAgregarUsuario jfAgregarUsuario=new JFAgregarUsuario(idUsuario);
+            JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(idUsuario);
+            jfAgregarUsuario.setModal(true);
+            jfAgregarUsuario.setLocationRelativeTo(this);
             jfAgregarUsuario.setVisible(true);
-            AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-            jfAgregarUsuario.toFront();
+//            AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
+//            jfAgregarUsuario.toFront();
         }
     }//GEN-LAST:event_jMModificarMouseReleased
 
@@ -501,9 +511,11 @@ public class JFAdministrarUsuarios extends JIFBase {
         else{
             int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
             JFEliminarUsuario jfEliminarUsuario = new JFEliminarUsuario(idUsuario);
+            jfEliminarUsuario.setModal(true);
+            jfEliminarUsuario.setLocationRelativeTo(this);
             jfEliminarUsuario.setVisible(true);
-            AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
-            jfEliminarUsuario.toFront();
+//            AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
+//            jfEliminarUsuario.toFront();
         }
     }//GEN-LAST:event_jMEliminarMouseReleased
 
@@ -544,9 +556,9 @@ public class JFAdministrarUsuarios extends JIFBase {
             usuarioBL.CerrarConexion();
             
         } catch (SQLException ex) {
-            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JFAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_jBConsultarActionPerformed

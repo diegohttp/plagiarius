@@ -27,7 +27,7 @@ import org.freixas.jcalendar.JCalendarCombo;
  *
  * @author a20030555
  */
-public class JFEliminarUsuario extends JIFBase{
+public class JFEliminarUsuario extends JDialog{
 
     JCalendarCombo jCCFechaEliminar = new JCalendarCombo();
     EstadoBL estadoBL;
