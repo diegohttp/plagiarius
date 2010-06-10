@@ -90,7 +90,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
 
 private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
         this.txtRuta11.setText("");
         this.txtRuta22.setText("");
         this.txtRuta33.setText("");
@@ -154,6 +153,8 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos generales"));
+
+        txtPropietario.setEditable(false);
 
         jLabel1.setText("Propietario:");
 
@@ -472,13 +473,11 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-// TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
-        //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
@@ -501,9 +500,15 @@ private boolean seleccionoCategoria(){
             JOptionPane.showMessageDialog(null, "Se debe seleccionar alguna(s) categoria(s) para el (los) documento(s).");
             return;
         }*/
+        String resDoc1="";
+        String resDoc2="";
+        String resDoc3="";
+        String resDoc4="";
+        String resDoc5="";
+
         if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc1.getText().compareTo("") == 0) {
-                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 1.");
+                JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 1.","Error Registro",JOptionPane.ERROR_MESSAGE);
                 return;
             }
             else {
@@ -520,10 +525,11 @@ private boolean seleccionoCategoria(){
                     doc1.setIdDocumento(idDoc);
                     doc1.setContenido(contenido);
                     doc1.setEstado("activo");
-                    //doc1 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc1.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc1);
+                        resDoc1 = "Se registró el documento 1 safisfactoriamente.";
                     } catch (Exception ex) {
+                        resDoc1 = "Hubo un error en el registro del documento 1.";
                         Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } catch (FileNotFoundException ex) {
@@ -536,7 +542,7 @@ private boolean seleccionoCategoria(){
 
         if (this.txtRuta22.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc2.getText().compareTo("") == 0) {
-                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 2.");
+                JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 2.","Error Registro",JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 File file1 = new File(this.txtRuta22.getText());
@@ -552,10 +558,11 @@ private boolean seleccionoCategoria(){
                     doc2.setIdDocumento(idDoc);
                     doc2.setContenido(contenido);
                     doc2.setEstado("activo");
-                    //doc2 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc2.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc2);
+                        resDoc2 = "Se registró el documento 2 safisfactoriamente.";
                     } catch (Exception ex) {
+                        resDoc2 = "Hubo un error en el registro del documento 2.";
                         Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } catch (FileNotFoundException ex) {
@@ -568,7 +575,7 @@ private boolean seleccionoCategoria(){
 
         if (this.txtRuta33.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc3.getText().compareTo("") == 0) {
-                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 3.");
+                JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 3.","Error Registro",JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 File file1 = new File(this.txtRuta33.getText());
@@ -584,10 +591,11 @@ private boolean seleccionoCategoria(){
                     doc3.setIdDocumento(idDoc);
                     doc3.setContenido(contenido);
                     doc3.setEstado("activo");
-                    //doc3 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc3.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc3);
+                        resDoc3 = "Se registró el documento 3 safisfactoriamente.";
                     } catch (Exception ex) {
+                        resDoc3 = "Hubo un error en el registro del documento 3.";
                         Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } catch (FileNotFoundException ex) {
@@ -600,7 +608,7 @@ private boolean seleccionoCategoria(){
 
         if (this.txtRuta44.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc4.getText().compareTo("") == 0) {
-                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 4.");
+                JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 4.","Error Registro",JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 File file1 = new File(this.txtRuta44.getText());
@@ -616,10 +624,11 @@ private boolean seleccionoCategoria(){
                     doc4.setIdDocumento(idDoc);
                     doc4.setContenido(contenido);
                     doc4.setEstado("activo");
-                    //doc4 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc4.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc4);
+                        resDoc4 = "Se registró el documento 4 safisfactoriamente.";
                     } catch (Exception ex) {
+                        resDoc4 = "Hubo error en el registro del documento 4.";
                         Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } catch (FileNotFoundException ex) {
@@ -632,7 +641,7 @@ private boolean seleccionoCategoria(){
 
         if (this.txtRuta55.getText().compareToIgnoreCase("") != 0) {
             if (this.txtNombreDoc5.getText().compareTo("") == 0) {
-                JOptionPane.showMessageDialog(null, "Se debe indicar un nombre para el archivo 5.");
+                JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 5.","Error Registro",JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 File file1 = new File(this.txtRuta55.getText());
@@ -648,10 +657,11 @@ private boolean seleccionoCategoria(){
                     doc5.setIdDocumento(idDoc);
                     doc5.setContenido(contenido);
                     doc5.setEstado("activo");
-                    //doc5 = new DocumentoBE(idDoc, "activo", this.txtNombreDoc5.getText(), objUsuario, objCategoria,contenido);
                     try {
                         DocumentoBL.registrar(doc5);
+                        resDoc5 = "Se registró el documento 5 safisfactoriamente.";
                     } catch (Exception ex) {
+                        resDoc5 = "Hubo error en el registro del documento 5.";
                         Logger.getLogger(RegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } catch (FileNotFoundException ex) {
@@ -661,25 +671,21 @@ private boolean seleccionoCategoria(){
                 }
             }
         }
-        JOptionPane.showMessageDialog(null, "El documento se ha registrado con éxito.", "Mensaje",1);
+        JOptionPane.showMessageDialog(this, resDoc1 + "\n" + resDoc2 + "\n" + resDoc3 + "\n" + resDoc4 + "\n" + resDoc5, "Resultado Registro",JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
         this.dispose();
 }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
-        //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
@@ -689,13 +695,11 @@ private boolean seleccionoCategoria(){
     }//GEN-LAST:event_btnBuscar2ActionPerformed
 
     private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
-        // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
-        //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
@@ -705,14 +709,11 @@ private boolean seleccionoCategoria(){
     }//GEN-LAST:event_btnBuscar3ActionPerformed
 
     private void btnBuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar4ActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
-        //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
@@ -726,14 +727,11 @@ private boolean seleccionoCategoria(){
     }
 
     private void btnBuscar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar5ActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         ExtensionValida ext = new ExtensionValida(false);
         chooser.setFileFilter(ext);
         chooser.setApproveButtonText("Cargar");
         chooser.setAcceptAllFileFilterUsed(false);
-        //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String nomArch = chooser.getSelectedFile().getAbsolutePath();
@@ -743,7 +741,6 @@ private boolean seleccionoCategoria(){
     }//GEN-LAST:event_btnBuscar5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         JDSeleccionarCategoria selectCat = new JDSeleccionarCategoria(this,this.catSelecionada,this.lstCategorias);
         selectCat.setTitle("Seleccionar Categoria(s)");
         selectCat.setModal(true);
@@ -751,14 +748,12 @@ private boolean seleccionoCategoria(){
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCargarDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDirectorioActionPerformed
-        // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(true);
         chooser.setFileFilter(ext);
         chooser.setAcceptAllFileFilterUsed(false);
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        //chooser.addChoosableFileFilter(new TxTFilter());
         int retVal = chooser.showOpenDialog(this);
         if (retVal == chooser.APPROVE_OPTION) {
             String ruta = chooser.getSelectedFile().getAbsolutePath();
@@ -777,7 +772,6 @@ private boolean seleccionoCategoria(){
                 return;
             }
             JDCargaDocumentos cargaDoc = new JDCargaDocumentos(listaArch);
-            //cargaDoc.setModal(true);
             CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
             cargaDoc.cargarDocumentos(objCategoria, objUsuario);
             this.dispose();
@@ -861,6 +855,7 @@ private boolean seleccionoCategoria(){
 
         @Override
         public String getDescription() {
+            if (opcion) return "Solo directorios";
             return "Solo .txt y .doc";
         }
     }
