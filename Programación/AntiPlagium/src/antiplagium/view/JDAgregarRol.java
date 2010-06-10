@@ -238,7 +238,14 @@ public class JDAgregarRol extends JDialog {
 
     private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
 
-        RolBL rolBL = new RolBL();        
+        if (JTFNombreRol.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Nombre del Rol debe tener al menos un caracter", "ERROR", JOptionPane.ERROR_MESSAGE);           
+            return;
+        }
+
+
+        RolBL rolBL = new RolBL();
         listaIDPrivilegios = new ArrayList<Integer>();
 
         rolBE.setNombre(JTFNombreRol.getText());
