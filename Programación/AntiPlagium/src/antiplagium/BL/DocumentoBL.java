@@ -46,6 +46,10 @@ public class DocumentoBL {
         DocumentoDAO.registrar(objDocumento);
     }
 
+    public static boolean existeDocumento(String nombre){
+        return DocumentoDAO.existeDocumento(nombre);
+    }
+
     public static boolean modificar(DocumentoBE objDocumento){
         try {
             return DocumentoDAO.modificar(objDocumento);
