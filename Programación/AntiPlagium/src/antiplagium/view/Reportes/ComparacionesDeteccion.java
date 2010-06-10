@@ -14,6 +14,7 @@ package antiplagium.view.Reportes;
 
 
 import antiplagium.BE.CategoriaBE;
+import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
 import java.awt.BorderLayout;
@@ -27,6 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.swing.JRViewer;
 
@@ -37,26 +39,32 @@ import net.sf.jasperreports.swing.JRViewer;
  */
 public class ComparacionesDeteccion extends javax.swing.JFrame {
    private CategoriaBL categoriaBl;
+   
+   //cambiar DocumentoBE por una lista de documentos detectados q tnga Doc1 - Doc2 - %plagio - nivel plagio
+   private ArrayList<DocumentoBE> arrDocumentosDetectados = new ArrayList<DocumentoBE>();
+
+
+
     /** Creates new form ComparacionesDeteccion */
     public ComparacionesDeteccion() {
-        try {
+//        try {
             initComponents();
             CategoriaBE tmp = new CategoriaBE();
             tmp.setIdCategoria(0);
             tmp.setNombre("Todas");
-            ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
-            listaCategorias.add(0, tmp);
-            int cantidadCategorias = listaCategorias.size();
-            for (int i = 0; i < cantidadCategorias; i++) {
-                jcmbCategoria.addItem(listaCategorias.get(i).getNombre());
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//            ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
+//            listaCategorias.add(0, tmp);
+//            int cantidadCategorias = listaCategorias.size();
+//            for (int i = 0; i < cantidadCategorias; i++) {
+//                jcmbCategoria.addItem(listaCategorias.get(i).getNombre());
+//            }
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
 
     }
@@ -306,13 +314,11 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImprimirActionPerformed
-
-
         Map pars = new HashMap();
 
         pars.put("P_TITULO", "Reporte de Comparaciones entre documentos");
         pars.put("P_SUBTITULO", "");
-        JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("ReporteComparacionDocumentos", pars, this.arrListaComparaciones);
+        JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("ReporteComparacionDocumentos", pars, this.arrDocumentosDetectados);
         try {
 
             JRViewer v = new JRViewer(jasperPrint);
@@ -350,33 +356,25 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         DocumentoBE objDocumento = new DocumentoBE();
         objDocumento.setUsuario(objUsuario);
         objDocumento.setCategoria(objCategoria);
-        objDocumento.setNombre(this.txtNombre.getText());
-        objEstado = (String) this.cboEstado.getSelectedItem();
-        objDocumento.setEstado(objEstado);
-        try {
-            this.arrDocumentos = DocumentoBL.ListarDocs(objDocumento);
-            /* Obtenemos el modelo */
-            DefaultTableModel tmp = (DefaultTableModel) this.jtabPaquetes.getModel();
+       
+            //this.arrDocumentosDetectados = DeteccionBL.ListarDocsDetectados(objDocumento);
+
+        /* Obtenemos el modelo */
+            DefaultTableModel tmp = (DefaultTableModel) this.jTListaDocumentos.getModel();
             /* Limpiamos la tabla */
             for (int i=tmp.getRowCount() - 1; i >= 0; --i){
                 tmp.removeRow(i);
             }
             /* Llenamos la grilla */
-            for (int i=0; i < arrDocumentos.size() ; ++i){
-                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
-                tmp.addRow(nuevo);
+            for (int i=0; i < arrDocumentosDetectados.size() ; ++i){
+             //   Object [] nuevo={ arrDocumentosDetectados.get(i).getNombre() , arrDocumentosDetectados.get(i).getNombreDocComparado(), arrDocumentosDetectados.get(i).PorcentajePlagio(), arrDocumentosDectectados.get(i).getNivelPlagio()) };
+              //   tmp.addRow(nuevo);
             }
-            if (this.arrDocumentos.size() == 0){
+            if (this.arrDocumentosDetectados.size() == 0){
                  JOptionPane.showMessageDialog(this, "La búsqueda no encontro ningún resultado", "Buscar Documento", JOptionPane.INFORMATION_MESSAGE);
             }
 
-        } catch (FileNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
 
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
