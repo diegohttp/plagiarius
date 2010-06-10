@@ -108,8 +108,13 @@ public class RolBL {
             if (!encontrado) rolDAO.insertDetallePrivilegio(rolBE.getIdRol(), listPrivilegios.get(i));
             else encontrado = false;
         }
+    }
 
+    public void deleteRol(RolBE rolBE) throws SQLException
+    {
+        RolDAO rolDAO = new RolDAO();
 
-
+        rolDAO.deletePrivilegios_ROL(rolBE.getIdRol());
+        rolDAO.deleteRol(rolBE.getIdRol());
     }
 }
