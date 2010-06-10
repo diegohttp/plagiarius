@@ -1,13 +1,9 @@
 package antiplagium.view;
 
-import antiplagium.BE.RolBE;
-import antiplagium.BL.PrivilegioBL;
-import antiplagium.BL.RolBL;
-import java.awt.Component;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import antiplagium.BE.*;
+import antiplagium.BL.*;
+import java.sql.*;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
@@ -256,7 +252,24 @@ public class JDAdministrarRoles extends JDialog {
 }//GEN-LAST:event_JBNuevoActionPerformed
 
     private void JBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarActionPerformed
-        // TODO add your handling code here:
+        RolBL rolBL = new RolBL();
+
+        try
+        {
+            rolBL.AbrirConexion();
+            rolBL.deleteRol((RolBE)jcbRol.getSelectedItem());
+            rolBL.CerrarConexion();
+        }
+        catch (ClassNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (SQLException excepcionSQL)
+        {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+
 }//GEN-LAST:event_JBEliminarActionPerformed
 
     private void JBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBModificarActionPerformed
@@ -313,24 +326,6 @@ public class JDAdministrarRoles extends JDialog {
                 JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JBBuscarActionPerformed
-
-    class MultiRenderer extends DefaultTableCellRenderer {
-
-        private static final long serialVersionUID = 1L;
-        JCheckBox checkBox = new JCheckBox();
-
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-            if (value instanceof Boolean) { // Boolean
-                checkBox.setSelected(((Boolean) value).booleanValue());
-                checkBox.setHorizontalAlignment(JLabel.CENTER);
-                return checkBox;
-            }
-            String str = (value == null) ? "" : value.toString();
-            return super.getTableCellRendererComponent(table, str, isSelected,
-                    hasFocus, row, column);
-        }
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

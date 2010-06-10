@@ -1,13 +1,14 @@
 package antiplagium.view;
 
+import javax.swing.JDialog;
 import org.freixas.jcalendar.JCalendarCombo;
 
-public class JFLogDeUsuarios extends JIFBase {
+public class JDLogDeUsuarios extends JDialog {
 
     JCalendarCombo jcComboDesde;
     JCalendarCombo jcComboHasta;
-    /** Creates new form JFLogDeUsuarios */
-    public JFLogDeUsuarios() {
+    /** Creates new form JDLogDeUsuarios */
+    public JDLogDeUsuarios() {
         initComponents();
         
         jcComboDesde = new JCalendarCombo();

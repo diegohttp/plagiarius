@@ -252,9 +252,10 @@ public class AntiPlagiumPrincipal extends JFBase
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void JMLogUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMLogUsuarioActionPerformed
-        JFLogDeUsuarios jfLogDeUsuarios = new JFLogDeUsuarios();
-        jfLogDeUsuarios.setVisible(true);
-        JDPPrincipal.add(jfLogDeUsuarios);
+        JDLogDeUsuarios jdLogDeUsuarios = new JDLogDeUsuarios();
+        jdLogDeUsuarios.setLocationRelativeTo(this);
+        jdLogDeUsuarios.setModal(true);
+        jdLogDeUsuarios.setVisible(true);
     }//GEN-LAST:event_JMLogUsuarioActionPerformed
 
    public static  JDesktopPane  getJDesktopPane(){
