@@ -30,7 +30,7 @@ public class JFBase extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.lightGray);        
     }
 
-    protected void aplicarSeguridad(JMenuBar menu)
+    protected void aplicarSeguridad(JMenuBar menu, Integer idRol)
     {
         //if (nombreRol == "Administrador") return;
         String nombreVentana = this.getName();
@@ -44,7 +44,7 @@ public class JFBase extends javax.swing.JFrame {
         try
         {
             seguridadBL.AbrirConexion();
-            tablaControles = seguridadBL.getListControlesDeshabilitadosPorRol(nombreVentana, nombreRol);
+            tablaControles = seguridadBL.getListControlesDeshabilitadosPorRol(nombreVentana, idRol);
 
             if (tablaControles.getMetaData().getColumnCount() > 0)
             {

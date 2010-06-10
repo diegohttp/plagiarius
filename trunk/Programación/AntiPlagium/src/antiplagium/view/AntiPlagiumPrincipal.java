@@ -1,26 +1,17 @@
 package antiplagium.view;
 
-import antiplagium.BE.CategoriaBE;
-import antiplagium.BE.UsuarioBE;
+import antiplagium.BE.*;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JDesktopPane;
-import antiplagium.DAL.*;
+import java.util.logging.*;
 import java.awt.Component;
-import java.awt.MenuBar;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JRootPane;
+import javax.swing.*;
 
 public class AntiPlagiumPrincipal extends JFBase
 {
-
     private Dimension dim;
 
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
@@ -42,7 +33,7 @@ public class AntiPlagiumPrincipal extends JFBase
             }            
         }
 
-        aplicarSeguridad(menu);
+        aplicarSeguridad(menu, usuarioBE.getRolBE().getIdRol());
     }
 
     @SuppressWarnings("unchecked")
