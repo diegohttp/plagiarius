@@ -15,6 +15,7 @@ import antiplagium.BE.CategoriaBE;
 import antiplagium.BL.CategoriaBL;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author piere
  */
-public class JFCategoriaXUsuario extends JIFBase {
+public class JFCategoriaXUsuario extends JDialog {
 
     private int idUsuario;
     private ArrayList<CategoriaBE> listaCategorias;
@@ -224,6 +225,8 @@ public class JFCategoriaXUsuario extends JIFBase {
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
 
         JFAdministrarCategoria jfAdministrarCategoria=new JFAdministrarCategoria(this);
+        jfAdministrarCategoria.setModal(true);
+        jfAdministrarCategoria.setLocationRelativeTo(this);
         //JFAdministrarCategoria jfAdministrarCategoria=new JFAdministrarCategoria();
         jfAdministrarCategoria.setVisible(true);
 
@@ -267,7 +270,7 @@ public class JFCategoriaXUsuario extends JIFBase {
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-       JFAgregarUsuario.ActualizarListaCategorias(listaCategorias);
+       JDAgregarUsuario.ActualizarListaCategorias(listaCategorias);
        this.dispose();
     }//GEN-LAST:event_jBGuardarActionPerformed
 

@@ -257,7 +257,7 @@ public class JDAdministrarRoles extends JDialog {
         try
         {
             rolBL.AbrirConexion();
-            rolBL.deleteRol((RolBE)jcbRol.getSelectedItem());
+            //rolBL.deleteRol((RolBE)jcbRol.getSelectedItem());
             rolBL.CerrarConexion();
         }
         catch (ClassNotFoundException ex)

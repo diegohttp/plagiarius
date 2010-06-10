@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author a20057070
  */
-public class JFAdministrarCategoria extends javax.swing.JFrame {
+public class JFAdministrarCategoria extends JDialog {
 
     private JFCategoriaXUsuario ventanaAux;
     /** Creates new form JFAdministrarCategoria */

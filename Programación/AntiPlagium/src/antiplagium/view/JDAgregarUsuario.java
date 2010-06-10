@@ -36,7 +36,7 @@ import org.freixas.jcalendar.JCalendarCombo;
  *
  * @author piere
  */
-public class JFAgregarUsuario extends JIFBase {
+public class JDAgregarUsuario extends JDialog {
 
     private EstadoBL estadoBL;
     private RolBL rolBL;
@@ -53,7 +53,7 @@ public class JFAgregarUsuario extends JIFBase {
     private static ArrayList<CategoriaBE> listaCategorias=null;
     
     /** Creates new form JFAgregarUsuario1 */
-    public JFAgregarUsuario(int idUsuario) {
+    public JDAgregarUsuario(int idUsuario) {
        try {
 
             initComponents();
@@ -120,9 +120,9 @@ public class JFAgregarUsuario extends JIFBase {
             }
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -170,10 +170,8 @@ public class JFAgregarUsuario extends JIFBase {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
         setTitle("Agregar Usuario");
-        setNormalBounds(new java.awt.Rectangle(0, 0, 91, 610));
-        setPreferredSize(new java.awt.Dimension(497, 610));
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Usuario"));
 
@@ -201,7 +199,7 @@ public class JFAgregarUsuario extends JIFBase {
 
         jLabel9.setText("Apellido Paterno");
 
-        jBVer.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        jBVer.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
         jBVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
         jBVer.setText("Ver Lista");
         jBVer.addActionListener(new java.awt.event.ActionListener() {
@@ -228,16 +226,16 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTFCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addComponent(jTFNombres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addComponent(jTFApPat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addComponent(jTFApMat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addComponent(jTFNomUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addComponent(jTFContrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addComponent(jCBRol, 0, 246, Short.MAX_VALUE)
-                    .addComponent(jTFCorreoE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(jTFCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jTFNombres, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jTFApPat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jTFApMat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jTFNomUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jTFContrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jCBRol, 0, 240, Short.MAX_VALUE)
+                    .addComponent(jTFCorreoE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTFArea, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                        .addComponent(jTFArea, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBVer)))
                 .addContainerGap())
@@ -293,7 +291,7 @@ public class JFAgregarUsuario extends JIFBase {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
+            .addGap(0, 241, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +305,7 @@ public class JFAgregarUsuario extends JIFBase {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
+            .addGap(0, 241, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,8 +330,8 @@ public class JFAgregarUsuario extends JIFBase {
                     .addComponent(jLabel12))
                 .addGap(95, 95, 95)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -444,7 +442,7 @@ public class JFAgregarUsuario extends JIFBase {
             fechaI = formato.parse(cadenaFechaI);
             fechaF = formato.parse(cadenaFechaF);
         } catch (ParseException ex) {
-            Logger.getLogger(JFAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         int  idEstado=jCBEstado.getSelectedIndex()+1;
@@ -510,9 +508,13 @@ public class JFAgregarUsuario extends JIFBase {
             listaCat.add(listaCategorias.get(i));
         }
         JFCategoriaXUsuario jfCategoriaXUsuario=new JFCategoriaXUsuario(Integer.parseInt(jTFCodigo.getText()),listaCat);
+        jfCategoriaXUsuario.setModal(true);
+        jfCategoriaXUsuario.setLocationRelativeTo(this);
         jfCategoriaXUsuario.setVisible(true);
-        AntiPlagiumPrincipal.getJDesktopPane().add(jfCategoriaXUsuario);
-        jfCategoriaXUsuario.toFront();
+
+        System.out.println("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+//        AntiPlagiumPrincipal.getJDesktopPane().add(jfCategoriaXUsuario);
+//        jfCategoriaXUsuario.toFront();
 
     }//GEN-LAST:event_jBVerActionPerformed
 
