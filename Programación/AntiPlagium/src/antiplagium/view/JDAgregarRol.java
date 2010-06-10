@@ -1,11 +1,9 @@
 package antiplagium.view;
 
-import antiplagium.BE.RolBE;
+import antiplagium.BE.*;
 import antiplagium.BL.*;
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -111,6 +109,13 @@ public class JDAgregarRol extends JDialog {
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11));
         jLabel2.setText("Nombre del Rol");
+
+        JTFNombreRol.setName("JTFNombreRol"); // NOI18N
+        JTFNombreRol.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTFNombreRolKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPGrupoLayout = new javax.swing.GroupLayout(JPGrupo);
         JPGrupo.setLayout(JPGrupoLayout);
@@ -262,6 +267,19 @@ public class JDAgregarRol extends JDialog {
         }
         this.dispose();
     }//GEN-LAST:event_JBGuardarActionPerformed
+
+    private void JTFNombreRolKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTFNombreRolKeyReleased
+        Character caracter = new Character(evt.getKeyChar());
+        if (!Utilitario.esLetra(caracter))
+        {
+            String texto = "";
+            for (int i = 0; i < JTFNombreRol.getText().length(); i++)
+                if (Utilitario.esLetra(new Character(JTFNombreRol.getText().charAt(i))))
+                    texto += JTFNombreRol.getText().charAt(i);
+            JTFNombreRol.setText(texto);
+            JTFNombreRol.getToolkit().beep();
+        }
+    }//GEN-LAST:event_JTFNombreRolKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCancelar;
