@@ -23,6 +23,10 @@ public class RolDAO {
                                                          "INNER JOIN \"Rol\" R on  R.\"idRol\" = RXP.\"idRol\" " +
                                                          "WHERE R.\"nombre\" = '" ;
 
+    //DELETE ROL Y DETALLE
+    private static String SQL_DELE_ROL = "DELETE FROM \"Rol\" " +
+                                         "WHERE \"idRol\" = ";
+
     private static String SQL_DELETE_PRIVILEGIO_X_ROL = "DELETE FROM \"RolXPrivilegio\" " +
                                                         "WHERE \"idRol\" = ";
         
@@ -81,6 +85,20 @@ public class RolDAO {
         ConexionJDBC.ejecutarUpdateString(SQL_Insert);
     }
 
+    public void deleteRol(Integer idRol) throws SQLException
+    {
+        String SQL_DELETE;
+        SQL_DELETE = SQL_DELE_ROL + idRol.toString();
+        ConexionJDBC.ejecutarUpdateString(SQL_DELETE);
+    }
+
+    public void deletePrivilegios_ROL(Integer idRol) throws SQLException
+    {
+        String SQL_DELETE;    
+        SQL_DELETE = SQL_DELETE_PRIVILEGIO_X_ROL + idRol.toString();
+        ConexionJDBC.ejecutarUpdateString(SQL_DELETE);
+    }
+    
     public void deleteDetallePrivilegio(Integer idRol, Integer idPrivilegio) throws SQLException
     {
         String SQL_DELETE = null;    

@@ -16,10 +16,10 @@ public class SeguridadDAO {
                                           "INNER JOIN \"Rol\" R on RXP.\"idRol\" = R.\"idRol\" " +
                                           "WHERE V.\"nombreVentana\" = '" ;
 
-    public ResultSet getComponentesDeshabilitadosPorRol(String nombreVentana, String nombreRol) throws SQLException
+    public ResultSet getComponentesDeshabilitadosPorRol(String nombreVentana, Integer idRol) throws SQLException
     {
         ResultSet tablaResultados = null;
-        String SQL_SELECT = SQL_SEGURIDAD + nombreVentana + "' and R.\"nombre\" = '"+ nombreRol + "'";
+        String SQL_SELECT = SQL_SEGURIDAD + nombreVentana + "' and R.\"idRol\" = '"+ idRol.toString() + "'";
         tablaResultados = ConexionJDBC.ejecutarQueryString(SQL_SELECT);
         return tablaResultados;
     }    
