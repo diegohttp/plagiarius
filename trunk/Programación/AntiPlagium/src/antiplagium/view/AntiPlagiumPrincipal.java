@@ -10,10 +10,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import antiplagium.DAL.*;
+import java.awt.Component;
 import java.awt.MenuBar;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JRootPane;
 
 public class AntiPlagiumPrincipal extends JFBase
 {
@@ -24,6 +27,21 @@ public class AntiPlagiumPrincipal extends JFBase
         super(usuarioBE);
         initComponents();        
         JMenuBar menu = this.getJMenuBar();
+        JRootPane jroot = this.getRootPane();
+        Component[] componentesMenu = jroot.getJMenuBar().getComponents();
+        Component[] componentesMenuInterno;
+
+        for (int i=0; i < componentesMenu.length; i++)
+        {
+            (componentesMenu[i]).setVisible(false);
+
+            componentesMenuInterno = menu.getMenu(i).getMenuComponents();
+            for(int j=0; j < componentesMenuInterno.length; j++)
+            {
+                ((JMenuItem)componentesMenuInterno[j]).setVisible(false);
+            }            
+        }
+
         aplicarSeguridad(menu);
     }
 
