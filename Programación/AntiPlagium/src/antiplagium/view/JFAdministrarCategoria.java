@@ -28,9 +28,28 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFAdministrarCategoria extends javax.swing.JFrame {
 
+    private JFCategoriaXUsuario ventanaAux;
     /** Creates new form JFAdministrarCategoria */
     public JFAdministrarCategoria() {
         initComponents();
+        
+        tblCategoria.getColumnModel().removeColumn(tblCategoria.getColumnModel().getColumn(3));
+        jButton3.setVisible(false);
+    }
+
+    public JFAdministrarCategoria(JFCategoriaXUsuario ventanaCategoriaxUsuario ){
+        initComponents();
+        ventanaAux=ventanaCategoriaxUsuario;
+        if (tblCategoria.getColumnModel().getColumnCount()==3){
+            tblCategoria.getColumnModel().addColumn(tblCategoria.getColumnModel().getColumn(3));
+        }
+        //System.out.println(tblCategoria.getColumnModel().getColumnCount());
+        jButton3.setVisible(true);
+        jButton1.enable(false);
+        jButton2.enable(false);
+        buscar();
+
+
     }
 
     /** This method is called from within the constructor to
@@ -54,8 +73,9 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.blue)); // NOI18N
 
         lblNombre.setText("Nombre");
 
@@ -108,21 +128,21 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.blue)); // NOI18N
 
         tblCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nombre", "Descripción"
+                "Código", "Nombre", "Descripción", "seleccionar"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -187,6 +207,14 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        jButton3.setText("Aceptar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,7 +224,10 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jButton3)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton4)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -208,7 +239,9 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -236,6 +269,9 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        buscar();
+    }//GEN-LAST:event_jButton5ActionPerformed
+    private void buscar(){
         CategoriaBL cat = new CategoriaBL();
         DefaultTableModel temp = (DefaultTableModel) this.tblCategoria.getModel();
         for (int i=temp.getRowCount() - 1; i >= 0; --i){
@@ -256,7 +292,8 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
         }
         this.txtDescripcion.setText("");
         this.txtNombre.setText("");
-    }//GEN-LAST:event_jButton5ActionPerformed
+
+    }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -288,6 +325,24 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DefaultTableModel modelo=(DefaultTableModel)tblCategoria.getModel();
+        ArrayList<Integer> idsCategorias=new ArrayList();
+        
+        for(int i=0;i<modelo.getRowCount();i++){
+            
+            Boolean seleccion=(Boolean)modelo.getValueAt(i, 3);
+            System.out.println("esto es "+seleccion);
+            if ((seleccion!=null)&&(seleccion!=false))
+                idsCategorias.add((Integer)modelo.getValueAt(i, 0));
+            
+        }
+
+
+        ventanaAux.setListaCategorias(idsCategorias);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -302,6 +357,7 @@ public class JFAdministrarCategoria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
