@@ -38,7 +38,7 @@
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                       <Component id="pnlDatosGen" alignment="0" min="-2" max="-2" attributes="1"/>
                       <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCargarDirectorio" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="26" max="32767" attributes="0"/>
@@ -63,7 +63,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="btnCargarDirectorio" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -503,12 +503,12 @@
         <Property name="text" type="java.lang.String" value="Limpiar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnCargarDirectorio">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cargar de Directorio"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCargarDirectorioActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

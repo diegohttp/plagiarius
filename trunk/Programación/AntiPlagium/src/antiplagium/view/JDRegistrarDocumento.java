@@ -148,7 +148,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCargarDirectorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
@@ -422,10 +422,10 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
 
-        jButton2.setText("Cargar de Directorio");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCargarDirectorio.setText("Cargar de Directorio");
+        btnCargarDirectorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCargarDirectorioActionPerformed(evt);
             }
         });
 
@@ -445,7 +445,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(pnlDatosGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
+                        .addComponent(btnCargarDirectorio)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -464,7 +464,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
                             .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCargarDirectorio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -750,7 +750,7 @@ private boolean seleccionoCategoria(){
         selectCat.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCargarDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDirectorioActionPerformed
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
@@ -764,31 +764,25 @@ private boolean seleccionoCategoria(){
             String ruta = chooser.getSelectedFile().getAbsolutePath();
             File dir = new File(ruta);
             File [] nomArch = dir.listFiles();
-            for (int i = 0; i < nomArch.length; ++i){
-                String exten = Utilitario.getExtension(nomArch[i]);
-                if (exten != null && (exten.equals("txt") || exten.equals("doc"))){
-                    System.out.println(nomArch[i].getName());
-                    DocumentoBE doc = null;
-                    try {
-                        int idDoc = Utilitario.generaCodigo("Documento");
-                        CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
-                        doc = new DocumentoBE(idDoc, "activo" , nomArch[i].getName() , objUsuario, objCategoria);
-                        doc.setContenido(DocumentoBL.obtenerContenido(nomArch[i]));
-                        try {
-                            DocumentoBL.registrar(doc);
-                        } catch (Exception ex) {
-                            Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            ArrayList<File> listaArch = new ArrayList<File>();
+            int cnt = 0;
+            for (int i=0; i < nomArch.length; ++i){
+                String extension = Utilitario.getExtension(nomArch[i]);
+                if (extension != null && (extension.equals("txt") || extension.equals("doc")) ){
+                    listaArch.add(nomArch[i]);
+                    cnt++;
                 }
             }
+            if (cnt == 0){
+                return;
+            }
+            JDCargaDocumentos cargaDoc = new JDCargaDocumentos(listaArch);
+            //cargaDoc.setModal(true);
+            CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+            cargaDoc.cargarDocumentos(objCategoria, objUsuario);
+            this.dispose();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCargarDirectorioActionPerformed
 
     /**
     * @param args the command line arguments
@@ -803,10 +797,10 @@ private boolean seleccionoCategoria(){
     private javax.swing.JButton btnBuscar4;
     private javax.swing.JButton btnBuscar5;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCargarDirectorio;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox cboCategoria;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
