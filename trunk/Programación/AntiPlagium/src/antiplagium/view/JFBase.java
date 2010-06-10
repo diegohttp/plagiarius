@@ -3,23 +3,15 @@ package antiplagium.view;
 
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.SeguridadBL;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.awt.*;
+import java.sql.*;
 import java.util.Vector;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
-import javax.swing.UIManager;
+import javax.swing.*;
 
 public class JFBase extends javax.swing.JFrame {
 
     private Dimension dim;    
-    private static String nombreRol =       "Principal";
+    private static String nombreRol = "Administrador";
     public static UsuarioBE usuarioBE=null;
 
     public JFBase(UsuarioBE usuarioBE)
@@ -40,7 +32,7 @@ public class JFBase extends javax.swing.JFrame {
 
     protected void aplicarSeguridad(JMenuBar menu)
     {
-        if (nombreRol == "Administrador") return;
+        //if (nombreRol == "Administrador") return;
         String nombreVentana = this.getName();
         ResultSet tablaControles;
         Vector vector = new Vector();
@@ -78,13 +70,12 @@ public class JFBase extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
-        for(int i=0 ; i< vector.size(); i++)
+        for(int i=0 ; i < vector.size(); i++)
         {
             Object[] registro = (Object[])vector.get(i);
             String nombreControl = registro[3].toString();
 
-            System.out.println(nombreControl);
-
+            //System.out.println(nombreControl);
             for (int k=0; k < menu.getMenuCount() ;k++)
             {                
                 componentesInternos = menu.getMenu(k).getMenuComponents();
@@ -92,13 +83,13 @@ public class JFBase extends javax.swing.JFrame {
                 {
                     if (((JMenuItem)componentesInternos[j]).getName().equals(nombreControl))
                     {
-                        ((JMenuItem)componentesInternos[j]).setVisible(false);
+                        ((JMenuItem)componentesInternos[j]).setVisible(true);
                     }
                 }
 
                 if (menu.getMenu(k).getName().equals(nombreControl))
                 {
-                        menu.getMenu(k).setVisible(false);
+                        menu.getMenu(k).setVisible(true);
                 }
             }
         }
