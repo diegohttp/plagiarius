@@ -49,13 +49,15 @@ public class JFAgregarUsuario extends JIFBase {
 
     private UsuarioBE usuarioBE=null;
     private UsuarioBE usuarioBEOringinal=null;
+
+    private static ArrayList<CategoriaBE> listaCategorias=null;
     
     /** Creates new form JFAgregarUsuario1 */
     public JFAgregarUsuario(int idUsuario) {
        try {
 
             initComponents();
-
+            listaCategorias=new ArrayList<CategoriaBE>();
             jTFCodigo.enable(false);
             this.opcion=idUsuario;
 
@@ -94,6 +96,7 @@ public class JFAgregarUsuario extends JIFBase {
 
             if (idUsuario >= 1) {
                 usuarioBEOringinal=usuarioBL.getUsuarioBE(idUsuario);
+                listaCategorias=usuarioBEOringinal.getCategorias();
                 MostrarDatos(usuarioBEOringinal);
                 this.setTitle("Modificar Usuario");
                 this.setBounds(10, 10, 497, 640);
@@ -457,9 +460,10 @@ public class JFAgregarUsuario extends JIFBase {
         tipoCeseBE.setIdTipoCEse(idTipoCese);
 
 
-        ArrayList<CategoriaBE> listaCategorias=null;
+        //ArrayList<CategoriaBE> listaCategorias=null;//LINEA POR ELIMINAR
         // hay q modificar la ventana para seleccionar varias categorias o areas academicas a la que pertenece el Usuario.
 
+        System.out.println("Numero de categorias asignadas"+listaCategorias.size());
 
         usuarioBE = usuarioBL.FormarUsuarioBE(idUsuario,jTFNombres.getText(),
                                           jTFApPat.getText(),jTFApMat.getText(),
@@ -500,8 +504,12 @@ public class JFAgregarUsuario extends JIFBase {
     }//GEN-LAST:event_jTFNombresKeyReleased
 
     private void jBVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVerActionPerformed
-        
-        JFCategoriaXUsuario jfCategoriaXUsuario=new JFCategoriaXUsuario(Integer.parseInt(jTFCodigo.getText()));
+
+        ArrayList<CategoriaBE> listaCat=new ArrayList<CategoriaBE>();
+        for(int i=0;i<listaCategorias.size();i++){
+            listaCat.add(listaCategorias.get(i));
+        }
+        JFCategoriaXUsuario jfCategoriaXUsuario=new JFCategoriaXUsuario(Integer.parseInt(jTFCodigo.getText()),listaCat);
         jfCategoriaXUsuario.setVisible(true);
         AntiPlagiumPrincipal.getJDesktopPane().add(jfCategoriaXUsuario);
         jfCategoriaXUsuario.toFront();
@@ -509,7 +517,11 @@ public class JFAgregarUsuario extends JIFBase {
     }//GEN-LAST:event_jBVerActionPerformed
 
 
+    public static void ActualizarListaCategorias(ArrayList<CategoriaBE> listaCategoriasAct){
 
+        listaCategorias=listaCategoriasAct;
+
+    }
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         this.dispose();
