@@ -23,13 +23,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author piere
  */
-public class JFCategoriaXUsuario extends JDialog {
+public class JDCategoriaXUsuario extends JDialog {
 
     private int idUsuario;
     private ArrayList<CategoriaBE> listaCategorias;
 
     /** Creates new form JFCategoriaXUsuario */
-    public JFCategoriaXUsuario(int idUsuario,ArrayList<CategoriaBE> listaCat) {
+    public JDCategoriaXUsuario(int idUsuario,ArrayList<CategoriaBE> listaCat) {
         this.idUsuario=idUsuario;
         this.listaCategorias=listaCat;
         if(listaCategorias==null) listaCategorias=new ArrayList<CategoriaBE>();
@@ -224,7 +224,7 @@ public class JFCategoriaXUsuario extends JDialog {
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
 
-        JFAdministrarCategoria jfAdministrarCategoria=new JFAdministrarCategoria(this);
+        JDAdministrarCategoria jfAdministrarCategoria=new JDAdministrarCategoria(this);
         jfAdministrarCategoria.setModal(true);
         jfAdministrarCategoria.setLocationRelativeTo(this);
         //JFAdministrarCategoria jfAdministrarCategoria=new JFAdministrarCategoria();

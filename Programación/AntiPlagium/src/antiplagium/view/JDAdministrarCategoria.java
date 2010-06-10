@@ -27,18 +27,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author a20057070
  */
-public class JFAdministrarCategoria extends JDialog {
+public class JDAdministrarCategoria extends JDialog {
 
-    private JFCategoriaXUsuario ventanaAux;
+    private JDCategoriaXUsuario ventanaAux;
     /** Creates new form JFAdministrarCategoria */
-    public JFAdministrarCategoria() {
+    public JDAdministrarCategoria() {
         initComponents();
         
         tblCategoria.getColumnModel().removeColumn(tblCategoria.getColumnModel().getColumn(3));
         jButton3.setVisible(false);
     }
 
-    public JFAdministrarCategoria(JFCategoriaXUsuario ventanaCategoriaxUsuario ){
+    public JDAdministrarCategoria(JDCategoriaXUsuario ventanaCategoriaxUsuario ){
         initComponents();
         ventanaAux=ventanaCategoriaxUsuario;
         if (tblCategoria.getColumnModel().getColumnCount()==3){
@@ -260,11 +260,11 @@ public class JFAdministrarCategoria extends JDialog {
             resCategoria = new RegistrarCategoria();
             resCategoria.setVisible(true);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -285,11 +285,11 @@ public class JFAdministrarCategoria extends JDialog {
                 temp.addRow(nuevo);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.txtDescripcion.setText("");
         this.txtNombre.setText("");
@@ -314,11 +314,11 @@ public class JFAdministrarCategoria extends JDialog {
                 RegistrarCategoria res = new RegistrarCategoria(objCategoria);
                 res.setVisible(true);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(JFAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else {
@@ -350,7 +350,7 @@ public class JFAdministrarCategoria extends JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFAdministrarCategoria().setVisible(true);
+                new JDAdministrarCategoria().setVisible(true);
             }
         });
     }

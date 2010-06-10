@@ -190,7 +190,7 @@ public class AntiPlagiumPrincipal extends JFBase
 }//GEN-LAST:event_JMIAdministrarGruposActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-         JFAdministrarCategoria admCategoria = new JFAdministrarCategoria();
+         JDAdministrarCategoria admCategoria = new JDAdministrarCategoria();
          admCategoria.setModal(true);
          admCategoria.setLocationRelativeTo(this);
          admCategoria.setVisible(true);
