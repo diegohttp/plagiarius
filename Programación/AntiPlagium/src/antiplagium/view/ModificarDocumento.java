@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -31,7 +32,7 @@ import javax.swing.JOptionPane;
  *
  * @author PATTY
  */
-public class ModificarDocumento extends JFrame {
+public class ModificarDocumento extends JDialog {
 
 private CategoriaBL categoriaBl;
 private DocumentoBE objDocumento ;
@@ -42,10 +43,8 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
     public ModificarDocumento(DocumentoBE objDocumento) throws FileNotFoundException, IOException, SQLException{
 
         initComponents();
-        this.setTitle("Modificar Documento");
         this.objDocumento = objDocumento;
         objDocumentoBL = new DocumentoBL();
-        //categoriaBl =new CategoriaBL();
         ArrayList<CategoriaBE> listaCategorias = this.objDocumento.getUsuario().getCategorias();
         int cantidadCategorias=listaCategorias.size();
         for(int i=0;i<cantidadCategorias;i++){
@@ -57,7 +56,6 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
         txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
         txtNombreDoc.setText(objDocumento.getNombre());
         txtPropietario.setText(objDocumento.getUsuario().getNombres());
-        this.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
