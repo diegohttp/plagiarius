@@ -17,11 +17,11 @@ public class SeguridadBL {
         ConexionJDBC.cerrarConexion();
     }
 
-    public ResultSet getListControlesDeshabilitadosPorRol(String nombreVentana, String nombreRol) throws SQLException
+    public ResultSet getListControlesDeshabilitadosPorRol(String nombreVentana, Integer idRol) throws SQLException
     {
         ResultSet tablaRoles = null;
         SeguridadDAO rolDao = new SeguridadDAO();
-        tablaRoles = rolDao.getComponentesDeshabilitadosPorRol(nombreVentana, nombreRol);
+        tablaRoles = rolDao.getComponentesDeshabilitadosPorRol(nombreVentana, idRol);
         return tablaRoles;
     }
 }
