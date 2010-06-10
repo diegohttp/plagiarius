@@ -424,6 +424,7 @@ private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
 
+        btnCargarDirectorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cargar.png"))); // NOI18N
         btnCargarDirectorio.setText("Cargar de Directorio");
         btnCargarDirectorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

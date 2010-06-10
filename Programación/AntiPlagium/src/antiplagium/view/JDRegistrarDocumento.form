@@ -508,6 +508,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCargarDirectorio">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Iconos/cargar.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cargar de Directorio"/>
       </Properties>
       <Events>
