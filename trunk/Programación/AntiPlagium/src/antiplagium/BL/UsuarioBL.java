@@ -68,15 +68,19 @@ public class UsuarioBL {
     }
 
     public boolean guardarUsuario(UsuarioBE nuevoUsuario){
-
         try {
-            ConexionJDBC.abrirConexion();
-            r= usuarioDAO.InsertarUsuario(nuevoUsuario);
-            ConexionJDBC.cerrarConexion();
+            //        try {
+            //            ConexionJDBC.abrirConexion();
+            r = usuarioDAO.InsertarUsuario(nuevoUsuario);
+            //            ConexionJDBC.cerrarConexion();
             return r;
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
-            return r;
+            //        } catch (ClassNotFoundException ex) {
+            //            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+            //            return r;
+            //        } catch (SQLException ex) {
+            //            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+            //            return r;
+            //        }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
             return r;
@@ -85,19 +89,19 @@ public class UsuarioBL {
     }
 
     public boolean actualizarUsuario(UsuarioBE nuevoUsuario,UsuarioBE originalUsuario){
-        try {
-            ConexionJDBC.abrirConexion();
+        //try {
+            //ConexionJDBC.abrirConexion();
             r = usuarioDAO.ActualizarUsuario(nuevoUsuario, originalUsuario);
-            ConexionJDBC.cerrarConexion();
+            //ConexionJDBC.cerrarConexion();
             return r;
             
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
-            return r;
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
-            return r;
-        }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+//            return r;
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+//            return r;
+//        }
     }
 
     public ResultSet getListaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea){
@@ -205,6 +209,22 @@ public class UsuarioBL {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        }
+    }
+
+    public Boolean ElminarUsuario(UsuarioBE usuarioBE){
+        try {
+            Boolean r=false;
+            ConexionJDBC.abrirConexion();
+            r = usuarioDAO.EliminarUsuario(usuarioBE);
+            ConexionJDBC.cerrarConexion();
+            return r;
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+            return r;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
+            return r;
         }
     }
 
