@@ -507,7 +507,7 @@ public class JDAgregarUsuario extends JDialog {
         for(int i=0;i<listaCategorias.size();i++){
             listaCat.add(listaCategorias.get(i));
         }
-        JFCategoriaXUsuario jfCategoriaXUsuario=new JFCategoriaXUsuario(Integer.parseInt(jTFCodigo.getText()),listaCat);
+        JDCategoriaXUsuario jfCategoriaXUsuario=new JDCategoriaXUsuario(Integer.parseInt(jTFCodigo.getText()),listaCat);
         jfCategoriaXUsuario.setModal(true);
         jfCategoriaXUsuario.setLocationRelativeTo(this);
         jfCategoriaXUsuario.setVisible(true);

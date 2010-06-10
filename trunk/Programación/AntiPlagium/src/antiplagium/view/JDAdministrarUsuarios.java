@@ -452,7 +452,7 @@ public class JDAdministrarUsuarios extends JDialog {
         }
         else{
             int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
-            JFEliminarUsuario jfEliminarUsuario = new JFEliminarUsuario(idUsuario);
+            JDEliminarUsuario jfEliminarUsuario = new JDEliminarUsuario(idUsuario);
             jfEliminarUsuario.setModal(true);
             jfEliminarUsuario.setLocationRelativeTo(this);
             jfEliminarUsuario.setVisible(true);
@@ -510,7 +510,7 @@ public class JDAdministrarUsuarios extends JDialog {
         }
         else{
             int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
-            JFEliminarUsuario jfEliminarUsuario = new JFEliminarUsuario(idUsuario);
+            JDEliminarUsuario jfEliminarUsuario = new JDEliminarUsuario(idUsuario);
             jfEliminarUsuario.setModal(true);
             jfEliminarUsuario.setLocationRelativeTo(this);
             jfEliminarUsuario.setVisible(true);

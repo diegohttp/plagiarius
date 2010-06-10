@@ -27,7 +27,7 @@ import org.freixas.jcalendar.JCalendarCombo;
  *
  * @author a20030555
  */
-public class JFEliminarUsuario extends JDialog{
+public class JDEliminarUsuario extends JDialog{
 
     JCalendarCombo jCCFechaEliminar = new JCalendarCombo();
     EstadoBL estadoBL;
@@ -36,7 +36,7 @@ public class JFEliminarUsuario extends JDialog{
     Boolean rpta=false;
     ArrayList<EstadoBE> registrosEstado;
         /** Creates new form JFEliminarUsuario */
-    public JFEliminarUsuario(int idUsuario) {
+    public JDEliminarUsuario(int idUsuario) {
         try {
 
             initComponents();
@@ -64,9 +64,9 @@ public class JFEliminarUsuario extends JDialog{
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(JFEliminarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDEliminarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JFEliminarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDEliminarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -133,14 +133,10 @@ public class JFEliminarUsuario extends JDialog{
                         .addComponent(jLabel2)))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPFechaEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(32, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jPFechaEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
