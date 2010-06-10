@@ -286,6 +286,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
               usuarioBE=usuarioBL.getUsuarioBE(autenticoUsuario);
               this.setVisible(false);
               AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal(usuarioBE);
+              principal.setLocationRelativeTo(null);
               principal.setVisible(true);
               this.dispose();
         }
