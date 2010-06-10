@@ -114,6 +114,3 @@ public class DetectorBL {
         this.resultado = resultado;
     }
 }
-
-
-
