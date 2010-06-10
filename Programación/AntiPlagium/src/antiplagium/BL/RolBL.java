@@ -74,11 +74,42 @@ public class RolBL {
         } 
     }
     
-    public void updateRol(RolBE rolBE, ArrayList<Integer> listPrivilegios) throws SQLException
+    public void updateRol(RolBE rolBE, ArrayList<Integer> listaPrivilegiosSinModificar, ArrayList<Integer> listPrivilegios) throws SQLException
     {
-        RolDAO rolDAO = new RolDAO();
-        ResultSet tabla = null;        
+        RolDAO rolDAO = new RolDAO();        
                        
         rolDAO.updateRol(rolBE.getIdRol(), rolBE.getNombre(), rolBE.getDescripcion());
+        Boolean encontrado = false;
+
+        for(int i=0; i<listaPrivilegiosSinModificar.size(); i++)
+        {
+            for(int j=0; j<listPrivilegios.size(); j++)
+            {
+                if ((int)listaPrivilegiosSinModificar.get(i) == (int)listPrivilegios.get(j))
+                {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) rolDAO.deleteDetallePrivilegio(rolBE.getIdRol(), listaPrivilegiosSinModificar.get(i));
+            else encontrado = false;
+        }
+
+        for(int i=0; i<listPrivilegios.size(); i++)
+        {            
+            for(int j=0 ; j<listaPrivilegiosSinModificar.size(); j++)
+            {
+                if ( (int)listPrivilegios.get(i) == (int)listaPrivilegiosSinModificar.get(j) )
+                {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) rolDAO.insertDetallePrivilegio(rolBE.getIdRol(), listPrivilegios.get(i));
+            else encontrado = false;
+        }
+
+
+
     }
 }
