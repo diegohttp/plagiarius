@@ -1,3 +1,4 @@
+
 package antiplagium.DAL;
 
 import java.sql.*;
@@ -10,7 +11,8 @@ public class ConexionJDBC {
 
    private static final String CONTROLADOR = "org.postgresql.Driver";
     private static final String URL_BASEDATOS = "jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres";
-    //private static final String URL_BASEDATOS = "jdbc:postgresql://LocalHost:5433/postgres";
+    //private static final String URL_BASEDATOS = "jdbc:postgresql://LocalHost:5433/postgres"; --->piere
+    //private static final String URL_BASEDATOS = "jdbc:postgresql://localhost:5432/postgres";
 
     public static Connection conexion = null;
     public static Statement  instruccion = null;
@@ -46,6 +48,7 @@ public class ConexionJDBC {
         Vector vector = new Vector();
 
         conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+        // conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "pierika1303");
         conexion.setAutoCommit(false);
         conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         instruccion = conexion.createStatement();
@@ -78,6 +81,7 @@ public class ConexionJDBC {
         ResultSet tablaResultados = null;
 
         conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+        //conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "pierika1303");
         conexion.setAutoCommit(true);
         conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         instruccion = conexion.createStatement();
@@ -95,6 +99,7 @@ public class ConexionJDBC {
     {
         Class.forName(CONTROLADOR);
         conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+        //conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "pierika1303");
         conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         instruccion = conexion.createStatement();
     }
@@ -121,6 +126,7 @@ public class ConexionJDBC {
 
         try {
             con = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
+            //conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "pierika1303");
             stmt = con.createStatement();
             stmt.executeUpdate(strSentencia);
 
@@ -137,3 +143,4 @@ public class ConexionJDBC {
      */
 
 }
+
