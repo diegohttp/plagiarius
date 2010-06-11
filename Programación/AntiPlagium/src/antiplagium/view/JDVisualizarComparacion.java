@@ -46,8 +46,9 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         this.lblDoc1.setText(doc1.getNombre());
         this.lblDoc2.setText(docs.get(0).getNombre());
 
-        this.txtDoc1.setText(doc1.getContenido());
-        this.txtDoc2.setText(docs.get(0).getContenido());
+       // this.txtDoc1.setText(doc1.getContenido());
+      //  this.txtDoc2.setText(docs.get(0).getContenido());
+        //this.cargarContenidos();
 
         this.lblTotalDocs.setText("de " + docs.cantElementos());
 
@@ -87,8 +88,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
     public void actualizar() {
         this.lblDoc2.setText(docs.get(docActual).getNombre());
-        this.txtDoc1.setText(doc1.getContenido());
-        this.txtDoc2.setText(docs.get(docActual).getContenido());
+     //   this.txtDoc1.setText(doc1.getContenido());
+      //  this.txtDoc2.setText(docs.get(docActual).getContenido());
         int res = detectores.get(docActual).getResultado();
         this.lblPorc.setText("Porcentaje de similitud: " + res + " %");
 
@@ -129,7 +130,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         SimpleAttributeSet attrNormal = new SimpleAttributeSet();
         StyleConstants.setBold(attrNormal, false);
 
-        for (int i = 0; i < listaOraciones1.length; i++) {
+        for (int i = 0; i < contenido1.length; i++) {
+            if (contenido1[i]==null) break;
             if (contiene(listaOraciones1, i)) {
                 try {
                     this.txtDoc1.getStyledDocument().insertString(this.txtDoc1.getStyledDocument().getLength(), contenido1[i]+"\n", attrNegrita);
@@ -146,7 +148,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             }
         }
 
-        for (int i = 0; i < listaOraciones2.length; i++) {
+        for (int i = 0; i < contenido2.length; i++) {
+            if (contenido2[i]==null) break;
             if (contiene(listaOraciones2, i)) {
                 try {
                     this.txtDoc2.getStyledDocument().insertString(this.txtDoc2.getStyledDocument().getLength(), contenido2[i]+"\n", attrNegrita);
