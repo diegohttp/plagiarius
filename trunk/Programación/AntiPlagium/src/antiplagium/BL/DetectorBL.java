@@ -43,7 +43,7 @@ public class DetectorBL {
             if (con!=null) this.listaConexiones.add(con);
         }
 
-        resultado=  promedioDeConexiones();
+        resultado=  promedioDeConexiones()*this.listaConexiones.size()/doc1.getListaOraciones().size();
     }
 
     public static void cargarPalabrasNoSignificativas(){
