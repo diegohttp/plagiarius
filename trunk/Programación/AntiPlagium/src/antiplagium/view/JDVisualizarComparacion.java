@@ -14,6 +14,11 @@ import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.GestorDocumentosBE;
 import antiplagium.BL.DetectorBL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 /**
  *
@@ -24,8 +29,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private DocumentoBE doc1;
     private GestorDocumentosBE docs = new GestorDocumentosBE();
     private ArrayList<DetectorBL> detectores = new ArrayList<DetectorBL>();
-
-    private int docActual=0;
+    private int docActual = 0;
 
     public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
         this.doc1 = doc;
@@ -38,14 +42,14 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         this.actualizar();
     }
 
-    public void etiquetarValoresIniciales(){
+    public void etiquetarValoresIniciales() {
         this.lblDoc1.setText(doc1.getNombre());
         this.lblDoc2.setText(docs.get(0).getNombre());
 
         this.txtDoc1.setText(doc1.getContenido());
         this.txtDoc2.setText(docs.get(0).getContenido());
 
-        this.lblTotalDocs.setText("de "+docs.cantElementos());
+        this.lblTotalDocs.setText("de " + docs.cantElementos());
 
     }
 
@@ -54,47 +58,136 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
         this.pgbComparacion.setMaximum(100);
 
-        int paso= 100/this.docs.cantElementos(), valorActual=0;
-         this.pgbComparacion.setValue(valorActual);
+        int paso = 100 / this.docs.cantElementos(), valorActual = 0;
+        this.pgbComparacion.setValue(valorActual);
 
         this.doc1.armarEstructura();
 
-        long tInicio= System.currentTimeMillis();
+        long tInicio = System.currentTimeMillis();
 
         for (int i = 0; i < this.docs.cantElementos(); i++) {
-            DetectorBL dec= new DetectorBL();
+            DetectorBL dec = new DetectorBL();
             docs.get(i).armarEstructura();
             dec.comparar(doc1, docs.get(i));
             this.detectores.add(dec);
-            valorActual+=paso;
+            valorActual += paso;
             this.pgbComparacion.setValue(valorActual);
-            if (i==this.docs.cantElementos()-1)  this.pgbComparacion.setValue(100);
+            if (i == this.docs.cantElementos() - 1) {
+                this.pgbComparacion.setValue(100);
+            }
         }
 
-        long tFin= System.currentTimeMillis();
+        long tFin = System.currentTimeMillis();
 
-        this.lblTiempo.setText("Tiempo total de comparación: "+(tFin-tInicio)+" ms.");
+        this.lblTiempo.setText("Tiempo total de comparación: " + (tFin - tInicio) + " ms.");
 
-        
-        
+
+
     }
 
-    public void actualizar(){
+    public void actualizar() {
         this.lblDoc2.setText(docs.get(docActual).getNombre());
         this.txtDoc1.setText(doc1.getContenido());
         this.txtDoc2.setText(docs.get(docActual).getContenido());
-        int res=detectores.get(docActual).getResultado();
-        this.lblPorc.setText("Porcentaje de similitud: "+res +" %");
+        int res = detectores.get(docActual).getResultado();
+        this.lblPorc.setText("Porcentaje de similitud: " + res + " %");
 
-        if (res<50){
+        if (res < 50) {
             this.lblNivel.setText("Bajo");
-        }
-        else if (res<70){
+        } else if (res < 70) {
             this.lblNivel.setText("Medio");
+        } else {
+            this.lblNivel.setText("Alto");
         }
-        else this.lblNivel.setText("Alto");
 
-        this.txtNumDoc.setText(""+docActual);
+        this.txtNumDoc.setText("" + docActual);
+
+        this.cargarContenidos();
+    }
+
+    public void cargarContenidos() {
+        this.txtDoc1.setText("");
+        this.txtDoc2.setText("");
+        DetectorBL detector = this.detectores.get(this.docActual);
+        int[] listaOraciones1 = new int[detector.listaConexiones.size()];
+        int[] listaOraciones2 = new int[detector.listaConexiones.size()];
+
+        for (int i = 0; i < detector.listaConexiones.size(); i++) {
+            listaOraciones1[i] = detector.listaConexiones.get(i).getOracionesConectadas().x;
+            listaOraciones2[i] = detector.listaConexiones.get(i).getOracionesConectadas().y;
+        }
+
+        String[] contenido1Previo = doc1.getContenido().split("\n");
+        String[] contenido2Previo = docs.get(docActual).getContenido().split("\n");
+
+        String[] contenido1=this.removerVacios(contenido1Previo);
+         String[] contenido2=this.removerVacios(contenido2Previo);
+
+        SimpleAttributeSet attrNegrita = new SimpleAttributeSet();
+        StyleConstants.setBold(attrNegrita, true);
+
+        SimpleAttributeSet attrNormal = new SimpleAttributeSet();
+        StyleConstants.setBold(attrNormal, false);
+
+        for (int i = 0; i < listaOraciones1.length; i++) {
+            if (contiene(listaOraciones1, i)) {
+                try {
+                    this.txtDoc1.getStyledDocument().insertString(this.txtDoc1.getStyledDocument().getLength(), contenido1[i]+"\n", attrNegrita);
+                } catch (BadLocationException ex) {
+                    System.out.println(ex);
+                }
+            }
+            else {
+               try {
+                    this.txtDoc1.getStyledDocument().insertString(this.txtDoc1.getStyledDocument().getLength(), contenido1[i]+"\n", attrNormal);
+                } catch (BadLocationException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+
+        for (int i = 0; i < listaOraciones2.length; i++) {
+            if (contiene(listaOraciones2, i)) {
+                try {
+                    this.txtDoc2.getStyledDocument().insertString(this.txtDoc2.getStyledDocument().getLength(), contenido2[i]+"\n", attrNegrita);
+                } catch (BadLocationException ex) {
+                    System.out.println(ex);
+                }
+            }
+            else {
+               try {
+                    this.txtDoc2.getStyledDocument().insertString(this.txtDoc2.getStyledDocument().getLength(), contenido2[i]+"\n", attrNormal);
+                } catch (BadLocationException ex) {
+                    System.out.println(ex);
+                }
+            }
+        }
+
+
+
+
+    }
+
+    public String[] removerVacios(String[] arr){
+        String[] aux= new String[arr.length];
+        int j=0;
+        for (int i=0; i<arr.length; i++) {
+            if (arr[i].compareTo("")!=0) {
+                aux[j]=arr[i];
+                j++;
+            }
+        }
+        return aux;
+
+    }
+
+    public boolean contiene(int[] arr, int valor) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == valor) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** This method is called from within the constructor to
@@ -345,14 +438,18 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private void btnDocAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocAnteriorActionPerformed
         this.docActual--;
         this.btnDocSgte.setEnabled(true);
-        if (docActual==0) this.btnDocAnterior.setEnabled(false);
+        if (docActual == 0) {
+            this.btnDocAnterior.setEnabled(false);
+        }
         this.actualizar();
 }//GEN-LAST:event_btnDocAnteriorActionPerformed
 
     private void btnDocSgteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocSgteActionPerformed
         this.docActual++;
         this.btnDocAnterior.setEnabled(true);
-        if (docActual==docs.cantElementos()-1) this.btnDocSgte.setEnabled(false);
+        if (docActual == docs.cantElementos() - 1) {
+            this.btnDocSgte.setEnabled(false);
+        }
         this.actualizar();
 }//GEN-LAST:event_btnDocSgteActionPerformed
     /**
