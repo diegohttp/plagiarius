@@ -1,6 +1,8 @@
 package antiplagium.view;
 
 import antiplagium.BE.*;
+import antiplagium.view.Reportes.ComparacionesDeteccion;
+import antiplagium.view.Reportes.ListarDocs;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -53,6 +55,8 @@ public class AntiPlagiumPrincipal extends JFBase
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         JMReportes = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.Color.lightGray);
@@ -160,6 +164,25 @@ public class AntiPlagiumPrincipal extends JFBase
         JMReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
         JMReportes.setText("Reportes");
         JMReportes.setName("JMReportes"); // NOI18N
+
+        jMenuItem1.setText("Comparaciones Documentos");
+        jMenuItem1.setName("JMIReporteComparaciones"); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        JMReportes.add(jMenuItem1);
+
+        jMenuItem6.setText("Documentos");
+        jMenuItem6.setName("JMIReporteDocumentos"); // NOI18N
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        JMReportes.add(jMenuItem6);
+
         jMenuBar1.add(JMReportes);
 
         setJMenuBar(jMenuBar1);
@@ -259,6 +282,18 @@ public class AntiPlagiumPrincipal extends JFBase
         jdLogDeUsuarios.setVisible(true);
     }//GEN-LAST:event_JMLogUsuarioActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+        ComparacionesDeteccion frmComparacion = new ComparacionesDeteccion();
+        frmComparacion.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+
+        ListarDocs frmListarDocs = new ListarDocs();
+        frmListarDocs.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
    public static  JDesktopPane  getJDesktopPane(){
       return JDPPrincipal;
     }
@@ -274,10 +309,12 @@ public class AntiPlagiumPrincipal extends JFBase
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 
 }
