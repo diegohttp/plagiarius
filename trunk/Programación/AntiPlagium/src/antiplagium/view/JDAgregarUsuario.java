@@ -181,6 +181,12 @@ public class JDAgregarUsuario extends JDialog {
             }
         });
 
+        jTFNomUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFNomUsuarioKeyPressed(evt);
+            }
+        });
+
         jLabel1.setText("Codigo");
 
         jLabel2.setText("Apellido Materno");
@@ -529,6 +535,15 @@ public class JDAgregarUsuario extends JDialog {
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jTFNomUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNomUsuarioKeyPressed
+        String text = jTFNomUsuario.getText();
+        int maxLength=15;
+        if (text.length() > maxLength) {
+            text = text.substring(0, maxLength);
+            jTFNomUsuario.setText(text);
+        }
+    }//GEN-LAST:event_jTFNomUsuarioKeyPressed
 
     public void MostrarDatos(UsuarioBE usuarioBE){
         jTFCodigo.setText(String.valueOf(usuarioBE.getIdUsuario()));
