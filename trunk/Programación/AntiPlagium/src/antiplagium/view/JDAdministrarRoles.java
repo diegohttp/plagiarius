@@ -201,10 +201,20 @@ public class JDAdministrarRoles extends JDialog {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
         jMenu2.setText("Modificar");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jMenu3.setText("Eliminar");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -268,8 +278,6 @@ public class JDAdministrarRoles extends JDialog {
         {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-
-
 }//GEN-LAST:event_JBEliminarActionPerformed
 
     private void JBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBModificarActionPerformed
@@ -287,8 +295,8 @@ public class JDAdministrarRoles extends JDialog {
 
     private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
         JDAgregarRol jfAgregarRol = new JDAgregarRol();
-        AntiPlagiumPrincipal.JDPPrincipal.add(jfAgregarRol);
-        jfAgregarRol.toFront();
+        jfAgregarRol.setLocationRelativeTo(this);
+        jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseReleased
 
@@ -326,6 +334,38 @@ public class JDAdministrarRoles extends JDialog {
                 JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JBBuscarActionPerformed
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        ArrayList<Integer> listaPrivilegios = new ArrayList<Integer>();
+        for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
+        {
+            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true) listaPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
+        }
+
+        JDAgregarRol jfAgregarRol = new JDAgregarRol((RolBE)jcbRol.getSelectedItem(), listaPrivilegios);
+        jfAgregarRol.setLocationRelativeTo(this);
+        jfAgregarRol.setModal(true);
+        jfAgregarRol.setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        RolBL rolBL = new RolBL();
+
+        try
+        {
+            rolBL.AbrirConexion();
+            //rolBL.deleteRol((RolBE)jcbRol.getSelectedItem());
+            rolBL.CerrarConexion();
+        }
+        catch (ClassNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (SQLException excepcionSQL)
+        {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenu3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
