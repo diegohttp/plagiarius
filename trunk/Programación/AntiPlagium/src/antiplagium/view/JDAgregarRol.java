@@ -244,7 +244,6 @@ public class JDAgregarRol extends JDialog {
             return;
         }
 
-
         RolBL rolBL = new RolBL();
         listaIDPrivilegios = new ArrayList<Integer>();
 
