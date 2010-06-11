@@ -470,20 +470,21 @@ public class JDAgregarUsuario extends JDialog {
                                           fechaC,estadoBE,rolBE,
                                           listaCategorias,tipoCeseBE,jTFCorreoE.getText());
 
+        if(usuarioBE!=null){
+            if(usuarioBEOringinal!=null){
+                r=usuarioBL.actualizarUsuario(usuarioBE, usuarioBEOringinal);
+            }
+            else{
+                r=usuarioBL.guardarUsuario(usuarioBE);
+            }
 
-        if(usuarioBEOringinal!=null){
-            r=usuarioBL.actualizarUsuario(usuarioBE, usuarioBEOringinal);
-        }
-        else{
-            r=usuarioBL.guardarUsuario(usuarioBE);
-        }
 
-
-        if (r==false){
-            JOptionPane.showMessageDialog(this,"Error. Verifique los datos ingresados", "Mensaje derror", JOptionPane.ERROR_MESSAGE);
-        }
-        else { JOptionPane.showMessageDialog(this, "Usuario registrado con exito");
-               this.dispose();
+            if (r==false){
+                JOptionPane.showMessageDialog(this,"Error. Verifique los datos ingresados", "Mensaje derror", JOptionPane.ERROR_MESSAGE);
+            }
+            else { JOptionPane.showMessageDialog(this, "Usuario registrado con exito");
+                   this.dispose();
+            }
         }
 
     }//GEN-LAST:event_jBGuardarActionPerformed
