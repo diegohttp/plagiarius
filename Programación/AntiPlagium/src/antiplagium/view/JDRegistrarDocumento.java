@@ -673,9 +673,11 @@ private boolean seleccionoCategoria(){
                 }
             }
         }
-        JOptionPane.showMessageDialog(this, resDoc1 + "\n" + resDoc2 + "\n" + resDoc3 + "\n" + resDoc4 + "\n" + resDoc5, "Resultado Registro",JOptionPane.INFORMATION_MESSAGE);
+        String salida = resDoc1 + "\n" + resDoc2 + "\n" + resDoc3 + "\n" + resDoc4 + "\n" + resDoc5;
+        if (salida.length() > 0){
+            JOptionPane.showMessageDialog(this, salida , "Resultado Registro",JOptionPane.INFORMATION_MESSAGE);
+        }
         this.dispose();
-
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -771,6 +773,7 @@ private boolean seleccionoCategoria(){
                 }
             }
             if (cnt == 0){
+                JOptionPane.showMessageDialog(this, "El directorio no contiene documentos .doc o .txt" , "Cargar Documentos" , JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             JDCargaDocumentos cargaDoc = new JDCargaDocumentos(listaArch);
