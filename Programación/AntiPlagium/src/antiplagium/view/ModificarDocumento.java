@@ -117,6 +117,7 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
             }
         });
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modDoc.png"))); // NOI18N
         jButton3.setText("Cambiar Texto");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +130,7 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
@@ -137,7 +138,7 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
                         .addComponent(jLabel4)
                         .addComponent(jLabel3))
                     .addComponent(jButton3))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
