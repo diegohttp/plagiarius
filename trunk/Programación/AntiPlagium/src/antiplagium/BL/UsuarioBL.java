@@ -10,15 +10,19 @@ import antiplagium.BE.EstadoBE;
 import antiplagium.BE.RolBE;
 import antiplagium.BE.TipoCeseBE;
 import antiplagium.BE.UsuarioBE;
+import antiplagium.BE.Utilitario;
 import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -55,6 +59,40 @@ public class UsuarioBL {
                                       TipoCeseBE tipoCeseBE,String email){
 
 
+        Boolean rpta=validarCadenaAlfabetica(nombres,"Nombres");
+        if(rpta==false){
+            return null;
+        }
+
+        rpta=validarCadenaAlfabetica(apellidoPaterno,"Apellido Paterno");
+        if(rpta==false){
+            return null;
+        }
+
+        rpta=validarCadenaAlfabetica(apellidoMaterno,"Apellido Materno");
+        if(rpta==false){
+            return null;
+        }
+
+        rpta=validarCadenaSinEspacios(nombreUsuario);
+        if(rpta==false){
+            return null;
+        }
+
+        SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+        String cadenaFechaI=formato.format(fechaRegistro);
+        String cadenaFechaF=formato.format(fechaVencimiento);
+
+        rpta=validarFechas(cadenaFechaI, cadenaFechaF);
+        if(rpta==false){
+            return null;
+        }
+
+        rpta=validarMail(email);
+        if(rpta==false){
+            return null;
+        }
+
         usuarioBE=new UsuarioBE(idUsuario, nombres, apellidoPaterno, apellidoMaterno, nombreUsuario,
                                 password, fechaRegistro, fechaVencimiento, fechaCese, estadoBE, rolBE,
                                 categorias, tipoCeseBE,email);
@@ -69,18 +107,10 @@ public class UsuarioBL {
 
     public boolean guardarUsuario(UsuarioBE nuevoUsuario){
         try {
-            //        try {
-            //            ConexionJDBC.abrirConexion();
+            
             r = usuarioDAO.InsertarUsuario(nuevoUsuario);
-            //            ConexionJDBC.cerrarConexion();
             return r;
-            //        } catch (ClassNotFoundException ex) {
-            //            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
-            //            return r;
-            //        } catch (SQLException ex) {
-            //            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
-            //            return r;
-            //        }
+           
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
             return r;
@@ -89,25 +119,78 @@ public class UsuarioBL {
     }
 
     public boolean actualizarUsuario(UsuarioBE nuevoUsuario,UsuarioBE originalUsuario){
-        //try {
+        
             //ConexionJDBC.abrirConexion();
             r = usuarioDAO.ActualizarUsuario(nuevoUsuario, originalUsuario);
             //ConexionJDBC.cerrarConexion();
             return r;
             
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
-//            return r;
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
-//            return r;
-//        }
+
+    }
+
+    public Boolean validarCadenaAlfabetica(String cadena,String nombreCampo){
+        char[] caracteres = cadena.toCharArray();
+            for (int i = 0; i < caracteres.length; i++) {
+                if (Utilitario.esLetra(caracteres[i]) == false) {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar caracteres alfabeticos en el campo "+nombreCampo, "Invalido", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+            }
+        return true;
+        
+    }
+
+    public Boolean validarCadenaSinEspacios(String cadena){
+        char[] caracteres = cadena.toCharArray();
+            for (int i = 0; i < caracteres.length; i++) {
+                    if (caracteres[i] == ' ' || caracteres[i] == 8 ){
+                        JOptionPane.showMessageDialog(null, "El campo nombre de usuario no debe tener espacios", "Invalido", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+            }
+        return true;
+    }
+    
+    public Boolean validarFechas(String cadenaFI,String cadenaFF){
+        if( (cadenaFI.compareTo(cadenaFF)>0) || (cadenaFI.compareTo(cadenaFF)==0) ){
+                   JOptionPane.showMessageDialog(null, "La fecha de inicio debe ser menor a la fecha fin ", "Invalido", JOptionPane.ERROR_MESSAGE);                
+                   return false;
+            }
+        return true;
+    }
+    
+    public Boolean validarMail(String email){
+        Boolean rpta=Utilitario.esEmailValido(email);    
+        if(rpta==false) JOptionPane.showMessageDialog(null, "El campo \"Correo Electronico\" no es valido", "Invalido", JOptionPane.ERROR_MESSAGE);                
+        return rpta;
     }
 
     public ResultSet getListaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea){
-        ResultSet rs=null;
-        rs=usuarioDAO.getConsultaUsuarios(usuario,nombreCompleto, cadenaFechaI, cadenaFechaF, idRol,  idArea);
-        return rs;
+
+            Boolean rpta=validarCadenaAlfabetica(nombreCompleto,"Nombre Completo");
+            if(rpta==false) return null;
+            
+
+
+            rpta=validarFechas(cadenaFechaI, cadenaFechaF);
+            if(rpta==false) return null;
+            
+//            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+//            Date fechaI = new Date();
+//            fechaI = formato.parse(cadenaFechaI);
+//            Date fechaF = new Date();
+//            fechaF = formato.parse(cadenaFechaF);
+//            int a=fechaI.compareTo(fechaF);
+//            if(a==0){
+//            
+//            }
+            
+            
+            ResultSet rs = null;
+            rs = usuarioDAO.getConsultaUsuarios(usuario, nombreCompleto, cadenaFechaI, cadenaFechaF, idRol, idArea);
+            return rs;
+
+
     }
 
 
