@@ -402,11 +402,15 @@ public class BuscarDocumento extends JDialog {
                 tmp.removeRow(i);
             }
             /* Llenamos la grilla */
+            int cnt = 0;
             for (int i=0; i < arrDocumentos.size() ; ++i){
-                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getIdUsuario() , arrDocumentos.get(i).getEstado()  };
-                tmp.addRow(nuevo);
+                if (arrDocumentos.get(i).getEstado().equals("activo")){
+                   Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getIdUsuario() , arrDocumentos.get(i).getEstado()  };
+                   tmp.addRow(nuevo);
+                   cnt++;
+                }
             }
-            if (this.arrDocumentos.size() == 0){
+            if (cnt == 0){
                  JOptionPane.showMessageDialog(this, "La búsqueda no encontro ningún resultado", "Buscar Documento", JOptionPane.INFORMATION_MESSAGE);
             }
 
