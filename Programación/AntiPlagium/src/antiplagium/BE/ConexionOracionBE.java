@@ -28,4 +28,20 @@ public class ConexionOracionBE {
     public int getPorcentaje(){
         return this.porcentaje;
     }
+
+    public Point getDocumentosConectados() {
+        return documentosConectados;
+    }
+
+    public void setDocumentosConectados(Point documentosConectados) {
+        this.documentosConectados = documentosConectados;
+    }
+
+    public Point getOracionesConectadas() {
+        return oracionesConectadas;
+    }
+
+    public void setOracionesConectadas(Point oracionesConectadas) {
+        this.oracionesConectadas = oracionesConectadas;
+    }
 }
