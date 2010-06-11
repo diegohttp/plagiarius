@@ -17,6 +17,7 @@ import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
+import antiplagium.BL.UsuarioBL;
 import antiplagium.DAO.CategoriaDAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -403,9 +404,12 @@ public class BuscarDocumento extends JDialog {
             }
             /* Llenamos la grilla */
             int cnt = 0;
+            UsuarioBL objUsuarioBL = new UsuarioBL();
             for (int i=0; i < arrDocumentos.size() ; ++i){
                 if (arrDocumentos.get(i).getEstado().equals("activo")){
-                   Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getIdUsuario() , arrDocumentos.get(i).getEstado()  };
+                   UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE( this.arrDocumentos.get(i).getUsuario().getIdUsuario() );
+                   this.arrDocumentos.get(i).setUsuario(tmpUsuario);
+                   Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
                    tmp.addRow(nuevo);
                    cnt++;
                 }
@@ -454,7 +458,7 @@ public class BuscarDocumento extends JDialog {
                     JOptionPane.showMessageDialog(this, "Debe ser propietario del documento para modificar sus datos", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                this.arrDocumentos.get(idx).setUsuario(objUsuario);
+                //this.arrDocumentos.get(idx).setUsuario(objUsuario);
                 vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(idx));
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
@@ -486,14 +490,14 @@ public class BuscarDocumento extends JDialog {
             vis.setVisible(true);
         }
         else {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Mostrar Contenido", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Mostrar Contenido", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
         // TODO add your handling code here:
         if (this.jtabPaquetes.getSelectedRowCount()!=1)
-           JOptionPane.showMessageDialog(null, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
         else
         {
             DocumentoBL objDocumentoBL = new DocumentoBL();
