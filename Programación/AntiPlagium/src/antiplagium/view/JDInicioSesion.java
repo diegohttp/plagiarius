@@ -11,7 +11,9 @@
 
 package antiplagium.view;
 
+import antiplagium.BE.GestorError;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +25,16 @@ public class JDInicioSesion extends javax.swing.JDialog {
     public JDInicioSesion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        try
+        {
+            GestorError.populate("XML/Errores.xml", this);
+        } 
+        catch (Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "El programa no se pudo iniciar", "Error", JOptionPane.DEFAULT_OPTION);
+            return;
+        }
        // this.setIconImage("/Iconos/icon_err.gif");
     }
 

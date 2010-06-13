@@ -28,15 +28,7 @@ public class JDAdministrarRoles extends JDialog {
         modeloTablaPrivilegios = (DefaultTableModel) JTPrivilegios.getModel();
 
         try
-        {
-            rolBL.AbrirConexion();
-            tablaRoles = rolBL.getListRoles();
-            while (tablaRoles.next())
-            {                
-                jcbRol.addItem(new RolBE(tablaRoles.getInt("idRol"), tablaRoles.getString("nombre"), tablaRoles.getString("nombre")));
-            }
-            rolBL.CerrarConexion();
-
+        {            
             privilegioBL.AbrirConexion();
             tablaPrivilegios = privilegioBL.getListPrivilegios();
             if (tablaPrivilegios != null) {
@@ -51,31 +43,26 @@ public class JDAdministrarRoles extends JDialog {
                 }
             }
             privilegioBL.CerrarConexion();
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException excepcionSQL) {
-            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }
 
-    private void actualizarRoles()
-    {
-        jcbRol.removeAllItems();
-        RolBL rolBL = new RolBL();
-        try {
             rolBL.AbrirConexion();
             tablaRoles = rolBL.getListRoles();
-            while (tablaRoles.next()) {
+            while (tablaRoles.next())
+            {
                 jcbRol.addItem(new RolBE(tablaRoles.getInt("idRol"), tablaRoles.getString("nombre"), tablaRoles.getString("nombre")));
             }
             rolBL.CerrarConexion();
+
         } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            GestorError.showError("base_de_datos");
+            //JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
         } catch (SQLException excepcionSQL) {
-            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            GestorError.showError("base_de_datos");            
+            //JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -101,6 +88,12 @@ public class JDAdministrarRoles extends JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("ROL"));
 
         jLabel2.setText("Rol");
+
+        jcbRol.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbRolItemStateChanged(evt);
+            }
+        });
 
         JBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
         JBBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -272,11 +265,15 @@ public class JDAdministrarRoles extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
-        JDAgregarRol jfAgregarRol = new JDAgregarRol();
+        
+        RolBE rolBE = new RolBE();
+        
+        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);        
         jfAgregarRol.setLocationRelativeTo(this);
         jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
-        actualizarRoles();
+        jcbRol.addItem(rolBE);
+        jcbRol.setSelectedItem(rolBE);
 }//GEN-LAST:event_JBNuevoActionPerformed
 
     private void JBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarActionPerformed
@@ -290,12 +287,14 @@ public class JDAdministrarRoles extends JDialog {
         }
         catch (ClassNotFoundException ex)
         {
-            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            GestorError.showError("base_de_datos");
+            //JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
         catch (SQLException excepcionSQL)
         {
-            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            GestorError.showError("base_de_datos");
+            //JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
         JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "", JOptionPane.OK_OPTION);
@@ -312,15 +311,16 @@ public class JDAdministrarRoles extends JDialog {
         jfAgregarRol.setLocationRelativeTo(this);
         jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
-        actualizarRoles();
 }//GEN-LAST:event_JBModificarActionPerformed
 
     private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
-        JDAgregarRol jfAgregarRol = new JDAgregarRol();
+        RolBE rolBE = new RolBE();
+        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);
         jfAgregarRol.setLocationRelativeTo(this);
         jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
-        actualizarRoles();
+        jcbRol.addItem(rolBE);
+        jcbRol.setSelectedItem(rolBE);
     }//GEN-LAST:event_jMenu1MouseReleased
 
     private void JBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBBuscarActionPerformed
@@ -369,7 +369,6 @@ public class JDAdministrarRoles extends JDialog {
         jfAgregarRol.setLocationRelativeTo(this);
         jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
-        actualizarRoles();
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
@@ -390,6 +389,41 @@ public class JDAdministrarRoles extends JDialog {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jcbRolItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbRolItemStateChanged
+
+        for (int i=0; i<modeloTablaPrivilegios.getRowCount(); i++) modeloTablaPrivilegios.setValueAt(false, i, 3);
+
+        RolBL rolBL = new RolBL();
+        ResultSet tablaPrivilegiosXRol = null;
+        try
+        {
+            rolBL.AbrirConexion();
+            tablaPrivilegiosXRol = rolBL.getPrivilegiosPorROl(((RolBE)jcbRol.getSelectedItem()).getNombre());
+            if (tablaPrivilegiosXRol != null)
+            {
+                while(tablaPrivilegiosXRol.next())
+                {
+                    for(int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
+                    {
+                        int val1 = ((Integer)modeloTablaPrivilegios.getValueAt(i, 0)).intValue();
+                        int val2 = ((Integer)tablaPrivilegiosXRol.getObject("idPrivilegio")).intValue();
+                        if(val1 == val2) modeloTablaPrivilegios.setValueAt(true, i, 3);
+                    }
+                }
+                JTPrivilegios.updateUI();
+            }
+            rolBL.CerrarConexion();
+        }
+        catch (ClassNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (SQLException excepcionSQL)
+        {
+                JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jcbRolItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,11 +11,13 @@
 
 package antiplagium.view;
 
+import antiplagium.BE.GestorError;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.UsuarioBL;
 import antiplagium.DAL.ConexionJDBC;
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
 /**
@@ -35,6 +37,16 @@ public class JFInicioSesion extends javax.swing.JFrame {
         jPFContrasena=new JPasswordField();
         jPFContrasena.setSize(176, 29);
         jPContrasena.add(jPFContrasena);
+
+        try
+        {
+            GestorError.populate("XML/Errores.xml", this);
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showConfirmDialog(null, "El programa no se pudo iniciar", "Error", JOptionPane.DEFAULT_OPTION);
+            return;
+        }
 
     }
 
