@@ -1,0 +1,14 @@
+<Errores>
+    <Error>
+        <nombre>base_de_datos</nombre>
+        <mensaje>Error en base de datos</mensaje>
+    </Error>
+    <Error>
+        <nombre>nombre_ya_existe</nombre>
+        <mensaje>El nombre especificado ya existe</mensaje>
+    </Error>
+    <Error>
+        <nombre>faltan_datos</nombre>
+        <mensaje>Debe llenar todos los campos obligatorios</mensaje>
+    </Error>
+</Errores>
