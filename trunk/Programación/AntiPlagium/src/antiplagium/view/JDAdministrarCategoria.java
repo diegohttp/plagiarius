@@ -46,8 +46,8 @@ public class JDAdministrarCategoria extends JDialog {
         }
         //System.out.println(tblCategoria.getColumnModel().getColumnCount());
         jButton3.setVisible(true);
-        jButton1.enable(false);
-        jButton2.enable(false);
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
         buscar();
 
 

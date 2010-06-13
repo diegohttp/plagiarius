@@ -230,7 +230,7 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
         visDoc.setTitle("Texto documento");
         visDoc.setModal(true);
         visDoc.setVisible(true);
-        visDoc.btnSalir.setText("Cancelar");
+        //visDoc.btnSalir.setText("Cancelar"); COMENTADO X SUBIR CON ERROR
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public void setContenidoDoc(String texto){
