@@ -469,7 +469,6 @@ public class JDAdministrarUsuarios extends JDialog {
         // TODO add your handling code here:
 }//GEN-LAST:event_jCBRolActionPerformed
 
-
     private void jMNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMNuevoMouseReleased
         JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
         jfAgregarUsuario.setModal(true);

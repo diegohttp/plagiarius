@@ -11,7 +11,10 @@
 
 package antiplagium.view;
 
+import Utilitarios.EnviarCorreo;
+
 import antiplagium.BE.GestorError;
+
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.UsuarioBL;
 import antiplagium.DAL.ConexionJDBC;
@@ -61,9 +64,10 @@ public class JFInicioSesion extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPError = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -88,17 +92,44 @@ public class JFInicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel4.setFont(new java.awt.Font("DejaVu Sans", 1, 10));
+        jLabel4.setFont(new java.awt.Font("DejaVu Sans", 1, 10)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(244, 15, 15));
         jLabel4.setText("El nombre de usuario o la contraseña son incorrectas.");
         jLabel4.setAlignmentY(0.0F);
 
-        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 1, 10));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icon_err.gif"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("DejaVu Sans", 1, 10)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(244, 15, 15));
         jLabel5.setText("Inténtelo de nuevo.");
         jLabel5.setAlignmentY(0.0F);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/icon_err.gif"))); // NOI18N
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(38, 38, 38))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPErrorLayout = new javax.swing.GroupLayout(jPError);
         jPError.setLayout(jPErrorLayout);
@@ -106,28 +137,15 @@ public class JFInicioSesion extends javax.swing.JFrame {
             jPErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPErrorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPErrorLayout.setVerticalGroup(
             jPErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPErrorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPErrorLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPErrorLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap())))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, Short.MAX_VALUE)
         );
 
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setAlignmentX(0.0F);
         jPanel1.setAlignmentY(0.0F);
 
@@ -160,12 +178,15 @@ public class JFInicioSesion extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 1, 10));
-        jLabel3.setText("¿Olvidó su contraseña?");
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 1, 10)); // NOI18N
+        jLabel3.setText("¿No puede acceder a su cuenta?");
         jLabel3.setToolTipText("");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.setName("JLContrasena"); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel3MouseEntered(evt);
             }
@@ -190,7 +211,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +230,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTFNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,18 +265,19 @@ public class JFInicioSesion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPError, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,18 +305,31 @@ public class JFInicioSesion extends javax.swing.JFrame {
         this.IniciarSesion();
     }//GEN-LAST:event_jButton1KeyReleased
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        JDReestablecerContrasena jDResstablecerContrasena=new JDReestablecerContrasena();
+        jDResstablecerContrasena.setModal(true);
+        jDResstablecerContrasena.setLocationRelativeTo(this);
+        jDResstablecerContrasena.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     private void IniciarSesion(){
         usuarioBL=new UsuarioBL();
+        String nombreUsuario="";
+        String contrasena="";
+        String correoE="";
+
+        nombreUsuario=jTFNombreUsuario.getText();
 
         int a=jPFContrasena.getPassword().length;
-        String cad="";
         for(int i=0;i<a;i++){
-          cad+=jPFContrasena.getPassword()[i];
-         System.out.println(jPFContrasena.getPassword()[i]);
+          contrasena+=jPFContrasena.getPassword()[i];
+         //System.out.println(jPFContrasena.getPassword()[i]);
         }
-        autenticoUsuario=usuarioBL.AutenticarUsuario(jTFNombreUsuario.getText(),cad);
+
+        autenticoUsuario=usuarioBL.AutenticarUsuario(nombreUsuario,contrasena,correoE);
 
         if (autenticoUsuario>0) {
+              //EnviarCorreo env=new EnviarCorreo("delpiero2906");
               usuarioBE=usuarioBL.getUsuarioBE(autenticoUsuario);
               this.setVisible(false);
               AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal(usuarioBE);
@@ -326,6 +361,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
     private javax.swing.JPanel jPError;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTFNombreUsuario;
     // End of variables declaration//GEN-END:variables
