@@ -246,6 +246,11 @@ public class JDAgregarUsuario extends JDialog {
 
         jBReestablecerContrasena.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
         jBReestablecerContrasena.setText("Reestablecer");
+        jBReestablecerContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBReestablecerContrasenaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -599,6 +604,12 @@ public class JDAgregarUsuario extends JDialog {
             jTFNomUsuario.setText(text);
         }
     }//GEN-LAST:event_jTFNomUsuarioKeyPressed
+
+    private void jBReestablecerContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReestablecerContrasenaActionPerformed
+
+        
+
+    }//GEN-LAST:event_jBReestablecerContrasenaActionPerformed
 
     public void MostrarDatos(UsuarioBE usuarioBE){
         jTFCodigo.setText(String.valueOf(usuarioBE.getIdUsuario()));

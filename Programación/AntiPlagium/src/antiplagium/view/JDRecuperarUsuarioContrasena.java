@@ -20,12 +20,12 @@ import javax.swing.JOptionPane;
  *
  * @author piere
  */
-public class JDReestablecerContrasena extends javax.swing.JDialog {
+public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
 
     UsuarioBE usuarioBE;
     UsuarioBL usuarioBL;
     /** Creates new form JDReestablecerContrasena */
-    public JDReestablecerContrasena(/*java.awt.Frame parent, boolean modal*/) {
+    public JDRecuperarUsuarioContrasena(/*java.awt.Frame parent, boolean modal*/) {
         //super(parent, modal);
         initComponents();
         jPanel3.setVisible(false);
@@ -234,13 +234,13 @@ public class JDReestablecerContrasena extends javax.swing.JDialog {
                      opcion=1;
                     usuarioBE=usuarioBL.getUsuarioBE(autenticoUsuario);
                     EnviarCorreo env=new EnviarCorreo(usuarioBE,opcion);
-                    JOptionPane.showMessageDialog(this,"Su nueva contrasena se la enviado a su correo electronico","Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this,"Su contrasena ha sido enviada a su correo electronico.","Informacion", JOptionPane.INFORMATION_MESSAGE);
                     this.dispose();
                  }
                  else {JOptionPane.showMessageDialog(this,"Nombre Usuario incorrecto.","Error", JOptionPane.ERROR_MESSAGE);}
             }
             else{
-                JOptionPane.showMessageDialog(this,"Nombre de usuario incorrecto.","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Debe ingresar Nombre de Usuario.","Error", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -251,7 +251,7 @@ public class JDReestablecerContrasena extends javax.swing.JDialog {
                          opcion=2;
                          usuarioBE=usuarioBL.getUsuarioBE(autenticoUsuario);
                          EnviarCorreo env=new EnviarCorreo(usuarioBE,opcion);
-                         JOptionPane.showMessageDialog(this,"Su nombre de usuario se le ha enviado a su correo","Informacion", JOptionPane.INFORMATION_MESSAGE);
+                         JOptionPane.showMessageDialog(this,"Su nombre de usuario ha sido enviado a su correo electronico.","Informacion", JOptionPane.INFORMATION_MESSAGE);
                          this.dispose();
                      }
                      else {JOptionPane.showMessageDialog(this,"Correo electronico incorrecto.","Error", JOptionPane.ERROR_MESSAGE);}
