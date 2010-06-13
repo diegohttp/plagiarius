@@ -45,9 +45,9 @@ public class UsuarioBL {
         this.usuarioBE=usuarioBE;
     }
 
-    public int AutenticarUsuario(String nombreUsuario, String contrasena){
+    public int AutenticarUsuario(String nombreUsuario, String contrasena, String correoE){
         
-            usuarioValido = usuarioDAO.ValidarUsuario(nombreUsuario, contrasena);
+            usuarioValido = usuarioDAO.ValidarUsuario(nombreUsuario, contrasena,correoE);
         
         return usuarioValido;
     }
@@ -169,28 +169,13 @@ public class UsuarioBL {
 
             Boolean rpta=validarCadenaAlfabetica(nombreCompleto,"Nombre Completo");
             if(rpta==false) return null;
-            
-
-
+  
             rpta=validarFechas(cadenaFechaI, cadenaFechaF);
             if(rpta==false) return null;
-            
-//            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-//            Date fechaI = new Date();
-//            fechaI = formato.parse(cadenaFechaI);
-//            Date fechaF = new Date();
-//            fechaF = formato.parse(cadenaFechaF);
-//            int a=fechaI.compareTo(fechaF);
-//            if(a==0){
-//            
-//            }
-            
-            
+         
             ResultSet rs = null;
             rs = usuarioDAO.getConsultaUsuarios(usuario, nombreCompleto, cadenaFechaI, cadenaFechaF, idRol, idArea);
             return rs;
-
-
     }
 
 
@@ -311,13 +296,11 @@ public class UsuarioBL {
         }
     }
 
-    public void AbrirConexion() throws SQLException, ClassNotFoundException
-    {
+    public void AbrirConexion() throws SQLException, ClassNotFoundException{
         ConexionJDBC.abrirConexion();
     }
 
-    public void CerrarConexion() throws SQLException
-    {
+    public void CerrarConexion() throws SQLException{
         ConexionJDBC.cerrarConexion();
     }
 
