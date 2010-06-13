@@ -29,18 +29,13 @@ public class UsuarioDAO {
         squery="";
   }
 
-  public int ValidarUsuario(String nombreUsuario, String contrasena) {
+  public int ValidarUsuario(String nombreUsuario, String contrasena,String correo) {
       int idUsuario=0;
       try {
             ConexionJDBC.abrirConexion();
-            char cd = '"';
-            String cs = "'";
-            char nt = 'A';
-
-            squery = "SELECT * FROM " + cd + "Usuario" + cd + " AS " + nt;
-            squery += " WHERE " + nt + "." + cd + "nombreUsuario" + cd + "=" + cs + nombreUsuario + cs + " and " + nt + "." + cd + "password" + cd + "=" + cs + contrasena + cs;
-            squery += ";";
-            System.out.println(squery);
+            
+            squery = formarQuery(nombreUsuario, contrasena,correo);
+//            System.out.println(squery);
             ResultSet rs = ConexionJDBC.ejecutarQueryString(squery);
             int numeroRegistros = rs.getRow();
             System.out.println(numeroRegistros);
@@ -51,11 +46,7 @@ public class UsuarioDAO {
                 System.out.println(numeroRegistros);
             }
             ConexionJDBC.cerrarConexion();
-//            if (numeroRegistros == 1) {
-//                return 0;
-//            } else {
-//                return 1;
-//            }
+
             return idUsuario;
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,6 +56,22 @@ public class UsuarioDAO {
             return idUsuario;
         }
 
+  }
+
+  private String formarQuery(String nombreUsuario, String contrasena,String correo){
+
+      String querys="SELECT * FROM \"Usuario\" AS A ";
+      if ((nombreUsuario.compareTo("")!=0)  && (contrasena.compareTo("")!=0)) {
+          querys += " WHERE A.\"nombreUsuario\" ='"+nombreUsuario+ "' and A.password='"+contrasena+"'";
+      }
+      else if (nombreUsuario.compareTo("")!=0){
+                querys+=" WHERE A.\"nombreUsuario\"='"+nombreUsuario+"'";
+      }
+      else if(correo.compareTo("")!=0){
+                querys+=" WHERE A.email='"+correo+"'";
+      }
+
+      return querys;
   }
 
   public boolean InsertarUsuario(UsuarioBE nuevoUsuario) throws SQLException{
