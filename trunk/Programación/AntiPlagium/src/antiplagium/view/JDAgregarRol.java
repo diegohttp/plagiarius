@@ -17,10 +17,10 @@ public class JDAgregarRol extends JDialog {
 
     RolBE rolBE;
 
-    public JDAgregarRol()
+    public JDAgregarRol(RolBE rolBE)
     {
         initComponents();
-        this.rolBE = new RolBE();
+        this.rolBE = rolBE;
         onLoad();
         esModificar = false;
     }

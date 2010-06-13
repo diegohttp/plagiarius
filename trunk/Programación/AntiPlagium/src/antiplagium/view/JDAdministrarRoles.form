@@ -144,6 +144,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jcbRol">
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbRolItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="JBBuscar">
           <Properties>
