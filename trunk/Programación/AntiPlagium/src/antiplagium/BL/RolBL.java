@@ -60,6 +60,7 @@ public class RolBL {
             while(tabla.next())
             {
                 id = (Integer)tabla.getObject("idRol");
+                rolBE.setIdRol(id + 1);
             }
         }
         if (id != 0)
