@@ -306,7 +306,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1KeyReleased
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        JDReestablecerContrasena jDResstablecerContrasena=new JDReestablecerContrasena();
+        JDRecuperarUsuarioContrasena jDResstablecerContrasena=new JDRecuperarUsuarioContrasena();
         jDResstablecerContrasena.setModal(true);
         jDResstablecerContrasena.setLocationRelativeTo(this);
         jDResstablecerContrasena.setVisible(true);
