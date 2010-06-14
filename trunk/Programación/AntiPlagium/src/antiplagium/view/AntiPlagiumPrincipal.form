@@ -154,6 +154,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="alwaysOnTop" type="boolean" value="true"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
     </Property>
@@ -164,7 +165,6 @@
       <Dimension value="[1000, 700]"/>
     </Property>
     <Property name="name" type="java.lang.String" value="JFAntiPlagiumPrincipal" noResource="true"/>
-    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>

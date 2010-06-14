@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.*;
 import java.awt.Component;
-import java.util.ArrayList;
+import java.awt.Toolkit;
 import javax.swing.*;
 
 public class AntiPlagiumPrincipal extends JFBase
@@ -18,7 +18,13 @@ public class AntiPlagiumPrincipal extends JFBase
 
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
         super(usuarioBE);
-        initComponents();        
+        initComponents();
+
+        int ancho = Toolkit.getDefaultToolkit().getScreenSize().width;
+    int alto = Toolkit.getDefaultToolkit().getScreenSize().height;
+
+    this.setSize(ancho, alto-40);
+        this.add(new PanelAnimado());
         JMenuBar menu = this.getJMenuBar();
         JRootPane jroot = this.getRootPane();
         Component[] componentesMenu = jroot.getJMenuBar().getComponents();
@@ -59,11 +65,11 @@ public class AntiPlagiumPrincipal extends JFBase
         jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
         setBackground(java.awt.Color.lightGray);
         setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setName("JFAntiPlagiumPrincipal"); // NOI18N
-        setResizable(false);
 
         JDPPrincipal.setBackground(java.awt.Color.lightGray);
         JDPPrincipal.setMaximumSize(new java.awt.Dimension(10, 10));
