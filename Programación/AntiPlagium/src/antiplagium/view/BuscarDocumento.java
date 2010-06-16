@@ -40,7 +40,7 @@ public class BuscarDocumento extends JDialog {
     private ArrayList<DocumentoBE> arrDocumentos = new ArrayList<DocumentoBE>();
     private CategoriaBL categoriaBl;
     private UsuarioBE objUsuario;
-
+    private ArrayList<CategoriaBE> listaCategorias;
     public DocumentoBE docSel=null;
 
     /** Creates new form Documento2 */
@@ -51,10 +51,9 @@ public class BuscarDocumento extends JDialog {
         CategoriaBE tmp = new CategoriaBE();
         tmp.setIdCategoria(0);
         tmp.setNombre("Todas");
-        ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
+        listaCategorias=categoriaBl.buscarCategoria("", "");
         listaCategorias.add(0 , tmp);
         int cantidadCategorias=listaCategorias.size();
-
         for(int i=0;i<cantidadCategorias;i++){
             cboCategoria.addItem(listaCategorias.get(i).getNombre());
         }
@@ -63,21 +62,17 @@ public class BuscarDocumento extends JDialog {
     public BuscarDocumento(UsuarioBE objUsuario) throws FileNotFoundException, IOException, SQLException {
         initComponents();
         this.objUsuario = objUsuario;
-
         categoriaBl=new CategoriaBL();
         CategoriaBE tmp = new CategoriaBE();
         tmp.setIdCategoria(0);
         tmp.setNombre("Todas");
-        ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
+        listaCategorias=categoriaBl.buscarCategoria("", "");
         listaCategorias.add(0 , tmp);
         int cantidadCategorias=listaCategorias.size();
-
         for(int i=0;i<cantidadCategorias;i++){
             cboCategoria.addItem(listaCategorias.get(i));
         }
     }
-
-   
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -119,6 +114,7 @@ public class BuscarDocumento extends JDialog {
 
         setTitle("Búsqueda Documentos");
         setName(""); // NOI18N
+        setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
 
@@ -178,18 +174,6 @@ public class BuscarDocumento extends JDialog {
 
         lblCategoria.setText("Categoría:");
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-
-        cboCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboCategoriaActionPerformed(evt);
-            }
-        });
-
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.setMaximumSize(new java.awt.Dimension(135, 35));
@@ -204,11 +188,6 @@ public class BuscarDocumento extends JDialog {
 
         lblIdUsuario.setText("ID Propietario");
 
-        txtIdUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdUsuarioActionPerformed(evt);
-            }
-        });
         txtIdUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIdUsuarioKeyReleased(evt);
@@ -218,11 +197,6 @@ public class BuscarDocumento extends JDialog {
         lblEstado.setText("Estado");
 
         cboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "activo", "inactivo" }));
-        cboEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboEstadoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -322,11 +296,6 @@ public class BuscarDocumento extends JDialog {
                 jMenu2MousePressed(evt);
             }
         });
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
@@ -345,21 +314,16 @@ public class BuscarDocumento extends JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -371,10 +335,10 @@ public class BuscarDocumento extends JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35))
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Búsqueda");
@@ -384,18 +348,6 @@ public class BuscarDocumento extends JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_txtNombreActionPerformed
-
-    private void cboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaActionPerformed
-       
-           // TODO add your handling code here:
-}//GEN-LAST:event_cboCategoriaActionPerformed
-
-
-
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
@@ -464,9 +416,10 @@ public class BuscarDocumento extends JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
-        JDRegistrarDocumento reg = new JDRegistrarDocumento(this.objUsuario);
+        JDRegistrarDocumento reg = new JDRegistrarDocumento(this.objUsuario,this.listaCategorias);
         reg.setTitle("Registrar Documento");
         reg.setModal(true);
+        reg.setLocationRelativeTo(this);
         reg.setVisible(true);
     }//GEN-LAST:event_jMenu1MousePressed
 
@@ -483,7 +436,7 @@ public class BuscarDocumento extends JDialog {
                     return;
                 }
                 //this.arrDocumentos.get(idx).setUsuario(objUsuario);
-                vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(idx));
+                vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(idx),this.listaCategorias);
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -493,17 +446,10 @@ public class BuscarDocumento extends JDialog {
             }
             vModificarDoc.setTitle("Modificar Documento");
             vModificarDoc.setModal(true);
+            vModificarDoc.setLocationRelativeTo(this);
             vModificarDoc.setVisible(true);
         }
     }//GEN-LAST:event_jMenu2MousePressed
-
-    private void txtIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdUsuarioActionPerformed
-
-    private void cboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboEstadoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int idx = this.jtabPaquetes.getSelectedRow();
@@ -511,6 +457,8 @@ public class BuscarDocumento extends JDialog {
             String contenido = this.arrDocumentos.get(idx).getContenido();
             JFVisualizarDocumento vis = new JFVisualizarDocumento(contenido);
             vis.setModal(true);
+            vis.setLocationRelativeTo(this);
+            vis.setTitle("Mostrar Contenido");
             vis.setVisible(true);
         }
         else {
@@ -561,10 +509,6 @@ public class BuscarDocumento extends JDialog {
 
         this.setVisible(false);
 }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2ActionPerformed
 
     public String getNombreDocSeleccionado(){
         return this.selectedDoc;
