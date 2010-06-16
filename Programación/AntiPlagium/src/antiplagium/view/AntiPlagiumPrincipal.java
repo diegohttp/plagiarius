@@ -10,11 +10,12 @@ import java.sql.SQLException;
 import java.util.logging.*;
 import java.awt.Component;
 import java.awt.Toolkit;
+import java.util.Date;
 import javax.swing.*;
 
 public class AntiPlagiumPrincipal extends JFBase
 {
-    private Dimension dim;
+    private static RegistroOperacionBE operacionBE;
 
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
         super(usuarioBE);
@@ -41,6 +42,7 @@ public class AntiPlagiumPrincipal extends JFBase
             }            
         }
 
+        operacionBE = new RegistroOperacionBE((usuarioBE.getIdUsuario()), new Date(System.currentTimeMillis()));
         aplicarSeguridad(menu, usuarioBE.getRolBE().getIdRol());
     }
 
