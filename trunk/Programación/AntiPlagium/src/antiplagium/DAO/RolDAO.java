@@ -61,8 +61,7 @@ public class RolDAO {
     }
 
     public void  insertRol(Integer idRol, String nombreRol, String descripcion) throws SQLException
-    {
-        boolean _successful = false;
+    {        
         String SQL_Insert = null;
 
         SQL_Insert = SQL_INSERT_ROL + idRol.toString() + ", \'" + nombreRol + "\', \'" + descripcion + "\')" ;
