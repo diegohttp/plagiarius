@@ -37,8 +37,9 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
         this.nomArch = nomArch;
     }
 
-    public void cargarDocumentos(CategoriaBE objCategoria,UsuarioBE objUsuario){
+    public void cargarDocumentos(ArrayList<CategoriaBE> listaCategoria,UsuarioBE objUsuario){
         /* Al finalizar la descarga habilitamos el cerrado de la ventana */
+        //this.setModal(true);
         this.setVisible(true);
         this.pgbCargaDocumentos.setMaximum(100);
         int paso= 100/this.nomArch.size();
@@ -48,8 +49,57 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
             DocumentoBE doc = null;
             try {
                 int idDoc = Utilitario.generaCodigo("Documento");
-                doc = new DocumentoBE(idDoc, "activo" , nomArch.get(i).getName() , objUsuario, objCategoria);
+                doc = new DocumentoBE(idDoc, "activo" , nomArch.get(i).getName() , objUsuario, null);
                 doc.setContenido(DocumentoBL.obtenerContenido(nomArch.get(i)));
+                doc.setListaCategorias(listaCategoria);
+                try {
+                    DocumentoBL.registrar(doc);
+                    /* Si es exitosos */
+                    resultado = "El archivo " + nomArch.get(i).getName() + " fue registrado con exito";
+                } catch (Exception ex) {
+                    resultado = "Error al registrar " + nomArch.get(i).getName() + " el archivo no fue registrado";
+                    Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.taDatosProgreso.setText(this.taDatosProgreso.getText() + "\n" + resultado);
+                valorActual += paso;
+                this.pgbCargaDocumentos.setValue(valorActual);
+                Rectangle rect = this.pgbCargaDocumentos.getBounds();
+		rect.x = 0;
+		rect.y = 0;
+		this.pgbCargaDocumentos.paintImmediately( rect );
+                rect = this.pnlDatosProgreso.getBounds();
+                rect.x = 0;
+                rect.y = 0;
+                this.pnlDatosProgreso.paintImmediately(rect);
+                /*try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(JDCargaDocumentos.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        this.btnAceptar.setEnabled(true);
+    }
+
+    public void cargarDocumentos(CategoriaBE objCategoria,UsuarioBE objUsuario){
+        /* Al finalizar la descarga habilitamos el cerrado de la ventana */
+        //this.setModal(true);
+        this.setVisible(true);
+        this.pgbCargaDocumentos.setMaximum(100);
+        int paso= 100/this.nomArch.size();
+        String resultado;
+        int valorActual = 0;
+        for (int i = 0; i < nomArch.size(); ++i){
+            DocumentoBE doc = null;
+            try {
+                int idDoc = Utilitario.generaCodigo("Documento");
+                doc = new DocumentoBE(idDoc, "activo" , nomArch.get(i).getName() , objUsuario, null);
+                doc.setContenido(DocumentoBL.obtenerContenido(nomArch.get(i)));
+                doc.setCategoria(objCategoria);
                 try {
                     DocumentoBL.registrar(doc);
                     /* Si es exitosos */
@@ -82,6 +132,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
         }
         this.btnAceptar.setEnabled(true);
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -100,13 +151,15 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CargarDocumentos");
+        setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        setResizable(false);
 
         lblProgreso.setText("Progreso");
 
         pnlDatosProgreso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Progreso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
         taDatosProgreso.setColumns(20);
-        taDatosProgreso.setFont(new java.awt.Font("Calisto MT", 0, 14)); // NOI18N
+        taDatosProgreso.setFont(new java.awt.Font("Calisto MT", 0, 14));
         taDatosProgreso.setRows(5);
         scpDatosProgreso.setViewportView(taDatosProgreso);
 
@@ -114,10 +167,10 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
         pnlDatosProgreso.setLayout(pnlDatosProgresoLayout);
         pnlDatosProgresoLayout.setHorizontalGroup(
             pnlDatosProgresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatosProgresoLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(scpDatosProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosProgresoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scpDatosProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlDatosProgresoLayout.setVerticalGroup(
             pnlDatosProgresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,6 +183,9 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.setEnabled(false);
+        btnAceptar.setMaximumSize(new java.awt.Dimension(135, 35));
+        btnAceptar.setMinimumSize(new java.awt.Dimension(135, 35));
+        btnAceptar.setPreferredSize(new java.awt.Dimension(135, 35));
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
@@ -144,13 +200,13 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnAceptar))
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(18, 18, 18)
                             .addComponent(lblProgreso)
                             .addGap(18, 18, 18)
-                            .addComponent(pgbCargaDocumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pgbCargaDocumentos, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(pnlDatosProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -160,9 +216,9 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblProgreso)
-                    .addComponent(pgbCargaDocumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pgbCargaDocumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProgreso))
                 .addGap(26, 26, 26)
                 .addComponent(pnlDatosProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
