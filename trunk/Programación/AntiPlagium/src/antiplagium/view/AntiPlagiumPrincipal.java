@@ -67,7 +67,6 @@ public class AntiPlagiumPrincipal extends JFBase
         jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(java.awt.Color.lightGray);
         setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
