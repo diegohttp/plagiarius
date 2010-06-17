@@ -41,7 +41,7 @@ public class PanelAnimado extends JPanel {
         }
         anchoPanel=imgPapel.getWidth();
         altoPanel=imgPapel.getHeight();
-        this.setBounds(100, 100, anchoPanel, altoPanel);
+        this.setBounds(500, 200, anchoPanel, altoPanel);
         this.setVisible(true);
         hilo.start();
     }
