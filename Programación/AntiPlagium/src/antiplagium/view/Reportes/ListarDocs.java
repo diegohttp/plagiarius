@@ -58,7 +58,7 @@ public class ListarDocs extends JFrame {
     /** Creates new form ListarDocs */
     public ListarDocs() {
         initComponents();
-        //this.btnAceptar.setVisible(false);
+//        this.btnAceptar.setVisible(false);
         categoriaBl=new CategoriaBL();
         CategoriaBE tmp = new CategoriaBE();
         tmp.setIdCategoria(0);
@@ -407,12 +407,12 @@ public class ListarDocs extends JFrame {
 
         pars.put("P_TITULO", "Reporte Prueba de documentos");
         pars.put("P_SUBTITULO", "");
-        JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("ReportePruebaDocumentos", pars, this.arrDocumentos);
+//        JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("ReportePruebaDocumentos", pars, this.arrDocumentos);
         try {
 
-            JRViewer v = new JRViewer(jasperPrint);
+//            JRViewer v = new JRViewer(jasperPrint);
             JFrame ventana=new JFrame();
-            ventana.getContentPane().add(v,BorderLayout.CENTER);
+//            ventana.getContentPane().add(v,BorderLayout.CENTER);
             ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             ventana.setSize(706, 478);
 

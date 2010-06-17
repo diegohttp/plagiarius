@@ -15,7 +15,7 @@ import javax.swing.*;
 
 public class AntiPlagiumPrincipal extends JFBase
 {
-    private static RegistroOperacionBE operacionBE;
+    public static RegistroOperacionBE operacionBE;
 
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
         super(usuarioBE);
@@ -41,7 +41,7 @@ public class AntiPlagiumPrincipal extends JFBase
                 ((JMenuItem)componentesMenuInterno[j]).setVisible(false);
             }            
         }
-
+                
         operacionBE = new RegistroOperacionBE((usuarioBE.getIdUsuario()), new Date(System.currentTimeMillis()));
         aplicarSeguridad(menu, usuarioBE.getRolBE().getIdRol());
     }
@@ -301,7 +301,7 @@ public class AntiPlagiumPrincipal extends JFBase
         frmListarDocs.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-   public static  JDesktopPane  getJDesktopPane(){
+    public static  JDesktopPane  getJDesktopPane(){
       return JDPPrincipal;
     }
    
