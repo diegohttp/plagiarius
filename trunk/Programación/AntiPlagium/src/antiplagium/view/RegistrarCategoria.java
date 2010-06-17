@@ -222,9 +222,9 @@ public class RegistrarCategoria extends JDialog {
                 }
                 if (boolExito) {
                     if (TipoOperacion==0)
-                        JOptionPane.showMessageDialog(null, "La categoria ha sido registrada con éxito", "Mensaje",1);
+                        JOptionPane.showMessageDialog(this, "La categoria ha sido registrada con éxito", "Modificar Categoria",JOptionPane.INFORMATION_MESSAGE);
                     else
-                        JOptionPane.showMessageDialog(null, "La categoria ha sido modificada con éxito", "Mensaje",1);
+                        JOptionPane.showMessageDialog(this, "La categoria ha sido modificada con éxito", "Modifcar Categoria",JOptionPane.INFORMATION_MESSAGE);
                 }
                 this.dispose();
         }
