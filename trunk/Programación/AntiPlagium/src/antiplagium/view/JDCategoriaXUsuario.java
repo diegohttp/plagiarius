@@ -72,7 +72,7 @@ public class JDCategoriaXUsuario extends JDialog {
         if (listaCategorias.size()>=0) vacia=false;
 
         for(int i=0;i<lista.size();i++){
-            System.out.println(lista.get(i));
+            //System.out.println(lista.get(i));
             Boolean seEncuentra=false;
             if (vacia==false){
                 for(int j=0;j<listaCategorias.size();j++){
@@ -224,12 +224,15 @@ public class JDCategoriaXUsuario extends JDialog {
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
 
-        JDAdministrarCategoria jfAdministrarCategoria=new JDAdministrarCategoria(this);
+        JDAdministrarCategoria jfAdministrarCategoria=new JDAdministrarCategoria(null);
         jfAdministrarCategoria.setModal(true);
         jfAdministrarCategoria.setLocationRelativeTo(this);
         //JFAdministrarCategoria jfAdministrarCategoria=new JFAdministrarCategoria();
         jfAdministrarCategoria.setVisible(true);
-
+        if (jfAdministrarCategoria.getIdsCategorias()!=null){
+            this.setListaCategorias(jfAdministrarCategoria.getIdsCategorias());
+        }
+        jfAdministrarCategoria.dispose();
 
 ////        AntiPlagiumPrincipal.getJDesktopPane().add(jfAdministrarCategoria);
 ////        jfAdministrarCategoria.toFront();

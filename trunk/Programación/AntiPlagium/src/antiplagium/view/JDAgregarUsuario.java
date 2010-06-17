@@ -76,7 +76,7 @@ public class JDAgregarUsuario extends JDialog {
             jPFContrasena=new JPasswordField();
             jPFContrasena.setSize(120, 29);
             jPContrasena.add(jPFContrasena);
-
+            jPFContrasena.setEnabled(false);
 
 
             estadoBL = new EstadoBL();
@@ -106,13 +106,17 @@ public class JDAgregarUsuario extends JDialog {
             if (idUsuario >= 1) {
                 usuarioBEOringinal=usuarioBL.getUsuarioBE(idUsuario);
                 listaCategorias=usuarioBEOringinal.getCategorias();
+
                 MostrarDatos(usuarioBEOringinal);
                 this.setTitle("Modificar Usuario");
                 this.setBounds(10, 10, 497, 640);
+
                 jCBRol.setEnabled(false);
                 cmbFechaInicio.setEnabled(false);
                 jCBEstado.setEnabled(false);
                 jMenuBar1.setVisible(true);
+                jBReestablecerContrasena.setVisible(true);
+
                 if ((jCBEstado.getSelectedItem().toString()).compareTo("Activo")==0) {
                     jMenu1.setEnabled(false);
                     jMenu1.setVisible(false);
@@ -122,11 +126,12 @@ public class JDAgregarUsuario extends JDialog {
                 }
 
             } else {
-                usuarioBE=new UsuarioBE();
+                usuarioBE=new UsuarioBE();// esta linea esta demas ya que el query tiene nextval
                 int idUsuariosiguiente = usuarioBL.getIdUsuarioSiguiente();
                 this.setBounds(10, 10, 497, 640);
                 jTFCodigo.setText(String.valueOf(idUsuariosiguiente));
-                usuarioBE.setIdUsuario(idUsuariosiguiente);
+                usuarioBE.setIdUsuario(idUsuariosiguiente);// esta linea esta demas ya que el query tiene nextval
+                jBReestablecerContrasena.setText("Generar");
             }
 
         } catch (ClassNotFoundException ex) {
@@ -486,7 +491,11 @@ public class JDAgregarUsuario extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-//        String estado, RolBE idRol, ArrayList<CategoriaBE> categorias,TipoCeseBE idTipoCese
+        this.Guardar();
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void Guardar(){
+        //        String estado, RolBE idRol, ArrayList<CategoriaBE> categorias,TipoCeseBE idTipoCese
         UsuarioBL usuarioBL=new UsuarioBL();
        
         boolean r = false;
@@ -523,12 +532,6 @@ public class JDAgregarUsuario extends JDialog {
              contrasena+=jPFContrasena.getPassword()[i];
         }
 
-
-        //ArrayList<CategoriaBE> listaCategorias=null;//LINEA POR ELIMINAR
-        // hay q modificar la ventana para seleccionar varias categorias o areas academicas a la que pertenece el Usuario.
-
-        System.out.println("Numero de categorias asignadas"+listaCategorias.size());
-
         usuarioBE = usuarioBL.FormarUsuarioBE(idUsuario,jTFNombres.getText(),
                                           jTFApPat.getText(),jTFApMat.getText(),
                                           jTFNomUsuario.getText(),contrasena,
@@ -553,7 +556,8 @@ public class JDAgregarUsuario extends JDialog {
             }
         }
 
-    }//GEN-LAST:event_jBGuardarActionPerformed
+        
+    }
 
     private void jTFNombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombresKeyReleased
             Character caracter = new Character(evt.getKeyChar());
@@ -606,9 +610,46 @@ public class JDAgregarUsuario extends JDialog {
     }//GEN-LAST:event_jTFNomUsuarioKeyPressed
 
     private void jBReestablecerContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReestablecerContrasenaActionPerformed
-
         
+        if(jBReestablecerContrasena.getText().compareTo("Reestablecer")==0){
+            JDNuevaContrasena jdNuevaContrasena = new JDNuevaContrasena(String.valueOf(jPFContrasena.getPassword()));
+            jdNuevaContrasena.setModal(true);
+            jdNuevaContrasena.setLocationRelativeTo(this);
+            jdNuevaContrasena.setVisible(true);
+            //String contrasenaNueva=jdNuevaContrasena.getContrasenaNueva;
+            if(jdNuevaContrasena.getContrasenaNueva()!=null){
+                    jPFContrasena.setText(jdNuevaContrasena.getContrasenaNueva());
+                    jdNuevaContrasena.dispose();
+                    usuarioBEOringinal.setPassword(jdNuevaContrasena.getContrasenaNueva());
+                    usuarioBL.actualizarContrasena(usuarioBEOringinal);
+            }
+        }
+        else if(jBReestablecerContrasena.getText().compareTo("Generar")==0){
 
+                    String alfabetoM="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    String alfabetom="abcdefghijklmnoprstuvwxyz";
+                    String numeros="0123456789";
+
+                    String contrasena="";
+                    char c=' ';
+                    char opcion='0';
+                    for(int i=0;i<10;i++){
+                         opcion = numeros.charAt((int) Math.random() * 3);
+                         if (opcion=='0'){
+                            c = alfabetoM.charAt((int)(Math.random()*26));
+                         }
+                         else if (opcion=='1'){
+                            c = numeros.charAt((int)(Math.random()*10));
+                         }
+                         else if (opcion=='2'){
+                            c = alfabetom.charAt((int)(Math.random()*26));
+                         }
+                         contrasena+=c;
+                    }
+                    JOptionPane.showMessageDialog(this, contrasena);
+
+        }
+        
     }//GEN-LAST:event_jBReestablecerContrasenaActionPerformed
 
     public void MostrarDatos(UsuarioBE usuarioBE){

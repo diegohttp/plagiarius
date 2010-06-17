@@ -212,7 +212,7 @@ public class AntiPlagiumPrincipal extends JFBase
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMIAdministrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarUsuariosActionPerformed
-        JDAdministrarUsuarios jfUsuarios= new JDAdministrarUsuarios();
+        JDAdministrarUsuarios jfUsuarios= new JDAdministrarUsuarios(null);
         jfUsuarios.setModal(true);
         jfUsuarios.setLocationRelativeTo(this);
         jfUsuarios.setVisible(true);
