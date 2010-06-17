@@ -266,14 +266,16 @@ public class JDAdministrarRoles extends JDialog {
 
     private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
         
-        RolBE rolBE = new RolBE();
-        
+        RolBE rolBE = new RolBE();        
         JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);        
         jfAgregarRol.setLocationRelativeTo(this);
         jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
-        jcbRol.addItem(rolBE);
-        jcbRol.setSelectedItem(rolBE);
+        if (rolBE.getIdPrivilegio() != 0)
+        {
+            jcbRol.addItem(rolBE);
+            jcbRol.setSelectedItem(rolBE);
+        }
 }//GEN-LAST:event_JBNuevoActionPerformed
 
     private void JBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarActionPerformed
@@ -300,14 +302,17 @@ public class JDAdministrarRoles extends JDialog {
             //JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "Eliminar rol", JOptionPane.INFORMATION_MESSAGE);
 }//GEN-LAST:event_JBEliminarActionPerformed
 
     private void JBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBModificarActionPerformed
-        ArrayList<Integer> listaPrivilegios = new ArrayList<Integer>();
+        ArrayList<PrivilegioBE> listaPrivilegios = new ArrayList<PrivilegioBE>();
         for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
         {
-            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true) listaPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
+            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true)
+            {
+                listaPrivilegios.add(new PrivilegioBE((Integer)modeloTablaPrivilegios.getValueAt(i, 0), (String)modeloTablaPrivilegios.getValueAt(i, 1)));
+            }
         }        
 
         RolBE rolBE = (RolBE)jcbRol.getSelectedItem();
@@ -323,20 +328,25 @@ public class JDAdministrarRoles extends JDialog {
     private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
 
         RolBE rolBE = new RolBE();
-
         JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);
         jfAgregarRol.setLocationRelativeTo(this);
         jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
-        jcbRol.addItem(rolBE);
-        jcbRol.setSelectedItem(rolBE);
+        if (rolBE.getIdPrivilegio() != 0)
+        {
+            jcbRol.addItem(rolBE);
+            jcbRol.setSelectedItem(rolBE);
+        }
     }//GEN-LAST:event_jMenu1MouseReleased
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        ArrayList<Integer> listaPrivilegios = new ArrayList<Integer>();
+        ArrayList<PrivilegioBE> listaPrivilegios = new ArrayList<PrivilegioBE>();
         for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
         {
-            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true) listaPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
+            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true)
+            {
+                listaPrivilegios.add(new PrivilegioBE((Integer)modeloTablaPrivilegios.getValueAt(i, 0), (String)modeloTablaPrivilegios.getValueAt(i, 1)));
+            }
         }
 
         RolBE rolBE = (RolBE)jcbRol.getSelectedItem();
@@ -373,7 +383,7 @@ public class JDAdministrarRoles extends JDialog {
             //JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "Eliminar rol", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jcbRolItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbRolItemStateChanged

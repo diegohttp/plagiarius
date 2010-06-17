@@ -11,13 +11,14 @@ public class JDAgregarRol extends JDialog {
 
     ResultSet tablaPrivilegios;
     DefaultTableModel modeloTablaPrivilegios;
-    ArrayList<Integer> listaPrivilegiosSinModificar;
+    ArrayList<PrivilegioBE> listaPrivilegiosSinModificar;
     ArrayList<Integer> listaIDPrivilegios;
     ArrayList<PrivilegioBE> listaPrivilegios;
     Boolean esModificar;
 
     RolBE rolBE;
     String descripcionOperacion;
+    String descripcionOperacionModificar;
 
     public JDAgregarRol(RolBE rolBE)
     {
@@ -27,7 +28,7 @@ public class JDAgregarRol extends JDialog {
         esModificar = false;
     }
 
-    public JDAgregarRol(RolBE rolBE, ArrayList<Integer> listaPrivilegios)
+    public JDAgregarRol(RolBE rolBE, ArrayList<PrivilegioBE> listaPrivilegios)
     {
         initComponents();
         this.rolBE = rolBE;
@@ -73,9 +74,11 @@ public class JDAgregarRol extends JDialog {
     private void onLoadModificar()
     {
         textNombreRol.setText(rolBE.getNombre());
-        for (Integer id : listaPrivilegiosSinModificar)
+        descripcionOperacionModificar = "Registro original: " + rolBE.getNombre() + "\n";
+        for (PrivilegioBE privilegio : listaPrivilegiosSinModificar)
         {            
-            int idPrivilegio = id.intValue();
+            descripcionOperacionModificar += "  - " + privilegio.getNombrePrivilegio() + "\n";
+            int idPrivilegio = privilegio.getIdPrivilegio();
             for (int i = 0; i < modeloTablaPrivilegios.getRowCount(); i++)
             {
                 int val1 = ((Integer) modeloTablaPrivilegios.getValueAt(i, 0)).intValue();            
@@ -269,7 +272,8 @@ public class JDAgregarRol extends JDialog {
             }
             else rolBL.insertRol(rolBE, listaIDPrivilegios);
             
-            descripcionOperacion();
+            if (esModificar) descripcionOperacionModificar(textNombreRol.getText(), listaPrivilegios);
+            else descripcionOperacionGuardar();
             AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcionOperacion);
             AntiPlagiumPrincipal.registrarOperacion();
             rolBL.CerrarConexion();
@@ -288,13 +292,24 @@ public class JDAgregarRol extends JDialog {
         this.dispose();
     }//GEN-LAST:event_JBGuardarActionPerformed
 
-    private void descripcionOperacion()
+    private void descripcionOperacionGuardar()
     {
         descripcionOperacion = rolBE.getNombre() + "\n" + "\n" + "privilegios: \n";
         for (PrivilegioBE privilegio : listaPrivilegios)
         {
             descripcionOperacion += "   - " + privilegio.getNombrePrivilegio() + "\n";
         }
+    }
+
+    private void descripcionOperacionModificar(String nombre, ArrayList<PrivilegioBE>  listaPrivilegios)
+    {
+        descripcionOperacion += descripcionOperacionModificar;
+        descripcionOperacion += "Registro modificado: \n";
+        descripcionOperacion += nombre + ": \n";
+        for (PrivilegioBE privilegio : listaPrivilegios)
+        {
+            descripcionOperacion += "   - " + privilegio.getNombrePrivilegio() + "\n";
+        }        
     }
 
     private void textNombreRolKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreRolKeyReleased
