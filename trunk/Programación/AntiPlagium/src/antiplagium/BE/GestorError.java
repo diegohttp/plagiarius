@@ -13,8 +13,8 @@ public class GestorError implements Serializable{
     private static HashMap<String,String> errores;
     private static Component ventana;
 
-    public static void populate(String url, Component comp) throws Exception{
-        ventana = comp;
+    public static void populate(String url) throws Exception
+    {
         XStream xml = new XStream();
         configurarXML(xml);
 
@@ -26,21 +26,25 @@ public class GestorError implements Serializable{
 
         errores = new HashMap<String,String>();
 
-        for(int i=0; i<temp.length; i++){
+        for(int i=0; i<temp.length; i++)
+        {
             errores.put(temp[i].getNombre().toLowerCase(), temp[i].getMensaje());
         }
     }
 
-    private static void configurarXML(XStream xml){
+    private static void configurarXML(XStream xml)
+    {
 		xml.alias("Errores", ErrorXMLBE[].class);
 		xml.alias("Error", ErrorXMLBE.class);
     }
 
-    public static String getError(String nombre){
+    public static String getError(String nombre)
+    {
         return errores.get(nombre.toLowerCase());
     }
 
-    public  static void showError(String nombre){
+    public  static void showError(String nombre)
+    {
         JOptionPane.showMessageDialog(ventana, getError(nombre.toLowerCase()), "ERROR", JOptionPane.ERROR_MESSAGE);
     }
 }
