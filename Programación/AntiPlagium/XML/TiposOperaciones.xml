@@ -1,0 +1,6 @@
+<TiposOperaciones>
+    <TipoOperacion>
+        <nombre>ingreso</nombre>
+        <descripcion>Ingreso al sistema</descripcion>
+    </TipoOperacion>    
+</TiposOperaciones>
