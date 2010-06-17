@@ -21,7 +21,7 @@ public class GestorError implements Serializable{
         ErrorXMLBE[] temp;
 
         FileReader archivo = new FileReader(url);
-        temp = (ErrorXMLBE[])xml.fromXML(archivo);
+        temp = ( ErrorXMLBE[] )xml.fromXML(archivo);
         archivo.close();
 
         errores = new HashMap<String,String>();
