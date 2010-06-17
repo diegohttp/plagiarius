@@ -15,11 +15,11 @@ public class ResultadoDeteccionBE {
     private int idDeteccion;
     private DocumentoBE Documento1;
     private DocumentoBE Documento2;
-    private Float PorcentajePlagio;
+    private Double PorcentajePlagio;
     private String Resultado;
     private Date Fecha;
 
-    public void ResultadoComparacion(DocumentoBE Documento1, DocumentoBE Documento2, float PorcentajePlagio, Date Fecha) {
+    public void ResultadoComparacion(DocumentoBE Documento1, DocumentoBE Documento2, Double PorcentajePlagio, Date Fecha) {
         this.Documento1 = Documento1;
         this.Documento2 = Documento2;
         this.PorcentajePlagio = PorcentajePlagio;
@@ -57,11 +57,11 @@ public class ResultadoDeteccionBE {
         this.Resultado = Resultado;
     }
 
-    public Float getPorcentajePlagio(){
+    public Double getPorcentajePlagio(){
         return this.PorcentajePlagio;
     }
 
-    public void setPorcentajePlagio(float PorcentajePlagio){
+    public void setPorcentajePlagio(Double PorcentajePlagio){
         this.PorcentajePlagio = PorcentajePlagio;
     }
     public Date getFecha(){
