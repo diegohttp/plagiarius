@@ -104,8 +104,9 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             int id = 1;
             try {
                 id = Utilitario.generaCodigo("ResultadoDeteccion");
+                id++;
                 objResDeteccion.setidDeteccion(id);
-                ResultadoDeteccionBL.registrar(objResDeteccion);
+                //ResultadoDeteccionBL.registrar(objResDeteccion);
                 this.listResultado.add(objResDeteccion);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JDVisualizarComparacion.class.getName()).log(Level.SEVERE, null, ex);
