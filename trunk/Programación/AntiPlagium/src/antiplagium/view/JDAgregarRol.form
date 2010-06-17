@@ -70,7 +70,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Nuevo Rol">
+            <TitledBorder title="Rol">
               <Font PropertyName="font" name="Calibri" size="12" style="0"/>
             </TitledBorder>
           </Border>
@@ -84,7 +84,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" pref="90" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="JTFNombreRol" min="-2" pref="171" max="-2" attributes="0"/>
+                  <Component id="textNombreRol" min="-2" pref="171" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -94,7 +94,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JTFNombreRol" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textNombreRol" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -110,12 +110,12 @@
             <Property name="text" type="java.lang.String" value="Nombre del Rol"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="JTFNombreRol">
+        <Component class="javax.swing.JTextField" name="textNombreRol">
           <Properties>
-            <Property name="name" type="java.lang.String" value="JTFNombreRol" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="textNombreRol" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTFNombreRolKeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textNombreRolKeyReleased"/>
           </Events>
         </Component>
       </SubComponents>

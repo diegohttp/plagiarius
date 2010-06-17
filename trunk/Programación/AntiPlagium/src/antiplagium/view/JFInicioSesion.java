@@ -14,6 +14,7 @@ package antiplagium.view;
 import Utilitarios.EnviarCorreo;
 
 import antiplagium.BE.GestorError;
+import antiplagium.BE.GestorTiposOperacion;
 
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.UsuarioBL;
@@ -44,10 +45,12 @@ public class JFInicioSesion extends javax.swing.JFrame {
         try
         {
             GestorError.populate("XML/Errores.xml");
+            GestorTiposOperacion.populate("XML/TiposOperaciones.xml");           
         }
         catch (Exception e)
         {
-            JOptionPane.showConfirmDialog(null, "El programa no se pudo iniciar", "Error", JOptionPane.DEFAULT_OPTION);
+            JOptionPane.showConfirmDialog(null, e.getMessage(), "Error", JOptionPane.DEFAULT_OPTION);
+            //JOptionPane.showConfirmDialog(null, "El programa no se pudo iniciar", "Error", JOptionPane.DEFAULT_OPTION);
             return;
         }
 
