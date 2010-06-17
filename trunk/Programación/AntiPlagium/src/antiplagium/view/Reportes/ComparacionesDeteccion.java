@@ -20,6 +20,7 @@ import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.ResultadoDeteccionBL;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -314,7 +315,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImprimirActionPerformed
-        Map pars = new HashMap();
+       /* Map pars = new HashMap();
 
         pars.put("P_TITULO", "Reporte de Comparaciones entre documentos");
         pars.put("P_SUBTITULO", "");
@@ -334,7 +335,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se cuenta con un equipo de impresion");
         }
-
+*/
     }//GEN-LAST:event_jbtnImprimirActionPerformed
 
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
@@ -345,7 +346,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         if (objCategoria.getNombre().compareTo("Todas") == 0){
             objCategoria = null;
         }
-        /* Si se especifico un IdUsuario se crea el usuario */
+        // Si se especifico un IdUsuario se crea el usuario */
         if (this.jtxtIdUsuario.getText().compareTo("") != 0){
             objUsuario = new UsuarioBE();
             objUsuario.setIdUsuario(Integer.parseInt(this.jtxtIdUsuario.getText()));
@@ -385,7 +386,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         }
        
         /* Obtenemos el modelo */
-            DefaultTableModel tmp = (DefaultTableModel) this.jTListaDocumentos.getModel();
+          DefaultTableModel tmp = (DefaultTableModel) this.jTListaDocumentos.getModel();
             /* Limpiamos la tabla */
             for (int i=tmp.getRowCount() - 1; i >= 0; --i){
                 tmp.removeRow(i);
@@ -395,7 +396,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
              Object [] nuevo={ arrDocumentosDetectados.get(i).getDocumento1().getNombre(), arrDocumentosDetectados.get(i).getDocumento2().getNombre(), arrDocumentosDetectados.get(i).getPorcentajePlagio(), arrDocumentosDetectados.get(i).getResultado(), arrDocumentosDetectados.get(i).getFecha()};
               tmp.addRow(nuevo);
             }
-            if (this.arrDocumentosDetectados.size() == 0){
+           if (this.arrDocumentosDetectados.size() == 0){
                  JOptionPane.showMessageDialog(this, "La búsqueda no encontro ningún resultado", "Buscar Documento", JOptionPane.INFORMATION_MESSAGE);
             }
 
