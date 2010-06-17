@@ -294,7 +294,10 @@ public class JDAgregarRol extends JDialog {
 
     private void descripcionOperacionGuardar()
     {
-        descripcionOperacion = rolBE.getNombre() + "\n" + "\n" + "privilegios: \n";
+        descripcionOperacion = "Usuario: " + JFBase.usuarioBE.getNombreUsuario() + "\n" +
+                               "Fecha:   " + AntiPlagiumPrincipal.operacionBE.getFechaOperacion().toString() + "\n" +
+                               "Tipo Operacion: " + GestorTiposOperacion.getTipoOperacion("registra") + "\n" +
+                                rolBE.getNombre() + "\n" + "privilegios: \n";
         for (PrivilegioBE privilegio : listaPrivilegios)
         {
             descripcionOperacion += "   - " + privilegio.getNombrePrivilegio() + "\n";
