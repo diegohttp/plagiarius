@@ -83,6 +83,7 @@ public class JDAdministrarRoles extends JDialog {
         jMenu3 = new javax.swing.JMenu();
 
         setTitle("Administrar Roles");
+        setName("jdAdministrarUsuario"); // NOI18N
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("ROL"));
