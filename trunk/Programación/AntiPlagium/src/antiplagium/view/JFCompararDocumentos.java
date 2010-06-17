@@ -35,18 +35,18 @@ public class JFCompararDocumentos extends JDialog {
         jPanel1 = new javax.swing.JPanel();
         txtNomDoc = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtNomCat = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtNomProp = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaDocs = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setTitle("Comparar Documentos");
         setResizable(false);
@@ -62,15 +62,15 @@ public class JFCompararDocumentos extends JDialog {
 
         jLabel2.setText("Nombre");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnBuscarMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -105,12 +105,12 @@ public class JFCompararDocumentos extends JDialog {
                 .addComponent(jLabel3)
                 .addGap(10, 10, 10)
                 .addComponent(txtNomCat, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(10, 10, 10)
                 .addComponent(txtNomProp, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jButton1)
+                .addComponent(btnBuscar)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -126,23 +126,23 @@ public class JFCompararDocumentos extends JDialog {
                             .addComponent(jLabel3)
                             .addComponent(txtNomProp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documentos a Verificar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -182,8 +182,8 @@ public class JFCompararDocumentos extends JDialog {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnAgregar)
+                    .addComponent(btnEliminar))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -193,25 +193,31 @@ public class JFCompararDocumentos extends JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
-        jButton4.setText("Cancelar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.setMaximumSize(new java.awt.Dimension(135, 35));
+        btnAceptar.setMinimumSize(new java.awt.Dimension(135, 35));
+        btnAceptar.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
-        jButton5.setText("Aceptar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setMaximumSize(new java.awt.Dimension(135, 35));
+        btnCancelar.setMinimumSize(new java.awt.Dimension(135, 35));
+        btnCancelar.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -226,14 +232,13 @@ public class JFCompararDocumentos extends JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(365, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,9 +249,9 @@ public class JFCompararDocumentos extends JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -256,23 +261,9 @@ public class JFCompararDocumentos extends JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomDocActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            /* Codigo agregado solo para pruebas */
-            ArrayList<CategoriaBE> aCategoria = new ArrayList<CategoriaBE>();
-            aCategoria.add(new CategoriaBE());
-            aCategoria.get(0).setIdCategoria(4);
-            aCategoria.get(0).setNombre("Filosofia");
-            aCategoria.add(new CategoriaBE());
-            aCategoria.get(1).setIdCategoria(5);
-            aCategoria.get(1).setNombre("Derecho");
-            UsuarioBE objUsuario = new UsuarioBE();
-            objUsuario.setIdUsuario(1);
-            objUsuario.setNombres("Piere");
-            objUsuario.setCategorias(aCategoria);
-            objUsuario.setApellidoPaterno("Cordero");
-            objUsuario.setApellidoMaterno("Principe");
-            /* Eliminar luego de probar */
+            UsuarioBE objUsuario = JFBase.usuarioBE;
             BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
 
             buscardoc.setModal(true);
@@ -284,9 +275,9 @@ public class JFCompararDocumentos extends JDialog {
 
         } catch (Exception ex) {
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int idx = this.tablaDocs.getSelectedRow();
         if (idx >= 0) {
@@ -295,33 +286,19 @@ public class JFCompararDocumentos extends JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún documento.", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         try {
             /* Codigo agregado solo para pruebas */
             ArrayList<CategoriaBE> aCategoria = new ArrayList<CategoriaBE>();
-            aCategoria.add(new CategoriaBE());
-            aCategoria.get(0).setIdCategoria(4);
-            aCategoria.get(0).setNombre("Filosofia");
-            aCategoria.add(new CategoriaBE());
-            aCategoria.get(1).setIdCategoria(5);
-            aCategoria.get(1).setNombre("Derecho");
-            UsuarioBE objUsuario = new UsuarioBE();
-            objUsuario.setIdUsuario(1);
-            objUsuario.setNombres("Piere");
-            objUsuario.setCategorias(aCategoria);
-            objUsuario.setApellidoPaterno("Cordero");
-            objUsuario.setApellidoMaterno("Principe");
-            /* Eliminar luego de probar */
+            UsuarioBE objUsuario = JFBase.usuarioBE;
             BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
-            // buscardoc.setVisible(true);
-            //AntiPlagiumPrincipal.JDPPrincipal.add(buscardoc);
-
             buscardoc.setModal(true);
+            buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
             if (docs.contains(buscardoc.docSel)) {
-                JOptionPane.showMessageDialog(null, "El documento seleccionado ya fue escogido anteriormente.");
+                JOptionPane.showMessageDialog(this, "El documento seleccionado ya fue escogido anteriormente.","Error Comparación",JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
                 this.docs.add(buscardoc.docSel);
@@ -332,30 +309,11 @@ public class JFCompararDocumentos extends JDialog {
            
         } catch (Exception ex) {
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         // TODO add your handling code here:
-        if (this.tablaDocs.getRowCount()<1){
-            JOptionPane.showMessageDialog(null, "Se debe escoger al menos un documento contra el cual comparar.");
-            return;
-        }
-        
-        JDVisualizarComparacion vis = new JDVisualizarComparacion(this.doc1,this.docs);
-        vis.setModal(true);
-        vis.setVisible(true);
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void txtNomCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomCatActionPerformed
         // TODO add your handling code here:
@@ -364,6 +322,27 @@ public class JFCompararDocumentos extends JDialog {
     private void txtNomPropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomPropActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomPropActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        if (this.tablaDocs.getRowCount()<1){
+            JOptionPane.showMessageDialog(this, "Se debe escoger al menos un documento contra el cual comparar.","Error Comparación",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JDVisualizarComparacion vis = new JDVisualizarComparacion(this.doc1,this.docs);
+        vis.setModal(true);
+        vis.setTitle("Visualizar Comparación");
+        vis.setLocationRelativeTo(this);
+        vis.setVisible(true);
+
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     public void agregarFila(String texto) {
         DefaultTableModel temp = (DefaultTableModel) this.tablaDocs.getModel();
@@ -395,11 +374,11 @@ public class JFCompararDocumentos extends JDialog {
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
