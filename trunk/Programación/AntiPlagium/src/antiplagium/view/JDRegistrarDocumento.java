@@ -869,11 +869,11 @@ private boolean seleccionoCategoria(){
                 }
             }
             /* Obtenemos las categorias seleccionadas */
-            ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
+            /*ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
             for (int i=0; i < this.catSelecionada.size(); ++i){
             if (this.catSelecionada.get(i).booleanValue())
                 listaCategoria.add(this.lstCategorias.get(i));
-            }
+            }*/
 
             JDCargaDocumentos cargaDoc = new JDCargaDocumentos(listaArch);
             cargaDoc.setLocationRelativeTo(this);
