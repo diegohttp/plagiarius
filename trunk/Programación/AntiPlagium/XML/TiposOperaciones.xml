@@ -1,7 +1,7 @@
 <TiposOperaciones>
     <TipoOperacion>
         <nombre>ingreso</nombre>
-        <descripcion>Ingreso al sistema</descripcion>
+        <descripcion>Inicio de sesion</descripcion>
     </TipoOperacion>  
     <TipoOperacion>
         <nombre>salida</nombre>
