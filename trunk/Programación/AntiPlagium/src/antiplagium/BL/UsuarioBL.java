@@ -128,6 +128,12 @@ public class UsuarioBL {
 
     }
 
+    public boolean actualizarContrasena(UsuarioBE usuarioOriginal){
+
+        Boolean r=usuarioDAO.ActualizarContrasenaUsuario(usuarioOriginal);
+        return r;
+    }
+
     public Boolean validarCadenaAlfabetica(String cadena,String nombreCampo){
         char[] caracteres = cadena.toCharArray();
             for (int i = 0; i < caracteres.length; i++) {
@@ -165,7 +171,7 @@ public class UsuarioBL {
         return rpta;
     }
 
-    public ResultSet getListaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea){
+    public ResultSet getListaUsuarios(String usuario,String nombreCompleto,String cadenaFechaI,String cadenaFechaF, int idRol, int idArea, int idEstado){
 
             Boolean rpta=validarCadenaAlfabetica(nombreCompleto,"Nombre Completo");
             if(rpta==false) return null;
@@ -174,7 +180,7 @@ public class UsuarioBL {
             if(rpta==false) return null;
          
             ResultSet rs = null;
-            rs = usuarioDAO.getConsultaUsuarios(usuario, nombreCompleto, cadenaFechaI, cadenaFechaF, idRol, idArea);
+            rs = usuarioDAO.getConsultaUsuarios(usuario, nombreCompleto, cadenaFechaI, cadenaFechaF, idRol, idArea,idEstado);
             return rs;
     }
 
