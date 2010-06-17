@@ -233,9 +233,6 @@ public class AntiPlagiumPrincipal extends JFBase
          admCategoria.setModal(true);
          admCategoria.setLocationRelativeTo(this);
          admCategoria.setVisible(true);
-        //RegistrarCategoria registrarCategoria = new  RegistrarCategoria();
-         //registrarCategoria.setVisible(true);
-         //JDPPrincipal.add(registrarCategoria);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -245,6 +242,7 @@ public class AntiPlagiumPrincipal extends JFBase
             /* Eliminar luego de probar */
             BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
             buscardoc.setModal(true);
+            buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -266,9 +264,8 @@ public class AntiPlagiumPrincipal extends JFBase
         // TODO add your handling code here:
         JFCompararDocumentos frmCompararDocumentos = new JFCompararDocumentos();
         frmCompararDocumentos.setModal(true);
-       // AntiPlagiumPrincipal.JDPPrincipal.add(frmCompararDocumentos);
+        frmCompararDocumentos.setLocationRelativeTo(this);
         frmCompararDocumentos.setVisible(true);
-        //JDPPrincipal.add(frmCompararDocumentos);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
@@ -278,8 +275,8 @@ public class AntiPlagiumPrincipal extends JFBase
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         JFMostrarResultados frmRes = new  JFMostrarResultados();
-         frmRes.setVisible(true);
-         JDPPrincipal.add(frmRes);
+        frmRes.setVisible(true);
+        JDPPrincipal.add(frmRes);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void JMLogUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMLogUsuarioActionPerformed
@@ -290,9 +287,16 @@ public class AntiPlagiumPrincipal extends JFBase
     }//GEN-LAST:event_JMLogUsuarioActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-        ComparacionesDeteccion frmComparacion = new ComparacionesDeteccion();
-        frmComparacion.setVisible(true);
+        try {
+            ComparacionesDeteccion frmComparacion = new ComparacionesDeteccion();
+            frmComparacion.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
