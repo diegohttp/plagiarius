@@ -98,10 +98,10 @@ public class ConexionJDBC {
     public static void abrirConexion() throws SQLException, ClassNotFoundException
     {
         Class.forName(CONTROLADOR);
-        conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");
-        //conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "pierika1303");
+        conexion = DriverManager.getConnection(URL_BASEDATOS, "postgres", "cuadrado");        
         conexion.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         instruccion = conexion.createStatement();
+        conexion.setAutoCommit(false);
     }
 
     public static ResultSet ejecutarQueryString(String query) throws SQLException
@@ -117,6 +117,7 @@ public class ConexionJDBC {
 
     public static void cerrarConexion() throws SQLException
     {
+        conexion.commit();
         conexion.close();
         instruccion.close();
         tablaResultados.close();
