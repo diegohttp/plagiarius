@@ -51,7 +51,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
                 int idDoc = Utilitario.generaCodigo("Documento");
                 doc = new DocumentoBE(idDoc, "activo" , nomArch.get(i).getName() , objUsuario, null);
                 doc.setContenido(DocumentoBL.obtenerContenido(nomArch.get(i)));
-                doc.setListaCategorias(listaCategoria);
+                //doc.setListaCategorias(listaCategoria);
                 try {
                     DocumentoBL.registrar(doc);
                     /* Si es exitosos */
