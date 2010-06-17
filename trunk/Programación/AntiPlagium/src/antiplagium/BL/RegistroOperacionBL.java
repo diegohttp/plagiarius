@@ -1,14 +1,26 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package antiplagium.BL;
 
-/**
- *
- * @author piere
- */
-public class RegistroOperacionBL {
+import antiplagium.BE.RegistroOperacionBE;
+import antiplagium.DAL.ConexionJDBC;
+import antiplagium.DAO.registroOperacionDAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+public class RegistroOperacionBL
+{
+    public void AbrirConexion() throws SQLException, ClassNotFoundException
+    {
+        ConexionJDBC.abrirConexion();
+    }
+
+    public void CerrarConexion() throws SQLException
+    {
+        ConexionJDBC.cerrarConexion();
+    }
+
+    public void insertOperacion(RegistroOperacionBE operacionBE) throws SQLException
+    {
+        registroOperacionDAO operacionDAO = new registroOperacionDAO();
+        operacionDAO.insertOperacion(operacionBE);
+    }
 }
