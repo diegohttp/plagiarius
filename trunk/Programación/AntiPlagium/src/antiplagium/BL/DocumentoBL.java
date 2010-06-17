@@ -36,6 +36,10 @@ import org.apache.poi.poifs.eventfilesystem.POIFSReaderListener;
  */
 public class DocumentoBL {
 
+    public static boolean validarNombre(String nombre) {
+        return DocumentoDAO.validarNombre(nombre);
+    }
+
     private DocumentoBE objDocumentoBE;
 
     public DocumentoBL() {
@@ -143,6 +147,10 @@ public class DocumentoBL {
         xstream.alias("oracion", OracionBE.class);
         doc = (DocumentoBE)xstream.fromXML(contenido);
         return doc;
+    }
+
+    public DocumentoBE buscarIdDocumento(int idDocumento) {
+       return DocumentoDAO.buscarIdDocumento(idDocumento);
     }
 
 }
@@ -307,6 +315,7 @@ class StandardReaderListener implements POIFSReaderListener {
         datos.setTexto(we.getText());
     }
 }
+
 
 
 
