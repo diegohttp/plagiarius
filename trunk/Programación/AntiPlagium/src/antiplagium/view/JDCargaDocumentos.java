@@ -120,7 +120,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
                 rect.y = 0;
                 this.pnlDatosProgreso.paintImmediately(rect);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(200);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(JDCargaDocumentos.class.getName()).log(Level.SEVERE, null, ex);
                 }
