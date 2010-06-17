@@ -108,7 +108,7 @@ public class DocumentoBL {
     }
 
      public DocumentoBE buscarIdDocumento(int IdDocumento) throws FileNotFoundException, IOException, SQLException {
-      return  objDocumentoBE = DocumentoDAO.buscarIdDocumento(IdDocumento);
+      return  objDocumentoBE = DocumentoDAO.buscarIdDoc(IdDocumento);
     }
 
 
