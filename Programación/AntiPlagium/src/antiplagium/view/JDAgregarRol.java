@@ -261,16 +261,26 @@ public class JDAgregarRol extends JDialog {
                 rolBL.updateRol(rolBE, listaPrivilegiosSinModificar, listaIDPrivilegios);
             }
             else rolBL.insertRol(rolBE, listaIDPrivilegios);
+
+            String descripcionOperacion = rolBE.getNombre();
+            AntiPlagiumPrincipal.operacionBE.setOperacion(this.getName(), "Gurdar nuevo registro", descripcionOperacion);
+
+            RegistroOperacionBL operacionBL = new RegistroOperacionBL();
+            operacionBL.insertOperacion(AntiPlagiumPrincipal.operacionBE);
+            
             rolBL.CerrarConexion();
         }
         catch(ClassNotFoundException ex)
         {
             JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         catch (SQLException excepcionSQL)
         {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        
         this.dispose();
     }//GEN-LAST:event_JBGuardarActionPerformed
 

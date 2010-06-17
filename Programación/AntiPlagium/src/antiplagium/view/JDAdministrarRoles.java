@@ -278,12 +278,15 @@ public class JDAdministrarRoles extends JDialog {
 
     private void JBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarActionPerformed
         RolBL rolBL = new RolBL();
+        RolBE rolBE;
 
         try
         {
             rolBL.AbrirConexion();
-            rolBL.deleteRol((RolBE)jcbRol.getSelectedItem());
+            rolBE = (RolBE)jcbRol.getSelectedItem();
+            rolBL.deleteRol(rolBE);
             rolBL.CerrarConexion();
+            jcbRol.removeItem(rolBE);
         }
         catch (ClassNotFoundException ex)
         {
@@ -305,12 +308,16 @@ public class JDAdministrarRoles extends JDialog {
         for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
         {
             if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true) listaPrivilegios.add((Integer)modeloTablaPrivilegios.getValueAt(i, 0));
-        }
+        }        
 
-        JDAgregarRol jfAgregarRol = new JDAgregarRol((RolBE)jcbRol.getSelectedItem(), listaPrivilegios);
+        RolBE rolBE = (RolBE)jcbRol.getSelectedItem();
+        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE, listaPrivilegios);
         jfAgregarRol.setLocationRelativeTo(this);
         jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
+        jcbRol.removeItem(rolBE);
+        jcbRol.addItem(rolBE);
+        jcbRol.setSelectedItem(rolBE);
 }//GEN-LAST:event_JBModificarActionPerformed
 
     private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
