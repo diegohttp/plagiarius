@@ -2,5 +2,33 @@
     <TipoOperacion>
         <nombre>ingreso</nombre>
         <descripcion>Ingreso al sistema</descripcion>
-    </TipoOperacion>    
+    </TipoOperacion>  
+    <TipoOperacion>
+        <nombre>salida</nombre>
+        <descripcion>Salida del sistema</descripcion>
+    </TipoOperacion>
+    <TipoOperacion>
+        <nombre>consulta</nombre>
+        <descripcion>Consulta al sistema</descripcion>
+    </TipoOperacion>
+    <TipoOperacion>
+        <nombre>modifica</nombre>
+        <descripcion>Modificacion de registro</descripcion>
+    </TipoOperacion>
+    <TipoOperacion>
+        <nombre>registra</nombre>
+        <descripcion>Creacion de nuevo registro</descripcion>
+    </TipoOperacion>
+    <TipoOperacion>
+        <nombre>eliminacion</nombre>
+        <descripcion>Eliminacion de registro</descripcion>
+    </TipoOperacion>	
+    <TipoOperacion>
+        <nombre>comparacion</nombre>
+        <descripcion>Comparacion de documentos</descripcion>
+    </TipoOperacion>	
+    <TipoOperacion>
+        <nombre>reporte</nombre>
+        <descripcion>Generacion de reporte</descripcion>
+    </TipoOperacion>		  
 </TiposOperaciones>
