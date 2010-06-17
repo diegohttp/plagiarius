@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package antiplagium.BE;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author USER
- */
+
 public class RolBE {
 
     private Integer idRol;
@@ -23,8 +15,7 @@ public class RolBE {
     {
         this.setIdRol(0);
         this.setNombre("");
-        this.setDescripcion("");
-        
+        this.setDescripcion("");        
     }
 
     public RolBE(int idRol, String nombre,String descripcion)
