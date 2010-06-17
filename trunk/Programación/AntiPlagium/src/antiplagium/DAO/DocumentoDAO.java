@@ -15,6 +15,7 @@ import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
+import antiplagium.BL.UsuarioBL;
 import antiplagium.DAL.ConexionJDBC;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -100,6 +101,38 @@ public class DocumentoDAO {
             System.out.println(a.getMessage());
         }
         return objDocumento;
+    }
+
+
+     public static DocumentoBE buscarIdDocumento(int idDocumento) throws FileNotFoundException, IOException, SQLException{
+        DocumentoBE doc = null;
+
+            String strSentencia = "SELECT * FROM \"Documento\" WHERE \"idDocumento\" = " + idDocumento;
+            ConexionJDBC objConexion = new ConexionJDBC();
+            Vector arrDocumento;
+            arrDocumento = objConexion.ejecutarQuery(strSentencia);
+            ArrayList<DocumentoBE> gestorDocumento = new ArrayList<DocumentoBE>();
+            for (int i = 0; i < arrDocumento.size(); ++i) {
+                Object[] registro = (Object[]) arrDocumento.get(i);
+
+
+            CategoriaBL objCategoriaBL = new CategoriaBL();
+            int idCategoria= (Integer)registro[5];
+            CategoriaBE cat = objCategoriaBL.buscarIdCategoria(idCategoria);
+
+            UsuarioBL objUsuarioBL = new UsuarioBL();
+            String idUsuario= (String)(registro[3]);
+            UsuarioBE usr = objUsuarioBL.getUsuarioBE(Integer.parseInt(idUsuario));
+
+
+                gestorDocumento.add(new DocumentoBE((Integer) registro[0], (String) registro[1], (String) registro[2], usr, cat));
+            }
+            doc = gestorDocumento.get(0);
+            return doc;
+
+           // public DocumentoBE(int idDocumento, String estado, String nombre, UsuarioBE idUsuario,CategoriaBE categoria)
+
+
     }
 
 
