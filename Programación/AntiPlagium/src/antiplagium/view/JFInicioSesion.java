@@ -43,7 +43,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
 
         try
         {
-            GestorError.populate("XML/Errores.xml", this);
+            GestorError.populate("XML/Errores.xml");
         }
         catch (Exception e)
         {
