@@ -35,6 +35,7 @@ public class UsuarioBL {
     private UsuarioBE usuarioBE;
     private int usuarioValido;
     boolean r=false;
+    private String cadenaError="";
 
     public UsuarioBL(){
         this.usuarioDAO=new UsuarioDAO();
@@ -59,24 +60,51 @@ public class UsuarioBL {
                                       TipoCeseBE tipoCeseBE,String email){
 
 
+
         Boolean rpta=validarCadenaAlfabetica(nombres,"Nombres");
         if(rpta==false){
-            return null;
+            cadenaError+="El campo \"Nombres\" debe ser una cadena alfabetica.\n ";
+        }
+
+        rpta=validarCadenaVacia(nombres);
+        if(rpta==false){
+            cadenaError+="El campo \"Nombres\" no debe estar vacio. Campo obligatorio.\n ";
         }
 
         rpta=validarCadenaAlfabetica(apellidoPaterno,"Apellido Paterno");
         if(rpta==false){
-            return null;
+            cadenaError+="El campo \"Apellido Paterno\" debe ser una cadena alfabetica.\n ";
+        }
+
+        rpta=validarCadenaVacia(apellidoPaterno);
+        if(rpta==false){
+            cadenaError+="El campo \"Apellido Paterno\" no debe estar vacio. Campo obligatorio.\n ";
         }
 
         rpta=validarCadenaAlfabetica(apellidoMaterno,"Apellido Materno");
         if(rpta==false){
-            return null;
+            cadenaError+="El campo \"Apellido Materno\" debe ser una cadena alfabetica.\n ";
         }
+        
+        rpta=validarCadenaVacia(apellidoMaterno);
+        if(rpta==false){
+            cadenaError+="El campo \"Apellido Materno\" no debe estar vacio. Campo obligatorio.\n ";
+        }
+
 
         rpta=validarCadenaSinEspacios(nombreUsuario);
         if(rpta==false){
-            return null;
+            cadenaError+="El campo \"Nombre Usuario\" debe ser una cadena sin espacios.\n ";
+        }
+
+        rpta=validarCadenaVacia(nombreUsuario);
+        if(rpta==false){
+            cadenaError+="El campo \"Nombre Usuario\" no debe estar vacio. Campo obligatorio.\n ";
+        }
+
+        rpta=validarCadenaVacia(password);
+        if(rpta==false){
+            cadenaError+="El campo \"Contrasena\" no debe estar vacio. Campo obligatorio.\n ";
         }
 
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
@@ -85,11 +113,16 @@ public class UsuarioBL {
 
         rpta=validarFechas(cadenaFechaI, cadenaFechaF);
         if(rpta==false){
-            return null;
+            cadenaError+="La fecha de inicio debe ser menor a la fecha fin.\n ";
         }
 
         rpta=validarMail(email);
         if(rpta==false){
+            cadenaError+="El campo \"Correo Electronico\" no tiene el formato correcto \"nombreUsuario@dominio.ext\".\n ";
+        }
+
+
+        if(cadenaError.compareTo("")!=0){
             return null;
         }
 
@@ -97,6 +130,11 @@ public class UsuarioBL {
                                 password, fechaRegistro, fechaVencimiento, fechaCese, estadoBE, rolBE,
                                 categorias, tipoCeseBE,email);
         return usuarioBE;
+    }
+
+    public String getCadenaError(){
+
+        return cadenaError;
     }
 
     public int getIdUsuarioSiguiente() throws SQLException, ClassNotFoundException{
@@ -134,11 +172,19 @@ public class UsuarioBL {
         return r;
     }
 
+    public boolean validarCadenaVacia(String campo){
+        if((campo==null)||(campo.length()==0)){
+            return false;
+        }
+        return true;
+
+    }
+
     public Boolean validarCadenaAlfabetica(String cadena,String nombreCampo){
         char[] caracteres = cadena.toCharArray();
             for (int i = 0; i < caracteres.length; i++) {
                 if (Utilitario.esLetra(caracteres[i]) == false) {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar caracteres alfabeticos en el campo "+nombreCampo, "Invalido", JOptionPane.ERROR_MESSAGE);
+                    //JOptionPane.showMessageDialog(null, "Debe ingresar caracteres alfabeticos en el campo "+nombreCampo, "Invalido", JOptionPane.ERROR_MESSAGE);
                     return false;
                 }
             }
@@ -150,7 +196,7 @@ public class UsuarioBL {
         char[] caracteres = cadena.toCharArray();
             for (int i = 0; i < caracteres.length; i++) {
                     if (caracteres[i] == ' ' || caracteres[i] == 8 ){
-                        JOptionPane.showMessageDialog(null, "El campo nombre de usuario no debe tener espacios", "Invalido", JOptionPane.ERROR_MESSAGE);
+                      //JOptionPane.showMessageDialog(null, "El campo nombre de usuario no debe tener espacios", "Invalido", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
             }
@@ -159,7 +205,7 @@ public class UsuarioBL {
     
     public Boolean validarFechas(String cadenaFI,String cadenaFF){
         if( (cadenaFI.compareTo(cadenaFF)>0) || (cadenaFI.compareTo(cadenaFF)==0) ){
-                   JOptionPane.showMessageDialog(null, "La fecha de inicio debe ser menor a la fecha fin ", "Invalido", JOptionPane.ERROR_MESSAGE);                
+                   //JOptionPane.showMessageDialog(null, "La fecha de inicio debe ser menor a la fecha fin ", "Invalido", JOptionPane.ERROR_MESSAGE);
                    return false;
             }
         return true;
@@ -167,7 +213,7 @@ public class UsuarioBL {
     
     public Boolean validarMail(String email){
         Boolean rpta=Utilitario.esEmailValido(email);    
-        if(rpta==false) JOptionPane.showMessageDialog(null, "El campo \"Correo Electronico\" no es valido", "Invalido", JOptionPane.ERROR_MESSAGE);                
+        //if(rpta==false) JOptionPane.showMessageDialog(null, "El campo \"Correo Electronico\" no es valido", "Invalido", JOptionPane.ERROR_MESSAGE);
         return rpta;
     }
 
@@ -183,7 +229,6 @@ public class UsuarioBL {
             rs = usuarioDAO.getConsultaUsuarios(usuario, nombreCompleto, cadenaFechaI, cadenaFechaF, idRol, idArea,idEstado);
             return rs;
     }
-
 
     public UsuarioBE getUsuarioBE(int idUsuario){
         try {
