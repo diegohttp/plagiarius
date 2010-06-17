@@ -95,20 +95,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="262" max="32767" attributes="0"/>
-              <Component id="JBNuevo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jBModificar" min="-2" pref="95" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jBEliminar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jPanel1" alignment="1" min="-2" max="-2" attributes="1"/>
-                  <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="1"/>
+                  <Group type="102" alignment="1" attributes="1">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBSeleccionar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jBCerrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="JBNuevo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jBModificar" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jBEliminar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jPanel1" alignment="1" min="-2" pref="537" max="-2" attributes="1"/>
+                          <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="1"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
@@ -116,18 +123,20 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JBNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBSeleccionar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,27 +157,29 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="131" max="-2" attributes="1"/>
-                      <Component id="jLabel10" min="-2" pref="133" max="-2" attributes="1"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="133" max="-2" attributes="1"/>
+                      <Component id="jLabel1" min="-2" pref="133" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" pref="133" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" pref="133" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" pref="133" max="-2" attributes="0"/>
+                      <Component id="jLabel10" min="-2" pref="133" max="-2" attributes="1"/>
+                      <Component id="jLabel5" min="-2" pref="133" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jCBRol" pref="271" max="32767" attributes="1"/>
-                      <Component id="JTFNombreCompleto" alignment="0" pref="271" max="32767" attributes="1"/>
-                      <Component id="jPFechaInicio" alignment="0" pref="271" max="32767" attributes="1"/>
+                      <Component id="jCBRol" min="-2" pref="271" max="-2" attributes="1"/>
+                      <Component id="JTFNombreCompleto" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
+                      <Component id="jPFechaInicio" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jBConsultar" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
-                              <Component id="jPFechaFin" alignment="1" pref="269" max="32767" attributes="1"/>
-                              <Component id="jCBArea" alignment="0" pref="269" max="32767" attributes="1"/>
-                          </Group>
+                          <Component id="jBConsultar" min="-2" pref="93" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jTFUsuario" alignment="0" pref="271" max="32767" attributes="1"/>
+                      <Component id="jTFUsuario" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
+                      <Component id="jPFechaFin" min="-2" pref="269" max="-2" attributes="1"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jCBEstado" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jCBArea" alignment="0" pref="269" max="32767" attributes="1"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
@@ -202,18 +213,23 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jPFechaFin" min="-2" max="-2" attributes="1"/>
-                      <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPFechaFin" alignment="0" min="-2" max="-2" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCBArea" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jCBEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
                   <Component id="jBConsultar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -334,6 +350,18 @@
         </Component>
         <Component class="javax.swing.JTextField" name="JTFNombreCompleto">
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Estado"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jCBEstado">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -375,17 +403,23 @@
             <Component class="javax.swing.JTable" name="jTListaUsuarios">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="0">
+                  <Table columnCount="7" rowCount="0">
                     <Column editable="false" title="Codigo" type="java.lang.Integer"/>
                     <Column editable="false" title="Nombre Usuario" type="java.lang.String"/>
                     <Column editable="false" title="Nombre Completo" type="java.lang.String"/>
                     <Column editable="false" title="Rol" type="java.lang.String"/>
                     <Column editable="false" title="Fecha Caducidad" type="java.lang.Object"/>
-                    <Column editable="false" title="Area Academica" type="java.lang.String"/>
+                    <Column editable="false" title="Area Academica" type="java.lang.Object"/>
+                    <Column editable="false" title="Estado" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -433,6 +467,9 @@
           <Image iconType="3" name="/Iconos/modificar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Modificar"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[95, 33]"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBModificarActionPerformed"/>
@@ -444,6 +481,9 @@
           <Image iconType="3" name="/Iconos/nuevo.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nuevo"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[95, 33]"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBNuevoActionPerformed"/>
@@ -455,9 +495,37 @@
           <Image iconType="3" name="/Iconos/Eliminar - 16.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[95, 33]"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEliminarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBSeleccionar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Iconos/aceptar.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Seleccionar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSeleccionarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBCerrar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Iconos/cancelar.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cerrar"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[80, 33]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCerrarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

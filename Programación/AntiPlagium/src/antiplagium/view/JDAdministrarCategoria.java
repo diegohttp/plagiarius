@@ -12,7 +12,9 @@
 package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
+import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
+import antiplagium.BL.UsuarioBL;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,25 +31,43 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JDAdministrarCategoria extends JDialog {
 
-    private JDCategoriaXUsuario ventanaAux;
+
+    ArrayList<Integer> idsCategorias=null;
+    int opcion;
+    CategoriaBE categoriaSeleccionado=null;
+
+
     /** Creates new form JFAdministrarCategoria */
+
+
     public JDAdministrarCategoria() {
         initComponents();        
         tblCategoria.getColumnModel().removeColumn(tblCategoria.getColumnModel().getColumn(3));
         btnAceptar.setVisible(false);
+
+
+
     }
 
-    public JDAdministrarCategoria(JDCategoriaXUsuario ventanaCategoriaxUsuario ){
+    public JDAdministrarCategoria(String nombreCategoria ){
         initComponents();
-        ventanaAux=ventanaCategoriaxUsuario;
-        if (tblCategoria.getColumnModel().getColumnCount()==3){
-            tblCategoria.getColumnModel().addColumn(tblCategoria.getColumnModel().getColumn(3));
-        }
-        //System.out.println(tblCategoria.getColumnModel().getColumnCount());
-        btnAceptar.setVisible(true);
-
         
+        if(nombreCategoria==null){
+            if (tblCategoria.getColumnModel().getColumnCount()==3){
+                tblCategoria.getColumnModel().addColumn(tblCategoria.getColumnModel().getColumn(3));
 
+            }
+            opcion=1;
+        }
+        else {
+            tblCategoria.getColumnModel().removeColumn(tblCategoria.getColumnModel().getColumn(3));
+            this.txtNombre.setText(nombreCategoria);
+            btnAceptar.setText("Seleccionar");
+            opcion=2;
+        }
+        btnAceptar.setVisible(true);
+        mnuRegistrarCategoria.setVisible(false);
+        mnuModificarCategoria.setVisible(false);
         buscar();
     }
 
@@ -301,23 +321,53 @@ public class JDAdministrarCategoria extends JDialog {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+
+        if(opcion==1){
         DefaultTableModel modelo=(DefaultTableModel)tblCategoria.getModel();
-        ArrayList<Integer> idsCategorias=new ArrayList();
+        idsCategorias=new ArrayList();
         
         for(int i=0;i<modelo.getRowCount();i++){
             
             Boolean seleccion=(Boolean)modelo.getValueAt(i, 3);
             System.out.println("esto es "+seleccion);
             if ((seleccion!=null)&&(seleccion!=false))
-                idsCategorias.add((Integer)modelo.getValueAt(i, 0));
-            
+                idsCategorias.add((Integer)modelo.getValueAt(i, 0));   
         }
 
+        this.setVisible(false);
 
-        ventanaAux.setListaCategorias(idsCategorias);
-        this.dispose();
+        }
+        else {
+
+            boolean selecciona=false;
+
+            DefaultTableModel modelo= (DefaultTableModel)tblCategoria.getModel();
+            int[] filasSeleccionadas=  tblCategoria.getSelectedRows();
+
+            if (filasSeleccionadas.length==0){
+                JOptionPane.showMessageDialog(this,"Debe seleccionar una fila o registro de la lista de usuarios","Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(filasSeleccionadas.length>1){
+                JOptionPane.showMessageDialog(this,"Debe seleccionar solo una fila o registro de la lista usuaios","Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(filasSeleccionadas.length==1){
+                categoriaSeleccionado=CategoriaBL.buscarIdCategoria(Integer.parseInt(tblCategoria.getValueAt(tblCategoria.getSelectedRow(),0).toString()));
+
+                this.setVisible(false);
+            }
+
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    public CategoriaBE getCategoriaSeleccionado() {
+        return categoriaSeleccionado;
+    }
+
+
+
+    public ArrayList<Integer> getIdsCategorias() {
+        return idsCategorias;
+    }
     private void mnuRegistrarCategoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuRegistrarCategoriaMousePressed
         // TODO add your handling code here:
         RegistrarCategoria resCategoria = new RegistrarCategoria();
