@@ -217,4 +217,35 @@ public class DocumentoDAO {
         }
         return exito;
     }
+
+    public static DocumentoBE buscarIdDocumento(int idDocumento) {
+        String strSentencia = "SELECT * FROM \"Documento\" WHERE \"idDocumento\" = " + idDocumento;
+        DocumentoBE doc = null;
+        ConexionJDBC objConexion = new ConexionJDBC();
+        try {
+            Vector res = objConexion.ejecutarQuery(strSentencia);
+            for (int i=0; i < res.size(); ++i){
+                Object[] registro = (Object[])res.get(i);
+                /*  DocumentoBE doc = new DocumentoBE();
+                    doc.setIdDocumento((Integer)registro[0]);
+                */
+                String contenido = (String)registro[4];
+                int idCategoria = (Integer)registro[5];
+                CategoriaBE categoria = CategoriaBL.buscarIdCategoria(idCategoria);
+                //doc = DocumentoBL.getFromXml(contenido);
+                doc = new DocumentoBE();
+                doc.setCategoria(categoria);
+                doc.setNombre((String)registro[2]);
+                doc.setEstado((String)registro[1]);
+                doc.setContenido(contenido);
+                UsuarioBE objUsuario = new UsuarioBE();
+                objUsuario.setIdUsuario(Integer.parseInt((String)registro[3]));
+                doc.setUsuario(objUsuario);
+                doc.setIdDocumento((Integer)registro[0]);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DocumentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return doc;
+    }
 }
