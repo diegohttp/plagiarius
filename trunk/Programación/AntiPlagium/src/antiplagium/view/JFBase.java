@@ -22,7 +22,7 @@ public class JFBase extends javax.swing.JFrame {
         this.setSize(ancho, alto-40);
         this.usuarioBE=usuarioBE;
         initComponents();
-        LBLUsuario.setText(usuarioBE.getApellidoPaterno() + ", " + usuarioBE.getNombres());
+        LBLUsuario.setText(usuarioBE.getApellidoPaterno() +" "+ usuarioBE.getApellidoMaterno() + ", " + usuarioBE.getNombres());
         try
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
