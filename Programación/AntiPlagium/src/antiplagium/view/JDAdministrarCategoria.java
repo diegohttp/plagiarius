@@ -266,7 +266,19 @@ public class JDAdministrarCategoria extends JDialog {
             temp.removeRow(i);
         }
         try {
-            ArrayList<CategoriaBE> res = cat.buscarCategoria(this.txtDescripcion.getText(),this.txtNombre.getText());
+            String temp1 = "";
+            for (int i=0; i < this.txtNombre.getText().length(); ++i){
+                if (this.txtNombre.getText().charAt(i) != '\''){
+                    temp1 += this.txtNombre.getText().charAt(i);
+                }
+            }
+            String temp2 = "";
+            for (int i=0; i < this.txtDescripcion.getText().length(); ++i){
+                if (this.txtDescripcion.getText().charAt(i) != '\''){
+                    temp2 += this.txtDescripcion.getText().charAt(i);
+                }
+            }
+            ArrayList<CategoriaBE> res = cat.buscarCategoria(temp2,temp1);
             for (int i=0; i < res.size(); ++i){
                 Object[]nuevo ={res.get(i).getIdCategoria(),res.get(i).getNombre(),res.get(i).getDescripcion()};
                 temp.addRow(nuevo);
@@ -328,7 +340,7 @@ public class JDAdministrarCategoria extends JDialog {
             res.setVisible(true);
         }
         else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar categoria", "Error Modificar", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_mnuModificarCategoriaMousePressed
 
