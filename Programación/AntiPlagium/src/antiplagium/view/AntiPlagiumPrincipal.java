@@ -1,6 +1,7 @@
 package antiplagium.view;
 
 import antiplagium.BE.*;
+import antiplagium.BL.RegistroOperacionBL;
 import antiplagium.view.Reportes.ComparacionesDeteccion;
 import antiplagium.view.Reportes.ListarDocs;
 import java.awt.Dimension;
@@ -307,6 +308,19 @@ public class AntiPlagiumPrincipal extends JFBase
 
     public static  JDesktopPane  getJDesktopPane(){
       return JDPPrincipal;
+    }
+
+    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion)
+    {
+        operacionBE.setNombreVentana(nombreVentana);
+        operacionBE.setTipoOperacion(tipoOperacion);
+        operacionBE.setDescripcion(descripcion);
+    }
+
+    public static void registrarOperacion() throws SQLException
+    {
+        RegistroOperacionBL operacionBL = new RegistroOperacionBL();
+        operacionBL.insertOperacion(AntiPlagiumPrincipal.operacionBE);
     }
    
 
