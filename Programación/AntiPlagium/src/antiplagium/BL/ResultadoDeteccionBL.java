@@ -21,9 +21,11 @@ import java.util.Date;
 public class ResultadoDeteccionBL {
 
 
-     public static ArrayList<ResultadoDeteccionBE> ListarDocsDetectados(ResultadoDeteccionBE objResultado, Date Fechaini, Date Fechafin) throws FileNotFoundException, IOException, SQLException {
+    public static ArrayList<ResultadoDeteccionBE> ListarDocsDetectados(ResultadoDeteccionBE objResultado, Date Fechaini, Date Fechafin) throws FileNotFoundException, IOException, SQLException {
         return ResultadoDeteccionDAO.ListarDocsDetectados(objResultado,Fechaini,Fechafin);
     }
 
-
+    public static boolean registrar(ResultadoDeteccionBE res){
+        return ResultadoDeteccionDAO.registrar(res);
+    }
 }
