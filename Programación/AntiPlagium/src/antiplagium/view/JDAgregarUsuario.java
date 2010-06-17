@@ -626,24 +626,25 @@ public class JDAgregarUsuario extends JDialog {
         }
         else if(jBReestablecerContrasena.getText().compareTo("Generar")==0){
 
-                    String alfabetoM="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                    String alfabetom="abcdefghijklmnoprstuvwxyz";
-                    String numeros="0123456789";
-
+//                    String alfabetoM="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//                    String alfabetom="abcdefghijklmnoprstuvwxyz";
+//                    String numeros="0123456789";
+                    String caracteres="abcdefghijklmnoprstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                     String contrasena="";
                     char c=' ';
                     char opcion='0';
                     for(int i=0;i<10;i++){
-                         opcion = numeros.charAt((int) Math.random() * 3);
-                         if (opcion=='0'){
-                            c = alfabetoM.charAt((int)(Math.random()*26));
-                         }
-                         else if (opcion=='1'){
-                            c = numeros.charAt((int)(Math.random()*10));
-                         }
-                         else if (opcion=='2'){
-                            c = alfabetom.charAt((int)(Math.random()*26));
-                         }
+                        c = caracteres.charAt((int)(Math.random()*62));
+//                         opcion = numeros.charAt((int) Math.random() * 3);
+//                         if (opcion=='0'){
+//                            c = alfabetoM.charAt((int)(Math.random()*26));
+//                         }
+//                         else if (opcion=='1'){
+//                            c = numeros.charAt((int)(Math.random()*10));
+//                         }
+//                         else if (opcion=='2'){
+//                            c = alfabetom.charAt((int)(Math.random()*26));
+//                         }
                          contrasena+=c;
                     }
                     JOptionPane.showMessageDialog(this, contrasena);
