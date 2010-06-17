@@ -1,5 +1,6 @@
 package antiplagium.BL;
 
+import antiplagium.BE.PrivilegioBE;
 import antiplagium.BE.RolBE;
 import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.RolDAO;
@@ -75,7 +76,7 @@ public class RolBL {
         } 
     }
     
-    public void updateRol(RolBE rolBE, ArrayList<Integer> listaPrivilegiosSinModificar, ArrayList<Integer> listPrivilegios) throws SQLException
+    public void updateRol(RolBE rolBE, ArrayList<PrivilegioBE> listaPrivilegiosSinModificar, ArrayList<Integer> listPrivilegios) throws SQLException
     {
         RolDAO rolDAO = new RolDAO();        
                        
@@ -86,13 +87,13 @@ public class RolBL {
         {
             for(int j=0; j<listPrivilegios.size(); j++)
             {
-                if ((int)listaPrivilegiosSinModificar.get(i) == (int)listPrivilegios.get(j))
+                if ((int)listaPrivilegiosSinModificar.get(i).getIdPrivilegio() == (int)listPrivilegios.get(j))
                 {
                     encontrado = true;
                     break;
                 }
             }
-            if (!encontrado) rolDAO.deleteDetallePrivilegio(rolBE.getIdRol(), listaPrivilegiosSinModificar.get(i));
+            if (!encontrado) rolDAO.deleteDetallePrivilegio(rolBE.getIdRol(), listaPrivilegiosSinModificar.get(i).getIdPrivilegio());
             else encontrado = false;
         }
 
@@ -100,7 +101,7 @@ public class RolBL {
         {            
             for(int j=0 ; j<listaPrivilegiosSinModificar.size(); j++)
             {
-                if ( (int)listPrivilegios.get(i) == (int)listaPrivilegiosSinModificar.get(j) )
+                if ( (int)listPrivilegios.get(i) == (int)listaPrivilegiosSinModificar.get(j).getIdPrivilegio() )
                 {
                     encontrado = true;
                     break;
