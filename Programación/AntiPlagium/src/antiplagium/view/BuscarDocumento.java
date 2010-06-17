@@ -359,6 +359,7 @@ public class BuscarDocumento extends JDialog {
         CategoriaBE objCategoria = null;
         UsuarioBE objUsuario = null;
         /* Si la categoria es todas el objeto debe ser nulo, no especificado */
+
         objCategoria= (CategoriaBE) this.cboCategoria.getSelectedItem();
         if (objCategoria.getNombre().compareTo("Todas") == 0){
             objCategoria = null;
@@ -371,7 +372,13 @@ public class BuscarDocumento extends JDialog {
         DocumentoBE objDocumento = new DocumentoBE();
         objDocumento.setUsuario(objUsuario);
         objDocumento.setCategoria(objCategoria);
-        objDocumento.setNombre(this.txtNombre.getText());
+        String temp="";
+        for (int i=0; i < this.txtNombre.getText().length(); ++i){
+            if (this.txtNombre.getText().charAt(i) != '\''){
+                temp += this.txtNombre.getText().charAt(i);
+            }
+        }
+        objDocumento.setNombre(temp);
         objEstado = (String) this.cboEstado.getSelectedItem();
         if (objEstado.compareTo("Todos") == 0)
             objEstado = "";
