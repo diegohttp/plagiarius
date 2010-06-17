@@ -272,9 +272,17 @@ public class JDAgregarRol extends JDialog {
             }
             else rolBL.insertRol(rolBE, listaIDPrivilegios);
             
-            if (esModificar) descripcionOperacionModificar(textNombreRol.getText(), listaPrivilegios);
-            else descripcionOperacionGuardar();
-            AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcionOperacion);
+
+            if (esModificar)
+            {
+                descripcionOperacionModificar(textNombreRol.getText(), listaPrivilegios);
+                AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcionOperacion);
+            }
+            else
+            {
+                descripcionOperacionGuardar();
+                AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcionOperacion);
+            }
             AntiPlagiumPrincipal.registrarOperacion();
             rolBL.CerrarConexion();
         }
@@ -306,6 +314,10 @@ public class JDAgregarRol extends JDialog {
 
     private void descripcionOperacionModificar(String nombre, ArrayList<PrivilegioBE>  listaPrivilegios)
     {
+        descripcionOperacion = "Usuario: " + JFBase.usuarioBE.getNombreUsuario() + "\n" +
+                               "Fecha:   " + AntiPlagiumPrincipal.operacionBE.getFechaOperacion().toString() + "\n" +
+                               "Tipo Operacion: " + GestorTiposOperacion.getTipoOperacion("modifica") + "\n";
+
         descripcionOperacion += descripcionOperacionModificar;
         descripcionOperacion += "Registro modificado: \n";
         descripcionOperacion += nombre + ": \n";
