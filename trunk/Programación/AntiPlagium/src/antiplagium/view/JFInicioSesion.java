@@ -17,9 +17,11 @@ import antiplagium.BE.GestorError;
 import antiplagium.BE.GestorTiposOperacion;
 
 import antiplagium.BE.UsuarioBE;
+import antiplagium.BL.RegistroOperacionBL;
 import antiplagium.BL.UsuarioBL;
 import antiplagium.DAL.ConexionJDBC;
 import java.awt.Color;
+import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -33,6 +35,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
     private int autenticoUsuario;
     private JPasswordField jPFContrasena;
     private UsuarioBE usuarioBE;
+    private String descripcionOperacion;
 
     /** Creates new form JFInicioSesion */
     public JFInicioSesion() {
@@ -95,6 +98,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sesion");
+        setName("jfInicioSesion"); // NOI18N
         setResizable(false);
 
         jLabel4.setFont(new java.awt.Font("DejaVu Sans", 1, 10));
@@ -235,8 +239,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTFNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(80, Short.MAX_VALUE))
+                            .addComponent(jPContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,7 +325,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
         usuarioBL=new UsuarioBL();
         String nombreUsuario="";
         String contrasena="";
-        String correoE="";
+        String correoE="";        
 
         nombreUsuario=jTFNombreUsuario.getText();
 
@@ -342,10 +345,39 @@ public class JFInicioSesion extends javax.swing.JFrame {
               principal.setLocationRelativeTo(null);
               principal.setVisible(true);
               this.dispose();
+
+
+        descripcionOperacion();
+        try
+        {
+            RegistroOperacionBL op = new RegistroOperacionBL();
+            op.AbrirConexion();
+            AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("ingreso"), descripcionOperacion);
+            AntiPlagiumPrincipal.registrarOperacion();
+            op.CerrarConexion();
+        }
+        catch (ClassNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        catch (SQLException excepcionSQL)
+        {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+             
         }
         else{
             jPError.setVisible(true);
         }
+    }
+
+    private void descripcionOperacion()
+    {
+        descripcionOperacion = "Usuario: " + JFBase.usuarioBE.getNombreUsuario() + "\n" +
+                               "Fecha:   " + AntiPlagiumPrincipal.operacionBE.getFechaOperacion().toString() + "\n" +
+                               "Tipo Operacion: " + GestorTiposOperacion.getTipoOperacion("ingreso") + "\n" ;
     }
 
     /**
