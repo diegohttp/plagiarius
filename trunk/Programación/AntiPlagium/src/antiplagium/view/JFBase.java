@@ -109,10 +109,10 @@ public class JFBase extends javax.swing.JFrame {
         LBLUsuario.setBackground(new java.awt.Color(153, 204, 255));
         LBLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LBLUsuario.setText("Nombre del Usuario");
-        LBLUsuario.setMaximumSize(new java.awt.Dimension(1000, 14));
+        LBLUsuario.setMaximumSize(new java.awt.Dimension(1400, 14));
         LBLUsuario.setMinimumSize(new java.awt.Dimension(1000, 14));
         LBLUsuario.setOpaque(true);
-        LBLUsuario.setPreferredSize(new java.awt.Dimension(900, 14));
+        LBLUsuario.setPreferredSize(new java.awt.Dimension(1400, 14));
         getContentPane().add(LBLUsuario, java.awt.BorderLayout.PAGE_START);
 
         pack();
@@ -120,7 +120,7 @@ public class JFBase extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LBLUsuario;
+    protected javax.swing.JLabel LBLUsuario;
     // End of variables declaration//GEN-END:variables
 
 }
