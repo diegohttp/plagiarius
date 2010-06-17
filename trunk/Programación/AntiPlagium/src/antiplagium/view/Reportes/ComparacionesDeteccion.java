@@ -399,8 +399,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(this, "La búsqueda no encontro ningún resultado", "Buscar Documento", JOptionPane.INFORMATION_MESSAGE);
             }
 
-        
-
+           
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
     /**
