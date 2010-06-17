@@ -39,15 +39,15 @@ public class UsuarioDAO {
 //            System.out.println(squery);
             ResultSet rs = ConexionJDBC.ejecutarQueryString(squery);
             int numeroRegistros = rs.getRow();
-            System.out.println(numeroRegistros);
+            //System.out.println(numeroRegistros);
             while (rs.next()) {
                 idUsuario=rs.getInt("idUsuario");
-                System.out.println(rs.getString("nombres"));
+                //System.out.println(rs.getString("nombres"));
                 numeroRegistros = rs.getRow();
-                System.out.println(numeroRegistros);
+                //System.out.println(numeroRegistros);
             }
             ConexionJDBC.cerrarConexion();
-
+            squery="";
             return idUsuario;
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +126,7 @@ public class UsuarioDAO {
 
 
             ConexionJDBC.cerrarConexion();
-
+            squery="";
             error=true;
             return error;
       }
