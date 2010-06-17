@@ -15,13 +15,16 @@ package antiplagium.view.Reportes;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BE.ResultadoDeteccionBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
+import antiplagium.BL.ResultadoDeteccionBL;
 import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -31,6 +34,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.swing.JRViewer;
+import org.freixas.jcalendar.JCalendarCombo;
 
 
 /**
@@ -39,36 +43,41 @@ import net.sf.jasperreports.swing.JRViewer;
  */
 public class ComparacionesDeteccion extends javax.swing.JFrame {
    private CategoriaBL categoriaBl;
-   
-   //cambiar DocumentoBE por una lista de documentos detectados q tnga Doc1 - Doc2 - %plagio - nivel plagio
-   private ArrayList<DocumentoBE> arrDocumentosDetectados = new ArrayList<DocumentoBE>();
+   JCalendarCombo jcComboDesde;
+    JCalendarCombo jcComboHasta;
+   //lista de documentos detectados q tnga Doc1 - Doc2 - %plagio - nivel plagio - fecha
+   private ArrayList<ResultadoDeteccionBE> arrDocumentosDetectados = new ArrayList<ResultadoDeteccionBE>();
 
 
 
     /** Creates new form ComparacionesDeteccion */
-    public ComparacionesDeteccion() {
+    public ComparacionesDeteccion() throws FileNotFoundException, IOException, SQLException {
 //        try {
             initComponents();
-            CategoriaBE tmp = new CategoriaBE();
-            tmp.setIdCategoria(0);
-            tmp.setNombre("Todas");
-//            ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
-//            listaCategorias.add(0, tmp);
-//            int cantidadCategorias = listaCategorias.size();
-//            for (int i = 0; i < cantidadCategorias; i++) {
-//                jcmbCategoria.addItem(listaCategorias.get(i).getNombre());
-//            }
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
+        jcComboDesde = new JCalendarCombo();
+        jcComboHasta = new JCalendarCombo();
+
+        jcComboDesde.setSize(188, 30);
+        jcComboHasta.setSize(188, 30);
+        jPFechaInicio.add(jcComboDesde);
+        jPFechaFin.add(jcComboHasta);
+
+
+        categoriaBl=new CategoriaBL();
+        CategoriaBE tmp = new CategoriaBE();
+        tmp.setIdCategoria(0);
+        tmp.setNombre("Todas");
+        ArrayList<CategoriaBE> listaCategorias=categoriaBl.buscarCategoria("", "");
+        listaCategorias.add(0 , tmp);
+        int cantidadCategorias=listaCategorias.size();
+
+        for(int i=0;i<cantidadCategorias;i++){
+            jcmbCategoria.addItem(listaCategorias.get(i));
+        }
 
 
     }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -84,7 +93,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jcmbCategoria = new javax.swing.JComboBox();
         jPFechaInicio = new javax.swing.JPanel();
-        jPFechaInicio1 = new javax.swing.JPanel();
+        jPFechaFin = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -118,24 +127,24 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         jPFechaInicio.setLayout(jPFechaInicioLayout);
         jPFechaInicioLayout.setHorizontalGroup(
             jPFechaInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
+            .addGap(0, 168, Short.MAX_VALUE)
         );
         jPFechaInicioLayout.setVerticalGroup(
             jPFechaInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 25, Short.MAX_VALUE)
         );
 
-        jPFechaInicio1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPFechaInicio1.setPreferredSize(new java.awt.Dimension(247, 29));
+        jPFechaFin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPFechaFin.setPreferredSize(new java.awt.Dimension(247, 29));
 
-        javax.swing.GroupLayout jPFechaInicio1Layout = new javax.swing.GroupLayout(jPFechaInicio1);
-        jPFechaInicio1.setLayout(jPFechaInicio1Layout);
-        jPFechaInicio1Layout.setHorizontalGroup(
-            jPFechaInicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPFechaFinLayout = new javax.swing.GroupLayout(jPFechaFin);
+        jPFechaFin.setLayout(jPFechaFinLayout);
+        jPFechaFinLayout.setHorizontalGroup(
+            jPFechaFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 168, Short.MAX_VALUE)
         );
-        jPFechaInicio1Layout.setVerticalGroup(
-            jPFechaInicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPFechaFinLayout.setVerticalGroup(
+            jPFechaFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 24, Short.MAX_VALUE)
         );
 
@@ -144,21 +153,21 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jcmbCategoria, 0, 275, Short.MAX_VALUE))
+                        .addComponent(jcmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPFechaInicio1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                            .addComponent(jPFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .addComponent(jPFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +182,8 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
                     .addComponent(jPFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPFechaInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
         );
 
@@ -216,22 +225,15 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Documento 1", "Documento 2", "Porcentaje Plagio (%)", "Nivel de Plagio"
+                "Documento 1", "Documento 2", "Porcentaje Plagio (%)", "Resultado", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTListaDocumentos);
@@ -256,23 +258,23 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(450, Short.MAX_VALUE)
+                .addContainerGap(319, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))))
+                        .addGap(160, 160, 160))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)
@@ -282,19 +284,17 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addComponent(jbtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
                 .addComponent(jbtnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(8, 8, 8)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                     .addGap(18, 18, 18)
@@ -350,15 +350,40 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
             objUsuario = new UsuarioBE();
             objUsuario.setIdUsuario(Integer.parseInt(this.jtxtIdUsuario.getText()));
         }
+        
+        //filtro x fechas
+        
+        Date fechainicio = jcComboDesde.getDate();
+        Date fechafin = jcComboHasta.getDate();
 
-        //Falta x fechaaaaaaaaaaaaaas
+        System.out.println(fechainicio);
+
+        long fechainijava = fechainicio.getTime();
+        java.sql.Date sqlFechaini = new java.sql.Date(fechainijava);
+
+        long fechafinjava = fechainicio.getTime();
+        java.sql.Date sqlFechafin = new java.sql.Date(fechafinjava);
+
+        System.out.println(sqlFechaini);
+        System.out.println(sqlFechafin);
 
         DocumentoBE objDocumento = new DocumentoBE();
         objDocumento.setUsuario(objUsuario);
         objDocumento.setCategoria(objCategoria);
-       
-            //this.arrDocumentosDetectados = DeteccionBL.ListarDocsDetectados(objDocumento);
 
+        ResultadoDeteccionBE objResultado = new ResultadoDeteccionBE();
+        objResultado.setDocumento1(objDocumento);
+
+        try {
+            this.arrDocumentosDetectados = ResultadoDeteccionBL.ListarDocsDetectados(objResultado, sqlFechaini, sqlFechafin);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         /* Obtenemos el modelo */
             DefaultTableModel tmp = (DefaultTableModel) this.jTListaDocumentos.getModel();
             /* Limpiamos la tabla */
@@ -367,8 +392,8 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
             }
             /* Llenamos la grilla */
             for (int i=0; i < arrDocumentosDetectados.size() ; ++i){
-             //   Object [] nuevo={ arrDocumentosDetectados.get(i).getNombre() , arrDocumentosDetectados.get(i).getNombreDocComparado(), arrDocumentosDetectados.get(i).PorcentajePlagio(), arrDocumentosDectectados.get(i).getNivelPlagio()) };
-              //   tmp.addRow(nuevo);
+             Object [] nuevo={ arrDocumentosDetectados.get(i).getDocumento1().getNombre(), arrDocumentosDetectados.get(i).getDocumento2().getNombre(), arrDocumentosDetectados.get(i).getPorcentajePlagio(), arrDocumentosDetectados.get(i).getResultado(), arrDocumentosDetectados.get(i).getFecha()};
+              tmp.addRow(nuevo);
             }
             if (this.arrDocumentosDetectados.size() == 0){
                  JOptionPane.showMessageDialog(this, "La búsqueda no encontro ningún resultado", "Buscar Documento", JOptionPane.INFORMATION_MESSAGE);
@@ -384,7 +409,15 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ComparacionesDeteccion().setVisible(true);
+                try {
+                    new ComparacionesDeteccion().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -395,8 +428,8 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPFechaFin;
     private javax.swing.JPanel jPFechaInicio;
-    private javax.swing.JPanel jPFechaInicio1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
