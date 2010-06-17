@@ -439,7 +439,8 @@ public class BuscarDocumento extends JDialog {
     private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
         int idx = this.jtabPaquetes.getSelectedRow();
         if ( idx < 0){
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una fila", "Mensaje",0);
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una documento", "Error Modificar",JOptionPane.ERROR_MESSAGE);
+            return;
         }
         else {
               ModificarDocumento vModificarDoc = null;
@@ -485,10 +486,14 @@ public class BuscarDocumento extends JDialog {
            JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
         else
         {
+            if (this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getUsuario().getIdUsuario() != this.objUsuario.getIdUsuario()){
+                JOptionPane.showMessageDialog(this, "Debe ser el propietario para eliminar el documento", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             DocumentoBL objDocumentoBL = new DocumentoBL();
             boolean result = objDocumentoBL.eliminar(this.arrDocumentos.get(this.jtabPaquetes.getSelectedRow()).getIdDocumento());
             if (result)
-                    JOptionPane.showMessageDialog(null, "El Documento se elimino con éxito", "Mensaje",0);
+                    JOptionPane.showMessageDialog(this, "El Documento se elimino con éxito", "Eliminar",JOptionPane.INFORMATION_MESSAGE);
         }
         
     }//GEN-LAST:event_jMenu3MousePressed
