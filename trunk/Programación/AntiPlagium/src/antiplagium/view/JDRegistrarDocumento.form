@@ -39,7 +39,7 @@
                       <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="pnlDatosGen" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
+                  <Component id="pnlDatosParticulares" alignment="0" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -49,7 +49,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="pnlDatosParticulares" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="pnlDatosGen" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -65,11 +65,11 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="pnlDatosParticulares">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Datos generales">
+            <TitledBorder title="Datos particulares">
               <Color PropertyName="color" blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
             </TitledBorder>
           </Border>
@@ -82,8 +82,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPropietario" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -94,9 +94,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnlFecha" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="btnSeleccionarCategoria" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -108,16 +108,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="pnlFecha" alignment="0" max="32767" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPropietario" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtPropietario" alignment="3" max="32767" attributes="1"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cboCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnSeleccionarCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -132,17 +132,17 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblPropietario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Propietario:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="lblFecha">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lblCategoria">
           <Properties>
             <Property name="text" type="java.lang.String" value="Categor&#xed;a:"/>
           </Properties>
@@ -154,7 +154,7 @@
             </Property>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel3">
+        <Container class="javax.swing.JPanel" name="pnlFecha">
 
           <Layout>
             <DimensionLayout dim="0">
@@ -206,7 +206,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="1">
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombre1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="txtNombreDoc1" min="-2" pref="181" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -217,7 +217,7 @@
                           <Component id="btnBuscar1" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombre2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="txtNombreDoc2" min="-2" pref="181" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -228,7 +228,7 @@
                           <Component id="btnBuscar2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombre3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="txtNombreDoc3" min="-2" pref="181" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -239,7 +239,7 @@
                           <Component id="btnBuscar3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombre4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="txtNombreDoc4" min="-2" pref="181" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -250,7 +250,7 @@
                           <Component id="btnBuscar4" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombre5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="txtNombreDoc5" min="-2" pref="181" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -272,7 +272,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtNombreDoc1" alignment="3" pref="20" max="32767" attributes="1"/>
-                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNombre1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtRuta11" alignment="3" max="32767" attributes="1"/>
                           </Group>
@@ -287,7 +287,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtNombreDoc2" alignment="3" pref="20" max="32767" attributes="1"/>
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNombre2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtRuta22" alignment="3" max="32767" attributes="1"/>
                           </Group>
@@ -302,7 +302,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtNombreDoc3" alignment="3" pref="20" max="32767" attributes="1"/>
-                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNombre3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtRuta33" alignment="3" max="32767" attributes="1"/>
                           </Group>
@@ -317,7 +317,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtNombreDoc4" alignment="3" pref="20" max="32767" attributes="1"/>
-                              <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNombre4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtRuta44" alignment="3" max="32767" attributes="1"/>
                           </Group>
@@ -332,7 +332,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtNombreDoc5" alignment="3" pref="20" max="32767" attributes="1"/>
-                              <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNombre5" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtRuta55" alignment="3" max="32767" attributes="1"/>
                           </Group>
@@ -350,7 +350,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="txtNombreDoc1">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblNombre1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
@@ -375,7 +375,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscar1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="lblNombre2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
@@ -392,7 +392,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
+        <Component class="javax.swing.JLabel" name="lblNombre3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
@@ -409,7 +409,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel10">
+        <Component class="javax.swing.JLabel" name="lblNombre4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
@@ -426,7 +426,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel12">
+        <Component class="javax.swing.JLabel" name="lblNombre5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>

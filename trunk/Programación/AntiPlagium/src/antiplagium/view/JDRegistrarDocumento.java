@@ -52,8 +52,10 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         cmbFechaInicio.setSize(220,25);
         cmbFechaInicio.setDate(new Date());
         cmbFechaInicio.setEditable(false);
-        jPanel3.add(cmbFechaInicio);
-        jPanel3.setEnabled(false);
+        pnlFecha.add(cmbFechaInicio);
+        pnlFecha.setEnabled(false);
+        this.pnlFecha.setVisible(false);
+        this.lblFecha.setVisible(false);
         this.cboCategoria.removeAllItems();
         this.catSelecionada = new ArrayList<Boolean>();
         this.lstCategorias = listaCategorias;
@@ -101,33 +103,33 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlDatosParticulares = new javax.swing.JPanel();
         txtPropietario = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblPropietario = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
+        lblCategoria = new javax.swing.JLabel();
         cboCategoria = new javax.swing.JComboBox();
-        jPanel3 = new javax.swing.JPanel();
+        pnlFecha = new javax.swing.JPanel();
         btnSeleccionarCategoria = new javax.swing.JButton();
         pnlDatosGen = new javax.swing.JPanel();
         txtNombreDoc1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblNombre1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtRuta11 = new javax.swing.JTextField();
         btnBuscar1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        lblNombre2 = new javax.swing.JLabel();
         txtNombreDoc2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtRuta22 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lblNombre3 = new javax.swing.JLabel();
         txtNombreDoc3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtRuta33 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        lblNombre4 = new javax.swing.JLabel();
         txtNombreDoc4 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtRuta44 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        lblNombre5 = new javax.swing.JLabel();
         txtNombreDoc5 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         txtRuta55 = new javax.swing.JTextField();
@@ -144,24 +146,24 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos generales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
+        pnlDatosParticulares.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos particulares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
         txtPropietario.setEditable(false);
 
-        jLabel1.setText("Propietario:");
+        lblPropietario.setText("Propietario:");
 
-        jLabel2.setText("Fecha:");
+        lblFecha.setText("Fecha:");
 
-        jLabel3.setText("Categoría:");
+        lblCategoria.setText("Categoría:");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlFechaLayout = new javax.swing.GroupLayout(pnlFecha);
+        pnlFecha.setLayout(pnlFechaLayout);
+        pnlFechaLayout.setHorizontalGroup(
+            pnlFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 260, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlFechaLayout.setVerticalGroup(
+            pnlFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
@@ -175,41 +177,41 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDatosParticularesLayout = new javax.swing.GroupLayout(pnlDatosParticulares);
+        pnlDatosParticulares.setLayout(pnlDatosParticularesLayout);
+        pnlDatosParticularesLayout.setHorizontalGroup(
+            pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosParticularesLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                .addGroup(pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPropietario)
+                    .addComponent(lblCategoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPropietario, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosParticularesLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel2)
+                        .addComponent(lblFecha)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pnlFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSeleccionarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(273, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
+        pnlDatosParticularesLayout.setVerticalGroup(
+            pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosParticularesLayout.createSequentialGroup()
+                .addGroup(pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblPropietario)
                         .addComponent(txtPropietario)
-                        .addComponent(jLabel2)))
+                        .addComponent(lblFecha)))
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCategoria)
                     .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSeleccionarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -217,7 +219,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
 
         pnlDatosGen.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos generales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
-        jLabel4.setText("Nombre:");
+        lblNombre1.setText("Nombre:");
 
         jLabel5.setText("Ruta:");
 
@@ -230,25 +232,25 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setText("Nombre:");
+        lblNombre2.setText("Nombre:");
 
         jLabel7.setText("Ruta:");
 
         txtRuta22.setEnabled(false);
 
-        jLabel8.setText("Nombre:");
+        lblNombre3.setText("Nombre:");
 
         jLabel9.setText("Ruta:");
 
         txtRuta33.setEnabled(false);
 
-        jLabel10.setText("Nombre:");
+        lblNombre4.setText("Nombre:");
 
         jLabel11.setText("Ruta:");
 
         txtRuta44.setEnabled(false);
 
-        jLabel12.setText("Nombre:");
+        lblNombre5.setText("Nombre:");
 
         jLabel13.setText("Ruta:");
 
@@ -290,7 +292,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lblNombre1)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -300,7 +302,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(lblNombre2)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -310,7 +312,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar2))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addComponent(lblNombre3)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -320,7 +322,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar3))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(lblNombre4)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -330,7 +332,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar4))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
+                        .addComponent(lblNombre5)
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -348,7 +350,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                            .addComponent(jLabel4)
+                            .addComponent(lblNombre1)
                             .addComponent(jLabel5)
                             .addComponent(txtRuta11))
                         .addGap(23, 23, 23))
@@ -359,7 +361,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc2, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                            .addComponent(jLabel6)
+                            .addComponent(lblNombre2)
                             .addComponent(jLabel7)
                             .addComponent(txtRuta22))
                         .addGap(23, 23, 23))
@@ -370,7 +372,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc3, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                            .addComponent(jLabel8)
+                            .addComponent(lblNombre3)
                             .addComponent(jLabel9)
                             .addComponent(txtRuta33))
                         .addGap(23, 23, 23))
@@ -381,7 +383,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc4, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                            .addComponent(jLabel10)
+                            .addComponent(lblNombre4)
                             .addComponent(jLabel11)
                             .addComponent(txtRuta44))
                         .addGap(23, 23, 23))
@@ -392,7 +394,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc5, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                            .addComponent(jLabel12)
+                            .addComponent(lblNombre5)
                             .addComponent(jLabel13)
                             .addComponent(txtRuta55))
                         .addGap(44, 44, 44))
@@ -461,14 +463,14 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGap(5, 5, 5)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlDatosGen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlDatosParticulares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDatosParticulares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlDatosGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -898,22 +900,22 @@ private boolean seleccionoCategoria(){
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSeleccionarCategoria;
     private javax.swing.JComboBox cboCategoria;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblNombre1;
+    private javax.swing.JLabel lblNombre2;
+    private javax.swing.JLabel lblNombre3;
+    private javax.swing.JLabel lblNombre4;
+    private javax.swing.JLabel lblNombre5;
+    private javax.swing.JLabel lblPropietario;
     private javax.swing.JPanel pnlDatosGen;
+    private javax.swing.JPanel pnlDatosParticulares;
+    private javax.swing.JPanel pnlFecha;
     private javax.swing.JTextField txtNombreDoc1;
     private javax.swing.JTextField txtNombreDoc2;
     private javax.swing.JTextField txtNombreDoc3;
