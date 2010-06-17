@@ -84,7 +84,7 @@ public class DocumentoBE {
 
 
         } catch (Exception ex) {
-            System.out.print("error" + ex.toString());
+            //System.out.println("error armar estructura" + ex.toString());
         }
     }
 
