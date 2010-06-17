@@ -33,6 +33,7 @@ import javax.swing.JFrame;
 
 public class RegistrarCategoria extends JDialog {
     private int TipoOperacion;
+    private CategoriaBE objCategoria;
     /** Creates new form RegistrarCategoria */
     public RegistrarCategoria() {
         initComponents();
@@ -55,6 +56,7 @@ public class RegistrarCategoria extends JDialog {
         this.jTextField1.setText("" + objCategoria.getIdCategoria() + "");
         this.txtDescCategoria.setText(objCategoria.getDescripcion());
         this.txtNomCategoria.setText(objCategoria.getNombre());
+        this.objCategoria = objCategoria;
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -234,8 +236,14 @@ public class RegistrarCategoria extends JDialog {
 }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-       txtNomCategoria.setText("");
-       txtDescCategoria.setText("");
+       if (this.TipoOperacion == 1){
+            txtNomCategoria.setText(this.objCategoria.getNombre());
+            txtDescCategoria.setText(this.objCategoria.getDescripcion());
+       }
+       else {
+            txtNomCategoria.setText("");
+            txtDescCategoria.setText("");
+       }
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtNomCategoriaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomCategoriaKeyReleased
