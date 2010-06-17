@@ -13,6 +13,7 @@ package antiplagium.view;
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.GestorDocumentosBE;
 import antiplagium.BL.DetectorBL;
+import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.text.BadLocationException;
@@ -34,6 +35,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         this.doc1 = doc;
         this.docs = listaDoc;
         initComponents();
+        if (this.docs.cantElementos()==1) this.btnDocSgte.setEnabled(false);
         this.etiquetarValoresIniciales();
 
         this.realizarComparacion();
@@ -42,6 +44,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     }
 
     public void etiquetarValoresIniciales() {
+        this.txtDoc1.setBackground(Color.white);
+        this.txtDoc2.setBackground(Color.white);
         this.lblDoc1.setText(doc1.getNombre());
         this.lblDoc2.setText(docs.get(0).getNombre());
 
@@ -120,6 +124,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     }
 
     public void cargarContenidos() {
+        
         this.txtDoc1.setText("");
         this.txtDoc2.setText("");
         DetectorBL detector = this.detectores.get(this.docActual);
@@ -138,10 +143,14 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
          String[] contenido2=this.removerVacios(contenido2Previo);
 
         SimpleAttributeSet attrNegrita = new SimpleAttributeSet();
-        StyleConstants.setBold(attrNegrita, true);
+        StyleConstants.setBold(attrNegrita, false);
+        StyleConstants.setItalic(attrNegrita, true);
+        StyleConstants.setForeground(attrNegrita, Color.white);
+        StyleConstants.setBackground(attrNegrita, Color.blue);
 
         SimpleAttributeSet attrNormal = new SimpleAttributeSet();
         StyleConstants.setBold(attrNormal, false);
+        StyleConstants.setForeground(attrNormal, Color.black);
 
         for (int i = 0; i < contenido1.length; i++) {
             if (contenido1[i]==null) break;
