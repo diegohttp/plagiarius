@@ -10,14 +10,18 @@ import antiplagium.BE.DocumentoBE;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.BE.ResultadoDeteccionBE;
 import antiplagium.BE.UsuarioBE;
+import antiplagium.BE.Utilitario;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.DAL.ConexionJDBC;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -131,4 +135,25 @@ public class ResultadoDeteccionDAO {
         return gestorResultado;
     }
 
+
+     public static boolean registrar(ResultadoDeteccionBE objResultado){
+        boolean exito = true;
+        int id = 1;
+        try {
+            id = Utilitario.generaCodigo("ResultadoDeteccion");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ResultadoDeteccionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ResultadoDeteccionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+        String strSentencia = "INSERT INTO \"ResultadoDeteccion\" (\"idDeteccion\",\"Documento1\",\"Documento2\",\"PorcentajePlagio\",\"Resultado\",\"Fecha\") VALUES ";
+        strSentencia += "(" + id  + "," + objResultado.getDocumento1().getIdDocumento() + "," + objResultado.getDocumento2().getIdDocumento() + ","+ objResultado.getPorcentajePlagio() + ",'" + objResultado.getResultado() + "','" + formato.format(objResultado.getFecha()) + "')";
+        System.out.println(strSentencia);
+        ConexionJDBC objConexion = new ConexionJDBC();
+        objConexion.ejecutarSentencia(strSentencia);
+
+        return exito;
+     }
 }
