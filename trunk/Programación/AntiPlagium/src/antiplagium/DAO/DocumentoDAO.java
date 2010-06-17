@@ -205,12 +205,12 @@ public class DocumentoDAO {
     }
 
     public static boolean validarNombre(String nombre) {
-        boolean exito = true;
+        boolean exito = false;
         ConexionJDBC objConexion = new ConexionJDBC();
         String strSentencia = "SELECT nombre FROM \"Documento\" WHERE upper(nombre) = '" + nombre + "'";
         try {
             Vector res = objConexion.ejecutarQuery(strSentencia);
-            return res.size() > 0;
+            return res.size() == 0;
         } catch (SQLException ex) {
             exito = false;
             Logger.getLogger(DocumentoDAO.class.getName()).log(Level.SEVERE, null, ex);
