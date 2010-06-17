@@ -38,19 +38,22 @@ private CategoriaBL categoriaBl;
 private DocumentoBE objDocumento ;
 private DocumentoBL objDocumentoBL;
 private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
+private ArrayList<CategoriaBE> listaCategorias;
+private ArrayList<Boolean> catSeleccionada = new ArrayList<Boolean>();
     /** Creates new form ModificarDocumento */
 
-    public ModificarDocumento(DocumentoBE objDocumento) throws FileNotFoundException, IOException, SQLException{
+    public ModificarDocumento(DocumentoBE objDocumento,ArrayList<CategoriaBE> listaCategorias) throws FileNotFoundException, IOException, SQLException{
 
         initComponents();
         this.objDocumento = objDocumento;
         objDocumentoBL = new DocumentoBL();
-        ArrayList<CategoriaBE> listaCategorias = this.objDocumento.getUsuario().getCategorias();
-        int cantidadCategorias=listaCategorias.size();
+        this.listaCategorias = listaCategorias;
+        int cantidadCategorias= this.listaCategorias.size();
         for(int i=0;i<cantidadCategorias;i++){
-            idxToId.put(listaCategorias.get(i).getIdCategoria(), i);
+            idxToId.put(this.listaCategorias.get(i).getIdCategoria(), i);
             ComboCategoria.addItem(listaCategorias.get(i));
         }
+        /* Falta llenar la matriz de Documentos */
         int idx = this.idxToId.get(this.objDocumento.getCategoria().getIdCategoria());
         this.ComboCategoria.setSelectedIndex(idx);
         txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
@@ -159,7 +162,7 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +195,7 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -241,6 +244,7 @@ private HashMap<Integer,Integer> idxToId = new HashMap<Integer,Integer>();
         JFVisualizarDocumento visDoc = new JFVisualizarDocumento(this,objDocumento.getContenido());
         visDoc.setTitle("Texto documento");
         visDoc.setModal(true);
+        visDoc.setLocationRelativeTo(this);
         visDoc.setVisible(true);
         //visDoc.btnSalir.setText("Cancelar"); COMENTADO X SUBIR CON ERROR
     }//GEN-LAST:event_jButton3ActionPerformed
