@@ -104,7 +104,7 @@ public class DocumentoDAO {
     }
 
 
-     public static DocumentoBE buscarIdDocumento(int idDocumento) throws FileNotFoundException, IOException, SQLException{
+     public static DocumentoBE buscarIdDoc(int idDocumento) throws FileNotFoundException, IOException, SQLException{
         DocumentoBE doc = null;
 
             String strSentencia = "SELECT * FROM \"Documento\" WHERE \"idDocumento\" = " + idDocumento;
