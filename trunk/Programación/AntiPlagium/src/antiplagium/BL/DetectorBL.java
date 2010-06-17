@@ -73,7 +73,7 @@ public class DetectorBL {
 
             }
         } catch (Exception ex) {
-            System.out.print("error"+ex);
+            //System.out.print("error"+ex);
         }
     }
     public int promedioDeConexiones(){
