@@ -152,9 +152,6 @@ public class DocumentoBL {
         return doc;
     }
 
-    public DocumentoBE buscarIdDocumento(int idDocumento) {
-       return DocumentoDAO.buscarIdDocumento(idDocumento);
-    }
 
 }
 
