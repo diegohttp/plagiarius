@@ -18,7 +18,7 @@ public class JFBase extends javax.swing.JFrame {
     {
         this.usuarioBE=usuarioBE;
         initComponents();
-        LBLUsuario.setText(usuarioBE.getNombreUsuario());
+        LBLUsuario.setText(usuarioBE.getApellidoPaterno() + ", " + usuarioBE.getNombres());
         try
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
