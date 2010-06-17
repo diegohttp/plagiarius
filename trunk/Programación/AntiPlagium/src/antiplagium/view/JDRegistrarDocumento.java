@@ -628,11 +628,11 @@ private boolean seleccionoCategoria(){
             return;
         }
         /* Obtenemos el conjunto de categorias seleccionadas */
-        ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
+        /*ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
         for (int i=0; i < this.catSelecionada.size(); ++i){
             if (this.catSelecionada.get(i).booleanValue())
                 listaCategoria.add(this.lstCategorias.get(i));
-        }
+        }*/
 
         /* Registramos el documento 1 */
         if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
