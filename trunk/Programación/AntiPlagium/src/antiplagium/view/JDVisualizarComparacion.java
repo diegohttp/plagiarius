@@ -12,10 +12,18 @@ package antiplagium.view;
 
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.GestorDocumentosBE;
+import antiplagium.BE.ResultadoDeteccionBE;
+import antiplagium.BE.Utilitario;
 import antiplagium.BL.DetectorBL;
+import antiplagium.BL.ResultadoDeteccionBL;
 import java.awt.Color;
 import java.awt.Point;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -30,7 +38,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private GestorDocumentosBE docs = new GestorDocumentosBE();
     private ArrayList<DetectorBL> detectores = new ArrayList<DetectorBL>();
     private int docActual = 0;
-
+    private ArrayList<ResultadoDeteccionBE> listResultado;
     public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
         this.doc1 = doc;
         this.docs = listaDoc;
@@ -68,7 +76,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         this.doc1.armarEstructura();
 
         long tInicio = System.currentTimeMillis();
-
+        listResultado = new ArrayList<ResultadoDeteccionBE>();
         for (int i = 0; i < this.docs.cantElementos(); i++) {
             DetectorBL dec = new DetectorBL();
             docs.get(i).armarEstructura();
@@ -79,14 +87,37 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             if (i == this.docs.cantElementos() - 1) {
                 this.pgbComparacion.setValue(100);
             }
+            ResultadoDeteccionBE objResDeteccion = new ResultadoDeteccionBE();
+            objResDeteccion.setDocumento1(doc1);
+            objResDeteccion.setDocumento2(docs.get(i));
+            objResDeteccion.setFecha(new Date());
+            objResDeteccion.setPorcentajePlagio(dec.getResultado());
+            if (objResDeteccion.getPorcentajePlagio() < 50){
+                objResDeteccion.setResultado("No Plagio");
+            }
+            else if (objResDeteccion.getPorcentajePlagio() < 70){
+                objResDeteccion.setResultado("No Plagio");
+            }
+            else {
+                objResDeteccion.setResultado("Plagio");
+            }
+            int id = 1;
+            try {
+                id = Utilitario.generaCodigo("ResultadoDeteccion");
+                objResDeteccion.setidDeteccion(id);
+                ResultadoDeteccionBL.registrar(objResDeteccion);
+                this.listResultado.add(objResDeteccion);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(JDVisualizarComparacion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(JDVisualizarComparacion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
 
         long tFin = System.currentTimeMillis();
 
         this.lblTiempo.setText("Tiempo total de comparación: " + (tFin - tInicio) + " ms.");
-
-
-
     }
 
     public void actualizar() {
@@ -345,6 +376,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         jButton5.setText("Aceptar");
+        jButton5.setMaximumSize(new java.awt.Dimension(135, 35));
+        jButton5.setMinimumSize(new java.awt.Dimension(135, 35));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -360,7 +393,6 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
         txtNumDoc.setEnabled(false);
 
-        btnDocAnterior.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/Escritorio/lab8/AntiPlagium/src/Iconos/arriba.png")); // NOI18N
         btnDocAnterior.setEnabled(false);
         btnDocAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,17 +402,16 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
         lblTotalDocs.setText("jLabel1");
 
-        btnDocSgte.setIcon(new javax.swing.ImageIcon("/usr/home/a20062010/Escritorio/lab8/AntiPlagium/src/Iconos/abajo.png")); // NOI18N
         btnDocSgte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDocSgteActionPerformed(evt);
             }
         });
 
-        lblEnDoc.setFont(new java.awt.Font("DejaVu Sans", 1, 13)); // NOI18N
+        lblEnDoc.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
         lblEnDoc.setText("El el documento numero 0");
 
-        lblMayor.setFont(new java.awt.Font("DejaVu Sans", 1, 13)); // NOI18N
+        lblMayor.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
         lblMayor.setText("Mayor porcentaje detectado:");
 
         lblDoc3.setFont(new java.awt.Font("Comic Sans MS", 1, 14));
@@ -419,7 +450,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(73, 73, 73)
                                                 .addComponent(lblNivel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))

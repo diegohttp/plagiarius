@@ -53,7 +53,7 @@
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                                               <Component id="lblNivel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="145" max="32767" attributes="0"/>
+                                              <EmptySpace pref="174" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
@@ -335,6 +335,12 @@
           <Image iconType="3" name="/Iconos/aceptar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[135, 35]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[135, 35]"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
@@ -365,9 +371,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnDocAnterior">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/usr/home/a20062010/Escritorio/lab8/AntiPlagium/src/Iconos/arriba.png"/>
-        </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -380,11 +383,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnDocSgte">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/usr/home/a20062010/Escritorio/lab8/AntiPlagium/src/Iconos/abajo.png"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDocSgteActionPerformed"/>
       </Events>
