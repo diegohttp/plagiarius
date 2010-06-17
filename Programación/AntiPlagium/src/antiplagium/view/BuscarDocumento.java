@@ -46,6 +46,9 @@ public class BuscarDocumento extends JDialog {
     /** Creates new form Documento2 */
     public BuscarDocumento() throws FileNotFoundException, IOException, SQLException {
         initComponents();
+        this.cboEstado.addItem("Todos");
+        this.cboEstado.addItem("activo");
+        this.cboEstado.addItem("inactivo");
         this.btnAceptar.setVisible(false);
         categoriaBl=new CategoriaBL();
         CategoriaBE tmp = new CategoriaBE();
@@ -61,6 +64,9 @@ public class BuscarDocumento extends JDialog {
 
     public BuscarDocumento(UsuarioBE objUsuario) throws FileNotFoundException, IOException, SQLException {
         initComponents();
+        this.cboEstado.addItem("Todos");
+        this.cboEstado.addItem("activo");
+        this.cboEstado.addItem("inactivo");
         this.objUsuario = objUsuario;
         categoriaBl=new CategoriaBL();
         CategoriaBE tmp = new CategoriaBE();
@@ -195,8 +201,6 @@ public class BuscarDocumento extends JDialog {
         });
 
         lblEstado.setText("Estado");
-
-        cboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "activo", "inactivo" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -369,6 +373,8 @@ public class BuscarDocumento extends JDialog {
         objDocumento.setCategoria(objCategoria);
         objDocumento.setNombre(this.txtNombre.getText());
         objEstado = (String) this.cboEstado.getSelectedItem();
+        if (objEstado.compareTo("Todos") == 0)
+            objEstado = "";
         objDocumento.setEstado(objEstado);
         try {
             this.arrDocumentos = DocumentoBL.ListarDocs(objDocumento);
@@ -382,7 +388,7 @@ public class BuscarDocumento extends JDialog {
             int cnt = 0;
             UsuarioBL objUsuarioBL = new UsuarioBL();
             for (int i=0; i < arrDocumentos.size() ; ++i){
-                if (arrDocumentos.get(i).getEstado().equals("activo")){
+                if (objEstado.equals("") || arrDocumentos.get(i).getEstado().compareTo(objEstado)==0){
                    UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE( this.arrDocumentos.get(i).getUsuario().getIdUsuario() );
                    this.arrDocumentos.get(i).setUsuario(tmpUsuario);
                    Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
