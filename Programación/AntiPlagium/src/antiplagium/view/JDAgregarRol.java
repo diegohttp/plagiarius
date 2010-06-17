@@ -276,12 +276,12 @@ public class JDAgregarRol extends JDialog {
             if (esModificar)
             {
                 descripcionOperacionModificar(textNombreRol.getText(), listaPrivilegios);
-                AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcionOperacion);
+                AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcionOperacion);
             }
             else
             {
                 descripcionOperacionGuardar();
-                AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcionOperacion);
+                AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcionOperacion);
             }
             AntiPlagiumPrincipal.registrarOperacion();
             rolBL.CerrarConexion();
