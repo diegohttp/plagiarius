@@ -312,6 +312,7 @@ public class AntiPlagiumPrincipal extends JFBase
 
     public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion)
     {
+        operacionBE.setFechaOperacion(new Date(System.currentTimeMillis()));
         operacionBE.setNombreVentana(nombreVentana);
         operacionBE.setTipoOperacion(tipoOperacion);
         operacionBE.setDescripcion(descripcion);
