@@ -12,6 +12,7 @@ public class JDAdministrarRoles extends JDialog {
     DefaultTableModel modeloTablaPrivilegios;
     ResultSet tablaPrivilegios = null;
     ResultSet tablaRoles = null;
+    String descripcionOperacion;
 
     ArrayList<RolBE> listaRolesBE = new ArrayList<RolBE>();
 
@@ -287,6 +288,10 @@ public class JDAdministrarRoles extends JDialog {
             rolBL.AbrirConexion();
             rolBE = (RolBE)jcbRol.getSelectedItem();
             rolBL.deleteRol(rolBE);
+
+            descripcionOperacion(rolBE);
+            AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("eliminacion"), descripcionOperacion);
+            AntiPlagiumPrincipal.registrarOperacion();
             rolBL.CerrarConexion();
             jcbRol.removeItem(rolBE);
         }
@@ -421,6 +426,13 @@ public class JDAdministrarRoles extends JDialog {
         }
     }//GEN-LAST:event_jcbRolItemStateChanged
 
+    private void descripcionOperacion(RolBE rolBE)
+    {
+        descripcionOperacion = "Usuario: " + JFBase.usuarioBE.getNombreUsuario() + "\n" +
+                               "Fecha:   " + AntiPlagiumPrincipal.operacionBE.getFechaOperacion().toString() + "\n" +
+                               "Tipo Operacion: " + GestorTiposOperacion.getTipoOperacion("eliminacion") + "\n" ;
+        descripcionOperacion += "Registro: " + rolBE.getNombre();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBEliminar;
