@@ -70,7 +70,15 @@ public class EnviarCorreo {
 
             }
             else if (opcion==3){
-
+                message.setText("<b>Ud. ha cambiado su contrasena.</b><br>"+
+                                "Su nueva contrasena es: <i> "+usuarioBE.getPassword()+"</i>",
+                                "ISO-8859-1","html");
+            }
+            else if (opcion==4){
+                message.setText("<b>Se ha creado una cuenta de usuario a su nombre para tener acceso al SISTEMA ANTIPLAGIUM .</b><br>"+
+                                "Su nombre de usuario es: <i> "+usuarioBE.getNombreUsuario()+"</i></b><br>"+
+                                "Su contrasena es: <i> "+usuarioBE.getPassword()+"</i></b><br>",
+                                "ISO-8859-1","html");
             }
 
             Transport t = session.getTransport(protocolo);
