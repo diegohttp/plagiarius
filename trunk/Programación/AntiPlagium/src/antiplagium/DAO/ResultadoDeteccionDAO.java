@@ -109,21 +109,21 @@ public class ResultadoDeteccionDAO {
             Resultado = new ResultadoDeteccionBE();
             DocumentoBL objDocumentoBL = new DocumentoBL();
 
-            int idDocumento1= (Integer)registro[1];
+            int idDocumento1= (Integer)registro[0];
             DocumentoBE Doc1 = objDocumentoBL.buscarIdDocumento(idDocumento1);
             Resultado.setDocumento1(Doc1);
 
-            int idDocumento2= (Integer)registro[2];
+            int idDocumento2= (Integer)registro[1];
             DocumentoBE Doc2 = objDocumentoBL.buscarIdDocumento(idDocumento2);
             Resultado.setDocumento2(Doc2);
 
-            float porcentaje= (Float)registro[3];
+            Double porcentaje= (Double)registro[2];
             Resultado.setPorcentajePlagio(porcentaje);
 
-            String resultado = (String)registro[4];
+            String resultado = (String)registro[3];
             Resultado.setResultado(resultado);
 
-            Date fecha = (Date)registro[5];
+            Date fecha = (Date)registro[4];
             Resultado.setFecha(fecha);
 
             gestorResultado.add(Resultado);
