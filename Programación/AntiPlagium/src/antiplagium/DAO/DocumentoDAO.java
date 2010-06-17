@@ -41,7 +41,7 @@ public class DocumentoDAO {
         }
 
         catch (Exception a){
-            System.out.println(a.getMessage());
+            //System.out.println(a.getMessage());
         }
         /*finally{objConexion.SalirUID();}*/
 
