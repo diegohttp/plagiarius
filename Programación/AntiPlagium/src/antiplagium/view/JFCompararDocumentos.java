@@ -267,6 +267,7 @@ public class JFCompararDocumentos extends JDialog {
             BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
 
             buscardoc.setModal(true);
+            buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
             this.doc1 = buscardoc.docSel;
             this.txtNomDoc.setText(doc1.getNombre());
@@ -329,7 +330,10 @@ public class JFCompararDocumentos extends JDialog {
             JOptionPane.showMessageDialog(this, "Se debe escoger al menos un documento contra el cual comparar.","Error Comparación",JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        if (this.txtNomDoc.getText().compareTo("") == 0){
+            JOptionPane.showMessageDialog(this, "Se debe un documento para realizar la comparación.","Error Comparación",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         JDVisualizarComparacion vis = new JDVisualizarComparacion(this.doc1,this.docs);
         vis.setModal(true);
         vis.setTitle("Visualizar Comparación");
