@@ -121,7 +121,7 @@ public class ResultadoDeteccionDAO {
             DocumentoBE Doc2 = objDocumentoBL.buscarIdDocumento(idDocumento2);
             Resultado.setDocumento2(Doc2);
 
-            Double porcentaje= (Double)registro[2];
+            int porcentaje= (Integer)registro[2];
             Resultado.setPorcentajePlagio(porcentaje);
 
             String resultado = (String)registro[3];
@@ -138,22 +138,12 @@ public class ResultadoDeteccionDAO {
 
      public static boolean registrar(ResultadoDeteccionBE objResultado){
         boolean exito = true;
-        int id = 1;
-        try {
-            id = Utilitario.generaCodigo("ResultadoDeteccion");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ResultadoDeteccionDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ResultadoDeteccionDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
-        String strSentencia = "INSERT INTO \"ResultadoDeteccion\" (\"idDeteccion\",\"Documento1\",\"Documento2\",\"PorcentajePlagio\",\"Resultado\",\"Fecha\") VALUES ";
-        strSentencia += "(" + id  + "," + objResultado.getDocumento1().getIdDocumento() + "," + objResultado.getDocumento2().getIdDocumento() + ","+ objResultado.getPorcentajePlagio() + ",'" + objResultado.getResultado() + "','" + formato.format(objResultado.getFecha()) + "')";
+        String strSentencia = "INSERT INTO \"ResultadoDeteccion\" (\"idResultadoDeteccion\",\"Documento1\",\"Documento2\",\"PorcentajePlagio\",\"Resultado\",\"Fecha\") VALUES ";
+        strSentencia += "(" + objResultado.getidDeteccion()  + "," + objResultado.getDocumento1().getIdDocumento() + "," + objResultado.getDocumento2().getIdDocumento() + ","+ objResultado.getPorcentajePlagio() + ",'" + objResultado.getResultado() + "','" + formato.format(objResultado.getFecha()) + "')";
         System.out.println(strSentencia);
         ConexionJDBC objConexion = new ConexionJDBC();
         objConexion.ejecutarSentencia(strSentencia);
-
         return exito;
      }
 }
