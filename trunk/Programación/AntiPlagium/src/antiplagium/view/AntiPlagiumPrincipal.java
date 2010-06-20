@@ -2,49 +2,101 @@ package antiplagium.view;
 
 import antiplagium.BE.*;
 import antiplagium.BL.RegistroOperacionBL;
+import antiplagium.BL.SeguridadBL;
 import antiplagium.view.Reportes.ComparacionesDeteccion;
 import antiplagium.view.Reportes.ListarDocs;
-import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.*;
 import java.awt.Component;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
 import java.util.Date;
+import java.util.Vector;
 import javax.swing.*;
 
-public class AntiPlagiumPrincipal extends JFBase
-{
+public class AntiPlagiumPrincipal extends JFrame {
+
     public static RegistroOperacionBE operacionBE;
 
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
-        super(usuarioBE);
+        // super(usuarioBE);
+        this.add(new PanelAnimado());
         initComponents();
 
         int ancho = Toolkit.getDefaultToolkit().getScreenSize().width;
-    int alto = Toolkit.getDefaultToolkit().getScreenSize().height;
+        int alto = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-    this.setSize(ancho, alto-40);
-        this.add(new PanelAnimado());
+        this.setSize(ancho, alto - 40);
+        
         JMenuBar menu = this.getJMenuBar();
         JRootPane jroot = this.getRootPane();
         Component[] componentesMenu = jroot.getJMenuBar().getComponents();
         Component[] componentesMenuInterno;
 
-        for (int i=0; i < componentesMenu.length; i++)
-        {
+        for (int i = 0; i < componentesMenu.length; i++) {
             (componentesMenu[i]).setVisible(false);
 
             componentesMenuInterno = menu.getMenu(i).getMenuComponents();
-            for(int j=0; j < componentesMenuInterno.length; j++)
-            {
-                ((JMenuItem)componentesMenuInterno[j]).setVisible(false);
-            }            
+            for (int j = 0; j < componentesMenuInterno.length; j++) {
+                ((JMenuItem) componentesMenuInterno[j]).setVisible(false);
+            }
         }
-                
+
         operacionBE = new RegistroOperacionBE((usuarioBE.getIdUsuario()), new Date(System.currentTimeMillis()));
         aplicarSeguridad(menu, usuarioBE.getRolBE().getIdRol());
+    }
+
+    protected void aplicarSeguridad(JMenuBar menu, Integer idRol) {
+        //if (nombreRol == "Administrador") return;
+        String nombreVentana = this.getName();
+        ResultSet tablaControles;
+        Vector vector = new Vector();
+        JRootPane jroot = this.getRootPane();
+        Component[] componentes = jroot.getJMenuBar().getComponents();
+        Component[] componentesInternos;
+
+        SeguridadBL seguridadBL = new SeguridadBL();
+        try {
+            seguridadBL.AbrirConexion();
+            tablaControles = seguridadBL.getListControlesDeshabilitadosPorRol(nombreVentana, idRol);
+
+            if (tablaControles.getMetaData().getColumnCount() > 0) {
+                int nroColumnas = tablaControles.getMetaData().getColumnCount();
+                while (tablaControles.next()) {
+                    Object[] registro = new Object[nroColumnas];
+                    for (int i = 0; i < nroColumnas; i++) {
+                        registro[i] = tablaControles.getObject(i + 1);
+                    }
+                    vector.addElement(registro);
+                }
+            }
+            seguridadBL.CerrarConexion();
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException excepcionSQL) {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+        for (int i = 0; i < vector.size(); i++) {
+            Object[] registro = (Object[]) vector.get(i);
+            String nombreControl = registro[3].toString();
+
+            //System.out.println(nombreControl);
+            for (int k = 0; k < menu.getMenuCount(); k++) {
+                componentesInternos = menu.getMenu(k).getMenuComponents();
+                for (int j = 0; j < componentesInternos.length; j++) {
+                    if (((JMenuItem) componentesInternos[j]).getName().equals(nombreControl)) {
+                        ((JMenuItem) componentesInternos[j]).setVisible(true);
+                    }
+                }
+
+                if (menu.getMenu(k).getName().equals(nombreControl)) {
+                    menu.getMenu(k).setVisible(true);
+                }
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -69,10 +121,12 @@ public class AntiPlagiumPrincipal extends JFBase
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.Color.lightGray);
         setBounds(new java.awt.Rectangle(0, 0, 1000, 700));
+        setIconImages(null);
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setName("JFAntiPlagiumPrincipal"); // NOI18N
+        setResizable(false);
 
-        JDPPrincipal.setBackground(java.awt.Color.lightGray);
+        JDPPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         JDPPrincipal.setMaximumSize(new java.awt.Dimension(10, 10));
         JDPPrincipal.setMinimumSize(new java.awt.Dimension(10, 10));
 
@@ -202,7 +256,7 @@ public class AntiPlagiumPrincipal extends JFBase
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMIAdministrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarUsuariosActionPerformed
-        JDAdministrarUsuarios jfUsuarios= new JDAdministrarUsuarios(null);
+        JDAdministrarUsuarios jfUsuarios = new JDAdministrarUsuarios(null);
         jfUsuarios.setModal(true);
         jfUsuarios.setLocationRelativeTo(this);
         jfUsuarios.setVisible(true);
@@ -216,14 +270,14 @@ public class AntiPlagiumPrincipal extends JFBase
         JDAdministrarRoles jfAdministrarRoles = new JDAdministrarRoles();
         jfAdministrarRoles.setModal(true);
         jfAdministrarRoles.setLocationRelativeTo(this);
-        jfAdministrarRoles.setVisible(true);                
+        jfAdministrarRoles.setVisible(true);
 }//GEN-LAST:event_JMIAdministrarGruposActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-         JDAdministrarCategoria admCategoria = new JDAdministrarCategoria();
-         admCategoria.setModal(true);
-         admCategoria.setLocationRelativeTo(this);
-         admCategoria.setVisible(true);
+        JDAdministrarCategoria admCategoria = new JDAdministrarCategoria();
+        admCategoria.setModal(true);
+        admCategoria.setLocationRelativeTo(this);
+        admCategoria.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -248,7 +302,7 @@ public class AntiPlagiumPrincipal extends JFBase
         // TODO add your handling code here:
         JFCompararDocumentos frmCompararDocumentos = new JFCompararDocumentos();
         frmCompararDocumentos.setVisible(true);
-        //JDPPrincipal.add(frmCompararDocumentos);
+    //JDPPrincipal.add(frmCompararDocumentos);
     }//GEN-LAST:event_jMenuItem4MouseClicked
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -260,8 +314,6 @@ public class AntiPlagiumPrincipal extends JFBase
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        
-    
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void JMLogUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMLogUsuarioActionPerformed
@@ -290,25 +342,21 @@ public class AntiPlagiumPrincipal extends JFBase
         frmListarDocs.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    public static  JDesktopPane  getJDesktopPane(){
-      return JDPPrincipal;
+    public static JDesktopPane getJDesktopPane() {
+        return JDPPrincipal;
     }
 
-    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion)
-    {
+    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion) {
         operacionBE.setFechaOperacion(new Date(System.currentTimeMillis()));
         operacionBE.setNombreVentana(nombreVentana);
         operacionBE.setTipoOperacion(tipoOperacion);
         operacionBE.setDescripcion(descripcion);
     }
 
-    public static void registrarOperacion() throws SQLException
-    {
+    public static void registrarOperacion() throws SQLException {
         RegistroOperacionBL operacionBL = new RegistroOperacionBL();
         operacionBL.insertOperacion(AntiPlagiumPrincipal.operacionBE);
     }
-   
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane JDPPrincipal;
     private javax.swing.JMenuItem JMIAdministrarGrupos;
@@ -325,5 +373,4 @@ public class AntiPlagiumPrincipal extends JFBase
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
-
 }
