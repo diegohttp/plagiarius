@@ -30,12 +30,12 @@ import org.freixas.jcalendar.JCalendarCombo;
  *
  * Created on 03/06/2010, 07:42:51 PM
  */
-
 /**
  *
  * @author a20062010
  */
 public class JDRegistrarDocumento extends javax.swing.JDialog {
+
     private JCalendarCombo cmbFechaInicio;
     private UsuarioBE objUsuarioBE;
     private CategoriaBE objCategoriaBE;
@@ -43,13 +43,14 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     private DocumentoBE objDocumento;
     private ArrayList<Boolean> catSelecionada;
     private ArrayList<CategoriaBE> lstCategorias;
+
     /** Creates new form JDRegistrarDocumento */
-    public JDRegistrarDocumento(UsuarioBE objUsuario,ArrayList<CategoriaBE> listaCategorias) {
-        cmbFechaInicio=new JCalendarCombo();
+    public JDRegistrarDocumento(UsuarioBE objUsuario, ArrayList<CategoriaBE> listaCategorias) {
+        cmbFechaInicio = new JCalendarCombo();
         initComponents();
         this.objUsuario = objUsuario;
         this.txtPropietario.setText(this.objUsuario.getNombres());
-        cmbFechaInicio.setSize(220,25);
+        cmbFechaInicio.setSize(220, 25);
         cmbFechaInicio.setDate(new Date());
         cmbFechaInicio.setEditable(false);
         pnlFecha.add(cmbFechaInicio);
@@ -61,7 +62,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         this.lstCategorias = listaCategorias;
         /* Eliminamos el Todas */
         this.lstCategorias.remove(0);
-        for (int i = 0 ; i < lstCategorias.size(); ++i){
+        for (int i = 0; i < lstCategorias.size(); ++i) {
             this.cboCategoria.addItem(lstCategorias.get(i));
             this.catSelecionada.add(new Boolean(false));
         }
@@ -86,7 +87,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             case 5:
                 this.txtRuta55.setText(nomArch);
                 break;
-       }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -97,8 +98,8 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -499,12 +500,14 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_btnBuscar1ActionPerformed
 
-private boolean seleccionoCategoria(){
-    for (int i=0; i  < this.catSelecionada.size(); ++i)
-            if (this.catSelecionada.get(i))
+    private boolean seleccionoCategoria() {
+        for (int i = 0; i < this.catSelecionada.size(); ++i) {
+            if (this.catSelecionada.get(i)) {
                 return true;
-    return false;
-}
+            }
+        }
+        return false;
+    }
 
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
         JFileChooser chooser = new JFileChooser();
@@ -548,7 +551,7 @@ private boolean seleccionoCategoria(){
         }
     }//GEN-LAST:event_btnBuscar4ActionPerformed
 
-    public void setCategoriaSeleccionada(ArrayList<Boolean> seleccion){
+    public void setCategoriaSeleccionada(ArrayList<Boolean> seleccion) {
         this.catSelecionada = seleccion;
     }
 
@@ -567,7 +570,7 @@ private boolean seleccionoCategoria(){
     }//GEN-LAST:event_btnBuscar5ActionPerformed
 
     private void btnSeleccionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarCategoriaActionPerformed
-        JDSeleccionarCategoria selectCat = new JDSeleccionarCategoria(this,this.catSelecionada,this.lstCategorias);
+        JDSeleccionarCategoria selectCat = new JDSeleccionarCategoria(this, this.catSelecionada, this.lstCategorias);
         selectCat.setTitle("Seleccionar Categoria(s)");
         selectCat.setModal(true);
         selectCat.setLocationRelativeTo(this);
@@ -576,64 +579,64 @@ private boolean seleccionoCategoria(){
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        DocumentoBE doc1=null,doc2=null,doc3=null,doc4=null,doc5=null;
+        DocumentoBE doc1 = null, doc2 = null, doc3 = null, doc4 = null, doc5 = null;
         /* Falta implementar la parte de multiples categorias para documentos */
         /*if (!this.seleccionoCategoria()){
-            JOptionPane.showMessageDialog(this, "Se debe seleccionar alguna(s) categoria(s) para el (los) documento(s).");
-            return;
+        JOptionPane.showMessageDialog(this, "Se debe seleccionar alguna(s) categoria(s) para el (los) documento(s).");
+        return;
         }*/
-        String resDoc1="";
-        String resDoc2="";
-        String resDoc3="";
-        String resDoc4="";
-        String resDoc5="";
+        String resDoc1 = "";
+        String resDoc2 = "";
+        String resDoc3 = "";
+        String resDoc4 = "";
+        String resDoc5 = "";
 
-        if (this.txtRuta11.getText().compareTo("") != 0 && this.txtNombreDoc1.getText().compareTo("") == 0){
-            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 1.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta11.getText().compareTo("") != 0 && this.txtNombreDoc1.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 1.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta22.getText().compareTo("") != 0 && this.txtNombreDoc2.getText().compareTo("") == 0){
-            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 2.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta22.getText().compareTo("") != 0 && this.txtNombreDoc2.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 2.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta33.getText().compareTo("") != 0 && this.txtNombreDoc3.getText().compareTo("") == 0){
-            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 3.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta33.getText().compareTo("") != 0 && this.txtNombreDoc3.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 3.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta44.getText().compareTo("") != 0 && this.txtNombreDoc4.getText().compareTo("") == 0){
-            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 4.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta44.getText().compareTo("") != 0 && this.txtNombreDoc4.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 4.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta55.getText().compareTo("") != 0 && this.txtNombreDoc5.getText().compareTo("") == 0){
-            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 5.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta55.getText().compareTo("") != 0 && this.txtNombreDoc5.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 5.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (this.txtRuta11.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc1.getText().toUpperCase())){
-            JOptionPane.showMessageDialog(this, "El nombre para el documento 1 ya existe.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta11.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc1.getText().toUpperCase())) {
+            JOptionPane.showMessageDialog(this, "El nombre para el documento 1 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta22.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc2.getText().toUpperCase())){
-            JOptionPane.showMessageDialog(this, "El nombre para el documento 2 ya existe.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta22.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc2.getText().toUpperCase())) {
+            JOptionPane.showMessageDialog(this, "El nombre para el documento 2 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta33.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc3.getText().toUpperCase())){
-            JOptionPane.showMessageDialog(this, "El nombre para el documento 3 ya existe.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta33.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc3.getText().toUpperCase())) {
+            JOptionPane.showMessageDialog(this, "El nombre para el documento 3 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta44.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc4.getText().toUpperCase())){
-            JOptionPane.showMessageDialog(this, "El nombre para el documento 4 ya existe.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta44.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc4.getText().toUpperCase())) {
+            JOptionPane.showMessageDialog(this, "El nombre para el documento 4 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta55.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc5.getText().toUpperCase())){
-            JOptionPane.showMessageDialog(this, "El nombre para el documento 5 ya existe.","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if (this.txtRuta55.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc5.getText().toUpperCase())) {
+            JOptionPane.showMessageDialog(this, "El nombre para el documento 5 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         /* Obtenemos el conjunto de categorias seleccionadas */
         /*ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
         for (int i=0; i < this.catSelecionada.size(); ++i){
-            if (this.catSelecionada.get(i).booleanValue())
-                listaCategoria.add(this.lstCategorias.get(i));
+        if (this.catSelecionada.get(i).booleanValue())
+        listaCategoria.add(this.lstCategorias.get(i));
         }*/
 
         /* Registramos el documento 1 */
@@ -643,25 +646,25 @@ private boolean seleccionoCategoria(){
             String contenido = DocumentoBL.obtenerContenido(file1);
             int idDoc = 0;
             try {
-                    idDoc = Utilitario.generaCodigo("Documento");
-                    CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
-                    doc1 = new DocumentoBE();
-                    //
-                    doc1.setCategoria(objCategoria);
-                    //
-                    //doc1.setListaCategorias(listaCategoria);
-                    doc1.setUsuario(objUsuario);
-                    doc1.setNombre(this.txtNombreDoc1.getText());
-                    doc1.setIdDocumento(idDoc);
-                    doc1.setContenido(contenido);
-                    doc1.setEstado("activo");
-                    try {
-                        DocumentoBL.registrar(doc1);
-                        resDoc1 = "Se registró el documento 1 safisfactoriamente.";
-                    } catch (Exception ex) {
-                        resDoc1 = "Hubo un error en el registro del documento 1.";
-                        Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                idDoc = Utilitario.generaCodigo("Documento");
+                CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+                doc1 = new DocumentoBE();
+                //
+                doc1.setCategoria(objCategoria);
+                //
+                //doc1.setListaCategorias(listaCategoria);
+                doc1.setUsuario(objUsuario);
+                doc1.setNombre(this.txtNombreDoc1.getText());
+                doc1.setIdDocumento(idDoc);
+                doc1.setContenido(contenido);
+                doc1.setEstado("activo");
+                try {
+                    DocumentoBL.registrar(doc1);
+                    resDoc1 = "Se registró el documento 1 safisfactoriamente.";
+                } catch (Exception ex) {
+                    resDoc1 = "Hubo un error en el registro del documento 1.";
+                    Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -759,7 +762,7 @@ private boolean seleccionoCategoria(){
                     resDoc4 = "Se registró el documento 4 safisfactoriamente.";
                 } catch (Exception ex) {
                     resDoc4 = "Hubo error en el registro del documento 4.";
-                    //Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
@@ -803,8 +806,8 @@ private boolean seleccionoCategoria(){
         }
 
         String salida = resDoc1 + "\n" + resDoc2 + "\n" + resDoc3 + "\n" + resDoc4 + "\n" + resDoc5;
-        if (!resDoc1.equals("") || !resDoc2.equals("") || !resDoc3.equals("") || !resDoc4.equals("") || !resDoc5.equals("")){
-            JOptionPane.showMessageDialog(this, salida , "Resultado Registro",JOptionPane.INFORMATION_MESSAGE);
+        if (!resDoc1.equals("") || !resDoc2.equals("") || !resDoc3.equals("") || !resDoc4.equals("") || !resDoc5.equals("")) {
+            JOptionPane.showMessageDialog(this, salida, "Resultado Registro", JOptionPane.INFORMATION_MESSAGE);
         }
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -830,12 +833,8 @@ private boolean seleccionoCategoria(){
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnCargarDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDirectorioActionPerformed
-        // TODO add your handling code here
-        /*if (!this.seleccionoCategoria()){
-            JOptionPane.showMessageDialog(this, "Se debe seleccionar alguna(s) categoria(s) para el (los) documento(s).");
-            return;
-        }*/
-        
+
+
         JFileChooser chooser = new JFileChooser();
         chooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(true);
@@ -846,48 +845,51 @@ private boolean seleccionoCategoria(){
         if (retVal == chooser.APPROVE_OPTION) {
             String ruta = chooser.getSelectedFile().getAbsolutePath();
             File dir = new File(ruta);
-            File [] nomArch = dir.listFiles();
+            File[] nomArch = dir.listFiles();
             ArrayList<File> listaArch = new ArrayList<File>();
             int cnt = 0;
-            for (int i=0; i < nomArch.length; ++i){
+            for (int i = 0; i < nomArch.length; ++i) {
                 String extension = Utilitario.getExtension(nomArch[i]);
-                if (extension != null && (extension.equals("txt") || extension.equals("doc")) ){
+                if (extension != null && (extension.equals("txt") || extension.equals("doc"))) {
                     listaArch.add(nomArch[i]);
                     cnt++;
                 }
             }
-            if (cnt == 0){
-                JOptionPane.showMessageDialog(this, "El directorio no contiene documentos .doc o .txt" , "Cargar Documentos" , JOptionPane.INFORMATION_MESSAGE);
+            if (cnt == 0) {
+                JOptionPane.showMessageDialog(this, "El directorio no contiene documentos .doc o .txt", "Cargar Documentos", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
 
-            /* Validacion del nombre de los archivos a subir */
-            for (int i=0; i < listaArch.size(); ++i){
-                if (!DocumentoBL.validarNombre(listaArch.get(i).getName().toUpperCase())){
-                    JOptionPane.showMessageDialog(this, "El nombre "+ listaArch.get(i).getName()  +" ya existe.","Error Registro",JOptionPane.ERROR_MESSAGE);
+            // Validacion del nombre de los archivos a subir
+            for (int i = 0; i < listaArch.size(); ++i) {
+                if (!DocumentoBL.validarNombre(listaArch.get(i).getName().toUpperCase())) {
+                    JOptionPane.showMessageDialog(this, "El nombre " + listaArch.get(i).getName() + " ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             }
-            /* Obtenemos las categorias seleccionadas */
-            /*ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
-            for (int i=0; i < this.catSelecionada.size(); ++i){
-            if (this.catSelecionada.get(i).booleanValue())
-                listaCategoria.add(this.lstCategorias.get(i));
-            }*/
 
-            JDCargaDocumentos cargaDoc = new JDCargaDocumentos(listaArch);
-            cargaDoc.setLocationRelativeTo(this);
+            // Obtenemos las categorias seleccionadas
+            ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
+            for (int i = 0; i < this.catSelecionada.size(); ++i) {
+                if (this.catSelecionada.get(i).booleanValue()) {
+                    listaCategoria.add(this.lstCategorias.get(i));
+                }
+            }
             CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
-            cargaDoc.cargarDocumentos(objCategoria, objUsuario);
-            //this.dispose();
+            JDCargaDocumentos cargaDoc = new JDCargaDocumentos(listaArch, objCategoria, objUsuario);
+            // JDCargaDocumentos cargaDoc = new JDCargaDocumentos();
+
+            cargaDoc.setLocationRelativeTo(this);
+            cargaDoc.setModal(true);
+            cargaDoc.setVisible(true);
+
+        // cargaDoc.cargarDocumentos(objCategoria, objUsuario);
+        //this.dispose();
         }
     }//GEN-LAST:event_btnCargarDirectorioActionPerformed
-
     /**
-    * @param args the command line arguments
-    */
-    
-
+     * @param args the command line arguments
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar1;
@@ -930,39 +932,45 @@ private boolean seleccionoCategoria(){
     // End of variables declaration//GEN-END:variables
 
     class ExtensionValida extends FileFilter {
+
         boolean opcion;
-        ExtensionValida(boolean soloDir){
+
+        ExtensionValida(boolean soloDir) {
             opcion = soloDir;
         }
+
         public String getExtension(File f) {
             String ext = null;
             String s = f.getName();
             int i = s.lastIndexOf('.');
 
-            if (i > 0 &&  i < s.length() - 1) {
-                ext = s.substring(i+1).toLowerCase();
+            if (i > 0 && i < s.length() - 1) {
+                ext = s.substring(i + 1).toLowerCase();
             }
             return ext;
         }
+
         @Override
         public boolean accept(File f) {
-            if (f.isDirectory()){
+            if (f.isDirectory()) {
                 return true;
             }
 
-            if (!opcion){
+            if (!opcion) {
                 String ext = this.getExtension(f);
-                if (ext != null && (ext.equals("txt") || ext.equals("doc")))
+                if (ext != null && (ext.equals("txt") || ext.equals("doc"))) {
                     return true;
+                }
             }
             return false;
         }
 
         @Override
         public String getDescription() {
-            if (opcion) return "Solo directorios";
+            if (opcion) {
+                return "Solo directorios";
+            }
             return "Solo .txt y .doc";
         }
     }
-
 }
