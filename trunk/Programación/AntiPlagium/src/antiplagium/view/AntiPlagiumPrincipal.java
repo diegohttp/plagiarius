@@ -134,7 +134,8 @@ public class AntiPlagiumPrincipal extends JFrame {
 
         JMUsuarios.setBackground(new java.awt.Color(0, 153, 153));
         JMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Parents20.png"))); // NOI18N
-        JMUsuarios.setText("Usuarios");
+        JMUsuarios.setText("U s u a r i o s");
+        JMUsuarios.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         JMUsuarios.setName("JMUsuarios"); // NOI18N
 
         JMIAdministrarUsuarios.setText("Administrar Usuarios");
@@ -168,7 +169,8 @@ public class AntiPlagiumPrincipal extends JFrame {
 
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Copy.png"))); // NOI18N
-        jMenu2.setText("Documentos");
+        jMenu2.setText("D o c u m e n t o s");
+        jMenu2.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         jMenu2.setName("JMDocumentos"); // NOI18N
 
         jMenuItem2.setText("Gestionar Categoría");
@@ -193,7 +195,8 @@ public class AntiPlagiumPrincipal extends JFrame {
 
         jMenu3.setBackground(new java.awt.Color(0, 153, 153));
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mostrar.png"))); // NOI18N
-        jMenu3.setText("Detección");
+        jMenu3.setText("D e t e c c i ó n");
+        jMenu3.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         jMenu3.setName("JMDeteccion"); // NOI18N
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +217,8 @@ public class AntiPlagiumPrincipal extends JFrame {
 
         JMReportes.setBackground(new java.awt.Color(0, 153, 153));
         JMReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
-        JMReportes.setText("Reportes");
+        JMReportes.setText("R e p o r t e s");
+        JMReportes.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         JMReportes.setName("JMReportes"); // NOI18N
 
         jMenuItem1.setText("Comparaciones Documentos");
