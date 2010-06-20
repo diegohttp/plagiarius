@@ -19,9 +19,9 @@ import javax.swing.*;
 public class AntiPlagiumPrincipal extends JFrame {
 
     public static RegistroOperacionBE operacionBE;
-
+    public static UsuarioBE usuarioBE;
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
-        // super(usuarioBE);
+        this.usuarioBE = usuarioBE;
         this.add(new PanelAnimado());
 
         this.add(new PanelDocumento());
@@ -290,7 +290,7 @@ public class AntiPlagiumPrincipal extends JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         try {
             /* Codigo agregado solo para pruebas */
-            UsuarioBE objUsuario = JFBase.usuarioBE;
+            UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
             /* Eliminar luego de probar */
             BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
             buscardoc.setModal(true);
