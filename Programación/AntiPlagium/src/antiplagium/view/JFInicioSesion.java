@@ -374,7 +374,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
 
     private void descripcionOperacion()
     {
-        descripcionOperacion = "Usuario: " + JFBase.usuarioBE.getNombreUsuario() + "\n" +
+        descripcionOperacion = "Usuario: " + AntiPlagiumPrincipal.usuarioBE.getNombreUsuario() + "\n" +
                                "Fecha:   " + AntiPlagiumPrincipal.operacionBE.getFechaOperacion().toString() + "\n" +
                                "Tipo Operacion: " + GestorTiposOperacion.getTipoOperacion("ingreso") + "\n" ;
     }
