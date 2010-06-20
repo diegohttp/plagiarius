@@ -8,6 +8,7 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,17 +21,17 @@ import javax.swing.JPanel;
  *
  * @author KIM
  */
-public class PanelLupa extends JPanel {
+public class PanelDocumento extends JPanel {
 
     int posXLupa = 0, posYLupa = 0;
     int anchoPanel, altoPanel;
     BufferedImage imgTotal, imgPapel, imgLupa;
     HiloAnimacion hilo = new HiloAnimacion();
     public static int delay = 50;
-    float alpha = 0;
-    public static boolean fin=false;
+    float alpha = 0, angulo=0;
+    public static boolean fin = false;
 
-    public PanelLupa() {
+    public PanelDocumento() {
         this.setBackground(Color.white);
 
 
@@ -44,10 +45,10 @@ public class PanelLupa extends JPanel {
         anchoPanel = imgPapel.getWidth();
         altoPanel = imgPapel.getHeight();
 
-
-        this.setSize(anchoPanel, altoPanel);
+        this.setBounds(20, 500, anchoPanel, altoPanel);
+        //this.setSize(anchoPanel, altoPanel);
         // this.setVisible(true);
-        fin=false;
+        fin = false;
         hilo.start();
     }
 
@@ -59,33 +60,51 @@ public class PanelLupa extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
-        try{
+        try {
 
-        imgTotal = new BufferedImage(anchoPanel, altoPanel, BufferedImage.TRANSLUCENT);
-        Graphics gr = imgTotal.getGraphics();
-        gr.drawImage(imgPapel, 0, 0, this);
-        Graphics2D g2 = (Graphics2D) gr;
+            imgTotal = new BufferedImage(anchoPanel, altoPanel, BufferedImage.TRANSLUCENT);
+            Graphics gr = imgTotal.getGraphics();
+            gr.drawImage(imgPapel, 0, 0, this);
+            Graphics2D g2 = (Graphics2D) gr;
 
-        g2.setComposite(creaComposite(alpha));
-        gr.drawImage(imgLupa, posXLupa, posYLupa, this);
+            g2.setComposite(creaComposite(alpha));
+            BufferedImage aux=rotar(imgLupa,angulo);
+            gr.drawImage(aux, posXLupa, posYLupa, this);
 
-        g.drawImage(imgTotal, 0, 0, this);
-        } catch(Exception e){
-            
+            g.drawImage(imgTotal, 0, 0, this);
+        } catch (Exception e) {
         }
+    }
+
+    public BufferedImage rotar(BufferedImage img, float angulo){
+        int w = img.getWidth();
+        int h = img.getHeight();
+        BufferedImage imgRotada= new BufferedImage(2*w, 2*h, BufferedImage.TRANSLUCENT);
+        Graphics2D g2 = (Graphics2D) imgRotada.getGraphics();
+        double x = (h - w) / 2.0;
+        double y = (w - h) / 2.0;
+        AffineTransform at = AffineTransform.getTranslateInstance(x, y);
+        at.rotate(Math.toRadians(angulo), w/2.0 , h/2.0 );
+        //at.rotate(Math.toRadians(anguloPez), w , h );
+        g2.drawImage(img, at, this);
+        g2.dispose();
+        return imgRotada;
+        //gr.drawImage(pezRotado, this.posXLupa, this.posYLupa, null);
     }
 
     class HiloAnimacion extends Thread {
 
         public void run() {
-            
+
             int x = 1;
             int y = 1;
             float a = (float) 0.03;
+            float aRot=(float)1.0;
             while (!fin) {
                 posXLupa += x;
                 posYLupa += y;
                 alpha += a;
+                angulo+=aRot;
 
                 if (posXLupa > 50 || posXLupa < 0) {
                     x = -1 * x;
@@ -97,7 +116,7 @@ public class PanelLupa extends JPanel {
                     a = -1 * a;
                 }
 
-                PanelLupa.this.repaint();
+                PanelDocumento.this.repaint();
                 try {
                     Thread.sleep(delay);
                 } catch (InterruptedException ex) {

@@ -23,6 +23,8 @@ public class AntiPlagiumPrincipal extends JFrame {
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
         // super(usuarioBE);
         this.add(new PanelAnimado());
+
+        this.add(new PanelDocumento());
         
         initComponents();
 
