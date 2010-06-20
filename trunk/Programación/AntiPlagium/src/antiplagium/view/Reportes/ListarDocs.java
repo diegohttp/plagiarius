@@ -21,6 +21,7 @@ import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
+import antiplagium.BL.UsuarioBL;
 import antiplagium.DAO.CategoriaDAO;
 import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
@@ -41,7 +42,7 @@ import net.sf.jasperreports.swing.JRViewer;
 import org.apache.commons.digester.Digester;
 import org.apache.commons.collections.ArrayStack;
 import org.apache.commons.logging.LogFactory;
-
+import org.codehaus.groovy.*;
 
 
 
@@ -53,6 +54,7 @@ public class ListarDocs extends JFrame {
     private UsuarioBE objUsuario;
 
     public DocumentoBE docSel=null;
+    public  Object [] nuevo;
 
 
     /** Creates new form ListarDocs */
@@ -344,6 +346,8 @@ public class ListarDocs extends JFrame {
             objUsuario = new UsuarioBE();
             objUsuario.setIdUsuario(Integer.parseInt(this.txtIdUsuario.getText()));
         }
+
+
         DocumentoBE objDocumento = new DocumentoBE();
         objDocumento.setUsuario(objUsuario);
         objDocumento.setCategoria(objCategoria);
@@ -351,7 +355,7 @@ public class ListarDocs extends JFrame {
         objEstado = (String) this.cboEstado.getSelectedItem();
         objDocumento.setEstado(objEstado);
         try {
-            this.arrDocumentos = DocumentoBL.ListarDocs(objDocumento);
+            this.arrDocumentos = DocumentoBL.obtenerInstancia().ListarDocs(objDocumento);
         } catch (FileNotFoundException ex) {
             java.util.logging.Logger.getLogger(ListarDocs.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -366,8 +370,11 @@ public class ListarDocs extends JFrame {
                 tmp.removeRow(i);
             }
             /* Llenamos la grilla */
+            UsuarioBL objUsuarioBL = new UsuarioBL();
             for (int i=0; i < arrDocumentos.size() ; ++i){
-                Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
+                UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE( this.arrDocumentos.get(i).getUsuario().getIdUsuario() );
+                this.arrDocumentos.get(i).setUsuario(tmpUsuario);
+               Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
                 tmp.addRow(nuevo);
             }
             if (this.arrDocumentos.size() == 0){
@@ -407,12 +414,12 @@ public class ListarDocs extends JFrame {
 
         pars.put("P_TITULO", "Reporte Prueba de documentos");
         pars.put("P_SUBTITULO", "");
-//        JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("ReportePruebaDocumentos", pars, this.arrDocumentos);
+        JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("plantilla_1", pars, this.arrDocumentos);
         try {
 
-//            JRViewer v = new JRViewer(jasperPrint);
+            JRViewer v = new JRViewer(jasperPrint);
             JFrame ventana=new JFrame();
-//            ventana.getContentPane().add(v,BorderLayout.CENTER);
+            ventana.getContentPane().add(v,BorderLayout.CENTER);
             ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             ventana.setSize(706, 478);
 
