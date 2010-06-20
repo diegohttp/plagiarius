@@ -24,9 +24,9 @@ public class EstadoBL {
 
     }
 
-    public ArrayList<EstadoBE> ObtenerEstados() throws SQLException, ClassNotFoundException{
+    public ArrayList<EstadoBE> ObtenerEstados(int idEst,String nomb,String descrip) throws SQLException, ClassNotFoundException{
         estadoDAO.AbrirConexion();
-        ResultSet registros=estadoDAO.ConsultarEstados();
+        ResultSet registros=estadoDAO.ConsultarEstados(idEst,nomb,descrip);
         ArrayList<EstadoBE> listaEstados=null;
         EstadoBE estadoBE=null;
 
@@ -34,9 +34,9 @@ public class EstadoBL {
            listaEstados=new ArrayList<EstadoBE>();
            while(registros.next()){
                int idEstado=registros.getInt("idEstado");
-               String nombre=registros.getString("Descripcion");
-               String descripcion=registros.getString("Nombre");
-               System.out.println(idEstado+nombre+descripcion);
+               String descripcion=registros.getString("Descripcion");
+               String nombre=registros.getString("Nombre");
+               //System.out.println(idEstado+nombre+descripcion);
                estadoBE=new EstadoBE(idEstado,nombre,descripcion);
                listaEstados.add(estadoBE);
             }
