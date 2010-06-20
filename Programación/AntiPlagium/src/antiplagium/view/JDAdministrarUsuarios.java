@@ -21,14 +21,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.xml.bind.ParseConversionEvent;
 import org.freixas.jcalendar.JCalendarCombo;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  *
