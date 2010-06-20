@@ -429,7 +429,7 @@ public class JDAdministrarRoles extends JDialog {
 
     private void descripcionOperacion(RolBE rolBE)
     {
-        descripcionOperacion = "Usuario: " + JFBase.usuarioBE.getNombreUsuario() + "\n" +
+        descripcionOperacion = "Usuario: " + AntiPlagiumPrincipal.usuarioBE.getNombreUsuario() + "\n" +
                                "Fecha:   " + AntiPlagiumPrincipal.operacionBE.getFechaOperacion().toString() + "\n" +
                                "Tipo Operacion: " + GestorTiposOperacion.getTipoOperacion("eliminacion") + "\n" ;
         descripcionOperacion += "Registro: " + rolBE.getNombre();
