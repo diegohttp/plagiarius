@@ -50,7 +50,9 @@ public class EstadoBE {
         this.nombre = nombre;
     }
 
-
+    public String toString(){
+        return this.nombre;
+    }
 
 
 }
