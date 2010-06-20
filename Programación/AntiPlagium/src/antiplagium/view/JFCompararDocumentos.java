@@ -264,7 +264,7 @@ public class JFCompararDocumentos extends JDialog {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
-            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
+            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario,0);
 
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
@@ -294,20 +294,15 @@ public class JFCompararDocumentos extends JDialog {
             /* Codigo agregado solo para pruebas */
             ArrayList<CategoriaBE> aCategoria = new ArrayList<CategoriaBE>();
             UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
-            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario);
+            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario,1);
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
-            if (docs.contains(buscardoc.docSel)) {
-                JOptionPane.showMessageDialog(this, "El documento seleccionado ya fue escogido anteriormente.","Error Comparación",JOptionPane.ERROR_MESSAGE);
-                return;
-            } else {
-                this.docs.add(buscardoc.docSel);
-                this.actualizarTabla();
-
+            /* Falta la revision de documentos ya insertados */
+            for (int i = 0; i < buscardoc.seleccionado.size(); ++i){
+                docs.add(buscardoc.seleccionado.get(i));
             }
-
-           
+            this.actualizarTabla();
         } catch (Exception ex) {
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
