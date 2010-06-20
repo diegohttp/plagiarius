@@ -23,6 +23,7 @@ public class AntiPlagiumPrincipal extends JFrame {
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
         // super(usuarioBE);
         this.add(new PanelAnimado());
+        
         initComponents();
 
         int ancho = Toolkit.getDefaultToolkit().getScreenSize().width;

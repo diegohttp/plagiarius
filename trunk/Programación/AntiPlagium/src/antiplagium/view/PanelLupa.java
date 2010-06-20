@@ -4,7 +4,6 @@
  */
 package antiplagium.view;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -20,33 +19,31 @@ import javax.swing.JPanel;
  *
  * @author KIM
  */
-public class PanelAnimado extends JPanel {
+public class PanelLupa extends JPanel {
 
     int posXLupa = 0, posYLupa = 0;
     int anchoPanel, altoPanel;
     BufferedImage imgTotal, imgPapel, imgLupa;
-    HiloAnimacion hilo= new HiloAnimacion();
-    public static int delay=100;
+    HiloAnimacion hilo = new HiloAnimacion();
+    public static int delay = 50;
 
-    public PanelAnimado() {
+    public PanelLupa() {
         this.setBackground(Color.white);
 
 
         try {
-            imgPapel = ImageIO.read(new File("src/Iconos/fondoLogo.png"));
-            imgLupa = ImageIO.read(new File("src/Iconos/detectiveLogo.png"));
+            imgPapel = ImageIO.read(new File("src/Iconos/papel.png"));
+            imgLupa = ImageIO.read(new File("src/Iconos/lupa.png"));
 
         } catch (IOException ex) {
             System.out.println(ex);
         }
-        anchoPanel=imgPapel.getWidth();
-        altoPanel=imgPapel.getHeight();
+        anchoPanel = imgPapel.getWidth();
+        altoPanel = imgPapel.getHeight();
 
-        int ancho = Toolkit.getDefaultToolkit().getScreenSize().width;
-        int alto = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-        this.setBounds((ancho-anchoPanel)/2, (alto-altoPanel)/2-50, anchoPanel, altoPanel);
-        this.setVisible(true);
+        this.setSize( anchoPanel, altoPanel);
+       // this.setVisible(true);
         hilo.start();
     }
 
@@ -64,14 +61,18 @@ public class PanelAnimado extends JPanel {
     class HiloAnimacion extends Thread {
 
         public void run() {
-            boolean fin=false;
-            int x=2;
-            while(!fin){
-                posXLupa+=x;
-              
-                if (posXLupa>50 || posXLupa<0) x=-1*x;
-             
-                PanelAnimado.this.repaint();
+            boolean fin = false;
+            int x = 1;
+             int y=1;
+            while (!fin) {
+                posXLupa += x;
+                  posYLupa+=y;
+                if (posXLupa > 50 || posXLupa < 0) {
+                    x = -1 * x;
+                }
+                  if (posYLupa>40 || posYLupa<-30) y=-1*y;
+                
+                PanelLupa.this.repaint();
                 try {
                     Thread.sleep(delay);
                 } catch (InterruptedException ex) {
