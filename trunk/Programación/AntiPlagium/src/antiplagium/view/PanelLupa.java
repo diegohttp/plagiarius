@@ -57,14 +57,20 @@ public class PanelLupa extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
+        try{
+
         imgTotal = new BufferedImage(anchoPanel, altoPanel, BufferedImage.TRANSLUCENT);
         Graphics gr = imgTotal.getGraphics();
         gr.drawImage(imgPapel, 0, 0, this);
         Graphics2D g2 = (Graphics2D) gr;
+
         g2.setComposite(creaComposite(alpha));
         gr.drawImage(imgLupa, posXLupa, posYLupa, this);
 
         g.drawImage(imgTotal, 0, 0, this);
+        } catch(Exception e){
+            
+        }
     }
 
     class HiloAnimacion extends Thread {

@@ -340,7 +340,7 @@ public class JFCompararDocumentos extends JDialog {
         vis.setTitle("Visualizar Comparación");
         vis.setLocationRelativeTo(this);
         vis.setVisible(true);
-        PanelAnimado.delay=150;
+        PanelAnimado.delay=100;
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
