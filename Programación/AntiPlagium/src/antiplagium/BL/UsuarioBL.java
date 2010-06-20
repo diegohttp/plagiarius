@@ -283,10 +283,22 @@ public class UsuarioBL {
                         
                         email=(String)rsUsuarioBE.getObject(13);
 
-                        estadoBE = new EstadoBE();
-                        estadoBE.setIdEstado(idEstado);
-                        rolBE = new RolBE();
-                        rolBE.setIdRol(idRol);
+                        EstadoBL estadoBL=new EstadoBL();
+                        if(estadoBL.ObtenerEstados(idEstado, "","").size()!=0){
+                            estadoBE = estadoBL.ObtenerEstados(idEstado, "","").get(0);
+                        }
+                        else {estadoBE=null;}
+                        
+                        ConexionJDBC.abrirConexion();
+                        RolBL rolBL=new RolBL();
+                        ResultSet rs=rolBL.getListRoles();
+                        while (rs.next()){
+                            if(rs.getInt("idRol")==idRol){
+                                rolBE=new RolBE(idRol,rs.getString("nombre"),rs.getString("descripcion"));
+                            }
+                        }
+                        ConexionJDBC.cerrarConexion();
+
                         tipoCeseBE = new TipoCeseBE();
                         tipoCeseBE.setIdTipoCEse(idTipoCese);
                     }
