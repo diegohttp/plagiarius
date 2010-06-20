@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class PanelDocumento extends JPanel {
 
-    int posXLupa = 0, posYLupa = 0;
+    int posXLupa = 0, posYLupa = 100;
     int anchoPanel, altoPanel;
     BufferedImage imgTotal, imgPapel, imgLupa;
     HiloAnimacion hilo = new HiloAnimacion();
@@ -36,8 +36,8 @@ public class PanelDocumento extends JPanel {
 
 
         try {
-            imgPapel = ImageIO.read(new File("src/Iconos/papel.png"));
-            imgLupa = ImageIO.read(new File("src/Iconos/lupa.png"));
+            imgPapel = ImageIO.read(new File("src/Iconos/cilindro.png"));
+            imgLupa = ImageIO.read(new File("src/Iconos/papelGira.png"));
 
         } catch (IOException ex) {
             System.out.println(ex);
@@ -45,7 +45,7 @@ public class PanelDocumento extends JPanel {
         anchoPanel = imgPapel.getWidth();
         altoPanel = imgPapel.getHeight();
 
-        this.setBounds(20, 500, anchoPanel, altoPanel);
+        this.setBounds(20, 20, anchoPanel, altoPanel);
         //this.setSize(anchoPanel, altoPanel);
         // this.setVisible(true);
         fin = false;
@@ -79,7 +79,7 @@ public class PanelDocumento extends JPanel {
     public BufferedImage rotar(BufferedImage img, float angulo){
         int w = img.getWidth();
         int h = img.getHeight();
-        BufferedImage imgRotada= new BufferedImage(2*w, 2*h, BufferedImage.TRANSLUCENT);
+        BufferedImage imgRotada= new BufferedImage(3*w, 2*h, BufferedImage.TRANSLUCENT);
         Graphics2D g2 = (Graphics2D) imgRotada.getGraphics();
         double x = (h - w) / 2.0;
         double y = (w - h) / 2.0;
@@ -96,22 +96,22 @@ public class PanelDocumento extends JPanel {
 
         public void run() {
 
-            int x = 1;
-            int y = 1;
+            int x = 10;
+           // int y = 1;
             float a = (float) 0.03;
-            float aRot=(float)1.0;
+            float aRot=(float)2.0;
             while (!fin) {
                 posXLupa += x;
-                posYLupa += y;
+               // posYLupa -= (100-x*x)/40;
                 alpha += a;
                 angulo+=aRot;
 
-                if (posXLupa > 50 || posXLupa < 0) {
+                if (posXLupa > anchoPanel-100 || posXLupa < 0) {
                     x = -1 * x;
                 }
-                if (posYLupa > 40 || posYLupa < -30) {
-                    y = -1 * y;
-                }
+             //   if (posYLupa > 40 || posYLupa < -30) {
+              //      y = -1 * y;
+               // }
                 if (alpha > 1 || alpha < 0) {
                     a = -1 * a;
                 }
