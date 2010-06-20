@@ -31,17 +31,22 @@ import java.util.logging.Logger;
 public class JDCargaDocumentos extends javax.swing.JDialog {
     /** Creates new form JDCargaDocumentos */
     private ArrayList<File> nomArch;
-    public JDCargaDocumentos(ArrayList<File> nomArch) {
+
+     
+    public JDCargaDocumentos(ArrayList<File> nomArch, CategoriaBE cat, UsuarioBE us) {
         this.add(new PanelDocumento());
         initComponents();
+        this.setVisible(false);
         this.taDatosProgreso.setEditable(false);
         this.nomArch = nomArch;
+        this.cargarDocumentos(cat, us);
+
     }
 
     public void cargarDocumentos(ArrayList<CategoriaBE> listaCategoria,UsuarioBE objUsuario){
         /* Al finalizar la descarga habilitamos el cerrado de la ventana */
         //this.setModal(true);
-        this.setVisible(true);
+        //this.setVisible(true);
         this.pgbCargaDocumentos.setMaximum(100);
         int paso= 100/this.nomArch.size();
         String resultado;
@@ -153,6 +158,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CargarDocumentos");
+        setModal(true);
         setResizable(false);
 
         lblProgreso.setText("Progreso");
