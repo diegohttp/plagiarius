@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  *
  * @author KIM
  */
-public class PanelAnimadoLogo extends JPanel {
+public class PanelAnimado extends JPanel {
 
     int posXLupa = 0, posYLupa = 0;
     int anchoPanel, altoPanel;
@@ -28,7 +28,7 @@ public class PanelAnimadoLogo extends JPanel {
     HiloAnimacion hilo= new HiloAnimacion();
     public static int delay=150;
 
-    public PanelAnimadoLogo() {
+    public PanelAnimado() {
         this.setBackground(Color.white);
 
 
@@ -73,11 +73,11 @@ public class PanelAnimadoLogo extends JPanel {
                 if (posXLupa>50 || posXLupa<0) x=-1*x;
               //  if (posYLupa>90 || posYLupa<-30) y=-1*y;
                 //if (posXLupa>30) fin=true;
-                PanelAnimadoLogo.this.repaint();
+                PanelAnimado.this.repaint();
                 try {
                     Thread.sleep(delay);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(PanelAnimadoLogo.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PanelAnimado.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
