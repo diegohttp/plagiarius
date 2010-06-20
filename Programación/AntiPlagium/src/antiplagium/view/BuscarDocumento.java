@@ -41,16 +41,18 @@ public class BuscarDocumento extends JDialog {
     private CategoriaBL categoriaBl;
     private UsuarioBE objUsuario;
     private ArrayList<CategoriaBE> listaCategorias;
+    private int tipo;
     public DocumentoBE docSel=null;
-
+    public ArrayList<DocumentoBE> seleccionado = new ArrayList<DocumentoBE>();
     /** Creates new form Documento2 */
     public BuscarDocumento() throws FileNotFoundException, IOException, SQLException {
         initComponents();
-        this.cboEstado.addItem("Todos");
-        this.cboEstado.addItem("activo");
-        this.cboEstado.addItem("inactivo");
-        this.btnAceptar.setVisible(false);
-        categoriaBl=new CategoriaBL();
+        tipo = 0; /* Indica que es llamada para el gestionar Documentos*/
+        cboEstado.addItem("Todos");
+        cboEstado.addItem("activo");
+        cboEstado.addItem("inactivo");
+        btnAceptar.setVisible(false);
+        categoriaBl= new CategoriaBL();
         CategoriaBE tmp = new CategoriaBE();
         tmp.setIdCategoria(0);
         tmp.setNombre("Todas");
@@ -61,12 +63,17 @@ public class BuscarDocumento extends JDialog {
             cboCategoria.addItem(listaCategorias.get(i).getNombre());
         }
     }
-
-    public BuscarDocumento(UsuarioBE objUsuario) throws FileNotFoundException, IOException, SQLException {
+    
+    public BuscarDocumento(UsuarioBE objUsuario,int tipo) throws FileNotFoundException, IOException, SQLException {
         initComponents();
-        this.cboEstado.addItem("Todos");
-        this.cboEstado.addItem("activo");
-        this.cboEstado.addItem("inactivo");
+        this.tipo = tipo;
+        if (this.tipo == 0){
+            btnSeleccion.setVisible(false);
+            jtabPaquetes.getColumnModel().removeColumn( jtabPaquetes.getColumnModel().getColumn(5) );
+        }
+        cboEstado.addItem("Todos");
+        cboEstado.addItem("activo");
+        cboEstado.addItem("inactivo");
         this.objUsuario = objUsuario;
         categoriaBl=new CategoriaBL();
         CategoriaBE tmp = new CategoriaBE();
@@ -93,6 +100,7 @@ public class BuscarDocumento extends JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabPaquetes = new javax.swing.JTable();
+        btnSeleccion = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         lblCategoria = new javax.swing.JLabel();
@@ -129,14 +137,14 @@ public class BuscarDocumento extends JDialog {
 
             },
             new String [] {
-                "Código", "Nombre", "Categoría ", "Propietario", "Estado"
+                "Código", "Nombre", "Categoría ", "Propietario", "Estado", "Seleccionado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -151,19 +159,34 @@ public class BuscarDocumento extends JDialog {
         jtabPaquetes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtabPaquetes);
 
+        btnSeleccion.setText("Seleccionar Todo");
+        btnSeleccion.setMaximumSize(new java.awt.Dimension(135, 35));
+        btnSeleccion.setMinimumSize(new java.awt.Dimension(135, 35));
+        btnSeleccion.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnSeleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -317,12 +340,12 @@ public class BuscarDocumento extends JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,12 +360,12 @@ public class BuscarDocumento extends JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("Búsqueda");
@@ -394,13 +417,26 @@ public class BuscarDocumento extends JDialog {
             /* Llenamos la grilla */
             int cnt = 0;
             UsuarioBL objUsuarioBL = new UsuarioBL();
-            for (int i=0; i < arrDocumentos.size() ; ++i){
-                if (objEstado.equals("") || arrDocumentos.get(i).getEstado().compareTo(objEstado)==0){
-                   UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE( this.arrDocumentos.get(i).getUsuario().getIdUsuario() );
-                   this.arrDocumentos.get(i).setUsuario(tmpUsuario);
-                   Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado()  };
-                   tmp.addRow(nuevo);
-                   cnt++;
+            if (this.tipo == 0){
+                for (int i=0; i < arrDocumentos.size() ; ++i){
+                    if (objEstado.equals("") || arrDocumentos.get(i).getEstado().compareTo(objEstado)==0){
+                       UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE( this.arrDocumentos.get(i).getUsuario().getIdUsuario() );
+                       this.arrDocumentos.get(i).setUsuario(tmpUsuario);
+                       Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado() };
+                       tmp.addRow(nuevo);
+                       cnt++;
+                    }
+                }
+            }
+            else {
+                for (int i=0; i < arrDocumentos.size() ; ++i){
+                    if (objEstado.equals("") || arrDocumentos.get(i).getEstado().compareTo(objEstado)==0){
+                       UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE( arrDocumentos.get(i).getUsuario().getIdUsuario() );
+                       arrDocumentos.get(i).setUsuario(tmpUsuario);
+                       Object [] nuevo={ arrDocumentos.get(i).getIdDocumento() , arrDocumentos.get(i).getNombre() , arrDocumentos.get(i).getCategoria().getNombre() , arrDocumentos.get(i).getUsuario().getNombres() , arrDocumentos.get(i).getEstado() , Boolean.FALSE };
+                       tmp.addRow(nuevo);
+                       cnt++;
+                    }
                 }
             }
             if (cnt == 0){
@@ -516,17 +552,32 @@ public class BuscarDocumento extends JDialog {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int idx = this.jtabPaquetes.getSelectedRow();
-        if (idx >= 0){
-            docSel = this.arrDocumentos.get(idx);
-
+        if (tipo == 1){
+            seleccionado = new ArrayList<DocumentoBE>();
+            for (int i=0; i < jtabPaquetes.getRowCount(); ++i){
+                Boolean tmp = (Boolean) jtabPaquetes.getValueAt(i, 5);
+                if (tmp.booleanValue() == true){
+                    seleccionado.add(this.arrDocumentos.get(i));
+                }
+            }
+        }
+        else if (idx >= 0){
+            docSel = arrDocumentos.get(idx);
         }
         else {
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún documento.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún documento.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
 
         this.setVisible(false);
 }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionActionPerformed
+        // TODO add your handling code here:
+        for (int i=0; i < this.jtabPaquetes.getRowCount(); ++i){
+            this.jtabPaquetes.setValueAt(Boolean.TRUE, i, 5);
+        }
+    }//GEN-LAST:event_btnSeleccionActionPerformed
 
     public String getNombreDocSeleccionado(){
         return this.selectedDoc;
@@ -538,6 +589,7 @@ public class BuscarDocumento extends JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnSeleccion;
     private javax.swing.JComboBox cboCategoria;
     private javax.swing.JComboBox cboEstado;
     private javax.swing.JButton jButton1;
