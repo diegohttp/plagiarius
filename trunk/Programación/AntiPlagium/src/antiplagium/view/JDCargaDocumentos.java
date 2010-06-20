@@ -32,6 +32,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
     /** Creates new form JDCargaDocumentos */
     private ArrayList<File> nomArch;
     public JDCargaDocumentos(ArrayList<File> nomArch) {
+        this.add(new PanelDocumento());
         initComponents();
         this.taDatosProgreso.setEditable(false);
         this.nomArch = nomArch;
@@ -130,6 +131,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
                 Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        //PanelDocumento.fin=true;
         this.btnAceptar.setEnabled(true);
     }
 
@@ -151,7 +153,6 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CargarDocumentos");
-        setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         setResizable(false);
 
         lblProgreso.setText("Progreso");
@@ -169,7 +170,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
             pnlDatosProgresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosProgresoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scpDatosProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addComponent(scpDatosProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlDatosProgresoLayout.setVerticalGroup(
@@ -206,7 +207,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
                             .addGap(18, 18, 18)
                             .addComponent(lblProgreso)
                             .addGap(18, 18, 18)
-                            .addComponent(pgbCargaDocumentos, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
+                            .addComponent(pgbCargaDocumentos, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(pnlDatosProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -215,7 +216,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(266, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pgbCargaDocumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblProgreso))

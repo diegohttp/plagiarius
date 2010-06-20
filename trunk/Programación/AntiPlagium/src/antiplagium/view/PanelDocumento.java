@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class PanelDocumento extends JPanel {
 
-    int posXLupa = 0, posYLupa = 100;
+    int posXLupa = 0, posYLupa = 50;
     int anchoPanel, altoPanel;
     BufferedImage imgTotal, imgPapel, imgLupa;
     HiloAnimacion hilo = new HiloAnimacion();
@@ -96,7 +96,7 @@ public class PanelDocumento extends JPanel {
 
         public void run() {
 
-            int x = 10;
+            int x = 4;
            // int y = 1;
             float a = (float) 0.03;
             float aRot=(float)2.0;
