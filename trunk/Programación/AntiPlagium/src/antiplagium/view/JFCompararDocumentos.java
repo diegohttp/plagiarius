@@ -326,6 +326,7 @@ public class JFCompararDocumentos extends JDialog {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        PanelAnimado.delay=1000;
         if (this.tablaDocs.getRowCount()<1){
             JOptionPane.showMessageDialog(this, "Se debe escoger al menos un documento contra el cual comparar.","Error Comparación",JOptionPane.ERROR_MESSAGE);
             return;
@@ -339,6 +340,7 @@ public class JFCompararDocumentos extends JDialog {
         vis.setTitle("Visualizar Comparación");
         vis.setLocationRelativeTo(this);
         vis.setVisible(true);
+        PanelAnimado.delay=150;
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
