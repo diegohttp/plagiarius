@@ -168,7 +168,7 @@ public class UsuarioDAO {
             if (nuevoUsuario.getRolBE().getIdRol() != originalUsuario.getRolBE().getIdRol()) {
                 //String cadenaIdROl="'"+nuevoUsuario.getRolBE().getIdRol()+"'";
                 //campos+="\"idRol\"="+cadenaIdROl+",";
-                campos += "\"idRol\"=" + nuevoUsuario.getRolBE().getIdRol();
+                campos += "\"idRol\"=" + nuevoUsuario.getRolBE().getIdRol()+",";
             }
             if (nuevoUsuario.getEmail() != originalUsuario.getEmail()) {
                 campos += "\"email\"='" + nuevoUsuario.getEmail() + "',";
@@ -189,7 +189,7 @@ public class UsuarioDAO {
                     campos = aux;
                     squery += campos;
                     squery += "WHERE \"idUsuario\"=" + nuevoUsuario.getIdUsuario();
-                    System.out.println(squery);
+                    //System.out.println(squery);
                     ConexionJDBC.ejecutarUpdateString(squery);
                     rpta = true;
                 } catch (SQLException ex) {
@@ -218,7 +218,7 @@ public class UsuarioDAO {
                         squery = "";
                         squery = " INSERT INTO \"UsuarioXCategoria\" (\"idUsuario\",\"idCategoria\") ";
                         squery += " VALUES(" + nuevoUsuario.getIdUsuario() + "," + nuevoUsuario.getCategorias().get(i).getIdCategoria() + ") ";
-                        System.out.println(squery);
+                        //System.out.println(squery);
                         ConexionJDBC.ejecutarUpdateString(squery);
                         rpta = true;
                     } catch (SQLException ex) {
@@ -244,7 +244,7 @@ public class UsuarioDAO {
                     try {
                         squery = " DELETE FROM \"UsuarioXCategoria\" ";
                         squery += "WHERE \"idUsuario\"=" + originalUsuario.getIdUsuario() + " and \"idCategoria\"=" + originalUsuario.getCategorias().get(i).getIdCategoria();
-                        System.out.println(squery);
+                        //System.out.println(squery);
                         ConexionJDBC.ejecutarUpdateString(squery);
                         rpta = true;
                     } catch (SQLException ex) {
@@ -383,35 +383,35 @@ public class UsuarioDAO {
                 queryListaUsuarios+=" from \"Usuario\" A LEFT OUTER JOIN \"Rol\" B ON A.\"idRol\"=B.\"idRol\" LEFT OUTER JOIN \"UsuarioXCategoria\" C ON A.\"idUsuario\"=C.\"idUsuario\" LEFT OUTER JOIN \"Categoria\" D on C.\"idCategoria\"=D.\"idCategoria\" ";
                 AgregarTablaEstado();
                 //queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and C.\"idUsuario\" is null ";
-                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and C.\"idUsuario\" is null ";
+                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%"+usuario+"%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%"+nombreCompleto+"%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and C.\"idUsuario\" is null ";
             }
             //(NINGUNO VS TODOS)
             if (idRol==0 && idArea<0){
                 queryListaUsuarios+=" from \"Usuario\" A LEFT OUTER JOIN \"Rol\" B ON A.\"idRol\"=B.\"idRol\" LEFT OUTER JOIN \"UsuarioXCategoria\" C ON A.\"idUsuario\"=C.\"idUsuario\" LEFT OUTER JOIN \"Categoria\" D on C.\"idCategoria\"=D.\"idCategoria\" ";
                 AgregarTablaEstado();
                 //queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and (C.\"idCategoria\" like '%"+cadidArea+"%' or C.\"idCategoria\" is null) ";
-                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and (CAST(C.\"idCategoria\" AS character varying) like '%"+cadidArea+"%' or C.\"idCategoria\" is null) ";
+                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%"+usuario+"%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%"+nombreCompleto+"%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and (CAST(C.\"idCategoria\" AS character varying) like '%"+cadidArea+"%' or C.\"idCategoria\" is null) ";
             }
             //(TODOS VS NINGUNO)
             if (idRol<0 && idArea==0){
                 queryListaUsuarios+=" from \"Usuario\" A LEFT OUTER JOIN \"Rol\" B ON A.\"idRol\"=B.\"idRol\" LEFT OUTER JOIN \"UsuarioXCategoria\" C ON A.\"idUsuario\"=C.\"idUsuario\" LEFT OUTER JOIN \"Categoria\" D on C.\"idCategoria\"=D.\"idCategoria\" ";
                 AgregarTablaEstado();
                 //queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and (A.\"idRol\" like '%"+cadidRol+"%' or A.\"idRol\" is null ) and C.\"idCategoria\" is null ";
-                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and (CAST(A.\"idRol\" AS character varying) like '%"+cadidRol+"%' or A.\"idRol\" is null ) and C.\"idCategoria\" is null ";
+                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%"+usuario+"%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%"+nombreCompleto+"%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and (CAST(A.\"idRol\" AS character varying) like '%"+cadidRol+"%' or A.\"idRol\" is null ) and C.\"idCategoria\" is null ";
             }
             //(NINGUNO VS OPCION)
             if (idRol==0 && idArea>0){
                 queryListaUsuarios+=" from \"Usuario\" A LEFT OUTER JOIN \"Rol\" B ON A.\"idRol\"=B.\"idRol\" INNER JOIN \"UsuarioXCategoria\" C ON A.\"idUsuario\"=C.\"idUsuario\" INNER JOIN \"Categoria\" D on C.\"idCategoria\"=D.\"idCategoria\" ";
                 AgregarTablaEstado();
                 //queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and C.\"idCategoria\" like '%"+cadidArea+"%' ";
-                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and CAST(C.\"idCategoria\" AS character varying) like '%"+cadidArea+"%' ";
+                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%"+usuario+"%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%"+nombreCompleto+"%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" is null and CAST(C.\"idCategoria\" AS character varying) like '%"+cadidArea+"%' ";
             }
             //(OPCION VS NINGUNO)
             if (idRol>0 && idArea==0){
                 queryListaUsuarios+=" from \"Usuario\" A INNER JOIN \"Rol\" B ON A.\"idRol\"=B.\"idRol\" LEFT OUTER JOIN \"UsuarioXCategoria\" C ON A.\"idUsuario\"=C.\"idUsuario\" LEFT OUTER JOIN \"Categoria\" D on C.\"idCategoria\"=D.\"idCategoria\" ";
                 AgregarTablaEstado();
                 //queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and A.\"idRol\" like '%"+cadidRol+"%' and C.\"idCategoria\" is null ";
-                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and CAST(A.\"idRol\" AS character varying) like '%"+cadidRol+"%' and C.\"idCategoria\" is null ";
+                queryListaUsuarios+=" where A.\"nombreUsuario\" like '%"+usuario+"%' and A.nombres||' '||\"apellidoPaterno\"||' '||\"apellidoMaterno\" like '%"+nombreCompleto+"%' and (A.\"fechaRegistro\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and CAST(A.\"idRol\" AS character varying) like '%"+cadidRol+"%' and C.\"idCategoria\" is null ";
             }
 
             AgregarCondicionEstado(cadidEstado);
@@ -441,7 +441,7 @@ public class UsuarioDAO {
         try {
             String queryBusquedaCat = "Select C.* from \"UsuarioXCategoria\" A INNER JOIN \"Usuario\" B ON A.\"idUsuario\"=B.\"idUsuario\" INNER JOIN \"Categoria\" C ON A.\"idCategoria\"=C.\"idCategoria\" ";
             queryBusquedaCat+=" Where B.\"idUsuario\"="+String.valueOf(idUsuario);
-            System.out.println(queryBusquedaCat);
+            //System.out.println(queryBusquedaCat);
             ResultSet rsCategorias = ConexionJDBC.ejecutarQueryString(queryBusquedaCat);
             return rsCategorias;
         } catch (SQLException ex) {
