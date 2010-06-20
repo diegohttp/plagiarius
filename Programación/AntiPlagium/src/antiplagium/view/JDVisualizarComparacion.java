@@ -42,7 +42,12 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
         this.doc1 = doc;
         this.docs = listaDoc;
+
+        PanelLupa p= new PanelLupa();
+       
+        this.add(p);
         initComponents();
+         p.setLocation(this.lblTiempo.getLocation().x, this.lblTiempo.getLocation().y-100);
         if (this.docs.cantElementos()==1) this.btnDocSgte.setEnabled(false);
         this.etiquetarValoresIniciales();
 
@@ -68,10 +73,9 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     public void realizarComparacion() {
         this.lblTiempo.setText("Realizando comparación...");
 
-        this.pgbComparacion.setMaximum(100);
+     
 
-        int paso = 100 / this.docs.cantElementos(), valorActual = 0;
-        this.pgbComparacion.setValue(valorActual);
+    
 
         this.doc1.armarEstructura();
 
@@ -82,11 +86,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             docs.get(i).armarEstructura();
             dec.comparar(doc1, docs.get(i));
             this.detectores.add(dec);
-            valorActual += paso;
-            this.pgbComparacion.setValue(valorActual);
-            if (i == this.docs.cantElementos() - 1) {
-                this.pgbComparacion.setValue(100);
-            }
+          
             ResultadoDeteccionBE objResDeteccion = new ResultadoDeteccionBE();
             objResDeteccion.setDocumento1(doc1);
             objResDeteccion.setDocumento2(docs.get(i));
@@ -138,7 +138,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
         this.txtNumDoc.setText("" + (docActual+1));
         this.lblMayor.setText("Mayor porcentaje detectado: "+this.obtenerMayorPorcentaje().x+" %");
-        this.lblEnDoc.setText("El el documento número "+(this.obtenerMayorPorcentaje().y+1));
+        this.lblEnDoc.setText("En el documento número "+(this.obtenerMayorPorcentaje().y+1));
 
         this.cargarContenidos();
     }
@@ -260,7 +260,6 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDoc1 = new javax.swing.JTextPane();
-        pgbComparacion = new javax.swing.JProgressBar();
         lblDoc1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -362,7 +361,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,7 +409,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         });
 
         lblEnDoc.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
-        lblEnDoc.setText("El el documento numero 0");
+        lblEnDoc.setText("En el documento numero 0");
 
         lblMayor.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
         lblMayor.setText("Mayor porcentaje detectado:");
@@ -424,46 +423,44 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pgbComparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTiempo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblDoc3)
-                                    .addComponent(lblDoc1))
-                                .addGap(270, 270, 270)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDoc2)
+                            .addComponent(lblDoc1)
+                            .addComponent(lblDoc3))
+                        .addGap(270, 270, 270))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTiempo)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPorc)
+                                    .addComponent(lblMayor)
+                                    .addComponent(lblEnDoc))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPorc)
-                                            .addComponent(lblMayor)
-                                            .addComponent(lblEnDoc))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(73, 73, 73)
-                                                .addComponent(lblNivel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(73, 73, 73)
+                                        .addComponent(lblNivel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(4, 4, 4)
-                                        .addComponent(lblTotalDocs))
-                                    .addComponent(btnDocAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnDocSgte, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(lblTotalDocs))
+                            .addComponent(btnDocAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDocSgte, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblDoc2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -471,23 +468,21 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addContainerGap()
                         .addComponent(lblDoc3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDoc1)
                             .addComponent(lblDoc2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(pgbComparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblTiempo)
                                     .addComponent(lblMayor)
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -502,9 +497,15 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                             .addComponent(lblTotalDocs))
                         .addGap(18, 18, 18)
                         .addComponent(btnDocSgte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEnDoc)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblEnDoc)
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTiempo)
+                        .addContainerGap())))
         );
 
         pack();
@@ -554,7 +555,6 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private javax.swing.JLabel lblPorc;
     private javax.swing.JLabel lblTiempo;
     private javax.swing.JLabel lblTotalDocs;
-    private javax.swing.JProgressBar pgbComparacion;
     private javax.swing.JTextPane txtDoc1;
     private javax.swing.JTextPane txtDoc2;
     private javax.swing.JTextField txtNumDoc;
