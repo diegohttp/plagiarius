@@ -25,9 +25,31 @@ public class EstadoDAO {
         ConexionJDBC.cerrarConexion();
     }
 
-    public ResultSet ConsultarEstados() throws SQLException{
+    public ResultSet ConsultarEstados(int idEst,String nomb,String descrip) throws SQLException{
 
         String query="SELECT * FROM \"Estado\" ";
+        String where=" WHERE ";
+        Boolean anterior=false;
+        if (idEst!=0){
+            if (anterior==true) { where+=" and ";}
+            anterior=true;
+            where+=" \"idEstado\" = "+idEst;
+        }
+        if ((nomb!=null) && (nomb.compareTo("")!=0)){
+            if (anterior==true) { where+=" and ";}
+            anterior=true;
+            where+=" \"Nombre\" = '"+nomb+"'";
+        }
+        if ((descrip!=null) && (descrip.compareTo("")!=0)){
+            if (anterior==true) { where+=" and ";}
+            anterior=true;
+            where+=" \"Descripcion\" = '"+descrip+"'";
+        }
+
+        if(where.compareTo(" WHERE ")!=0){
+            query+=where;
+        }
+
         ResultSet registrosEstado = ConexionJDBC.ejecutarQueryString(query);
         return registrosEstado;
     }
