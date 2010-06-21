@@ -1,28 +1,50 @@
 package antiplagium.view;
 
 import antiplagium.BE.GestorTiposOperacion;
+import antiplagium.BE.RegistroOperacionBE;
+import antiplagium.BL.RegistroOperacionBL;
+import antiplagium.DAL.ConexionJDBC;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.table.DefaultTableModel;
 import org.freixas.jcalendar.JCalendarCombo;
 
 public class JDLogDeUsuarios extends JDialog {
 
-    JCalendarCombo jcComboDesde;
-    JCalendarCombo jcComboHasta;
+    JCalendarCombo calendarInicio;
+    JCalendarCombo calendarFin;
+    RegistroOperacionBL registroOperacionBL;
+    ResultSet rs;
+
     /** Creates new form JDLogDeUsuarios */
     public JDLogDeUsuarios() {
         initComponents();
 
-        jcComboDesde = new JCalendarCombo();
-        jcComboHasta = new JCalendarCombo();
+        calendarInicio = new JCalendarCombo();
+        calendarFin = new JCalendarCombo();
 
-        jcComboDesde.setSize(215, 30);
-        jcComboHasta.setSize(215, 30);
-        JPFechaInicio.add(jcComboDesde);
-        JPFechaFin.add(jcComboHasta);
+        calendarInicio.setSize(215, 30);
+        calendarFin.setSize(215, 30);
+        JPFechaInicio.add(calendarInicio);
+        JPFechaFin.add(calendarFin);
 
         //GestorTiposOperacion.getTipoOperacion("")
 
-
+        cmbOperacion.addItem("Todos");
+        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("ingreso"));
+        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("salida"));
+        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("consulta"));
+        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("modifica"));
+        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("registra"));
+        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("eliminacion"));
+        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("comparacion"));
+        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("reporte"));
 
 
     }
@@ -60,7 +82,7 @@ public class JDLogDeUsuarios extends JDialog {
 
             },
             new String [] {
-                "ID Usuario", "Usuario", "ID OPeracion", "OPeracion", "Fecha"
+                "ID OPeracion", "OPeracion", "ID Usuario", "Usuario", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
@@ -302,7 +324,49 @@ public class JDLogDeUsuarios extends JDialog {
     }//GEN-LAST:event_btnBuscarCategoriaActionPerformed
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
-        // TODO add your handling code here:
+        try {
+
+            ConexionJDBC.abrirConexion();
+
+            registroOperacionBL = new RegistroOperacionBL();
+            String nombreUsuario = txtUsuario.getText();
+            String nombreCategoria = txtCategoria.getText();
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            String cadenaFechaI = formato.format(calendarInicio.getDate());
+            String cadenaFechaF = formato.format(calendarFin.getDate());
+            String tipoOperacion = cmbOperacion.getSelectedItem().toString();
+            
+            rs = registroOperacionBL.ObtenerLogOperaciones(nombreUsuario, nombreCategoria, cadenaFechaI, cadenaFechaF, tipoOperacion);
+            if (rs != null) {
+                DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                while (modelo.getRowCount() > 0) {
+                    modelo.removeRow(0);
+                }
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int numeroColum = rsmd.getColumnCount();
+                while (rs.next()) {
+                    Object[] objetos = new Object[numeroColum];
+                    for (int i = 0; i < numeroColum; i++) {
+                        objetos[i] = rs.getObject(i + 1);
+                    }
+                    if (modelo.getRowCount() != 0) {
+                        if (Integer.parseInt(objetos[0].toString()) != Integer.parseInt(modelo.getValueAt(modelo.getRowCount() - 1, 0).toString())) {
+                            modelo.addRow(objetos);
+                        }
+                    } else {
+                        modelo.addRow(objetos);
+                    }
+                }
+            }
+
+            ConexionJDBC.cerrarConexion();
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(JDLogDeUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JDLogDeUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnFiltrarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
