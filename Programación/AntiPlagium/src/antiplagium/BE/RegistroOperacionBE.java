@@ -11,12 +11,6 @@ public class RegistroOperacionBE {
     private String tipoOperacion;
     private String descripcion;
 
-//    OperacionBE(1,"Cargar Documento","El usuario ha subido a la BD un documento"));
-//        listaOp.add(new OperacionBE(2,"Eliminar Documento","El usuario ha eliminado a la BD un documento"));
-//        listaOp.add(new OperacionBE(3,"Comparar Documento","El usuario realizo la comparacion de un documento"));
-//        listaOp.add(new OperacionBE(4,"Cambiar Contrasena","El usuario cambio la contrasena"));
-//        listaOp.add(new OperacionBE(5,"Emitir Reportes de deteccion","El usuario emitio reportes de deteccion"));
-
     public RegistroOperacionBE(Integer idUsuario, Date fechaOperacion)
     {
         this.idUsuario = idUsuario;        
