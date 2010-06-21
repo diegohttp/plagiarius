@@ -5,9 +5,27 @@ import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.registroOperacionDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class RegistroOperacionBL
-{
+public class RegistroOperacionBL{
+
+    ResultSet listaRegistroOperaciones;
+    registroOperacionDAO registroOpDAO;
+
+    public ResultSet ObtenerLogOperaciones(String nombreUsuario,String nombreCategoria,String cadenaFechaI,String cadenaFechaF,String tipoOperacion){
+        try {
+            registroOpDAO = new registroOperacionDAO();
+            listaRegistroOperaciones = registroOpDAO.ConsultarLogOperaciones(nombreUsuario, nombreCategoria, cadenaFechaI, cadenaFechaF, tipoOperacion);
+            return listaRegistroOperaciones;
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistroOperacionBL.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
     public void AbrirConexion() throws SQLException, ClassNotFoundException
     {
         ConexionJDBC.abrirConexion();
