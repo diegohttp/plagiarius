@@ -32,7 +32,7 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
         usuarioBL=new UsuarioBL();
         this.setSize(370,215);
         this.repaint();
-        jButton1.setEnabled(false);
+        jBEnviar.setEnabled(false);
     }
 
 
@@ -57,7 +57,7 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jBEnviar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationByPlatform(true);
@@ -163,10 +163,10 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Enviar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBEnviar.setText("Enviar");
+        jBEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBEnviarActionPerformed(evt);
             }
         });
 
@@ -181,7 +181,7 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(131, 131, 131)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -195,7 +195,7 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(jBEnviar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -208,7 +208,7 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
         jLabel2.setText("Introduzca su nombre de usuario              ");
         jLabel4.setText("Nombre de usuario: ");
         jPanel3.setVisible(true);
-        jButton1.setEnabled(true);
+        jBEnviar.setEnabled(true);
 
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
@@ -218,16 +218,16 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
         jLabel2.setText("Introduzca la dirección de correo electrónico");
         jLabel4.setText("Correo electronico:");
         jPanel3.setVisible(true);
-        jButton1.setEnabled(true);
+        jBEnviar.setEnabled(true);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnviarActionPerformed
 
         int autenticoUsuario;
         int opcion=0;
         //if(buttonGroup1.getSelection().isSelected()==true){}
         if (jRadioButton1.isSelected()==true){
-            
+
             if(jTextField1.getText().compareTo("")!=0){
                  autenticoUsuario=usuarioBL.AutenticarUsuario(jTextField1.getText(),"","");
                  if (autenticoUsuario>0){
@@ -261,7 +261,7 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
                 }
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBEnviarActionPerformed
 
 
 
@@ -272,7 +272,7 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBEnviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

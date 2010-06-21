@@ -5,6 +5,7 @@ package antiplagium.view;
 import antiplagium.*;
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.EstadoBE;
+import antiplagium.BE.RolBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.EstadoBL;
@@ -77,30 +78,29 @@ public class JDAdministrarUsuarios extends JDialog {
                 rolBL.AbrirConexion();
 
                 ResultSet registros = rolBL.getListRoles();
-                int numeroRegistros = registros.getRow();
-                jCBRol.addItem("Todos");
-                jCBRol.addItem("Ninguno");
+                jCBRol.addItem(new RolBE(-1,"Todos","Todos los roles"));
+                jCBRol.addItem(new RolBE(0,"Ninguno","Ningun rol"));
                 while (registros.next()) {
-                    jCBRol.addItem(registros.getString("nombre"));
+                    jCBRol.addItem(new RolBE(registros.getInt("idRol"),registros.getString("nombre"),registros.getString("descripcion")));
                 }
+               
                 rolBL.CerrarConexion();
 
                 ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
-                jCBArea.addItem("Todos");
-                jCBArea.addItem("Ninguno");
+                jCBArea.addItem(new CategoriaBE(-1,"Todos descripcion", "Todos"));
+                jCBArea.addItem(new CategoriaBE(0,"Ninguno descripcion", "Ninguno"));
                 int cantidadCategorias = listaCategorias.size();
                 for (int i = 0; i < cantidadCategorias; i++) {
-                    jCBArea.addItem(listaCategorias.get(i).getNombre());
+                    jCBArea.addItem(listaCategorias.get(i));
                 }
 
 
-                ArrayList<EstadoBE> registrosEstado = estadoBl.ObtenerEstados();
+                ArrayList<EstadoBE> registrosEstado = estadoBl.ObtenerEstados(0,"","");
                 if (registrosEstado != null) {
-                    //System.out.println(registrosEstado.size());
-                    jCBEstado.addItem("Todos");
+                    jCBEstado.addItem(new EstadoBE(0,"Todos", "Todos descripcion"));
                     int numeroReg = registrosEstado.size();
                     for (int i = 0; i <= numeroReg - 1; i++) {
-                        jCBEstado.addItem(registrosEstado.get(i).getNombre());
+                        jCBEstado.addItem(registrosEstado.get(i));
                     }
                 }
 
@@ -137,9 +137,8 @@ public class JDAdministrarUsuarios extends JDialog {
 
 
 
-   
-    }
 
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -511,7 +510,7 @@ public class JDAdministrarUsuarios extends JDialog {
         JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
         jfAgregarUsuario.setModal(true);
         jfAgregarUsuario.setLocationRelativeTo(this);
-        jfAgregarUsuario.setVisible(true);        
+        jfAgregarUsuario.setVisible(true);
 //        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
 //        jfAgregarUsuario.toFront();
 }//GEN-LAST:event_JBNuevoActionPerformed
@@ -520,7 +519,7 @@ public class JDAdministrarUsuarios extends JDialog {
         int iFila=-1;
         iFila=jTListaUsuarios.getSelectedRow();
 
-        System.out.println("numero de fila"+iFila);
+        //System.out.println("numero de fila"+iFila);
 
         if (iFila==-1){
             JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
@@ -554,7 +553,7 @@ public class JDAdministrarUsuarios extends JDialog {
     }//GEN-LAST:event_jMNuevoMouseReleased
 
     private void jMModificarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMModificarMouseReleased
-        int iFila=-1;
+       int iFila=-1;
         iFila=jTListaUsuarios.getSelectedRow();
 
         System.out.println("numero de fila"+iFila);
@@ -622,15 +621,25 @@ public class JDAdministrarUsuarios extends JDialog {
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void ConsultarUsuarios(){
-        try {
+       try {
 
             usuarioBL = new UsuarioBL();
             usuarioBL.AbrirConexion();
             String usuario=jTFUsuario.getText();
             String nombreCompleto=JTFNombreCompleto.getText();
-            int idRol=jCBRol.getSelectedIndex()-1;
-            int idArea=jCBArea.getSelectedIndex()-1;
-            int idEstado=jCBEstado.getSelectedIndex();
+
+            //int idRol=jCBRol.getSelectedIndex()-1; MAL ERROR EN LA PRESENTACION
+            RolBE rolBE=(RolBE)jCBRol.getSelectedItem();
+            int idRol=rolBE.getIdRol();
+
+            //int idArea=jCBArea.getSelectedIndex()-1; MAL ERROR EN LA PRESENTACION
+            CategoriaBE categoriaBE=(CategoriaBE)jCBArea.getSelectedItem();
+            int idArea=categoriaBE.getIdCategoria();
+
+            //int idEstado=jCBEstado.getSelectedIndex(); MAL ERROR EN LA PRESENTACION
+            EstadoBE estadoBE=(EstadoBE)jCBEstado.getSelectedItem();
+            int idEstado=estadoBE.getIdEstado();
+
             SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
             String cadenaFechaI=formato.format(cmbCalendarioInicio.getDate());
             String cadenaFechaF=formato.format(cmbCalendarioFin.getDate());

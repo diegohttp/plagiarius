@@ -29,7 +29,7 @@ import org.freixas.jcalendar.JCalendarCombo;
  */
 public class JDEliminarUsuario extends JDialog{
 
-    JCalendarCombo jCCFechaEliminar = new JCalendarCombo();
+  JCalendarCombo jCCFechaEliminar = new JCalendarCombo();
     EstadoBL estadoBL;
     UsuarioBL usuarioBL;
     UsuarioBE usuarioBE;
@@ -44,23 +44,32 @@ public class JDEliminarUsuario extends JDialog{
             jPFechaEliminar.add(jCCFechaEliminar);
             estadoBL = new EstadoBL();
             usuarioBL = new UsuarioBL();
-            registrosEstado = estadoBL.ObtenerEstados();
+            registrosEstado = estadoBL.ObtenerEstados(0,"","");
             if (registrosEstado != null) {
-                System.out.println(registrosEstado.size());
+                //System.out.println(registrosEstado.size());
                 int numeroRegistros = registrosEstado.size();
                 for (int i = 0; i <= numeroRegistros - 1; i++) {
-                    jCBEstado.addItem(registrosEstado.get(i).getNombre());
+                    jCBEstado.addItem(registrosEstado.get(i));
                 }
             }
 
             usuarioBE=usuarioBL.getUsuarioBE(idUsuario);
-            jCBEstado.setSelectedIndex(usuarioBE.getEstadoBE().getIdEstado()-1);
-            System.out.println(jCBEstado.getSelectedIndex()+jCBEstado.getSelectedItem().toString());
-            if (jCBEstado.getSelectedIndex()==2){
+
+            for(int i=0;i<jCBEstado.getModel().getSize();i++){
+                if (usuarioBE.getEstadoBE().getNombre().compareTo(jCBEstado.getItemAt(i).toString())==0){
+                        jCBEstado.setSelectedIndex(i);
+                }
+
+            }
+
+
+            //System.out.println(jCBEstado.getSelectedIndex()+jCBEstado.getSelectedItem().toString());
+            EstadoBE estadoBE=(EstadoBE)jCBEstado.getSelectedItem();
+            if (estadoBE.getNombre().compareTo("Anulado")==0){
                 jCCFechaEliminar.setDate(usuarioBE.getFechaCese());
                 JOptionPane.showMessageDialog(this,"El usuario seleccionado ya ha sido eliminado.", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
                 rpta=false;
-                jButton1.enable(false);
+                jButton1.setEnabled(false);
             }
 
         } catch (SQLException ex) {
@@ -204,7 +213,7 @@ public class JDEliminarUsuario extends JDialog{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        usuarioBE.setFechaCese(jCCFechaEliminar.getDate());
+       usuarioBE.setFechaCese(jCCFechaEliminar.getDate());
         //usuarioBE.setTipoCeseBE(null);
         usuarioBE.setEstadoBE(registrosEstado.get(2));
 
