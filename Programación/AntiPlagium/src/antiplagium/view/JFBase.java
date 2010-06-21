@@ -1,8 +1,8 @@
 
 package antiplagium.view;
 
-import antiplagium.BE.UsuarioBE;
-import antiplagium.BL.SeguridadBL;
+import antiplagium.BE.*;
+import antiplagium.BL.*;
 import java.awt.*;
 import java.sql.*;
 import java.util.Vector;
@@ -10,9 +10,9 @@ import javax.swing.*;
 
 public class JFBase extends javax.swing.JFrame {
 
-    private Dimension dim;    
-    private static String nombreRol = "Administrador";
+    private Dimension dim;        
     public static UsuarioBE usuarioBE=null;
+    protected static RegistroOperacionBE operacionBE;
 
     public JFBase(UsuarioBE usuarioBE)
     {
@@ -98,7 +98,21 @@ public class JFBase extends javax.swing.JFrame {
             }
         }
     }
-    
+
+    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion)
+    {
+        operacionBE.setFechaOperacion(new Date(System.currentTimeMillis()));
+        operacionBE.setNombreVentana(nombreVentana);
+        operacionBE.setTipoOperacion(tipoOperacion);
+        operacionBE.setDescripcion(descripcion);
+    }
+
+    public static void registrarOperacion() throws SQLException
+    {
+        RegistroOperacionBL operacionBL = new RegistroOperacionBL();
+        operacionBL.insertOperacion(JFBase.operacionBE);
+    }
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
