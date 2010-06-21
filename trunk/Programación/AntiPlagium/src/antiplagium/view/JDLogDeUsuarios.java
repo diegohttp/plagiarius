@@ -11,7 +11,7 @@ public class JDLogDeUsuarios extends JDialog {
     /** Creates new form JDLogDeUsuarios */
     public JDLogDeUsuarios() {
         initComponents();
-        
+
         jcComboDesde = new JCalendarCombo();
         jcComboHasta = new JCalendarCombo();
 
@@ -21,6 +21,7 @@ public class JDLogDeUsuarios extends JDialog {
         JPFechaFin.add(jcComboHasta);
 
         //GestorTiposOperacion.getTipoOperacion("")
+
 
 
 
@@ -149,6 +150,11 @@ public class JDLogDeUsuarios extends JDialog {
 
         btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
         btnFiltrar.setText("Buscar");
+        btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -267,7 +273,7 @@ public class JDLogDeUsuarios extends JDialog {
 
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
 
-        String nombreUsuario=txtUsuario.getText();
+          String nombreUsuario=txtUsuario.getText();
 
         JDAdministrarUsuarios jdAdminUsuario= new JDAdministrarUsuarios(nombreUsuario);
         jdAdminUsuario.setModal(true);
@@ -277,12 +283,11 @@ public class JDLogDeUsuarios extends JDialog {
         if (jdAdminUsuario.getUsuarioBESeleccionado()!=null){
             txtUsuario.setText(jdAdminUsuario.getUsuarioBESeleccionado().getNombreUsuario());
         }
-
     }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
     private void btnBuscarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCategoriaActionPerformed
 
-        String nombreCategoria=txtCategoria.getText();
+       String nombreCategoria=txtCategoria.getText();
 
 
         JDAdministrarCategoria jdAdminCategoria = new JDAdministrarCategoria(nombreCategoria);
@@ -295,6 +300,10 @@ public class JDLogDeUsuarios extends JDialog {
         }
 
     }//GEN-LAST:event_btnBuscarCategoriaActionPerformed
+
+    private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPFechaFin;

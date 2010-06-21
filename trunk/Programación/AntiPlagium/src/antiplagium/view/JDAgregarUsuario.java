@@ -58,7 +58,7 @@ public class JDAgregarUsuario extends JDialog {
     
     /** Creates new form JFAgregarUsuario1 */
     public JDAgregarUsuario(int idUsuario) {
-       try {
+        try {
 
             initComponents();
             listaCategorias=new ArrayList<CategoriaBE>();
@@ -90,17 +90,17 @@ public class JDAgregarUsuario extends JDialog {
             ResultSet registros = rolBL.getListRoles();
             //int cantidadR = registros.getRow();
             while (registros.next()) {
-                jCBRol.addItem(registros.getString("nombre"));
+                jCBRol.addItem(new RolBE(registros.getInt("idRol"), registros.getString("nombre"), registros.getString("descripcion")));
             }
             rolBL.CerrarConexion();
 
 
-            ArrayList<EstadoBE> registrosEstado = estadoBL.ObtenerEstados();
+            ArrayList<EstadoBE> registrosEstado = estadoBL.ObtenerEstados(0,"","");
             if (registrosEstado != null) {
-                System.out.println(registrosEstado.size());
+                //System.out.println(registrosEstado.size());
                 int numeroRegistros = registrosEstado.size();
                 for (int i = 0; i <= numeroRegistros - 1; i++) {
-                    jCBEstado.addItem(registrosEstado.get(i).getNombre());
+                    jCBEstado.addItem(registrosEstado.get(i));
                 }
             }
 
@@ -513,9 +513,9 @@ public class JDAgregarUsuario extends JDialog {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void Guardar(){
-        //        String estado, RolBE idRol, ArrayList<CategoriaBE> categorias,TipoCeseBE idTipoCese
+         //        String estado, RolBE idRol, ArrayList<CategoriaBE> categorias,TipoCeseBE idTipoCese
         UsuarioBL usuarioBL=new UsuarioBL();
-       
+
         boolean r = false;
 
         Date fechaI=new Date();
@@ -531,16 +531,13 @@ public class JDAgregarUsuario extends JDialog {
         } catch (ParseException ex) {
             Logger.getLogger(JDAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        int  idEstado=jCBEstado.getSelectedIndex()+1;
-        int idRol=jCBRol.getSelectedIndex()+1;
+
+        EstadoBE estadoBE=(EstadoBE)jCBEstado.getSelectedItem();
+        RolBE rolBE=(RolBE)jCBRol.getSelectedItem();
+
         int idTipoCese=0;
         int idUsuario=Integer.parseInt(jTFCodigo.getText().trim());
 
-        EstadoBE estadoBE = new EstadoBE();
-        estadoBE.setIdEstado(idEstado);
-        RolBE rolBE = new RolBE();
-        rolBE.setIdRol(idRol);
         TipoCeseBE tipoCeseBE = new TipoCeseBE();
         tipoCeseBE.setIdTipoCEse(idTipoCese);
 
@@ -582,7 +579,7 @@ public class JDAgregarUsuario extends JDialog {
             JOptionPane.showMessageDialog(this, "Usuario registrado con exito");
             this.dispose();
         }
-        
+
     }
 
     private void jTFNombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombresKeyReleased
@@ -627,7 +624,7 @@ public class JDAgregarUsuario extends JDialog {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jTFNomUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNomUsuarioKeyPressed
-        String text = jTFNomUsuario.getText();
+       String text = jTFNomUsuario.getText();
         int maxLength=15;
         if (text.length() > maxLength) {
             text = text.substring(0, maxLength);
@@ -637,7 +634,7 @@ public class JDAgregarUsuario extends JDialog {
 
     private void jBReestablecerContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBReestablecerContrasenaActionPerformed
         
-        if(jBReestablecerContrasena.getText().compareTo("Reestablecer")==0){
+      if(jBReestablecerContrasena.getText().compareTo("Reestablecer")==0){
             JDNuevaContrasena jdNuevaContrasena = new JDNuevaContrasena(String.valueOf(jPFContrasena.getPassword()));
             jdNuevaContrasena.setModal(true);
             jdNuevaContrasena.setLocationRelativeTo(this);
@@ -682,12 +679,12 @@ public class JDAgregarUsuario extends JDialog {
 
 
         }
-        
+
     }//GEN-LAST:event_jBReestablecerContrasenaActionPerformed
 
     private void jBComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBComprobarActionPerformed
 
-        if(jTFNomUsuario.getText().compareTo("")!=0){
+               if(jTFNomUsuario.getText().compareTo("")!=0){
             int rpta=usuarioBL.AutenticarUsuario(jTFNomUsuario.getText(), "","");
             if (rpta!=0){
                 jTFNomUsuario.setText("");
@@ -704,14 +701,33 @@ public class JDAgregarUsuario extends JDialog {
     }//GEN-LAST:event_jBComprobarActionPerformed
 
     public void MostrarDatos(UsuarioBE usuarioBE){
-        jTFCodigo.setText(String.valueOf(usuarioBE.getIdUsuario()));
+    jTFCodigo.setText(String.valueOf(usuarioBE.getIdUsuario()));
         jTFNombres.setText(usuarioBE.getNombres());
         jTFApPat.setText(usuarioBE.getApellidoPaterno());
         jTFApMat.setText(usuarioBE.getApellidoMaterno());
         jTFNomUsuario.setText(usuarioBE.getNombreUsuario());
         jPFContrasena.setText(usuarioBE.getPassword());
-        jCBRol.setSelectedIndex(usuarioBE.getRolBE().getIdRol()-1);
-        jCBEstado.setSelectedIndex(usuarioBE.getEstadoBE().getIdEstado()-1);
+
+
+        for(int i=0;i<jCBEstado.getModel().getSize();i++){
+            if (usuarioBE.getEstadoBE().getNombre().compareTo(jCBEstado.getItemAt(i).toString())==0){
+                    jCBEstado.setSelectedIndex(i);
+            }
+
+        }
+         for(int i=0;i<jCBRol.getModel().getSize();i++){
+            if (usuarioBE.getRolBE().getNombre().compareTo(jCBRol.getItemAt(i).toString())==0){
+                    jCBRol.setSelectedIndex(i);
+            }
+
+        }
+
+//        jCBRol.setSelectedItem(usuarioBE.getRolBE());
+//
+//
+//        jCBEstado.setSelectedItem(usuarioBE.getEstadoBE());
+//
+
         cmbFechaInicio.setDate(usuarioBE.getFechaRegistro());
         cmbFechaFin.setDate(usuarioBE.getFechaVencimiento());
         jTFCorreoE.setText(usuarioBE.getEmail());
