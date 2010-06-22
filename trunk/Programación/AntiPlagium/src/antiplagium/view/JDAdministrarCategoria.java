@@ -370,7 +370,7 @@ public class JDAdministrarCategoria extends JDialog {
     }
     private void mnuRegistrarCategoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuRegistrarCategoriaMousePressed
         // TODO add your handling code here:
-        RegistrarCategoria resCategoria = new RegistrarCategoria();
+        JDRegistrarCategoria resCategoria = new JDRegistrarCategoria();
         resCategoria.setLocationRelativeTo(this);
         resCategoria.setModal(true);
         resCategoria.setVisible(true);
@@ -385,7 +385,7 @@ public class JDAdministrarCategoria extends JDialog {
             String nombre = (String)temp.getValueAt(idx, 1);
             String descripcion = (String)temp.getValueAt(idx, 2);
             CategoriaBE objCategoria = new CategoriaBE(idCategoria,descripcion,nombre);
-            RegistrarCategoria res = new RegistrarCategoria(objCategoria);
+            JDRegistrarCategoria res = new JDRegistrarCategoria(objCategoria);
             res.setLocationRelativeTo(this);
             res.setVisible(true);
         }
