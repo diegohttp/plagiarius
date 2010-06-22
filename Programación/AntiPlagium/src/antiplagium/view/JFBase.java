@@ -16,11 +16,14 @@ public class JFBase extends javax.swing.JFrame {
     public JFBase(UsuarioBE usuarioBE) {
         int ancho = Toolkit.getDefaultToolkit().getScreenSize().width;
         int alto = Toolkit.getDefaultToolkit().getScreenSize().height;
-
+        int ancholabel=Toolkit.getDefaultToolkit().getScreenSize().width;
         this.setSize(ancho, alto - 40);
         this.usuarioBE = usuarioBE;
         initComponents();
+        
+        LBLUsuario.setSize(ancho,14);
         LBLUsuario.setText(usuarioBE.getApellidoPaterno() + " " + usuarioBE.getApellidoMaterno() + ", " + usuarioBE.getNombres());
+
         try
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -106,7 +109,6 @@ public class JFBase extends javax.swing.JFrame {
 
         LBLUsuario.setBackground(new java.awt.Color(153, 204, 255));
         LBLUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LBLUsuario.setText("Nombre del Usuario");
         LBLUsuario.setMaximumSize(new java.awt.Dimension(1600, 14));
         LBLUsuario.setMinimumSize(new java.awt.Dimension(1600, 14));
         LBLUsuario.setOpaque(true);
