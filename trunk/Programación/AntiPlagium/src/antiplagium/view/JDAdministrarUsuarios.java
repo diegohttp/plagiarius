@@ -346,6 +346,13 @@ public class JDAdministrarUsuarios extends JDialog {
             }
         });
         jScrollPane1.setViewportView(jTListaUsuarios);
+        jTListaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTListaUsuarios.getColumnModel().getColumn(1).setPreferredWidth(150);
+        jTListaUsuarios.getColumnModel().getColumn(2).setPreferredWidth(250);
+        jTListaUsuarios.getColumnModel().getColumn(3).setPreferredWidth(120);
+        jTListaUsuarios.getColumnModel().getColumn(4).setPreferredWidth(120);
+        jTListaUsuarios.getColumnModel().getColumn(5).setPreferredWidth(150);
+        jTListaUsuarios.getColumnModel().getColumn(6).setPreferredWidth(120);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
