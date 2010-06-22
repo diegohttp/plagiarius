@@ -1,4 +1,3 @@
-
 package antiplagium.view;
 
 import antiplagium.BE.*;
@@ -10,33 +9,29 @@ import javax.swing.*;
 
 public class JFBase extends javax.swing.JFrame {
 
-    private Dimension dim;        
-    public static UsuarioBE usuarioBE=null;
+    private Dimension dim;
+    public static UsuarioBE usuarioBE = null;
     protected static RegistroOperacionBE operacionBE;
 
-    public JFBase(UsuarioBE usuarioBE)
-    {
+    public JFBase(UsuarioBE usuarioBE) {
         int ancho = Toolkit.getDefaultToolkit().getScreenSize().width;
         int alto = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-        this.setSize(ancho, alto-40);
-        this.usuarioBE=usuarioBE;
+        this.setSize(ancho, alto - 40);
+        this.usuarioBE = usuarioBE;
         initComponents();
-        LBLUsuario.setText(usuarioBE.getApellidoPaterno() +" "+ usuarioBE.getApellidoMaterno() + ", " + usuarioBE.getNombres());
+        LBLUsuario.setText(usuarioBE.getApellidoPaterno() + " " + usuarioBE.getApellidoMaterno() + ", " + usuarioBE.getNombres());
         try
         {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-        }               
-        this.getContentPane().setBackground(Color.lightGray);        
+        }
+        this.getContentPane().setBackground(Color.lightGray);
     }
 
-    protected void aplicarSeguridad(JMenuBar menu, Integer idRol)
-    {
-        //if (nombreRol == "Administrador") return;
+    protected void aplicarSeguridad(JMenuBar menu, Integer idRol) {
+        
         String nombreVentana = this.getName();
         ResultSet tablaControles;
         Vector vector = new Vector();
@@ -45,74 +40,59 @@ public class JFBase extends javax.swing.JFrame {
         Component[] componentesInternos;
 
         SeguridadBL seguridadBL = new SeguridadBL();
-        try
-        {
+        try {
             seguridadBL.AbrirConexion();
             tablaControles = seguridadBL.getListControlesDeshabilitadosPorRol(nombreVentana, idRol);
 
-            if (tablaControles.getMetaData().getColumnCount() > 0)
-            {
+            if (tablaControles.getMetaData().getColumnCount() > 0) {
                 int nroColumnas = tablaControles.getMetaData().getColumnCount();
-                while(tablaControles.next())
-                {
+                while (tablaControles.next()) {
                     Object[] registro = new Object[nroColumnas];
-                    for (int i=0; i < nroColumnas; i++)
-                    {
-                        registro[i] = tablaControles.getObject(i+1);
+                    for (int i = 0; i < nroColumnas; i++) {
+                        registro[i] = tablaControles.getObject(i + 1);
                     }
                     vector.addElement(registro);
                 }
             }
             seguridadBL.CerrarConexion();
-        }
-        catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        catch (SQLException excepcionSQL)
-        {
+        } catch (SQLException excepcionSQL) {
             JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
-        for(int i=0 ; i < vector.size(); i++)
-        {
-            Object[] registro = (Object[])vector.get(i);
+        for (int i = 0; i < vector.size(); i++) {
+            Object[] registro = (Object[]) vector.get(i);
             String nombreControl = registro[3].toString();
 
             //System.out.println(nombreControl);
-            for (int k=0; k < menu.getMenuCount() ;k++)
-            {                
+            for (int k = 0; k < menu.getMenuCount(); k++) {
                 componentesInternos = menu.getMenu(k).getMenuComponents();
-                for(int j=0; j < componentesInternos.length; j++)
-                {
-                    if (((JMenuItem)componentesInternos[j]).getName().equals(nombreControl))
-                    {
-                        ((JMenuItem)componentesInternos[j]).setVisible(true);
+                for (int j = 0; j < componentesInternos.length; j++) {
+                    if (((JMenuItem) componentesInternos[j]).getName().equals(nombreControl)) {
+                        ((JMenuItem) componentesInternos[j]).setVisible(true);
                     }
                 }
 
-                if (menu.getMenu(k).getName().equals(nombreControl))
-                {
-                        menu.getMenu(k).setVisible(true);
+                if (menu.getMenu(k).getName().equals(nombreControl)) {
+                    menu.getMenu(k).setVisible(true);
                 }
             }
         }
     }
 
-    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion)
-    {
+    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion) {
         operacionBE.setFechaOperacion(new Date(System.currentTimeMillis()));
         operacionBE.setNombreVentana(nombreVentana);
         operacionBE.setTipoOperacion(tipoOperacion);
         operacionBE.setDescripcion(descripcion);
     }
 
-    public static void registrarOperacion() throws SQLException
-    {
+    public static void registrarOperacion() throws SQLException {
         RegistroOperacionBL operacionBL = new RegistroOperacionBL();
         operacionBL.insertOperacion(JFBase.operacionBE);
     }
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -135,10 +115,7 @@ public class JFBase extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel LBLUsuario;
     // End of variables declaration//GEN-END:variables
-
 }
