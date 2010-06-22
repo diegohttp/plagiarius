@@ -66,7 +66,7 @@ public class RolBL {
         }
         if (id != 0)
         {
-            rolDAO.insertRol(id + 1, rolBE.getNombre(), rolBE.getDescripcion());
+            rolDAO.insertRol(id + 1, rolBE.getNombre(), rolBE.getEstado());
 
             Iterator i = listPrivilegios.iterator();
             while(i.hasNext())
@@ -80,7 +80,7 @@ public class RolBL {
     {
         RolDAO rolDAO = new RolDAO();        
                        
-        rolDAO.updateRol(rolBE.getIdRol(), rolBE.getNombre(), rolBE.getDescripcion());
+        rolDAO.updateRol(rolBE.getIdRol(), rolBE.getNombre(), rolBE.getEstado());
         Boolean encontrado = false;
 
         for(int i=0; i<listaPrivilegiosSinModificar.size(); i++)
