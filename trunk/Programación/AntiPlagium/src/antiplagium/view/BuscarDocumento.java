@@ -479,14 +479,14 @@ public class BuscarDocumento extends JDialog {
             return;
         }
         else {
-              ModificarDocumento vModificarDoc = null;
+              JDModificarDocumento vModificarDoc = null;
             try {
                 if (this.objUsuario.getIdUsuario() != this.arrDocumentos.get(idx).getUsuario().getIdUsuario()){
                     JOptionPane.showMessageDialog(this, "Debe ser propietario del documento para modificar sus datos", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 //this.arrDocumentos.get(idx).setUsuario(objUsuario);
-                vModificarDoc = new ModificarDocumento(this.arrDocumentos.get(idx),this.listaCategorias);
+                vModificarDoc = new JDModificarDocumento(this.arrDocumentos.get(idx),this.listaCategorias);
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(BuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
