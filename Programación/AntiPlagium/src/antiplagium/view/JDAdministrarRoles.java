@@ -54,12 +54,12 @@ public class JDAdministrarRoles extends JDialog {
             rolBL.CerrarConexion();
 
         } catch (ClassNotFoundException ex) {
-            GestorError.showError("base_de_datos");
-            //JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            //GestorError.showError("base_de_datos");
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         } catch (SQLException excepcionSQL) {
-            GestorError.showError("base_de_datos");            
-            //JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            //GestorError.showError("base_de_datos");
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
     }
@@ -298,14 +298,14 @@ public class JDAdministrarRoles extends JDialog {
         }
         catch (ClassNotFoundException ex)
         {
-            GestorError.showError("base_de_datos");
-            //JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            //GestorError.showError("base_de_datos");
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
         catch (SQLException excepcionSQL)
         {
-            GestorError.showError("base_de_datos");
-            //JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            //GestorError.showError("base_de_datos");
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
         JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "Eliminar rol", JOptionPane.INFORMATION_MESSAGE);
