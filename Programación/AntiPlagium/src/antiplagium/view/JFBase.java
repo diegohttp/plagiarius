@@ -4,16 +4,19 @@ import antiplagium.BE.*;
 import antiplagium.BL.*;
 import java.awt.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import javax.swing.*;
 
 public class JFBase extends javax.swing.JFrame {
 
+       
     private Dimension dim;
     public static UsuarioBE usuarioBE = null;
-    protected static RegistroOperacionBE operacionBE;
+    protected static RegistroOperacionBE operacionBE;    
 
-    public JFBase(UsuarioBE usuarioBE) {
+    public JFBase(UsuarioBE usuarioBE)
+    {
         int ancho = Toolkit.getDefaultToolkit().getScreenSize().width;
         int alto = Toolkit.getDefaultToolkit().getScreenSize().height;
         int ancholabel=Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -30,7 +33,7 @@ public class JFBase extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.getContentPane().setBackground(Color.lightGray);
+        this.getContentPane().setBackground(Color.lightGray);        
     }
 
     protected void aplicarSeguridad(JMenuBar menu, Integer idRol) {
@@ -83,19 +86,37 @@ public class JFBase extends javax.swing.JFrame {
             }
         }
     }
-
-    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion) {
+   
+    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion)
+    {
         operacionBE.setFechaOperacion(new Date(System.currentTimeMillis()));
         operacionBE.setNombreVentana(nombreVentana);
         operacionBE.setTipoOperacion(tipoOperacion);
-        operacionBE.setDescripcion(descripcion);
+        setOperacionDescripcion(operacionBE.getFechaOperacion(), descripcion);
     }
 
-    public static void registrarOperacion() throws SQLException {
+    public static void setOperacionDescripcion(java.util.Date fecha, String descripcion)
+    {
+        String cadenaFecha = null;
+        SimpleDateFormat formato=new SimpleDateFormat("dd/MMM/yyyy HH:mm:ss");
+        if (operacionBE.getFechaOperacion()!= null)
+        {
+            cadenaFecha = formato.format(operacionBE.getFechaOperacion());
+        }
+
+        String descripcionOperacion = "Usuario: " + JFBase.usuarioBE.getNombreUsuario() + "\n" +
+                                      "Fecha:   " + cadenaFecha + "\n" +
+                                      "Tipo Operacion: " + descripcion;
+
+        operacionBE.setDescripcion(descripcionOperacion);
+    }
+
+    public static void registrarOperacion() throws SQLException
+    {
         RegistroOperacionBL operacionBL = new RegistroOperacionBL();
         operacionBL.insertOperacion(JFBase.operacionBE);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

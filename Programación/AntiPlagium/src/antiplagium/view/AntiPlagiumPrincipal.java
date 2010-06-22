@@ -50,7 +50,7 @@ public class AntiPlagiumPrincipal extends JFBase {
     }
 
     protected void aplicarSeguridad(JMenuBar menu, Integer idRol) {
-        //if (nombreRol == "Administrador") return;
+        
         String nombreVentana = this.getName();
         ResultSet tablaControles;
         Vector vector = new Vector();

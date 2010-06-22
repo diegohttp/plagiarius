@@ -272,18 +272,17 @@ public class JDAgregarRol extends JDialog {
             }
             else rolBL.insertRol(rolBE, listaIDPrivilegios);
             
-
             if (esModificar)
             {
                 descripcionOperacionModificar(textNombreRol.getText(), listaPrivilegios);
-                AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcionOperacion);
+                JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcionOperacion);
             }
             else
             {
                 descripcionOperacionGuardar();
                 AntiPlagiumPrincipal.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcionOperacion);
             }
-            AntiPlagiumPrincipal.registrarOperacion();
+            JFBase.registrarOperacion();
             rolBL.CerrarConexion();
         }
         catch(ClassNotFoundException ex)
@@ -302,10 +301,9 @@ public class JDAgregarRol extends JDialog {
 
     private void descripcionOperacionGuardar()
     {
-        descripcionOperacion = "Usuario: " + AntiPlagiumPrincipal.usuarioBE.getNombreUsuario() + "\n" +
-                               "Fecha:   " + AntiPlagiumPrincipal.operacionBE.getFechaOperacion().toString() + "\n" +
-                               "Tipo Operacion: " + GestorTiposOperacion.getTipoOperacion("registra") + "\n" +
-                                rolBE.getNombre() + "\n" + "privilegios: \n";
+        descripcionOperacion = GestorTiposOperacion.getTipoOperacion("registra") + "\n" +
+                               rolBE.getNombre() + "\n" + "privilegios: \n";
+
         for (PrivilegioBE privilegio : listaPrivilegios)
         {
             descripcionOperacion += "   - " + privilegio.getNombrePrivilegio() + "\n";
@@ -314,9 +312,7 @@ public class JDAgregarRol extends JDialog {
 
     private void descripcionOperacionModificar(String nombre, ArrayList<PrivilegioBE>  listaPrivilegios)
     {
-        descripcionOperacion = "Usuario: " + AntiPlagiumPrincipal.usuarioBE.getNombreUsuario() + "\n" +
-                               "Fecha:   " + AntiPlagiumPrincipal.operacionBE.getFechaOperacion().toString() + "\n" +
-                               "Tipo Operacion: " + GestorTiposOperacion.getTipoOperacion("modifica") + "\n";
+        descripcionOperacion = GestorTiposOperacion.getTipoOperacion("modifica") + "\n";
 
         descripcionOperacion += descripcionOperacionModificar;
         descripcionOperacion += "Registro modificado: \n";
