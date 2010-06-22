@@ -7,7 +7,7 @@ public class RolBE {
 
     private Integer idRol;
     private String  nombre;
-    private String  descripcion;
+    private String  estado;
 
     private ArrayList<Integer> privilegios;
 
@@ -15,20 +15,20 @@ public class RolBE {
     {
         this.setIdRol(0);
         this.setNombre("");
-        this.setDescripcion("");        
+        this.setEstado("");
     }
 
     public RolBE(int idRol, String nombre,String descripcion)
     {
         this.setIdRol(idRol);
         this.setNombre(nombre);
-        this.setDescripcion(descripcion);
+        this.setEstado(descripcion);
     }
 
     public void RolBE(String nombre,String descripcion)
     {
         this.setNombre(nombre);
-        this.setDescripcion(descripcion);
+        this.setEstado(descripcion);
     }
     
     public Integer getIdPrivilegio() {
@@ -39,8 +39,8 @@ public class RolBE {
         return nombre;
     }
     
-    public String getDescripcion() {
-        return descripcion;
+    public String getEstado() {
+        return estado;
     }
 
     public ArrayList<Integer> getPrivilegios() {
@@ -51,8 +51,8 @@ public class RolBE {
         this.nombre = nombre;
     }
  
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setEstado(String descripcion) {
+        this.estado = descripcion;
     }
 
 
