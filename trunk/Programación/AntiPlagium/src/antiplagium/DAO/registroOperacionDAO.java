@@ -34,11 +34,11 @@ public class registroOperacionDAO
         ConexionJDBC.ejecutarUpdateString(SQL_Insert);
     }
 
-    public ResultSet ConsultarLogOperaciones(String nombreUsuario,String idCategoria,String cadenaFechaI,String cadenaFechaF,String tipoOperacion) throws SQLException{
+    public ResultSet ConsultarLogOperaciones(String nombreUsuario,String nombreCategoria,String cadenaFechaI,String cadenaFechaF,String tipoOperacion) throws SQLException{
 
         String queryListaOperaciones = " select D.\"idOperacion\", D.\"tipoOperacion\", A.\"idUsuario\", A.\"nombreUsuario\", D.\"fecha\" ";
         queryListaOperaciones+=" from \"Usuario\" A LEFT OUTER JOIN \"UsuarioXCategoria\" B ON A.\"idUsuario\"=B.\"idUsuario\" LEFT OUTER JOIN \"Categoria\" C ON B.\"idCategoria\"=C.\"idCategoria\" INNER JOIN \"Operacion\" D ON D.\"idUsuario\"=A.\"idUsuario\" ";
-        queryListaOperaciones+=" where A.\"nombreUsuario\" like '%"+nombreUsuario+"%' and (D.\"fecha\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and  D.\"tipoOperacion\" like '%"+tipoOperacion+"%' and (CAST (C.\"idCategoria\" AS character varying) like '%"+idCategoria+"%')  ";
+        queryListaOperaciones+=" where A.\"nombreUsuario\" like '%"+nombreUsuario+"%' and (D.\"fecha\" Between '"+cadenaFechaI+"' and '"+cadenaFechaF+"') and  D.\"tipoOperacion\" like '%"+tipoOperacion+"%' and (CAST (C.\"nombre\" AS character varying) like '%"+nombreCategoria+"%')  ";
         queryListaOperaciones+=" ORDER BY D.\"idOperacion\"";
 
         ResultSet rs = ConexionJDBC.ejecutarQueryString(queryListaOperaciones);
