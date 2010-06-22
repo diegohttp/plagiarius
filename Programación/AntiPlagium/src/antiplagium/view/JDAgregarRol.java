@@ -266,6 +266,16 @@ public class JDAgregarRol extends JDialog {
         try
         {
             rolBL.AbrirConexion();
+            ResultSet tablaRoles = rolBL.getListRoles();
+            while (tablaRoles.next())
+            {
+                if ( rolBE.getNombre().compareToIgnoreCase(tablaRoles.getString("nombre")) == 0 )
+                {
+                    JOptionPane.showMessageDialog(this, "Nombre de rol ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
             if (esModificar)
             {
                 rolBL.updateRol(rolBE, listaPrivilegiosSinModificar, listaIDPrivilegios);
