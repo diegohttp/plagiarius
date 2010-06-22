@@ -266,7 +266,7 @@ public class JFCompararDocumentos extends JDialog {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
-            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario,0);
+            JDBuscarDocumento buscardoc = new JDBuscarDocumento(objUsuario,0);
 
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
@@ -296,7 +296,7 @@ public class JFCompararDocumentos extends JDialog {
             /* Codigo agregado solo para pruebas */
             ArrayList<CategoriaBE> aCategoria = new ArrayList<CategoriaBE>();
             UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
-            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario,1);
+            JDBuscarDocumento buscardoc = new JDBuscarDocumento(objUsuario,1);
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
