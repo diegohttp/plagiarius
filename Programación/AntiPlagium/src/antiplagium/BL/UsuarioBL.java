@@ -294,7 +294,7 @@ public class UsuarioBL {
                         ResultSet rs=rolBL.getListRoles();
                         while (rs.next()){
                             if(rs.getInt("idRol")==idRol){
-                                rolBE=new RolBE(idRol,rs.getString("nombre"),rs.getString("descripcion"));
+                                rolBE=new RolBE(idRol,rs.getString("nombre"),rs.getString("estado"));
                             }
                         }
                         ConexionJDBC.cerrarConexion();
