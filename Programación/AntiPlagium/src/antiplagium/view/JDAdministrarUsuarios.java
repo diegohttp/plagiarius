@@ -81,7 +81,7 @@ public class JDAdministrarUsuarios extends JDialog {
                 jCBRol.addItem(new RolBE(-1,"Todos","Todos los roles"));
                 jCBRol.addItem(new RolBE(0,"Ninguno","Ningun rol"));
                 while (registros.next()) {
-                    jCBRol.addItem(new RolBE(registros.getInt("idRol"),registros.getString("nombre"),registros.getString("descripcion")));
+                    jCBRol.addItem(new RolBE(registros.getInt("idRol"),registros.getString("nombre"),registros.getString("estado")));
                 }
                
                 rolBL.CerrarConexion();
