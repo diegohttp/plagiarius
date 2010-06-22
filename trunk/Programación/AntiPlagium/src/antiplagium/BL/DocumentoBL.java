@@ -36,6 +36,16 @@ import org.apache.poi.poifs.eventfilesystem.POIFSReaderListener;
  */
 public class DocumentoBL {
 
+    private static DocumentoBL instancia;
+
+    public static DocumentoBL obtenerInstancia() {
+        if (instancia==null) {
+            instancia = new DocumentoBL();
+        }
+        return instancia;
+    }
+
+
     public static boolean validarNombre(String nombre) {
         return DocumentoDAO.validarNombre(nombre);
     }

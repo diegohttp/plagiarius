@@ -20,6 +20,15 @@ import java.util.Date;
  */
 public class ResultadoDeteccionBL {
 
+     private static ResultadoDeteccionBL instancia;
+
+    public static ResultadoDeteccionBL obtenerInstancia() {
+        if (instancia==null) {
+            instancia = new ResultadoDeteccionBL();
+        }
+        return instancia;
+    }
+    
 
     public static ArrayList<ResultadoDeteccionBE> ListarDocsDetectados(ResultadoDeteccionBE objResultado, Date Fechaini, Date Fechafin) throws FileNotFoundException, IOException, SQLException {
         return ResultadoDeteccionDAO.ListarDocsDetectados(objResultado,Fechaini,Fechafin);
