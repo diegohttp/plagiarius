@@ -18,7 +18,7 @@ import javax.swing.JDialog;
  */
 public class JFVisualizarDocumento extends JDialog{
     /** Creates new form JFVisualizarDocumento */
-    private ModificarDocumento padre = null;
+    private JDModificarDocumento padre = null;
 
     public JFVisualizarDocumento(String doc) {
         super();
@@ -27,7 +27,7 @@ public class JFVisualizarDocumento extends JDialog{
         jTextDoc.setText(doc);
     }
 
-    public JFVisualizarDocumento(ModificarDocumento padre,String doc) {
+    public JFVisualizarDocumento(JDModificarDocumento padre,String doc) {
         super();
         initComponents();
         this.padre = padre;
