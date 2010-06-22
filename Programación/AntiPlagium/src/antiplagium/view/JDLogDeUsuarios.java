@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.freixas.jcalendar.JCalendarCombo;
 
@@ -55,7 +56,7 @@ public class JDLogDeUsuarios extends JDialog {
 
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTOperaciones = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
@@ -72,12 +73,13 @@ public class JDLogDeUsuarios extends JDialog {
         btnFiltrar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setTitle("Log de Usuarios");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Operaciones"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTOperaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -100,7 +102,7 @@ public class JDLogDeUsuarios extends JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTOperaciones);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -108,7 +110,7 @@ public class JDLogDeUsuarios extends JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -207,7 +209,7 @@ public class JDLogDeUsuarios extends JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbOperacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JPFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(JPFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -215,7 +217,7 @@ public class JDLogDeUsuarios extends JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(260, 260, 260)
                         .addComponent(btnFiltrar)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,24 +258,36 @@ public class JDLogDeUsuarios extends JDialog {
 
         jButton2.setText("Reporte");
 
+        jButton3.setText("Ver Detalle");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(9, 9, 9)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -285,8 +299,9 @@ public class JDLogDeUsuarios extends JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -340,9 +355,9 @@ public class JDLogDeUsuarios extends JDialog {
                 tipoOperacion="";
             }
             
-            rs = registroOperacionBL.ObtenerLogOperaciones(nombreUsuario, nombreCategoria, cadenaFechaI, cadenaFechaF, tipoOperacion);
+            rs = registroOperacionBL.ObtenerLogOperaciones(0,nombreUsuario, nombreCategoria, cadenaFechaI, cadenaFechaF, tipoOperacion);
             if (rs != null) {
-                DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                DefaultTableModel modelo = (DefaultTableModel) jTOperaciones.getModel();
                 while (modelo.getRowCount() > 0) {
                     modelo.removeRow(0);
                 }
@@ -372,6 +387,54 @@ public class JDLogDeUsuarios extends JDialog {
         }
 
     }//GEN-LAST:event_btnFiltrarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        try {
+
+            // TODO add your handling code here:
+            ResultSet rs;
+            RegistroOperacionBE registroOperacionBE;
+            boolean selecciona = false;
+            ConexionJDBC.abrirConexion();
+
+            DefaultTableModel modelo = (DefaultTableModel) jTOperaciones.getModel();
+            int[] filasSeleccionadas = jTOperaciones.getSelectedRows();
+
+            if (filasSeleccionadas.length == 0) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar una fila o registro de la lista de usuarios", "Error", JOptionPane.ERROR_MESSAGE);
+            } else
+                if (filasSeleccionadas.length > 1) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar solo una fila o registro de la lista usuaios", "Error", JOptionPane.ERROR_MESSAGE);
+            } else
+                if (filasSeleccionadas.length == 1) {
+                int idRegistroOperacion = Integer.parseInt(jTOperaciones.getValueAt(jTOperaciones.getSelectedRow(), 0).toString());
+                String cadenaFecha =jTOperaciones.getValueAt(jTOperaciones.getSelectedRow(), 4).toString();
+
+                rs = registroOperacionBL.ObtenerLogOperaciones(idRegistroOperacion, "", "", cadenaFecha, cadenaFecha, "");
+                if (rs.next()) {
+                    String cidOperacion=String.valueOf(rs.getInt("idOperacion"));
+                    String ctipoOperacion=rs.getString("tipoOperacion");
+                    String cnombreUsuario=rs.getString("nombreUsuario");
+                    String cfechaOperacion=rs.getString("fecha");
+                    String cDescripcion=rs.getString("descripcion");
+                    JDDetalleLogDeUsuario jdDetalleLogUsuario=new JDDetalleLogDeUsuario(cidOperacion,ctipoOperacion,cnombreUsuario,cfechaOperacion,cDescripcion);
+                    jdDetalleLogUsuario.setModal(true);
+                    jdDetalleLogUsuario.setLocationRelativeTo(this);
+                    jdDetalleLogUsuario.setVisible(true);
+                    jdDetalleLogUsuario.dispose();
+                    //JOptionPane.showMessageDialog(this,cad ,"Informacion del registro", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+
+            ConexionJDBC.cerrarConexion();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDLogDeUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JDLogDeUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPFechaFin;
@@ -382,6 +445,7 @@ public class JDLogDeUsuarios extends JDialog {
     private javax.swing.JComboBox cmbOperacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -390,7 +454,7 @@ public class JDLogDeUsuarios extends JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTOperaciones;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

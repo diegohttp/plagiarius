@@ -90,7 +90,7 @@ public class JDAgregarUsuario extends JDialog {
             ResultSet registros = rolBL.getListRoles();
             //int cantidadR = registros.getRow();
             while (registros.next()) {
-                jCBRol.addItem(new RolBE(registros.getInt("idRol"), registros.getString("nombre"), registros.getString("descripcion")));
+                jCBRol.addItem(new RolBE(registros.getInt("idRol"), registros.getString("nombre"), registros.getString("estado")));
             }
             rolBL.CerrarConexion();
 
