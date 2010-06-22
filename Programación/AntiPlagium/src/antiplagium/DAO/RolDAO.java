@@ -7,8 +7,8 @@ import java.util.Vector;
 
 public class RolDAO {
 
-    private static String SQL_GETROLES = "SELECT \"idRol\", \"nombre\", \"descripcion\" FROM \"Rol\" ";
-    private static String SQL_INSERT_ROL = "INSERT INTO \"Rol\"(\"idRol\", \"nombre\", \"descripcion\") " +
+    private static String SQL_GETROLES = "SELECT \"idRol\", \"nombre\", \"estado\" FROM \"Rol\" ";
+    private static String SQL_INSERT_ROL = "INSERT INTO \"Rol\"(\"idRol\", \"nombre\", \"estado\") " +
                                            "VALUES(" ;
 
     private static String SQL_GETLAST_ID = "SELECT MAX(\"idRol\") AS idRol FROM   \"Rol\" ";
@@ -73,7 +73,7 @@ public class RolDAO {
         boolean _successful = false;
         String SQL_UPDATE = null;
           
-        SQL_UPDATE = SQL_UPDATE_ROL + idRol.toString() + ", \"nombre\"= \'" + nombreRol + "\', \"descripcion\" = \'" + descripcion + "\' WHERE \"idRol\" = " + idRol.toString();
+        SQL_UPDATE = SQL_UPDATE_ROL + idRol.toString() + ", \"nombre\"= \'" + nombreRol + "\', \"estado\" = \'" + descripcion + "\' WHERE \"idRol\" = " + idRol.toString();
         ConexionJDBC.ejecutarUpdateString(SQL_UPDATE);
     }
 
