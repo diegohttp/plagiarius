@@ -66,7 +66,7 @@ public class RolBL {
         }
         if (id != 0)
         {
-            rolDAO.insertRol(id + 1, rolBE.getNombre(), rolBE.getEstado());
+            rolDAO.insertRol(id + 1, rolBE.getNombre());
 
             Iterator i = listPrivilegios.iterator();
             while(i.hasNext())
@@ -114,9 +114,7 @@ public class RolBL {
 
     public void deleteRol(RolBE rolBE) throws SQLException
     {
-        RolDAO rolDAO = new RolDAO();
-
-        rolDAO.deletePrivilegios_ROL(rolBE.getIdRol());
+        RolDAO rolDAO = new RolDAO();        
         rolDAO.deleteRol(rolBE.getIdRol());
     }
 }
