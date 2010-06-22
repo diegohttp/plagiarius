@@ -335,6 +335,10 @@ public class JDLogDeUsuarios extends JDialog {
             String cadenaFechaI = formato.format(calendarInicio.getDate());
             String cadenaFechaF = formato.format(calendarFin.getDate());
             String tipoOperacion = cmbOperacion.getSelectedItem().toString();
+
+            if(tipoOperacion.compareTo("Todos")==0){
+                tipoOperacion="";
+            }
             
             rs = registroOperacionBL.ObtenerLogOperaciones(nombreUsuario, nombreCategoria, cadenaFechaI, cadenaFechaF, tipoOperacion);
             if (rs != null) {
