@@ -290,7 +290,7 @@ public class AntiPlagiumPrincipal extends JFBase {
             /* Codigo agregado solo para pruebas */
             UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
             /* Eliminar luego de probar */
-            BuscarDocumento buscardoc = new BuscarDocumento(objUsuario,0);
+            JDBuscarDocumento buscardoc = new JDBuscarDocumento(objUsuario,0);
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
