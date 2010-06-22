@@ -17,12 +17,10 @@ import java.util.Vector;
 import javax.swing.*;
 
 
-public class AntiPlagiumPrincipal extends JFrame {
-
-    public static RegistroOperacionBE operacionBE;
-
-    public static UsuarioBE usuarioBE;
+public class AntiPlagiumPrincipal extends JFBase {
+       
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
+        super(usuarioBE);
         this.usuarioBE = usuarioBE;
         this.add(new PanelAnimado());
 
@@ -352,19 +350,6 @@ public class AntiPlagiumPrincipal extends JFrame {
     public static JDesktopPane getJDesktopPane() {
         return JDPPrincipal;
     }    
-
-
-    public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion) {
-        operacionBE.setFechaOperacion(new Date(System.currentTimeMillis()));
-        operacionBE.setNombreVentana(nombreVentana);
-        operacionBE.setTipoOperacion(tipoOperacion);
-        operacionBE.setDescripcion(descripcion);
-    }
-
-    public static void registrarOperacion() throws SQLException {
-        RegistroOperacionBL operacionBL = new RegistroOperacionBL();
-        operacionBL.insertOperacion(AntiPlagiumPrincipal.operacionBE);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane JDPPrincipal;
