@@ -16,14 +16,11 @@ import java.util.Date;
 import java.util.Vector;
 import javax.swing.*;
 
-<<<<<<< .mine
-public class AntiPlagiumPrincipal extends JFBase
-{    
-=======
+
 public class AntiPlagiumPrincipal extends JFrame {
 
     public static RegistroOperacionBE operacionBE;
->>>>>>> .r833
+
     public static UsuarioBE usuarioBE;
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
         this.usuarioBE = usuarioBE;
@@ -356,8 +353,7 @@ public class AntiPlagiumPrincipal extends JFrame {
         return JDPPrincipal;
     }    
 
-<<<<<<< .mine
-=======
+
     public static void setOperacion(String nombreVentana, String tipoOperacion, String descripcion) {
         operacionBE.setFechaOperacion(new Date(System.currentTimeMillis()));
         operacionBE.setNombreVentana(nombreVentana);
@@ -369,7 +365,7 @@ public class AntiPlagiumPrincipal extends JFrame {
         RegistroOperacionBL operacionBL = new RegistroOperacionBL();
         operacionBL.insertOperacion(AntiPlagiumPrincipal.operacionBE);
     }
->>>>>>> .r833
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane JDPPrincipal;
     private javax.swing.JMenuItem JMIAdministrarGrupos;
