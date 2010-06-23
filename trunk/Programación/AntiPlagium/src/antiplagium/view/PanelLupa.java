@@ -27,7 +27,7 @@ public class PanelLupa extends JPanel {
     BufferedImage imgTotal, imgPapel, imgLupa;
     HiloAnimacion hilo = new HiloAnimacion();
     public static int delay = 50;
-    float alpha = 0;
+    float alpha = (float)0.5;
     public static boolean fin=false;
 
     public PanelLupa() {
@@ -93,7 +93,7 @@ public class PanelLupa extends JPanel {
                 if (posYLupa > 40 || posYLupa < -30) {
                     y = -1 * y;
                 }
-                if (alpha > 1 || alpha < 0) {
+                if (alpha > 0.8 || alpha < 0.2) {
                     a = -1 * a;
                 }
 
