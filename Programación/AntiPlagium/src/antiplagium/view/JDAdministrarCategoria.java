@@ -32,9 +32,9 @@ import javax.swing.table.DefaultTableModel;
 public class JDAdministrarCategoria extends JDialog {
 
 
-    ArrayList<Integer> idsCategorias=null;
+    ArrayList<Integer> alistIdsCategorias=null;
     int opcion;
-    CategoriaBE categoriaSeleccionado=null;
+    CategoriaBE objCategoriaSeleccionada=null;
 
 
     /** Creates new form JFAdministrarCategoria */
@@ -80,13 +80,13 @@ public class JDAdministrarCategoria extends JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlDatosBusqueda = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        pnlResultadosBusqueda = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCategoria = new javax.swing.JTable();
         btnCerrar = new javax.swing.JButton();
@@ -98,7 +98,7 @@ public class JDAdministrarCategoria extends JDialog {
         setTitle("Adiminstrar Categoria");
         setModal(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
+        pnlDatosBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
         lblNombre.setText("Nombre");
 
@@ -121,35 +121,35 @@ public class JDAdministrarCategoria extends JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDatosBusquedaLayout = new javax.swing.GroupLayout(pnlDatosBusqueda);
+        pnlDatosBusqueda.setLayout(pnlDatosBusquedaLayout);
+        pnlDatosBusquedaLayout.setHorizontalGroup(
+            pnlDatosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosBusquedaLayout.createSequentialGroup()
+                .addGroup(pnlDatosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosBusquedaLayout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlDatosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDescripcion)
                             .addComponent(lblNombre))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnlDatosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDescripcion)
                             .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pnlDatosBusquedaLayout.createSequentialGroup()
                         .addGap(223, 223, 223)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlDatosBusquedaLayout.setVerticalGroup(
+            pnlDatosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosBusquedaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlDatosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlDatosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescripcion)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -157,7 +157,7 @@ public class JDAdministrarCategoria extends JDialog {
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
+        pnlResultadosBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
         tblCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,18 +184,18 @@ public class JDAdministrarCategoria extends JDialog {
         });
         jScrollPane1.setViewportView(tblCategoria);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlResultadosBusquedaLayout = new javax.swing.GroupLayout(pnlResultadosBusqueda);
+        pnlResultadosBusqueda.setLayout(pnlResultadosBusquedaLayout);
+        pnlResultadosBusquedaLayout.setHorizontalGroup(
+            pnlResultadosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlResultadosBusquedaLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        pnlResultadosBusquedaLayout.setVerticalGroup(
+            pnlResultadosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlResultadosBusquedaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addContainerGap())
@@ -250,8 +250,8 @@ public class JDAdministrarCategoria extends JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlResultadosBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlDatosBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(360, 360, 360)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,9 +263,9 @@ public class JDAdministrarCategoria extends JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDatosBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlResultadosBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,7 +280,7 @@ public class JDAdministrarCategoria extends JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
     private void buscar(){
-        CategoriaBL cat = new CategoriaBL();
+        CategoriaBL objCategoriaBL = new CategoriaBL();
         DefaultTableModel temp = (DefaultTableModel) this.tblCategoria.getModel();
         for (int i=temp.getRowCount() - 1; i >= 0; --i){
             temp.removeRow(i);
@@ -298,9 +298,9 @@ public class JDAdministrarCategoria extends JDialog {
                     temp2 += this.txtDescripcion.getText().charAt(i);
                 }
             }
-            ArrayList<CategoriaBE> res = cat.buscarCategoria(temp2,temp1);
-            for (int i=0; i < res.size(); ++i){
-                Object[]nuevo ={res.get(i).getIdCategoria(),res.get(i).getNombre(),res.get(i).getDescripcion()};
+            ArrayList<CategoriaBE> alstResultado = objCategoriaBL.buscarCategoria(temp2,temp1);
+            for (int i=0; i < alstResultado.size(); ++i){
+                Object[]nuevo ={alstResultado.get(i).getIdCategoria(),alstResultado.get(i).getNombre(),alstResultado.get(i).getDescripcion()};
                 temp.addRow(nuevo);
             }
         } catch (FileNotFoundException ex) {
@@ -324,14 +324,14 @@ public class JDAdministrarCategoria extends JDialog {
 
         if(opcion==1){
         DefaultTableModel modelo=(DefaultTableModel)tblCategoria.getModel();
-        idsCategorias=new ArrayList();
+        alistIdsCategorias=new ArrayList();
         
         for(int i=0;i<modelo.getRowCount();i++){
             
             Boolean seleccion=(Boolean)modelo.getValueAt(i, 3);
             System.out.println("esto es "+seleccion);
             if ((seleccion!=null)&&(seleccion!=false))
-                idsCategorias.add((Integer)modelo.getValueAt(i, 0));   
+                alistIdsCategorias.add((Integer)modelo.getValueAt(i, 0));
         }
 
         this.setVisible(false);
@@ -351,7 +351,7 @@ public class JDAdministrarCategoria extends JDialog {
                 JOptionPane.showMessageDialog(this,"Debe seleccionar solo una fila o registro de la lista usuaios","Error", JOptionPane.ERROR_MESSAGE);
             }
             else if(filasSeleccionadas.length==1){
-                categoriaSeleccionado=CategoriaBL.buscarIdCategoria(Integer.parseInt(tblCategoria.getValueAt(tblCategoria.getSelectedRow(),0).toString()));
+                objCategoriaSeleccionada=CategoriaBL.buscarIdCategoria(Integer.parseInt(tblCategoria.getValueAt(tblCategoria.getSelectedRow(),0).toString()));
 
                 this.setVisible(false);
             }
@@ -360,34 +360,34 @@ public class JDAdministrarCategoria extends JDialog {
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public CategoriaBE getCategoriaSeleccionado() {
-        return categoriaSeleccionado;
+        return objCategoriaSeleccionada;
     }
 
 
 
     public ArrayList<Integer> getIdsCategorias() {
-        return idsCategorias;
+        return alistIdsCategorias;
     }
     private void mnuRegistrarCategoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuRegistrarCategoriaMousePressed
         // TODO add your handling code here:
-        JDRegistrarCategoria resCategoria = new JDRegistrarCategoria();
-        resCategoria.setLocationRelativeTo(this);
-        resCategoria.setModal(true);
-        resCategoria.setVisible(true);
+        JDRegistrarCategoria registrarCategoria = new JDRegistrarCategoria();
+        registrarCategoria.setLocationRelativeTo(this);
+        registrarCategoria.setModal(true);
+        registrarCategoria.setVisible(true);
     }//GEN-LAST:event_mnuRegistrarCategoriaMousePressed
 
     private void mnuModificarCategoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuModificarCategoriaMousePressed
         // TODO add your handling code here:
-        int idx = this.tblCategoria.getSelectedRow();
+        int idx = tblCategoria.getSelectedRow();
         if (idx >= 0){
-            DefaultTableModel temp = (DefaultTableModel) this.tblCategoria.getModel();
+            DefaultTableModel temp = (DefaultTableModel) tblCategoria.getModel();
             int idCategoria = (Integer)temp.getValueAt(idx, 0);
             String nombre = (String)temp.getValueAt(idx, 1);
             String descripcion = (String)temp.getValueAt(idx, 2);
             CategoriaBE objCategoria = new CategoriaBE(idCategoria,descripcion,nombre);
-            JDRegistrarCategoria res = new JDRegistrarCategoria(objCategoria);
-            res.setLocationRelativeTo(this);
-            res.setVisible(true);
+            JDRegistrarCategoria registrarCategoria = new JDRegistrarCategoria(objCategoria);
+            registrarCategoria.setLocationRelativeTo(this);
+            registrarCategoria.setVisible(true);
         }
         else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar categoria", "Error Modificar", JOptionPane.ERROR_MESSAGE);
@@ -408,13 +408,13 @@ public class JDAdministrarCategoria extends JDialog {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JMenu mnuModificarCategoria;
     private javax.swing.JMenu mnuRegistrarCategoria;
+    private javax.swing.JPanel pnlDatosBusqueda;
+    private javax.swing.JPanel pnlResultadosBusqueda;
     private javax.swing.JTable tblCategoria;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;
