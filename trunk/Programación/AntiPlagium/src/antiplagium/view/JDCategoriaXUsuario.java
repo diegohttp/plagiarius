@@ -273,8 +273,9 @@ public class JDCategoriaXUsuario extends JDialog {
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-       JDAgregarUsuario.ActualizarListaCategorias(listaCategorias);
-       this.dispose();
+       //JDAgregarUsuario.ActualizarListaCategorias(listaCategorias);
+       //this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed

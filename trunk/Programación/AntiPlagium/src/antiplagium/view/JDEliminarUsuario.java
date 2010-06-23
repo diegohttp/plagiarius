@@ -42,6 +42,7 @@ public class JDEliminarUsuario extends JDialog{
             initComponents();
             jCCFechaEliminar.setSize(253, 31);
             jPFechaEliminar.add(jCCFechaEliminar);
+
             estadoBL = new EstadoBL();
             usuarioBL = new UsuarioBL();
             registrosEstado = estadoBL.ObtenerEstados(0,"","");
@@ -65,11 +66,14 @@ public class JDEliminarUsuario extends JDialog{
 
             //System.out.println(jCBEstado.getSelectedIndex()+jCBEstado.getSelectedItem().toString());
             EstadoBE estadoBE=(EstadoBE)jCBEstado.getSelectedItem();
-            if (estadoBE.getNombre().compareTo("Anulado")==0){
+            if (estadoBE.getNombre().compareTo("Inactivo")==0){
                 jCCFechaEliminar.setDate(usuarioBE.getFechaCese());
                 JOptionPane.showMessageDialog(this,"El usuario seleccionado ya ha sido eliminado.", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
                 rpta=false;
-                jButton1.setEnabled(false);
+                jCCFechaEliminar.setEnabled(false);
+                jBAceptarEliminar.setEnabled(false);
+                jCBEstado.setEnabled(false);
+                jTAMotivo.setEnabled(false);
             }
 
         } catch (SQLException ex) {
@@ -92,12 +96,12 @@ public class JDEliminarUsuario extends JDialog{
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTAMotivo = new javax.swing.JTextArea();
         jPFechaEliminar = new javax.swing.JPanel();
         jCBEstado = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBAceptarEliminar = new javax.swing.JButton();
+        jBCancelarEliminar = new javax.swing.JButton();
 
         setTitle("Eliminar Usuario");
 
@@ -107,9 +111,9 @@ public class JDEliminarUsuario extends JDialog{
 
         jLabel2.setText("Fecha");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTAMotivo.setColumns(20);
+        jTAMotivo.setRows(5);
+        jScrollPane1.setViewportView(jTAMotivo);
 
         jPFechaEliminar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPFechaEliminar.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -164,19 +168,19 @@ public class JDEliminarUsuario extends JDialog{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBAceptarEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        jBAceptarEliminar.setText("Aceptar");
+        jBAceptarEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBAceptarEliminarActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBCancelarEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
+        jBCancelarEliminar.setText("Cancelar");
+        jBCancelarEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBCancelarEliminarActionPerformed(evt);
             }
         });
 
@@ -191,9 +195,9 @@ public class JDEliminarUsuario extends JDialog{
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
-                        .addComponent(jButton1)
+                        .addComponent(jBAceptarEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(jBCancelarEliminar)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -203,20 +207,24 @@ public class JDEliminarUsuario extends JDialog{
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jBAceptarEliminar)
+                    .addComponent(jBCancelarEliminar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBAceptarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarEliminarActionPerformed
 
-       usuarioBE.setFechaCese(jCCFechaEliminar.getDate());
+
+        usuarioBE.setFechaCese(jCCFechaEliminar.getDate());
         //usuarioBE.setTipoCeseBE(null);
-        usuarioBE.setEstadoBE(registrosEstado.get(2));
-
+        for (int i=0;i<registrosEstado.size();i++){
+            if (registrosEstado.get(i).getNombre().compareTo("Inactivo")==0){
+                usuarioBE.setEstadoBE(registrosEstado.get(i));
+            }
+        }
         rpta=usuarioBL.ElminarUsuario(usuarioBE);
 
         if(rpta==true){
@@ -226,11 +234,11 @@ public class JDEliminarUsuario extends JDialog{
             JOptionPane.showMessageDialog(this,"Error. Usuario no eliminado", "Error", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBAceptarEliminarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBCancelarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarEliminarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBCancelarEliminarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -244,8 +252,8 @@ public class JDEliminarUsuario extends JDialog{
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBAceptarEliminar;
+    private javax.swing.JButton jBCancelarEliminar;
     private javax.swing.JComboBox jCBEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -253,7 +261,7 @@ public class JDEliminarUsuario extends JDialog{
     private javax.swing.JPanel jPFechaEliminar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTAMotivo;
     // End of variables declaration//GEN-END:variables
 
 }
