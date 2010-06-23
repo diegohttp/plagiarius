@@ -4,21 +4,28 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="jMReactivar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Iconos/aceptar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Reactivar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMReactivarMouseReleased"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMReactivarActionPerformed"/>
+          </Events>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="jMSuspender">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Iconos/Eliminar - 16.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Suspender"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMSuspenderActionPerformed"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -110,9 +117,9 @@
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel14" min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="lblCantidadCategorias" min="-2" pref="8" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jBVer" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBVerCategorias" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -199,8 +206,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBVer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCantidadCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBVerCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -217,12 +224,21 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNombres">
           <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNombresKeyPressed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNombresKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFApPat">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApPatKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApPatKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFApMat">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApMatKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApMatKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNomUsuario">
           <Events>
@@ -283,7 +299,7 @@
             <Property name="text" type="java.lang.String" value="Apellido Paterno"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBVer">
+        <Component class="javax.swing.JButton" name="jBVerCategorias">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DejaVu Sans" size="10" style="0"/>
@@ -294,7 +310,7 @@
             <Property name="text" type="java.lang.String" value="Ver Lista"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBVerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBVerCategoriasActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPContrasena">
@@ -327,7 +343,7 @@
             <Property name="text" type="java.lang.String" value="Total asignadas:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel14">
+        <Component class="javax.swing.JLabel" name="lblCantidadCategorias">
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
@@ -474,6 +490,7 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
@@ -528,6 +545,9 @@
         <Property name="text" type="java.lang.String" value="Limpiar"/>
         <Property name="alignmentY" type="float" value="0.0"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBLimpiarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

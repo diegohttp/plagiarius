@@ -33,6 +33,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import org.freixas.jcalendar.JCalendarCombo;
+import org.omg.CORBA.Current;
 
 /**
  *
@@ -52,7 +53,8 @@ public class JDAgregarUsuario extends JDialog {
     private UsuarioBE usuarioBE=null;
     private UsuarioBE usuarioBEOringinal=null;
 
-    private static ArrayList<CategoriaBE> listaCategorias=null;
+    //private static ArrayList<CategoriaBE> listaCategorias=null;
+    private ArrayList<CategoriaBE> listaCategorias=null;
 
     private JPasswordField jPFContrasena;
     
@@ -121,11 +123,11 @@ public class JDAgregarUsuario extends JDialog {
                 jBComprobar.setEnabled(false);
 
                 if ((jCBEstado.getSelectedItem().toString()).compareTo("Activo")==0) {
-                    jMenu1.setEnabled(false);
-                    jMenu1.setVisible(false);
+                    jMReactivar.setEnabled(false);
+                    jMReactivar.setVisible(false);
                 } else {
-                    jMenu2.setEnabled(false);
-                    jMenu2.setVisible(false);
+                    jMSuspender.setEnabled(false);
+                    jMSuspender.setVisible(false);
                 }
 
             } else {
@@ -170,10 +172,10 @@ public class JDAgregarUsuario extends JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jBVer = new javax.swing.JButton();
+        jBVerCategorias = new javax.swing.JButton();
         jPContrasena = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblCantidadCategorias = new javax.swing.JLabel();
         jBReestablecerContrasena = new javax.swing.JButton();
         jBComprobar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -187,8 +189,8 @@ public class JDAgregarUsuario extends JDialog {
         jBSalir = new javax.swing.JButton();
         jBLimpiar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMReactivar = new javax.swing.JMenu();
+        jMSuspender = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Usuario");
@@ -197,8 +199,29 @@ public class JDAgregarUsuario extends JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Usuario"));
 
         jTFNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFNombresKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFNombresKeyReleased(evt);
+            }
+        });
+
+        jTFApPat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFApPatKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFApPatKeyReleased(evt);
+            }
+        });
+
+        jTFApMat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFApMatKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFApMatKeyReleased(evt);
             }
         });
 
@@ -226,12 +249,12 @@ public class JDAgregarUsuario extends JDialog {
 
         jLabel9.setText("Apellido Paterno");
 
-        jBVer.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
-        jBVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
-        jBVer.setText("Ver Lista");
-        jBVer.addActionListener(new java.awt.event.ActionListener() {
+        jBVerCategorias.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
+        jBVerCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
+        jBVerCategorias.setText("Ver Lista");
+        jBVerCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBVerActionPerformed(evt);
+                jBVerCategoriasActionPerformed(evt);
             }
         });
 
@@ -251,9 +274,9 @@ public class JDAgregarUsuario extends JDialog {
 
         jLabel13.setText("Total asignadas:");
 
-        jLabel14.setText("0");
+        lblCantidadCategorias.setText("0");
 
-        jBReestablecerContrasena.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        jBReestablecerContrasena.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
         jBReestablecerContrasena.setText("Reestablecer");
         jBReestablecerContrasena.setPreferredSize(new java.awt.Dimension(79, 32));
         jBReestablecerContrasena.addActionListener(new java.awt.event.ActionListener() {
@@ -262,7 +285,7 @@ public class JDAgregarUsuario extends JDialog {
             }
         });
 
-        jBComprobar.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        jBComprobar.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
         jBComprobar.setText("Comprobar");
         jBComprobar.setPreferredSize(new java.awt.Dimension(70, 32));
         jBComprobar.addActionListener(new java.awt.event.ActionListener() {
@@ -285,9 +308,9 @@ public class JDAgregarUsuario extends JDialog {
                             .addGap(57, 57, 57)
                             .addComponent(jLabel13)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCantidadCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBVer))
+                            .addComponent(jBVerCategorias))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,8 +377,8 @@ public class JDAgregarUsuario extends JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel14)
-                    .addComponent(jBVer))
+                    .addComponent(lblCantidadCategorias)
+                    .addComponent(jBVerCategorias))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFCorreoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,6 +415,8 @@ public class JDAgregarUsuario extends JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 25, Short.MAX_VALUE)
         );
+
+        jCBEstado.setEnabled(false);
 
         jLabel10.setText("Fecha Inicio");
 
@@ -459,14 +484,34 @@ public class JDAgregarUsuario extends JDialog {
         jBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         jBLimpiar.setText("Limpiar");
         jBLimpiar.setAlignmentY(0.0F);
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
-        jMenu1.setText("Reactivar");
-        jMenuBar1.add(jMenu1);
+        jMReactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        jMReactivar.setText("Reactivar");
+        jMReactivar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jMReactivarMouseReleased(evt);
+            }
+        });
+        jMReactivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMReactivarActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMReactivar);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
-        jMenu2.setText("Suspender");
-        jMenuBar1.add(jMenu2);
+        jMSuspender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
+        jMSuspender.setText("Suspender");
+        jMSuspender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSuspenderActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMSuspender);
 
         setJMenuBar(jMenuBar1);
 
@@ -487,7 +532,7 @@ public class JDAgregarUsuario extends JDialog {
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -518,6 +563,8 @@ public class JDAgregarUsuario extends JDialog {
 
         boolean r = false;
 
+        String cadExito="";
+
         Date fechaI=new Date();
         Date fechaF=new Date();
         Date fechaC=null;
@@ -547,6 +594,12 @@ public class JDAgregarUsuario extends JDialog {
              contrasena+=jPFContrasena.getPassword()[i];
         }
 
+        String cadenaFechaActual=formato.format(new Date(System.currentTimeMillis()));
+        if(cadenaFechaF.compareTo(cadenaFechaActual)<0){
+            JOptionPane.showMessageDialog(this,"Debe ingresar una fecha mayor a la fecha actual para reactivar la cuenta del usuario.","ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         usuarioBE = usuarioBL.FormarUsuarioBE(idUsuario,jTFNombres.getText(),
                                           jTFApPat.getText(),jTFApMat.getText(),
                                           jTFNomUsuario.getText(),contrasena,
@@ -554,29 +607,39 @@ public class JDAgregarUsuario extends JDialog {
                                           fechaC,estadoBE,rolBE,
                                           listaCategorias,tipoCeseBE,jTFCorreoE.getText());
 
+        String cad="";
+        cad=usuarioBL.getCadenaError();
         if(usuarioBE!=null){
             if(usuarioBEOringinal!=null){
                 r=usuarioBL.actualizarUsuario(usuarioBE, usuarioBEOringinal);
+                cadExito="Usuario actualizado con exito";
             }
             else{
-                r=usuarioBL.guardarUsuario(usuarioBE);
+                int nombreUsuarioDisponible=usuarioBL.AutenticarUsuario(jTFNomUsuario.getText(), "","");
+                if (nombreUsuarioDisponible!=0){
+                          cad+="Nombre de usuario ya existe.\n";
+                }
+                else{
+                    r=usuarioBL.guardarUsuario(usuarioBE);
+                    cadExito="Usuario registrado con exito";
+                }
             }
         }
 
+
+
         if (r==false){
-            String cad="";
-            cad=usuarioBL.getCadenaError();
             if(usuarioBEOringinal==null){
                 int nombreUsuarioDisponible=usuarioBL.AutenticarUsuario(jTFNomUsuario.getText(), "","");
                 if (nombreUsuarioDisponible!=0){
-                      cad+="Nombre de usuario ya existe.\n";
+                          cad+="Nombre de usuario ya existe.\n";
                 }
             }
-            JOptionPane.showMessageDialog(this,cad, "Mensaje derror", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,cad, "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         else {
             EnviarCorreo enviar=new EnviarCorreo(usuarioBE, 4);
-            JOptionPane.showMessageDialog(this, "Usuario registrado con exito");
+            JOptionPane.showMessageDialog(this, cadExito);
             this.dispose();
         }
 
@@ -595,7 +658,7 @@ public class JDAgregarUsuario extends JDialog {
         }
     }//GEN-LAST:event_jTFNombresKeyReleased
 
-    private void jBVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVerActionPerformed
+    private void jBVerCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVerCategoriasActionPerformed
 
         ArrayList<CategoriaBE> listaCat=new ArrayList<CategoriaBE>();
         for(int i=0;i<listaCategorias.size();i++){
@@ -605,19 +668,10 @@ public class JDAgregarUsuario extends JDialog {
         jfCategoriaXUsuario.setModal(true);
         jfCategoriaXUsuario.setLocationRelativeTo(this);
         jfCategoriaXUsuario.setVisible(true);
+        listaCategorias=jfCategoriaXUsuario.getListaCategorias();
+        lblCantidadCategorias.setText(String.valueOf(listaCategorias.size()));
 
- //       System.out.println("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
-//        AntiPlagiumPrincipal.getJDesktopPane().add(jfCategoriaXUsuario);
-//        jfCategoriaXUsuario.toFront();
-
-    }//GEN-LAST:event_jBVerActionPerformed
-
-
-    public static void ActualizarListaCategorias(ArrayList<CategoriaBE> listaCategoriasAct){
-
-        listaCategorias=listaCategoriasAct;
-
-    }
+    }//GEN-LAST:event_jBVerCategoriasActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         this.dispose();
@@ -652,25 +706,14 @@ public class JDAgregarUsuario extends JDialog {
         }
         else if(jBReestablecerContrasena.getText().compareTo("Generar")==0){
 
-//                    String alfabetoM="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//                    String alfabetom="abcdefghijklmnoprstuvwxyz";
-//                    String numeros="0123456789";
+
                     String caracteres="abcdefghijklmnoprstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                     String contrasena="";
                     char c=' ';
                     char opcion='0';
                     for(int i=0;i<10;i++){
                         c = caracteres.charAt((int)(Math.random()*61));
-//                         opcion = numeros.charAt((int) Math.random() * 3);
-//                         if (opcion=='0'){
-//                            c = alfabetoM.charAt((int)(Math.random()*26));
-//                         }
-//                         else if (opcion=='1'){
-//                            c = numeros.charAt((int)(Math.random()*10));
-//                         }
-//                         else if (opcion=='2'){
-//                            c = alfabetom.charAt((int)(Math.random()*26));
-//                         }
+
                          contrasena+=c;
                     }
 
@@ -700,37 +743,153 @@ public class JDAgregarUsuario extends JDialog {
 
     }//GEN-LAST:event_jBComprobarActionPerformed
 
-    public void MostrarDatos(UsuarioBE usuarioBE){
-    jTFCodigo.setText(String.valueOf(usuarioBE.getIdUsuario()));
-        jTFNombres.setText(usuarioBE.getNombres());
-        jTFApPat.setText(usuarioBE.getApellidoPaterno());
-        jTFApMat.setText(usuarioBE.getApellidoMaterno());
-        jTFNomUsuario.setText(usuarioBE.getNombreUsuario());
-        jPFContrasena.setText(usuarioBE.getPassword());
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
 
+        if(JOptionPane.showConfirmDialog(this, "Esta seguro que desea \"Limpiar Campos\"", "Advertencia", JOptionPane.YES_OPTION)==0){
+
+            jTFNombres.setText("");
+            jTFApPat.setText("");
+            jTFApMat.setText("");
+            jTFCorreoE.setText("");
+            listaCategorias.clear();
+            lblCantidadCategorias.setText(String.valueOf(listaCategorias.size()));
+
+            if (usuarioBEOringinal==null){
+                jTFNomUsuario.setText("");
+                jPFContrasena.setText("");
+                jCBRol.setSelectedIndex(0);
+                cmbFechaInicio.setDate(new Date(System.currentTimeMillis()));
+                cmbFechaFin.setDate(new Date(System.currentTimeMillis()));
+            }
+
+        }
+    }//GEN-LAST:event_jBLimpiarActionPerformed
+
+    private void jMReactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMReactivarActionPerformed
+        Reactivar();
+    }//GEN-LAST:event_jMReactivarActionPerformed
+
+    public void Reactivar(){
+        JOptionPane.showMessageDialog(this,"Ingrese una nueva fecha de caducidad de la cuenta de usuario.", "Reactivar Usuario", JOptionPane.INFORMATION_MESSAGE);
+        cmbFechaFin.setEnabled(true);
+        jBGuardar.setVisible(true);
+        jBGuardar.setEnabled(true);
+        for(int i=0;i<jCBEstado.getModel().getSize();i++){
+                if (jCBEstado.getItemAt(i).toString().compareTo("Activo")==0){
+                        jCBEstado.setSelectedIndex(i);
+                }
+        }
+    }
+
+    private void jMSuspenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSuspenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMSuspenderActionPerformed
+
+    private void jMReactivarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMReactivarMouseReleased
+        Reactivar();
+    }//GEN-LAST:event_jMReactivarMouseReleased
+
+    private void jTFApPatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApPatKeyReleased
+         Character caracter = new Character(evt.getKeyChar());
+        if (!Utilitario.esLetra(caracter)) {
+                    String texto = "";
+                    for (int i = 0; i < this.jTFApPat.getText().length(); i++)
+                        if (Utilitario.esLetra(new Character(this.jTFApPat.getText().charAt(i))))
+                            texto += this.jTFApPat.getText().charAt(i);
+                    this.jTFApPat.setText(texto);
+            this.jTFApPat.getToolkit().beep();
+        }
+
+
+    }//GEN-LAST:event_jTFApPatKeyReleased
+
+    private void jTFApMatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApMatKeyReleased
+        Character caracter = new Character(evt.getKeyChar());
+        if (!Utilitario.esLetra(caracter)) {
+                    String texto = "";
+                    for (int i = 0; i < this.jTFApMat.getText().length(); i++)
+                        if (Utilitario.esLetra(new Character(this.jTFApMat.getText().charAt(i))))
+                            texto += this.jTFApMat.getText().charAt(i);
+                    this.jTFApMat.setText(texto);
+            this.jTFApMat.getToolkit().beep();
+        }
+
+    }//GEN-LAST:event_jTFApMatKeyReleased
+
+    private void jTFApPatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApPatKeyPressed
+        String text = jTFNomUsuario.getText();
+        int maxLength=25;
+        if (text.length() > maxLength) {
+            text = text.substring(0, maxLength);
+            jTFNomUsuario.setText(text);
+        }
+    }//GEN-LAST:event_jTFApPatKeyPressed
+
+    private void jTFApMatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFApMatKeyPressed
+        String text = jTFNomUsuario.getText();
+        int maxLength=30;
+        if (text.length() > maxLength) {
+            text = text.substring(0, maxLength);
+            jTFNomUsuario.setText(text);
+        }
+    }//GEN-LAST:event_jTFApMatKeyPressed
+
+    private void jTFNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNombresKeyPressed
+        String text = jTFNomUsuario.getText();
+        int maxLength=30;
+        if (text.length() > maxLength) {
+            text = text.substring(0, maxLength);
+            jTFNomUsuario.setText(text);
+        }
+    }//GEN-LAST:event_jTFNombresKeyPressed
+
+    public void MostrarDatos(UsuarioBE usuarioBEO){
+        
+        jTFCodigo.setText(String.valueOf(usuarioBEO.getIdUsuario()));
+        jTFNombres.setText(usuarioBEO.getNombres());
+        jTFApPat.setText(usuarioBEO.getApellidoPaterno());
+        jTFApMat.setText(usuarioBEO.getApellidoMaterno());
+        jTFNomUsuario.setText(usuarioBEO.getNombreUsuario());
+        jPFContrasena.setText(usuarioBEO.getPassword());
 
         for(int i=0;i<jCBEstado.getModel().getSize();i++){
-            if (usuarioBE.getEstadoBE().getNombre().compareTo(jCBEstado.getItemAt(i).toString())==0){
+            if (usuarioBEO.getEstadoBE().getNombre().compareTo(jCBEstado.getItemAt(i).toString())==0){
                     jCBEstado.setSelectedIndex(i);
             }
-
         }
-         for(int i=0;i<jCBRol.getModel().getSize();i++){
-            if (usuarioBE.getRolBE().getNombre().compareTo(jCBRol.getItemAt(i).toString())==0){
+
+        for(int i=0;i<jCBRol.getModel().getSize();i++){
+            if (usuarioBEO.getRolBE().getNombre().compareTo(jCBRol.getItemAt(i).toString())==0){
                     jCBRol.setSelectedIndex(i);
             }
-
         }
 
-//        jCBRol.setSelectedItem(usuarioBE.getRolBE());
-//
-//
-//        jCBEstado.setSelectedItem(usuarioBE.getEstadoBE());
-//
+        cmbFechaInicio.setDate(usuarioBEO.getFechaRegistro());
+        cmbFechaFin.setDate(usuarioBEO.getFechaVencimiento());
+        jTFCorreoE.setText(usuarioBEO.getEmail());
 
-        cmbFechaInicio.setDate(usuarioBE.getFechaRegistro());
-        cmbFechaFin.setDate(usuarioBE.getFechaVencimiento());
-        jTFCorreoE.setText(usuarioBE.getEmail());
+        lblCantidadCategorias.setText(String.valueOf(listaCategorias.size()));
+
+        if ((usuarioBEO.getEstadoBE().getNombre().compareTo("Inactivo")==0)||(usuarioBEO.getEstadoBE().getNombre().compareTo("Desactivo")==0)){
+            jTFCodigo.setEnabled(false);
+            jTFNombres.setEnabled(false);
+            jTFApPat.setEnabled(false);
+            jTFApMat.setEnabled(false);
+            jTFNomUsuario.setEnabled(false);
+            jPFContrasena.setEnabled(false);
+            jCBEstado.setEnabled(false);
+            jCBRol.setEnabled(false);
+            cmbFechaInicio.setEnabled(false);
+            cmbFechaFin.setEnabled(false);
+            jTFCorreoE.setEnabled(false);
+            jBComprobar.setEnabled(false);
+            jBReestablecerContrasena.setEnabled(false);
+            jBVerCategorias.setEnabled(false);
+            jBGuardar.setVisible(false);
+            jBLimpiar.setVisible(false);
+            lblCantidadCategorias.setEnabled(false);
+
+        }
     }
 
 
@@ -745,7 +904,7 @@ public class JDAgregarUsuario extends JDialog {
     private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBReestablecerContrasena;
     private javax.swing.JButton jBSalir;
-    private javax.swing.JButton jBVer;
+    private javax.swing.JButton jBVerCategorias;
     private javax.swing.JComboBox jCBEstado;
     private javax.swing.JComboBox jCBRol;
     private javax.swing.JLabel jLabel1;
@@ -753,7 +912,6 @@ public class JDAgregarUsuario extends JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -762,8 +920,8 @@ public class JDAgregarUsuario extends JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMReactivar;
+    private javax.swing.JMenu jMSuspender;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPContrasena;
     private javax.swing.JPanel jPanel1;
@@ -776,6 +934,7 @@ public class JDAgregarUsuario extends JDialog {
     private javax.swing.JTextField jTFCorreoE;
     private javax.swing.JTextField jTFNomUsuario;
     private javax.swing.JTextField jTFNombres;
+    private javax.swing.JLabel lblCantidadCategorias;
     // End of variables declaration//GEN-END:variables
 
 }

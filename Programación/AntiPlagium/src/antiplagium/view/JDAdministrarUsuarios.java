@@ -508,8 +508,7 @@ public class JDAdministrarUsuarios extends JDialog {
             jfAgregarUsuario.setModal(true);
             jfAgregarUsuario.setLocationRelativeTo(this);
             jfAgregarUsuario.setVisible(true);
-//            AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-//            jfAgregarUsuario.toFront();
+            ConsultarUsuarios();
         }
 }//GEN-LAST:event_jBModificarActionPerformed
 
@@ -518,8 +517,7 @@ public class JDAdministrarUsuarios extends JDialog {
         jfAgregarUsuario.setModal(true);
         jfAgregarUsuario.setLocationRelativeTo(this);
         jfAgregarUsuario.setVisible(true);
-//        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-//        jfAgregarUsuario.toFront();
+        ConsultarUsuarios();
 }//GEN-LAST:event_JBNuevoActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -537,6 +535,7 @@ public class JDAdministrarUsuarios extends JDialog {
             jfEliminarUsuario.setModal(true);
             jfEliminarUsuario.setLocationRelativeTo(this);
             jfEliminarUsuario.setVisible(true);
+            ConsultarUsuarios();
 //            AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
 //            jfEliminarUsuario.toFront();
         }
@@ -555,8 +554,7 @@ public class JDAdministrarUsuarios extends JDialog {
         jfAgregarUsuario.setModal(true);
         jfAgregarUsuario.setLocationRelativeTo(this);
         jfAgregarUsuario.setVisible(true);
-//        AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-//        jfAgregarUsuario.toFront();
+        ConsultarUsuarios();
     }//GEN-LAST:event_jMNuevoMouseReleased
 
     private void jMModificarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMModificarMouseReleased
@@ -574,8 +572,7 @@ public class JDAdministrarUsuarios extends JDialog {
             jfAgregarUsuario.setModal(true);
             jfAgregarUsuario.setLocationRelativeTo(this);
             jfAgregarUsuario.setVisible(true);
-//            AntiPlagiumPrincipal.getJDesktopPane().add(jfAgregarUsuario);
-//            jfAgregarUsuario.toFront();
+            ConsultarUsuarios();
         }
     }//GEN-LAST:event_jMModificarMouseReleased
 
@@ -594,8 +591,7 @@ public class JDAdministrarUsuarios extends JDialog {
             jfEliminarUsuario.setModal(true);
             jfEliminarUsuario.setLocationRelativeTo(this);
             jfEliminarUsuario.setVisible(true);
-//            AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
-//            jfEliminarUsuario.toFront();
+            ConsultarUsuarios();
         }
     }//GEN-LAST:event_jMEliminarMouseReleased
 
