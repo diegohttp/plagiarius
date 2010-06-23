@@ -8,7 +8,7 @@
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT "Documento"."idDocumento", "Documento".nombre, "Categoria".nombre, "Documento".estado
+	<![CDATA[SELECT "Documento"."idDocumento", "Documento".nombre, "Categoria".nombre, "Documento".estado
 FROM  "Documento", "Categoria"
 WHERE "Documento"."idCategoria" = "Categoria"."idCategoria"]]>
 	</queryString>
