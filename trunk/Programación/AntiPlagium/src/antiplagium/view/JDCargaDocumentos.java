@@ -31,22 +31,17 @@ import java.util.logging.Logger;
 public class JDCargaDocumentos extends javax.swing.JDialog {
     /** Creates new form JDCargaDocumentos */
     private ArrayList<File> nomArch;
-
      
     public JDCargaDocumentos(ArrayList<File> nomArch, CategoriaBE cat, UsuarioBE us) {
-        this.add(new PanelDocumento());
+        add(new PanelDocumento());
         initComponents();
-        this.setVisible(false);
-        this.taDatosProgreso.setEditable(false);
+        taDatosProgreso.setEditable(false);
         this.nomArch = nomArch;
-        this.cargarDocumentos(cat, us);
-
     }
 
     public void cargarDocumentos(ArrayList<CategoriaBE> listaCategoria,UsuarioBE objUsuario){
         /* Al finalizar la descarga habilitamos el cerrado de la ventana */
-        //this.setModal(true);
-        //this.setVisible(true);
+        setVisible(true);
         this.pgbCargaDocumentos.setMaximum(100);
         int paso= 100/this.nomArch.size();
         String resultado;
@@ -57,7 +52,6 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
                 int idDoc = Utilitario.generaCodigo("Documento");
                 doc = new DocumentoBE(idDoc, "activo" , nomArch.get(i).getName() , objUsuario, null);
                 doc.setContenido(DocumentoBL.obtenerContenido(nomArch.get(i)));
-                //doc.setListaCategorias(listaCategoria);
                 try {
                     DocumentoBL.registrar(doc);
                     /* Si es exitosos */
@@ -93,8 +87,6 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
 
     public void cargarDocumentos(CategoriaBE objCategoria,UsuarioBE objUsuario){
         /* Al finalizar la descarga habilitamos el cerrado de la ventana */
-        //this.setModal(true);
-        this.setVisible(true);
         this.pgbCargaDocumentos.setMaximum(100);
         int paso= 100/this.nomArch.size();
         String resultado;
@@ -158,7 +150,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CargarDocumentos");
-        setModal(true);
+        setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         setResizable(false);
 
         lblProgreso.setText("Progreso");
