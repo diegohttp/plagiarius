@@ -24,7 +24,7 @@ public class RolBL {
     }
 
     public ResultSet getListRoles() throws SQLException
-    {
+    { // Select de roles activos
         ResultSet tablaRoles = null;
 
         RolDAO rolDao = new RolDAO();
@@ -32,6 +32,17 @@ public class RolBL {
 
         return tablaRoles;
     }
+
+    public ResultSet getAllListRoles() throws SQLException
+    { // Select de roles activos e inactivos
+        ResultSet tablaRoles = null;
+
+        RolDAO rolDao = new RolDAO();
+        tablaRoles = rolDao.getAllRolesList();
+
+        return tablaRoles;
+    }
+
 
     public ResultSet getPrivilegiosPorROl(String nombreROl) throws SQLException
     {
