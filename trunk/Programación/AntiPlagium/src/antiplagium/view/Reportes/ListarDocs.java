@@ -22,7 +22,6 @@ import antiplagium.BE.Utilitario;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.BL.UsuarioBL;
-import antiplagium.DAO.CategoriaDAO;
 import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,19 +29,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 import java.util.logging.Level;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.postgresql.core.Logger;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.swing.JRViewer;
-import org.apache.commons.digester.Digester;
-import org.apache.commons.collections.ArrayStack;
-import org.apache.commons.logging.LogFactory;
-import org.codehaus.groovy.*;
 
 
 
