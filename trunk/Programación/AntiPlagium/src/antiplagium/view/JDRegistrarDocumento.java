@@ -41,51 +41,45 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     private CategoriaBE objCategoriaBE;
     private UsuarioBE objUsuario;
     private DocumentoBE objDocumento;
-    private ArrayList<Boolean> catSelecionada;
-    private ArrayList<CategoriaBE> lstCategorias;
-
+    private ArrayList<CategoriaBE> alstCategorias;
     /** Creates new form JDRegistrarDocumento */
     public JDRegistrarDocumento(UsuarioBE objUsuario, ArrayList<CategoriaBE> listaCategorias) {
         cmbFechaInicio = new JCalendarCombo();
         initComponents();
         this.objUsuario = objUsuario;
-        this.txtPropietario.setText(this.objUsuario.getNombres());
+        txtPropietario.setText(this.objUsuario.getNombres());
         cmbFechaInicio.setSize(220, 25);
         cmbFechaInicio.setDate(new Date());
         cmbFechaInicio.setEditable(false);
         pnlFecha.add(cmbFechaInicio);
         pnlFecha.setEnabled(false);
-        this.pnlFecha.setVisible(false);
-        this.lblFecha.setVisible(false);
-        this.cboCategoria.removeAllItems();
-        this.catSelecionada = new ArrayList<Boolean>();
-        this.lstCategorias = listaCategorias;
+        pnlFecha.setVisible(false);
+        lblFecha.setVisible(false);
+        cboCategoria.removeAllItems();
+        alstCategorias = listaCategorias;
         /* Eliminamos el Todas */
-        this.lstCategorias.remove(0);
-        for (int i = 0; i < lstCategorias.size(); ++i) {
-            this.cboCategoria.addItem(lstCategorias.get(i));
-            this.catSelecionada.add(new Boolean(false));
+        alstCategorias.remove(0);
+        for (int i = 0; i < alstCategorias.size(); ++i) {
+            cboCategoria.addItem(alstCategorias.get(i));
         }
-        /* Aun no esta implementado */
-        this.btnSeleccionarCategoria.setVisible(false);
     }
 
     private void cargarArchivo(int numDoc, String nomArch) {
         switch (numDoc) {
             case 1:
-                this.txtRuta11.setText(nomArch);
+                txtRuta11.setText(nomArch);
                 break;
             case 2:
-                this.txtRuta22.setText(nomArch);
+                txtRuta22.setText(nomArch);
                 break;
             case 3:
-                this.txtRuta33.setText(nomArch);
+                txtRuta33.setText(nomArch);
                 break;
             case 4:
-                this.txtRuta44.setText(nomArch);
+                txtRuta44.setText(nomArch);
                 break;
             case 5:
-                this.txtRuta55.setText(nomArch);
+                txtRuta55.setText(nomArch);
                 break;
         }
     }
@@ -115,24 +109,24 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         pnlDatosGen = new javax.swing.JPanel();
         txtNombreDoc1 = new javax.swing.JTextField();
         lblNombre1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblRuta11 = new javax.swing.JLabel();
         txtRuta11 = new javax.swing.JTextField();
         btnBuscar1 = new javax.swing.JButton();
         lblNombre2 = new javax.swing.JLabel();
         txtNombreDoc2 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblRuta22 = new javax.swing.JLabel();
         txtRuta22 = new javax.swing.JTextField();
         lblNombre3 = new javax.swing.JLabel();
         txtNombreDoc3 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        lblRuta33 = new javax.swing.JLabel();
         txtRuta33 = new javax.swing.JTextField();
         lblNombre4 = new javax.swing.JLabel();
         txtNombreDoc4 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        lblRuta44 = new javax.swing.JLabel();
         txtRuta44 = new javax.swing.JTextField();
         lblNombre5 = new javax.swing.JLabel();
         txtNombreDoc5 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
+        lblRuta55 = new javax.swing.JLabel();
         txtRuta55 = new javax.swing.JTextField();
         btnBuscar2 = new javax.swing.JButton();
         btnBuscar3 = new javax.swing.JButton();
@@ -144,7 +138,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         btnCargarDirectorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setResizable(false);
 
         pnlDatosParticulares.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos particulares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
@@ -172,11 +165,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         btnSeleccionarCategoria.setMaximumSize(new java.awt.Dimension(135, 35));
         btnSeleccionarCategoria.setMinimumSize(new java.awt.Dimension(135, 35));
         btnSeleccionarCategoria.setPreferredSize(new java.awt.Dimension(135, 35));
-        btnSeleccionarCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarCategoriaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlDatosParticularesLayout = new javax.swing.GroupLayout(pnlDatosParticulares);
         pnlDatosParticulares.setLayout(pnlDatosParticularesLayout);
@@ -222,7 +210,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
 
         lblNombre1.setText("Nombre:");
 
-        jLabel5.setText("Ruta:");
+        lblRuta11.setText("Ruta:");
 
         txtRuta11.setEnabled(false);
 
@@ -235,25 +223,25 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
 
         lblNombre2.setText("Nombre:");
 
-        jLabel7.setText("Ruta:");
+        lblRuta22.setText("Ruta:");
 
         txtRuta22.setEnabled(false);
 
         lblNombre3.setText("Nombre:");
 
-        jLabel9.setText("Ruta:");
+        lblRuta33.setText("Ruta:");
 
         txtRuta33.setEnabled(false);
 
         lblNombre4.setText("Nombre:");
 
-        jLabel11.setText("Ruta:");
+        lblRuta44.setText("Ruta:");
 
         txtRuta44.setEnabled(false);
 
         lblNombre5.setText("Nombre:");
 
-        jLabel13.setText("Ruta:");
+        lblRuta55.setText("Ruta:");
 
         txtRuta55.setEnabled(false);
 
@@ -297,7 +285,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
+                        .addComponent(lblRuta11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta11, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -307,7 +295,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
+                        .addComponent(lblRuta22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta22, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -317,7 +305,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel9)
+                        .addComponent(lblRuta33)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta33, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -327,7 +315,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
+                        .addComponent(lblRuta44)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta44, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -337,7 +325,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addComponent(txtNombreDoc5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel13)
+                        .addComponent(lblRuta55)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta55, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -352,7 +340,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(lblNombre1)
-                            .addComponent(jLabel5)
+                            .addComponent(lblRuta11)
                             .addComponent(txtRuta11))
                         .addGap(23, 23, 23))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
@@ -363,7 +351,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc2, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(lblNombre2)
-                            .addComponent(jLabel7)
+                            .addComponent(lblRuta22)
                             .addComponent(txtRuta22))
                         .addGap(23, 23, 23))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
@@ -374,7 +362,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc3, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(lblNombre3)
-                            .addComponent(jLabel9)
+                            .addComponent(lblRuta33)
                             .addComponent(txtRuta33))
                         .addGap(23, 23, 23))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
@@ -385,7 +373,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc4, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(lblNombre4)
-                            .addComponent(jLabel11)
+                            .addComponent(lblRuta44)
                             .addComponent(txtRuta44))
                         .addGap(23, 23, 23))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
@@ -396,7 +384,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addGroup(pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreDoc5, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                             .addComponent(lblNombre5)
-                            .addComponent(jLabel13)
+                            .addComponent(lblRuta55)
                             .addComponent(txtRuta55))
                         .addGap(44, 44, 44))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
@@ -487,174 +475,137 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setApproveButtonText("Cargar");
+        JFileChooser fchooser = new JFileChooser();
+        fchooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(false);
-        chooser.setFileFilter(ext);
-        chooser.setAcceptAllFileFilterUsed(false);
-        int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION) {
-            String nomArch = chooser.getSelectedFile().getAbsolutePath();
-            this.txtNombreDoc1.setText(chooser.getSelectedFile().getName());
-            this.cargarArchivo(1, nomArch);
+        fchooser.setFileFilter(ext);
+        fchooser.setAcceptAllFileFilterUsed(false);
+        int retVal = fchooser.showOpenDialog(this);
+        if (retVal == fchooser.APPROVE_OPTION) {
+            String nomArch = fchooser.getSelectedFile().getAbsolutePath();
+            txtNombreDoc1.setText(fchooser.getSelectedFile().getName());
+            cargarArchivo(1, nomArch);
         }
 }//GEN-LAST:event_btnBuscar1ActionPerformed
 
-    private boolean seleccionoCategoria() {
-        for (int i = 0; i < this.catSelecionada.size(); ++i) {
-            if (this.catSelecionada.get(i)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setApproveButtonText("Cargar");
+        JFileChooser fchooser = new JFileChooser();
+        fchooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(false);
-        chooser.setFileFilter(ext);
-        chooser.setAcceptAllFileFilterUsed(false);
-        int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION) {
-            String nomArch = chooser.getSelectedFile().getAbsolutePath();
-            this.txtNombreDoc2.setText(chooser.getSelectedFile().getName());
-            this.cargarArchivo(2, nomArch);
+        fchooser.setFileFilter(ext);
+        fchooser.setAcceptAllFileFilterUsed(false);
+        int retVal = fchooser.showOpenDialog(this);
+        if (retVal == fchooser.APPROVE_OPTION) {
+            String nomArch = fchooser.getSelectedFile().getAbsolutePath();
+            txtNombreDoc2.setText(fchooser.getSelectedFile().getName());
+            cargarArchivo(2, nomArch);
         }
     }//GEN-LAST:event_btnBuscar2ActionPerformed
 
     private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setApproveButtonText("Cargar");
+        JFileChooser fchooser = new JFileChooser();
+        fchooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(false);
-        chooser.setFileFilter(ext);
-        chooser.setAcceptAllFileFilterUsed(false);
-        int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION) {
-            String nomArch = chooser.getSelectedFile().getAbsolutePath();
-            this.txtNombreDoc3.setText(chooser.getSelectedFile().getName());
-            this.cargarArchivo(3, nomArch);
+        fchooser.setFileFilter(ext);
+        fchooser.setAcceptAllFileFilterUsed(false);
+        int retVal = fchooser.showOpenDialog(this);
+        if (retVal == fchooser.APPROVE_OPTION) {
+            String nomArch = fchooser.getSelectedFile().getAbsolutePath();
+            txtNombreDoc3.setText(fchooser.getSelectedFile().getName());
+            cargarArchivo(3, nomArch);
         }
     }//GEN-LAST:event_btnBuscar3ActionPerformed
 
     private void btnBuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar4ActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setApproveButtonText("Cargar");
+        JFileChooser fchooser = new JFileChooser();
+        fchooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(false);
-        chooser.setFileFilter(ext);
-        chooser.setAcceptAllFileFilterUsed(false);
-        int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION) {
-            String nomArch = chooser.getSelectedFile().getAbsolutePath();
-            this.txtNombreDoc4.setText(chooser.getSelectedFile().getName());
-            this.cargarArchivo(4, nomArch);
+        fchooser.setFileFilter(ext);
+        fchooser.setAcceptAllFileFilterUsed(false);
+        int retVal = fchooser.showOpenDialog(this);
+        if (retVal == fchooser.APPROVE_OPTION) {
+            String nomArch = fchooser.getSelectedFile().getAbsolutePath();
+            txtNombreDoc4.setText(fchooser.getSelectedFile().getName());
+            cargarArchivo(4, nomArch);
         }
     }//GEN-LAST:event_btnBuscar4ActionPerformed
 
-    public void setCategoriaSeleccionada(ArrayList<Boolean> seleccion) {
-        this.catSelecionada = seleccion;
-    }
-
     private void btnBuscar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar5ActionPerformed
-        JFileChooser chooser = new JFileChooser();
+        JFileChooser fchooser = new JFileChooser();
         ExtensionValida ext = new ExtensionValida(false);
-        chooser.setFileFilter(ext);
-        chooser.setApproveButtonText("Cargar");
-        chooser.setAcceptAllFileFilterUsed(false);
-        int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION) {
-            String nomArch = chooser.getSelectedFile().getAbsolutePath();
-            this.txtNombreDoc5.setText(chooser.getSelectedFile().getName());
-            this.cargarArchivo(5, nomArch);
+        fchooser.setFileFilter(ext);
+        fchooser.setApproveButtonText("Cargar");
+        fchooser.setAcceptAllFileFilterUsed(false);
+        int retVal = fchooser.showOpenDialog(this);
+        if (retVal == fchooser.APPROVE_OPTION) {
+            String nomArch = fchooser.getSelectedFile().getAbsolutePath();
+            txtNombreDoc5.setText(fchooser.getSelectedFile().getName());
+            cargarArchivo(5, nomArch);
         }
     }//GEN-LAST:event_btnBuscar5ActionPerformed
 
-    private void btnSeleccionarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarCategoriaActionPerformed
-        JDSeleccionarCategoria selectCat = new JDSeleccionarCategoria(this, this.catSelecionada, this.lstCategorias);
-        selectCat.setTitle("Seleccionar Categoria(s)");
-        selectCat.setModal(true);
-        selectCat.setLocationRelativeTo(this);
-        selectCat.setVisible(true);
-    }//GEN-LAST:event_btnSeleccionarCategoriaActionPerformed
-
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+
         DocumentoBE doc1 = null, doc2 = null, doc3 = null, doc4 = null, doc5 = null;
-        /* Falta implementar la parte de multiples categorias para documentos */
-        /*if (!this.seleccionoCategoria()){
-        JOptionPane.showMessageDialog(this, "Se debe seleccionar alguna(s) categoria(s) para el (los) documento(s).");
-        return;
-        }*/
         String resDoc1 = "";
         String resDoc2 = "";
         String resDoc3 = "";
         String resDoc4 = "";
         String resDoc5 = "";
-
-        if (this.txtRuta11.getText().compareTo("") != 0 && this.txtNombreDoc1.getText().compareTo("") == 0) {
+        /* Validación de nombres vacios */
+        if (txtRuta11.getText().compareTo("") != 0 && txtNombreDoc1.getText().compareTo("") == 0) {
             JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 1.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta22.getText().compareTo("") != 0 && this.txtNombreDoc2.getText().compareTo("") == 0) {
+        if (txtRuta22.getText().compareTo("") != 0 && txtNombreDoc2.getText().compareTo("") == 0) {
             JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 2.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta33.getText().compareTo("") != 0 && this.txtNombreDoc3.getText().compareTo("") == 0) {
+        if (txtRuta33.getText().compareTo("") != 0 && txtNombreDoc3.getText().compareTo("") == 0) {
             JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 3.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta44.getText().compareTo("") != 0 && this.txtNombreDoc4.getText().compareTo("") == 0) {
+        if (txtRuta44.getText().compareTo("") != 0 && txtNombreDoc4.getText().compareTo("") == 0) {
             JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 4.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta55.getText().compareTo("") != 0 && this.txtNombreDoc5.getText().compareTo("") == 0) {
+        if (txtRuta55.getText().compareTo("") != 0 && txtNombreDoc5.getText().compareTo("") == 0) {
             JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 5.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        if (this.txtRuta11.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc1.getText().toUpperCase())) {
+        /* Verificación de los nombres de los documentos */
+        if (txtRuta11.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(txtNombreDoc1.getText().toUpperCase())) {
             JOptionPane.showMessageDialog(this, "El nombre para el documento 1 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta22.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc2.getText().toUpperCase())) {
+        if (txtRuta22.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(txtNombreDoc2.getText().toUpperCase())) {
             JOptionPane.showMessageDialog(this, "El nombre para el documento 2 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta33.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc3.getText().toUpperCase())) {
+        if (txtRuta33.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(txtNombreDoc3.getText().toUpperCase())) {
             JOptionPane.showMessageDialog(this, "El nombre para el documento 3 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta44.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc4.getText().toUpperCase())) {
+        if (txtRuta44.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(txtNombreDoc4.getText().toUpperCase())) {
             JOptionPane.showMessageDialog(this, "El nombre para el documento 4 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (this.txtRuta55.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(this.txtNombreDoc5.getText().toUpperCase())) {
+        if (txtRuta55.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(txtNombreDoc5.getText().toUpperCase())) {
             JOptionPane.showMessageDialog(this, "El nombre para el documento 5 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        /* Obtenemos el conjunto de categorias seleccionadas */
-        /*ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
-        for (int i=0; i < this.catSelecionada.size(); ++i){
-        if (this.catSelecionada.get(i).booleanValue())
-        listaCategoria.add(this.lstCategorias.get(i));
-        }*/
-
         /* Registramos el documento 1 */
-        if (this.txtRuta11.getText().compareToIgnoreCase("") != 0) {
-
-            File file1 = new File(this.txtRuta11.getText());
+        if (txtRuta11.getText().compareToIgnoreCase("") != 0) {
+            File file1 = new File(txtRuta11.getText());
             String contenido = DocumentoBL.obtenerContenido(file1);
             int idDoc = 0;
             try {
                 idDoc = Utilitario.generaCodigo("Documento");
-                CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+                CategoriaBE objCategoria = (CategoriaBE) cboCategoria.getSelectedItem();
                 doc1 = new DocumentoBE();
-                //
                 doc1.setCategoria(objCategoria);
-                //
-                //doc1.setListaCategorias(listaCategoria);
                 doc1.setUsuario(objUsuario);
-                doc1.setNombre(this.txtNombreDoc1.getText());
+                doc1.setNombre(txtNombreDoc1.getText());
                 doc1.setIdDocumento(idDoc);
                 doc1.setContenido(contenido);
                 doc1.setEstado("activo");
@@ -672,22 +623,17 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             }
 
         }
-
-        if (this.txtRuta22.getText().compareToIgnoreCase("") != 0) {
-
-            File file1 = new File(this.txtRuta22.getText());
+        if (txtRuta22.getText().compareToIgnoreCase("") != 0) {
+            File file1 = new File(txtRuta22.getText());
             String contenido = DocumentoBL.obtenerContenido(file1);
             int idDoc = 0;
             try {
                 idDoc = Utilitario.generaCodigo("Documento");
-                CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+                CategoriaBE objCategoria = (CategoriaBE) cboCategoria.getSelectedItem();
                 doc2 = new DocumentoBE();
-                //
                 doc2.setCategoria(objCategoria);
-                //
-                //doc2.setListaCategorias(listaCategoria);
                 doc2.setUsuario(objUsuario);
-                doc2.setNombre(this.txtNombreDoc2.getText());
+                doc2.setNombre(txtNombreDoc2.getText());
                 doc2.setIdDocumento(idDoc);
                 doc2.setContenido(contenido);
                 doc2.setEstado("activo");
@@ -706,21 +652,17 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
 
         }
         /* Registrar documento 3 */
-        if (this.txtRuta33.getText().compareToIgnoreCase("") != 0) {
-
-            File file1 = new File(this.txtRuta33.getText());
+        if (txtRuta33.getText().compareToIgnoreCase("") != 0) {
+            File file1 = new File(txtRuta33.getText());
             String contenido = DocumentoBL.obtenerContenido(file1);
             int idDoc = 0;
             try {
                 idDoc = Utilitario.generaCodigo("Documento");
-                CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+                CategoriaBE objCategoria = (CategoriaBE) cboCategoria.getSelectedItem();
                 doc3 = new DocumentoBE();
-                //
                 doc3.setCategoria(objCategoria);
-                //
-                //doc3.setListaCategorias(listaCategoria);
                 doc3.setUsuario(objUsuario);
-                doc3.setNombre(this.txtNombreDoc3.getText());
+                doc3.setNombre(txtNombreDoc3.getText());
                 doc3.setIdDocumento(idDoc);
                 doc3.setContenido(contenido);
                 doc3.setEstado("activo");
@@ -740,20 +682,16 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         }
         /* Registrar documento 4 */
         if (this.txtRuta44.getText().compareToIgnoreCase("") != 0) {
-
             File file1 = new File(this.txtRuta44.getText());
             String contenido = DocumentoBL.obtenerContenido(file1);
             int idDoc = 0;
             try {
                 idDoc = Utilitario.generaCodigo("Documento");
-                CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+                CategoriaBE objCategoria = (CategoriaBE) cboCategoria.getSelectedItem();
                 doc4 = new DocumentoBE();
-                //
                 doc4.setCategoria(objCategoria);
-                //
-                //doc4.setListaCategorias(listaCategoria);
                 doc4.setUsuario(objUsuario);
-                doc4.setNombre(this.txtNombreDoc4.getText());
+                doc4.setNombre(txtNombreDoc4.getText());
                 doc4.setIdDocumento(idDoc);
                 doc4.setContenido(contenido);
                 doc4.setEstado("activo");
@@ -762,7 +700,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                     resDoc4 = "Se registró el documento 4 safisfactoriamente.";
                 } catch (Exception ex) {
                     resDoc4 = "Hubo error en el registro del documento 4.";
-                //Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
@@ -772,21 +709,17 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
 
         }
         /* Registrar docuemnto 5 */
-        if (this.txtRuta55.getText().compareToIgnoreCase("") != 0) {
-
-            File file1 = new File(this.txtRuta55.getText());
+        if (txtRuta55.getText().compareToIgnoreCase("") != 0) {
+            File file1 = new File(txtRuta55.getText());
             String contenido = DocumentoBL.obtenerContenido(file1);
             int idDoc = 0;
             try {
                 idDoc = Utilitario.generaCodigo("Documento");
-                CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+                CategoriaBE objCategoria = (CategoriaBE) cboCategoria.getSelectedItem();
                 doc5 = new DocumentoBE();
-                //
                 doc5.setCategoria(objCategoria);
-                //
-                //doc5.setListaCategorias(listaCategoria);
                 doc5.setUsuario(objUsuario);
-                doc5.setNombre(this.txtNombreDoc5.getText());
+                doc5.setNombre(txtNombreDoc5.getText());
                 doc5.setIdDocumento(idDoc);
                 doc5.setContenido(contenido);
                 doc5.setEstado("activo");
@@ -802,10 +735,28 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             } catch (IOException ex) {
                 Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-
-        String salida = resDoc1 + "\n" + resDoc2 + "\n" + resDoc3 + "\n" + resDoc4 + "\n" + resDoc5;
+        String salida = "";
+        if (!resDoc1.equals("")){
+            salida += resDoc1;
+            salida += "\n";
+        }
+        if (!resDoc2.equals("")){
+            salida += resDoc2;
+            salida += "\n";
+        }
+        if (!resDoc3.equals("")){
+            salida += resDoc3;
+            salida += "\n";
+        }
+        if (!resDoc4.equals("")){
+            salida += resDoc4;
+            salida += "\n";
+        }
+        if (!resDoc5.equals("")){
+            salida += resDoc5;
+            salida += "\n";
+        }
         if (!resDoc1.equals("") || !resDoc2.equals("") || !resDoc3.equals("") || !resDoc4.equals("") || !resDoc5.equals("")) {
             JOptionPane.showMessageDialog(this, salida, "Resultado Registro", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -819,31 +770,30 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
-        this.txtRuta11.setText("");
-        this.txtRuta22.setText("");
-        this.txtRuta33.setText("");
-        this.txtRuta44.setText("");
-        this.txtRuta55.setText("");
-
-        this.txtNombreDoc1.setText("");
-        this.txtNombreDoc2.setText("");
-        this.txtNombreDoc3.setText("");
-        this.txtNombreDoc4.setText("");
-        this.txtNombreDoc5.setText("");
+        txtRuta11.setText("");
+        txtRuta22.setText("");
+        txtRuta33.setText("");
+        txtRuta44.setText("");
+        txtRuta55.setText("");
+        txtNombreDoc1.setText("");
+        txtNombreDoc2.setText("");
+        txtNombreDoc3.setText("");
+        txtNombreDoc4.setText("");
+        txtNombreDoc5.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnCargarDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDirectorioActionPerformed
 
 
-        JFileChooser chooser = new JFileChooser();
-        chooser.setApproveButtonText("Cargar");
+        JFileChooser fchooser = new JFileChooser();
+        fchooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(true);
-        chooser.setFileFilter(ext);
-        chooser.setAcceptAllFileFilterUsed(false);
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int retVal = chooser.showOpenDialog(this);
-        if (retVal == chooser.APPROVE_OPTION) {
-            String ruta = chooser.getSelectedFile().getAbsolutePath();
+        fchooser.setFileFilter(ext);
+        fchooser.setAcceptAllFileFilterUsed(false);
+        fchooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int retVal = fchooser.showOpenDialog(this);
+        if (retVal == fchooser.APPROVE_OPTION) {
+            String ruta = fchooser.getSelectedFile().getAbsolutePath();
             File dir = new File(ruta);
             File[] nomArch = dir.listFiles();
             ArrayList<File> listaArch = new ArrayList<File>();
@@ -868,22 +818,17 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 }
             }
 
-            // Obtenemos las categorias seleccionadas
-            ArrayList<CategoriaBE> listaCategoria = new ArrayList<CategoriaBE>();
-            for (int i = 0; i < this.catSelecionada.size(); ++i) {
-                if (this.catSelecionada.get(i).booleanValue()) {
-                    listaCategoria.add(this.lstCategorias.get(i));
-                }
-            }
-            CategoriaBE objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+            // Obtenemos la categoria seleccionada
+            CategoriaBE objCategoria = (CategoriaBE) cboCategoria.getSelectedItem();
             JDCargaDocumentos cargaDoc = new JDCargaDocumentos(listaArch, objCategoria, objUsuario);
-            // JDCargaDocumentos cargaDoc = new JDCargaDocumentos();
+            cargaDoc.setModal(false);
+            //JDCargaDocumentos cargaDoc = new JDCargaDocumentos();
 
             cargaDoc.setLocationRelativeTo(this);
-            cargaDoc.setModal(true);
+            //cargaDoc.setModal(true);
             cargaDoc.setVisible(true);
 
-        // cargaDoc.cargarDocumentos(objCategoria, objUsuario);
+            cargaDoc.cargarDocumentos(objCategoria, objUsuario);
         //this.dispose();
         }
     }//GEN-LAST:event_btnCargarDirectorioActionPerformed
@@ -902,11 +847,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSeleccionarCategoria;
     private javax.swing.JComboBox cboCategoria;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblNombre1;
@@ -915,6 +855,11 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     private javax.swing.JLabel lblNombre4;
     private javax.swing.JLabel lblNombre5;
     private javax.swing.JLabel lblPropietario;
+    private javax.swing.JLabel lblRuta11;
+    private javax.swing.JLabel lblRuta22;
+    private javax.swing.JLabel lblRuta33;
+    private javax.swing.JLabel lblRuta44;
+    private javax.swing.JLabel lblRuta55;
     private javax.swing.JPanel pnlDatosGen;
     private javax.swing.JPanel pnlDatosParticulares;
     private javax.swing.JPanel pnlFecha;
@@ -932,13 +877,10 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     class ExtensionValida extends FileFilter {
-
         boolean opcion;
-
         ExtensionValida(boolean soloDir) {
             opcion = soloDir;
         }
-
         public String getExtension(File f) {
             String ext = null;
             String s = f.getName();
@@ -949,7 +891,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             }
             return ext;
         }
-
         @Override
         public boolean accept(File f) {
             if (f.isDirectory()) {
@@ -964,7 +905,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             }
             return false;
         }
-
         @Override
         public String getDescription() {
             if (opcion) {
