@@ -271,7 +271,7 @@ public class JFCompararDocumentos extends JDialog {
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
-            this.doc1 = buscardoc.docSel;
+            this.doc1 = buscardoc.objDocSel;
             this.txtNomDoc.setText(doc1.getNombre());
             this.txtNomCat.setText(doc1.getCategoria().getNombre());
             this.txtNomProp.setText(doc1.getUsuario().getNombres());
@@ -302,10 +302,10 @@ public class JFCompararDocumentos extends JDialog {
             buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
             
-            for (int i = 0; i < buscardoc.seleccionado.size(); ++i){
-                if (!this.idDocInsertados.contains(buscardoc.seleccionado.get(i).getIdDocumento())){
-                    docs.add(buscardoc.seleccionado.get(i));
-                    this.idDocInsertados.add( buscardoc.seleccionado.get(i).getIdDocumento() );
+            for (int i = 0; i < buscardoc.alstSeleccionado.size(); ++i){
+                if (!this.idDocInsertados.contains(buscardoc.alstSeleccionado.get(i).getIdDocumento())){
+                    docs.add(buscardoc.alstSeleccionado.get(i));
+                    this.idDocInsertados.add( buscardoc.alstSeleccionado.get(i).getIdDocumento() );
                 }
             }
             this.actualizarTabla();
