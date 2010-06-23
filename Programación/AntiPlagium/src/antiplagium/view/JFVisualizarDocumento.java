@@ -23,15 +23,15 @@ public class JFVisualizarDocumento extends JDialog{
     public JFVisualizarDocumento(String doc) {
         super();
         initComponents();
-        this.jMenuBar1.setVisible(false);
-        jTextDoc.setText(doc);
+        mnbOpciones.setVisible(false);
+        txtfDocumento.setText(doc);
     }
 
     public JFVisualizarDocumento(JDModificarDocumento padre,String doc) {
         super();
         initComponents();
         this.padre = padre;
-        jTextDoc.setText(doc);
+        txtfDocumento.setText(doc);
     }
 
     /** This method is called from within the constructor to
@@ -44,40 +44,40 @@ public class JFVisualizarDocumento extends JDialog{
     private void initComponents() {
 
         pnlContenido = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlFondo = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextDoc = new javax.swing.JTextArea();
+        txtfDocumento = new javax.swing.JTextArea();
         btnAceptar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        mnbOpciones = new javax.swing.JMenuBar();
         mnuModificar = new javax.swing.JMenu();
 
         pnlContenido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Contenido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(153, 143, 134));
-        jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel2.setForeground(new java.awt.Color(133, 114, 114));
+        pnlFondo.setBackground(new java.awt.Color(153, 143, 134));
+        pnlFondo.setBorder(new javax.swing.border.MatteBorder(null));
+        pnlFondo.setForeground(new java.awt.Color(133, 114, 114));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTextDoc.setColumns(20);
-        jTextDoc.setEditable(false);
-        jTextDoc.setRows(5);
-        jTextDoc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane1.setViewportView(jTextDoc);
+        txtfDocumento.setColumns(20);
+        txtfDocumento.setEditable(false);
+        txtfDocumento.setRows(5);
+        txtfDocumento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jScrollPane1.setViewportView(txtfDocumento);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
+        pnlFondo.setLayout(pnlFondoLayout);
+        pnlFondoLayout.setHorizontalGroup(
+            pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlFondoLayout.setVerticalGroup(
+            pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                 .addContainerGap())
@@ -89,13 +89,13 @@ public class JFVisualizarDocumento extends JDialog{
             pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContenidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         pnlContenidoLayout.setVerticalGroup(
             pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContenidoLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -133,9 +133,9 @@ public class JFVisualizarDocumento extends JDialog{
                 mnuModificarActionPerformed(evt);
             }
         });
-        jMenuBar1.add(mnuModificar);
+        mnbOpciones.add(mnuModificar);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(mnbOpciones);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,7 +169,7 @@ public class JFVisualizarDocumento extends JDialog{
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuModificarMousePressed
-        jTextDoc.setEditable(!jTextDoc.isEditable());  
+        txtfDocumento.setEditable(!txtfDocumento.isEditable());
 }//GEN-LAST:event_mnuModificarMousePressed
 
     private void mnuModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuModificarActionPerformed
@@ -182,7 +182,7 @@ public class JFVisualizarDocumento extends JDialog{
             this.setVisible(false);
         }
         else {
-            this.padre.setContenidoDoc(this.jTextDoc.getText());
+            padre.setContenidoDoc(txtfDocumento.getText());
             this.setVisible(false);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -197,11 +197,11 @@ public class JFVisualizarDocumento extends JDialog{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextDoc;
+    private javax.swing.JMenuBar mnbOpciones;
     private javax.swing.JMenu mnuModificar;
     private javax.swing.JPanel pnlContenido;
+    private javax.swing.JPanel pnlFondo;
+    private javax.swing.JTextArea txtfDocumento;
     // End of variables declaration//GEN-END:variables
 }
