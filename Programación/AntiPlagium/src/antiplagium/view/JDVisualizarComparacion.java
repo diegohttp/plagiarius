@@ -34,21 +34,21 @@ import javax.swing.text.StyleConstants;
  */
 public class JDVisualizarComparacion extends javax.swing.JDialog {
 
-    private DocumentoBE doc1;
-    private GestorDocumentosBE docs = new GestorDocumentosBE();
-    private ArrayList<DetectorBL> detectores = new ArrayList<DetectorBL>();
-    private int docActual = 0;
-    private ArrayList<ResultadoDeteccionBE> listResultado;
+    private DocumentoBE objDocumento1;
+    private GestorDocumentosBE gstDocumentos = new GestorDocumentosBE();
+    private ArrayList<DetectorBL> alstDetectores = new ArrayList<DetectorBL>();
+    private int numDocumentoActual = 0;
+    private ArrayList<ResultadoDeteccionBE> alstResultados;
     public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
-        this.doc1 = doc;
-        this.docs = listaDoc;
+        this.objDocumento1 = doc;
+        this.gstDocumentos = listaDoc;
 
-        PanelLupa p= new PanelLupa();
+        PanelLupa objPanelLupa= new PanelLupa();
        
-        this.add(p);
+        this.add(objPanelLupa);
         initComponents();
-         p.setLocation(this.lblTiempo.getLocation().x, this.lblTiempo.getLocation().y-100);
-        if (this.docs.cantElementos()==1) this.btnDocSgte.setEnabled(false);
+         objPanelLupa.setLocation(this.lblTiempo.getLocation().x, this.lblTiempo.getLocation().y-100);
+        if (this.gstDocumentos.cantElementos()==1) this.btnDocSgte.setEnabled(false);
         this.etiquetarValoresIniciales();
 
         this.realizarComparacion();
@@ -59,37 +59,27 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     public void etiquetarValoresIniciales() {
         this.txtDoc1.setBackground(Color.white);
         this.txtDoc2.setBackground(Color.white);
-        this.lblDoc1.setText(doc1.getNombre());
-        this.lblDoc2.setText(docs.get(0).getNombre());
-
-       // this.txtDoc1.setText(doc1.getContenido());
-      //  this.txtDoc2.setText(docs.get(0).getContenido());
-        //this.cargarContenidos();
-
-        this.lblTotalDocs.setText("de " + docs.cantElementos());
+        this.lblDoc1.setText(objDocumento1.getNombre());
+        this.lblDoc2.setText(gstDocumentos.get(0).getNombre());
+        this.lblTotalDocs.setText("de " + gstDocumentos.cantElementos());
 
     }
 
     public void realizarComparacion() {
         this.lblTiempo.setText("Realizando comparación...");
-
-     
-
-    
-
-        this.doc1.armarEstructura();
+        this.objDocumento1.armarEstructura();
 
         long tInicio = System.currentTimeMillis();
-        listResultado = new ArrayList<ResultadoDeteccionBE>();
-        for (int i = 0; i < this.docs.cantElementos(); i++) {
+        alstResultados = new ArrayList<ResultadoDeteccionBE>();
+        for (int i = 0; i < this.gstDocumentos.cantElementos(); i++) {
             DetectorBL dec = new DetectorBL();
-            docs.get(i).armarEstructura();
-            dec.comparar(doc1, docs.get(i));
-            this.detectores.add(dec);
+            gstDocumentos.get(i).armarEstructura();
+            dec.comparar(objDocumento1, gstDocumentos.get(i));
+            this.alstDetectores.add(dec);
           
             ResultadoDeteccionBE objResDeteccion = new ResultadoDeteccionBE();
-            objResDeteccion.setDocumento1(doc1);
-            objResDeteccion.setDocumento2(docs.get(i));
+            objResDeteccion.setDocumento1(objDocumento1);
+            objResDeteccion.setDocumento2(gstDocumentos.get(i));
             objResDeteccion.setFecha(new Date());
             objResDeteccion.setPorcentajePlagio(dec.getResultado());
             if (objResDeteccion.getPorcentajePlagio() < 50){
@@ -106,7 +96,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                 id = Utilitario.generaCodigo("ResultadoDeteccion");
                 objResDeteccion.setidDeteccion(id);
                 ResultadoDeteccionBL.registrar(objResDeteccion);
-                this.listResultado.add(objResDeteccion);
+                this.alstResultados.add(objResDeteccion);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JDVisualizarComparacion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -121,21 +111,19 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     }
 
     public void actualizar() {
-        this.lblDoc2.setText(docs.get(docActual).getNombre());
-     //   this.txtDoc1.setText(doc1.getContenido());
-      //  this.txtDoc2.setText(docs.get(docActual).getContenido());
-        int res = detectores.get(docActual).getResultado();
-        this.lblPorc.setText("Porcentaje de similitud: " + res + " %");
+        this.lblDoc2.setText(gstDocumentos.get(numDocumentoActual).getNombre());
+        int resultado = alstDetectores.get(numDocumentoActual).getResultado();
+        this.lblPorc.setText("Porcentaje de similitud: " + resultado + " %");
 
-        if (res < 50) {
+        if (resultado < 50) {
             this.lblNivel.setText("Bajo");
-        } else if (res < 70) {
+        } else if (resultado < 70) {
             this.lblNivel.setText("Medio");
         } else {
             this.lblNivel.setText("Alto");
         }
 
-        this.txtNumDoc.setText("" + (docActual+1));
+        this.txtNumDoc.setText("" + (numDocumentoActual+1));
         this.lblMayor.setText("Mayor porcentaje detectado: "+this.obtenerMayorPorcentaje().x+" %");
         this.lblEnDoc.setText("En el documento número "+(this.obtenerMayorPorcentaje().y+1));
 
@@ -145,9 +133,9 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     public Point obtenerMayorPorcentaje(){
         int mayor=0;
         int posMayor=0;
-        for (int i=0; i<detectores.size(); i++) {
-            if  (mayor<detectores.get(i).getResultado()) {
-                mayor=detectores.get(i).getResultado();
+        for (int i=0; i<alstDetectores.size(); i++) {
+            if  (mayor<alstDetectores.get(i).getResultado()) {
+                mayor=alstDetectores.get(i).getResultado();
                 posMayor=i;
             }
         }
@@ -158,7 +146,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         
         this.txtDoc1.setText("");
         this.txtDoc2.setText("");
-        DetectorBL detector = this.detectores.get(this.docActual);
+        DetectorBL detector = this.alstDetectores.get(this.numDocumentoActual);
         int[] listaOraciones1 = new int[detector.listaConexiones.size()];
         int[] listaOraciones2 = new int[detector.listaConexiones.size()];
 
@@ -167,8 +155,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             listaOraciones2[i] = detector.listaConexiones.get(i).getOracionesConectadas().y;
         }
 
-        String[] contenido1Previo = doc1.getContenido().split("\n");
-        String[] contenido2Previo = docs.get(docActual).getContenido().split("\n");
+        String[] contenido1Previo = objDocumento1.getContenido().split("\n");
+        String[] contenido2Previo = gstDocumentos.get(numDocumentoActual).getContenido().split("\n");
 
         String[] contenido1=this.removerVacios(contenido1Previo);
          String[] contenido2=this.removerVacios(contenido2Previo);
@@ -255,13 +243,13 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlDoc1 = new javax.swing.JPanel();
+        pnlDoc2Interior = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDoc1 = new javax.swing.JTextPane();
         lblDoc1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        pnlDoc2 = new javax.swing.JPanel();
+        pnlDoc1Interior = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDoc2 = new javax.swing.JTextPane();
         lblDoc2 = new javax.swing.JLabel();
@@ -274,99 +262,99 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         btnDocSgte = new javax.swing.JButton();
         lblEnDoc = new javax.swing.JLabel();
         lblMayor = new javax.swing.JLabel();
-        lblDoc3 = new javax.swing.JLabel();
+        lblTitulo1 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento comparado"));
+        pnlDoc1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento comparado"));
 
-        jPanel2.setBackground(new java.awt.Color(153, 143, 134));
-        jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel2.setForeground(new java.awt.Color(133, 114, 114));
+        pnlDoc2Interior.setBackground(new java.awt.Color(153, 143, 134));
+        pnlDoc2Interior.setBorder(new javax.swing.border.MatteBorder(null));
+        pnlDoc2Interior.setForeground(new java.awt.Color(133, 114, 114));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtDoc1.setEditable(false);
         jScrollPane1.setViewportView(txtDoc1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDoc2InteriorLayout = new javax.swing.GroupLayout(pnlDoc2Interior);
+        pnlDoc2Interior.setLayout(pnlDoc2InteriorLayout);
+        pnlDoc2InteriorLayout.setHorizontalGroup(
+            pnlDoc2InteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDoc2InteriorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlDoc2InteriorLayout.setVerticalGroup(
+            pnlDoc2InteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoc2InteriorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDoc1Layout = new javax.swing.GroupLayout(pnlDoc1);
+        pnlDoc1.setLayout(pnlDoc1Layout);
+        pnlDoc1Layout.setHorizontalGroup(
+            pnlDoc1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoc1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDoc2Interior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        pnlDoc1Layout.setVerticalGroup(
+            pnlDoc1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDoc1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDoc2Interior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         lblDoc1.setFont(new java.awt.Font("Comic Sans MS", 1, 14));
         lblDoc1.setText("Doc1");
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento de referencia"));
+        pnlDoc2.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento de referencia"));
 
-        jPanel4.setBackground(new java.awt.Color(153, 143, 134));
-        jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel4.setForeground(new java.awt.Color(133, 114, 114));
+        pnlDoc1Interior.setBackground(new java.awt.Color(153, 143, 134));
+        pnlDoc1Interior.setBorder(new javax.swing.border.MatteBorder(null));
+        pnlDoc1Interior.setForeground(new java.awt.Color(133, 114, 114));
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtDoc2.setEditable(false);
         jScrollPane2.setViewportView(txtDoc2);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDoc1InteriorLayout = new javax.swing.GroupLayout(pnlDoc1Interior);
+        pnlDoc1Interior.setLayout(pnlDoc1InteriorLayout);
+        pnlDoc1InteriorLayout.setHorizontalGroup(
+            pnlDoc1InteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoc1InteriorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        pnlDoc1InteriorLayout.setVerticalGroup(
+            pnlDoc1InteriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoc1InteriorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDoc2Layout = new javax.swing.GroupLayout(pnlDoc2);
+        pnlDoc2.setLayout(pnlDoc2Layout);
+        pnlDoc2Layout.setHorizontalGroup(
+            pnlDoc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoc2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDoc1Interior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(72, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        pnlDoc2Layout.setVerticalGroup(
+            pnlDoc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDoc2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDoc1Interior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -405,8 +393,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         lblMayor.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
         lblMayor.setText("Mayor porcentaje detectado:");
 
-        lblDoc3.setFont(new java.awt.Font("Comic Sans MS", 1, 14));
-        lblDoc3.setText("Resultados de comparaciones...");
+        lblTitulo1.setFont(new java.awt.Font("Comic Sans MS", 1, 14));
+        lblTitulo1.setText("Resultados de comparaciones...");
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
@@ -429,12 +417,12 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDoc1)
-                            .addComponent(lblDoc3))
+                            .addComponent(lblTitulo1))
                         .addGap(270, 270, 270))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTiempo)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnlDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -449,11 +437,11 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(73, 73, 73)
                                         .addComponent(lblNivel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(pnlDoc2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -471,15 +459,15 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(lblDoc3)
+                        .addComponent(lblTitulo1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDoc1)
                             .addComponent(lblDoc2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnlDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnlDoc1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -511,18 +499,18 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDocAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocAnteriorActionPerformed
-        this.docActual--;
+        this.numDocumentoActual--;
         this.btnDocSgte.setEnabled(true);
-        if (docActual == 0) {
+        if (numDocumentoActual == 0) {
             this.btnDocAnterior.setEnabled(false);
         }
         this.actualizar();
 }//GEN-LAST:event_btnDocAnteriorActionPerformed
 
     private void btnDocSgteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocSgteActionPerformed
-        this.docActual++;
+        this.numDocumentoActual++;
         this.btnDocAnterior.setEnabled(true);
-        if (docActual == docs.cantElementos() - 1) {
+        if (numDocumentoActual == gstDocumentos.cantElementos() - 1) {
             this.btnDocSgte.setEnabled(false);
         }
         this.actualizar();
@@ -540,21 +528,21 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnDocAnterior;
     private javax.swing.JButton btnDocSgte;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDoc1;
     private javax.swing.JLabel lblDoc2;
-    private javax.swing.JLabel lblDoc3;
     private javax.swing.JLabel lblEnDoc;
     private javax.swing.JLabel lblMayor;
     private javax.swing.JLabel lblNivel;
     private javax.swing.JLabel lblPorc;
     private javax.swing.JLabel lblTiempo;
+    private javax.swing.JLabel lblTitulo1;
     private javax.swing.JLabel lblTotalDocs;
+    private javax.swing.JPanel pnlDoc1;
+    private javax.swing.JPanel pnlDoc1Interior;
+    private javax.swing.JPanel pnlDoc2;
+    private javax.swing.JPanel pnlDoc2Interior;
     private javax.swing.JTextPane txtDoc1;
     private javax.swing.JTextPane txtDoc2;
     private javax.swing.JTextField txtNumDoc;
