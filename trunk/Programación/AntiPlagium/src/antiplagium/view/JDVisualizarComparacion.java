@@ -39,21 +39,34 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private ArrayList<DetectorBL> alstDetectores = new ArrayList<DetectorBL>();
     private int numDocumentoActual = 0;
     private ArrayList<ResultadoDeteccionBE> alstResultados;
+
     public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
         this.objDocumento1 = doc;
         this.gstDocumentos = listaDoc;
 
-        PanelLupa objPanelLupa= new PanelLupa();
-       
+        PanelLupa objPanelLupa = new PanelLupa();
+
         this.add(objPanelLupa);
         initComponents();
-         objPanelLupa.setLocation(this.lblTiempo.getLocation().x, this.lblTiempo.getLocation().y-100);
-        if (this.gstDocumentos.cantElementos()==1) this.btnDocSgte.setEnabled(false);
+        objPanelLupa.setLocation(this.lblTiempo.getLocation().x, this.lblTiempo.getLocation().y - 100);
+        if (this.gstDocumentos.cantElementos() == 1) {
+            this.btnDocSgte.setEnabled(false);
+        }
         this.etiquetarValoresIniciales();
+        Thread hiloComp = new Thread() {
 
-        this.realizarComparacion();
+            public void run() {
+                realizarComparacion();
 
-        this.actualizar();
+                actualizar();
+            }
+        };
+        hiloComp.start();
+        this.setModal(true);
+        this.setVisible(true);
+        
+
+
     }
 
     public void etiquetarValoresIniciales() {
@@ -76,19 +89,17 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             gstDocumentos.get(i).armarEstructura();
             dec.comparar(objDocumento1, gstDocumentos.get(i));
             this.alstDetectores.add(dec);
-          
+
             ResultadoDeteccionBE objResDeteccion = new ResultadoDeteccionBE();
             objResDeteccion.setDocumento1(objDocumento1);
             objResDeteccion.setDocumento2(gstDocumentos.get(i));
             objResDeteccion.setFecha(new Date());
             objResDeteccion.setPorcentajePlagio(dec.getResultado());
-            if (objResDeteccion.getPorcentajePlagio() < 50){
+            if (objResDeteccion.getPorcentajePlagio() < 50) {
                 objResDeteccion.setResultado("No Plagio");
-            }
-            else if (objResDeteccion.getPorcentajePlagio() < 70){
+            } else if (objResDeteccion.getPorcentajePlagio() < 70) {
                 objResDeteccion.setResultado("No Plagio");
-            }
-            else {
+            } else {
                 objResDeteccion.setResultado("Plagio");
             }
             int id = 1;
@@ -102,7 +113,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             } catch (IOException ex) {
                 Logger.getLogger(JDVisualizarComparacion.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
 
         long tFin = System.currentTimeMillis();
@@ -123,27 +134,27 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             this.lblNivel.setText("Alto");
         }
 
-        this.txtNumDoc.setText("" + (numDocumentoActual+1));
-        this.lblMayor.setText("Mayor porcentaje detectado: "+this.obtenerMayorPorcentaje().x+" %");
-        this.lblEnDoc.setText("En el documento número "+(this.obtenerMayorPorcentaje().y+1));
+        this.txtNumDoc.setText("" + (numDocumentoActual + 1));
+        this.lblMayor.setText("Mayor porcentaje detectado: " + this.obtenerMayorPorcentaje().x + " %");
+        this.lblEnDoc.setText("En el documento número " + (this.obtenerMayorPorcentaje().y + 1));
 
         this.cargarContenidos();
     }
-    
-    public Point obtenerMayorPorcentaje(){
-        int mayor=0;
-        int posMayor=0;
-        for (int i=0; i<alstDetectores.size(); i++) {
-            if  (mayor<alstDetectores.get(i).getResultado()) {
-                mayor=alstDetectores.get(i).getResultado();
-                posMayor=i;
+
+    public Point obtenerMayorPorcentaje() {
+        int mayor = 0;
+        int posMayor = 0;
+        for (int i = 0; i < alstDetectores.size(); i++) {
+            if (mayor < alstDetectores.get(i).getResultado()) {
+                mayor = alstDetectores.get(i).getResultado();
+                posMayor = i;
             }
         }
-        return new Point(mayor,posMayor);
+        return new Point(mayor, posMayor);
     }
 
     public void cargarContenidos() {
-        
+
         this.txtDoc1.setText("");
         this.txtDoc2.setText("");
         DetectorBL detector = this.alstDetectores.get(this.numDocumentoActual);
@@ -158,8 +169,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         String[] contenido1Previo = objDocumento1.getContenido().split("\n");
         String[] contenido2Previo = gstDocumentos.get(numDocumentoActual).getContenido().split("\n");
 
-        String[] contenido1=this.removerVacios(contenido1Previo);
-         String[] contenido2=this.removerVacios(contenido2Previo);
+        String[] contenido1 = this.removerVacios(contenido1Previo);
+        String[] contenido2 = this.removerVacios(contenido2Previo);
 
         SimpleAttributeSet attrNegrita = new SimpleAttributeSet();
         StyleConstants.setBold(attrNegrita, false);
@@ -172,17 +183,18 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         StyleConstants.setForeground(attrNormal, Color.black);
 
         for (int i = 0; i < contenido1.length; i++) {
-            if (contenido1[i]==null) break;
+            if (contenido1[i] == null) {
+                break;
+            }
             if (contiene(listaOraciones1, i)) {
                 try {
-                    this.txtDoc1.getStyledDocument().insertString(this.txtDoc1.getStyledDocument().getLength(), contenido1[i]+"\n", attrNegrita);
+                    this.txtDoc1.getStyledDocument().insertString(this.txtDoc1.getStyledDocument().getLength(), contenido1[i] + "\n", attrNegrita);
                 } catch (BadLocationException ex) {
                     System.out.println(ex);
                 }
-            }
-            else {
-               try {
-                    this.txtDoc1.getStyledDocument().insertString(this.txtDoc1.getStyledDocument().getLength(), contenido1[i]+"\n", attrNormal);
+            } else {
+                try {
+                    this.txtDoc1.getStyledDocument().insertString(this.txtDoc1.getStyledDocument().getLength(), contenido1[i] + "\n", attrNormal);
                 } catch (BadLocationException ex) {
                     System.out.println(ex);
                 }
@@ -190,17 +202,18 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         }
 
         for (int i = 0; i < contenido2.length; i++) {
-            if (contenido2[i]==null) break;
+            if (contenido2[i] == null) {
+                break;
+            }
             if (contiene(listaOraciones2, i)) {
                 try {
-                    this.txtDoc2.getStyledDocument().insertString(this.txtDoc2.getStyledDocument().getLength(), contenido2[i]+"\n", attrNegrita);
+                    this.txtDoc2.getStyledDocument().insertString(this.txtDoc2.getStyledDocument().getLength(), contenido2[i] + "\n", attrNegrita);
                 } catch (BadLocationException ex) {
                     System.out.println(ex);
                 }
-            }
-            else {
-               try {
-                    this.txtDoc2.getStyledDocument().insertString(this.txtDoc2.getStyledDocument().getLength(), contenido2[i]+"\n", attrNormal);
+            } else {
+                try {
+                    this.txtDoc2.getStyledDocument().insertString(this.txtDoc2.getStyledDocument().getLength(), contenido2[i] + "\n", attrNormal);
                 } catch (BadLocationException ex) {
                     System.out.println(ex);
                 }
@@ -212,12 +225,12 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
     }
 
-    public String[] removerVacios(String[] arr){
-        String[] aux= new String[arr.length];
-        int j=0;
-        for (int i=0; i<arr.length; i++) {
-            if (arr[i].compareTo("")!=0) {
-                aux[j]=arr[i];
+    public String[] removerVacios(String[] arr) {
+        String[] aux = new String[arr.length];
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].compareTo("") != 0) {
+                aux[j] = arr[i];
                 j++;
             }
         }
@@ -264,6 +277,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         lblMayor = new javax.swing.JLabel();
         lblTitulo1 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
+
+        setTitle("Resultados de comparación");
 
         pnlDoc1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento comparado"));
 
@@ -518,7 +533,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        PanelLupa.fin=true;
+        PanelLupa.fin = true;
         this.setVisible(false);
     }//GEN-LAST:event_btnAceptarActionPerformed
     /**
