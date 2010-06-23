@@ -336,11 +336,12 @@ public class JFCompararDocumentos extends JDialog {
             JOptionPane.showMessageDialog(this, "Se debe un documento para realizar la comparación.","Error Comparación",JOptionPane.ERROR_MESSAGE);
             return;
         }
+        this.setVisible(false);
         JDVisualizarComparacion vis = new JDVisualizarComparacion(this.doc1,this.docs);
-        vis.setModal(true);
-        vis.setTitle("Visualizar Comparación");
+        
+        //vis.setModal(true);
         vis.setLocationRelativeTo(this);
-        vis.setVisible(true);
+        //vis.setVisible(true);
         PanelAnimado.delay=100;
 
     }//GEN-LAST:event_btnAceptarActionPerformed
