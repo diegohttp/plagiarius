@@ -130,7 +130,7 @@ public class JDBuscarDocumento extends JDialog {
         setName(""); // NOI18N
         setResizable(false);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
 
         jtabPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,7 +159,8 @@ public class JDBuscarDocumento extends JDialog {
         jtabPaquetes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtabPaquetes);
 
-        btnSeleccion.setText("Seleccionar Todo");
+        btnSeleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/seleccionar.png"))); // NOI18N
+        btnSeleccion.setText("Seleccionar todo");
         btnSeleccion.setMaximumSize(new java.awt.Dimension(135, 35));
         btnSeleccion.setMinimumSize(new java.awt.Dimension(135, 35));
         btnSeleccion.setPreferredSize(new java.awt.Dimension(135, 35));
@@ -190,7 +191,7 @@ public class JDBuscarDocumento extends JDialog {
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
         jPanel1.setForeground(new java.awt.Color(0, 0, 255));
         jPanel1.setName("Búsqueda"); // NOI18N
         jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
