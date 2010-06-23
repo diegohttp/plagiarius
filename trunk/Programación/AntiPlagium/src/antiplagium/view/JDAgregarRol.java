@@ -17,6 +17,7 @@ public class JDAgregarRol extends JDialog {
     Boolean esModificar;
 
     RolBE rolBE;
+    String nombreRolInicial;
     String descripcionOperacion;
     String descripcionOperacionModificar;
 
@@ -33,6 +34,8 @@ public class JDAgregarRol extends JDialog {
         initComponents();
         this.rolBE = rolBE;
         this.listaPrivilegiosSinModificar = listaPrivilegios;
+        this.cboEstado.addItem("Activo");
+        this.cboEstado.addItem("Inactivo");
         onLoad();
         onLoadModificar();
         esModificar = true;
@@ -73,7 +76,8 @@ public class JDAgregarRol extends JDialog {
 
     private void onLoadModificar()
     {
-        textNombreRol.setText(rolBE.getNombre());
+        nombreRolInicial = rolBE.getNombre();
+        txtNombreRol.setText(rolBE.getNombre());
         descripcionOperacionModificar = "Registro original: " + rolBE.getNombre() + "\n";
         for (PrivilegioBE privilegio : listaPrivilegiosSinModificar)
         {            
@@ -93,8 +97,10 @@ public class JDAgregarRol extends JDialog {
 
         JBGuardar = new javax.swing.JButton();
         JPGrupo = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        textNombreRol = new javax.swing.JTextField();
+        lblNombreRol = new javax.swing.JLabel();
+        txtNombreRol = new javax.swing.JTextField();
+        lblEstado = new javax.swing.JLabel();
+        cboEstado = new javax.swing.JComboBox();
         JBCancelar = new javax.swing.JButton();
         JPPrivilegios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -112,33 +118,47 @@ public class JDAgregarRol extends JDialog {
 
         JPGrupo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 0, 12))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 11));
-        jLabel2.setText("Nombre del Rol");
+        lblNombreRol.setFont(new java.awt.Font("Arial", 0, 11));
+        lblNombreRol.setText("Nombre del Rol");
 
-        textNombreRol.setName("textNombreRol"); // NOI18N
-        textNombreRol.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombreRol.setName("txtNombreRol"); // NOI18N
+        txtNombreRol.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                textNombreRolKeyReleased(evt);
+                txtNombreRolKeyReleased(evt);
             }
         });
+
+        lblEstado.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        lblEstado.setText("Estado");
 
         javax.swing.GroupLayout JPGrupoLayout = new javax.swing.GroupLayout(JPGrupo);
         JPGrupo.setLayout(JPGrupoLayout);
         JPGrupoLayout.setHorizontalGroup(
             JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPGrupoLayout.createSequentialGroup()
+            .addGroup(JPGrupoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119))
+                .addGroup(JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPGrupoLayout.createSequentialGroup()
+                        .addComponent(lblNombreRol, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119))
+                    .addGroup(JPGrupoLayout.createSequentialGroup()
+                        .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(213, 213, 213))))
         );
         JPGrupoLayout.setVerticalGroup(
             JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPGrupoLayout.createSequentialGroup()
                 .addGroup(JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(textNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNombreRol)
+                    .addComponent(txtNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEstado)
+                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -211,28 +231,27 @@ public class JDAgregarRol extends JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(JPPrivilegios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(JBGuardar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(JBCancelar))
-                        .addComponent(JPGrupo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JPGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JPPrivilegios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(JBGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JBCancelar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(JPGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JPGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JPPrivilegios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JBGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JBCancelar))
+                .addContainerGap())
         );
 
         pack();
@@ -244,7 +263,7 @@ public class JDAgregarRol extends JDialog {
 
     private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
 
-        if (textNombreRol.getText().equals(""))
+        if (txtNombreRol.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Nombre del Rol debe tener al menos un caracter", "ERROR", JOptionPane.ERROR_MESSAGE);           
             return;
@@ -254,7 +273,7 @@ public class JDAgregarRol extends JDialog {
         listaIDPrivilegios = new ArrayList<Integer>();
         listaPrivilegios = new ArrayList<PrivilegioBE>();
 
-        rolBE.setNombre(textNombreRol.getText());
+        rolBE.setNombre(txtNombreRol.getText());
         for (int i = 0; i<modeloTablaPrivilegios.getRowCount(); i++)
         {
            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true )
@@ -271,6 +290,10 @@ public class JDAgregarRol extends JDialog {
             {
                 if ( rolBE.getNombre().compareToIgnoreCase(tablaRoles.getString("nombre")) == 0 )
                 {
+                    if (esModificar) 
+                    {
+                        if (rolBE.getNombre().compareToIgnoreCase(nombreRolInicial) == 0) break;
+                    }
                     JOptionPane.showMessageDialog(this, "Nombre de rol ya existe", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -284,7 +307,7 @@ public class JDAgregarRol extends JDialog {
             
             if (esModificar)
             {
-                descripcionOperacionModificar(textNombreRol.getText(), listaPrivilegios);
+                descripcionOperacionModificar(txtNombreRol.getText(), listaPrivilegios);
                 JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcionOperacion);
             }
             else
@@ -333,18 +356,18 @@ public class JDAgregarRol extends JDialog {
         }        
     }
 
-    private void textNombreRolKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreRolKeyReleased
+    private void txtNombreRolKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRolKeyReleased
         Character caracter = new Character(evt.getKeyChar());
         if (!Utilitario.esLetra(caracter))
         {
             String texto = "";
-            for (int i = 0; i < textNombreRol.getText().length(); i++)
-                if (Utilitario.esLetra(new Character(textNombreRol.getText().charAt(i))))
-                    texto += textNombreRol.getText().charAt(i);
-            textNombreRol.setText(texto);
-            textNombreRol.getToolkit().beep();
+            for (int i = 0; i < txtNombreRol.getText().length(); i++)
+                if (Utilitario.esLetra(new Character(txtNombreRol.getText().charAt(i))))
+                    texto += txtNombreRol.getText().charAt(i);
+            txtNombreRol.setText(texto);
+            txtNombreRol.getToolkit().beep();
         }
-    }//GEN-LAST:event_textNombreRolKeyReleased
+    }//GEN-LAST:event_txtNombreRolKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBCancelar;
@@ -352,9 +375,11 @@ public class JDAgregarRol extends JDialog {
     private javax.swing.JPanel JPGrupo;
     private javax.swing.JPanel JPPrivilegios;
     private javax.swing.JTable JTPrivilegios;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox cboEstado;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField textNombreRol;
+    private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblNombreRol;
+    private javax.swing.JTextField txtNombreRol;
     // End of variables declaration//GEN-END:variables
 
 }
