@@ -39,7 +39,7 @@ public class JDRegistrarCategoria extends JDialog {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         TipoOperacion = 0;
-        int idCategoria = 0;
+        int idCategoria = 1;
         try {
             idCategoria = Utilitario.generaCodigo("Categoria");
         } catch (FileNotFoundException ex) {
@@ -47,16 +47,16 @@ public class JDRegistrarCategoria extends JDialog {
         } catch (IOException ex) {
             Logger.getLogger(JDRegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.jTextField1.setText("" + idCategoria + "");
+        txtIdCategoria.setText("" + idCategoria + "");
     }
 
     public JDRegistrarCategoria(CategoriaBE objCategoria){
         initComponents();
         TipoOperacion = 1;
-        this.jTextField1.setText("" + objCategoria.getIdCategoria() + "");
-        this.txtDescCategoria.setText(objCategoria.getDescripcion());
-        this.txtNomCategoria.setText(objCategoria.getNombre());
-        this.objCategoria = objCategoria;
+        txtIdCategoria.setText("" + objCategoria.getIdCategoria() + "");
+        txtDescCategoria.setText(objCategoria.getDescripcion());
+        txtNomCategoria.setText(objCategoria.getNombre());
+        objCategoria = objCategoria;
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -67,22 +67,22 @@ public class JDRegistrarCategoria extends JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        lblIdCategoria = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
         txtNomCategoria = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         txtDescCategoria = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        txtIdCategoria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar Categoria");
         setModal(true);
         setResizable(false);
 
-        jLabel2.setText("Código:");
+        lblIdCategoria.setText("Código:");
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -95,7 +95,7 @@ public class JDRegistrarCategoria extends JDialog {
             }
         });
 
-        jLabel6.setText("Descripción:");
+        lblDescripcion.setText("Descripción:");
 
         txtNomCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -125,7 +125,7 @@ public class JDRegistrarCategoria extends JDialog {
             }
         });
 
-        jLabel1.setText("Nombre:");
+        lblNombre.setText("Nombre:");
 
         txtDescCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -133,7 +133,7 @@ public class JDRegistrarCategoria extends JDialog {
             }
         });
 
-        jTextField1.setEnabled(false);
+        txtIdCategoria.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,19 +151,19 @@ public class JDRegistrarCategoria extends JDialog {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
+                            .addComponent(lblDescripcion)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))))
+                                    .addComponent(lblIdCategoria)
+                                    .addComponent(lblNombre))))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtNomCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                                 .addComponent(txtDescCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(146, 146, 146))))
         );
@@ -172,15 +172,15 @@ public class JDRegistrarCategoria extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblIdCategoria)
+                    .addComponent(txtIdCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(lblNombre))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(lblDescripcion)
                     .addComponent(txtDescCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -196,26 +196,24 @@ public class JDRegistrarCategoria extends JDialog {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         /* Revisamos si los campos nombre y descripcion son vacios */
-        if ((this.txtNomCategoria.getText().compareTo("") == 0)){
-            JOptionPane.showMessageDialog(null,"El campo Nombre no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
+        if ((txtNomCategoria.getText().compareTo("") == 0)){
+            JOptionPane.showMessageDialog(this,"El campo Nombre no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
             return;
         }
-        else if ( (this.txtDescCategoria.getText().compareTo("") == 0) ){
-            JOptionPane.showMessageDialog(null,"El campo Descripción no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
+        else if ( (txtDescCategoria.getText().compareTo("") == 0) ){
+            JOptionPane.showMessageDialog(this,"El campo Descripción no puede ser vacio","Error Registro",JOptionPane.ERROR_MESSAGE);
             return;
         }
         else {
-
             boolean boolExito = false;
-
-            CategoriaBL categoriaBL = new CategoriaBL();
+            CategoriaBL objCategoriaBL = new CategoriaBL();
                 try {
-                    CategoriaBE categ = new CategoriaBE(Integer.parseInt(this.jTextField1.getText()),this.txtDescCategoria.getText(),this.txtNomCategoria.getText());
+                    CategoriaBE objCategoriaTemporal = new CategoriaBE(Integer.parseInt(txtIdCategoria.getText()),txtDescCategoria.getText(),txtNomCategoria.getText());
                     if (TipoOperacion==0){
-                        boolExito = categoriaBL.registrarCategoria(categ);
+                        boolExito = objCategoriaBL.registrarCategoria(objCategoriaTemporal);
                     }
                     else {
-                        boolExito = categoriaBL.modificarCategoria(categ);
+                        boolExito = objCategoriaBL.modificarCategoria(objCategoriaTemporal);
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(JDRegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
@@ -236,9 +234,9 @@ public class JDRegistrarCategoria extends JDialog {
 }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-       if (this.TipoOperacion == 1){
-            txtNomCategoria.setText(this.objCategoria.getNombre());
-            txtDescCategoria.setText(this.objCategoria.getDescripcion());
+       if (TipoOperacion == 1){
+            txtNomCategoria.setText(objCategoria.getNombre());
+            txtDescCategoria.setText(objCategoria.getDescripcion());
        }
        else {
             txtNomCategoria.setText("");
@@ -252,11 +250,11 @@ public class JDRegistrarCategoria extends JDialog {
 
         if (!Utilitario.esLetra(caracter)) {
                     String texto = "";
-                    for (int i = 0; i < this.txtNomCategoria.getText().length(); i++)
-                        if (Utilitario.esLetra(new Character(this.txtNomCategoria.getText().charAt(i))))
-                            texto += this.txtNomCategoria.getText().charAt(i);
-                    this.txtNomCategoria.setText(texto);
-            this.txtNomCategoria.getToolkit().beep();
+                    for (int i = 0; i < txtNomCategoria.getText().length(); i++)
+                        if (Utilitario.esLetra(new Character(txtNomCategoria.getText().charAt(i))))
+                            texto += txtNomCategoria.getText().charAt(i);
+                        txtNomCategoria.setText(texto);
+                txtNomCategoria.getToolkit().beep();
         }
     }//GEN-LAST:event_txtNomCategoriaKeyReleased
 
@@ -266,11 +264,11 @@ public class JDRegistrarCategoria extends JDialog {
 
         if (!Utilitario.esAlphanumerico(caracter)) {
                     String texto = "";
-                    for (int i = 0; i < this.txtDescCategoria.getText().length(); i++)
-                        if (Utilitario.esAlphanumerico(new Character(this.txtDescCategoria.getText().charAt(i))))
-                            texto += this.txtDescCategoria.getText().charAt(i);
-                    this.txtDescCategoria.setText(texto);
-            this.txtDescCategoria.getToolkit().beep();
+                    for (int i = 0; i < txtDescCategoria.getText().length(); i++)
+                        if (Utilitario.esAlphanumerico(new Character(txtDescCategoria.getText().charAt(i))))
+                            texto += txtDescCategoria.getText().charAt(i);
+                        txtDescCategoria.setText(texto);
+                txtDescCategoria.getToolkit().beep();
         }
     }//GEN-LAST:event_txtDescCategoriaKeyReleased
 
@@ -283,11 +281,11 @@ public class JDRegistrarCategoria extends JDialog {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblIdCategoria;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtDescCategoria;
+    private javax.swing.JTextField txtIdCategoria;
     private javax.swing.JTextField txtNomCategoria;
     // End of variables declaration//GEN-END:variables
 
