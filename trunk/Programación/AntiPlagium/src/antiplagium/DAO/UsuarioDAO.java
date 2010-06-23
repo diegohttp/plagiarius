@@ -181,6 +181,16 @@ public class UsuarioDAO {
                 }
                 campos += "\"fechaVencimiento\"=" + cadenaFechaF + ",";
             }
+            if (originalUsuario.getFechaCese()!=null) {
+                String cadenaFechaCese=null;
+                campos += "\"fechaCese\"=" + cadenaFechaCese + ",";
+            }
+            if (nuevoUsuario.getEstadoBE().getIdEstado() != originalUsuario.getEstadoBE().getIdEstado()) {
+                //String cadenaIdROl="'"+nuevoUsuario.getRolBE().getIdRol()+"'";
+                //campos+="\"idRol\"="+cadenaIdROl+",";
+                campos += "\"idEstado\"=" + nuevoUsuario.getEstadoBE().getIdEstado()+",";
+            }
+
             if (campos != "") {
                 try {
                     int longitud = campos.length();
@@ -297,7 +307,7 @@ public class UsuarioDAO {
             if (usuarioBE.getFechaCese() != null) {
                 cadenaFechaF = "'" + formato.format(usuarioBE.getFechaCese()) + "'";
             }
-            squery = " UPDATE \"Usuario\" SET \"fechaCese\"=" + cadenaFechaF + ", \"idEstado\"=" + usuarioBE.getEstadoBE().getIdEstado();
+            squery = " UPDATE \"Usuario\" SET \"fechaCese\"=" + cadenaFechaF + ", \"idEstado\"=" + usuarioBE.getEstadoBE().getIdEstado()+", \"fechaVencimiento\"=" + cadenaFechaF;
             squery += " WHERE \"idUsuario\"= " + usuarioBE.getIdUsuario();
             ConexionJDBC.ejecutarUpdateString(squery);
             return true;
