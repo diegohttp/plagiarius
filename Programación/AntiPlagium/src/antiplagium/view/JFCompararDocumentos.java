@@ -267,7 +267,7 @@ public class JFCompararDocumentos extends JDialog {
         try {
             UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
             JDBuscarDocumento buscardoc = new JDBuscarDocumento(objUsuario,0);
-
+            buscardoc.soloActivo();
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
@@ -297,6 +297,7 @@ public class JFCompararDocumentos extends JDialog {
             ArrayList<CategoriaBE> aCategoria = new ArrayList<CategoriaBE>();
             UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
             JDBuscarDocumento buscardoc = new JDBuscarDocumento(objUsuario,1);
+            buscardoc.soloActivo();
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
             buscardoc.setVisible(true);
