@@ -9,6 +9,8 @@ public class RolDAO {
 
     private static String SQL_GETROLES = "SELECT \"idRol\", \"nombre\", \"estado\" FROM \"Rol\" WHERE estado = \'ACT\' ";
 
+    private static String SQL_GET_TODOS_ROLES = "SELECT \"idRol\", \"nombre\", \"estado\" FROM \"Rol\" ";
+
     private static String SQL_INSERT_ROL = "INSERT INTO \"Rol\"(\"idRol\", \"nombre\", \"estado\") " +
                                            "VALUES(" ;
 
@@ -34,6 +36,13 @@ public class RolDAO {
     {
         ResultSet tablaResultados = null;       
         tablaResultados = ConexionJDBC.ejecutarQueryString(SQL_GETROLES);                
+        return tablaResultados;
+    }
+    
+    public ResultSet getAllRolesList() throws SQLException
+    {
+        ResultSet tablaResultados = null;       
+        tablaResultados = ConexionJDBC.ejecutarQueryString(SQL_GET_TODOS_ROLES);                
         return tablaResultados;
     }
 
