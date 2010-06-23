@@ -18,17 +18,17 @@ public class RolBE {
         this.setEstado("");
     }
 
-    public RolBE(int idRol, String nombre,String descripcion)
+    public RolBE(int idRol, String nombre,String estado)
     {
         this.setIdRol(idRol);
         this.setNombre(nombre);
-        this.setEstado(descripcion);
+        this.setEstado(estado);
     }
 
-    public void RolBE(String nombre,String descripcion)
+    public void RolBE(String nombre,String estado)
     {
         this.setNombre(nombre);
-        this.setEstado(descripcion);
+        this.setEstado(estado);
     }
     
     public Integer getIdPrivilegio() {
