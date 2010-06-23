@@ -614,4 +614,9 @@ public class JDBuscarDocumento extends JDialog {
     // End of variables declaration//GEN-END:variables
     private String selectedDoc;
 
+    public void soloActivo() {
+       this.cboEstado.setSelectedIndex(1);
+       this.cboEstado.setEnabled(false);
+    }
+
 }
