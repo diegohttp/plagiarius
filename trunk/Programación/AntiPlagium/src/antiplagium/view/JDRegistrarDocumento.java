@@ -105,7 +105,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         lblCategoria = new javax.swing.JLabel();
         cboCategoria = new javax.swing.JComboBox();
         pnlFecha = new javax.swing.JPanel();
-        btnSeleccionarCategoria = new javax.swing.JButton();
         pnlDatosGen = new javax.swing.JPanel();
         txtNombreDoc1 = new javax.swing.JTextField();
         lblNombre1 = new javax.swing.JLabel();
@@ -161,11 +160,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        btnSeleccionarCategoria.setText("Seleccione");
-        btnSeleccionarCategoria.setMaximumSize(new java.awt.Dimension(135, 35));
-        btnSeleccionarCategoria.setMinimumSize(new java.awt.Dimension(135, 35));
-        btnSeleccionarCategoria.setPreferredSize(new java.awt.Dimension(135, 35));
-
         javax.swing.GroupLayout pnlDatosParticularesLayout = new javax.swing.GroupLayout(pnlDatosParticulares);
         pnlDatosParticulares.setLayout(pnlDatosParticularesLayout);
         pnlDatosParticularesLayout.setHorizontalGroup(
@@ -179,14 +173,10 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 .addGroup(pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPropietario, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addGroup(pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDatosParticularesLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(lblFecha)
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSeleccionarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addComponent(lblFecha)
+                .addGap(18, 18, 18)
+                .addComponent(pnlFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(273, Short.MAX_VALUE))
         );
         pnlDatosParticularesLayout.setVerticalGroup(
@@ -201,8 +191,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(pnlDatosParticularesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCategoria)
-                    .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSeleccionarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -468,7 +457,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCargarDirectorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -796,12 +785,12 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             String ruta = fchooser.getSelectedFile().getAbsolutePath();
             File dir = new File(ruta);
             File[] nomArch = dir.listFiles();
-            ArrayList<File> listaArch = new ArrayList<File>();
+            ArrayList<File> alstArch = new ArrayList<File>();
             int cnt = 0;
             for (int i = 0; i < nomArch.length; ++i) {
                 String extension = Utilitario.getExtension(nomArch[i]);
                 if (extension != null && (extension.equals("txt") || extension.equals("doc"))) {
-                    listaArch.add(nomArch[i]);
+                    alstArch.add(nomArch[i]);
                     cnt++;
                 }
             }
@@ -811,16 +800,16 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             }
 
             // Validacion del nombre de los archivos a subir
-            for (int i = 0; i < listaArch.size(); ++i) {
-                if (!DocumentoBL.validarNombre(listaArch.get(i).getName().toUpperCase())) {
-                    JOptionPane.showMessageDialog(this, "El nombre " + listaArch.get(i).getName() + " ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
+            for (int i = 0; i < alstArch.size(); ++i) {
+                if (!DocumentoBL.validarNombre(alstArch.get(i).getName().toUpperCase())) {
+                    JOptionPane.showMessageDialog(this, "El nombre " + alstArch.get(i).getName() + " ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             }
 
             // Obtenemos la categoria seleccionada
             CategoriaBE objCategoria = (CategoriaBE) cboCategoria.getSelectedItem();
-            JDCargaDocumentos cargaDoc = new JDCargaDocumentos(listaArch, objCategoria, objUsuario);
+            JDCargaDocumentos cargaDoc = new JDCargaDocumentos(alstArch, objCategoria, objUsuario);
             cargaDoc.setModal(false);
             //JDCargaDocumentos cargaDoc = new JDCargaDocumentos();
 
@@ -845,7 +834,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCargarDirectorio;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnSeleccionarCategoria;
     private javax.swing.JComboBox cboCategoria;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblFecha;
