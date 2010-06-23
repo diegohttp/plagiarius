@@ -346,9 +346,17 @@ public class UsuarioBL {
     public Boolean ElminarUsuario(UsuarioBE usuarioBE){
         try {
             Boolean r=false;
-            ConexionJDBC.abrirConexion();
-            r = usuarioDAO.EliminarUsuario(usuarioBE);
-            ConexionJDBC.cerrarConexion();
+            SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+            String cadenaFechaCese=formato.format(usuarioBE.getFechaCese());
+            int resultado=cadenaFechaCese.compareTo(formato.format(new Date( System.currentTimeMillis())));
+            if (resultado>=0){
+                ConexionJDBC.abrirConexion();
+                r = usuarioDAO.EliminarUsuario(usuarioBE);
+                ConexionJDBC.cerrarConexion();
+            }
+            else {
+                JOptionPane.showMessageDialog(null,"Debe ingresar una fecha de cese mayor o igual a la fecha actual ", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
             return r;
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
