@@ -13,9 +13,11 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BE.GestorTiposOperacion;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.DocumentoBL;
+import antiplagium.DAL.ConexionJDBC;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -89,7 +91,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
         /* Al finalizar la descarga habilitamos el cerrado de la ventana */
         this.pgbCargaDocumentos.setMaximum(100);
         int paso= 100/this.nomArch.size();
-        String resultado;
+        String resultado = "";
         int valorActual = 0;
         for (int i = 0; i < nomArch.size(); ++i){
             DocumentoBE doc = null;
@@ -98,12 +100,22 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
                 doc = new DocumentoBE(idDoc, "activo" , nomArch.get(i).getName() , objUsuario, null);
                 doc.setContenido(DocumentoBL.obtenerContenido(nomArch.get(i)));
                 doc.setCategoria(objCategoria);
+
                 try {
-                    DocumentoBL.registrar(doc);
-                    /* Si es exitosos */
-                    resultado = "El archivo " + nomArch.get(i).getName() + " fue registrado con exito";
+                    ConexionJDBC.abrirConexion();
+                    if (DocumentoBL.registrar(doc)){
+                        resultado = "El archivo " + nomArch.get(i).getName() + " fue registrado con exito";
+                        String descripcion = GestorTiposOperacion.getTipoOperacion("registra") + "\n";
+                        descripcion += "Registro nuevo:\n" + doc.getNombre() + "\n";
+                        descripcion += "Estado: " + doc.getEstado();
+                        JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcion);
+                        JFBase.registrarOperacion();
+                        ConexionJDBC.cerrarConexion();
+                    }
+                    else {
+                        resultado = "Error al registrar " + nomArch.get(i).getName() + " el archivo no fue registrado";
+                    }
                 } catch (Exception ex) {
-                    resultado = "Error al registrar " + nomArch.get(i).getName() + " el archivo no fue registrado";
                     Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 this.taDatosProgreso.setText(this.taDatosProgreso.getText() + "\n" + resultado);

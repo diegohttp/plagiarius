@@ -13,8 +13,10 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BE.GestorTiposOperacion;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
+import antiplagium.DAL.ConexionJDBC;
 import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -210,16 +212,35 @@ private ArrayList<CategoriaBE> alstCategorias;
            JOptionPane.showMessageDialog(this, "El campo propietario no puede ser vacio", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
        }
        else {
-            DocumentoBE objDocumentoNuevo = new DocumentoBE();
-            objDocumentoNuevo.setIdDocumento(objDocumento.getIdDocumento());
-            objDocumentoNuevo.setCategoria((CategoriaBE)cboCategoria.getSelectedItem());
-            objDocumentoNuevo.setNombre(txtNombreDoc.getText());
-            objDocumentoNuevo.setContenido(objDocumento.getContenido());
-            if (DocumentoBL.modificar(objDocumentoNuevo)){
-                JOptionPane.showMessageDialog(this, "El documento fue modificado con exito", "Modificar Documento", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Hubo un error al modificar el documento , operación cancelada", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+            try {
+                DocumentoBE objDocumentoNuevo = new DocumentoBE();
+                objDocumentoNuevo.setEstado(objDocumento.getEstado());
+                objDocumentoNuevo.setIdDocumento(objDocumento.getIdDocumento());
+                objDocumentoNuevo.setCategoria((CategoriaBE) cboCategoria.getSelectedItem());
+                objDocumentoNuevo.setNombre(txtNombreDoc.getText());
+                objDocumentoNuevo.setContenido(objDocumento.getContenido());
+                ConexionJDBC.abrirConexion();
+                if (DocumentoBL.modificar(objDocumentoNuevo)) {
+                    String descripcion = GestorTiposOperacion.getTipoOperacion("modifica") + "\n";
+                    descripcion += "Registro original:\n";
+                    descripcion += objDocumento.getNombre() + "\n";
+                    descripcion += "Categoria: " + objDocumento.getCategoria().getNombre() + "\n";
+                    descripcion += "Estado: " + objDocumento.getEstado() + "\n";
+                    descripcion += "Registro modificado:\n";
+                    descripcion += objDocumentoNuevo.getNombre() + "\n";
+                    descripcion += "Categoria: " + objDocumentoNuevo.getCategoria().getNombre() + "\n";
+                    descripcion += "Estado: " + objDocumentoNuevo.getEstado() + "\n";
+                    JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcion);
+                    JFBase.registrarOperacion();
+                    JOptionPane.showMessageDialog(this, "El documento fue modificado con exito", "Modificar Documento", JOptionPane.INFORMATION_MESSAGE);
+                    ConexionJDBC.cerrarConexion();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Hubo un error al modificar el documento , operación cancelada", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(JDModificarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(JDModificarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             }
             this.dispose();
        }
