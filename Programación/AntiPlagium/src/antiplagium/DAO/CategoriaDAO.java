@@ -29,16 +29,12 @@ public class CategoriaDAO {
         String strSentencia = "INSERT INTO \"Categoria\" (\"idCategoria\",descripcion,nombre) VALUES ('" + objCategoria.getIdCategoria() +"','"+ objCategoria.getDescripcion() +"','"+ objCategoria.getNombre() +"');";
 
         try{
-            objConexion.ejecutarSentencia(strSentencia);
-
-            boolExito=true;
+            objConexion.ejecutarUpdateString(strSentencia);
+            boolExito = true;
         }
-
         catch (Exception a){
             System.out.println(a.getMessage());
         }
-        /*finally{objConexion.SalirUID();}*/
-
         return boolExito;
     }
 
@@ -82,11 +78,10 @@ public class CategoriaDAO {
                     " nombre='"+objCategoria.getNombre()+ "'"+
                     " WHERE \"idCategoria\"='"+objCategoria.getIdCategoria() +"'";
         try{
-            objConexion.ejecutarSentencia(strSentencia);
+            objConexion.ejecutarUpdateString(strSentencia);
             return true;
         }
         catch (Exception a){
-            System.out.println(a.getMessage());
             return false;
         }
         
