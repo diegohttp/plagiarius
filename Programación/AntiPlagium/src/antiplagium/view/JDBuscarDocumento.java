@@ -12,6 +12,7 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BE.GestorTiposOperacion;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.CategoriaBL;
@@ -533,8 +534,15 @@ public class JDBuscarDocumento extends JDialog {
             DocumentoBL objDocumentoBL = new DocumentoBL();
             try {
                 ConexionJDBC.abrirConexion();
-                if (objDocumentoBL.eliminar(this.alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getIdDocumento())){
+                DocumentoBE objDocumentoTemporal = this.alstDocumentos.get(this.tblDocumentos.getSelectedRow());
+                if (objDocumentoBL.eliminar(objDocumentoTemporal.getIdDocumento())){
                     JOptionPane.showMessageDialog(this, "El Documento se elimino con éxito.", "Eliminar", JOptionPane.INFORMATION_MESSAGE);
+                    String descripcion = GestorTiposOperacion.getTipoOperacion("eliminacion") + "\n";
+                    descripcion += "Registro eliminado:\n" + objDocumentoTemporal.getNombre() + "\n";
+                    descripcion += "Categoria: " + objDocumentoTemporal.getCategoria().getNombre() + "\n";
+                    descripcion += "Estado: inactivo\n";
+                    JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("eliminacion"), descripcion);
+                    JFBase.registrarOperacion();
                     ConexionJDBC.cerrarConexion();
                 }
                 else {
