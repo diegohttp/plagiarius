@@ -37,7 +37,7 @@ public class PanelBarras extends JPanel {
 
     public void dibujarRegla(Graphics g) {
 
-        this.dibujarBarra(100, 1, g);
+       // this.dibujarBarra(100, 1, g);
 
         g.setColor(Color.DARK_GRAY);
         //raya vertical
@@ -60,6 +60,7 @@ public class PanelBarras extends JPanel {
         
     }
 
+
     public void dibujarBarra(int porc, int pos, Graphics g){
         float a=(float)0.6;
         Graphics2D g2 = (Graphics2D) g;
@@ -78,8 +79,20 @@ public class PanelBarras extends JPanel {
 
     }
 
+
+
     public void paint(Graphics g) {
         super.paint(g);
+        g.setColor(Color.white);
+        g.fillRect(0, 0, anchoPanel, altoPanel);
+        int cont=1;
+        for (int i=docActual;i<docActual+4; i++){
+
+            if (this.alstDetectores.size()<=i) break;
+            this.dibujarBarra(this.alstDetectores.get(i).getResultado(), cont, g);
+            cont++;
+        }
+
         this.dibujarRegla(g);
 
     }

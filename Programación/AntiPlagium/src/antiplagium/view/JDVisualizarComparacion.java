@@ -40,13 +40,16 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
     private ArrayList<DetectorBL> alstDetectores = new ArrayList<DetectorBL>();
     private int numDocumentoActual = 0;
     private ArrayList<ResultadoDeteccionBE> alstResultados;
+    PanelLupa objPanelLupa;
+    PanelBarras objPanelBarras;
 
     public JDVisualizarComparacion(DocumentoBE doc, GestorDocumentosBE listaDoc) {
+        
         this.objDocumento1 = doc;
         this.gstDocumentos = listaDoc;
 
-        PanelLupa objPanelLupa = new PanelLupa();
-        PanelBarras objPanelBarras = new PanelBarras(null);
+        objPanelLupa = new PanelLupa();
+        objPanelBarras = new PanelBarras(alstDetectores);
         this.add(objPanelLupa);
         this.add(objPanelBarras);
         initComponents();
@@ -521,6 +524,8 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             this.btnDocAnterior.setEnabled(false);
         }
         this.actualizar();
+        this.objPanelBarras.docActual--;
+        this.objPanelBarras.repaint();
 }//GEN-LAST:event_btnDocAnteriorActionPerformed
 
     private void btnDocSgteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocSgteActionPerformed
@@ -530,6 +535,9 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             this.btnDocSgte.setEnabled(false);
         }
         this.actualizar();
+        this.objPanelBarras.docActual++;
+        this.objPanelBarras.repaint();
+
 }//GEN-LAST:event_btnDocSgteActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
