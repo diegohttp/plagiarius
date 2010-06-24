@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.BadLocationException;
@@ -45,10 +46,12 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         this.gstDocumentos = listaDoc;
 
         PanelLupa objPanelLupa = new PanelLupa();
-
+        PanelBarras objPanelBarras = new PanelBarras(null);
         this.add(objPanelLupa);
+        this.add(objPanelBarras);
         initComponents();
-        objPanelLupa.setLocation(this.lblTiempo.getLocation().x, this.lblTiempo.getLocation().y - 100);
+        objPanelLupa.setLocation(this.lblTiempo.getLocation().x, this.lblTiempo.getLocation().y - 110);
+        objPanelBarras.setLocation(objPanelLupa.getLocation().x+objPanelLupa.anchoPanel+10, objPanelLupa.getLocation().y);
         if (this.gstDocumentos.cantElementos() == 1) {
             this.btnDocSgte.setEnabled(false);
         }
