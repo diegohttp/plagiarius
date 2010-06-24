@@ -282,7 +282,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -291,13 +291,11 @@
                               <Component id="lblEstado" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="cboCategoria" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="txtNombre" alignment="0" min="-2" pref="299" max="-2" attributes="1"/>
-                              </Group>
-                              <Component id="txtIdUsuario" pref="338" max="32767" attributes="1"/>
-                              <Component id="cboEstado" pref="338" max="32767" attributes="1"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cboEstado" max="32767" attributes="1"/>
+                              <Component id="txtIdUsuario" alignment="0" max="32767" attributes="1"/>
+                              <Component id="cboCategoria" alignment="0" max="32767" attributes="1"/>
+                              <Component id="txtNombre" alignment="0" pref="299" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -305,7 +303,7 @@
                           <Component id="btnBuscar" min="-2" max="-2" attributes="1"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
