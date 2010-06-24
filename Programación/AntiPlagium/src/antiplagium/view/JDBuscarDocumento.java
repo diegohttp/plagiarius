@@ -8,7 +8,6 @@
  *
  * Created on 01/05/2010, 03:23:51 PM
  */
-
 package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
@@ -42,8 +41,9 @@ public class JDBuscarDocumento extends JDialog {
     private UsuarioBE objUsuario;
     private ArrayList<CategoriaBE> alstCategorias;
     private int tipo;
-    public DocumentoBE objDocSel=null;
+    public DocumentoBE objDocSel = null;
     public ArrayList<DocumentoBE> alstSeleccionado = new ArrayList<DocumentoBE>();
+
     /** Creates new form Documento2 */
     public JDBuscarDocumento() throws FileNotFoundException, IOException, SQLException {
         initComponents();
@@ -52,40 +52,47 @@ public class JDBuscarDocumento extends JDialog {
         cboEstado.addItem("activo");
         cboEstado.addItem("inactivo");
         btnAceptar.setVisible(false);
-        objCategoriaBL= new CategoriaBL();
+        objCategoriaBL = new CategoriaBL();
         CategoriaBE objCategoriaTemporal = new CategoriaBE();
         objCategoriaTemporal.setIdCategoria(0);
         objCategoriaTemporal.setNombre("Todas");
-        alstCategorias=objCategoriaBL.buscarCategoria("", "");
-        alstCategorias.add(0 , objCategoriaTemporal);
-        int cantidadCategorias=alstCategorias.size();
-        for(int i=0;i<cantidadCategorias;i++){
+        alstCategorias = objCategoriaBL.buscarCategoria("", "");
+        alstCategorias.add(0, objCategoriaTemporal);
+        int cantidadCategorias = alstCategorias.size();
+        for (int i = 0; i < cantidadCategorias; i++) {
             cboCategoria.addItem(alstCategorias.get(i).getNombre());
         }
     }
-    
-    public JDBuscarDocumento(UsuarioBE objUsuario,int tipo) throws FileNotFoundException, IOException, SQLException {
+
+    public JDBuscarDocumento(UsuarioBE objUsuario, int tipo) throws FileNotFoundException, IOException, SQLException {
         initComponents();
         this.tipo = tipo;
-        if (this.tipo == 0){
+        if (this.tipo == 0) {
             btnSeleccion.setVisible(false);
-            tblDocumentos.getColumnModel().removeColumn( tblDocumentos.getColumnModel().getColumn(5) );
+
+            tblDocumentos.getColumnModel().removeColumn(tblDocumentos.getColumnModel().getColumn(5));
+        } else if (this.tipo == 2) {
+            btnSeleccion.setVisible(false);
+
+            tblDocumentos.getColumnModel().removeColumn(tblDocumentos.getColumnModel().getColumn(5));
+            btnAceptar.setVisible(false);
         }
         cboEstado.addItem("Todos");
         cboEstado.addItem("activo");
         cboEstado.addItem("inactivo");
         this.objUsuario = objUsuario;
-        objCategoriaBL=new CategoriaBL();
+        objCategoriaBL = new CategoriaBL();
         CategoriaBE objCategoriaTemporal = new CategoriaBE();
         objCategoriaTemporal.setIdCategoria(0);
         objCategoriaTemporal.setNombre("Todas");
-        alstCategorias=objCategoriaBL.buscarCategoria("", "");
-        alstCategorias.add(0 , objCategoriaTemporal);
-        int cantidadCategorias=alstCategorias.size();
-        for(int i=0;i<cantidadCategorias;i++){
+        alstCategorias = objCategoriaBL.buscarCategoria("", "");
+        alstCategorias.add(0, objCategoriaTemporal);
+        int cantidadCategorias = alstCategorias.size();
+        for (int i = 0; i < cantidadCategorias; i++) {
             cboCategoria.addItem(alstCategorias.get(i));
         }
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -232,7 +239,7 @@ public class JDBuscarDocumento extends JDialog {
             pnlBuscarDocumentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBuscarDocumentoLayout.createSequentialGroup()
                 .addGroup(pnlBuscarDocumentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBuscarDocumentoLayout.createSequentialGroup()
+                    .addGroup(pnlBuscarDocumentoLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addGroup(pnlBuscarDocumentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombre)
@@ -240,16 +247,15 @@ public class JDBuscarDocumento extends JDialog {
                             .addComponent(lblIdUsuario)
                             .addComponent(lblEstado))
                         .addGap(54, 54, 54)
-                        .addGroup(pnlBuscarDocumentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlBuscarDocumentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cboCategoria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtIdUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-                            .addComponent(cboEstado, 0, 338, Short.MAX_VALUE)))
+                        .addGroup(pnlBuscarDocumentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cboEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtIdUsuario)
+                            .addComponent(cboCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
                     .addGroup(pnlBuscarDocumentoLayout.createSequentialGroup()
                         .addGap(201, 201, 201)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         pnlBuscarDocumentoLayout.setVerticalGroup(
             pnlBuscarDocumentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,64 +390,64 @@ public class JDBuscarDocumento extends JDialog {
         UsuarioBE objUsuario = null;
         /* Si la categoria es todas el objeto debe ser nulo, no especificado */
 
-        objCategoria= (CategoriaBE) this.cboCategoria.getSelectedItem();
-        if (objCategoria.getNombre().compareTo("Todas") == 0){
+        objCategoria = (CategoriaBE) this.cboCategoria.getSelectedItem();
+        if (objCategoria.getNombre().compareTo("Todas") == 0) {
             objCategoria = null;
         }
         /* Si se especifico un IdUsuario se crea el usuario */
-        if (this.txtIdUsuario.getText().compareTo("") != 0){
+        if (this.txtIdUsuario.getText().compareTo("") != 0) {
             objUsuario = new UsuarioBE();
             objUsuario.setIdUsuario(Integer.parseInt(this.txtIdUsuario.getText()));
         }
         DocumentoBE objDocumento = new DocumentoBE();
         objDocumento.setUsuario(objUsuario);
         objDocumento.setCategoria(objCategoria);
-        String temp="";
-        for (int i=0; i < this.txtNombre.getText().length(); ++i){
-            if (this.txtNombre.getText().charAt(i) != '\''){
+        String temp = "";
+        for (int i = 0; i < this.txtNombre.getText().length(); ++i) {
+            if (this.txtNombre.getText().charAt(i) != '\'') {
                 temp += this.txtNombre.getText().charAt(i);
             }
         }
         objDocumento.setNombre(temp);
         objEstado = (String) this.cboEstado.getSelectedItem();
-        if (objEstado.compareTo("Todos") == 0)
+        if (objEstado.compareTo("Todos") == 0) {
             objEstado = "";
+        }
         objDocumento.setEstado(objEstado);
         try {
             alstDocumentos = DocumentoBL.ListarDocs(objDocumento);
             /* Obtenemos el modelo */
             DefaultTableModel tmp = (DefaultTableModel) tblDocumentos.getModel();
             /* Limpiamos la tabla */
-            for (int i=tmp.getRowCount() - 1; i >= 0; --i){
+            for (int i = tmp.getRowCount() - 1; i >= 0; --i) {
                 tmp.removeRow(i);
             }
             /* Llenamos la grilla */
             int cnt = 0;
             UsuarioBL objUsuarioBL = new UsuarioBL();
-            if (tipo == 0){
-                for (int i=0; i < alstDocumentos.size() ; ++i){
-                    if (objEstado.equals("") || alstDocumentos.get(i).getEstado().compareTo(objEstado)==0){
-                       UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE( alstDocumentos.get(i).getUsuario().getIdUsuario() );
-                       alstDocumentos.get(i).setUsuario(tmpUsuario);
-                       Object [] nuevo={ alstDocumentos.get(i).getIdDocumento() , alstDocumentos.get(i).getNombre() , alstDocumentos.get(i).getCategoria().getNombre() , alstDocumentos.get(i).getUsuario().getNombres() , alstDocumentos.get(i).getEstado() };
-                       tmp.addRow(nuevo);
-                       cnt++;
+            if (tipo == 0) {
+                for (int i = 0; i < alstDocumentos.size(); ++i) {
+                    if (objEstado.equals("") || alstDocumentos.get(i).getEstado().compareTo(objEstado) == 0) {
+                        UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE(alstDocumentos.get(i).getUsuario().getIdUsuario());
+                        alstDocumentos.get(i).setUsuario(tmpUsuario);
+                        Object[] nuevo = {alstDocumentos.get(i).getIdDocumento(), alstDocumentos.get(i).getNombre(), alstDocumentos.get(i).getCategoria().getNombre(), alstDocumentos.get(i).getUsuario().getNombres(), alstDocumentos.get(i).getEstado()};
+                        tmp.addRow(nuevo);
+                        cnt++;
+                    }
+                }
+            } else {
+                for (int i = 0; i < alstDocumentos.size(); ++i) {
+                    if (objEstado.equals("") || alstDocumentos.get(i).getEstado().compareTo(objEstado) == 0) {
+                        UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE(alstDocumentos.get(i).getUsuario().getIdUsuario());
+                        alstDocumentos.get(i).setUsuario(tmpUsuario);
+                        Object[] nuevo = {alstDocumentos.get(i).getIdDocumento(), alstDocumentos.get(i).getNombre(), alstDocumentos.get(i).getCategoria().getNombre(), alstDocumentos.get(i).getUsuario().getNombres(), alstDocumentos.get(i).getEstado(), Boolean.FALSE};
+                        tmp.addRow(nuevo);
+                        cnt++;
                     }
                 }
             }
-            else {
-                for (int i=0; i < alstDocumentos.size() ; ++i){
-                    if (objEstado.equals("") || alstDocumentos.get(i).getEstado().compareTo(objEstado)==0){
-                       UsuarioBE tmpUsuario = objUsuarioBL.getUsuarioBE( alstDocumentos.get(i).getUsuario().getIdUsuario() );
-                       alstDocumentos.get(i).setUsuario(tmpUsuario);
-                       Object [] nuevo={ alstDocumentos.get(i).getIdDocumento() , alstDocumentos.get(i).getNombre() , alstDocumentos.get(i).getCategoria().getNombre() , alstDocumentos.get(i).getUsuario().getNombres() , alstDocumentos.get(i).getEstado() , Boolean.FALSE };
-                       tmp.addRow(nuevo);
-                       cnt++;
-                    }
-                }
-            }
-            if (cnt == 0){
-                 JOptionPane.showMessageDialog(this, "La búsqueda no encontro ningún resultado", "Buscar Documento", JOptionPane.INFORMATION_MESSAGE);
+            if (cnt == 0) {
+                JOptionPane.showMessageDialog(this, "La búsqueda no encontro ningún resultado.", "Buscar Documento", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (FileNotFoundException ex) {
@@ -451,10 +457,8 @@ public class JDBuscarDocumento extends JDialog {
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(JDBuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
         }
-               
+
 }//GEN-LAST:event_btnBuscarActionPerformed
-
-
 
     private void pnlBuscarDocumentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pnlBuscarDocumentoFocusGained
         // TODO add your handling code here:
@@ -466,7 +470,7 @@ public class JDBuscarDocumento extends JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
-        JDRegistrarDocumento registrarDocumentos = new JDRegistrarDocumento(objUsuario,alstCategorias);
+        JDRegistrarDocumento registrarDocumentos = new JDRegistrarDocumento(objUsuario, alstCategorias);
         registrarDocumentos.setTitle("Registrar Documento");
         registrarDocumentos.setModal(true);
         registrarDocumentos.setLocationRelativeTo(this);
@@ -475,19 +479,18 @@ public class JDBuscarDocumento extends JDialog {
 
     private void jMenu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MousePressed
         int idx = tblDocumentos.getSelectedRow();
-        if ( idx < 0){
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una documento", "Error Modificar",JOptionPane.ERROR_MESSAGE);
+        if (idx < 0) {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún documento.", "Error Modificar", JOptionPane.ERROR_MESSAGE);
             return;
-        }
-        else {
-              JDModificarDocumento vModificarDoc = null;
+        } else {
+            JDModificarDocumento vModificarDoc = null;
             try {
-                if (objUsuario.getIdUsuario() != alstDocumentos.get(idx).getUsuario().getIdUsuario()){
+                if (objUsuario.getIdUsuario() != alstDocumentos.get(idx).getUsuario().getIdUsuario()) {
                     JOptionPane.showMessageDialog(this, "Debe ser propietario del documento para modificar sus datos", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 //this.alstDocumentos.get(idx).setUsuario(objUsuario);
-                vModificarDoc = new JDModificarDocumento(alstDocumentos.get(idx),alstCategorias);
+                vModificarDoc = new JDModificarDocumento(alstDocumentos.get(idx), alstCategorias);
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(JDBuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -504,35 +507,34 @@ public class JDBuscarDocumento extends JDialog {
 
     private void btnVerContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerContenidoActionPerformed
         int idx = tblDocumentos.getSelectedRow();
-        if (idx >= 0){
+        if (idx >= 0) {
             String contenido = alstDocumentos.get(idx).getContenido();
             JDVisualizarDocumento vis = new JDVisualizarDocumento(contenido);
             vis.setModal(true);
             vis.setLocationRelativeTo(this);
             vis.setTitle("Mostrar Contenido");
             vis.setVisible(true);
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Mostrar Contenido", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún documento.", "Error Mostrar Contenido", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnVerContenidoActionPerformed
 
     private void jMenu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MousePressed
         // TODO add your handling code here:
-        if (tblDocumentos.getSelectedRowCount()!=1)
-           JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
-        else
-        {
-            if (alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getUsuario().getIdUsuario() != this.objUsuario.getIdUsuario()){
-                JOptionPane.showMessageDialog(this, "Debe ser el propietario para eliminar el documento", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+        if (tblDocumentos.getSelectedRowCount() != 1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getUsuario().getIdUsuario() != this.objUsuario.getIdUsuario()) {
+                JOptionPane.showMessageDialog(this, "Debe ser el propietario para eliminar el documento.", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             DocumentoBL objDocumentoBL = new DocumentoBL();
             boolean result = objDocumentoBL.eliminar(this.alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getIdDocumento());
-            if (result)
-                    JOptionPane.showMessageDialog(this, "El Documento se elimino con éxito", "Eliminar",JOptionPane.INFORMATION_MESSAGE);
+            if (result) {
+                JOptionPane.showMessageDialog(this, "El Documento se elimino con éxito.", "Eliminar", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
-        
+
     }//GEN-LAST:event_jMenu3MousePressed
 
     private void txtIdUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdUsuarioKeyReleased
@@ -540,9 +542,11 @@ public class JDBuscarDocumento extends JDialog {
         Character caracter = new Character(evt.getKeyChar());
         if (!Utilitario.esDigito(caracter)) {
             String texto = "";
-            for (int i = 0; i < txtIdUsuario.getText().length(); i++)
-                if (Utilitario.esDigito(new Character(txtIdUsuario.getText().charAt(i))))
+            for (int i = 0; i < txtIdUsuario.getText().length(); i++) {
+                if (Utilitario.esDigito(new Character(txtIdUsuario.getText().charAt(i)))) {
                     texto += txtIdUsuario.getText().charAt(i);
+                }
+            }
             txtIdUsuario.setText(texto);
             txtIdUsuario.getToolkit().beep();
         }
@@ -550,23 +554,26 @@ public class JDBuscarDocumento extends JDialog {
 
 
     /*Eliminar*/
-
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int idx = tblDocumentos.getSelectedRow();
-        if (tipo == 1){
+        if (tipo == 1) {
             alstSeleccionado = new ArrayList<DocumentoBE>();
-            for (int i=0; i < tblDocumentos.getRowCount(); ++i){
+
+            for (int i = 0; i < tblDocumentos.getRowCount(); ++i) {
                 Boolean tmp = (Boolean) tblDocumentos.getValueAt(i, 5);
-                if (tmp.booleanValue() == true){
+                if (tmp.booleanValue() == true) {
                     alstSeleccionado.add(this.alstDocumentos.get(i));
                 }
             }
-        }
-        else if (idx >= 0){
+            if (alstSeleccionado.size() == 0) {
+                JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún documento.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } else if (idx >= 0) {
             objDocSel = alstDocumentos.get(idx);
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado ningún documento.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
 
@@ -575,18 +582,17 @@ public class JDBuscarDocumento extends JDialog {
 
     private void btnSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionActionPerformed
         // TODO add your handling code here:
-        for (int i=0; i < tblDocumentos.getRowCount(); ++i){
+        for (int i = 0; i < tblDocumentos.getRowCount(); ++i) {
             tblDocumentos.setValueAt(Boolean.TRUE, i, 5);
         }
     }//GEN-LAST:event_btnSeleccionActionPerformed
 
-    public String getNombreDocSeleccionado(){
+    public String getNombreDocSeleccionado() {
         return selectedDoc;
     }
-
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar;
@@ -615,8 +621,7 @@ public class JDBuscarDocumento extends JDialog {
     private String selectedDoc;
 
     public void soloActivo() {
-       cboEstado.setSelectedIndex(1);
-       cboEstado.setEnabled(false);
+        cboEstado.setSelectedIndex(1);
+        cboEstado.setEnabled(false);
     }
-
 }
