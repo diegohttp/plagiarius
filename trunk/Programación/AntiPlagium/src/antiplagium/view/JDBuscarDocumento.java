@@ -139,7 +139,7 @@ public class JDBuscarDocumento extends JDialog {
         setName(""); // NOI18N
         setResizable(false);
 
-        pnlResultadoBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        pnlResultadoBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 255))); // NOI18N
 
         tblDocumentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,9 +184,9 @@ public class JDBuscarDocumento extends JDialog {
         pnlResultadoBusquedaLayout.setHorizontalGroup(
             pnlResultadoBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlResultadoBusquedaLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(pnlResultadoBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
@@ -200,7 +200,7 @@ public class JDBuscarDocumento extends JDialog {
                 .addContainerGap())
         );
 
-        pnlBuscarDocumento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+        pnlBuscarDocumento.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Búsqueda de Documento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         pnlBuscarDocumento.setForeground(new java.awt.Color(0, 0, 255));
         pnlBuscarDocumento.setName("Búsqueda"); // NOI18N
         pnlBuscarDocumento.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -356,7 +356,7 @@ public class JDBuscarDocumento extends JDialog {
                     .addComponent(pnlBuscarDocumento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVerContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
