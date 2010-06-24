@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 public class PanelLupa extends JPanel {
 
     int posXLupa = 0, posYLupa = 0;
-    int anchoPanel, altoPanel;
+    public int anchoPanel, altoPanel;
     BufferedImage imgTotal, imgPapel, imgLupa;
     HiloAnimacion hilo = new HiloAnimacion();
     public static int delay = 50;
