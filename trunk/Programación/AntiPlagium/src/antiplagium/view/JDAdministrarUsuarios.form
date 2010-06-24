@@ -98,13 +98,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="1"/>
+                  <Component id="jPanel1" alignment="1" min="-2" pref="537" max="-2" attributes="1"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnSeleccionar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBCerrar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jPanel1" alignment="1" min="-2" pref="537" max="-2" attributes="1"/>
-                  <Component id="jPanel2" alignment="1" min="-2" max="-2" attributes="1"/>
               </Group>
               <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
@@ -114,9 +114,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanel2" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSeleccionar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -153,13 +153,10 @@
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jBConsultar" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jCBRol" min="-2" pref="271" max="-2" attributes="1"/>
                       <Component id="JTFNombreCompleto" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
                       <Component id="jPFechaInicio" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                          <Component id="jBConsultar" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="jTFUsuario" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
                       <Component id="jPFechaFin" min="-2" pref="269" max="-2" attributes="1"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -213,9 +210,9 @@
                       <Component id="jCBEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jBConsultar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -375,8 +372,8 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="152" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="168" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

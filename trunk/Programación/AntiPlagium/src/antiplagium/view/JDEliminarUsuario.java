@@ -41,6 +41,7 @@ public class JDEliminarUsuario extends JDialog{
 
             initComponents();
             jCCFechaEliminar.setSize(253, 31);
+            jCCFechaEliminar.setEnabled(false);
             jPFechaEliminar.add(jCCFechaEliminar);
 
             estadoBL = new EstadoBL();

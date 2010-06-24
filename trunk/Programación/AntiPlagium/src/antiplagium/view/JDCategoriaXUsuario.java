@@ -172,7 +172,7 @@ public class JDCategoriaXUsuario extends JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
+        jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         jBGuardar.setText("Aceptar");
         jBGuardar.setPreferredSize(new java.awt.Dimension(135, 35));
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
