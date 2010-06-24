@@ -48,11 +48,11 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jPanel2" alignment="1" max="32767" attributes="1"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jBGuardar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jBSalir" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jBLimpiar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel1" alignment="1" max="32767" attributes="1"/>
               </Group>
@@ -69,9 +69,9 @@
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBSalir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
           </Group>
@@ -103,7 +103,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="lblCantidadCategorias" min="-2" pref="8" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jBVerCategorias" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnVerCategorias" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -121,24 +121,24 @@
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jTFNomUsuario" max="32767" attributes="1"/>
+                                                  <Component id="txtNomUsuario" max="32767" attributes="1"/>
                                                   <Component id="jPContrasena" alignment="0" min="-2" pref="120" max="-2" attributes="1"/>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jBComprobar" min="-2" pref="88" max="-2" attributes="1"/>
-                                                  <Component id="jBReestablecerContrasena" alignment="0" min="-2" pref="88" max="-2" attributes="1"/>
+                                                  <Component id="btnComprobar" min="-2" pref="88" max="-2" attributes="1"/>
+                                                  <Component id="btnReestablecerContrasena" alignment="0" min="-2" pref="88" max="-2" attributes="1"/>
                                               </Group>
                                           </Group>
-                                          <Component id="jTFCodigo" alignment="1" max="32767" attributes="1"/>
-                                          <Component id="jTFNombres" alignment="0" max="32767" attributes="1"/>
-                                          <Component id="jTFApPat" alignment="0" max="32767" attributes="1"/>
-                                          <Component id="jTFApMat" alignment="0" max="32767" attributes="1"/>
-                                          <Component id="jCBRol" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="txtCodigo" alignment="1" max="32767" attributes="1"/>
+                                          <Component id="txtNombres" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="txtApPat" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="txtApMat" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="cmbRol" alignment="0" max="32767" attributes="1"/>
                                       </Group>
                                       <EmptySpace pref="1" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jTFCorreoE" pref="221" max="32767" attributes="1"/>
+                                  <Component id="txtCorreoE" pref="221" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                       </Group>
@@ -151,39 +151,39 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTFNombres" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNombres" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFApPat" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtApPat" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFApMat" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtApMat" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFNomUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNomUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBComprobar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnComprobar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <Component id="jPContrasena" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBReestablecerContrasena" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnReestablecerContrasena" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCBRol" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbRol" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -191,11 +191,11 @@
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCantidadCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBVerCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnVerCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFCorreoE" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCorreoE" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -204,34 +204,34 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jTFCodigo">
+        <Component class="javax.swing.JTextField" name="txtCodigo">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFNombres">
+        <Component class="javax.swing.JTextField" name="txtNombres">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNombresKeyPressed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNombresKeyReleased"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombresKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombresKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFApPat">
+        <Component class="javax.swing.JTextField" name="txtApPat">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApPatKeyPressed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApPatKeyReleased"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApPatKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApPatKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFApMat">
+        <Component class="javax.swing.JTextField" name="txtApMat">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApMatKeyPressed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFApMatKeyReleased"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApMatKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApMatKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFNomUsuario">
+        <Component class="javax.swing.JTextField" name="txtNomUsuario">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNomUsuarioKeyPressed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNomUsuarioKeyPressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFCorreoE">
+        <Component class="javax.swing.JTextField" name="txtCorreoE">
         </Component>
-        <Component class="javax.swing.JComboBox" name="jCBRol">
+        <Component class="javax.swing.JComboBox" name="cmbRol">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -283,7 +283,7 @@
             <Property name="text" type="java.lang.String" value="Apellido Paterno"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBVerCategorias">
+        <Component class="javax.swing.JButton" name="btnVerCategorias">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DejaVu Sans" size="10" style="0"/>
@@ -294,7 +294,7 @@
             <Property name="text" type="java.lang.String" value="Ver Lista"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBVerCategoriasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerCategoriasActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPContrasena">
@@ -332,7 +332,7 @@
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jBReestablecerContrasena">
+        <Component class="javax.swing.JButton" name="btnReestablecerContrasena">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DejaVu Sans" size="10" style="0"/>
@@ -343,10 +343,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBReestablecerContrasenaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReestablecerContrasenaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jBComprobar">
+        <Component class="javax.swing.JButton" name="btnComprobar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DejaVu Sans" size="10" style="0"/>
@@ -357,7 +357,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBComprobarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnComprobarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -387,7 +387,7 @@
                           <Component id="jPanel4" alignment="0" pref="216" max="32767" attributes="1"/>
                           <Component id="jPanel3" alignment="0" min="-2" pref="216" max="-2" attributes="1"/>
                       </Group>
-                      <Component id="jCBEstado" min="-2" pref="173" max="-2" attributes="1"/>
+                      <Component id="cmbEstado" min="-2" pref="173" max="-2" attributes="1"/>
                   </Group>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
@@ -403,7 +403,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jCBEstado" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbEstado" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -469,7 +469,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="javax.swing.JComboBox" name="jCBEstado">
+        <Component class="javax.swing.JComboBox" name="cmbEstado">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -494,7 +494,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jBGuardar">
+    <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Iconos/aceptar.png"/>
@@ -506,10 +506,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBGuardarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBSalir">
+    <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Iconos/cancelar.png"/>
@@ -521,10 +521,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBLimpiar">
+    <Component class="javax.swing.JButton" name="btnLimpiar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Iconos/limpiar.png"/>
@@ -536,7 +536,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBLimpiarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
