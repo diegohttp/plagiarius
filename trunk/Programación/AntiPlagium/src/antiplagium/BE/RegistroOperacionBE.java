@@ -10,6 +10,13 @@ public class RegistroOperacionBE {
     private Date fecha;
     private String tipoOperacion;
     private String descripcion;
+    
+    /*aumentado */
+    private String nombreusuario;
+
+    public RegistroOperacionBE(){
+
+    }
 
     public RegistroOperacionBE(Integer idUsuario, Date fechaOperacion)
     {
@@ -53,6 +60,18 @@ public class RegistroOperacionBE {
     {
         this.nombreVentana = nombreVentana;
     }
+
+    /*aumentado*/
+    public String getnombreusuario()
+    {
+        return nombreusuario;
+    }
+
+    public void setnombreusuario(String nombreusuario)
+    {
+        this.nombreusuario = nombreusuario;
+    }
+
 
     public Date getFechaOperacion() 
     {
