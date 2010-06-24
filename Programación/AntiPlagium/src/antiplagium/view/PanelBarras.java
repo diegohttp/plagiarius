@@ -72,7 +72,7 @@ public class PanelBarras extends JPanel {
 
 
         g2.setColor(Color.cyan);
-        g2.fillRect(sepX + pasoX-5 * pos-pasoX*3/4, sepY+(altMax-altura),pasoX*3/4, altura);
+        g2.fillRect(sepX + pasoX * pos-pasoX*3/4-10, sepY+(altMax-altura),pasoX*3/4, altura);
 
          g2.setComposite(creaComposite(1));
 
