@@ -118,7 +118,7 @@ public class JDBuscarDocumento extends JDialog {
         txtIdUsuario = new javax.swing.JFormattedTextField();
         lblEstado = new javax.swing.JLabel();
         cboEstado = new javax.swing.JComboBox();
-        btnSalir = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         btnVerContenido = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -281,14 +281,14 @@ public class JDBuscarDocumento extends JDialog {
                 .addContainerGap())
         );
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/salir.png"))); // NOI18N
-        btnSalir.setText("Salir");
-        btnSalir.setMaximumSize(new java.awt.Dimension(135, 35));
-        btnSalir.setMinimumSize(new java.awt.Dimension(135, 35));
-        btnSalir.setPreferredSize(new java.awt.Dimension(135, 35));
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setMaximumSize(new java.awt.Dimension(135, 35));
+        btnCancelar.setMinimumSize(new java.awt.Dimension(135, 35));
+        btnCancelar.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -357,7 +357,7 @@ public class JDBuscarDocumento extends JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -369,7 +369,7 @@ public class JDBuscarDocumento extends JDialog {
                 .addComponent(pnlResultadoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVerContenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -464,10 +464,10 @@ public class JDBuscarDocumento extends JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_pnlBuscarDocumentoFocusGained
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
         JDRegistrarDocumento registrarDocumentos = new JDRegistrarDocumento(objUsuario, alstCategorias);
@@ -596,7 +596,7 @@ public class JDBuscarDocumento extends JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSeleccion;
     private javax.swing.JButton btnVerContenido;
     private javax.swing.JComboBox cboCategoria;
