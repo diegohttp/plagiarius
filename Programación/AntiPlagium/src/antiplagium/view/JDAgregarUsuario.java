@@ -892,7 +892,7 @@ public class JDAgregarUsuario extends JDialog {
     public void CesarUsuario(UsuarioBE usuarioBEO){
 
         Boolean rpta;
-        usuarioBEO.setFechaCese(usuarioBEO.getFechaVencimiento());
+        usuarioBEO.setFechaCese(new Date( System.currentTimeMillis()));
         //usuarioBE.setTipoCeseBE(null);
         for (int i=0;i<registrosEstado.size();i++){
             if (registrosEstado.get(i).getNombre().compareTo("Inactivo")==0){
