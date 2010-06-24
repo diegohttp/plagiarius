@@ -106,6 +106,8 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         JDPPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         JMUsuarios = new javax.swing.JMenu();
         JMIAdministrarUsuarios = new javax.swing.JMenuItem();
         JMIAdministrarGrupos = new javax.swing.JMenuItem();
@@ -134,10 +136,23 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(536, 34));
 
+        jMenu1.setText("S e s i o n");
+        jMenu1.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+
+        jMenuItem5.setText("Cerrar Sesion");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu1);
+
         JMUsuarios.setBackground(new java.awt.Color(0, 153, 153));
         JMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Seguridad1.png"))); // NOI18N
         JMUsuarios.setText("Seguridad");
-        JMUsuarios.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
+        JMUsuarios.setFont(new java.awt.Font("Matisse ITC", 1, 14));
         JMUsuarios.setName("JMUsuarios"); // NOI18N
 
         JMIAdministrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
@@ -175,7 +190,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenu2.setBackground(new java.awt.Color(0, 153, 153));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Copy.png"))); // NOI18N
         jMenu2.setText("D o c u m e n t o s");
-        jMenu2.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Matisse ITC", 1, 14));
         jMenu2.setName("JMDocumentos"); // NOI18N
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Folder.png"))); // NOI18N
@@ -203,7 +218,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenu3.setBackground(new java.awt.Color(0, 153, 153));
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mostrar.png"))); // NOI18N
         jMenu3.setText("D e t e c c i ó n");
-        jMenu3.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Matisse ITC", 1, 14));
         jMenu3.setName("JMDeteccion"); // NOI18N
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,6 +371,10 @@ public class AntiPlagiumPrincipal extends JFBase {
         frmListarDocs.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     public static JDesktopPane getJDesktopPane() {
         return JDPPrincipal;
     }    
@@ -367,6 +386,7 @@ public class AntiPlagiumPrincipal extends JFBase {
     private javax.swing.JMenuItem JMLogUsuario;
     private javax.swing.JMenu JMReportes;
     private javax.swing.JMenu JMUsuarios;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
@@ -374,6 +394,7 @@ public class AntiPlagiumPrincipal extends JFBase {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
