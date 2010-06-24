@@ -12,14 +12,17 @@ package antiplagium.view;
 
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.GestorDocumentosBE;
+import antiplagium.BE.GestorTiposOperacion;
 import antiplagium.BE.ResultadoDeteccionBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.DetectorBL;
 import antiplagium.BL.ResultadoDeteccionBL;
+import antiplagium.DAL.ConexionJDBC;
 import java.awt.Color;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -112,14 +115,25 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
             try {
                 id = Utilitario.generaCodigo("ResultadoDeteccion");
                 objResDeteccion.setidDeteccion(id);
-                ResultadoDeteccionBL.registrar(objResDeteccion);
-                this.alstResultados.add(objResDeteccion);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(JDVisualizarComparacion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(JDVisualizarComparacion.class.getName()).log(Level.SEVERE, null, ex);
+                ConexionJDBC.abrirConexion();
+                if (ResultadoDeteccionBL.registrar(objResDeteccion)){
+                    String descripcion = GestorTiposOperacion.getTipoOperacion("comparacion") + "\n";
+                    descripcion += "Documento base: " + objResDeteccion.getDocumento1().getNombre() + "\n";
+                    descripcion += "Documento comparado: " + objResDeteccion.getDocumento2().getNombre();
+                    JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("comparacion"), descripcion);
+                    JFBase.registrarOperacion();
+                    this.alstResultados.add(objResDeteccion);
+                    ConexionJDBC.cerrarConexion();
+                }
+            } 
+            catch (FileNotFoundException ext){
             }
-
+            catch (IOException ex) {
+            }
+            catch (SQLException exr){
+            }
+            catch (ClassNotFoundException edt){
+            }
         }
 
         long tFin = System.currentTimeMillis();

@@ -129,11 +129,6 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
                 rect.x = 0;
                 rect.y = 0;
                 this.pnlDatosProgreso.paintImmediately(rect);
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(JDCargaDocumentos.class.getName()).log(Level.SEVERE, null, ex);
-                }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
