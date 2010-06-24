@@ -55,6 +55,7 @@ public class JDAgregarUsuario extends JDialog {
 
     //private static ArrayList<CategoriaBE> listaCategorias=null;
     private ArrayList<CategoriaBE> listaCategorias=null;
+    ArrayList<EstadoBE> registrosEstado=null;
 
     private JPasswordField jPFContrasena;
     
@@ -97,7 +98,7 @@ public class JDAgregarUsuario extends JDialog {
             rolBL.CerrarConexion();
 
 
-            ArrayList<EstadoBE> registrosEstado = estadoBL.ObtenerEstados(0,"","");
+            registrosEstado = estadoBL.ObtenerEstados(0,"","");
             if (registrosEstado != null) {
                 //System.out.println(registrosEstado.size());
                 int numeroRegistros = registrosEstado.size();
@@ -107,12 +108,22 @@ public class JDAgregarUsuario extends JDialog {
             }
 
             if (idUsuario >= 1) {
+
                 usuarioBEOringinal=usuarioBL.getUsuarioBE(idUsuario);
                 listaCategorias=usuarioBEOringinal.getCategorias();
 
+                if(usuarioBEOringinal.getFechaCese()==null){
+                    SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+                    String cadenaFechaVencimiento=formato.format(usuarioBEOringinal.getFechaVencimiento());
+                    int resultado=cadenaFechaVencimiento.compareTo(formato.format(new Date( System.currentTimeMillis())));
+                    if (resultado<=0){
+                        CesarUsuario(usuarioBEOringinal);
+                    }
+                }
+
                 MostrarDatos(usuarioBEOringinal);
                 this.setTitle("Modificar Usuario");
-                this.setBounds(10, 10, 497, 640);
+                this.setBounds(10, 10, 518, 660);
 
                 jCBRol.setEnabled(false);
                 cmbFechaInicio.setEnabled(false);
@@ -125,15 +136,15 @@ public class JDAgregarUsuario extends JDialog {
                 if ((jCBEstado.getSelectedItem().toString()).compareTo("Activo")==0) {
                     jMReactivar.setEnabled(false);
                     jMReactivar.setVisible(false);
-                } else {
-                    jMSuspender.setEnabled(false);
-                    jMSuspender.setVisible(false);
-                }
+                } //else {
+//                    jMSuspender.setEnabled(false);
+//                    jMSuspender.setVisible(false);
+                //}
 
             } else {
                 usuarioBE=new UsuarioBE();// esta linea esta demas ya que el query tiene nextval
                 int idUsuariosiguiente = usuarioBL.getIdUsuarioSiguiente();
-                this.setBounds(10, 10, 497, 640);
+                this.setBounds(10, 10, 518, 660);
                 jTFCodigo.setText(String.valueOf(idUsuariosiguiente));
                 usuarioBE.setIdUsuario(idUsuariosiguiente);// esta linea esta demas ya que el query tiene nextval
                 jBReestablecerContrasena.setText("Generar");
@@ -190,7 +201,6 @@ public class JDAgregarUsuario extends JDialog {
         jBLimpiar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMReactivar = new javax.swing.JMenu();
-        jMSuspender = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Usuario");
@@ -276,7 +286,7 @@ public class JDAgregarUsuario extends JDialog {
 
         lblCantidadCategorias.setText("0");
 
-        jBReestablecerContrasena.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        jBReestablecerContrasena.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
         jBReestablecerContrasena.setText("Reestablecer");
         jBReestablecerContrasena.setPreferredSize(new java.awt.Dimension(79, 32));
         jBReestablecerContrasena.addActionListener(new java.awt.event.ActionListener() {
@@ -285,7 +295,7 @@ public class JDAgregarUsuario extends JDialog {
             }
         });
 
-        jBComprobar.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        jBComprobar.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
         jBComprobar.setText("Comprobar");
         jBComprobar.setPreferredSize(new java.awt.Dimension(70, 32));
         jBComprobar.addActionListener(new java.awt.event.ActionListener() {
@@ -301,7 +311,7 @@ public class JDAgregarUsuario extends JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,7 +346,7 @@ public class JDAgregarUsuario extends JDialog {
                                         .addComponent(jTFNombres, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTFApPat, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTFApMat, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCBRol, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jCBRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE))
                                 .addComponent(jTFCorreoE, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)))))
                 .addContainerGap(43, Short.MAX_VALUE))
@@ -506,15 +516,6 @@ public class JDAgregarUsuario extends JDialog {
         });
         jMenuBar1.add(jMReactivar);
 
-        jMSuspender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/bad.png"))); // NOI18N
-        jMSuspender.setText("Suspender");
-        jMSuspender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMSuspenderActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMSuspender);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -594,7 +595,7 @@ public class JDAgregarUsuario extends JDialog {
         }
 
         String cadenaFechaActual=formato.format(new Date(System.currentTimeMillis()));
-        if(cadenaFechaF.compareTo(cadenaFechaActual)<0){
+        if(cadenaFechaF.compareTo(cadenaFechaActual)<=0){
             JOptionPane.showMessageDialog(this,"Debe ingresar una fecha mayor a la fecha actual para reactivar la cuenta del usuario.","ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -780,10 +781,6 @@ public class JDAgregarUsuario extends JDialog {
         }
     }
 
-    private void jMSuspenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSuspenderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMSuspenderActionPerformed
-
     private void jMReactivarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMReactivarMouseReleased
         Reactivar();
     }//GEN-LAST:event_jMReactivarMouseReleased
@@ -891,7 +888,31 @@ public class JDAgregarUsuario extends JDialog {
         }
     }
 
+    public void CesarUsuario(UsuarioBE usuarioBEO){
 
+        Boolean rpta;
+        usuarioBEO.setFechaCese(usuarioBEO.getFechaVencimiento());
+        //usuarioBE.setTipoCeseBE(null);
+        for (int i=0;i<registrosEstado.size();i++){
+            if (registrosEstado.get(i).getNombre().compareTo("Inactivo")==0){
+                usuarioBEO.setEstadoBE(registrosEstado.get(i));
+            }
+        }
+        rpta=usuarioBL.ElminarUsuario(usuarioBEO);
+
+//        if(rpta==true){
+//            JOptionPane.showMessageDialog(this,"El usuario ha sido eliminado con exito.", "Informe", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        else{
+//            JOptionPane.showMessageDialog(this,"Error. Usuario no eliminado", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+
+        if (rpta==false) {
+            JOptionPane.showMessageDialog(this,"La fecha de vencimiento de la cuenta de usuario ha pasado su limite.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }
     /**
     * @param args the command line arguments
     */
@@ -920,7 +941,6 @@ public class JDAgregarUsuario extends JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMReactivar;
-    private javax.swing.JMenu jMSuspender;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPContrasena;
     private javax.swing.JPanel jPanel1;
