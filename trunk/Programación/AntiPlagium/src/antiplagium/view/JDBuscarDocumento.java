@@ -506,7 +506,7 @@ public class JDBuscarDocumento extends JDialog {
         int idx = tblDocumentos.getSelectedRow();
         if (idx >= 0){
             String contenido = alstDocumentos.get(idx).getContenido();
-            JFVisualizarDocumento vis = new JFVisualizarDocumento(contenido);
+            JDVisualizarDocumento vis = new JDVisualizarDocumento(contenido);
             vis.setModal(true);
             vis.setLocationRelativeTo(this);
             vis.setTitle("Mostrar Contenido");

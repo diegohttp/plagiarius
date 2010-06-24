@@ -239,7 +239,7 @@ private ArrayList<CategoriaBE> alstCategorias;
 
     private void btnModificarTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarTextoActionPerformed
         // TODO add your handling code here:
-        JFVisualizarDocumento visualizarDocumento = new JFVisualizarDocumento(this,objDocumento.getContenido());
+        JDVisualizarDocumento visualizarDocumento = new JDVisualizarDocumento(this,objDocumento.getContenido());
         visualizarDocumento.setTitle("Texto documento");
         visualizarDocumento.setModal(true);
         visualizarDocumento.setLocationRelativeTo(this);
