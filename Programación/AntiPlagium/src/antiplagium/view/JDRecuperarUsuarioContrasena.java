@@ -163,6 +163,7 @@ public class JDRecuperarUsuarioContrasena extends javax.swing.JDialog {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        jBEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mail.png"))); // NOI18N
         jBEnviar.setText("Enviar");
         jBEnviar.setPreferredSize(new java.awt.Dimension(135, 35));
         jBEnviar.addActionListener(new java.awt.event.ActionListener() {
