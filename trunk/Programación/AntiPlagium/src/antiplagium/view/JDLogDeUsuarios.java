@@ -4,16 +4,22 @@ import antiplagium.BE.GestorTiposOperacion;
 import antiplagium.BE.RegistroOperacionBE;
 import antiplagium.BL.RegistroOperacionBL;
 import antiplagium.DAL.ConexionJDBC;
+import java.awt.BorderLayout;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 import org.freixas.jcalendar.JCalendarCombo;
 
 public class JDLogDeUsuarios extends JDialog {
@@ -22,6 +28,9 @@ public class JDLogDeUsuarios extends JDialog {
     JCalendarCombo calendarFin;
     RegistroOperacionBL registroOperacionBL;
     ResultSet rs;
+    ArrayList<RegistroOperacionBE> listaOperaciones;
+    String cadenaFechaI;
+    String cadenaFechaF;
 
     /** Creates new form JDLogDeUsuarios */
     public JDLogDeUsuarios() {
@@ -257,6 +266,11 @@ public class JDLogDeUsuarios extends JDialog {
         jButton1.setText("Salir");
 
         jButton2.setText("Reporte");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Ver Detalle");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -354,8 +368,12 @@ public class JDLogDeUsuarios extends JDialog {
             if(tipoOperacion.compareTo("Todos")==0){
                 tipoOperacion="";
             }
+
+
+            listaOperaciones = registroOperacionBL.ObtenerLog(0, nombreUsuario, nombreCategoria, cadenaFechaI, cadenaFechaF, tipoOperacion);
             
             rs = registroOperacionBL.ObtenerLogOperaciones(0,nombreUsuario, nombreCategoria, cadenaFechaI, cadenaFechaF, tipoOperacion);
+
             if (rs != null) {
                 DefaultTableModel modelo = (DefaultTableModel) jTOperaciones.getModel();
                 while (modelo.getRowCount() > 0) {
@@ -435,6 +453,32 @@ public class JDLogDeUsuarios extends JDialog {
             Logger.getLogger(JDLogDeUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         System.out.println("entra akiiiiiiii");
+        Map pars = new HashMap();
+
+        pars.put("P_TITULO", "Reporte Log de Usuario");
+        pars.put("P_SUBTITULO", "");
+        pars.put("PAR_FECHADESDE",cadenaFechaI);
+        pars.put("PAR_FECHAHASTA",cadenaFechaF);
+        JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("LogUsr", pars, this.listaOperaciones);
+        try {
+
+            JRViewer v = new JRViewer(jasperPrint);
+            JFrame ventana=new JFrame();
+            ventana.getContentPane().add(v,BorderLayout.CENTER);
+            ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            ventana.setSize(706, 478);
+
+            ventana.setTitle("Vista Previa");
+            ventana.setLocation(512-ventana.getWidth()/2,387 - ventana.getHeight()/2 );
+
+            ventana.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se cuenta con un equipo de impresion");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPFechaFin;
