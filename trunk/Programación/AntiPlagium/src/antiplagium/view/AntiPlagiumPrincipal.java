@@ -324,7 +324,7 @@ public class AntiPlagiumPrincipal extends JFBase {
     private void JMLogUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMLogUsuarioActionPerformed
         JDLogDeUsuarios jdLogDeUsuarios = new JDLogDeUsuarios();
         jdLogDeUsuarios.setLocationRelativeTo(this);
-        jdLogDeUsuarios.setModal(true);
+        jdLogDeUsuarios.setModal(false);
         jdLogDeUsuarios.setVisible(true);
     }//GEN-LAST:event_JMLogUsuarioActionPerformed
 
