@@ -12,6 +12,7 @@
 package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
+import antiplagium.BE.GestorTiposOperacion;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ import org.freixas.jcalendar.JCalendarCombo;
 import antiplagium.BE.Utilitario;
 import javax.swing.JOptionPane;
 import antiplagium.BL.CategoriaBL;
+import antiplagium.DAL.ConexionJDBC;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -56,7 +58,7 @@ public class JDRegistrarCategoria extends JDialog {
         txtIdCategoria.setText("" + objCategoria.getIdCategoria() + "");
         txtDescCategoria.setText(objCategoria.getDescripcion());
         txtNomCategoria.setText(objCategoria.getNombre());
-        objCategoria = objCategoria;
+        this.objCategoria = objCategoria;
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -207,8 +209,8 @@ public class JDRegistrarCategoria extends JDialog {
         else {
             boolean boolExito = false;
             CategoriaBL objCategoriaBL = new CategoriaBL();
-                try {
-                    CategoriaBE objCategoriaTemporal = new CategoriaBE(Integer.parseInt(txtIdCategoria.getText()),txtDescCategoria.getText(),txtNomCategoria.getText());
+            CategoriaBE objCategoriaTemporal = new CategoriaBE(Integer.parseInt(txtIdCategoria.getText()),txtDescCategoria.getText(),txtNomCategoria.getText());
+            try {
                     if (TipoOperacion==0){
                         boolExito = objCategoriaBL.registrarCategoria(objCategoriaTemporal);
                     }
@@ -219,10 +221,36 @@ public class JDRegistrarCategoria extends JDialog {
                     Logger.getLogger(JDRegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if (boolExito) {
-                    if (TipoOperacion==0)
+                    if (TipoOperacion==0){
+                        try {
+                            String descripcion = GestorTiposOperacion.getTipoOperacion("registra") + "\n";
+                            descripcion += "Registro nuevo: " + objCategoriaTemporal.getNombre() + "\n";
+                            descripcion += "Descripción: " + objCategoriaTemporal.getDescripcion();
+                            JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcion);
+                            JFBase.registrarOperacion();
+                            ConexionJDBC.cerrarConexion();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(JDRegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         JOptionPane.showMessageDialog(this, "La categoria ha sido registrada con éxito", "Modificar Categoria",JOptionPane.INFORMATION_MESSAGE);
-                    else
+                    }
+                    else{
+                        try {
+                            String descripcion = GestorTiposOperacion.getTipoOperacion("modifica") + "\n";
+                            descripcion += "Registro original:\n";
+                            descripcion += objCategoria.getNombre() + "\n";
+                            descripcion += "Descripción: " + objCategoria.getDescripcion() + "\n";
+                            descripcion += "Registro modificado:\n";
+                            descripcion += objCategoriaTemporal.getNombre() + "\n";
+                            descripcion += "Descripción: " + objCategoriaTemporal.getDescripcion();
+                            JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcion);
+                            JFBase.registrarOperacion();
+                            ConexionJDBC.cerrarConexion();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(JDRegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         JOptionPane.showMessageDialog(this, "La categoria ha sido modificada con éxito", "Modifcar Categoria",JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
                 this.dispose();
         }
