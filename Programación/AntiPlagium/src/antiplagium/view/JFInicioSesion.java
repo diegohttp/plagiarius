@@ -160,8 +160,9 @@ public class JFInicioSesion extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         jButton1.setText("Acceder");
-        jButton1.setPreferredSize(new java.awt.Dimension(98, 31));
+        jButton1.setPreferredSize(new java.awt.Dimension(135, 35));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -173,8 +174,9 @@ public class JFInicioSesion extends javax.swing.JFrame {
             }
         });
 
+        jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
         jBCancelar.setText("Cancelar");
-        jBCancelar.setPreferredSize(new java.awt.Dimension(98, 31));
+        jBCancelar.setPreferredSize(new java.awt.Dimension(135, 35));
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCancelarActionPerformed(evt);
