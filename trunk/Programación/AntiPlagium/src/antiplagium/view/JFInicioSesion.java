@@ -334,11 +334,18 @@ public class JFInicioSesion extends javax.swing.JFrame {
         if (autenticoUsuario>0) {
               //EnviarCorreo env=new EnviarCorreo("delpiero2906");
               usuarioBE=usuarioBL.getUsuarioBE(autenticoUsuario);
-              this.setVisible(false);
-              AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal(usuarioBE);
-              principal.setLocationRelativeTo(null);
-              principal.setVisible(true);
-              this.dispose();       
+              if(usuarioBE.getEstadoBE().getNombre().compareTo("Inactivo")!=0){
+                  this.setVisible(false);
+                  AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal(usuarioBE);
+                  principal.setLocationRelativeTo(null);
+                  principal.setVisible(true);
+                  this.dispose();
+              }
+              else{
+                JOptionPane.showMessageDialog(this,"USUARIO INACTIVO", "ERROR", JOptionPane.ERROR_MESSAGE);
+              
+              }
+
         try
         {
             RegistroOperacionBL op = new RegistroOperacionBL();
