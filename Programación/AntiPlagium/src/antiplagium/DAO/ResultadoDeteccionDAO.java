@@ -141,9 +141,13 @@ public class ResultadoDeteccionDAO {
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
         String strSentencia = "INSERT INTO \"ResultadoDeteccion\" (\"idResultadoDeteccion\",\"Documento1\",\"Documento2\",\"PorcentajePlagio\",\"Resultado\",\"Fecha\") VALUES ";
         strSentencia += "(" + objResultado.getidDeteccion()  + "," + objResultado.getDocumento1().getIdDocumento() + "," + objResultado.getDocumento2().getIdDocumento() + ","+ objResultado.getPorcentajePlagio() + ",'" + objResultado.getResultado() + "','" + formato.format(objResultado.getFecha()) + "')";
-        System.out.println(strSentencia);
+        //System.out.println(strSentencia);
         ConexionJDBC objConexion = new ConexionJDBC();
-        objConexion.ejecutarSentencia(strSentencia);
+        try {
+            objConexion.ejecutarUpdateString(strSentencia);
+        } catch (SQLException ex) {
+            exito = false;
+        }
         return exito;
      }
 }
