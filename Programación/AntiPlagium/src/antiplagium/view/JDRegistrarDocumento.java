@@ -2,9 +2,11 @@ package antiplagium.view;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
+import antiplagium.BE.GestorTiposOperacion;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.DocumentoBL;
+import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.CategoriaDAO;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,7 +39,6 @@ import org.freixas.jcalendar.JCalendarCombo;
 public class JDRegistrarDocumento extends javax.swing.JDialog {
 
     private JCalendarCombo cmbFechaInicio;
-    private UsuarioBE objUsuarioBE;
     private CategoriaBE objCategoriaBE;
     private UsuarioBE objUsuario;
     private DocumentoBE objDocumento;
@@ -599,10 +600,20 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 doc1.setContenido(contenido);
                 doc1.setEstado("activo");
                 try {
-                    DocumentoBL.registrar(doc1);
-                    resDoc1 = "Se registró el documento 1 safisfactoriamente.";
+                    ConexionJDBC.abrirConexion();
+                    if (DocumentoBL.registrar(doc1)){
+                        String descripcion = GestorTiposOperacion.getTipoOperacion("registra") + "\n";
+                        descripcion += "Registro nuevo:\n" + doc1.getNombre() + "\n";
+                        descripcion += "Estado: " + doc1.getEstado();
+                        JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcion);
+                        JFBase.registrarOperacion();
+                        resDoc1 = "Se registró el documento 1 safisfactoriamente.";
+                        ConexionJDBC.cerrarConexion();
+                    }
+                    else {
+                        resDoc1 = "Hubo un error en el registro del documento 1.";
+                    }
                 } catch (Exception ex) {
-                    resDoc1 = "Hubo un error en el registro del documento 1.";
                     Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (FileNotFoundException ex) {
@@ -627,10 +638,20 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 doc2.setContenido(contenido);
                 doc2.setEstado("activo");
                 try {
-                    DocumentoBL.registrar(doc2);
-                    resDoc2 = "Se registró el documento 2 safisfactoriamente.";
+                    ConexionJDBC.abrirConexion();
+                    if (DocumentoBL.registrar(doc2)){
+                        String descripcion = GestorTiposOperacion.getTipoOperacion("registra") + "\n";
+                        descripcion += "Registro nuevo:\n" + doc2.getNombre() + "\n";
+                        descripcion += "Estado: " + doc2.getEstado();
+                        JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcion);
+                        JFBase.registrarOperacion();
+                        resDoc2 = "Se registró el documento 2 safisfactoriamente.";
+                        ConexionJDBC.cerrarConexion();
+                    }
+                    else {
+                        resDoc2 = "Hubo un error en el registro del documento 2.";
+                    }
                 } catch (Exception ex) {
-                    resDoc2 = "Hubo un error en el registro del documento 2.";
                     Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (FileNotFoundException ex) {
@@ -656,10 +677,20 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 doc3.setContenido(contenido);
                 doc3.setEstado("activo");
                 try {
-                    DocumentoBL.registrar(doc3);
-                    resDoc3 = "Se registró el documento 3 safisfactoriamente.";
+                    ConexionJDBC.abrirConexion();
+                    if (DocumentoBL.registrar(doc3)){
+                        String descripcion = GestorTiposOperacion.getTipoOperacion("registra") + "\n";
+                        descripcion += "Registro nuevo:\n" + doc3.getNombre() + "\n";
+                        descripcion += "Estado: " + doc3.getEstado();
+                        JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcion);
+                        JFBase.registrarOperacion();
+                        resDoc3 = "Se registró el documento 3 safisfactoriamente.";
+                        ConexionJDBC.cerrarConexion();
+                    }
+                    else {
+                        resDoc3 = "Hubo un error en el registro del documento 3.";
+                    }
                 } catch (Exception ex) {
-                    resDoc3 = "Hubo un error en el registro del documento 3.";
                     Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (FileNotFoundException ex) {
@@ -685,10 +716,20 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 doc4.setContenido(contenido);
                 doc4.setEstado("activo");
                 try {
-                    DocumentoBL.registrar(doc4);
-                    resDoc4 = "Se registró el documento 4 safisfactoriamente.";
+                    ConexionJDBC.abrirConexion();
+                    if (DocumentoBL.registrar(doc4)){
+                        String descripcion = GestorTiposOperacion.getTipoOperacion("registra") + "\n";
+                        descripcion += "Registro nuevo:\n" + doc4.getNombre() + "\n";
+                        descripcion += "Estado: " + doc4.getEstado();
+                        JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcion);
+                        JFBase.registrarOperacion();
+                        resDoc4 = "Se registró el documento 4 safisfactoriamente.";
+                        ConexionJDBC.cerrarConexion();
+                    }
+                    else {
+                        resDoc4 = "Hubo un error en el registro del documento 4.";
+                    }
                 } catch (Exception ex) {
-                    resDoc4 = "Hubo error en el registro del documento 4.";
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
@@ -713,10 +754,20 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 doc5.setContenido(contenido);
                 doc5.setEstado("activo");
                 try {
-                    DocumentoBL.registrar(doc5);
-                    resDoc5 = "Se registró el documento 5 safisfactoriamente.";
+                    ConexionJDBC.abrirConexion();
+                    if (DocumentoBL.registrar(doc5)){
+                        String descripcion = GestorTiposOperacion.getTipoOperacion("registra") + "\n";
+                        descripcion += "Registro nuevo:\n" + doc5.getNombre() + "\n";
+                        descripcion += "Estado: " + doc5.getEstado();
+                        JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcion);
+                        JFBase.registrarOperacion();
+                        resDoc5 = "Se registró el documento 5 safisfactoriamente.";
+                        ConexionJDBC.cerrarConexion();
+                    }
+                    else {
+                        resDoc5 = "Hubo un error en el registro del documento 5.";
+                    }
                 } catch (Exception ex) {
-                    resDoc5 = "Hubo error en el registro del documento 5.";
                     Logger.getLogger(JDRegistrarDocumento.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (FileNotFoundException ex) {
@@ -773,7 +824,6 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
 
     private void btnCargarDirectorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDirectorioActionPerformed
 
-
         JFileChooser fchooser = new JFileChooser();
         fchooser.setApproveButtonText("Cargar");
         ExtensionValida ext = new ExtensionValida(true);
@@ -811,12 +861,8 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             CategoriaBE objCategoria = (CategoriaBE) cboCategoria.getSelectedItem();
             JDCargaDocumentos cargaDoc = new JDCargaDocumentos(alstArch, objCategoria, objUsuario);
             cargaDoc.setModal(false);
-            //JDCargaDocumentos cargaDoc = new JDCargaDocumentos();
-
             cargaDoc.setLocationRelativeTo(this);
-            //cargaDoc.setModal(true);
             cargaDoc.setVisible(true);
-
             cargaDoc.cargarDocumentos(objCategoria, objUsuario);
         //this.dispose();
         }

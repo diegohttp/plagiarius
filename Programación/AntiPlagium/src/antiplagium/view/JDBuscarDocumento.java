@@ -17,6 +17,7 @@ import antiplagium.BE.Utilitario;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.DocumentoBL;
 import antiplagium.BL.UsuarioBL;
+import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.CategoriaDAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -523,18 +524,29 @@ public class JDBuscarDocumento extends JDialog {
         // TODO add your handling code here:
         if (tblDocumentos.getSelectedRowCount() != 1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un documento antes", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
-        } else {
+        }
+        else {
             if (alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getUsuario().getIdUsuario() != this.objUsuario.getIdUsuario()) {
                 JOptionPane.showMessageDialog(this, "Debe ser el propietario para eliminar el documento.", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             DocumentoBL objDocumentoBL = new DocumentoBL();
-            boolean result = objDocumentoBL.eliminar(this.alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getIdDocumento());
-            if (result) {
-                JOptionPane.showMessageDialog(this, "El Documento se elimino con éxito.", "Eliminar", JOptionPane.INFORMATION_MESSAGE);
+            try {
+                ConexionJDBC.abrirConexion();
+                if (objDocumentoBL.eliminar(this.alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getIdDocumento())){
+                    JOptionPane.showMessageDialog(this, "El Documento se elimino con éxito.", "Eliminar", JOptionPane.INFORMATION_MESSAGE);
+                    ConexionJDBC.cerrarConexion();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Existió un error en la eliminación del documento.", "Eliminar", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(JDBuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(JDBuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             }
+          
         }
-
     }//GEN-LAST:event_jMenu3MousePressed
 
     private void txtIdUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdUsuarioKeyReleased
