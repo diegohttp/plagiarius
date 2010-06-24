@@ -127,21 +127,36 @@ public class DocumentoBL {
         String contenido = "";
         try {
             String extension = f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf('.'), f.getAbsolutePath().lastIndexOf('.') + 4);
-
+            String temp;
             if (extension.compareToIgnoreCase(".txt") == 0) {
                 BufferedReader entrada = new BufferedReader(new FileReader(f));
                 while (entrada.ready()) {
-                    contenido += entrada.readLine() + "\n";
+                    temp = entrada.readLine();
+                    String aux = "";
+                    /* Eliminamos comillas simples */
+                    for (int i=0; i < temp.length(); ++i){
+                        if (temp.charAt(i) != '\'')
+                            aux += temp.charAt(i);
+                    }
+                    contenido += aux + "\n";
                 }
             } else if (extension.compareToIgnoreCase(".doc") == 0) {
                 AnalizadorWord analizador = new AnalizadorWord(f.getAbsolutePath());
                 analizador.analizar();
-                contenido = analizador.getTexto();
+                temp = analizador.getTexto();
+                String aux = "";
+                /* Eliminamos comillas simples */
+                for (int i=0; i < temp.length(); ++i){
+                    if (temp.charAt(i) != '\''){
+                        aux += temp.charAt(i);
+                    }
+                }
+                contenido = aux;
             } else;//MENSAJE DE ERROR DE FORMATO
         } catch (Exception e) {
-            System.out.println(e.toString());
+            //System.out.println(e.toString());
         }
-        System.out.print(contenido);
+        //System.out.print(contenido);
         return contenido;
     }
 
