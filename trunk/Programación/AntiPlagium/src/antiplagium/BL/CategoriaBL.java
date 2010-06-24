@@ -16,13 +16,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import antiplagium.DAO.CategoriaDAO;
 import antiplagium.BE.*;
+import antiplagium.DAL.ConexionJDBC;
 
 
 public class CategoriaBL {
 
 
     public boolean registrarCategoria(CategoriaBE objCategoria) throws Exception {
-
+        ConexionJDBC.abrirConexion();
         if(CategoriaDAO.registrar(objCategoria)){
             return true;
         }
@@ -30,11 +31,10 @@ public class CategoriaBL {
     }
 
     public boolean modificarCategoria(CategoriaBE objCategoria ) throws Exception {
-
+        ConexionJDBC.abrirConexion();
         if (CategoriaDAO.modificar(objCategoria)){
             return true;
         }
-
         return false;
     }
 
