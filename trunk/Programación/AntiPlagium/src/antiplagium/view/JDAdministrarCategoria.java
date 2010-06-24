@@ -42,7 +42,7 @@ public class JDAdministrarCategoria extends JDialog {
 
     public JDAdministrarCategoria() {
         initComponents();        
-        tblCategoria.getColumnModel().removeColumn(tblCategoria.getColumnModel().getColumn(3));
+        tbCategoria.getColumnModel().removeColumn(tbCategoria.getColumnModel().getColumn(3));
         btnAceptar.setVisible(false);
 
 
@@ -53,14 +53,14 @@ public class JDAdministrarCategoria extends JDialog {
         initComponents();
         
         if(nombreCategoria==null){
-            if (tblCategoria.getColumnModel().getColumnCount()==3){
-                tblCategoria.getColumnModel().addColumn(tblCategoria.getColumnModel().getColumn(3));
+            if (tbCategoria.getColumnModel().getColumnCount()==3){
+                tbCategoria.getColumnModel().addColumn(tbCategoria.getColumnModel().getColumn(3));
 
             }
             opcion=1;
         }
         else {
-            tblCategoria.getColumnModel().removeColumn(tblCategoria.getColumnModel().getColumn(3));
+            tbCategoria.getColumnModel().removeColumn(tbCategoria.getColumnModel().getColumn(3));
             this.txtNombre.setText(nombreCategoria);
             btnAceptar.setText("Seleccionar");
             opcion=2;
@@ -88,7 +88,7 @@ public class JDAdministrarCategoria extends JDialog {
         btnBuscar = new javax.swing.JButton();
         pnlResultadosBusqueda = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCategoria = new javax.swing.JTable();
+        tbCategoria = new javax.swing.JTable();
         btnCerrar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -159,7 +159,7 @@ public class JDAdministrarCategoria extends JDialog {
 
         pnlResultadosBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
 
-        tblCategoria.setModel(new javax.swing.table.DefaultTableModel(
+        tbCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -182,7 +182,7 @@ public class JDAdministrarCategoria extends JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblCategoria);
+        jScrollPane1.setViewportView(tbCategoria);
 
         javax.swing.GroupLayout pnlResultadosBusquedaLayout = new javax.swing.GroupLayout(pnlResultadosBusqueda);
         pnlResultadosBusqueda.setLayout(pnlResultadosBusquedaLayout);
@@ -202,7 +202,7 @@ public class JDAdministrarCategoria extends JDialog {
         );
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
-        btnCerrar.setText("Cerrar");
+        btnCerrar.setText("Cancelar");
         btnCerrar.setMaximumSize(new java.awt.Dimension(135, 35));
         btnCerrar.setMinimumSize(new java.awt.Dimension(135, 35));
         btnCerrar.setPreferredSize(new java.awt.Dimension(135, 35));
@@ -281,7 +281,7 @@ public class JDAdministrarCategoria extends JDialog {
     }//GEN-LAST:event_txtNombreActionPerformed
     private void buscar(){
         CategoriaBL objCategoriaBL = new CategoriaBL();
-        DefaultTableModel temp = (DefaultTableModel) this.tblCategoria.getModel();
+        DefaultTableModel temp = (DefaultTableModel) this.tbCategoria.getModel();
         for (int i=temp.getRowCount() - 1; i >= 0; --i){
             temp.removeRow(i);
         }
@@ -323,7 +323,7 @@ public class JDAdministrarCategoria extends JDialog {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         if(opcion==1){
-        DefaultTableModel modelo=(DefaultTableModel)tblCategoria.getModel();
+        DefaultTableModel modelo=(DefaultTableModel)tbCategoria.getModel();
         alistIdsCategorias=new ArrayList();
         
         for(int i=0;i<modelo.getRowCount();i++){
@@ -341,8 +341,8 @@ public class JDAdministrarCategoria extends JDialog {
 
             boolean selecciona=false;
 
-            DefaultTableModel modelo= (DefaultTableModel)tblCategoria.getModel();
-            int[] filasSeleccionadas=  tblCategoria.getSelectedRows();
+            DefaultTableModel modelo= (DefaultTableModel)tbCategoria.getModel();
+            int[] filasSeleccionadas=  tbCategoria.getSelectedRows();
 
             if (filasSeleccionadas.length==0){
                 JOptionPane.showMessageDialog(this,"Debe seleccionar una fila o registro de la lista de usuarios","Error", JOptionPane.ERROR_MESSAGE);
@@ -351,7 +351,7 @@ public class JDAdministrarCategoria extends JDialog {
                 JOptionPane.showMessageDialog(this,"Debe seleccionar solo una fila o registro de la lista usuaios","Error", JOptionPane.ERROR_MESSAGE);
             }
             else if(filasSeleccionadas.length==1){
-                objCategoriaSeleccionada=CategoriaBL.buscarIdCategoria(Integer.parseInt(tblCategoria.getValueAt(tblCategoria.getSelectedRow(),0).toString()));
+                objCategoriaSeleccionada=CategoriaBL.buscarIdCategoria(Integer.parseInt(tbCategoria.getValueAt(tbCategoria.getSelectedRow(),0).toString()));
 
                 this.setVisible(false);
             }
@@ -378,9 +378,9 @@ public class JDAdministrarCategoria extends JDialog {
 
     private void mnuModificarCategoriaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuModificarCategoriaMousePressed
         // TODO add your handling code here:
-        int idx = tblCategoria.getSelectedRow();
+        int idx = tbCategoria.getSelectedRow();
         if (idx >= 0){
-            DefaultTableModel temp = (DefaultTableModel) tblCategoria.getModel();
+            DefaultTableModel temp = (DefaultTableModel) tbCategoria.getModel();
             int idCategoria = (Integer)temp.getValueAt(idx, 0);
             String nombre = (String)temp.getValueAt(idx, 1);
             String descripcion = (String)temp.getValueAt(idx, 2);
@@ -415,7 +415,7 @@ public class JDAdministrarCategoria extends JDialog {
     private javax.swing.JMenu mnuRegistrarCategoria;
     private javax.swing.JPanel pnlDatosBusqueda;
     private javax.swing.JPanel pnlResultadosBusqueda;
-    private javax.swing.JTable tblCategoria;
+    private javax.swing.JTable tbCategoria;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
