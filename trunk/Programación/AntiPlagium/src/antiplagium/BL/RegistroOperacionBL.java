@@ -14,6 +14,7 @@ public class RegistroOperacionBL{
     ResultSet listaRegistroOperaciones;
     registroOperacionDAO registroOpDAO;
     RegistroOperacionBE registroOperacionBE;
+    ArrayList<RegistroOperacionBE> listaRegistro;
 
     public ResultSet ObtenerLogOperaciones(int idUsuario,String nombreUsuario,String nombreCategoria,String cadenaFechaI,String cadenaFechaF,String tipoOperacion){
         try {
@@ -26,6 +27,21 @@ public class RegistroOperacionBL{
         }
 
     }
+
+    public ArrayList<RegistroOperacionBE> ObtenerLog(int idUsuario,String nombreUsuario,String nombreCategoria,String cadenaFechaI,String cadenaFechaF,String tipoOperacion){
+        try {
+            registroOpDAO = new registroOperacionDAO();
+            listaRegistro = registroOpDAO.ConsultarLogOperaciones_Reporte(idUsuario,nombreUsuario, nombreCategoria, cadenaFechaI, cadenaFechaF, tipoOperacion);
+            return listaRegistro;
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistroOperacionBL.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
+
+
 
     public void AbrirConexion() throws SQLException, ClassNotFoundException
     {
