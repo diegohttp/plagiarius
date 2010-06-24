@@ -37,9 +37,9 @@ public class PanelBarras extends JPanel {
 
     public void dibujarRegla(Graphics g) {
 
-        this.dibujarBarra(50, 1, g);
+        this.dibujarBarra(100, 1, g);
 
-        g.setColor(Color.black);
+        g.setColor(Color.DARK_GRAY);
         //raya vertical
         g.drawLine(sepX / 2, sepY / 2, sepX / 2, altoPanel - sepY / 2);
         //raya horizontal
@@ -49,7 +49,7 @@ public class PanelBarras extends JPanel {
         for (int i = 1; i < 5; i++) {
             g.drawLine(sepX / 3, sepY + sepVert * (i-1), sepX * 2 / 3, sepY + sepVert * (i-1)); //rayita horiz
             g.drawLine(sepX + pasoX * i, altoPanel - sepY, sepX + pasoX * i, altoPanel - sepY + 2);  //rayita vertical
-            g.setColor(Color.white);
+            g.setColor(Color.blue);
             g.setFont(new Font(null, Font.BOLD, 12));
             g.drawString("Doc"+(docActual+i-1), sepX+pasoX/2-5+pasoX*(i-1), altoPanel - sepY-2); //numero de doc
             g.setColor(Color.black);
@@ -61,16 +61,16 @@ public class PanelBarras extends JPanel {
     }
 
     public void dibujarBarra(int porc, int pos, Graphics g){
-        float a=(float)0.5;
+        float a=(float)0.6;
         Graphics2D g2 = (Graphics2D) g;
         g2.setComposite(creaComposite(a));
 
-        g.setColor(Color.red);
+        g.setColor(Color.green);
         int altura=porc*altMax/100;
         g2.fillRect(sepX + pasoX * pos-pasoX*3/4, sepY+(altMax-altura),pasoX*3/4, altura);
 
 
-        g2.setColor(Color.blue);
+        g2.setColor(Color.cyan);
         g2.fillRect(sepX + pasoX-5 * pos-pasoX*3/4, sepY+(altMax-altura),pasoX*3/4, altura);
 
          g2.setComposite(creaComposite(1));
