@@ -45,7 +45,7 @@ public class PanelDocumento extends JPanel {
         anchoPanel = imgPapel.getWidth();
         altoPanel = imgPapel.getHeight();
 
-        this.setBounds(60, 20, anchoPanel, altoPanel);
+        this.setBounds(120, 20, anchoPanel, altoPanel);
         //this.setSize(anchoPanel, altoPanel);
         // this.setVisible(true);
         fin = false;
