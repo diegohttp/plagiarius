@@ -82,7 +82,7 @@ public class RolDAO {
         boolean _successful = false;
         String SQL_UPDATE = null;
           
-        SQL_UPDATE = SQL_UPDATE_ROL + idRol.toString() + ", \"nombre\"= \'" + nombreRol + "\' WHERE \"idRol\" = " + idRol.toString();
+        SQL_UPDATE = SQL_UPDATE_ROL + idRol.toString() + ", \"nombre\"= \'" + nombreRol + "', \"estado\"= \'" + estado + "\' WHERE \"idRol\" = " + idRol.toString();
         ConexionJDBC.ejecutarUpdateString(SQL_UPDATE);
     }
 
