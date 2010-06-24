@@ -73,41 +73,41 @@ public class JDAdministrarUsuarios extends JDialog {
             estadoBl=new EstadoBL();
 
             btnSeleccionar.setVisible(false);
-            jBCerrar.setVisible(false);
+            btnCerrar.setVisible(false);
 
             try {
                 rolBL.AbrirConexion();
 
                 ResultSet registros = rolBL.getListRoles();
-                jCBRol.addItem(new RolBE(-1,"Todos","Todos los roles"));
-                jCBRol.addItem(new RolBE(0,"Ninguno","Ningun rol"));
+                cmbRol.addItem(new RolBE(-1,"Todos","Todos los roles"));
+                cmbRol.addItem(new RolBE(0,"Ninguno","Ningun rol"));
                 while (registros.next()) {
-                    jCBRol.addItem(new RolBE(registros.getInt("idRol"),registros.getString("nombre"),registros.getString("estado")));
+                    cmbRol.addItem(new RolBE(registros.getInt("idRol"),registros.getString("nombre"),registros.getString("estado")));
                 }
                
                 rolBL.CerrarConexion();
 
                 ArrayList<CategoriaBE> listaCategorias = categoriaBl.buscarCategoria("", "");
-                jCBArea.addItem(new CategoriaBE(-1,"Todos descripcion", "Todos"));
-                jCBArea.addItem(new CategoriaBE(0,"Ninguno descripcion", "Ninguno"));
+                cmbArea.addItem(new CategoriaBE(-1,"Todos descripcion", "Todos"));
+                cmbArea.addItem(new CategoriaBE(0,"Ninguno descripcion", "Ninguno"));
                 int cantidadCategorias = listaCategorias.size();
                 for (int i = 0; i < cantidadCategorias; i++) {
-                    jCBArea.addItem(listaCategorias.get(i));
+                    cmbArea.addItem(listaCategorias.get(i));
                 }
 
 
                 registrosEstado = estadoBl.ObtenerEstados(0,"","");
                 if (registrosEstado != null) {
-                    jCBEstado.addItem(new EstadoBE(0,"Todos", "Todos descripcion"));
+                    cmbEstado.addItem(new EstadoBE(0,"Todos", "Todos descripcion"));
                     int numeroReg = registrosEstado.size();
                     for (int i = 0; i <= numeroReg - 1; i++) {
-                        jCBEstado.addItem(registrosEstado.get(i));
+                        cmbEstado.addItem(registrosEstado.get(i));
                     }
                 }
 
                // if(nick.compareTo("")!=0){
                 if (nick!=null){
-                    jTFUsuario.setText(nick);
+                    txtUsuario.setText(nick);
 
                     jMEliminar.setVisible(false);
                     jMModificar.setVisible(false);
@@ -116,7 +116,7 @@ public class JDAdministrarUsuarios extends JDialog {
 //                    jBModificar.setVisible(false);
 //                    jBEliminar.setVisible(false);
                     btnSeleccionar.setVisible(true);
-                    jBCerrar.setVisible(true);
+                    btnCerrar.setVisible(true);
                 }
 
                 ConsultarUsuarios();
@@ -154,25 +154,25 @@ public class JDAdministrarUsuarios extends JDialog {
         jMenu4 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTFUsuario = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jCBRol = new javax.swing.JComboBox();
+        cmbRol = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jCBArea = new javax.swing.JComboBox();
+        cmbArea = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         jPFechaInicio = new javax.swing.JPanel();
         jPFechaFin = new javax.swing.JPanel();
-        jBConsultar = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        JTFNombreCompleto = new javax.swing.JTextField();
+        txtNombreCompleto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jCBEstado = new javax.swing.JComboBox();
+        cmbEstado = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTListaUsuarios = new javax.swing.JTable();
         btnSeleccionar = new javax.swing.JButton();
-        jBCerrar = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMNuevo = new javax.swing.JMenu();
         jMModificar = new javax.swing.JMenu();
@@ -193,9 +193,9 @@ public class JDAdministrarUsuarios extends JDialog {
 
         jLabel3.setText("Rol");
 
-        jCBRol.addActionListener(new java.awt.event.ActionListener() {
+        cmbRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBRolActionPerformed(evt);
+                cmbRolActionPerformed(evt);
             }
         });
 
@@ -203,9 +203,9 @@ public class JDAdministrarUsuarios extends JDialog {
 
         jLabel9.setText("Fecha fin");
 
-        jCBArea.addActionListener(new java.awt.event.ActionListener() {
+        cmbArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBAreaActionPerformed(evt);
+                cmbAreaActionPerformed(evt);
             }
         });
 
@@ -239,12 +239,12 @@ public class JDAdministrarUsuarios extends JDialog {
             .addGap(0, 25, Short.MAX_VALUE)
         );
 
-        jBConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
-        jBConsultar.setText("Buscar");
-        jBConsultar.setPreferredSize(new java.awt.Dimension(135, 35));
-        jBConsultar.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
+        btnConsultar.setText("Buscar");
+        btnConsultar.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBConsultarActionPerformed(evt);
+                btnConsultarActionPerformed(evt);
             }
         });
 
@@ -268,30 +268,30 @@ public class JDAdministrarUsuarios extends JDialog {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTFNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jCBEstado, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCBArea, javax.swing.GroupLayout.Alignment.LEADING, 0, 269, Short.MAX_VALUE)))
+                        .addComponent(cmbEstado, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbArea, javax.swing.GroupLayout.Alignment.LEADING, 0, 269, Short.MAX_VALUE)))
                 .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTFNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCBRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -306,14 +306,14 @@ public class JDAdministrarUsuarios extends JDialog {
                     .addComponent(jPFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCBArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -376,12 +376,12 @@ public class JDAdministrarUsuarios extends JDialog {
             }
         });
 
-        jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
-        jBCerrar.setText("Cancelar");
-        jBCerrar.setPreferredSize(new java.awt.Dimension(135, 35));
-        jBCerrar.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
+        btnCerrar.setText("Cancelar");
+        btnCerrar.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCerrarActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
 
@@ -427,11 +427,11 @@ public class JDAdministrarUsuarios extends JDialog {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -444,20 +444,20 @@ public class JDAdministrarUsuarios extends JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCBAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAreaActionPerformed
+    private void cmbAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAreaActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_jCBAreaActionPerformed
+}//GEN-LAST:event_cmbAreaActionPerformed
 
-    private void jCBRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBRolActionPerformed
+    private void cmbRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_jCBRolActionPerformed
+}//GEN-LAST:event_cmbRolActionPerformed
 
     private void jMNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMNuevoMouseReleased
         JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
@@ -505,9 +505,9 @@ public class JDAdministrarUsuarios extends JDialog {
         }
     }//GEN-LAST:event_jMEliminarMouseReleased
 
-    private void jBConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarActionPerformed
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         ConsultarUsuarios();
-    }//GEN-LAST:event_jBConsultarActionPerformed
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
 
@@ -529,28 +529,28 @@ public class JDAdministrarUsuarios extends JDialog {
 
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
-    private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
             this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jBCerrarActionPerformed
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void ConsultarUsuarios(){
        try {
 
             usuarioBL = new UsuarioBL();
             usuarioBL.AbrirConexion();
-            String usuario=jTFUsuario.getText();
-            String nombreCompleto=JTFNombreCompleto.getText();
+            String usuario=txtUsuario.getText();
+            String nombreCompleto=txtNombreCompleto.getText();
 
             //int idRol=jCBRol.getSelectedIndex()-1; MAL ERROR EN LA PRESENTACION
-            RolBE rolBE=(RolBE)jCBRol.getSelectedItem();
+            RolBE rolBE=(RolBE)cmbRol.getSelectedItem();
             int idRol=rolBE.getIdRol();
 
             //int idArea=jCBArea.getSelectedIndex()-1; MAL ERROR EN LA PRESENTACION
-            CategoriaBE categoriaBE=(CategoriaBE)jCBArea.getSelectedItem();
+            CategoriaBE categoriaBE=(CategoriaBE)cmbArea.getSelectedItem();
             int idArea=categoriaBE.getIdCategoria();
 
             //int idEstado=jCBEstado.getSelectedIndex(); MAL ERROR EN LA PRESENTACION
-            EstadoBE estadoBE=(EstadoBE)jCBEstado.getSelectedItem();
+            EstadoBE estadoBE=(EstadoBE)cmbEstado.getSelectedItem();
             int idEstado=estadoBE.getIdEstado();
 
             SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
@@ -647,13 +647,12 @@ public class JDAdministrarUsuarios extends JDialog {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JTFNombreCompleto;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnSeleccionar;
-    private javax.swing.JButton jBCerrar;
-    private javax.swing.JButton jBConsultar;
-    private javax.swing.JComboBox jCBArea;
-    private javax.swing.JComboBox jCBEstado;
-    private javax.swing.JComboBox jCBRol;
+    private javax.swing.JComboBox cmbArea;
+    private javax.swing.JComboBox cmbEstado;
+    private javax.swing.JComboBox cmbRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -673,8 +672,9 @@ public class JDAdministrarUsuarios extends JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFUsuario;
     private javax.swing.JTable jTListaUsuarios;
+    private javax.swing.JTextField txtNombreCompleto;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
 }
