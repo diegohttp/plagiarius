@@ -14,14 +14,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Renzo
  */
-public class JFCompararDocumentos extends JDialog {
+public class JDCompararDocumentos extends JDialog {
     /* idDocInsertados sirve para la guardar los ids de los documentos  */
     private TreeSet<Integer> idDocInsertados = new TreeSet<Integer>();
-    /** Creates new form JFCompararDocumentos */
+    /** Creates new form JDCompararDocumentos */
     private DocumentoBE doc1;
     private GestorDocumentosBE docs = new GestorDocumentosBE();
 
-    public JFCompararDocumentos() {
+    public JDCompararDocumentos() {
         initComponents();
     }
 
@@ -53,7 +53,7 @@ public class JFCompararDocumentos extends JDialog {
         setTitle("Comparar Documentos");
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documento a Comparar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documento a Comparar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
         txtNomDoc.setEnabled(false);
         txtNomDoc.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +107,7 @@ public class JFCompararDocumentos extends JDialog {
                 .addComponent(jLabel3)
                 .addGap(10, 10, 10)
                 .addComponent(txtNomCat, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(10, 10, 10)
                 .addComponent(txtNomProp, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,7 +132,7 @@ public class JFCompararDocumentos extends JDialog {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documentos a Verificar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Documentos a Verificar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +185,7 @@ public class JFCompararDocumentos extends JDialog {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, Short.MAX_VALUE))
                 .addGap(53, 53, 53))
         );
         jPanel2Layout.setVerticalGroup(

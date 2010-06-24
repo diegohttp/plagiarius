@@ -4,7 +4,7 @@
  */
 
 /*
- * JFVisualizarDocumento.java
+ * JDVisualizarDocumento.java
  *
  * Created on 27/05/2010, 06:43:19 PM
  */
@@ -16,18 +16,18 @@ import javax.swing.JDialog;
  *
  * @author a20062010
  */
-public class JFVisualizarDocumento extends JDialog{
-    /** Creates new form JFVisualizarDocumento */
+public class JDVisualizarDocumento extends JDialog{
+    /** Creates new form JDVisualizarDocumento */
     private JDModificarDocumento padre = null;
 
-    public JFVisualizarDocumento(String doc) {
+    public JDVisualizarDocumento(String doc) {
         super();
         initComponents();
         mnbOpciones.setVisible(false);
         txtfDocumento.setText(doc);
     }
 
-    public JFVisualizarDocumento(JDModificarDocumento padre,String doc) {
+    public JDVisualizarDocumento(JDModificarDocumento padre,String doc) {
         super();
         initComponents();
         this.padre = padre;

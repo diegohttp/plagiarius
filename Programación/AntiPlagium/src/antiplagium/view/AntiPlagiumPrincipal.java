@@ -305,14 +305,14 @@ public class AntiPlagiumPrincipal extends JFBase {
 
     private void jMenuItem4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem4MouseClicked
         // TODO add your handling code here:
-        JFCompararDocumentos frmCompararDocumentos = new JFCompararDocumentos();
+        JDCompararDocumentos frmCompararDocumentos = new JDCompararDocumentos();
         frmCompararDocumentos.setVisible(true);
     //JDPPrincipal.add(frmCompararDocumentos);
     }//GEN-LAST:event_jMenuItem4MouseClicked
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        JFCompararDocumentos frmCompararDocumentos = new JFCompararDocumentos();
+        JDCompararDocumentos frmCompararDocumentos = new JDCompararDocumentos();
         frmCompararDocumentos.setModal(true);
         frmCompararDocumentos.setLocationRelativeTo(this);
         frmCompararDocumentos.setVisible(true);
