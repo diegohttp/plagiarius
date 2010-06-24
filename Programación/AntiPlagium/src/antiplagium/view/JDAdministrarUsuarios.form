@@ -103,7 +103,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnSeleccionar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jBCerrar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCerrar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="53" max="32767" attributes="0"/>
@@ -120,7 +120,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSeleccionar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -153,15 +153,15 @@
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jBConsultar" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCBRol" min="-2" pref="271" max="-2" attributes="1"/>
-                      <Component id="JTFNombreCompleto" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
+                      <Component id="btnConsultar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbRol" min="-2" pref="271" max="-2" attributes="1"/>
+                      <Component id="txtNombreCompleto" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
                       <Component id="jPFechaInicio" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
-                      <Component id="jTFUsuario" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
+                      <Component id="txtUsuario" alignment="0" min="-2" pref="271" max="-2" attributes="1"/>
                       <Component id="jPFechaFin" min="-2" pref="269" max="-2" attributes="1"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jCBEstado" alignment="0" max="32767" attributes="1"/>
-                          <Component id="jCBArea" alignment="0" pref="269" max="32767" attributes="1"/>
+                          <Component id="cmbEstado" alignment="0" max="32767" attributes="1"/>
+                          <Component id="cmbArea" alignment="0" pref="269" max="32767" attributes="1"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -172,17 +172,17 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JTFNombreCompleto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNombreCompleto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCBRol" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbRol" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -202,16 +202,16 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCBArea" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbArea" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCBEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jBConsultar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnConsultar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -223,21 +223,21 @@
             <Property name="text" type="java.lang.String" value="Nombre deUsuario"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFUsuario">
+        <Component class="javax.swing.JTextField" name="txtUsuario">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Rol"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jCBRol">
+        <Component class="javax.swing.JComboBox" name="cmbRol">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBRolActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbRolActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -250,14 +250,14 @@
             <Property name="text" type="java.lang.String" value="Fecha fin"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jCBArea">
+        <Component class="javax.swing.JComboBox" name="cmbArea">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCBAreaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbAreaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
@@ -315,7 +315,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="javax.swing.JButton" name="jBConsultar">
+        <Component class="javax.swing.JButton" name="btnConsultar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Iconos/buscar.png"/>
@@ -326,7 +326,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBConsultarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -334,14 +334,14 @@
             <Property name="text" type="java.lang.String" value="Nombres y Apellidos"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="JTFNombreCompleto">
+        <Component class="javax.swing.JTextField" name="txtNombreCompleto">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Estado"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jCBEstado">
+        <Component class="javax.swing.JComboBox" name="cmbEstado">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -461,7 +461,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSeleccionarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jBCerrar">
+    <Component class="javax.swing.JButton" name="btnCerrar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Iconos/cancelar.png"/>
@@ -472,7 +472,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCerrarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCerrarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
