@@ -26,25 +26,16 @@ import java.util.logging.Logger;
  */
 public class DocumentoDAO {
 
-     public static boolean registrar(DocumentoBE objDocumento) throws Exception {
+     public static boolean registrar(DocumentoBE objDocumento) {
         boolean boolExito = false;
-
         ConexionJDBC objConexion = new ConexionJDBC();
-        //String xml = objDocumento.toXml();
-
         String strSentencia = "INSERT INTO \"Documento\" (\"idDocumento\",estado,nombre,\"idUsuario\",contenido,\"idCategoria\") VALUES (" + objDocumento.getIdDocumento() +",'"+ objDocumento.getEstado() +"','"+ objDocumento.getNombre() +"','"+ objDocumento.getUsuario().getIdUsuario() +"','"+ objDocumento.getContenido() +"',"+ objDocumento.getCategoria().getIdCategoria() + ")";
-        System.out.println(strSentencia);
         try{
-            objConexion.ejecutarSentencia(strSentencia);
-
-            boolExito=true;
+            objConexion.ejecutarUpdateString(strSentencia);
+            boolExito = true;
         }
-
         catch (Exception a){
-            //System.out.println(a.getMessage());
         }
-        /*finally{objConexion.SalirUID();}*/
-
         return boolExito;
     }
 
@@ -55,7 +46,7 @@ public class DocumentoDAO {
             strSentencia += "estado = 'inactivo'"+ 
                         " WHERE \"idDocumento\" ="+IdDocumento+";";
         try{
-            objConexion.ejecutarSentencia(strSentencia);
+            objConexion.ejecutarUpdateString(strSentencia);
             return true;
         }
         catch (Exception a){
@@ -144,13 +135,13 @@ public class DocumentoDAO {
                 " \"idCategoria\" = " + objDocumento.getCategoria().getIdCategoria();
         strSentencia += ", contenido = '" + objDocumento.getContenido() + "'";
         strSentencia += " WHERE \"idDocumento\" = " + objDocumento.getIdDocumento();
-        System.out.println(strSentencia);
+        //System.out.println(strSentencia);
         try{
-            objConexion.ejecutarSentencia(strSentencia);
+            objConexion.ejecutarUpdateString(strSentencia);
             return true;
         }
         catch (Exception a){
-            System.out.println(a.getMessage());
+            //System.out.println(a.getMessage());
             return false;
         }
     }
