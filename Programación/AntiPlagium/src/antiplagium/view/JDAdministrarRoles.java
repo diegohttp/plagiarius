@@ -77,13 +77,10 @@ public class JDAdministrarRoles extends JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTPrivilegios = new javax.swing.JTable();
-        JBModificar = new javax.swing.JButton();
-        JBEliminar = new javax.swing.JButton();
-        JBNuevo = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuNuevo = new javax.swing.JMenu();
+        jMenuModificar = new javax.swing.JMenu();
+        jMenuEliminar = new javax.swing.JMenu();
 
         setTitle("Administrar Roles");
         setName("jdAdministrarUsuario"); // NOI18N
@@ -187,57 +184,35 @@ public class JDAdministrarRoles extends JDialog {
                 .addContainerGap())
         );
 
-        JBModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
-        JBModificar.setText("Modificar");
-        JBModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBModificarActionPerformed(evt);
-            }
-        });
-
-        JBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
-        JBEliminar.setText("Eliminar");
-        JBEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBEliminarActionPerformed(evt);
-            }
-        });
-
-        JBNuevo.setFont(new java.awt.Font("Tahoma", 0, 10));
-        JBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
-        JBNuevo.setText("Nuevo");
-        JBNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBNuevoActionPerformed(evt);
-            }
-        });
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
-        jMenu1.setText("Nuevo");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
+        jMenuNuevo.setText("Nuevo");
+        jMenuNuevo.setName("jMenuNuevo"); // NOI18N
+        jMenuNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMenu1MouseReleased(evt);
+                jMenuNuevoMouseReleased(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuNuevo);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
-        jMenu2.setText("Modificar");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
+        jMenuModificar.setText("Modificar");
+        jMenuModificar.setName("jMenuModificar"); // NOI18N
+        jMenuModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                jMenuModificarMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuModificar);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
-        jMenu3.setText("Eliminar");
-        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
+        jMenuEliminar.setText("Eliminar");
+        jMenuEliminar.setName("jMenuEliminar"); // NOI18N
+        jMenuEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu3MouseClicked(evt);
+                jMenuEliminarMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jMenuEliminar);
 
         setJMenuBar(jMenuBar1);
 
@@ -249,21 +224,11 @@ public class JDAdministrarRoles extends JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(JBNuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBEliminar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JBEliminar, JBModificar, JBNuevo});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -271,23 +236,16 @@ public class JDAdministrarRoles extends JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JBEliminar)
-                    .addComponent(JBModificar)
-                    .addComponent(JBNuevo))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JBEliminar, JBModificar, JBNuevo});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
-        
-        RolBE rolBE = new RolBE();        
-        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);        
+    private void jMenuNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuNuevoMouseReleased
+
+        RolBE rolBE = new RolBE();
+        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);
         jfAgregarRol.setLocationRelativeTo(this);
         jfAgregarRol.setModal(true);
         jfAgregarRol.setVisible(true);
@@ -296,9 +254,29 @@ public class JDAdministrarRoles extends JDialog {
             cboRol.addItem(rolBE);
             cboRol.setSelectedItem(rolBE);
         }
-}//GEN-LAST:event_JBNuevoActionPerformed
+    }//GEN-LAST:event_jMenuNuevoMouseReleased
 
-    private void JBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBEliminarActionPerformed
+    private void jMenuModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuModificarMouseClicked
+     ArrayList<PrivilegioBE> listaPrivilegios = new ArrayList<PrivilegioBE>();
+        for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
+        {
+            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true)
+            {
+                listaPrivilegios.add(new PrivilegioBE((Integer)modeloTablaPrivilegios.getValueAt(i, 0), (String)modeloTablaPrivilegios.getValueAt(i, 1)));
+            }
+        }
+
+        RolBE rolBE = (RolBE)cboRol.getSelectedItem();
+        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE, listaPrivilegios);
+        jfAgregarRol.setLocationRelativeTo(this);
+        jfAgregarRol.setModal(true);
+        jfAgregarRol.setVisible(true);
+        cboRol.removeItem(rolBE);
+        cboRol.addItem(rolBE);
+        cboRol.setSelectedItem(rolBE);
+    }//GEN-LAST:event_jMenuModificarMouseClicked
+
+    private void jMenuEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuEliminarMouseClicked
         RolBL rolBL = new RolBL();
         RolBE rolBE;
 
@@ -327,88 +305,7 @@ public class JDAdministrarRoles extends JDialog {
             return;
         }
         JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "Eliminar rol", JOptionPane.INFORMATION_MESSAGE);
-}//GEN-LAST:event_JBEliminarActionPerformed
-
-    private void JBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBModificarActionPerformed
-        ArrayList<PrivilegioBE> listaPrivilegios = new ArrayList<PrivilegioBE>();
-        for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
-        {
-            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true)
-            {
-                listaPrivilegios.add(new PrivilegioBE((Integer)modeloTablaPrivilegios.getValueAt(i, 0), (String)modeloTablaPrivilegios.getValueAt(i, 1)));
-            }
-        }        
-
-        RolBE rolBE = (RolBE)cboRol.getSelectedItem();
-        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE, listaPrivilegios);
-        jfAgregarRol.setLocationRelativeTo(this);
-        jfAgregarRol.setModal(true);
-        jfAgregarRol.setVisible(true);
-        cboRol.removeItem(rolBE);
-        cboRol.addItem(rolBE);
-        cboRol.setSelectedItem(rolBE);
-}//GEN-LAST:event_JBModificarActionPerformed
-
-    private void jMenu1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseReleased
-
-        RolBE rolBE = new RolBE();
-        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);
-        jfAgregarRol.setLocationRelativeTo(this);
-        jfAgregarRol.setModal(true);
-        jfAgregarRol.setVisible(true);
-        if (rolBE.getIdPrivilegio() != 0)
-        {
-            cboRol.addItem(rolBE);
-            cboRol.setSelectedItem(rolBE);
-        }
-    }//GEN-LAST:event_jMenu1MouseReleased
-
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        ArrayList<PrivilegioBE> listaPrivilegios = new ArrayList<PrivilegioBE>();
-        for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
-        {
-            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true)
-            {
-                listaPrivilegios.add(new PrivilegioBE((Integer)modeloTablaPrivilegios.getValueAt(i, 0), (String)modeloTablaPrivilegios.getValueAt(i, 1)));
-            }
-        }
-
-        RolBE rolBE = (RolBE)cboRol.getSelectedItem();
-        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE, listaPrivilegios);
-        jfAgregarRol.setLocationRelativeTo(this);
-        jfAgregarRol.setModal(true);
-        jfAgregarRol.setVisible(true);
-        cboRol.removeItem(rolBE);
-        cboRol.addItem(rolBE);
-        cboRol.setSelectedItem(rolBE);
-    }//GEN-LAST:event_jMenu2MouseClicked
-
-    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        RolBL rolBL = new RolBL();
-        RolBE rolBE;
-
-        try
-        {
-            rolBL.AbrirConexion();
-            rolBE = (RolBE)cboRol.getSelectedItem();
-            rolBL.deleteRol(rolBE);
-            rolBL.CerrarConexion();
-            cboRol.removeItem(rolBE);
-        }
-        catch (ClassNotFoundException ex)
-        {
-            GestorError.showError("base_de_datos");
-            //JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        catch (SQLException excepcionSQL)
-        {
-            GestorError.showError("base_de_datos");
-            //JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "Eliminar rol", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jMenu3MouseClicked
+    }//GEN-LAST:event_jMenuEliminarMouseClicked
 
     private void cboRolItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboRolItemStateChanged
 
@@ -460,17 +357,14 @@ public class JDAdministrarRoles extends JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBEliminar;
-    private javax.swing.JButton JBModificar;
-    private javax.swing.JButton JBNuevo;
     private javax.swing.JTable JTPrivilegios;
     private javax.swing.JComboBox cboRol;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuEliminar;
+    private javax.swing.JMenu jMenuModificar;
+    private javax.swing.JMenu jMenuNuevo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

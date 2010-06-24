@@ -17,6 +17,8 @@ public class JDAgregarRol extends JDialog {
     Boolean esModificar;
 
     RolBE rolBE;
+    String estadoActivo = "Activo";
+    String estadoInactivo = "Inactivo";
     String nombreRolInicial;
     String descripcionOperacion;
     String descripcionOperacionModificar;
@@ -25,6 +27,8 @@ public class JDAgregarRol extends JDialog {
     {
         initComponents();
         this.rolBE = rolBE;
+        this.cboEstado.addItem(estadoActivo);
+        this.cboEstado.setEnabled(false);
         onLoad();
         esModificar = false;
     }
@@ -33,9 +37,10 @@ public class JDAgregarRol extends JDialog {
     {
         initComponents();
         this.rolBE = rolBE;
+        this.cboEstado.addItem(estadoActivo);
+        this.cboEstado.addItem(estadoInactivo);
         this.listaPrivilegiosSinModificar = listaPrivilegios;
-        this.cboEstado.addItem("Activo");
-        this.cboEstado.addItem("Inactivo");
+        
         onLoad();
         onLoadModificar();
         esModificar = true;
@@ -78,6 +83,9 @@ public class JDAgregarRol extends JDialog {
     {
         nombreRolInicial = rolBE.getNombre();
         txtNombreRol.setText(rolBE.getNombre());
+        if ( rolBE.getEstado().compareToIgnoreCase("ACT")==0) cboEstado.setSelectedItem(estadoActivo);
+        else cboEstado.setSelectedItem(estadoInactivo);
+        
         descripcionOperacionModificar = "Registro original: " + rolBE.getNombre() + "\n";
         for (PrivilegioBE privilegio : listaPrivilegiosSinModificar)
         {            
@@ -273,7 +281,11 @@ public class JDAgregarRol extends JDialog {
         listaIDPrivilegios = new ArrayList<Integer>();
         listaPrivilegios = new ArrayList<PrivilegioBE>();
 
+        // Damos valores al rolBE
         rolBE.setNombre(txtNombreRol.getText());
+        if (((String)cboEstado.getSelectedItem()).compareToIgnoreCase(estadoActivo)==0) rolBE.setEstado("ACT");
+        else rolBE.setEstado("INA");
+
         for (int i = 0; i<modeloTablaPrivilegios.getRowCount(); i++)
         {
            if ((Boolean)modeloTablaPrivilegios.getValueAt(i, 3) == true )
@@ -286,6 +298,7 @@ public class JDAgregarRol extends JDialog {
         {
             rolBL.AbrirConexion();
             ResultSet tablaRoles = rolBL.getListRoles();
+            //valida que no exista otro rol registrado con el mismo nombre
             while (tablaRoles.next())
             {
                 if ( rolBE.getNombre().compareToIgnoreCase(tablaRoles.getString("nombre")) == 0 )
