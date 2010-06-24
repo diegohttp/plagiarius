@@ -93,8 +93,8 @@ private ArrayList<CategoriaBE> alstCategorias;
 
         txtPropietario.setEnabled(false);
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        btnGuardar.setText("Aceptar");
         btnGuardar.setAlignmentY(0.0F);
         btnGuardar.setMaximumSize(new java.awt.Dimension(135, 35));
         btnGuardar.setMinimumSize(new java.awt.Dimension(135, 35));
@@ -105,7 +105,7 @@ private ArrayList<CategoriaBE> alstCategorias;
             }
         });
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/salir.png"))); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setAlignmentY(0.0F);
         btnCancelar.setMaximumSize(new java.awt.Dimension(135, 35));

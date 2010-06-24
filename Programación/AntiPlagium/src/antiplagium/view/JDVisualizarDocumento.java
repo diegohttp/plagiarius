@@ -110,7 +110,7 @@ public class JDVisualizarDocumento extends JDialog{
             }
         });
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/salir.png"))); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
         btnSalir.setText("Cancelar");
         btnSalir.setMaximumSize(new java.awt.Dimension(135, 35));
         btnSalir.setMinimumSize(new java.awt.Dimension(135, 35));
