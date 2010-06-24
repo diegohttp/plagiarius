@@ -56,11 +56,11 @@ public class JDAdministrarRoles extends JDialog {
 
         } catch (ClassNotFoundException ex) {
             //GestorError.showError("base_de_datos");
-            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         } catch (SQLException excepcionSQL) {
             //GestorError.showError("base_de_datos");
-            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
     }
@@ -188,8 +188,8 @@ public class JDAdministrarRoles extends JDialog {
         jMenuNuevo.setText("Nuevo");
         jMenuNuevo.setName("jMenuNuevo"); // NOI18N
         jMenuNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMenuNuevoMouseReleased(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuNuevoMouseClicked(evt);
             }
         });
         jMenuBar1.add(jMenuNuevo);
@@ -242,20 +242,6 @@ public class JDAdministrarRoles extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuNuevoMouseReleased
-
-        RolBE rolBE = new RolBE();
-        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);
-        jfAgregarRol.setLocationRelativeTo(this);
-        jfAgregarRol.setModal(true);
-        jfAgregarRol.setVisible(true);
-        if (rolBE.getIdPrivilegio() != 0)
-        {
-            cboRol.addItem(rolBE);
-            cboRol.setSelectedItem(rolBE);
-        }
-    }//GEN-LAST:event_jMenuNuevoMouseReleased
-
     private void jMenuModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuModificarMouseClicked
      ArrayList<PrivilegioBE> listaPrivilegios = new ArrayList<PrivilegioBE>();
         for (int i=0; i < modeloTablaPrivilegios.getRowCount(); i++)
@@ -295,16 +281,16 @@ public class JDAdministrarRoles extends JDialog {
         catch (ClassNotFoundException ex)
         {
             //GestorError.showError("base_de_datos");
-            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
         catch (SQLException excepcionSQL)
         {
             //GestorError.showError("base_de_datos");
-            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(this, "El rol fue eliminado con exito", "Eliminar rol", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "El rol ha sido modificado a estado Inactivo", "Rol", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuEliminarMouseClicked
 
     private void cboRolItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboRolItemStateChanged
@@ -347,6 +333,19 @@ public class JDAdministrarRoles extends JDialog {
                 JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_cboRolItemStateChanged
+
+    private void jMenuNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuNuevoMouseClicked
+         RolBE rolBE = new RolBE();
+        JDAgregarRol jfAgregarRol = new JDAgregarRol(rolBE);
+        jfAgregarRol.setLocationRelativeTo(this);
+        jfAgregarRol.setModal(true);
+        jfAgregarRol.setVisible(true);
+        if (rolBE.getIdPrivilegio() != 0)
+        {
+            cboRol.addItem(rolBE);
+            cboRol.setSelectedItem(rolBE);
+        }
+    }//GEN-LAST:event_jMenuNuevoMouseClicked
 
     private void descripcionOperacion(RolBE rolBE)
     {
