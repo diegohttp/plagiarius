@@ -132,13 +132,15 @@ public class AntiPlagiumPrincipal extends JFBase {
         JDPPrincipal.setMinimumSize(new java.awt.Dimension(10, 10));
 
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(536, 34));
 
         JMUsuarios.setBackground(new java.awt.Color(0, 153, 153));
-        JMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Parents20.png"))); // NOI18N
-        JMUsuarios.setText("U s u a r i o s");
+        JMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Seguridad1.png"))); // NOI18N
+        JMUsuarios.setText("Seguridad");
         JMUsuarios.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         JMUsuarios.setName("JMUsuarios"); // NOI18N
 
+        JMIAdministrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/People.png"))); // NOI18N
         JMIAdministrarUsuarios.setText("Administrar Usuarios");
         JMIAdministrarUsuarios.setName("JMIAdministrarUsuarios"); // NOI18N
         JMIAdministrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +150,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         });
         JMUsuarios.add(JMIAdministrarUsuarios);
 
+        JMIAdministrarGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Boss.png"))); // NOI18N
         JMIAdministrarGrupos.setText("Administrar Roles");
         JMIAdministrarGrupos.setName("JMIAdministrarRoles"); // NOI18N
         JMIAdministrarGrupos.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +160,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         });
         JMUsuarios.add(JMIAdministrarGrupos);
 
+        JMLogUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/List.png"))); // NOI18N
         JMLogUsuario.setText("Log de Usuarios");
         JMLogUsuario.setName("JMILogDeUsuarios"); // NOI18N
         JMLogUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +178,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenu2.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         jMenu2.setName("JMDocumentos"); // NOI18N
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Folder.png"))); // NOI18N
         jMenuItem2.setText("Gestionar Categoría");
         jMenuItem2.setName("JMIGestionarCategoria"); // NOI18N
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +188,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/documento.png"))); // NOI18N
         jMenuItem3.setText("Gestionar Documento");
         jMenuItem3.setName("JMIGestionarDocumento"); // NOI18N
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -205,6 +211,7 @@ public class AntiPlagiumPrincipal extends JFBase {
             }
         });
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eye.png"))); // NOI18N
         jMenuItem4.setText("Comparar documentos");
         jMenuItem4.setName("JMICompararDocumentos"); // NOI18N
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -217,11 +224,12 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenuBar1.add(jMenu3);
 
         JMReportes.setBackground(new java.awt.Color(0, 153, 153));
-        JMReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
+        JMReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Reportes2.png"))); // NOI18N
         JMReportes.setText("R e p o r t e s");
         JMReportes.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         JMReportes.setName("JMReportes"); // NOI18N
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
         jMenuItem1.setText("Comparaciones Documentos");
         jMenuItem1.setName("JMIReporteComparaciones"); // NOI18N
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -231,6 +239,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         });
         JMReportes.add(jMenuItem1);
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
         jMenuItem6.setText("Documentos");
         jMenuItem6.setName("JMIReporteDocumentos"); // NOI18N
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -254,7 +263,7 @@ public class AntiPlagiumPrincipal extends JFBase {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
+                .addComponent(JDPPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
         );
 
         pack();
