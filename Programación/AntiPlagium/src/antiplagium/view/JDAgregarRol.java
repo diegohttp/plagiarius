@@ -50,7 +50,7 @@ public class JDAgregarRol extends JDialog {
     {
        PrivilegioBL privilegioBL = new PrivilegioBL();
        
-       modeloTablaPrivilegios = (DefaultTableModel)JTPrivilegios.getModel();       
+       modeloTablaPrivilegios = (DefaultTableModel)tbPrivilegios.getModel();
         try
         {
             privilegioBL.AbrirConexion();
@@ -71,11 +71,11 @@ public class JDAgregarRol extends JDialog {
         }
         catch (ClassNotFoundException ex)
         {
-            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         catch (SQLException excepcionSQL)
         {
-            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }   
 
@@ -103,28 +103,31 @@ public class JDAgregarRol extends JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JBGuardar = new javax.swing.JButton();
-        JPGrupo = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JButton();
+        pnGrupo = new javax.swing.JPanel();
         lblNombreRol = new javax.swing.JLabel();
         txtNombreRol = new javax.swing.JTextField();
         lblEstado = new javax.swing.JLabel();
         cboEstado = new javax.swing.JComboBox();
-        JBCancelar = new javax.swing.JButton();
-        JPPrivilegios = new javax.swing.JPanel();
+        btnCancelar = new javax.swing.JButton();
+        pnPrivilegios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JTPrivilegios = new javax.swing.JTable();
+        tbPrivilegios = new javax.swing.JTable();
 
         setTitle("Agregar Rol");
 
-        JBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/guardar.png"))); // NOI18N
-        JBGuardar.setText("Guardar");
-        JBGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        btnGuardar.setText("Aceptar");
+        btnGuardar.setMaximumSize(new java.awt.Dimension(135, 35));
+        btnGuardar.setMinimumSize(new java.awt.Dimension(135, 35));
+        btnGuardar.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBGuardarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
-        JPGrupo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 0, 12))); // NOI18N
+        pnGrupo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rol", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 0, 12))); // NOI18N
 
         lblNombreRol.setFont(new java.awt.Font("Arial", 0, 11));
         lblNombreRol.setText("Nombre del Rol");
@@ -136,51 +139,53 @@ public class JDAgregarRol extends JDialog {
             }
         });
 
-        lblEstado.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        lblEstado.setFont(new java.awt.Font("Arial", 0, 11));
         lblEstado.setText("Estado");
 
-        javax.swing.GroupLayout JPGrupoLayout = new javax.swing.GroupLayout(JPGrupo);
-        JPGrupo.setLayout(JPGrupoLayout);
-        JPGrupoLayout.setHorizontalGroup(
-            JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPGrupoLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnGrupoLayout = new javax.swing.GroupLayout(pnGrupo);
+        pnGrupo.setLayout(pnGrupoLayout);
+        pnGrupoLayout.setHorizontalGroup(
+            pnGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnGrupoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPGrupoLayout.createSequentialGroup()
+                .addGroup(pnGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnGrupoLayout.createSequentialGroup()
                         .addComponent(lblNombreRol, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(119, 119, 119))
-                    .addGroup(JPGrupoLayout.createSequentialGroup()
+                    .addGroup(pnGrupoLayout.createSequentialGroup()
                         .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(213, 213, 213))))
         );
-        JPGrupoLayout.setVerticalGroup(
-            JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPGrupoLayout.createSequentialGroup()
-                .addGroup(JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pnGrupoLayout.setVerticalGroup(
+            pnGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnGrupoLayout.createSequentialGroup()
+                .addGroup(pnGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreRol)
                     .addComponent(txtNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(JPGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnGrupoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstado)
                     .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        JBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/salir.png"))); // NOI18N
-        JBCancelar.setText("Salir");
-        JBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setMinimumSize(new java.awt.Dimension(135, 35));
+        btnCancelar.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBCancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        JPPrivilegios.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 0, 12))); // NOI18N
+        pnPrivilegios.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Privilegios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 0, 12))); // NOI18N
 
-        JTPrivilegios.setModel(new javax.swing.table.DefaultTableModel(
+        tbPrivilegios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -203,32 +208,32 @@ public class JDAgregarRol extends JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(JTPrivilegios);
-        JTPrivilegios.getColumnModel().getColumn(0).setMinWidth(40);
-        JTPrivilegios.getColumnModel().getColumn(0).setPreferredWidth(40);
-        JTPrivilegios.getColumnModel().getColumn(0).setMaxWidth(40);
-        JTPrivilegios.getColumnModel().getColumn(1).setMinWidth(130);
-        JTPrivilegios.getColumnModel().getColumn(1).setPreferredWidth(130);
-        JTPrivilegios.getColumnModel().getColumn(1).setMaxWidth(130);
-        JTPrivilegios.getColumnModel().getColumn(2).setMinWidth(160);
-        JTPrivilegios.getColumnModel().getColumn(2).setPreferredWidth(160);
-        JTPrivilegios.getColumnModel().getColumn(2).setMaxWidth(160);
-        JTPrivilegios.getColumnModel().getColumn(3).setMinWidth(25);
-        JTPrivilegios.getColumnModel().getColumn(3).setPreferredWidth(25);
-        JTPrivilegios.getColumnModel().getColumn(3).setMaxWidth(25);
+        jScrollPane1.setViewportView(tbPrivilegios);
+        tbPrivilegios.getColumnModel().getColumn(0).setMinWidth(40);
+        tbPrivilegios.getColumnModel().getColumn(0).setPreferredWidth(40);
+        tbPrivilegios.getColumnModel().getColumn(0).setMaxWidth(40);
+        tbPrivilegios.getColumnModel().getColumn(1).setMinWidth(130);
+        tbPrivilegios.getColumnModel().getColumn(1).setPreferredWidth(130);
+        tbPrivilegios.getColumnModel().getColumn(1).setMaxWidth(130);
+        tbPrivilegios.getColumnModel().getColumn(2).setMinWidth(160);
+        tbPrivilegios.getColumnModel().getColumn(2).setPreferredWidth(160);
+        tbPrivilegios.getColumnModel().getColumn(2).setMaxWidth(160);
+        tbPrivilegios.getColumnModel().getColumn(3).setMinWidth(25);
+        tbPrivilegios.getColumnModel().getColumn(3).setPreferredWidth(25);
+        tbPrivilegios.getColumnModel().getColumn(3).setMaxWidth(25);
 
-        javax.swing.GroupLayout JPPrivilegiosLayout = new javax.swing.GroupLayout(JPPrivilegios);
-        JPPrivilegios.setLayout(JPPrivilegiosLayout);
-        JPPrivilegiosLayout.setHorizontalGroup(
-            JPPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPPrivilegiosLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnPrivilegiosLayout = new javax.swing.GroupLayout(pnPrivilegios);
+        pnPrivilegios.setLayout(pnPrivilegiosLayout);
+        pnPrivilegiosLayout.setHorizontalGroup(
+            pnPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnPrivilegiosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        JPPrivilegiosLayout.setVerticalGroup(
-            JPPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPPrivilegiosLayout.createSequentialGroup()
+        pnPrivilegiosLayout.setVerticalGroup(
+            pnPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnPrivilegiosLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -240,36 +245,36 @@ public class JDAgregarRol extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JPGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JPPrivilegios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnPrivilegios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JBGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBCancelar)))
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(JPGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JPPrivilegios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnPrivilegios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JBGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBCancelar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
              this.dispose();
-    }//GEN-LAST:event_JBCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
         if (txtNombreRol.getText().equals(""))
         {
@@ -330,20 +335,23 @@ public class JDAgregarRol extends JDialog {
             }
             JFBase.registrarOperacion();
             rolBL.CerrarConexion();
+
+            if (esModificar) JOptionPane.showMessageDialog(this, "El rol ha sido modificado con exito", "Rol", JOptionPane.INFORMATION_MESSAGE);
+            else JOptionPane.showMessageDialog(this, "El rol ha sido creado con exito", "Rol", JOptionPane.INFORMATION_MESSAGE);
         }
         catch(ClassNotFoundException ex)
         {
-            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
         catch (SQLException excepcionSQL)
         {
-            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         this.dispose();
-    }//GEN-LAST:event_JBGuardarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void descripcionOperacionGuardar()
     {
@@ -383,15 +391,15 @@ public class JDAgregarRol extends JDialog {
     }//GEN-LAST:event_txtNombreRolKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBCancelar;
-    private javax.swing.JButton JBGuardar;
-    private javax.swing.JPanel JPGrupo;
-    private javax.swing.JPanel JPPrivilegios;
-    private javax.swing.JTable JTPrivilegios;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox cboEstado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblNombreRol;
+    private javax.swing.JPanel pnGrupo;
+    private javax.swing.JPanel pnPrivilegios;
+    private javax.swing.JTable tbPrivilegios;
     private javax.swing.JTextField txtNombreRol;
     // End of variables declaration//GEN-END:variables
 
