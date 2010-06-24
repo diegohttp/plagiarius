@@ -40,6 +40,7 @@ public class JDAdministrarUsuarios extends JDialog {
     private UsuarioBL usuarioBL;
     private EstadoBL estadoBl;
     private UsuarioBE usuarioBESeleccionado=null;
+    ArrayList<EstadoBE> registrosEstado=null;
 
     public UsuarioBE getUsuarioBESeleccionado() {
         return usuarioBESeleccionado;
@@ -95,7 +96,7 @@ public class JDAdministrarUsuarios extends JDialog {
                 }
 
 
-                ArrayList<EstadoBE> registrosEstado = estadoBl.ObtenerEstados(0,"","");
+                registrosEstado = estadoBl.ObtenerEstados(0,"","");
                 if (registrosEstado != null) {
                     jCBEstado.addItem(new EstadoBE(0,"Todos", "Todos descripcion"));
                     int numeroReg = registrosEstado.size();
@@ -575,10 +576,34 @@ public class JDAdministrarUsuarios extends JDialog {
 
                         if (modelo.getRowCount()!=0){
                             if (Integer.parseInt(objetos[0].toString())!=Integer.parseInt(modelo.getValueAt(modelo.getRowCount()-1,0).toString()) ){
+                                                        int idUsuario=Integer.parseInt(objetos[0].toString());
+                        UsuarioBE usuariobe=usuarioBL.getUsuarioBE(idUsuario);
+                        if(usuariobe.getFechaCese()==null){
+                            formato=new SimpleDateFormat("yyyy-MM-dd");
+                            String cadenaFechaVencimiento=formato.format(usuariobe.getFechaVencimiento());
+                            int resultado=cadenaFechaVencimiento.compareTo(formato.format(new Date( System.currentTimeMillis())));
+                            if (resultado<=0){
+                                CesarUsuario(usuariobe);
+                        }
+                }
+
                                 modelo.addRow(objetos);
                             }
                         }
-                        else {modelo.addRow(objetos);}
+                        else {
+                                                    int idUsuario=Integer.parseInt(objetos[0].toString());
+                        UsuarioBE usuariobe=usuarioBL.getUsuarioBE(idUsuario);
+                        if(usuariobe.getFechaCese()==null){
+                            formato=new SimpleDateFormat("yyyy-MM-dd");
+                            String cadenaFechaVencimiento=formato.format(usuariobe.getFechaVencimiento());
+                            int resultado=cadenaFechaVencimiento.compareTo(formato.format(new Date( System.currentTimeMillis())));
+                            if (resultado<=0){
+                                CesarUsuario(usuariobe);
+                        }
+                }
+
+                            modelo.addRow(objetos);
+                        }
 
                         //modelo.addRow(objetos);
                     }
@@ -592,6 +617,32 @@ public class JDAdministrarUsuarios extends JDialog {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    public void CesarUsuario(UsuarioBE usuarioBEO){
+
+        Boolean rpta;
+        usuarioBEO.setFechaCese(new Date( System.currentTimeMillis()));
+        //usuarioBE.setTipoCeseBE(null);
+        for (int i=0;i<registrosEstado.size();i++){
+            if (registrosEstado.get(i).getNombre().compareTo("Inactivo")==0){
+                usuarioBEO.setEstadoBE(registrosEstado.get(i));
+            }
+        }
+        rpta=usuarioBL.ElminarUsuario(usuarioBEO);
+
+//        if(rpta==true){
+//            JOptionPane.showMessageDialog(this,"El usuario ha sido eliminado con exito.", "Informe", JOptionPane.INFORMATION_MESSAGE);
+//        }
+//        else{
+//            JOptionPane.showMessageDialog(this,"Error. Usuario no eliminado", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+
+        if (rpta==false) {
+            JOptionPane.showMessageDialog(this,"La fecha de vencimiento de la cuenta de usuario ha pasado su limite.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
 
     }
     
