@@ -71,7 +71,7 @@ public class JDAdministrarUsuarios extends JDialog {
             categoriaBl = new CategoriaBL();
             estadoBl=new EstadoBL();
 
-            jBSeleccionar.setVisible(false);
+            btnSeleccionar.setVisible(false);
             jBCerrar.setVisible(false);
 
             try {
@@ -111,10 +111,10 @@ public class JDAdministrarUsuarios extends JDialog {
                     jMEliminar.setVisible(false);
                     jMModificar.setVisible(false);
                     jMNuevo.setVisible(false);
-                    JBNuevo.setVisible(false);
-                    jBModificar.setVisible(false);
-                    jBEliminar.setVisible(false);
-                    jBSeleccionar.setVisible(true);
+//                    JBNuevo.setVisible(false);
+//                    jBModificar.setVisible(false);
+//                    jBEliminar.setVisible(false);
+                    btnSeleccionar.setVisible(true);
                     jBCerrar.setVisible(true);
                 }
 
@@ -170,10 +170,7 @@ public class JDAdministrarUsuarios extends JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTListaUsuarios = new javax.swing.JTable();
-        jBModificar = new javax.swing.JButton();
-        JBNuevo = new javax.swing.JButton();
-        jBEliminar = new javax.swing.JButton();
-        jBSeleccionar = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
         jBCerrar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMNuevo = new javax.swing.JMenu();
@@ -243,6 +240,7 @@ public class JDAdministrarUsuarios extends JDialog {
 
         jBConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
         jBConsultar.setText("Buscar");
+        jBConsultar.setPreferredSize(new java.awt.Dimension(135, 35));
         jBConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBConsultarActionPerformed(evt);
@@ -274,7 +272,7 @@ public class JDAdministrarUsuarios extends JDialog {
                     .addComponent(jPFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jBConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTFUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -315,8 +313,8 @@ public class JDAdministrarUsuarios extends JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jBConsultar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jBConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -370,44 +368,18 @@ public class JDAdministrarUsuarios extends JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jBModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
-        jBModificar.setText("Modificar");
-        jBModificar.setPreferredSize(new java.awt.Dimension(95, 33));
-        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        btnSeleccionar.setText("Seleccionar");
+        btnSeleccionar.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBModificarActionPerformed(evt);
-            }
-        });
-
-        JBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
-        JBNuevo.setText("Nuevo");
-        JBNuevo.setPreferredSize(new java.awt.Dimension(95, 33));
-        JBNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBNuevoActionPerformed(evt);
-            }
-        });
-
-        jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
-        jBEliminar.setText("Eliminar");
-        jBEliminar.setPreferredSize(new java.awt.Dimension(95, 33));
-        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEliminarActionPerformed(evt);
-            }
-        });
-
-        jBSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
-        jBSeleccionar.setText("Seleccionar");
-        jBSeleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBSeleccionarActionPerformed(evt);
+                btnSeleccionarActionPerformed(evt);
             }
         });
 
         jBCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cancelar.png"))); // NOI18N
-        jBCerrar.setText("Cerrar");
-        jBCerrar.setPreferredSize(new java.awt.Dimension(80, 33));
+        jBCerrar.setText("Cancelar");
+        jBCerrar.setPreferredSize(new java.awt.Dimension(135, 35));
         jBCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCerrarActionPerformed(evt);
@@ -453,23 +425,14 @@ public class JDAdministrarUsuarios extends JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBSeleccionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -481,65 +444,13 @@ public class JDAdministrarUsuarios extends JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBSeleccionar))
+                    .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        
-        int iFila=-1;
-        iFila=jTListaUsuarios.getSelectedRow();
-
-        System.out.println("numero de fila"+iFila);
-
-        if (iFila==-1){
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
-            JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(idUsuario);
-            jfAgregarUsuario.setModal(true);
-            jfAgregarUsuario.setLocationRelativeTo(this);
-            jfAgregarUsuario.setVisible(true);
-            ConsultarUsuarios();
-        }
-}//GEN-LAST:event_jBModificarActionPerformed
-
-    private void JBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBNuevoActionPerformed
-        JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
-        jfAgregarUsuario.setModal(true);
-        jfAgregarUsuario.setLocationRelativeTo(this);
-        jfAgregarUsuario.setVisible(true);
-        ConsultarUsuarios();
-}//GEN-LAST:event_JBNuevoActionPerformed
-
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        int iFila=-1;
-        iFila=jTListaUsuarios.getSelectedRow();
-
-        //System.out.println("numero de fila"+iFila);
-
-        if (iFila==-1){
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
-            JDEliminarUsuario jfEliminarUsuario = new JDEliminarUsuario(idUsuario);
-            jfEliminarUsuario.setModal(true);
-            jfEliminarUsuario.setLocationRelativeTo(this);
-            jfEliminarUsuario.setVisible(true);
-            ConsultarUsuarios();
-//            AntiPlagiumPrincipal.getJDesktopPane().add(jfEliminarUsuario);
-//            jfEliminarUsuario.toFront();
-        }
-}//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jCBAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBAreaActionPerformed
         // TODO add your handling code here:
@@ -599,7 +510,7 @@ public class JDAdministrarUsuarios extends JDialog {
         ConsultarUsuarios();
     }//GEN-LAST:event_jBConsultarActionPerformed
 
-    private void jBSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSeleccionarActionPerformed
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
 
         boolean selecciona=false;
 
@@ -617,7 +528,7 @@ public class JDAdministrarUsuarios extends JDialog {
             this.setVisible(false);
         }
 
-    }//GEN-LAST:event_jBSeleccionarActionPerformed
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
             this.dispose();        // TODO add your handling code here:
@@ -687,13 +598,10 @@ public class JDAdministrarUsuarios extends JDialog {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBNuevo;
     private javax.swing.JTextField JTFNombreCompleto;
+    private javax.swing.JButton btnSeleccionar;
     private javax.swing.JButton jBCerrar;
     private javax.swing.JButton jBConsultar;
-    private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBModificar;
-    private javax.swing.JButton jBSeleccionar;
     private javax.swing.JComboBox jCBArea;
     private javax.swing.JComboBox jCBEstado;
     private javax.swing.JComboBox jCBRol;
