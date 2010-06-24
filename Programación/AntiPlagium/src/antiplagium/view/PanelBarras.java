@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class PanelBarras extends JPanel {
 
-    int anchoPanel = 300, altoPanel = 100;
+    int anchoPanel = 320, altoPanel = 120;
     int sepX = 35, sepY = 5;
     int pasoX = (anchoPanel - sepX) / 4;
     int altMax = altoPanel - sepY * 2;
@@ -37,7 +37,7 @@ public class PanelBarras extends JPanel {
 
     public void dibujarRegla(Graphics g) {
 
-       // this.dibujarBarra(100, 1, g);
+        // this.dibujarBarra(100, 1, g);
 
         g.setColor(Color.DARK_GRAY);
         //raya vertical
@@ -47,48 +47,49 @@ public class PanelBarras extends JPanel {
 
         int sepVert = altMax / 4;
         for (int i = 1; i < 5; i++) {
-            g.drawLine(sepX / 3, sepY + sepVert * (i-1), sepX * 2 / 3, sepY + sepVert * (i-1)); //rayita horiz
+            g.drawLine(sepX / 3, sepY + sepVert * (i - 1), sepX * 2 / 3, sepY + sepVert * (i - 1)); //rayita horiz
             g.drawLine(sepX + pasoX * i, altoPanel - sepY, sepX + pasoX * i, altoPanel - sepY + 2);  //rayita vertical
             g.setColor(Color.blue);
             g.setFont(new Font(null, Font.BOLD, 12));
-            g.drawString("Doc"+(docActual+i-1), sepX+pasoX/2-5+pasoX*(i-1), altoPanel - sepY-2); //numero de doc
+            if (this.alstDetectores.size() >= docActual + i) {
+                g.drawString("Doc" + (docActual + i), sepX + pasoX / 2 - 5 + pasoX * (i - 1), altoPanel - sepY - 2); //numero de doc
+            }
             g.setColor(Color.black);
             g.setFont(new Font(null, Font.ITALIC, 9));
-            g.drawString(""+(25*(5-i)), 2, sepY + sepVert * (i-1)+8);
+            g.drawString("" + (25 * (5 - i)), 2, sepY + sepVert * (i - 1) + 8);
         }
 
-        
+
     }
 
-
-    public void dibujarBarra(int porc, int pos, Graphics g){
-        float a=(float)0.6;
+    public void dibujarBarra(int porc, int pos, Graphics g) {
+        float a = (float) 0.6;
         Graphics2D g2 = (Graphics2D) g;
         g2.setComposite(creaComposite(a));
 
         g.setColor(Color.green);
-        int altura=porc*altMax/100;
-        g2.fillRect(sepX + pasoX * pos-pasoX*3/4, sepY+(altMax-altura),pasoX*3/4, altura);
+        int altura = porc * altMax / 100;
+        g2.fillRect(sepX + pasoX * pos - pasoX * 3 / 4, sepY + (altMax - altura), pasoX * 3 / 4, altura);
 
 
         g2.setColor(Color.cyan);
-        g2.fillRect(sepX + pasoX * pos-pasoX*3/4-10, sepY+(altMax-altura),pasoX*3/4, altura);
+        g2.fillRect(sepX + pasoX * pos - pasoX * 3 / 4 - 10, sepY + (altMax - altura), pasoX * 3 / 4, altura);
 
-         g2.setComposite(creaComposite(1));
+        g2.setComposite(creaComposite(1));
 
 
     }
-
-
 
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.white);
         g.fillRect(0, 0, anchoPanel, altoPanel);
-        int cont=1;
-        for (int i=docActual;i<docActual+4; i++){
+        int cont = 1;
+        for (int i = docActual; i < docActual + 4; i++) {
 
-            if (this.alstDetectores.size()<=i) break;
+            if (this.alstDetectores.size() <= i) {
+                break;
+            }
             this.dibujarBarra(this.alstDetectores.get(i).getResultado(), cont, g);
             cont++;
         }
@@ -97,10 +98,7 @@ public class PanelBarras extends JPanel {
 
     }
 
-
-
-
-     public static AlphaComposite creaComposite(float alfa) {
+    public static AlphaComposite creaComposite(float alfa) {
         int tipo = AlphaComposite.SRC_OVER;
         return (AlphaComposite.getInstance(tipo, alfa));
     }

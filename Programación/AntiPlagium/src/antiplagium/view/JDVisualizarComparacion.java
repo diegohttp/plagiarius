@@ -54,7 +54,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         this.add(objPanelBarras);
         initComponents();
         objPanelLupa.setLocation(this.lblTiempo.getLocation().x, this.lblTiempo.getLocation().y - 110);
-        objPanelBarras.setLocation(objPanelLupa.getLocation().x+objPanelLupa.anchoPanel+10, objPanelLupa.getLocation().y);
+        objPanelBarras.setLocation(objPanelLupa.getLocation().x+objPanelLupa.anchoPanel+10, objPanelLupa.getLocation().y-20);
         if (this.gstDocumentos.cantElementos() == 1) {
             this.btnDocSgte.setEnabled(false);
         }
