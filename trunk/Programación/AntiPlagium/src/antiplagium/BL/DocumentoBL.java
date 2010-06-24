@@ -8,6 +8,7 @@ import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.DocumentoBE;
 import antiplagium.BE.OracionBE;
 import antiplagium.BE.UsuarioBE;
+import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.DocumentoDAO;
 import com.thoughtworks.xstream.XStream;
 import java.io.BufferedReader;
@@ -56,8 +57,8 @@ public class DocumentoBL {
         
     }
 
-    public static void registrar(DocumentoBE objDocumento) throws Exception{
-        DocumentoDAO.registrar(objDocumento);
+    public static boolean registrar(DocumentoBE objDocumento){
+        return DocumentoDAO.registrar(objDocumento);
     }
 
     public static boolean existeDocumento(String nombre){
@@ -68,9 +69,7 @@ public class DocumentoBL {
         try {
             return DocumentoDAO.modificar(objDocumento);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DocumentoBL.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(DocumentoBL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
