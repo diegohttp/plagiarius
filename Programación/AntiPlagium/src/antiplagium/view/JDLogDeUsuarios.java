@@ -48,7 +48,7 @@ public class JDLogDeUsuarios extends JDialog {
 
         cmbOperacion.addItem("Todos");
         cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("ingreso"));
-        cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("salida"));
+        //cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("salida"));
         cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("consulta"));
         cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("modifica"));
         cmbOperacion.addItem(GestorTiposOperacion.getTipoOperacion("registra"));
