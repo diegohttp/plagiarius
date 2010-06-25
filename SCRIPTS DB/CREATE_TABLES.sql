@@ -123,7 +123,7 @@ ALTER TABLE public."Operacion_idOperacion_seq" OWNER TO postgres;
 -- Name: Operacion_idOperacion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Operacion_idOperacion_seq" OWNED BY "Operacion"."idOperacion";
+--ALTER SEQUENCE "Operacion_idOperacion_seq" OWNED BY "Operacion"."idOperacion";
 
 
 --
@@ -263,7 +263,7 @@ ALTER TABLE public."Usuario_idUsuario_seq" OWNER TO postgres;
 -- Name: Usuario_idUsuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Usuario_idUsuario_seq" OWNED BY "Usuario"."idUsuario";
+--ALTER SEQUENCE "Usuario_idUsuario_seq" OWNED BY "Usuario"."idUsuario";
 
 
 --
@@ -315,7 +315,7 @@ ALTER TABLE public."prueba_idPrueba_seq" OWNER TO postgres;
 -- Name: prueba_idPrueba_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "prueba_idPrueba_seq" OWNED BY prueba."idPrueba";
+--ALTER SEQUENCE "prueba_idPrueba_seq" OWNED BY prueba."idPrueba";
 
 
 --
@@ -682,4 +682,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
