@@ -106,8 +106,8 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         JDPPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        JMSesion = new javax.swing.JMenu();
+        JMISesion = new javax.swing.JMenuItem();
         JMUsuarios = new javax.swing.JMenu();
         JMIAdministrarUsuarios = new javax.swing.JMenuItem();
         JMIAdministrarGrupos = new javax.swing.JMenuItem();
@@ -136,20 +136,20 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(536, 34));
 
-        jMenu1.setText("S e s i o n");
-        jMenu1.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
-        jMenu1.setName("JMSesion"); // NOI18N
+        JMSesion.setText("S e s i o n");
+        JMSesion.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
+        JMSesion.setName("JMSesion"); // NOI18N
 
-        jMenuItem5.setText("Cerrar Sesion");
-        jMenuItem5.setName("JMICerrarSesion"); // NOI18N
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        JMISesion.setText("Cerrar Sesion");
+        JMISesion.setName("JMICerrarSesion"); // NOI18N
+        JMISesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                JMISesionActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        JMSesion.add(JMISesion);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(JMSesion);
 
         JMUsuarios.setBackground(new java.awt.Color(0, 153, 153));
         JMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Seguridad1.png"))); // NOI18N
@@ -373,9 +373,9 @@ public class AntiPlagiumPrincipal extends JFBase {
         frmListarDocs.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void JMISesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMISesionActionPerformed
        this.dispose();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_JMISesionActionPerformed
 
     public static JDesktopPane getJDesktopPane() {
         return JDPPrincipal;
@@ -385,10 +385,11 @@ public class AntiPlagiumPrincipal extends JFBase {
     public static javax.swing.JDesktopPane JDPPrincipal;
     private javax.swing.JMenuItem JMIAdministrarGrupos;
     private javax.swing.JMenuItem JMIAdministrarUsuarios;
+    private javax.swing.JMenuItem JMISesion;
     private javax.swing.JMenuItem JMLogUsuario;
     private javax.swing.JMenu JMReportes;
+    private javax.swing.JMenu JMSesion;
     private javax.swing.JMenu JMUsuarios;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
@@ -396,7 +397,6 @@ public class AntiPlagiumPrincipal extends JFBase {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
