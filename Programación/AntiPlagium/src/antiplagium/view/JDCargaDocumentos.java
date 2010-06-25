@@ -159,11 +159,12 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CargarDocumentos");
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+        setName("JDCargaDocumentos"); // NOI18N
         setResizable(false);
 
         lblProgreso.setText("Progreso");
 
-        pnlDatosProgreso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Progreso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
+        pnlDatosProgreso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Progreso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), java.awt.Color.blue)); // NOI18N
 
         taDatosProgreso.setColumns(20);
         taDatosProgreso.setFont(new java.awt.Font("Calisto MT", 0, 14));
@@ -176,7 +177,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
             pnlDatosProgresoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosProgresoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scpDatosProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+                .addComponent(scpDatosProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlDatosProgresoLayout.setVerticalGroup(

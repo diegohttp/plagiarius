@@ -82,6 +82,7 @@ public class JDRegistrarCategoria extends JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar Categoria");
         setModal(true);
+        setName("JDRegistrarCategoria"); // NOI18N
         setResizable(false);
 
         lblIdCategoria.setText("Código:");

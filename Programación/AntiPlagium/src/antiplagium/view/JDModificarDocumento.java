@@ -79,6 +79,7 @@ private ArrayList<CategoriaBE> alstCategorias;
         btnModificarTexto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("JDModificarDocumento"); // NOI18N
         setResizable(false);
 
         lblIdDocumento.setText("Id Documento");
