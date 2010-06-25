@@ -39,7 +39,18 @@ public class GestorTiposOperacion {
 
     public static String getTipoOperacion(String nombre)
     {
-        return TipoOperaciones.get(nombre.toLowerCase());
+        String operacion = "";
+        
+        if (nombre.compareToIgnoreCase("ingreso")==0) operacion = "Inicio de sesion";
+        else if (nombre.compareToIgnoreCase("salida")==0) operacion = "Salida del sistema";
+        else if (nombre.compareToIgnoreCase("consulta")==0) operacion = "Consulta al sistema";
+        else if (nombre.compareToIgnoreCase("modifica")==0) operacion = "Modificacion de registro";
+        else if (nombre.compareToIgnoreCase("registra")==0) operacion = "Creacion de nuevo registro";
+        else if (nombre.compareToIgnoreCase("eliminacion")==0) operacion = "Eliminacion de registro";
+        else if (nombre.compareToIgnoreCase("comparacion")==0) operacion = "Comparacion de documentos";
+        else if (nombre.compareToIgnoreCase("reporte")==0) operacion = "Generacion de reporte";
+
+        return operacion;
     }
 
     public  static void showError(String nombre)
