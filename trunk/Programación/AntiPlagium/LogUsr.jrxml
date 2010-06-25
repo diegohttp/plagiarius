@@ -27,7 +27,7 @@ from "Usuario" A LEFT OUTER JOIN "UsuarioXCategoria" B ON A."idUsuario"=B."idUsu
 		<groupHeader>
 			<band height="40">
 				<textField>
-					<reportElement style="SubTitle" x="11" y="13" width="160" height="24" forecolor="#CC0000"/>
+					<reportElement style="SubTitle" x="37" y="13" width="160" height="24" forecolor="#CC0000"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
