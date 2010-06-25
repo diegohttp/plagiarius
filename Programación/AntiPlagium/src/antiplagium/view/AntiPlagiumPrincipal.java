@@ -138,8 +138,10 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         jMenu1.setText("S e s i o n");
         jMenu1.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jMenu1.setName("JMSesion"); // NOI18N
 
         jMenuItem5.setText("Cerrar Sesion");
+        jMenuItem5.setName("JMICerrarSesion"); // NOI18N
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -241,7 +243,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         JMReportes.setBackground(new java.awt.Color(0, 153, 153));
         JMReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Reportes2.png"))); // NOI18N
         JMReportes.setText("R e p o r t e s");
-        JMReportes.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
+        JMReportes.setFont(new java.awt.Font("Matisse ITC", 1, 14));
         JMReportes.setName("JMReportes"); // NOI18N
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Report.png"))); // NOI18N
