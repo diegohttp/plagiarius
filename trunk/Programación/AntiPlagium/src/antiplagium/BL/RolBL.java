@@ -52,13 +52,13 @@ public class RolBL {
         return tablaPrivilegios;
     }
 
-    public Vector getPrivilegiosPorROl2(String nombreROl) throws SQLException
-    {
-        Vector tablaPrivilegios = null;
-        RolDAO rolDAO = new RolDAO();
-        tablaPrivilegios = rolDAO.getPrivilegiosPorRol2(nombreROl);
-        return tablaPrivilegios;
-    }
+//    public Vector getPrivilegiosPorROl2(String nombreROl) throws SQLException
+//    {
+//        Vector tablaPrivilegios = null;
+//        RolDAO rolDAO = new RolDAO();
+//        tablaPrivilegios = rolDAO.getPrivilegiosPorRol2(nombreROl);
+//        return tablaPrivilegios;
+//    }
 
     public void insertRol(RolBE rolBE, ArrayList<Integer> listPrivilegios) throws SQLException
     {
