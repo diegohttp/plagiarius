@@ -872,7 +872,7 @@ public class JDAgregarUsuario extends JDialog {
 
     private void txtApMatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApMatKeyPressed
         String text = txtNomUsuario.getText();
-        int maxLength=30;
+        int maxLength=25;
         if (text.length() > maxLength) {
             text = text.substring(0, maxLength);
             txtNomUsuario.setText(text);
@@ -881,7 +881,7 @@ public class JDAgregarUsuario extends JDialog {
 
     private void txtNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyPressed
         String text = txtNomUsuario.getText();
-        int maxLength=30;
+        int maxLength=40;
         if (text.length() > maxLength) {
             text = text.substring(0, maxLength);
             txtNomUsuario.setText(text);
