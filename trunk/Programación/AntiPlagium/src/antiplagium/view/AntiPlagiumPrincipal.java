@@ -18,6 +18,8 @@ import javax.swing.*;
 
 
 public class AntiPlagiumPrincipal extends JFBase {
+
+    Date horaInicioSesion = new Date(System.currentTimeMillis());
        
     public AntiPlagiumPrincipal(UsuarioBE usuarioBE) {
         super(usuarioBE);
@@ -36,20 +38,25 @@ public class AntiPlagiumPrincipal extends JFBase {
         Component[] componentesMenu = jroot.getJMenuBar().getComponents();
         Component[] componentesMenuInterno;
 
-        for (int i = 0; i < componentesMenu.length; i++) {
+        for (int i = 0; i < componentesMenu.length; i++)
+        {
             (componentesMenu[i]).setVisible(false);
 
             componentesMenuInterno = menu.getMenu(i).getMenuComponents();
-            for (int j = 0; j < componentesMenuInterno.length; j++) {
+            for (int j = 0; j < componentesMenuInterno.length; j++)
+            {
                 ((JMenuItem) componentesMenuInterno[j]).setVisible(false);
             }
         }
 
         operacionBE = new RegistroOperacionBE((usuarioBE.getIdUsuario()), new Date(System.currentTimeMillis()));
         aplicarSeguridad(menu, usuarioBE.getRolBE().getIdRol());
+        this.jMSesion.setVisible(true);
+        this.JMICerrarSesion.setVisible(true);
     }
 
-    protected void aplicarSeguridad(JMenuBar menu, Integer idRol) {
+    protected void aplicarSeguridad(JMenuBar menu, Integer idRol)
+    {
         
         String nombreVentana = this.getName();
         ResultSet tablaControles;
@@ -106,8 +113,8 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         JDPPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        JMSesion = new javax.swing.JMenu();
-        JMISesion = new javax.swing.JMenuItem();
+        jMSesion = new javax.swing.JMenu();
+        JMICerrarSesion = new javax.swing.JMenuItem();
         JMUsuarios = new javax.swing.JMenu();
         JMIAdministrarUsuarios = new javax.swing.JMenuItem();
         JMIAdministrarGrupos = new javax.swing.JMenuItem();
@@ -128,6 +135,11 @@ public class AntiPlagiumPrincipal extends JFBase {
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setName("JFAntiPlagiumPrincipal"); // NOI18N
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         JDPPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         JDPPrincipal.setMaximumSize(new java.awt.Dimension(10, 10));
@@ -136,20 +148,21 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMenuBar1.setBackground(new java.awt.Color(0, 153, 153));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(536, 34));
 
-        JMSesion.setText("S e s i o n");
-        JMSesion.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
-        JMSesion.setName("JMSesion"); // NOI18N
+        jMSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Key.png"))); // NOI18N
+        jMSesion.setText("S e s i o n");
+        jMSesion.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
+        jMSesion.setName("JMSesion"); // NOI18N
 
-        JMISesion.setText("Cerrar Sesion");
-        JMISesion.setName("JMICerrarSesion"); // NOI18N
-        JMISesion.addActionListener(new java.awt.event.ActionListener() {
+        JMICerrarSesion.setText("Cerrar Sesion");
+        JMICerrarSesion.setName("JMICerrarSesion"); // NOI18N
+        JMICerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMISesionActionPerformed(evt);
+                JMICerrarSesionActionPerformed(evt);
             }
         });
-        JMSesion.add(JMISesion);
+        jMSesion.add(JMICerrarSesion);
 
-        jMenuBar1.add(JMSesion);
+        jMenuBar1.add(jMSesion);
 
         JMUsuarios.setBackground(new java.awt.Color(0, 153, 153));
         JMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Seguridad1.png"))); // NOI18N
@@ -373,9 +386,59 @@ public class AntiPlagiumPrincipal extends JFBase {
         frmListarDocs.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void JMISesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMISesionActionPerformed
-       this.dispose();
-    }//GEN-LAST:event_JMISesionActionPerformed
+    private void JMICerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMICerrarSesionActionPerformed
+       try
+        {
+            RegistroOperacionBL op = new RegistroOperacionBL();
+            op.AbrirConexion();
+            String descripcionOperacion = descripcionOperacion();
+            JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("ingreso"), descripcionOperacion);
+            JFBase.registrarOperacion();
+            op.CerrarConexion();
+        }
+        catch (ClassNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        catch (SQLException excepcionSQL)
+        {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        this.dispose();
+    }//GEN-LAST:event_JMICerrarSesionActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try
+        {
+            RegistroOperacionBL op = new RegistroOperacionBL();
+            op.AbrirConexion();
+            String descripcionOperacion = descripcionOperacion();
+            JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("ingreso"), descripcionOperacion);
+            JFBase.registrarOperacion();
+            op.CerrarConexion();
+        }
+        catch (ClassNotFoundException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        catch (SQLException excepcionSQL)
+        {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private String  descripcionOperacion()
+    {
+        String operacion = "";
+        Date horaCierreSesion = new Date(System.currentTimeMillis());
+        operacion = " \n Inicio de Sesión: " + horaInicioSesion.toString() + "\n"  + "Cierre de sesión: " + horaCierreSesion.toString();
+        
+        return operacion;
+    }
 
     public static JDesktopPane getJDesktopPane() {
         return JDPPrincipal;
@@ -385,11 +448,12 @@ public class AntiPlagiumPrincipal extends JFBase {
     public static javax.swing.JDesktopPane JDPPrincipal;
     private javax.swing.JMenuItem JMIAdministrarGrupos;
     private javax.swing.JMenuItem JMIAdministrarUsuarios;
-    private javax.swing.JMenuItem JMISesion;
+    private javax.swing.JMenuItem JMICerrarSesion;
     private javax.swing.JMenuItem JMLogUsuario;
     private javax.swing.JMenu JMReportes;
     private javax.swing.JMenu JMSesion;
     private javax.swing.JMenu JMUsuarios;
+    private javax.swing.JMenu jMSesion;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;

@@ -344,28 +344,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
               else{
                 JOptionPane.showMessageDialog(this,"USUARIO INACTIVO", "ERROR", JOptionPane.ERROR_MESSAGE);
               
-              }
-
-        try
-        {
-            RegistroOperacionBL op = new RegistroOperacionBL();
-            op.AbrirConexion();
-            String descripcionOperacion = descripcionOperacion();
-            JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("ingreso"), descripcionOperacion);
-            JFBase.registrarOperacion();
-            op.CerrarConexion();
-        }
-        catch (ClassNotFoundException ex)
-        {
-            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        catch (SQLException excepcionSQL)
-        {
-            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-             
+              }                     
         }
         else{
             jPError.setVisible(true);
