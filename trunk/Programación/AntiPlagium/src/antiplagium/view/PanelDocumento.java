@@ -36,8 +36,8 @@ public class PanelDocumento extends JPanel {
 
 
         try {
-            imgPapel = ImageIO.read(new File("src/Iconos/cilindro.png"));
-            imgLupa = ImageIO.read(new File("src/Iconos/papelGira.png"));
+            imgPapel = ImageIO.read(getClass().getResource("/Iconos/cilindro.png"));
+            imgLupa = ImageIO.read(getClass().getResource("/Iconos/papelGira.png"));
 
         } catch (IOException ex) {
             System.out.println(ex);
