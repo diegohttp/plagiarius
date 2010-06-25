@@ -3,12 +3,12 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Title" isDefault="false" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" isDefault="false" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" isDefault="false" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" isDefault="false" fontName="Arial" fontSize="12"/>
 	<queryString language="SQL">
-	<![CDATA[SELECT "Documento"."idDocumento", "Documento".nombre, "Categoria".nombre, "Documento".estado
+		<![CDATA[SELECT "Documento"."idDocumento", "Documento".nombre, "Categoria".nombre, "Documento".estado
 FROM  "Documento", "Categoria"
 WHERE "Documento"."idCategoria" = "Categoria"."idCategoria"]]>
 	</queryString>
@@ -41,7 +41,7 @@ WHERE "Documento"."idCategoria" = "Categoria"."idCategoria"]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="70" splitType="Stretch">
+		<band height="59" splitType="Stretch">
 			<image>
 				<reportElement x="275" y="0" width="300" height="64"/>
 				<imageExpression class="java.lang.String"><![CDATA["leaf_banner_violet.png"]]></imageExpression>
@@ -56,6 +56,13 @@ WHERE "Documento"."idCategoria" = "Categoria"."idCategoria"]]>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Antiplagium]]></text>
 			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="415" y="64" width="150" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -88,6 +95,11 @@ WHERE "Documento"."idCategoria" = "Categoria"."idCategoria"]]>
 				<reportElement style="Column header" x="352" y="20" width="63" height="15"/>
 				<textElement/>
 				<text><![CDATA[usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="7" y="20" width="50" height="15"/>
+				<textElement/>
+				<text><![CDATA[IdDoc]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -146,13 +158,6 @@ WHERE "Documento"."idCategoria" = "Categoria"."idCategoria"]]>
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="0" y="0" width="197" height="20"/>
-				<textElement>
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
