@@ -68,6 +68,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                 realizarComparacion();
 
                 actualizar();
+                txtNumDoc.setEnabled(true);
             }
         };
         hiloComp.start();
@@ -404,6 +405,11 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         lblNivel.setText("Alto");
 
         txtNumDoc.setEnabled(false);
+        txtNumDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumDocActionPerformed(evt);
+            }
+        });
 
         btnDocAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/arriba.png"))); // NOI18N
         btnDocAnterior.setEnabled(false);
@@ -463,9 +469,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
                     .addComponent(lblDoc2)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnlDoc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,6 +563,32 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         PanelLupa.fin = true;
         this.setVisible(false);
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void txtNumDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumDocActionPerformed
+        int auxNum=0;
+        try{
+            auxNum=Integer.parseInt(this.txtNumDoc.getText())-1;
+        } catch (Exception e ){
+            txtNumDoc.setText("");
+            return;
+        }
+        if (auxNum<0 || auxNum>=gstDocumentos.cantElementos()){
+            this.txtNumDoc.setText("");
+
+            return;
+        }
+        this.numDocumentoActual=auxNum;
+        this.objPanelBarras.docActual=auxNum;
+        this.objPanelBarras.repaint();
+        this.actualizar();
+        if (numDocumentoActual == gstDocumentos.cantElementos() - 1) {
+            this.btnDocSgte.setEnabled(false);
+        } else this.btnDocSgte.setEnabled(true);
+        if (numDocumentoActual == 0) {
+            this.btnDocAnterior.setEnabled(false);
+        } else this.btnDocAnterior.setEnabled(true);
+
+    }//GEN-LAST:event_txtNumDocActionPerformed
     /**
      * @param args the command line arguments
      */
