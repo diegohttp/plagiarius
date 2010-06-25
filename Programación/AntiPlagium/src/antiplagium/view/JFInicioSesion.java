@@ -43,8 +43,8 @@ public class JFInicioSesion extends javax.swing.JFrame {
 
         try
         {
-            GestorError.populate("XML/Errores.xml");
-            GestorTiposOperacion.populate("XML/TiposOperaciones.xml");           
+            //GestorError.populate("XML/Errores.xml");
+            GestorTiposOperacion.populate("src/XML/TiposOperaciones.xml");
         }
         catch (Exception e)
         {

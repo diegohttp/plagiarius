@@ -35,8 +35,8 @@ public class PanelLupa extends JPanel {
 
 
         try {
-            imgPapel = ImageIO.read(new File("src/Iconos/papel.png"));
-            imgLupa = ImageIO.read(new File("src/Iconos/lupa.png"));
+            imgPapel = ImageIO.read(getClass().getResource("/Iconos/papel.png"));
+            imgLupa = ImageIO.read(getClass().getResource("/Iconos/lupa.png"));
 
         } catch (IOException ex) {
             System.out.println(ex);
