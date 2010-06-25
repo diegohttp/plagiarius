@@ -21,6 +21,7 @@ import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.ResultadoDeteccionBL;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -43,7 +44,8 @@ import org.freixas.jcalendar.JCalendarCombo;
  * @author PATTY
  */
 public class ComparacionesDeteccion extends javax.swing.JFrame {
-   private CategoriaBL categoriaBl;
+   private static final String URL_BASEDATOS = "jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres";
+    private CategoriaBL categoriaBl;
    JCalendarCombo jcComboDesde;
     JCalendarCombo jcComboHasta;
    //lista de documentos detectados q tnga Doc1 - Doc2 - %plagio - nivel plagio - fecha
@@ -51,7 +53,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
 
 
 
-    /** Creates new form ComparacionesDeteccion */
+    /** Creates new form ComppieropiaracionesDeteccion */
     public ComparacionesDeteccion() throws FileNotFoundException, IOException, SQLException {
 //        try {
             initComponents();
@@ -240,6 +242,11 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTListaDocumentos);
 
         jbtnImprimir.setText("Imprimir");
+        jbtnImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imprimir(evt);
+            }
+        });
         jbtnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnImprimirActionPerformed(evt);
@@ -259,7 +266,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(319, Short.MAX_VALUE)
+                .addContainerGap(342, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,10 +281,10 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)
                             .addGap(265, 265, 265)))
                     .addContainerGap()))
@@ -289,7 +296,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jbtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                 .addComponent(jbtnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +304,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                     .addGap(18, 18, 18)
                     .addComponent(jButton1)
                     .addContainerGap()))
@@ -315,27 +322,7 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImprimirActionPerformed
-       /* Map pars = new HashMap();
-
-        pars.put("P_TITULO", "Reporte de Comparaciones entre documentos");
-        pars.put("P_SUBTITULO", "");
-        JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("ReporteComparacionDocumentos", pars, this.arrDocumentosDetectados);
-        try {
-
-            JRViewer v = new JRViewer(jasperPrint);
-            JFrame ventana=new JFrame();
-            ventana.getContentPane().add(v,BorderLayout.CENTER);
-            ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            ventana.setSize(706, 478);
-
-            ventana.setTitle("Vista Previa");
-            ventana.setLocation(512-ventana.getWidth()/2,387 - ventana.getHeight()/2 );
-
-            ventana.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se cuenta con un equipo de impresion");
-        }
-*/
+     
     }//GEN-LAST:event_jbtnImprimirActionPerformed
 
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
@@ -376,7 +363,20 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
         objResultado.setDocumento1(objDocumento);
 
         try {
-            this.arrDocumentosDetectados = ResultadoDeteccionBL.ListarDocsDetectados(objResultado, sqlFechaini, sqlFechafin);
+            this.arrDocumentosDetectados = ResultadoDeteccionBL.obtenerInstancia().ListarDocsDetectados(objResultado, sqlFechaini, sqlFechafin);
+
+//            ArrayList<ResultadoDeteccionBE> listaReporte = new ArrayList<ResultadoDeteccionBE>();
+
+//            for (int i=0; i<arrDocumentosDetectados.size(); i++ ){
+//              listaReporte(i).setDocumento1 = arrDocumentosDetectados.get(i).getDocumento1().getIdDocumento();
+//              listaReporte.set(i).setDocumento2 = arrDocumentosDetectados.get(i).getDocumento2().getIdDocumento();
+//              listaReporte.add(i, arrDocumentosDetectados.get(i).getPorcentajePlagio());
+//              .setPorcentaje = arrDocumentosDetectados.get(i).getPorcentajePlagio();
+//              listaReporte.set(i).setDocumento1 = arrDocumentosDetectados.get(i).getResultado();
+//              listaReporte.set(i).setDocumento1 = arrDocumentosDetectados.get(i).getFecha();
+//            }
+
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ComparacionesDeteccion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -402,6 +402,41 @@ public class ComparacionesDeteccion extends javax.swing.JFrame {
 
            
     }//GEN-LAST:event_jbtnBuscarActionPerformed
+
+    private void imprimir(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimir
+        Map pars = new HashMap();
+
+//        ResultadoDeteccionBE objResultadoDeteccionBE = new ResultadoDeteccionBE();
+//
+//        pars.put("P_TITULO", "Reporte de Comparaciones entre documentos");
+//        pars.put("P_SUBTITULO", "Antiplagium");
+//        pars.put("Documento1", objResultadoDeteccionBE.getDocumento1().getIdDocumento());
+//        pars.put("Documento2", objResultadoDeteccionBE.getDocumento2().getIdDocumento());
+//        pars.put("PorcentajePlagio",objResultadoDeteccionBE.getPorcentajePlagio());
+//        pars.put("Resultado", objResultadoDeteccionBE.getResultado());
+//        pars.put("Fecha", objResultadoDeteccionBE.getFecha());
+        
+        try {
+            JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("deteccion", pars, this.arrDocumentosDetectados);
+
+            JRViewer v = new JRViewer(jasperPrint);
+            JFrame ventana=new JFrame();
+            ventana.getContentPane().add(v,BorderLayout.CENTER);
+            ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            ventana.setSize(706, 478);
+
+            ventana.setTitle("Vista Previa");
+            ventana.setLocation(512-ventana.getWidth()/2,387 - ventana.getHeight()/2 );
+
+            ventana.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se cuenta con un equipo de impresion");
+            e.printStackTrace();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_imprimir
+
+
+
 
     /**
     * @param args the command line arguments
