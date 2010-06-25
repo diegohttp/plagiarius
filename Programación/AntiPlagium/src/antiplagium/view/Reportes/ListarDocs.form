@@ -178,7 +178,7 @@
                       <Component id="cboCategoria" alignment="0" max="32767" attributes="1"/>
                       <Component id="txtNombre" alignment="0" pref="148" max="32767" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="81" max="32767" attributes="0"/>
+                  <EmptySpace pref="99" max="32767" attributes="0"/>
                   <Component id="btnBuscar" min="-2" max="-2" attributes="1"/>
                   <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
               </Group>
@@ -300,6 +300,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="jbtnImprimir1">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Iconos/Report.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Imprimir"/>
       </Properties>
       <Events>
