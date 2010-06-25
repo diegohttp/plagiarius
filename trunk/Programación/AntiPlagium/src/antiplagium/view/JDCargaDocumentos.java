@@ -136,6 +136,7 @@ public class JDCargaDocumentos extends javax.swing.JDialog {
             }
         }
         //PanelDocumento.fin=true;
+        this.pgbCargaDocumentos.setValue(100);
         this.btnAceptar.setEnabled(true);
     }
 
