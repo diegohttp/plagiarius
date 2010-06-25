@@ -33,8 +33,8 @@ public class PanelAnimado extends JPanel {
 
 
         try {
-            imgPapel = ImageIO.read(new File("src/Iconos/fondoLogo.png"));
-            imgLupa = ImageIO.read(new File("src/Iconos/detectiveLogo.png"));
+            imgPapel = ImageIO.read(getClass().getResource("/Iconos/fondoLogo.png"));
+            imgLupa = ImageIO.read(getClass().getResource("/Iconos/detectiveLogo.png"));
 
         } catch (IOException ex) {
             System.out.println(ex);
