@@ -95,7 +95,7 @@ CREATE TABLE "Operacion" (
     "idUsuario" integer NOT NULL,
     fecha timestamp without time zone NOT NULL,
     "tipoOperacion" character varying(30) NOT NULL,
-    descripcion character varying(500) NOT NULL,
+    descripcion character varying(1000) NOT NULL,
     "nombreVentana" character varying
 );
 
