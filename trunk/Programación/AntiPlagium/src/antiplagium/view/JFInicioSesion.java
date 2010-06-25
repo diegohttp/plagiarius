@@ -334,7 +334,8 @@ public class JFInicioSesion extends javax.swing.JFrame {
         if (autenticoUsuario>0) {
               //EnviarCorreo env=new EnviarCorreo("delpiero2906");
               usuarioBE=usuarioBL.getUsuarioBE(autenticoUsuario);
-              if(usuarioBE.getEstadoBE().getNombre().compareTo("Inactivo")!=0){
+              if(usuarioBE.getEstadoBE().getNombre().compareToIgnoreCase("Inactivo")!=0 && usuarioBE.getRolBE().getEstado().compareToIgnoreCase("INA")!=0)
+              {
                   this.setVisible(false);
                   AntiPlagiumPrincipal principal = new AntiPlagiumPrincipal(usuarioBE);
                   principal.setLocationRelativeTo(null);
@@ -342,7 +343,8 @@ public class JFInicioSesion extends javax.swing.JFrame {
                   this.dispose();
               }
               else{
-                JOptionPane.showMessageDialog(this,"USUARIO INACTIVO", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                if (usuarioBE.getEstadoBE().getNombre().compareToIgnoreCase("Inactivo")==0) JOptionPane.showMessageDialog(this,"Usuario Inactivo", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                if (usuarioBE.getRolBE().getEstado().compareToIgnoreCase("INA")==0) JOptionPane.showMessageDialog(this,"Rol de usuario Inactivo", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
                 return;
               }
         }
