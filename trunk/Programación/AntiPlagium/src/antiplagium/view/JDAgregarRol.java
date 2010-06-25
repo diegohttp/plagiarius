@@ -115,6 +115,7 @@ public class JDAgregarRol extends JDialog {
         tbPrivilegios = new javax.swing.JTable();
 
         setTitle("Agregar Rol");
+        setName("jDAgregarRol"); // NOI18N
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         btnGuardar.setText("Aceptar");
@@ -156,7 +157,7 @@ public class JDAgregarRol extends JDialog {
                         .addComponent(txtNombreRol, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(102, 102, 102))
                     .addGroup(pnGrupoLayout.createSequentialGroup()
-                        .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                        .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(213, 213, 213))))
