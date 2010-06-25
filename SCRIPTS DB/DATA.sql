@@ -56,11 +56,23 @@ INSERT INTO "ControlXPrivilegio" ("idPrivilegio", "idVentana", "idControl") VALU
 
 INSERT INTO "Rol" ("idRol", nombre, estado) VALUES (1, 'Administrador', 'ACT');
 
+INSERT INTO "Rol" ("idRol", nombre, estado) VALUES (2, 'Principal', 'ACT');
+
 INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (1, 1);
 INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (2, 1);
 INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (3, 1);
 INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (4, 1);
 INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (5, 1);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (6, 1);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (7, 1);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (8, 1);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (1, 2);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (2, 2);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (3, 2);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (4, 2);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (5, 2);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (7, 2);
+INSERT INTO "RolXPrivilegio" ("idPrivilegio", "idRol") VALUES (8, 2);
 
 INSERT INTO "Estado" ("idEstado", "Descripcion", "Nombre") VALUES (1, 'Cuenta de usuario vigente', 'Activo');
 INSERT INTO "Estado" ("idEstado", "Descripcion", "Nombre") VALUES (2, 'Cuenta de usuario suspendida', 'Inactivo');
