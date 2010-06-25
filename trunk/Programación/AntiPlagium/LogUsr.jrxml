@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Title" isDefault="false" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" isDefault="false" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" isDefault="false" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" isDefault="false" fontName="Arial" fontSize="12"/>
 	<parameter name="PAR_FECHADESDE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[2010-01-01]]></defaultValueExpression>
 	</parameter>
@@ -27,7 +27,7 @@ from "Usuario" A LEFT OUTER JOIN "UsuarioXCategoria" B ON A."idUsuario"=B."idUsu
 		<groupHeader>
 			<band height="40">
 				<textField>
-					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#CC0000"/>
+					<reportElement style="SubTitle" x="11" y="13" width="160" height="24" forecolor="#CC0000"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
@@ -63,6 +63,13 @@ from "Usuario" A LEFT OUTER JOIN "UsuarioXCategoria" B ON A."idUsuario"=B."idUsu
 				<textElement/>
 				<text><![CDATA[Antiplagium]]></text>
 			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="421" y="51" width="134" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -95,6 +102,11 @@ from "Usuario" A LEFT OUTER JOIN "UsuarioXCategoria" B ON A."idUsuario"=B."idUsu
 				<reportElement style="Column header" x="412" y="21" width="123" height="15"/>
 				<textElement/>
 				<text><![CDATA[descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="11" y="20" width="60" height="15"/>
+				<textElement/>
+				<text><![CDATA[IdLog]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -153,13 +165,6 @@ from "Usuario" A LEFT OUTER JOIN "UsuarioXCategoria" B ON A."idUsuario"=B."idUsu
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="0" y="0" width="197" height="20"/>
-				<textElement>
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
