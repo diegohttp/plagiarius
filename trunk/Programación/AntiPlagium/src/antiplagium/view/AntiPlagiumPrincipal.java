@@ -154,6 +154,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         jMSesion.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         jMSesion.setName("JMSesion"); // NOI18N
 
+        JMICerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Exit.png"))); // NOI18N
         JMICerrarSesion.setText("Cerrar Sesion");
         JMICerrarSesion.setName("JMICerrarSesion"); // NOI18N
         JMICerrarSesion.addActionListener(new java.awt.event.ActionListener() {

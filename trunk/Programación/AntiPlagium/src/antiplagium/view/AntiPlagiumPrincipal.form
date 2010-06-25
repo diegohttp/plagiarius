@@ -27,6 +27,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="JMICerrarSesion">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Iconos/Exit.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
                 <Property name="name" type="java.lang.String" value="JMICerrarSesion" noResource="true"/>
               </Properties>
