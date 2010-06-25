@@ -107,6 +107,12 @@ public class UsuarioBL {
             cadenaError+="El campo \"Contrasena\" no debe estar vacio. Campo obligatorio.\n ";
         }
 
+        rpta=validarCategorias(categorias);
+        if(rpta==false){
+            cadenaError+="El campo \"Categorias\" debe tener al menos una categoria asignada";
+        }
+
+
         SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
         String cadenaFechaI=formato.format(fechaRegistro);
         String cadenaFechaF=formato.format(fechaVencimiento);
@@ -230,6 +236,14 @@ public class UsuarioBL {
             return rs;
     }
 
+    public Boolean validarCategorias(ArrayList<CategoriaBE> categorias){
+        Boolean rpta=false;
+        if(categorias.size()!=0){
+            rpta=true;
+        }
+
+        return rpta;
+    }
     public UsuarioBE getUsuarioBE(int idUsuario){
         try {
             ConexionJDBC.abrirConexion();
