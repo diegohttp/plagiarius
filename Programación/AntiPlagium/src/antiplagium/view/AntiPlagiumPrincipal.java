@@ -150,7 +150,8 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         jMSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Key.png"))); // NOI18N
         jMSesion.setText("S e s i o n");
-        jMSesion.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jMSesion.setFocusable(false);
+        jMSesion.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         jMSesion.setName("JMSesion"); // NOI18N
 
         JMICerrarSesion.setText("Cerrar Sesion");
@@ -167,7 +168,6 @@ public class AntiPlagiumPrincipal extends JFBase {
         JMUsuarios.setBackground(new java.awt.Color(0, 153, 153));
         JMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Seguridad1.png"))); // NOI18N
         JMUsuarios.setText("S e g u r i d a d");
-        JMUsuarios.setActionCommand("");
         JMUsuarios.setFont(new java.awt.Font("Matisse ITC", 1, 14)); // NOI18N
         JMUsuarios.setName("JMUsuarios"); // NOI18N
 
