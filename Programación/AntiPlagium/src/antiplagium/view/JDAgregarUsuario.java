@@ -263,7 +263,7 @@ public class JDAgregarUsuario extends JDialog {
 
         jLabel9.setText("Apellido Paterno");
 
-        btnVerCategorias.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        btnVerCategorias.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
         btnVerCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscar.png"))); // NOI18N
         btnVerCategorias.setText("Ver Lista");
         btnVerCategorias.addActionListener(new java.awt.event.ActionListener() {
@@ -290,7 +290,7 @@ public class JDAgregarUsuario extends JDialog {
 
         lblCantidadCategorias.setText("0");
 
-        btnReestablecerContrasena.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        btnReestablecerContrasena.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
         btnReestablecerContrasena.setText("Reestablecer");
         btnReestablecerContrasena.setPreferredSize(new java.awt.Dimension(79, 32));
         btnReestablecerContrasena.addActionListener(new java.awt.event.ActionListener() {
@@ -299,7 +299,7 @@ public class JDAgregarUsuario extends JDialog {
             }
         });
 
-        btnComprobar.setFont(new java.awt.Font("DejaVu Sans", 0, 10)); // NOI18N
+        btnComprobar.setFont(new java.awt.Font("DejaVu Sans", 0, 10));
         btnComprobar.setText("Comprobar");
         btnComprobar.setPreferredSize(new java.awt.Dimension(70, 32));
         btnComprobar.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +350,7 @@ public class JDAgregarUsuario extends JDialog {
                                         .addComponent(txtApMat, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(cmbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnVerCategorias))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
                                 .addComponent(txtCorreoE, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)))))
                 .addGap(43, 43, 43))
         );
@@ -453,7 +453,7 @@ public class JDAgregarUsuario extends JDialog {
                         .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,6 +508,9 @@ public class JDAgregarUsuario extends JDialog {
         jMReactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/good.png"))); // NOI18N
         jMReactivar.setText("Reactivar");
         jMReactivar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMReactivarMouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jMReactivarMouseReleased(evt);
             }
@@ -884,6 +887,10 @@ public class JDAgregarUsuario extends JDialog {
             txtNomUsuario.setText(text);
         }
     }//GEN-LAST:event_txtNombresKeyPressed
+
+    private void jMReactivarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMReactivarMouseClicked
+        Reactivar();
+    }//GEN-LAST:event_jMReactivarMouseClicked
 
     public void MostrarDatos(UsuarioBE usuarioBEO){
         
