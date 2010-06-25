@@ -295,6 +295,12 @@ public class JDAgregarRol extends JDialog {
             return;
         }
 
+        if (txtNombreRol.getText().length() > 15)
+        {
+                JOptionPane.showMessageDialog(this, "Nombre del Rol debe tener un máximo de 15 caracteres", "ERROR", JOptionPane.ERROR_MESSAGE);           
+            return;
+        }
+
         RolBL rolBL = new RolBL();
         listaIDPrivilegios = new ArrayList<Integer>();
         listaPrivilegios = new ArrayList<PrivilegioBE>();
