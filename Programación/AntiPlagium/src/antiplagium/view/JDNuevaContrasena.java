@@ -76,6 +76,7 @@ public class JDNuevaContrasena extends javax.swing.JDialog {
         jPConfirmarContrasena = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Reestablecer Contraseña");
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
