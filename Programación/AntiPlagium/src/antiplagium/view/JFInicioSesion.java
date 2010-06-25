@@ -342,9 +342,9 @@ public class JFInicioSesion extends javax.swing.JFrame {
                   this.dispose();
               }
               else{
-                JOptionPane.showMessageDialog(this,"USUARIO INACTIVO", "ERROR", JOptionPane.ERROR_MESSAGE);
-              
-              }                     
+                JOptionPane.showMessageDialog(this,"USUARIO INACTIVO", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+                return;
+              }
         }
         else{
             jPError.setVisible(true);

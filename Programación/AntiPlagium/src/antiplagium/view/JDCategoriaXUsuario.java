@@ -248,10 +248,10 @@ public class JDCategoriaXUsuario extends JDialog {
             for(int i=modelo.getRowCount()-1;i>=0;i--){
 
                 Boolean seleccion=(Boolean)modelo.getValueAt(i, 3);
-                System.out.println("esto es "+seleccion);
+                //System.out.println("esto es "+seleccion);
                 if ((seleccion!=null) && (seleccion!=false)){
                     //idsCategorias.add((Integer)modelo.getValueAt(i, 0));
-                    System.out.println("tamano "+listaCategorias.size()+" valor de i "+i);
+                    //System.out.println("tamano "+listaCategorias.size()+" valor de i "+i);
                     listaCategorias.remove(i);
                     idsCategorias.add(i);
                 }
@@ -278,6 +278,7 @@ public class JDCategoriaXUsuario extends JDialog {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        listaCategorias=null;
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
