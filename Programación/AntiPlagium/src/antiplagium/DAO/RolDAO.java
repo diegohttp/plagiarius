@@ -54,13 +54,13 @@ public class RolDAO {
         return tablaResultados;
     }
 
-    public Vector getPrivilegiosPorRol2(String nombreROl) throws SQLException
-    {
-        Vector vector = new Vector();
-        String SQL_SELECT = SQL_SELECT_PRIVILEGIOS_X_ROL + nombreROl + "' " ;
-        vector = ConexionJDBC.ejecutarQuery(SQL_SELECT);
-        return vector;
-    }
+//    public Vector getPrivilegiosPorRol2(String nombreROl) throws SQLException
+//    {
+//        Vector vector = new Vector();
+//        String SQL_SELECT = SQL_SELECT_PRIVILEGIOS_X_ROL + nombreROl + "' " ;
+//        vector = ConexionJDBC.ejecutarQuery(SQL_SELECT);
+//        return vector;
+//    }
 
     public ResultSet getLastID() throws SQLException
     {
