@@ -7,6 +7,9 @@ package antiplagium.BE;
 
 import antiplagium.DAL.ConexionJDBC;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.FileNotFoundException;
@@ -65,10 +68,11 @@ public final class Utilitario {
         String strSentencia = "SELECT MAX(\"id"+strNombreTabla+"\") FROM \""+strNombreTabla+"\"";
         String strId = "";
         /* para debuging */
-        System.out.println(strSentencia);
+        //System.out.println(strSentencia);
 
         try {
-            ResultSet rs = (ResultSet) objConexion.ejecutarQueryResultSet(strSentencia);
+            ConexionJDBC.abrirConexion();
+            ResultSet rs = (ResultSet) objConexion.ejecutarQueryString(strSentencia);
             int intId;
             if (rs.next()){
                 strId = rs.getString(1);
@@ -90,6 +94,13 @@ public final class Utilitario {
         }
         catch (Exception a){
             System.out.println(a.getMessage());
+        }
+        finally{
+            try {
+                ConexionJDBC.cerrarConexion();
+            } catch (SQLException ex) {
+
+            }
         }
         return 0;
     }
