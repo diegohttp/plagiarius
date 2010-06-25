@@ -391,8 +391,8 @@ public class JDAdministrarUsuarios extends JDialog {
         jMNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         jMNuevo.setText("Nuevo");
         jMNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMNuevoMouseReleased(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMNuevoMouseClicked(evt);
             }
         });
         jMenuBar1.add(jMNuevo);
@@ -401,8 +401,8 @@ public class JDAdministrarUsuarios extends JDialog {
         jMModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
         jMModificar.setText("Modificar");
         jMModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMModificarMouseReleased(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMModificarMouseClicked(evt);
             }
         });
         jMenuBar1.add(jMModificar);
@@ -411,8 +411,8 @@ public class JDAdministrarUsuarios extends JDialog {
         jMEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jMEliminar.setText("Eliminar");
         jMEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jMEliminarMouseReleased(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMEliminarMouseClicked(evt);
             }
         });
         jMenuBar1.add(jMEliminar);
@@ -459,52 +459,6 @@ public class JDAdministrarUsuarios extends JDialog {
         // TODO add your handling code here:
 }//GEN-LAST:event_cmbRolActionPerformed
 
-    private void jMNuevoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMNuevoMouseReleased
-        JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
-        jfAgregarUsuario.setModal(true);
-        jfAgregarUsuario.setLocationRelativeTo(this);
-        jfAgregarUsuario.setVisible(true);
-        ConsultarUsuarios();
-    }//GEN-LAST:event_jMNuevoMouseReleased
-
-    private void jMModificarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMModificarMouseReleased
-       int iFila=-1;
-        iFila=jTListaUsuarios.getSelectedRow();
-
-        System.out.println("numero de fila"+iFila);
-
-        if (iFila==-1){
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
-            JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(idUsuario);
-            jfAgregarUsuario.setModal(true);
-            jfAgregarUsuario.setLocationRelativeTo(this);
-            jfAgregarUsuario.setVisible(true);
-            ConsultarUsuarios();
-        }
-    }//GEN-LAST:event_jMModificarMouseReleased
-
-    private void jMEliminarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMEliminarMouseReleased
-        int iFila=-1;
-        iFila=jTListaUsuarios.getSelectedRow();
-
-        System.out.println("numero de fila"+iFila);
-
-        if (iFila==-1){
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
-            JDEliminarUsuario jfEliminarUsuario = new JDEliminarUsuario(idUsuario);
-            jfEliminarUsuario.setModal(true);
-            jfEliminarUsuario.setLocationRelativeTo(this);
-            jfEliminarUsuario.setVisible(true);
-            ConsultarUsuarios();
-        }
-    }//GEN-LAST:event_jMEliminarMouseReleased
-
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         ConsultarUsuarios();
     }//GEN-LAST:event_btnConsultarActionPerformed
@@ -532,6 +486,55 @@ public class JDAdministrarUsuarios extends JDialog {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
             this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void jMNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMNuevoMouseClicked
+        // TODO add your handling code here
+        JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
+        jfAgregarUsuario.setModal(true);
+        jfAgregarUsuario.setLocationRelativeTo(this);
+        jfAgregarUsuario.setVisible(true);
+        ConsultarUsuarios();
+    }//GEN-LAST:event_jMNuevoMouseClicked
+
+    private void jMModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMModificarMouseClicked
+        // TODO add your handling code here:
+        int iFila=-1;
+        iFila=jTListaUsuarios.getSelectedRow();
+
+        System.out.println("numero de fila"+iFila);
+
+        if (iFila==-1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
+            JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(idUsuario);
+            jfAgregarUsuario.setModal(true);
+            jfAgregarUsuario.setLocationRelativeTo(this);
+            jfAgregarUsuario.setVisible(true);
+            ConsultarUsuarios();
+        }
+    }//GEN-LAST:event_jMModificarMouseClicked
+
+    private void jMEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMEliminarMouseClicked
+        // TODO add your handling code here
+        int iFila=-1;
+        iFila=jTListaUsuarios.getSelectedRow();
+
+        System.out.println("numero de fila"+iFila);
+
+        if (iFila==-1){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            int idUsuario=(Integer)jTListaUsuarios.getValueAt(iFila, 0);
+            JDEliminarUsuario jfEliminarUsuario = new JDEliminarUsuario(idUsuario);
+            jfEliminarUsuario.setModal(true);
+            jfEliminarUsuario.setLocationRelativeTo(this);
+            jfEliminarUsuario.setVisible(true);
+            ConsultarUsuarios();
+        }
+    }//GEN-LAST:event_jMEliminarMouseClicked
 
     private void ConsultarUsuarios(){
        try {
