@@ -41,8 +41,7 @@ public class GestorTiposOperacion {
     {
         String operacion = "";
         
-        if (nombre.compareToIgnoreCase("ingreso")==0) operacion = "Inicio/Cierre de sesion";
-        else if (nombre.compareToIgnoreCase("salida")==0) operacion = "Salida del sistema";
+        if (nombre.compareToIgnoreCase("ingreso")==0) operacion = "Inicio/Cierre de sesion";        
         else if (nombre.compareToIgnoreCase("consulta")==0) operacion = "Consulta al sistema";
         else if (nombre.compareToIgnoreCase("modifica")==0) operacion = "Modificacion de registro";
         else if (nombre.compareToIgnoreCase("registra")==0) operacion = "Creacion de nuevo registro";
