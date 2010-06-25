@@ -12,6 +12,7 @@
             <Property name="text" type="java.lang.String" value="Reactivar"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMReactivarMouseClicked"/>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMReactivarMouseReleased"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMReactivarActionPerformed"/>
           </Events>
@@ -135,7 +136,7 @@
                                           <Component id="cmbRol" alignment="0" max="32767" attributes="1"/>
                                           <Component id="btnVerCategorias" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                                      <EmptySpace pref="12" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="txtCorreoE" pref="230" max="32767" attributes="1"/>
                               </Group>
@@ -388,7 +389,7 @@
                       </Group>
                       <Component id="cmbEstado" min="-2" pref="173" max="-2" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
