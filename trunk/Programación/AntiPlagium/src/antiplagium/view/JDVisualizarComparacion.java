@@ -300,6 +300,7 @@ public class JDVisualizarComparacion extends javax.swing.JDialog {
         btnAceptar = new javax.swing.JButton();
 
         setTitle("Resultados de comparación");
+        setName("JDVisualizarComparacion"); // NOI18N
 
         pnlDoc1.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento comparado"));
 
