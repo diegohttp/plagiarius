@@ -14,13 +14,16 @@ package antiplagium.view;
 import Utilitarios.EnviarCorreo;
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.EstadoBE;
+import antiplagium.BE.GestorTiposOperacion;
 import antiplagium.BE.RolBE;
 import antiplagium.BE.TipoCeseBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.BL.EstadoBL;
+import antiplagium.BL.RegistroOperacionBL;
 import antiplagium.BL.RolBL;
 import antiplagium.BL.UsuarioBL;
+import antiplagium.DAL.ConexionJDBC;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -58,6 +61,7 @@ public class JDAgregarUsuario extends JDialog {
     ArrayList<EstadoBE> registrosEstado=null;
 
     private JPasswordField jPFContrasena;
+    private String descripcionOperacion;
     
     /** Creates new form JFAgregarUsuario1 */
     public JDAgregarUsuario(int idUsuario) {
@@ -312,15 +316,13 @@ public class JDAgregarUsuario extends JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(57, 57, 57)
                             .addComponent(jLabel13)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lblCantidadCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnVerCategorias))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblCantidadCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,10 +348,11 @@ public class JDAgregarUsuario extends JDialog {
                                         .addComponent(txtNombres, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtApPat, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtApMat, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cmbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE))
-                                .addComponent(txtCorreoE, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                                        .addComponent(cmbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnVerCategorias))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
+                                .addComponent(txtCorreoE, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)))))
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,7 +453,7 @@ public class JDAgregarUsuario extends JDialog {
                         .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,7 +536,7 @@ public class JDAgregarUsuario extends JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -637,13 +640,54 @@ public class JDAgregarUsuario extends JDialog {
                 }
             }
             JOptionPane.showMessageDialog(this,cad, "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         else {
-            EnviarCorreo enviar=new EnviarCorreo(usuarioBE, 4);
-            JOptionPane.showMessageDialog(this, cadExito);
-            this.dispose();
+            try {
+                EnviarCorreo enviar = new EnviarCorreo(usuarioBE, 4);
+                JOptionPane.showMessageDialog(this, cadExito);
+                RegistroOperacionBL rop= new RegistroOperacionBL();
+                rop.AbrirConexion();
+                
+                if (usuarioBEOringinal == null) {
+                    descripcionOperacionModificar(usuarioBE);
+                    JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcionOperacion);
+                } else {
+                    descripcionOperacionModificar(usuarioBE);
+                    JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("registra"), descripcionOperacion);
+                }
+                
+                JFBase.registrarOperacion();
+                rop.CerrarConexion();
+                this.dispose();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(JDAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JDAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
+    }
+
+    private void descripcionOperacionModificar(UsuarioBE usuario)
+    {
+        descripcionOperacion = GestorTiposOperacion.getTipoOperacion("modifica") + "\n";
+        
+        descripcionOperacion+=usuarioBE.getNombres()+" "+usuarioBE.getApellidoPaterno()+" "+usuarioBE.getApellidoPaterno()+ "\n";
+        descripcionOperacion+=usuarioBE.getEmail()+ "\n";
+        descripcionOperacion+=usuarioBE.getEstadoBE().getNombre()+ "\n";
+        if(usuarioBE.getFechaCese()==null){
+            descripcionOperacion+="Fecha de cese vacio";
+        }else{
+            descripcionOperacion+=usuarioBE.getFechaCese().toString()+ "\n";
+        }
+        descripcionOperacion+=usuarioBE.getFechaRegistro().toString()+ "\n";
+        descripcionOperacion+=usuarioBE.getFechaVencimiento().toString()+ "\n";
+        descripcionOperacion+=usuarioBE.getRolBE().getNombre()+ "\n";
+        for(int i=0;i<usuarioBE.getCategorias().size();i++){
+            descripcionOperacion+=usuarioBE.getCategorias().get(i).getNombre()+ "\n";  
+        }
+       
     }
 
     private void txtNombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyReleased
@@ -669,9 +713,10 @@ public class JDAgregarUsuario extends JDialog {
         jfCategoriaXUsuario.setModal(true);
         jfCategoriaXUsuario.setLocationRelativeTo(this);
         jfCategoriaXUsuario.setVisible(true);
-        listaCategorias=jfCategoriaXUsuario.getListaCategorias();
-        lblCantidadCategorias.setText(String.valueOf(listaCategorias.size()));
-
+        if (jfCategoriaXUsuario.getListaCategorias()!=null){
+            listaCategorias=jfCategoriaXUsuario.getListaCategorias();
+            lblCantidadCategorias.setText(String.valueOf(listaCategorias.size()));
+        }
     }//GEN-LAST:event_btnVerCategoriasActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

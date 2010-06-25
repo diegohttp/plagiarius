@@ -330,7 +330,7 @@ public class JDLogDeUsuarios extends JDialog {
 
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
 
-          String nombreUsuario=txtUsuario.getText();
+        String nombreUsuario=txtUsuario.getText();
 
         JDAdministrarUsuarios jdAdminUsuario= new JDAdministrarUsuarios(nombreUsuario);
         jdAdminUsuario.setModal(true);
