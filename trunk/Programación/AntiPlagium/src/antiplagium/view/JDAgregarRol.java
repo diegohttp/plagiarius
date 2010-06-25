@@ -77,6 +77,17 @@ public class JDAgregarRol extends JDialog {
         {
             JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        finally
+        {
+            try
+            {
+                privilegioBL.CerrarConexion();
+            }
+            catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }   
 
     private void onLoadModificar()
@@ -351,6 +362,18 @@ public class JDAgregarRol extends JDialog {
             JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        finally
+        {
+            try
+            {
+                rolBL.CerrarConexion();
+            }
+            catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
         
         this.dispose();
     }//GEN-LAST:event_btnGuardarActionPerformed

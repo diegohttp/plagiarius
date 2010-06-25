@@ -63,6 +63,17 @@ public class JDAdministrarRoles extends JDialog {
             JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        finally
+        {
+            try
+            {
+                privilegioBL.CerrarConexion();
+            }
+            catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -290,6 +301,18 @@ public class JDAdministrarRoles extends JDialog {
             JOptionPane.showMessageDialog(this, "Error en base de datos", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        finally
+        {
+            try
+            {
+                rolBL.CerrarConexion();
+            }
+            catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
         JOptionPane.showMessageDialog(this, "El rol ha sido modificado a estado Inactivo", "Rol", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuEliminarMouseClicked
 
@@ -332,6 +355,18 @@ public class JDAdministrarRoles extends JDialog {
         {
                 JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+         finally
+        {
+            try
+            {
+                rolBL.CerrarConexion();
+            }
+            catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
     }//GEN-LAST:event_cboRolItemStateChanged
 
     private void jMenuNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuNuevoMouseClicked
