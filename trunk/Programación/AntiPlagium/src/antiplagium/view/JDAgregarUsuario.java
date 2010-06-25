@@ -595,6 +595,7 @@ public class JDAgregarUsuario extends JDialog {
         }
 
         if(usuarioBEOringinal!=null){
+            
             String cadenaFechaActual=formato.format(new Date(System.currentTimeMillis()));
             if(cadenaFechaF.compareTo(cadenaFechaActual)<=0){
                 JOptionPane.showMessageDialog(this,"Debe ingresar una fecha mayor a la fecha actual para reactivar la cuenta del usuario.","ERROR", JOptionPane.ERROR_MESSAGE);
