@@ -136,9 +136,9 @@
                                           <Component id="cmbRol" alignment="0" max="32767" attributes="1"/>
                                           <Component id="btnVerCategorias" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                                      <EmptySpace pref="21" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="txtCorreoE" pref="230" max="32767" attributes="1"/>
+                                  <Component id="txtCorreoE" pref="241" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                       </Group>
