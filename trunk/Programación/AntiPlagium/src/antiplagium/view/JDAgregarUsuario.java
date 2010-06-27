@@ -692,13 +692,19 @@ public class JDAgregarUsuario extends JDialog {
 
     private void descripcionOperacionModificar(UsuarioBE usuario)
     {
-        descripcionOperacion = GestorTiposOperacion.getTipoOperacion("modifica") + "\n";
-        
+        if (usuarioBEOringinal != null) {
+            descripcionOperacion = GestorTiposOperacion.getTipoOperacion("modifica") + "\n";
+        }
+        else{
+            descripcionOperacion = GestorTiposOperacion.getTipoOperacion("registra") + "\n";
+        }
+
+
         descripcionOperacion+=usuarioBE.getNombres()+" "+usuarioBE.getApellidoPaterno()+" "+usuarioBE.getApellidoPaterno()+ "\n";
         descripcionOperacion+=usuarioBE.getEmail()+ "\n";
         descripcionOperacion+=usuarioBE.getEstadoBE().getNombre()+ "\n";
         if(usuarioBE.getFechaCese()==null){
-            descripcionOperacion+="Fecha de cese vacio";
+            descripcionOperacion+="Fecha de cese vacio. \n";
         }else{
             descripcionOperacion+=usuarioBE.getFechaCese().toString()+ "\n";
         }
