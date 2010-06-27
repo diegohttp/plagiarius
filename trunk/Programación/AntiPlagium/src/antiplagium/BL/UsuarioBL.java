@@ -382,7 +382,7 @@ public class UsuarioBL {
                 rop.AbrirConexion();
 
                 descripcionOperacionModificar(usuarioBE);
-                JFBase.setOperacion("Eliminar Usuario", GestorTiposOperacion.getTipoOperacion("elimina"), descripcionOperacion);
+                JFBase.setOperacion("Eliminar Usuario", GestorTiposOperacion.getTipoOperacion("eliminacion"), descripcionOperacion);
 
                 JFBase.registrarOperacion();
 
@@ -402,7 +402,7 @@ public class UsuarioBL {
 
     private void descripcionOperacionModificar(UsuarioBE usuario)
     {
-        descripcionOperacion = GestorTiposOperacion.getTipoOperacion("elimina") + "\n";
+        descripcionOperacion = GestorTiposOperacion.getTipoOperacion("eliminacion") + "\n";
         
         descripcionOperacion+=usuarioBE.getNombres()+" "+usuarioBE.getApellidoPaterno()+" "+usuarioBE.getApellidoPaterno()+ "\n";
         descripcionOperacion+=usuarioBE.getEmail()+ "\n";
