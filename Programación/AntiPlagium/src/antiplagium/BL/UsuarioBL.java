@@ -7,12 +7,14 @@ package antiplagium.BL;
 
 import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.EstadoBE;
+import antiplagium.BE.GestorTiposOperacion;
 import antiplagium.BE.RolBE;
 import antiplagium.BE.TipoCeseBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BE.Utilitario;
 import antiplagium.DAL.ConexionJDBC;
 import antiplagium.DAO.UsuarioDAO;
+import antiplagium.view.JFBase;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -36,6 +38,7 @@ public class UsuarioBL {
     private int usuarioValido;
     boolean r=false;
     private String cadenaError="";
+    private String descripcionOperacion="";
 
     public UsuarioBL(){
         this.usuarioDAO=new UsuarioDAO();
@@ -109,7 +112,7 @@ public class UsuarioBL {
 
         rpta=validarCategorias(categorias);
         if(rpta==false){
-            cadenaError+="El campo \"Categorias\" debe tener al menos una categoria asignada";
+            cadenaError+="El campo \"Categorias\" debe tener al menos una categoria asignada.\n";
         }
 
 
@@ -244,6 +247,7 @@ public class UsuarioBL {
 
         return rpta;
     }
+
     public UsuarioBE getUsuarioBE(int idUsuario){
         try {
             ConexionJDBC.abrirConexion();
@@ -371,6 +375,20 @@ public class UsuarioBL {
             else {
                 JOptionPane.showMessageDialog(null,"Debe ingresar una fecha de cese mayor o igual a la fecha actual ", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
+
+            if (r==true){
+                RegistroOperacionBL rop= new RegistroOperacionBL();
+
+                rop.AbrirConexion();
+
+                descripcionOperacionModificar(usuarioBE);
+                JFBase.setOperacion("Eliminar Usuario", GestorTiposOperacion.getTipoOperacion("elimina"), descripcionOperacion);
+
+                JFBase.registrarOperacion();
+
+                rop.CerrarConexion();
+
+            }
             return r;
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioBL.class.getName()).log(Level.SEVERE, null, ex);
@@ -380,6 +398,29 @@ public class UsuarioBL {
             return r;
         }
     }
+
+
+    private void descripcionOperacionModificar(UsuarioBE usuario)
+    {
+        descripcionOperacion = GestorTiposOperacion.getTipoOperacion("elimina") + "\n";
+        
+        descripcionOperacion+=usuarioBE.getNombres()+" "+usuarioBE.getApellidoPaterno()+" "+usuarioBE.getApellidoPaterno()+ "\n";
+        descripcionOperacion+=usuarioBE.getEmail()+ "\n";
+        descripcionOperacion+=usuarioBE.getEstadoBE().getNombre()+ "\n";
+        if(usuarioBE.getFechaCese()==null){
+            descripcionOperacion+="Fecha de cese vacio \n";
+        }else{
+            descripcionOperacion+=usuarioBE.getFechaCese().toString()+ "\n";
+        }
+        descripcionOperacion+=usuarioBE.getFechaRegistro().toString()+ "\n";
+        descripcionOperacion+=usuarioBE.getFechaVencimiento().toString()+ "\n";
+        descripcionOperacion+=usuarioBE.getRolBE().getNombre()+ "\n";
+        for(int i=0;i<usuarioBE.getCategorias().size();i++){
+            descripcionOperacion+=usuarioBE.getCategorias().get(i).getNombre()+ "\n";  
+        }
+       
+    }
+
 
     public void AbrirConexion() throws SQLException, ClassNotFoundException{
         ConexionJDBC.abrirConexion();
