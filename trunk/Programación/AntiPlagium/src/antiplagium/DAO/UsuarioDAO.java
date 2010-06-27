@@ -107,7 +107,7 @@ public class UsuarioDAO {
                     "',"+cadenaFechaI+ ","+cadenaFechaF+ ","+
                     cadenaFechaC+","+cadenaIdROl+ ","+cadenaIdTipoCese+","+cadenaIdEstado+",'"+u.getEmail()+"');";
 
-            System.out.println(squery);
+            //System.out.println(squery);
             ConexionJDBC.ejecutarUpdateString(squery);
 
             ConexionJDBC.cerrarConexion();
@@ -120,7 +120,7 @@ public class UsuarioDAO {
                         squery = "";
                         squery = " INSERT INTO \"UsuarioXCategoria\" (\"idUsuario\",\"idCategoria\") ";
                         squery += " VALUES(" + nuevoUsuario.getIdUsuario() + "," + nuevoUsuario.getCategorias().get(i).getIdCategoria() + ") ";
-                        System.out.println(squery);
+                        //System.out.println(squery);
                         ConexionJDBC.ejecutarUpdateString(squery);
                 }
 
@@ -136,7 +136,7 @@ public class UsuarioDAO {
         }        catch (SQLException ex) {
                                 ex.printStackTrace();
 
-                    System.out.println("Transaction failed. No records were written to the database.");
+                    //System.out.println("Transaction failed. No records were written to the database.");
                     return error;
                
         }
