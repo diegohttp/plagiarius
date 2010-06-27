@@ -159,6 +159,11 @@ public class JFInicioSesion extends javax.swing.JFrame {
                 txtNombreUsuarioActionPerformed(evt);
             }
         });
+        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreUsuarioKeyPressed(evt);
+            }
+        });
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
         btnAceptar.setText("Acceder");
@@ -314,6 +319,15 @@ public class JFInicioSesion extends javax.swing.JFrame {
         jDResstablecerContrasena.setLocationRelativeTo(this);
         jDResstablecerContrasena.setVisible(true);
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void txtNombreUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyPressed
+        String text = txtNombreUsuario.getText();
+        int maxLength=14;
+        if (text.length() > maxLength) {
+            text = text.substring(0, maxLength);
+            txtNombreUsuario.setText(text);
+        }
+    }//GEN-LAST:event_txtNombreUsuarioKeyPressed
 
     private void IniciarSesion(){
         usuarioBL=new UsuarioBL();
