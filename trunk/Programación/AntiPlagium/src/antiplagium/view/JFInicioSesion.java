@@ -21,6 +21,7 @@ import antiplagium.BL.RegistroOperacionBL;
 import antiplagium.BL.UsuarioBL;
 import antiplagium.DAL.ConexionJDBC;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -40,7 +41,7 @@ public class JFInicioSesion extends javax.swing.JFrame {
         jPFContrasena=new JPasswordField();
         jPFContrasena.setSize(176, 26);
         jPContrasena.add(jPFContrasena);
-
+        
         try
         {
             //GestorError.populate("XML/Errores.xml");
