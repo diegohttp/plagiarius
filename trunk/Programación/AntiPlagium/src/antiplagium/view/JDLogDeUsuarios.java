@@ -461,7 +461,7 @@ public class JDLogDeUsuarios extends JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         System.out.println("entra akiiiiiiii");
+         //System.out.println("entra akiiiiiiii");
         Map pars = new HashMap();
 
         pars.put("P_TITULO", "Reporte Log de Usuario");

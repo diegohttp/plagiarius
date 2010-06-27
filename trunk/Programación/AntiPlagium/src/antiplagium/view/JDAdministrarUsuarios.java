@@ -391,8 +391,8 @@ public class JDAdministrarUsuarios extends JDialog {
         jMNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         jMNuevo.setText("Nuevo");
         jMNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMNuevoMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMNuevoMousePressed(evt);
             }
         });
         jMenuBar1.add(jMNuevo);
@@ -401,8 +401,8 @@ public class JDAdministrarUsuarios extends JDialog {
         jMModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/modificar.png"))); // NOI18N
         jMModificar.setText("Modificar");
         jMModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMModificarMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMModificarMousePressed(evt);
             }
         });
         jMenuBar1.add(jMModificar);
@@ -411,8 +411,8 @@ public class JDAdministrarUsuarios extends JDialog {
         jMEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Eliminar - 16.png"))); // NOI18N
         jMEliminar.setText("Eliminar");
         jMEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMEliminarMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMEliminarMousePressed(evt);
             }
         });
         jMenuBar1.add(jMEliminar);
@@ -487,21 +487,38 @@ public class JDAdministrarUsuarios extends JDialog {
             this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void jMNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMNuevoMouseClicked
-        // TODO add your handling code here
+    private void jMNuevoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMNuevoMousePressed
+           // TODO add your handling code here
         JDAgregarUsuario jfAgregarUsuario=new JDAgregarUsuario(0);
         jfAgregarUsuario.setModal(true);
         jfAgregarUsuario.setLocationRelativeTo(this);
         jfAgregarUsuario.setVisible(true);
-        ConsultarUsuarios();
-    }//GEN-LAST:event_jMNuevoMouseClicked
 
-    private void jMModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMModificarMouseClicked
+        if (jfAgregarUsuario.getRegistro()==true){
+            Object[] objetos = new Object[7];
+            DefaultTableModel modelo = (DefaultTableModel) jTListaUsuarios.getModel();
+            objetos[0] = jfAgregarUsuario.getUsuarioBE().getIdUsuario();
+            objetos[1] = jfAgregarUsuario.getUsuarioBE().getNombreUsuario();
+            objetos[2] = jfAgregarUsuario.getUsuarioBE().getNombres()+" "+jfAgregarUsuario.getUsuarioBE().getApellidoPaterno()+" "+jfAgregarUsuario.getUsuarioBE().getApellidoMaterno();
+            objetos[3] = jfAgregarUsuario.getUsuarioBE().getRolBE().getNombre();
+            SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+            String cadenaFechaV=formato.format(jfAgregarUsuario.getUsuarioBE().getFechaVencimiento());
+            objetos[4] = cadenaFechaV;
+            objetos[5] = jfAgregarUsuario.getUsuarioBE().getCategorias().get(0).getNombre();
+            objetos[6] = jfAgregarUsuario.getUsuarioBE().getEstadoBE().getNombre();
+            modelo.addRow(objetos);
+            jfAgregarUsuario.dispose();
+        }
+
+        //ConsultarUsuarios();// TODO add your handling code here:
+    }//GEN-LAST:event_jMNuevoMousePressed
+
+    private void jMModificarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMModificarMousePressed
         // TODO add your handling code here:
         int iFila=-1;
         iFila=jTListaUsuarios.getSelectedRow();
 
-        System.out.println("numero de fila"+iFila);
+        //System.out.println("numero de fila"+iFila);
 
         if (iFila==-1){
             JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
@@ -512,16 +529,27 @@ public class JDAdministrarUsuarios extends JDialog {
             jfAgregarUsuario.setModal(true);
             jfAgregarUsuario.setLocationRelativeTo(this);
             jfAgregarUsuario.setVisible(true);
-            ConsultarUsuarios();
-        }
-    }//GEN-LAST:event_jMModificarMouseClicked
 
-    private void jMEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMEliminarMouseClicked
+             if (jfAgregarUsuario.getRegistro()==true){
+                jTListaUsuarios.setValueAt(jfAgregarUsuario.getUsuarioBE().getIdUsuario(),iFila,0);
+                jTListaUsuarios.setValueAt(jfAgregarUsuario.getUsuarioBE().getNombreUsuario(),iFila,1);
+                jTListaUsuarios.setValueAt(jfAgregarUsuario.getUsuarioBE().getNombres()+" "+jfAgregarUsuario.getUsuarioBE().getApellidoPaterno()+" "+jfAgregarUsuario.getUsuarioBE().getApellidoMaterno(),iFila,2);
+                jTListaUsuarios.setValueAt(jfAgregarUsuario.getUsuarioBE().getRolBE().getNombre(),iFila,3);
+                SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+                String cadenaFechaV=formato.format(jfAgregarUsuario.getUsuarioBE().getFechaVencimiento());
+                jTListaUsuarios.setValueAt(cadenaFechaV,iFila,4);
+                jTListaUsuarios.setValueAt(jfAgregarUsuario.getUsuarioBE().getCategorias().get(0).getNombre(),iFila,5);
+                jTListaUsuarios.setValueAt(jfAgregarUsuario.getUsuarioBE().getEstadoBE().getNombre(),iFila,6);
+                jfAgregarUsuario.dispose();
+             }
+            //ConsultarUsuarios();
+        }
+    }//GEN-LAST:event_jMModificarMousePressed
+
+    private void jMEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMEliminarMousePressed
         // TODO add your handling code here
         int iFila=-1;
         iFila=jTListaUsuarios.getSelectedRow();
-
-        System.out.println("numero de fila"+iFila);
 
         if (iFila==-1){
             JOptionPane.showMessageDialog(this, "Debe seleccionar un registro usuario a modificar.", "Seleccionar registro",JOptionPane.ERROR_MESSAGE);
@@ -532,9 +560,15 @@ public class JDAdministrarUsuarios extends JDialog {
             jfEliminarUsuario.setModal(true);
             jfEliminarUsuario.setLocationRelativeTo(this);
             jfEliminarUsuario.setVisible(true);
-            ConsultarUsuarios();
+            if (jfEliminarUsuario.getRegistro()==true){
+                SimpleDateFormat formato=new SimpleDateFormat("yyyy-MM-dd");
+                String cadenaFechaV=formato.format(jfEliminarUsuario.getUsuarioBE().getFechaVencimiento());
+                jTListaUsuarios.setValueAt(cadenaFechaV,iFila,4);
+                jTListaUsuarios.setValueAt(jfEliminarUsuario.getUsuarioBE().getEstadoBE().getNombre(),iFila,6);
+                jfEliminarUsuario.dispose();
+            }
         }
-    }//GEN-LAST:event_jMEliminarMouseClicked
+    }//GEN-LAST:event_jMEliminarMousePressed
 
     private void ConsultarUsuarios(){
        try {
@@ -579,16 +613,16 @@ public class JDAdministrarUsuarios extends JDialog {
 
                         if (modelo.getRowCount()!=0){
                             if (Integer.parseInt(objetos[0].toString())!=Integer.parseInt(modelo.getValueAt(modelo.getRowCount()-1,0).toString()) ){
-                                                        int idUsuario=Integer.parseInt(objetos[0].toString());
-                        UsuarioBE usuariobe=usuarioBL.getUsuarioBE(idUsuario);
-                        if(usuariobe.getFechaCese()==null){
-                            formato=new SimpleDateFormat("yyyy-MM-dd");
-                            String cadenaFechaVencimiento=formato.format(usuariobe.getFechaVencimiento());
-                            int resultado=cadenaFechaVencimiento.compareTo(formato.format(new Date( System.currentTimeMillis())));
-                            if (resultado<=0){
-                                CesarUsuario(usuariobe);
-                        }
-                }
+                                    int idUsuario=Integer.parseInt(objetos[0].toString());
+                                    UsuarioBE usuariobe=usuarioBL.getUsuarioBE(idUsuario);
+                                    if(usuariobe.getFechaCese()==null){
+                                        formato=new SimpleDateFormat("yyyy-MM-dd");
+                                        String cadenaFechaVencimiento=formato.format(usuariobe.getFechaVencimiento());
+                                        int resultado=cadenaFechaVencimiento.compareTo(formato.format(new Date( System.currentTimeMillis())));
+                                        if (resultado<=0){
+                                            CesarUsuario(usuariobe);
+                                        }
+                                    }
 
                                 modelo.addRow(objetos);
                             }
@@ -602,8 +636,8 @@ public class JDAdministrarUsuarios extends JDialog {
                             int resultado=cadenaFechaVencimiento.compareTo(formato.format(new Date( System.currentTimeMillis())));
                             if (resultado<=0){
                                 CesarUsuario(usuariobe);
+                            }
                         }
-                }
 
                             modelo.addRow(objetos);
                         }
@@ -634,13 +668,6 @@ public class JDAdministrarUsuarios extends JDialog {
             }
         }
         rpta=usuarioBL.ElminarUsuario(usuarioBEO);
-
-//        if(rpta==true){
-//            JOptionPane.showMessageDialog(this,"El usuario ha sido eliminado con exito.", "Informe", JOptionPane.INFORMATION_MESSAGE);
-//        }
-//        else{
-//            JOptionPane.showMessageDialog(this,"Error. Usuario no eliminado", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
 
         if (rpta==false) {
             JOptionPane.showMessageDialog(this,"La fecha de vencimiento de la cuenta de usuario ha pasado su limite.", "Error", JOptionPane.ERROR_MESSAGE);

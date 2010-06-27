@@ -54,6 +54,16 @@ public class JDAgregarUsuario extends JDialog {
     private int codigoUsuario;
 
     private UsuarioBE usuarioBE=null;
+
+    private Boolean registro=true;
+
+    public Boolean getRegistro() {
+        return registro;
+    }
+
+    public UsuarioBE getUsuarioBE() {
+        return usuarioBE;
+    }
     private UsuarioBE usuarioBEOringinal=null;
 
     //private static ArrayList<CategoriaBE> listaCategorias=null;
@@ -78,6 +88,7 @@ public class JDAgregarUsuario extends JDialog {
             cmbFechaFin.setSize(245, 29);
             jPanel3.add(cmbFechaInicio);
             jPanel4.add(cmbFechaFin);
+            cmbFechaInicio.setEnabled(false);
 
             jMenuBar1.setVisible(false);
 
@@ -209,6 +220,11 @@ public class JDAgregarUsuario extends JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Usuario");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Usuario"));
 
@@ -350,8 +366,8 @@ public class JDAgregarUsuario extends JDialog {
                                         .addComponent(txtApMat, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(cmbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnVerCategorias))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
-                                .addComponent(txtCorreoE, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))
+                                .addComponent(txtCorreoE, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)))))
                 .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
@@ -453,7 +469,7 @@ public class JDAgregarUsuario extends JDialog {
                         .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -652,7 +668,7 @@ public class JDAgregarUsuario extends JDialog {
                 RegistroOperacionBL rop= new RegistroOperacionBL();
                 rop.AbrirConexion();
                 
-                if (usuarioBEOringinal == null) {
+                if (usuarioBEOringinal != null) {
                     descripcionOperacionModificar(usuarioBE);
                     JFBase.setOperacion(this.getName(), GestorTiposOperacion.getTipoOperacion("modifica"), descripcionOperacion);
                 } else {
@@ -662,11 +678,13 @@ public class JDAgregarUsuario extends JDialog {
                 
                 JFBase.registrarOperacion();
                 rop.CerrarConexion();
-                this.dispose();
+                this.setVisible(false);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(JDAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             } catch (SQLException ex) {
                 Logger.getLogger(JDAgregarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -723,12 +741,13 @@ public class JDAgregarUsuario extends JDialog {
     }//GEN-LAST:event_btnVerCategoriasActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        registro=false;
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtNomUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomUsuarioKeyPressed
        String text = txtNomUsuario.getText();
-        int maxLength=15;
+        int maxLength=14;
         if (text.length() > maxLength) {
             text = text.substring(0, maxLength);
             txtNomUsuario.setText(text);
@@ -863,7 +882,7 @@ public class JDAgregarUsuario extends JDialog {
 
     private void txtApPatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApPatKeyPressed
         String text = txtApPat.getText();
-        int maxLength=25;
+        int maxLength=24;
         if (text.length() > maxLength) {
             text = text.substring(0, maxLength);
             txtApPat.setText(text);
@@ -872,7 +891,7 @@ public class JDAgregarUsuario extends JDialog {
 
     private void txtApMatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApMatKeyPressed
         String text = txtApMat.getText();
-        int maxLength=25;
+        int maxLength=24;
         if (text.length() > maxLength) {
             text = text.substring(0, maxLength);
             txtApMat.setText(text);
@@ -881,7 +900,7 @@ public class JDAgregarUsuario extends JDialog {
 
     private void txtNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyPressed
         String text = txtNombres.getText();
-        int maxLength=40;
+        int maxLength=39;
         if (text.length() > maxLength) {
             text = text.substring(0, maxLength);
             txtNombres.setText(text);
@@ -891,6 +910,11 @@ public class JDAgregarUsuario extends JDialog {
     private void jMReactivarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMReactivarMouseClicked
         Reactivar();
     }//GEN-LAST:event_jMReactivarMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+         registro=false;
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
     public void MostrarDatos(UsuarioBE usuarioBEO){
         

@@ -35,6 +35,16 @@ public class JDEliminarUsuario extends JDialog{
     UsuarioBE usuarioBE;
     Boolean rpta=false;
     ArrayList<EstadoBE> registrosEstado;
+    Boolean registro=true;
+
+    public Boolean getRegistro() {
+        return registro;
+    }
+
+    public UsuarioBE getUsuarioBE() {
+        return usuarioBE;
+    }
+    
         /** Creates new form JFEliminarUsuario */
     public JDEliminarUsuario(int idUsuario) {
         try {
@@ -106,10 +116,15 @@ public class JDEliminarUsuario extends JDialog{
         jBCancelarEliminar = new javax.swing.JButton();
 
         setTitle("Eliminar Usuario");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Eliminar"));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 14));
         jLabel1.setText("El usuario");
 
         jLabel2.setText("Fecha");
@@ -138,10 +153,10 @@ public class JDEliminarUsuario extends JDialog{
 
         jLabel3.setText("Estado");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 14));
         jLabel4.setText(" ");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 2, 14));
         jLabel5.setText("procederá a ser eliminado.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -251,16 +266,22 @@ public class JDEliminarUsuario extends JDialog{
         else{
             JOptionPane.showMessageDialog(this,"Error. Usuario no eliminado", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jBAceptarEliminarActionPerformed
 
     private void jBCancelarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarEliminarActionPerformed
+        registro=false;
         this.dispose();
     }//GEN-LAST:event_jBCancelarEliminarActionPerformed
 
     private void jCBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBEstadoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jCBEstadoActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        registro=false;
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
     * @param args the command line arguments
