@@ -49,8 +49,7 @@ public class GeneraReportes {
             //3-Se llena el reporte con la información de la coleccion y parámetros necesarios para la consulta
             jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, conn);
             //4-Se exporta el reporte a pdf y se guarda en disco
-            JasperExportManager.exportReportToPdfFile(jasperPrint, strNombreReporte+".pdf");
-
+            //JasperExportManager.exportReportToPdfFile(jasperPrint, strNombreReporte+".pdf");
             System.out.println("Reporte");
             return jasperPrint;
         }catch (Exception e){

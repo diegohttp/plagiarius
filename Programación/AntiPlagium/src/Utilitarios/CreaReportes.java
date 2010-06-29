@@ -39,7 +39,7 @@ public class CreaReportes {
             //3-Llenamos el reporte con la información de la coleccion y parámetros necesarios para la consulta
             jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource);
             //4-Exportamos el reporte a pdf y lo guardamos en disco
-            JasperExportManager.exportReportToPdfFile(jasperPrint, strNombreReporte+".pdf");
+            //JasperExportManager.exportReportToPdfFile(jasperPrint, strNombreReporte+".pdf");
 
             System.out.println("Reporte !");
             return jasperPrint;
