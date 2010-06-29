@@ -55,57 +55,57 @@ public class AntiPlagiumPrincipal extends JFBase {
         this.JMICerrarSesion.setVisible(true);
     }
 
-//    protected void aplicarSeguridad(JMenuBar menu, Integer idRol)
-//    {
-//
-//        String nombreVentana = this.getName();
-//        ResultSet tablaControles;
-//        Vector vector = new Vector();
-//        JRootPane jroot = this.getRootPane();
-//        Component[] componentes = jroot.getJMenuBar().getComponents();
-//        Component[] componentesInternos;
-//
-//        SeguridadBL seguridadBL = new SeguridadBL();
-//        try {
-//            seguridadBL.AbrirConexion();
-//            tablaControles = seguridadBL.getListControlesDeshabilitadosPorRol(nombreVentana, idRol);
-//
-//            if (tablaControles.getMetaData().getColumnCount() > 0) {
-//                int nroColumnas = tablaControles.getMetaData().getColumnCount();
-//                while (tablaControles.next()) {
-//                    Object[] registro = new Object[nroColumnas];
-//                    for (int i = 0; i < nroColumnas; i++) {
-//                        registro[i] = tablaControles.getObject(i + 1);
-//                    }
-//                    vector.addElement(registro);
-//                }
-//            }
-//            seguridadBL.CerrarConexion();
-//        } catch (ClassNotFoundException ex) {
-//            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-//        } catch (SQLException excepcionSQL) {
-//            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-//        }
-//
-//        for (int i = 0; i < vector.size(); i++) {
-//            Object[] registro = (Object[]) vector.get(i);
-//            String nombreControl = registro[3].toString();
-//
-//            //System.out.println(nombreControl);
-//            for (int k = 0; k < menu.getMenuCount(); k++) {
-//                componentesInternos = menu.getMenu(k).getMenuComponents();
-//                for (int j = 0; j < componentesInternos.length; j++) {
-//                    if (((JMenuItem) componentesInternos[j]).getName().equals(nombreControl)) {
-//                        ((JMenuItem) componentesInternos[j]).setVisible(true);
-//                    }
-//                }
-//
-//                if (menu.getMenu(k).getName().equals(nombreControl)) {
-//                    menu.getMenu(k).setVisible(true);
-//                }
-//            }
-//        }
-//    }
+    protected void aplicarSeguridad(JMenuBar menu, Integer idRol)
+    {
+
+        String nombreVentana = this.getName();
+        ResultSet tablaControles;
+        Vector vector = new Vector();
+        JRootPane jroot = this.getRootPane();
+        Component[] componentes = jroot.getJMenuBar().getComponents();
+        Component[] componentesInternos;
+
+        SeguridadBL seguridadBL = new SeguridadBL();
+        try {
+            seguridadBL.AbrirConexion();
+            tablaControles = seguridadBL.getListControlesDeshabilitadosPorRol(nombreVentana, idRol);
+
+            if (tablaControles.getMetaData().getColumnCount() > 0) {
+                int nroColumnas = tablaControles.getMetaData().getColumnCount();
+                while (tablaControles.next()) {
+                    Object[] registro = new Object[nroColumnas];
+                    for (int i = 0; i < nroColumnas; i++) {
+                        registro[i] = tablaControles.getObject(i + 1);
+                    }
+                    vector.addElement(registro);
+                }
+            }
+            seguridadBL.CerrarConexion();
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException excepcionSQL) {
+            JOptionPane.showMessageDialog(this, excepcionSQL.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+        for (int i = 0; i < vector.size(); i++) {
+            Object[] registro = (Object[]) vector.get(i);
+            String nombreControl = registro[3].toString();
+
+            //System.out.println(nombreControl);
+            for (int k = 0; k < menu.getMenuCount(); k++) {
+                componentesInternos = menu.getMenu(k).getMenuComponents();
+                for (int j = 0; j < componentesInternos.length; j++) {
+                    if (((JMenuItem) componentesInternos[j]).getName().equals(nombreControl)) {
+                        ((JMenuItem) componentesInternos[j]).setVisible(true);
+                    }
+                }
+
+                if (menu.getMenu(k).getName().equals(nombreControl)) {
+                    menu.getMenu(k).setVisible(true);
+                }
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -372,6 +372,8 @@ public class AntiPlagiumPrincipal extends JFBase {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try {
             ComparacionesDeteccion frmComparacion = new ComparacionesDeteccion();
+            frmComparacion.setLocationRelativeTo(this);
+            frmComparacion.setTitle("Reporte de Comparación de documentos");
             frmComparacion.setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AntiPlagiumPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -385,6 +387,8 @@ public class AntiPlagiumPrincipal extends JFBase {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
 
         ListarDocs frmListarDocs = new ListarDocs();
+        frmListarDocs.setLocationRelativeTo(this);
+        frmListarDocs.setTitle("Reporte de Documentos registrados");
         frmListarDocs.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
