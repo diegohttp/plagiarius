@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +40,7 @@ import net.sf.jasperreports.swing.JRViewer;
 
 
 
-public class ListarDocs extends JFrame {
+public class ListarDocs extends JDialog {
 
     private ArrayList<DocumentoBE> arrDocumentos = new ArrayList<DocumentoBE>();
     private CategoriaBL categoriaBl;
