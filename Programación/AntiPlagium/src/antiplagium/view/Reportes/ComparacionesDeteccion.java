@@ -43,7 +43,7 @@ import org.freixas.jcalendar.JCalendarCombo;
  *
  * @author PATTY
  */
-public class ComparacionesDeteccion extends javax.swing.JFrame {
+public class ComparacionesDeteccion extends javax.swing.JDialog {
    private static final String URL_BASEDATOS = "jdbc:postgresql://quilla.lab.inf.pucp.edu.pe:1053/postgres";
     private CategoriaBL categoriaBl;
    JCalendarCombo jcComboDesde;
