@@ -59,15 +59,7 @@ public class ListarDocs extends JDialog {
         tmp.setIdCategoria(0);
         tmp.setNombre("Todas");
         ArrayList<CategoriaBE> listaCategorias = null;
-        try {
-            listaCategorias = categoriaBl.buscarCategoria("", "");
-        } catch (FileNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarDocs.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(ListarDocs.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(ListarDocs.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        listaCategorias = categoriaBl.buscarCategoria("", "");
         listaCategorias.add(0 , tmp);
         int cantidadCategorias=listaCategorias.size();
 
