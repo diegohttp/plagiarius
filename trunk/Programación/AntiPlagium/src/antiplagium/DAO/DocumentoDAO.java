@@ -55,9 +55,9 @@ public class DocumentoDAO {
         }
     }
 
-    public static boolean existeDocumento(String nombre){
+    public static boolean existeDocumento(String nombre,int idDoc){
         ConexionJDBC objConexion = new ConexionJDBC();
-        String strSentecia = "SELECT * FROM \"Documento\" WHERE nombre = " + nombre + " AND estado = 'activo'";
+        String strSentecia = "SELECT * FROM \"Documento\" WHERE upper(nombre) = '" + nombre + "' AND NOT (\"idDocumento\" = " + idDoc + ")";
         try {
             Vector lst = objConexion.ejecutarQuery(strSentecia);
             return lst.size() > 0;
@@ -89,7 +89,7 @@ public class DocumentoDAO {
             }
         }
         catch (Exception a){
-            System.out.println(a.getMessage());
+            //System.out.println(a.getMessage());
         }
         return objDocumento;
     }
@@ -198,7 +198,7 @@ public class DocumentoDAO {
 
         strSentencia +=" ORDER BY \"idDocumento\"";
 
-        System.out.println(strSentencia);
+        //System.out.println(strSentencia);
        
         Vector arrDocumento;
         arrDocumento = objConexion.ejecutarQuery(strSentencia);
