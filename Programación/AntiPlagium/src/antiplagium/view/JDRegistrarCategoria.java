@@ -211,15 +211,26 @@ public class JDRegistrarCategoria extends JDialog {
             boolean boolExito = false;
             CategoriaBL objCategoriaBL = new CategoriaBL();
             CategoriaBE objCategoriaTemporal = new CategoriaBE(Integer.parseInt(txtIdCategoria.getText()),txtDescCategoria.getText(),txtNomCategoria.getText());
+            ArrayList<CategoriaBE> alstCatBusqueda = objCategoriaBL.buscarCategoria("", objCategoriaTemporal.getNombre());
             try {
                     if (TipoOperacion==0){
+                        if (alstCatBusqueda.size() > 0){
+                            JOptionPane.showMessageDialog(this, "El nombre de la categoria ya existe", "Registrar Categoria",JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                         boolExito = objCategoriaBL.registrarCategoria(objCategoriaTemporal);
                     }
                     else {
+                        for (int i=0; i < alstCatBusqueda.size(); ++i)
+                            if (objCategoriaTemporal.getIdCategoria() != alstCatBusqueda.get(i).getIdCategoria()){
+                                JOptionPane.showMessageDialog(this, "El nombre de la categoria ya existe", "Modifcar Categoria",JOptionPane.ERROR_MESSAGE);
+                                return;
+                            }
                         boolExito = objCategoriaBL.modificarCategoria(objCategoriaTemporal);
                     }
                 } catch (Exception ex) {
-                    Logger.getLogger(JDRegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "Error al realizar la operación.", "Gestionar Categoria",JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
                 if (boolExito) {
                     if (TipoOperacion==0){
@@ -231,7 +242,8 @@ public class JDRegistrarCategoria extends JDialog {
                             JFBase.registrarOperacion();
                             ConexionJDBC.cerrarConexion();
                         } catch (SQLException ex) {
-                            Logger.getLogger(JDRegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                           JOptionPane.showMessageDialog(this, "Error al realizar la operación.", "Gestionar Categoria",JOptionPane.ERROR_MESSAGE);
+                           return;
                         }
                         JOptionPane.showMessageDialog(this, "La categoria ha sido registrada con éxito", "Modificar Categoria",JOptionPane.INFORMATION_MESSAGE);
                     }
@@ -248,7 +260,8 @@ public class JDRegistrarCategoria extends JDialog {
                             JFBase.registrarOperacion();
                             ConexionJDBC.cerrarConexion();
                         } catch (SQLException ex) {
-                            Logger.getLogger(JDRegistrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(this, "Error al realizar la operación.", "Gestionar Categoria",JOptionPane.ERROR_MESSAGE);
+                            return;
                         }
                         JOptionPane.showMessageDialog(this, "La categoria ha sido modificada con éxito", "Modifcar Categoria",JOptionPane.INFORMATION_MESSAGE);
                     }
