@@ -141,7 +141,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
         setName("JDRegistrarDocumento"); // NOI18N
         setResizable(false);
 
-        pnlDatosParticulares.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos particulares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), java.awt.Color.blue)); // NOI18N
+        pnlDatosParticulares.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos particulares", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.blue)); // NOI18N
 
         txtPropietario.setEditable(false);
 
@@ -197,7 +197,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        pnlDatosGen.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos generales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), java.awt.Color.blue)); // NOI18N
+        pnlDatosGen.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos generales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.blue)); // NOI18N
 
         lblNombre1.setText("Nombre:");
 
@@ -290,7 +290,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta22, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar2))
+                        .addComponent(btnBuscar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(lblNombre3)
                         .addGap(26, 26, 26)
@@ -300,7 +300,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta33, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar3))
+                        .addComponent(btnBuscar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(lblNombre4)
                         .addGap(26, 26, 26)
@@ -310,7 +310,7 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta44, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar4))
+                        .addComponent(btnBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlDatosGenLayout.createSequentialGroup()
                         .addComponent(lblNombre5)
                         .addGap(26, 26, 26)
@@ -320,8 +320,8 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtRuta55, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar5)))
-                .addContainerGap(297, Short.MAX_VALUE))
+                        .addComponent(btnBuscar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(285, Short.MAX_VALUE))
         );
         pnlDatosGenLayout.setVerticalGroup(
             pnlDatosGenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,8 +442,8 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnlDatosGen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDatosParticulares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlDatosParticulares, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlDatosGen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -451,9 +451,9 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(pnlDatosParticulares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pnlDatosGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
+                .addComponent(pnlDatosGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -564,6 +564,27 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Se debe indicar un nombre para el archivo 5.", "Error Registro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        /* Validación de los tamaños de los nombres */
+        if (txtNombreDoc1.getText().length() > 50){
+            JOptionPane.showMessageDialog(this, "Documento 1: La longuitud del nombre debe ser menor a 50 caracteres", "Error Registro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (txtNombreDoc2.getText().length() > 50){
+            JOptionPane.showMessageDialog(this, "Documento 2: La longuitud del nombre debe ser menor a 50 caracteres", "Error Registro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (txtNombreDoc3.getText().length() > 50){
+            JOptionPane.showMessageDialog(this, "Documento 3: La longuitud del nombre debe ser menor a 50 caracteres", "Error Registro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (txtNombreDoc4.getText().length() > 50){
+            JOptionPane.showMessageDialog(this, "Documento 4: La longuitud del nombre debe ser menor a 50 caracteres", "Error Registro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (txtNombreDoc5.getText().length() > 50){
+            JOptionPane.showMessageDialog(this, "Documento 5: La longuitud del nombre debe ser menor a 50 caracteres", "Error Registro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         /* Verificación de los nombres de los documentos */
         if (txtRuta11.getText().compareTo("") != 0 && !DocumentoBL.validarNombre(txtNombreDoc1.getText().toUpperCase())) {
             JOptionPane.showMessageDialog(this, "El nombre para el documento 1 ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
@@ -600,6 +621,8 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 doc1.setIdDocumento(idDoc);
                 doc1.setContenido(contenido);
                 doc1.setEstado("activo");
+
+
                 try {
                     ConexionJDBC.abrirConexion();
                     if (DocumentoBL.registrar(doc1)){
@@ -846,14 +869,20 @@ public class JDRegistrarDocumento extends javax.swing.JDialog {
                 }
             }
             if (cnt == 0) {
-                JOptionPane.showMessageDialog(this, "El directorio no contiene documentos .doc o .txt", "Cargar Documentos", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El directorio no contiene documentos .doc o .txt", "Registrar Documentos", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-
+            /* Validacion de las longuitudades de los nombres */
+            for (int i=0; i < alstArch.size(); ++i){
+                if (alstArch.get(i).getName().length() > 50){
+                    JOptionPane.showMessageDialog(this, "La longuitud de los nombres de documentos debe ser menor o igual a 50 caracteres", "Error Registrar Documentos", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
             // Validacion del nombre de los archivos a subir
             for (int i = 0; i < alstArch.size(); ++i) {
                 if (!DocumentoBL.validarNombre(alstArch.get(i).getName().toUpperCase())) {
-                    JOptionPane.showMessageDialog(this, "El nombre " + alstArch.get(i).getName() + " ya existe.", "Error Registro", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "El nombre " + alstArch.get(i).getName() + " ya existe.", "Error Registrar Documentos", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
             }
