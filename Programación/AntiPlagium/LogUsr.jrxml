@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Title" isDefault="false" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" isDefault="false" forecolor="#666666" fontName="Arial" fontSize="18"/>
-	<style name="Column header" isDefault="false" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
-	<style name="Detail" isDefault="false" fontName="Arial" fontSize="12"/>
+	<style name="Title" isDefault="false" fontName="Serif" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" isDefault="false" forecolor="#666666" fontName="Serif" fontSize="18"/>
+	<style name="Column header" isDefault="false" forecolor="#666666" fontName="Serif" fontSize="12" isBold="true"/>
+	<style name="Detail" isDefault="false" fontName="Serif" fontSize="12"/>
 	<parameter name="PAR_FECHADESDE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[2010-01-01]]></defaultValueExpression>
 	</parameter>
@@ -25,17 +25,38 @@ from "Usuario" A LEFT OUTER JOIN "UsuarioXCategoria" B ON A."idUsuario"=B."idUsu
 	<group name="idOperacion">
 		<groupExpression><![CDATA[$F{idOperacion}]]></groupExpression>
 		<groupHeader>
-			<band height="40">
+			<band height="146">
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="0" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+				</rectangle>
 				<textField>
-					<reportElement style="SubTitle" x="37" y="13" width="160" height="24" forecolor="#CC0000"/>
+					<reportElement style="SubTitle" x="0" y="0" width="60" height="24" forecolor="#CC0000"/>
 					<textElement>
-						<font isBold="true"/>
+						<font size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{idOperacion}]]></textFieldExpression>
 				</textField>
-				<rectangle>
-					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
-				</rectangle>
+				<textField>
+					<reportElement style="Detail" x="81" y="9" width="138" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoOperacion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="248" y="9" width="73" height="15"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombreusuario}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="335" y="0" width="218" height="146"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
@@ -54,7 +75,7 @@ from "Usuario" A LEFT OUTER JOIN "UsuarioXCategoria" B ON A."idUsuario"=B."idUsu
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="335" height="33"/>
 				<textElement verticalAlignment="Middle">
-					<font size="24"/>
+					<font size="20"/>
 				</textElement>
 				<text><![CDATA[Reporte Log de Operaciones]]></text>
 			</staticText>
@@ -84,60 +105,43 @@ from "Usuario" A LEFT OUTER JOIN "UsuarioXCategoria" B ON A."idUsuario"=B."idUsu
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="92" y="21" width="138" height="15"/>
-				<textElement/>
-				<text><![CDATA[tipoOperacion]]></text>
+				<reportElement style="Column header" x="81" y="20" width="138" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Tipo de Operación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="197" y="21" width="65" height="15"/>
-				<textElement/>
-				<text><![CDATA[idUsuario]]></text>
+				<reportElement style="Column header" x="248" y="20" width="115" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="295" y="21" width="138" height="15"/>
-				<textElement/>
-				<text><![CDATA[nombreusuario]]></text>
+				<reportElement style="Column header" x="339" y="21" width="123" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="412" y="21" width="123" height="15"/>
-				<textElement/>
-				<text><![CDATA[descripcion]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="11" y="20" width="60" height="15"/>
-				<textElement/>
+				<reportElement style="Column header" x="0" y="20" width="60" height="15"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<text><![CDATA[IdLog]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="16" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
-			<textField>
-				<reportElement style="Detail" x="81" y="0" width="138" height="15"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipoOperacion}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="295" y="1" width="91" height="15"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombreusuario}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="393" y="1" width="160" height="15"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="197" y="0" width="93" height="15"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{idUsuario}]]></textFieldExpression>
-			</textField>
 		</band>
 	</detail>
 	<columnFooter>
