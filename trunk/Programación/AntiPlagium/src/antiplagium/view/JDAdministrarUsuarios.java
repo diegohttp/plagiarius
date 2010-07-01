@@ -121,10 +121,6 @@ public class JDAdministrarUsuarios extends JDialog {
 
                 ConsultarUsuarios();
 
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(JDAdministrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
