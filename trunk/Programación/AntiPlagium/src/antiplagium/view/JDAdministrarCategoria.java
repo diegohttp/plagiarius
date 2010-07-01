@@ -99,7 +99,6 @@ public class JDAdministrarCategoria extends JDialog {
         tbCategoria = new javax.swing.JTable();
         btnCerrar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
-        btnAceptar1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuRegistrarCategoria = new javax.swing.JMenu();
         mnuModificarCategoria = new javax.swing.JMenu();
@@ -107,7 +106,7 @@ public class JDAdministrarCategoria extends JDialog {
         setTitle("Adiminstrar Categoria");
         setModal(true);
 
-        pnlDatosBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
+        pnlDatosBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), java.awt.Color.blue)); // NOI18N
 
         lblNombre.setText("Nombre");
 
@@ -166,7 +165,7 @@ public class JDAdministrarCategoria extends JDialog {
                 .addContainerGap())
         );
 
-        pnlResultadosBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.blue)); // NOI18N
+        pnlResultadosBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados de Búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), java.awt.Color.blue)); // NOI18N
 
         tbCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,7 +199,7 @@ public class JDAdministrarCategoria extends JDialog {
             .addGroup(pnlResultadosBusquedaLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         pnlResultadosBusquedaLayout.setVerticalGroup(
             pnlResultadosBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,17 +228,6 @@ public class JDAdministrarCategoria extends JDialog {
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
-            }
-        });
-
-        btnAceptar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
-        btnAceptar1.setText("Ver Reporte");
-        btnAceptar1.setMaximumSize(new java.awt.Dimension(135, 35));
-        btnAceptar1.setMinimumSize(new java.awt.Dimension(135, 35));
-        btnAceptar1.setPreferredSize(new java.awt.Dimension(135, 35));
-        btnAceptar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptar1ActionPerformed(evt);
             }
         });
 
@@ -273,9 +261,7 @@ public class JDAdministrarCategoria extends JDialog {
                     .addComponent(pnlResultadosBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlDatosBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(btnAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(360, 360, 360)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -291,8 +277,7 @@ public class JDAdministrarCategoria extends JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -308,7 +293,6 @@ public class JDAdministrarCategoria extends JDialog {
         for (int i=temp.getRowCount() - 1; i >= 0; --i){
             temp.removeRow(i);
         }
-        try {
             String temp1 = "";
             for (int i=0; i < this.txtNombre.getText().length(); ++i){
                 if (this.txtNombre.getText().charAt(i) != '\''){
@@ -326,13 +310,7 @@ public class JDAdministrarCategoria extends JDialog {
                 Object[]nuevo ={alstResultado.get(i).getIdCategoria(),alstResultado.get(i).getNombre(),alstResultado.get(i).getDescripcion()};
                 temp.addRow(nuevo);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(JDAdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         this.txtDescripcion.setText("");
         this.txtNombre.setText("");
 
@@ -422,36 +400,12 @@ public class JDAdministrarCategoria extends JDialog {
          buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptar1ActionPerformed
-          Map pars = new HashMap();
-
-
-        try {
-            JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("report2", pars, this.alstResultado);
-
-            JRViewer v = new JRViewer(jasperPrint);
-            JFrame ventana=new JFrame();
-            ventana.getContentPane().add(v,BorderLayout.CENTER);
-            ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            ventana.setSize(706, 478);
-
-            ventana.setTitle("Vista Previa");
-            ventana.setLocation(512-ventana.getWidth()/2,387 - ventana.getHeight()/2 );
-
-            ventana.setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se cuenta con un equipo de impresion");
-            e.printStackTrace();
-        }        // TODO add your        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAceptar1ActionPerformed
-
     /**
     * @param args the command line arguments
     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnAceptar1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JMenuBar jMenuBar1;

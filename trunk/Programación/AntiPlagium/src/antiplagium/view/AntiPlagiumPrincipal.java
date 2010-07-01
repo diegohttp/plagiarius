@@ -365,7 +365,7 @@ public class AntiPlagiumPrincipal extends JFBase {
         try {
             ComparacionesDeteccion frmComparacion = new ComparacionesDeteccion();
             frmComparacion.setLocationRelativeTo(this);
-            frmComparacion.setModal(true);
+            frmComparacion.setModal(false);
             frmComparacion.setTitle("Reporte de Comparación de documentos");
             frmComparacion.setVisible(true);
         } catch (FileNotFoundException ex) {
@@ -381,7 +381,7 @@ public class AntiPlagiumPrincipal extends JFBase {
 
         ListarDocs frmListarDocs = new ListarDocs();
         frmListarDocs.setLocationRelativeTo(this);
-        frmListarDocs.setModal(true);
+        frmListarDocs.setModal(false);
         frmListarDocs.setTitle("Reporte de Documentos registrados");
         frmListarDocs.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
