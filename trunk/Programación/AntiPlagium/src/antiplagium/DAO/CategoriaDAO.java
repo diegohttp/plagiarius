@@ -53,7 +53,7 @@ public class CategoriaDAO {
             strSentencia += " WHERE nombre like '%"+ nombre + "%'";
         }
         strSentencia +=" ORDER BY \"idCategoria\"";
-        System.out.println(strSentencia);
+        
         /*strSentencia +=
                 " WHERE descripcion like '"+ descripcion+"'||'%' and " +
                 " nombre like '"+ nombre+"'||'%' " +
