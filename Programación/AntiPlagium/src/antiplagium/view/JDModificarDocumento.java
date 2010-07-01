@@ -39,22 +39,25 @@ public class JDModificarDocumento extends JDialog {
 private CategoriaBL objCategoriaBL;
 private DocumentoBE objDocumento ;
 private DocumentoBL objDocumentoBL;
-private HashMap<Integer,Integer> hsmpIdxToId = new HashMap<Integer,Integer>();
+private HashMap<Integer,Integer> hsmpIdxToId;
 private ArrayList<CategoriaBE> alstCategorias;
     /** Creates new form ModificarDocumento */
 
     public JDModificarDocumento(DocumentoBE objDocumento,ArrayList<CategoriaBE> listaCategorias) throws FileNotFoundException, IOException, SQLException{
         initComponents();
+        this.hsmpIdxToId = new HashMap<Integer,Integer>();
         this.objDocumento = objDocumento;
+        this.cboCategoria.removeAllItems();
         objDocumentoBL = new DocumentoBL();
         alstCategorias = listaCategorias;
+        alstCategorias.remove(0);
+        System.out.println(alstCategorias.size());
         int cantidadCategorias = alstCategorias.size();
         for(int i=0;i<cantidadCategorias;i++){
             hsmpIdxToId.put(alstCategorias.get(i).getIdCategoria(), i);
-            cboCategoria.addItem(listaCategorias.get(i));
+            cboCategoria.addItem(alstCategorias.get(i));
         }
-        /* Falta llenar la matriz de Documentos */
-        int idx = this.hsmpIdxToId.get(this.objDocumento.getCategoria().getIdCategoria());
+        int idx = this.hsmpIdxToId.get( objDocumento.getCategoria().getIdCategoria() );
         cboCategoria.setSelectedIndex(idx);
         txtIdDocumento.setText(toString().valueOf(objDocumento.getIdDocumento()));
         txtNombreDoc.setText(objDocumento.getNombre());
@@ -205,12 +208,19 @@ private ArrayList<CategoriaBE> alstCategorias;
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
        if (txtIdDocumento.getText().compareTo("")==0){
             JOptionPane.showMessageDialog(this, "El campo idDocumento no puede ser vacio", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+            return;
        }
        else if (txtNombreDoc.getText().compareTo("")==0){
             JOptionPane.showMessageDialog(this, "El campo nombre no puede ser vacio", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+            return;
        }
        else if (txtPropietario.getText().compareTo("")==0){
            JOptionPane.showMessageDialog(this, "El campo propietario no puede ser vacio", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+           return;
+       }
+       else if(DocumentoBL.existeDocumento(txtNombreDoc.getText().toUpperCase(), objDocumento.getIdDocumento())){
+           JOptionPane.showMessageDialog(this, "El nombre del documento ya existe", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+           return;
        }
        else {
             try {
