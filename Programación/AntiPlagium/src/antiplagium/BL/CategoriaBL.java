@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import antiplagium.DAO.CategoriaDAO;
 import antiplagium.BE.*;
 import antiplagium.DAL.ConexionJDBC;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class CategoriaBL {
@@ -38,8 +40,17 @@ public class CategoriaBL {
         return false;
     }
 
-    public ArrayList<CategoriaBE> buscarCategoria(String descripcion, String nombre) throws FileNotFoundException, IOException, SQLException{
-        return CategoriaDAO.buscar(descripcion,nombre);
+    public ArrayList<CategoriaBE> buscarCategoria(String descripcion, String nombre) {
+        try {
+            return CategoriaDAO.buscar(descripcion, nombre);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CategoriaBL.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CategoriaBL.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaBL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public static int indexCategoria(ArrayList<CategoriaBE> arrCategoria,String nomCategoria){
@@ -59,7 +70,3 @@ public class CategoriaBL {
         return cat;
     }
 }
-
-
-
-
