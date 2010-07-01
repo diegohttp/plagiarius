@@ -91,7 +91,6 @@ public class AntiPlagiumPrincipal extends JFBase {
             Object[] registro = (Object[]) vector.get(i);
             String nombreControl = registro[3].toString();
 
-            //System.out.println(nombreControl);
             for (int k = 0; k < menu.getMenuCount(); k++) {
                 componentesInternos = menu.getMenu(k).getMenuComponents();
                 for (int j = 0; j < componentesInternos.length; j++) {
@@ -306,10 +305,6 @@ public class AntiPlagiumPrincipal extends JFBase {
         jfUsuarios.setModal(true);
         jfUsuarios.setLocationRelativeTo(this);
         jfUsuarios.setVisible(true);
-
-//        desktop.add(jfUsuarios);
-//        JDPPrincipal.add(jfUsuarios);
-
 }//GEN-LAST:event_JMIAdministrarUsuariosActionPerformed
 
     private void JMIAdministrarGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIAdministrarGruposActionPerformed
@@ -327,10 +322,8 @@ public class AntiPlagiumPrincipal extends JFBase {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        try {
-            /* Codigo agregado solo para pruebas */
+        try {      
             UsuarioBE objUsuario = AntiPlagiumPrincipal.usuarioBE;
-            /* Eliminar luego de probar */
             JDBuscarDocumento buscardoc = new JDBuscarDocumento(objUsuario,2);
             buscardoc.setModal(true);
             buscardoc.setLocationRelativeTo(this);
@@ -348,7 +341,6 @@ public class AntiPlagiumPrincipal extends JFBase {
         // TODO add your handling code here:
         JDCompararDocumentos frmCompararDocumentos = new JDCompararDocumentos();
         frmCompararDocumentos.setVisible(true);
-    //JDPPrincipal.add(frmCompararDocumentos);
     }//GEN-LAST:event_jMenuItem4MouseClicked
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
