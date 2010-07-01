@@ -15,15 +15,21 @@ import antiplagium.BE.CategoriaBE;
 import antiplagium.BE.UsuarioBE;
 import antiplagium.BL.CategoriaBL;
 import antiplagium.BL.UsuarioBL;
+import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -35,6 +41,8 @@ public class JDAdministrarCategoria extends JDialog {
     ArrayList<Integer> alistIdsCategorias=null;
     int opcion;
     CategoriaBE objCategoriaSeleccionada=null;
+
+    ArrayList<CategoriaBE> alstResultado = null;
 
 
     /** Creates new form JFAdministrarCategoria */
@@ -91,6 +99,7 @@ public class JDAdministrarCategoria extends JDialog {
         tbCategoria = new javax.swing.JTable();
         btnCerrar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
+        btnAceptar1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuRegistrarCategoria = new javax.swing.JMenu();
         mnuModificarCategoria = new javax.swing.JMenu();
@@ -223,6 +232,17 @@ public class JDAdministrarCategoria extends JDialog {
             }
         });
 
+        btnAceptar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/aceptar.png"))); // NOI18N
+        btnAceptar1.setText("Ver Reporte");
+        btnAceptar1.setMaximumSize(new java.awt.Dimension(135, 35));
+        btnAceptar1.setMinimumSize(new java.awt.Dimension(135, 35));
+        btnAceptar1.setPreferredSize(new java.awt.Dimension(135, 35));
+        btnAceptar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptar1ActionPerformed(evt);
+            }
+        });
+
         mnuRegistrarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo.png"))); // NOI18N
         mnuRegistrarCategoria.setText("Registrar");
         mnuRegistrarCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -253,7 +273,9 @@ public class JDAdministrarCategoria extends JDialog {
                     .addComponent(pnlResultadosBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlDatosBusqueda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(360, 360, 360)
+                        .addGap(207, 207, 207)
+                        .addComponent(btnAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -269,7 +291,8 @@ public class JDAdministrarCategoria extends JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -399,12 +422,36 @@ public class JDAdministrarCategoria extends JDialog {
          buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptar1ActionPerformed
+          Map pars = new HashMap();
+
+
+        try {
+            JasperPrint jasperPrint= Utilitarios.GeneraReportes.gestorReporte("report2", pars, this.alstResultado);
+
+            JRViewer v = new JRViewer(jasperPrint);
+            JFrame ventana=new JFrame();
+            ventana.getContentPane().add(v,BorderLayout.CENTER);
+            ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            ventana.setSize(706, 478);
+
+            ventana.setTitle("Vista Previa");
+            ventana.setLocation(512-ventana.getWidth()/2,387 - ventana.getHeight()/2 );
+
+            ventana.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se cuenta con un equipo de impresion");
+            e.printStackTrace();
+        }        // TODO add your        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptar1ActionPerformed
+
     /**
     * @param args the command line arguments
     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnAceptar1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JMenuBar jMenuBar1;
