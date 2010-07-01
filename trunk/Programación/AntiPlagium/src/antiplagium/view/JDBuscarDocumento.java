@@ -472,7 +472,11 @@ public class JDBuscarDocumento extends JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jMenu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MousePressed
-        JDRegistrarDocumento registrarDocumentos = new JDRegistrarDocumento(objUsuario, alstCategorias);
+        ArrayList<CategoriaBE> alstTemp = new ArrayList<CategoriaBE>();
+        for (int i=0; i < alstCategorias.size(); ++i){
+            alstTemp.add(alstCategorias.get(i));
+        }
+        JDRegistrarDocumento registrarDocumentos = new JDRegistrarDocumento(objUsuario, alstTemp);
         registrarDocumentos.setTitle("Registrar Documento");
         registrarDocumentos.setModal(true);
         registrarDocumentos.setLocationRelativeTo(this);
@@ -491,8 +495,13 @@ public class JDBuscarDocumento extends JDialog {
                     JOptionPane.showMessageDialog(this, "Debe ser propietario del documento para modificar sus datos", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                //this.alstDocumentos.get(idx).setUsuario(objUsuario);
-                vModificarDoc = new JDModificarDocumento(alstDocumentos.get(idx), alstCategorias);
+                //alstDocumentos.get(idx).setUsuario(objUsuario);
+                System.out.println(this.alstCategorias.size());
+                ArrayList<CategoriaBE> alsrTemp = new ArrayList<CategoriaBE>();
+                for (int i=0; i < alstCategorias.size(); ++i){
+                    alsrTemp.add( alstCategorias.get(i) );
+                }
+                vModificarDoc = new JDModificarDocumento(alstDocumentos.get(idx), alsrTemp);
             } catch (FileNotFoundException ex) {
                 java.util.logging.Logger.getLogger(JDBuscarDocumento.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
