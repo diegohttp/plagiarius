@@ -495,8 +495,11 @@ public class JDBuscarDocumento extends JDialog {
                     JOptionPane.showMessageDialog(this, "Debe ser propietario del documento para modificar sus datos", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+                if (alstDocumentos.get(idx).getEstado().equals("inactivo")){
+                    JOptionPane.showMessageDialog(this, "No se puede modificar un documento inactivo", "Error Modificar Documento", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 //alstDocumentos.get(idx).setUsuario(objUsuario);
-                System.out.println(this.alstCategorias.size());
                 ArrayList<CategoriaBE> alsrTemp = new ArrayList<CategoriaBE>();
                 for (int i=0; i < alstCategorias.size(); ++i){
                     alsrTemp.add( alstCategorias.get(i) );
@@ -538,6 +541,10 @@ public class JDBuscarDocumento extends JDialog {
         else {
             if (alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getUsuario().getIdUsuario() != this.objUsuario.getIdUsuario()) {
                 JOptionPane.showMessageDialog(this, "Debe ser el propietario para eliminar el documento.", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (alstDocumentos.get(this.tblDocumentos.getSelectedRow()).getEstado().equals("inactivo")){
+                JOptionPane.showMessageDialog(this, "El documento ya ha sido eliminado", "Error Eliminar", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             DocumentoBL objDocumentoBL = new DocumentoBL();
